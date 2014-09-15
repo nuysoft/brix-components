@@ -1,0 +1,96 @@
+.colorpicker {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    .colorpicker-header {
+        ul {
+            width: 208px;
+            margin: 0px;
+            padding: 0px;
+            li {
+                float: left;
+                width: 14px;
+                height: 14px;
+                margin: -1px 0px 0 -1px;
+                border: 1px solid #000;
+                list-style-type: none;
+            }
+            li.selected {
+                width: 10px;
+                height: 10px;
+                margin: 1px 2px 2px 1px;
+            }
+        }
+    }
+
+    .colorpicker-middle {
+        text-align: center;
+        height: 15px;
+    }
+
+    .colorpicker-body {
+        .picker-wrapper {
+            position: relative;
+            float: left;
+            .picker {
+                width: 195px;
+                height: 196px;
+                cursor: pointer;
+            }
+            .picker-indicator {
+                position: absolute;
+                font-size: 10px;
+                line-height: 11px;
+                color: #000;
+                top: 0px;
+                left: 0px;
+                cursor: pointer;
+            }
+        }
+        .slide-wrapper {
+            position: relative;
+            margin-left: 10px;
+            float: left;
+            .slide {
+                width: 20px;
+                height: 196px;
+                cursor: pointer;
+            }
+            .slide-indicator {
+                position: absolute;
+                font-size: 10px;
+                line-height: 11px;
+                color: #000;
+                right: -9px;
+                top: 0px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .colorpicker-footer {
+        margin-top: 10px;
+        span {
+            width: 34px;
+            height: 34px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        input {
+            width: 85px;
+            display: inline-block;
+            font-family: monospace;
+        }
+        a {
+            
+        }
+    }
+
+}
