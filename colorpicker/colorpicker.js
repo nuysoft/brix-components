@@ -3,8 +3,6 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./colorpicker.tpl',
-        'text!/brix-gallery/colorpicker/colorpicker-svg-slide.tpl', 'text!/brix-gallery/colorpicker/colorpicker-svg-picker.tpl',
-        'text!/brix-gallery/colorpicker/colorpicker-vml-slide.tpl', 'text!/brix-gallery/colorpicker/colorpicker-vml-picker.tpl',
         'less!./colorpicker.less'
     ],
     function(
@@ -33,6 +31,59 @@ define(
             公共事件：ready destroyed
 
         */
+
+        svgSlideTpl = '\
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">\
+                <defs>\
+                    <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">\
+                        <stop offset="0%" stop-color="#FF0000" stop-opacity="1"></stop>\
+                        <stop offset="13%" stop-color="#FF00FF" stop-opacity="1"></stop>\
+                        <stop offset="25%" stop-color="#8000FF" stop-opacity="1"></stop>\
+                        <stop offset="38%" stop-color="#0040FF" stop-opacity="1"></stop>\
+                        <stop offset="50%" stop-color="#00FFFF" stop-opacity="1"></stop>\
+                        <stop offset="63%" stop-color="#00FF40" stop-opacity="1"></stop>\
+                        <stop offset="75%" stop-color="#0BED00" stop-opacity="1"></stop>\
+                        <stop offset="88%" stop-color="#FFFF00" stop-opacity="1"></stop>\
+                        <stop offset="100%" stop-color="#FF0000" stop-opacity="1"></stop>\
+                    </linearGradient>\
+                </defs>\
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-hsv)"></rect>\
+            </svg>\
+        '
+        svgPickerTpl = '\
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">\
+                <defs>\
+                    <lineargradient id="gradient-black" x1="0%" y1="100%" x2="0%" y2="0%">\
+                        <stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>\
+                        <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>\
+                    </lineargradient>\
+                    <lineargradient id="gradient-white" x1="0%" y1="100%" x2="100%" y2="100%">\
+                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>\
+                        <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>\
+                    </lineargradient>\
+                </defs>\
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>\
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>\
+            </svg>\
+        '
+        vmlSlideTpl = '\
+            <div style="position: relative; width: 100%; height: 100%">\
+                <v:rect style="position: absolute; top: 0; left: 0; width: 100%; height: 100%" stroked="f" filled="t">\
+                    <v:fill type="gradient" method="none" angle="0" color="red" color2="red" colors="8519f fuchsia;.25 #8000ff;24903f #0040ff;.5 aqua;41287f #00ff40;.75 #0bed00;57671f yellow"></v:fill>\
+                </v:rect>\
+            </div>\
+        '
+        vmlPickerTpl = '\
+            <div style="position: relative; width: 100%; height: 100%">\
+                <v:rect style="position: absolute; left: -1px; top: -1px; width: 101%; height: 101%" stroked="f" filled="t">\
+                    <v:fill type="gradient" method="none" angle="270" color="#FFFFFF" opacity="100%" color2="#CC9A81" o:opacity2="0%"></v:fill>\
+                </v:rect>\
+                <v:rect style="position: absolute; left: 0px; top: 0px; width: 100%; height: 101%" stroked="f" filled="t">\
+                    <v:fill type="gradient" method="none" angle="0" color="#000000" opacity="100%" color2="#CC9A81" o:opacity2="0%"></v:fill>\
+                </v:rect>\
+            </div>\
+        '
+
         function ColorPicker(options) {}
         _.extend(ColorPicker.prototype, Brix.prototype, {
             init: function() {
