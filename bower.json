@@ -1,6 +1,10 @@
 {
   "name": "brix-gallery",
   "version": "0.0.0",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {},
   "devDependencies": {
     "requirejs": "~2.1.14",
     "requirejs-text": "~2.0.12",
