@@ -4,8 +4,7 @@
   "ignore": [
     "**/.*"
   ],
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "requirejs": "~2.1.14",
     "requirejs-text": "~2.0.12",
     "require-less": "~0.1.2",
@@ -14,5 +13,6 @@
     "underscore": "~1.6.0",
     "bootstrap": "~3.2.0",
     "less": "~1.7.4"
-  }
+  },
+  "devDependencies": {}
 }
