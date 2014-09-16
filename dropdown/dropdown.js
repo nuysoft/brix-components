@@ -120,6 +120,37 @@ define(
             },
             toggle: function() {
                 $(this.element).toggleClass('open')
+                return this
+            },
+            show: function() {
+                $(this.element).addClass('open')
+                return this
+            },
+            hide: function() {
+                $(this.element).removeClass('open')
+                return this
+            },
+            /*
+                .val( { label: "", value: "" } )
+                .val( value )
+            */
+            val: function(value) {
+                var data = _.isObject(value) ? value :
+                    _.each(this.data, function(item, index) {
+                        // label value selected
+                        if (item.value === value) {
+                            item.selected = true
+                            data = item
+                        } else {
+                            item.selected = false
+                        }
+                    })
+                $(this.element).find('button.dropdown-toggle > span:first')
+                    .attr('value', data.value)
+                    .text(data.label)
+                    .trigger('change', data)
+                $(this.selectElement).val(data.value)
+                return this
             },
             select: function(event, trigger) {
                 var $target = $(event.currentTarget)
@@ -127,11 +158,7 @@ define(
                     label: $target.text(),
                     value: $target.attr('value')
                 }
-                $(this.element).find('button.dropdown-toggle > span:first')
-                    .attr('value', data.value)
-                    .text(data.label)
-                    .trigger('change', data)
-                $(this.selectElement).val(data.value)
+                this.val(data)
                 this.toggle()
             }
         })
