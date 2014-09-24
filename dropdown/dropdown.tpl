@@ -4,8 +4,15 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
-    <% for(var i = 0; i < data.length; i++ ) { %>
-    <li><a tabindex="-1" href="javascript:void(0);" value="<%=data[i].value%>" bx-click="select()"><%=data[i].label%></a></li>
+    <% for(var i = 0, item; item = data[i]; i++ ) { %>
+      <% if(item.children) { %>
+        <li role="presentation" class="dropdown-header"><%=item.label%></li>
+        <% for(var ii = 0; ii < item.children.length; ii++ ) { %>
+          <li><a tabindex="-1" href="javascript:void(0);" value="<%=item.children[ii].value%>" bx-click="select()"><%=item.children[ii].label%></a></li>          
+        <% } %>
+      <% } else { %>
+        <li><a tabindex="-1" href="javascript:void(0);" value="<%=item.value%>" bx-click="select()"><%=item.label%></a></li>
+      <% }  %>
     <% } %>
   </ul>
 </div>

@@ -1,3 +1,6 @@
+/*
+    分页组件。
+ */
 define(
     [
         'jquery', 'underscore',

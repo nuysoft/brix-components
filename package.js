@@ -20,6 +20,8 @@ require.config({
         'gallery/dropdown': '/brix-gallery/dropdown/dropdown',
         'gallery/pagination': '/brix-gallery/pagination/pagination',
         'gallery/pure-pagination': '/brix-gallery/pagination/pure-pagination',
-        'gallery/colorpicker': '/brix-gallery/colorpicker/colorpicker'
+        'gallery/colorpicker': '/brix-gallery/colorpicker/colorpicker',
+        'gallery/modal': '/brix-gallery/modal/modal',
+        'gallery/slider': '/brix-gallery/slider/slider'
     }
 })

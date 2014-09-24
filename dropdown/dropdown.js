@@ -1,3 +1,6 @@
+/*
+    http://getbootstrap.com/components/#dropdowns
+ */
 define(
     [
         'jquery', 'underscore',
@@ -10,6 +13,9 @@ define(
         Brix, template
     ) {
         /*
+            # Dropdown
+
+            下拉框组件。
 
             ### 数据
                 [
@@ -80,21 +86,48 @@ define(
 
         }
         _.extend(Dropdown.prototype, Brix.prototype, {
+            options: {},
+            parseData: function(select) {
+                var $select = $(select)
+                return _.map($select.children(), function(child, index) {
+                    var $child = $(child)
+
+                    // <optgroup
+                    if (/optgroup/i.test(child.nodeName)) {
+                        return {
+                            label: $child.attr('label'),
+                            children: parseOptions($child.children())
+                        }
+
+                    } else {
+                        // <option 
+                        return parseOption(child)
+                    }
+                })
+
+                function parseOptions(options) {
+                    return _.map(options, function(option, index) {
+                        return parseOption(option)
+                    })
+                }
+
+                function parseOption(option) {
+                    var $option = $(option)
+                    return {
+                        label: $option.text(),
+                        value: $option.attr('value'),
+                        selected: $option.prop('selected')
+                    }
+                }
+            },
             render: function() {
                 var that = this
                 var $select = $(this.element).hide()
-                this.selectElement = $select.get(0)
 
                 // 如果没有提供选项 data，则从子元素中收集数据
                 if (!this.data) {
-                    this.data = _.map($select.find('option'), function(option, index) {
-                        option = $(option)
-                        return {
-                            label: option.text(),
-                            value: option.attr('value'),
-                            selected: option.prop('selected')
-                        }
-                    })
+                    this.data = this.parseData(this.element)
+
                 } else {
                     // 如果提供了选项 data，则反过来修改子元素
                     $select.empty()
@@ -106,28 +139,39 @@ define(
                             .appendTo($select)
                     })
                 }
+
                 this.selectedIndex = $select.prop('selectedIndex')
                 this.selectedIndex = this.selectedIndex !== -1 ? this.selectedIndex : 0
-                this.label = this.data[this.selectedIndex].label
-                this.value = this.data[this.selectedIndex].value
+                var selectedOption = $(this.element.options[this.selectedIndex])
+                this.label = selectedOption.text()
+                this.value = selectedOption.attr('value')
 
-                if ($select.prev().is('div.btn-group:has(ul.dropdown-menu)')) $select.prev().remove()
+                // ？？？
+                // if ($select.prev().is('div.btn-group:has(ul.dropdown-menu)')) $select.prev().remove()
                 var html = _.template(template, this)
-                var newElement = $(html).insertAfter($select)
-                this.element = newElement
-
+                var relatedElement = $(html).insertAfter($select)
+                this.relatedElement = relatedElement[0]
+                
                 this.delegateBxTypeEvents()
+
+                var type = 'click.dropdown_' + this.clientId
+                $(document.body)
+                    .off(type)
+                    .on(type, function(event) {
+                        if (relatedElement.has(event.target).length) return
+                        that.hide()
+                    })
             },
             toggle: function() {
-                $(this.element).toggleClass('open')
+                $(this.relatedElement).toggleClass('open')
                 return this
             },
             show: function() {
-                $(this.element).addClass('open')
+                $(this.relatedElement).addClass('open')
                 return this
             },
             hide: function() {
-                $(this.element).removeClass('open')
+                $(this.relatedElement).removeClass('open')
                 return this
             },
             /*
@@ -145,11 +189,11 @@ define(
                             item.selected = false
                         }
                     })
-                $(this.element).find('button.dropdown-toggle > span:first')
+                $(this.relatedElement).find('button.dropdown-toggle > span:first')
                     .attr('value', data.value)
                     .text(data.label)
                     .trigger('change', data)
-                $(this.selectElement).val(data.value)
+                $(this.element).val(data.value)
                 return this
             },
             select: function(event, trigger) {

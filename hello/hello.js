@@ -17,29 +17,37 @@ define(
 
             ### 选项
             公共选项：data template
+            message
 
             ### 属性
             公共属性：element moduleId clientId parentClientId childClientIds data template
+            message
 
             ### 方法
 
             ### 事件
             公共事件：ready destroyed
+            say
 
         */
-        function Hello(options) {
+        function Hello(options) {}
 
-        }
         _.extend(Hello.prototype, Brix.prototype, {
+            options: {
+                message: 'World'
+            },
             render: function() {
-                // throw new Error('hello...')
-                var that = this
-                var $element = $(this.element)
-                $element.append(template)
+                this.data = this.data || _.extend({}, _.pick(this.options, 'message'))
+                var html = _.template(template, this.data)
+                $(this.element).append(html)
+
                 this.delegateBxTypeEvents()
             },
-            say:function(){
-                console.log(this, 'Hello World!')
+            say: function(message) {
+                if (message) this.data.message = message
+                this.render()
+                debugger
+                $(this.element).trigger('say', message)
             }
         })
         return Hello

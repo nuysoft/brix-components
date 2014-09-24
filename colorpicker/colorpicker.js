@@ -86,31 +86,32 @@ define(
 
         function ColorPicker(options) {}
         _.extend(ColorPicker.prototype, Brix.prototype, {
-            init: function() {
-
+            options: {
+                color: '#ffffff'
             },
+            init: function() {},
             render: function() {
                 var that = this
 
-                this.color = this.options.color || '#ffffff'
-                var rendered = _.template(template, {
+                this.color = this.options.color
+                var html = _.template(template, {
                     colors: ['#d81e06', '#f4ea2a', '#1afa29', '#1296db', '#13227a', '#d4237a', '#ffffff', '#e6e6e6', '#dbdbdb', '#cdcdcd', '#bfbfbf', '#8a8a8a', '#707070', '#515151', '#2c2c2c', '#000000', '#ea986c', '#eeb174', '#f3ca7e', '#f9f28b', '#c8db8c', '#aad08f', '#87c38f', '#83c6c2', '#7dc5eb', '#87a7d6', '#8992c8', '#a686ba', '#bd8cbb', '#be8dbd', '#e89abe', '#e8989a', '#e16632', '#e98f36', '#efb336', '#f6ef37', '#afcd51', '#7cba59', '#36ab60', '#1baba8', '#17ace3', '#3f81c1', '#4f68b0', '#594d9c', '#82529d', '#a4579d', '#db649b', '#dd6572', '#d81e06', '#e0620d', '#ea9518', '#f4ea2a', '#8cbb1a', '#2ba515', '#0e932e', '#0c9890', '#1295db', '#0061b2', '#0061b0', '#004198', '#122179', '#88147f', '#d3227b', '#d6204b'],
                     min: false,
                     color: this.color
                 })
 
-                this.triggerElement = this.element
-                var $triggerElement = $(this.triggerElement)
-                this.element = $(rendered).css({
-                    left: $triggerElement.offset().left,
-                    top: $triggerElement.offset().top + $triggerElement.outerHeight() + 1
+                var $trigger = $(this.element)
+                var relatedElement = $(html).css({
+                    left: $trigger.offset().left,
+                    top: $trigger.offset().top + $trigger.outerHeight() + 1
                 }).appendTo(document.body).hide()
+                this.relatedElement = relatedElement[0]
 
-                this.pickerDragNode = this.element.find('.picker-indicator')
-                this.slideDragNode = this.element.find('.slide-indicator')
+                this.pickerDragNode = relatedElement.find('.picker-indicator')
+                this.slideDragNode = relatedElement.find('.slide-indicator')
 
-                var slideNode = this.slideNode = this.element.find('.slide')
-                var pickerNode = this.pickerNode = this.element.find('.picker')
+                var slideNode = this.slideNode = relatedElement.find('.slide')
+                var pickerNode = this.pickerNode = relatedElement.find('.picker')
                 var type = (window.SVGAngle || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML")
 
                 switch (type) {
@@ -126,25 +127,32 @@ define(
                         pickerNode.html(vmlPickerTpl)
                 }
 
-                that.setHex(that.color)
+                this.setHex(this.color)
+
+                var type = 'click.colorpicker_' + this.clientId
+                $(document.body)
+                    .off(type)
+                    .on(type, function(event) {
+                        if (that.element === event.target) return
+                        if (relatedElement.has(event.target).length) return
+                        that.hide()
+                    })
+
+                this.delegateBxTypeEvents(this.element)
+                this.delegateBxTypeEvents(this.relatedElement)
 
                 this.on('change selected', function(e, data) {
                     console.log(e.type, data)
                 })
-                $triggerElement.on('click', function(event) {
-                    that.toggle()
-                })
-
-                this.delegateBxTypeEvents()
             },
             show: function() {
-                $(this.element).show()
+                $(this.relatedElement).show()
             },
             hide: function() {
-                $(this.element).hide()
+                $(this.relatedElement).hide()
             },
             toggle: function(e) {
-                $(this.element).toggle()
+                $(this.relatedElement).toggle()
             },
             /**
              * Sets color of the picker in hsv/rgb/hex format.
@@ -154,7 +162,7 @@ define(
              */
             setColor: function(hsv, rgb, hex) {
                 var that = this
-                var $element = this.element
+                var $relatedElement = $(this.relatedElement)
                 this.h = hsv.h % 360
                 this.s = hsv.s
                 this.v = hsv.v
@@ -173,13 +181,13 @@ define(
                 this.pickerNode.css({
                     "background-color": hsv2rgb(this.h, 1, 1).hex
                 })
-                $element.find('.colorpicker-footer span').css({
+                $relatedElement.find('.colorpicker-footer span').css({
                     "background-color": c.hex
                 })
                 this.color = c.hex
-                $element.find('li').removeClass('selected')
+                $relatedElement.find('li').removeClass('selected')
 
-                var input = $element.find('input')
+                var input = $relatedElement.find('input')
                 if (input.val() !== c.hex) input.val(c.hex)
             },
             /**

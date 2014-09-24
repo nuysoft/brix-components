@@ -1,1 +1,1 @@
-Hello Wrold!
+Hello <%= message %>!<br>
