@@ -1,3 +1,4 @@
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -13,7 +14,7 @@ define(
         /*
             页脚组件
         */
-        function Footer(options) {}
+        function Footer() {}
 
         _.extend(Footer.prototype, Brix.prototype, {
             options: {},

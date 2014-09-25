@@ -1,3 +1,4 @@
+/* global define */
 /*
     分页组件。
  */
@@ -38,9 +39,8 @@ define(
                 公共事件：ready destroyed
                 
         */
-        function Pagination(options) {
+        function Pagination() {}
 
-        }
         _.extend(Pagination.prototype, Brix.prototype, {
             options: {
                 statistics: true,

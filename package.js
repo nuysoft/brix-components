@@ -1,3 +1,4 @@
+/* global require */
 /*
     http://etaoux.github.io/brix/gallery/tables/
 */

@@ -1,3 +1,4 @@
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -22,7 +23,7 @@ define(
             ### 事件
                 ready destroyed
         */
-        function boilerplate(options) {}
+        function boilerplate() {}
 
         _.extend(boilerplate.prototype, Brix.prototype, {
             options: {},

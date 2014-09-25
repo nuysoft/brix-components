@@ -1,3 +1,5 @@
+/* global define */
+/* global document */
 /*
     http://getbootstrap.com/components/#dropdowns
  */
@@ -82,14 +84,12 @@ define(
                 </optgroup>
             </select>
         */
-        function Dropdown(options) {
-
-        }
+        function Dropdown() {}
         _.extend(Dropdown.prototype, Brix.prototype, {
             options: {},
             parseData: function(select) {
                 var $select = $(select)
-                return _.map($select.children(), function(child, index) {
+                return _.map($select.children(), function(child /*, index*/ ) {
                     var $child = $(child)
 
                     // <optgroup
@@ -106,7 +106,7 @@ define(
                 })
 
                 function parseOptions(options) {
-                    return _.map(options, function(option, index) {
+                    return _.map(options, function(option /*, index*/ ) {
                         return parseOption(option)
                     })
                 }
@@ -151,7 +151,7 @@ define(
                 var html = _.template(template, this)
                 var relatedElement = $(html).insertAfter($select)
                 this.relatedElement = relatedElement[0]
-                
+
                 this.delegateBxTypeEvents()
 
                 var type = 'click.dropdown_' + this.clientId
@@ -180,7 +180,7 @@ define(
             */
             val: function(value) {
                 var data = _.isObject(value) ? value :
-                    _.each(this.data, function(item, index) {
+                    _.each(this.data, function(item /*, index*/ ) {
                         // label value selected
                         if (item.value === value) {
                             item.selected = true
@@ -196,7 +196,8 @@ define(
                 $(this.element).val(data.value)
                 return this
             },
-            select: function(event, trigger) {
+            // trigger?
+            select: function(event /*, trigger*/ ) {
                 var $target = $(event.currentTarget)
                 var data = {
                     label: $target.text(),

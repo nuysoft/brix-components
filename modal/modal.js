@@ -1,3 +1,5 @@
+/* global define   */
+/* global document */
 define(
     [
         'jquery', 'underscore',
@@ -21,8 +23,10 @@ define(
                 .render()
             ### 事件
                 ready destroyed
+
+            http://zombiej.github.io/bootstrap-components-3.0/
         */
-        function modal(options) {}
+        function modal() {}
 
         _.extend(modal.prototype, Brix.prototype, {
             options: {

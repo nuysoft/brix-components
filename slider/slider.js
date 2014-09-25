@@ -1,3 +1,4 @@
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -22,7 +23,7 @@ define(
             ### 事件
                 ready destroyed
         */
-        function slider(options) {}
+        function slider() {}
 
         _.extend(slider.prototype, Brix.prototype, {
             options: {},

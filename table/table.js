@@ -1,14 +1,14 @@
+/* global define  */
+/* global console */
 define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'text!./table.tpl',
         'less!./table.less'
     ],
     function(
         $, _,
-        Brix,
-        template
+        Brix
     ) {
         /*
             ### 数据
@@ -22,11 +22,10 @@ define(
             ### 事件
                 ready destroyed
         */
-        function table(options) {}
+        function table() {}
 
         var theadCheckboxSelector = 'thead th:first-child input:checkbox'
         var tbodyCheckboxSelector = 'tbody td:first-child input:checkbox'
-        var tbodyTrChecedSelector = 'tbody tr:has(input:checkbox:checked)'
 
         _.extend(table.prototype, Brix.prototype, {
             options: {},
@@ -41,15 +40,15 @@ define(
                 var that = this
                     // 全选，单选
                 this.$element
-                    .on('click', theadCheckboxSelector, function(event) {
+                    .on('click', theadCheckboxSelector, function( /*event*/ ) {
                         that.toggleAll()
                     })
-                    .on('click', tbodyCheckboxSelector, tbodyCheckboxSelector, function(event) {
+                    .on('click', tbodyCheckboxSelector, tbodyCheckboxSelector, function( /*event*/ ) {
                         that.toggleOne()
                     })
 
                 // 测试事件
-                this.on('toggle', function(event, values) {
+                this.on('toggle', function( /*event, values*/ ) {
                     console.log(arguments)
                 })
             },
@@ -59,7 +58,7 @@ define(
                     var values = []
                     var tbodyCheckboxes = that.$element.find(tbodyCheckboxSelector)
                     var checked = tbodyCheckboxes.filter(':checked')
-                    _.each(checked, function(item, index) {
+                    _.each(checked, function(item /*, index*/ ) {
                         values.push(item.value)
                     })
                     return values
@@ -73,7 +72,7 @@ define(
                 if (tbodyCheckboxes.length) tbodyCheckboxes.prop('checked', checked)
                 else theadCheckbox.prop('checked', false)
 
-                _.each(tbodyCheckboxes, function(item, index) {
+                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
                     var checked = $(item).prop('checked')
                     $(item).closest('tr')[checked ? 'addClass' : 'removeClass']('active')
                 })
@@ -86,7 +85,7 @@ define(
                 var checked = tbodyCheckboxes.filter(':checked')
                 theadCheckbox.prop('checked', tbodyCheckboxes.length === checked.length)
 
-                _.each(tbodyCheckboxes, function(item, index) {
+                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
                     var checked = $(item).prop('checked')
                     $(item).closest('tr')[checked ? 'addClass' : 'removeClass']('active')
                 })
@@ -94,7 +93,7 @@ define(
                 this.triggerToggle()
             },
             contextual: function(tbodyCheckboxes) {
-                _.each(tbodyCheckboxes, function(item, index) {
+                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
                     var checked = $(item).prop('checked')
                     $(item).closest('tr')[
                         checked ? 'addClass' : 'removeClass'

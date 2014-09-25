@@ -1,3 +1,5 @@
+/* global define  */
+/* global module  */
 /* 
     Pagination
 
@@ -39,7 +41,7 @@
         toHTML(url)         生成分页栏
 
 */
-define(function(require, exports) {
+define(function( /*require, exports*/ ) {
 
     return (function(global) {
         /*

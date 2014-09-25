@@ -1,3 +1,4 @@
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -30,7 +31,7 @@ define(
             say
 
         */
-        function Hello(options) {}
+        function Hello() {}
 
         _.extend(Hello.prototype, Brix.prototype, {
             options: {
@@ -46,7 +47,6 @@ define(
             say: function(message) {
                 if (message) this.data.message = message
                 this.render()
-                debugger
                 $(this.element).trigger('say', message)
             }
         })

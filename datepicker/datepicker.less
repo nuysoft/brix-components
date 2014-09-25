@@ -1,0 +1,139 @@
+.datepicker-container {
+    background: white;
+    display: inline-block;
+    border: 1px solid #CCC;
+    padding: 0 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    overflow-y: hidden;
+    // position: absolute; // TODO
+    z-index: 10;
+
+    .picker-group {
+        border-top: 1px solid gray;
+        padding: 15px 0 13px 0;
+        margin-top: -2px;
+
+        &.first-group {
+            border-top: none;
+            padding-top: 0;
+        }
+        &.last-group {
+            padding-bottom: 0;
+        }
+
+        .picker-header {
+            text-align: center;
+            margin-bottom: 5px;
+
+            button {
+                padding: 6px 7px;
+                line-height: 100%;
+                vertical-align: top;
+            }
+            button.minus {
+                float: left;
+            }
+            button.plus {
+                float: right;
+            }
+            h4 {
+                display: inline-block;
+                margin: 0;
+                padding: 5px 0 7px 0;
+                cursor: pointer;
+            }
+        }
+        .picker-body {
+            width: 238px;
+
+            span {
+                display: inline-block;
+                padding: 5px 0;
+                margin: 3px 2px 0 2px;
+                float: left;
+                text-align: center;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background: #EEE;
+                }
+                &:active {
+                    background: #DDD;
+                }
+                &.active {
+                    color: white;
+                    background: #3276b1;
+                }
+                &.inactive:hover {
+                    background: transparent;
+                    cursor: default;
+                }
+                &.disabled {
+                    color: #DDD;
+                    cursor: default;
+                }
+                &.disabled:hover {
+                    color: #DDD;
+                    background: #FFF;
+                }
+                &.disabled.active {
+                    color: #FFF;
+                    background: #DDD;
+                }
+            }
+        }
+    }
+    > .yearpicker {
+        .picker-body span {
+            width: 43px;
+        }   
+        .picker-header h4 {
+            cursor: default;
+        }
+    }
+    > .monthpicker {
+        .picker-body span {
+            width: 55px;
+        }
+    }
+    > .datepicker {
+        .picker-body span {
+            width: 30px;
+        }
+    }
+    > .timepicker {
+        width: 238px;
+
+        .timepicker-group {
+            width: 60px;
+            float: left;
+            input {
+                font-size: 40px;
+                height: 65px;
+                text-align: center;
+                padding: 0;
+                margin: 0 0 10px 0;
+                border-radius: 5px;
+                display: block;
+            }
+            button {
+                padding: 6px 6px;
+                line-height: 100%;
+                vertical-align: top;
+            }
+            button.time-plus {
+                float: right;
+            }
+        }
+        .timepicker-spliter {
+            float: left;
+            font-size: 45px;
+            font-weight: bolder;
+            display: inline-block;
+            width: 29px;
+            text-align: center;
+        }
+    }
+}
