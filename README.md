@@ -1,3 +1,2 @@
-brix-gallery
+Brix Components
 =========
-

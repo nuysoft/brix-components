@@ -49,42 +49,42 @@ define(function( /*require, exports*/ ) {
             new Pagination( total, cursor, limit )  
         */
         function Pagination(data, cursor, limit) {
-            this.data = (typeof data === 'number' || typeof data === 'string') ? undefined : data;
-            this.total = this.data ? this.data.length : data;
-            this.cursor = cursor;
-            this.limit = limit;
-            this.calc();
+            this.data = (typeof data === 'number' || typeof data === 'string') ? undefined : data
+            this.total = this.data ? this.data.length : parseInt(data, 10)
+            this.cursor = parseInt(cursor, 10)
+            this.limit = parseInt(limit, 10)
+            this.calc()
         }
         Pagination.prototype = {
             calc: function() {
                 if (this.total && parseInt(this.total, 10) > 0) {
-                    this.limit = this.limit < 1 ? 1 : this.limit;
+                    this.limit = this.limit < 1 ? 1 : this.limit
 
                     this.pages = (this.total % this.limit === 0) ? this.total / this.limit : this.total / this.limit + 1;
-                    this.pages = parseInt(this.pages, 10);
-                    this.cursor = (this.cursor > this.pages) ? this.pages : this.cursor;
-                    this.cursor = (this.cursor < 1) ? this.pages > 0 ? 1 : 0 : this.cursor;
+                    this.pages = parseInt(this.pages, 10)
+                    this.cursor = (this.cursor > this.pages) ? this.pages : this.cursor
+                    this.cursor = (this.cursor < 1) ? this.pages > 0 ? 1 : 0 : this.cursor
 
-                    this.start = (this.cursor - 1) * this.limit;
-                    this.start = (this.start < 0) ? 0 : this.start; // 从 0 开始计数
-                    this.end = (this.start + this.limit > this.total) ? this.total : this.start + this.limit;
-                    this.end = (this.total < this.limit) ? this.total : this.end;
+                    this.start = (this.cursor - 1) * this.limit
+                    this.start = (this.start < 0) ? 0 : this.start // 从 0 开始计数
+                    this.end = (this.start + this.limit > this.total) ? this.total : this.start + this.limit
+                    this.end = (this.total < this.limit) ? this.total : this.end
 
-                    this.hasPrev = (this.cursor > 1) ? true : false;
-                    this.hasNext = (this.cursor < this.pages) ? true : false;
-                    this.hasFirst = this.hasPrev;
-                    this.hasLast = this.hasNext;
+                    this.hasPrev = (this.cursor > 1) ? true : false
+                    this.hasNext = (this.cursor < this.pages) ? true : false
+                    this.hasFirst = this.hasPrev
+                    this.hasLast = this.hasNext
 
-                    this.prev = this.hasPrev ? this.cursor - 1 : 0;
-                    this.next = this.hasNext ? this.cursor + 1 : 0;
-                    this.first = this.hasFirst ? 1 : 0;
-                    this.last = this.hasLast ? this.pages : 0;
+                    this.prev = this.hasPrev ? this.cursor - 1 : 0
+                    this.next = this.hasNext ? this.cursor + 1 : 0
+                    this.first = this.hasFirst ? 1 : 0
+                    this.last = this.hasLast ? this.pages : 0
 
-                    this.focus = this.focus ? this.focus : 0;
-                    this.focus = this.focus % this.limit + this.start;
-                    this.focus = this.focus > this.end - 1 ? this.end - 1 : this.focus;
+                    this.focus = this.focus ? this.focus : 0
+                    this.focus = this.focus % this.limit + this.start
+                    this.focus = this.focus > this.end - 1 ? this.end - 1 : this.focus
                 }
-                return this;
+                return this
             },
             moveTo: function(cursor) {
                 this.cursor = parseInt(cursor, 10);

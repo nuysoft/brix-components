@@ -1,3 +1,8 @@
+/* global define        */
+/* global window        */
+/* global document      */
+/* global console       */
+/* jshint multistr:true */
 define(
     [
         'jquery', 'underscore',
@@ -84,7 +89,8 @@ define(
             </div>\
         '
 
-        function ColorPicker(options) {}
+        function ColorPicker() {}
+
         _.extend(ColorPicker.prototype, Brix.prototype, {
             options: {
                 color: '#ffffff'
@@ -112,9 +118,9 @@ define(
 
                 var slideNode = this.slideNode = relatedElement.find('.slide')
                 var pickerNode = this.pickerNode = relatedElement.find('.picker')
-                var type = (window.SVGAngle || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML")
+                var svgOrVml = (window.SVGAngle || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML")
 
-                switch (type) {
+                switch (svgOrVml) {
                     case 'SVG':
                         slideNode.append(svgSlideTpl)
                         pickerNode.append(svgPickerTpl)
@@ -141,8 +147,8 @@ define(
                 this.delegateBxTypeEvents(this.element)
                 this.delegateBxTypeEvents(this.relatedElement)
 
-                this.on('change selected', function(e, data) {
-                    console.log(e.type, data)
+                this.on('change selected', function(event, data) {
+                    console.log(event.type, data)
                 })
             },
             show: function() {
@@ -151,7 +157,7 @@ define(
             hide: function() {
                 $(this.relatedElement).hide()
             },
-            toggle: function(e) {
+            toggle: function() {
                 $(this.relatedElement).toggle()
             },
             /**
@@ -160,8 +166,7 @@ define(
              * @param {Object} rgb Object of the form: { r: <red>, g: <green>, b: <blue> }.
              * @param {String} hex String of the form: #RRGGBB.
              */
-            setColor: function(hsv, rgb, hex) {
-                var that = this
+            setColor: function(hsv /*, rgb, hex*/ ) {
                 var $relatedElement = $(this.relatedElement)
                 this.h = hsv.h % 360
                 this.s = hsv.s
@@ -254,7 +259,7 @@ define(
                         s: left / width,
                         v: (height - top) / height
                     })
-                }).on('mouseup', function(e) {
+                }).on('mouseup', function() {
                     $(document.documentElement).css('cursor', 'auto')
                     $(document.body).off('mousemove.pickerDragNode')
                 })
@@ -290,7 +295,7 @@ define(
                         s: that.s,
                         v: that.v
                     })
-                }).on('mouseup', function(e) {
+                }).on('mouseup', function() {
                     $(document.documentElement).css('cursor', 'auto')
                     $(document.body).off('mousemove.slideDragNode')
                 })
@@ -303,7 +308,7 @@ define(
                 var val = $(event.target).val()
                 if (this.color != val) this.setHex(val)
             },
-            submit: function(event) {
+            submit: function() {
                 var c = hsv2rgb(this.h, this.s, this.v)
                 this.trigger('selected', {
                     hex: c.hex,

@@ -194,6 +194,7 @@ define(
                     .text(data.label)
                     .trigger('change', data)
                 $(this.element).val(data.value)
+                    .trigger('change', data)
                 return this
             },
             // trigger?

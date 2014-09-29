@@ -5,6 +5,8 @@
     "**/.*"
   ],
   "dependencies": {
+    "brix-loader": "*",
+    "brix-base": "*",
     "requirejs": "~2.1.14",
     "requirejs-text": "~2.0.12",
     "require-less": "~0.1.2",

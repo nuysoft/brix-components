@@ -1,5 +1,6 @@
-/* global define   */
-/* global document */
+/* global define     */
+/* global document   */
+/* global setTimeout */
 define(
     [
         'jquery', 'underscore',
@@ -39,7 +40,11 @@ define(
                 var html = _.template(template, this.data)
                 var relatedElement = $(html).insertAfter(this.element)
                 this.relatedElement = relatedElement[0]
-                    
+
+                var backdropElement = $('.modal-backdrop')
+                if (!backdropElement.length) backdropElement = $('<div class="modal-backdrop fade"></div>').hide().appendTo(document.body)
+                this.backdropElement = backdropElement[0]
+
                 this.delegateBxTypeEvents(this.element)
                 this.delegateBxTypeEvents(this.relatedElement)
 
@@ -55,16 +60,29 @@ define(
                     })
             },
             toggle: function() {
-                $(this.relatedElement).toggle().toggleClass('in')
+                var target = $([this.relatedElement, this.backdropElement])
+                target.toggle()
+                setTimeout(function() {
+                    target.toggleClass('in')
+                }, 150)
                 $(document.body).toggleClass('modal-open')
             },
             show: function() {
-                $(this.relatedElement).show().addClass('in')
+                var target = $([this.relatedElement, this.backdropElement])
+                target.show()
+                setTimeout(function() {
+                    target.addClass('in')
+                }, 150)
                 $(document.body).addClass('modal-open')
             },
             hide: function() {
-                $(this.relatedElement).hide().removeClass('in')
-                $(document.body).removeClass('modal-open')
+                var target = $([this.relatedElement, this.backdropElement])
+                target.removeClass('in')
+                setTimeout(function() {
+                    target.hide()
+                    $(document.body).removeClass('modal-open')
+                }, 150)
+
             }
         })
 

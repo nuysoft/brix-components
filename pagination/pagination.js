@@ -1,4 +1,4 @@
-/* global define */
+/* global define  */
 /*
     分页组件。
  */
@@ -58,6 +58,7 @@ define(
                 )
             },
             render: function() {
+                var that = this
                 var barStart
                 this.data = _.extend({}, this.options, {
                     barStart: barStart = Math.min(
@@ -70,14 +71,32 @@ define(
                     barEnd: Math.min(this.status.pages, barStart + this.options.step - 1)
                 }, this.status)
                 var html = _.template(template, this.data)
-                $(this.element).append(html)
+                $(this.element).empty().append(html)
+
+                // 重新 render 之后的 ready 事件？再次触发？
+                /* jshint unused:true */
+                this.off('change', 'select')
+                    .on('change', 'select', function(event, data) {
+                        that.status.setLimit(data.value)
+                        that.render()
+                    })
+                // this.on('ready', function() {
+                //     var Loader = require('loader')
+                //     var dropdown = Loader.query('components/dropdown', that)[0]
+                //     dropdown.on('change', function(event, data) {
+                //         debugger
+                //         /* data { label, value } */
+                //         that.status.setLimit(data.value)
+                //         that.render()
+                //     })
+                // })
 
                 this.delegateBxTypeEvents()
             },
-            moveTo: function(event, extraParameters) {
-                if (arguments.length === 1) extraParameters = event
-                this.status.moveTo(extraParameters)
-                $(this.element).empty()
+            moveTo: function(event, extra) { // extraParameters
+                // moveTo( cursor )
+                if (arguments.length === 1) extra = event
+                this.status.moveTo(extra)
                 this.render()
             }
         })

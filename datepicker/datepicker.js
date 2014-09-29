@@ -3,6 +3,8 @@
     Reference:
         [Bootstrap Component Sample](http://zombiej.github.io/bootstrap-components-3.0/)
     TODO
+        disable
+        multi calendar
  */
 define(
     [
@@ -104,16 +106,16 @@ define(
                 var $timepicker = $container.find('.timepicker')
                 var $timepicker_group_hours = $timepicker.find('div.timepicker-group:eq(0)')
                 var $timepicker_group_hours_input = $timepicker_group_hours.find('input')
-                var $timepicker_group_hours_minus = $timepicker_group_hours.find('.minus')
-                var $timepicker_group_hours_plus = $timepicker_group_hours.find('.plus')
+                    // var $timepicker_group_hours_minus = $timepicker_group_hours.find('.minus')
+                    // var $timepicker_group_hours_plus = $timepicker_group_hours.find('.plus')
                 var $timepicker_group_minutes = $timepicker.find('div.timepicker-group:eq(1)')
                 var $timepicker_group_minutes_input = $timepicker_group_minutes.find('input')
-                var $timepicker_group_minutes_minus = $timepicker_group_minutes.find('.minus')
-                var $timepicker_group_minutes_plus = $timepicker_group_minutes.find('.plus')
+                    // var $timepicker_group_minutes_minus = $timepicker_group_minutes.find('.minus')
+                    // var $timepicker_group_minutes_plus = $timepicker_group_minutes.find('.plus')
                 var $timepicker_group_seconds = $timepicker.find('div.timepicker-group:eq(2)')
                 var $timepicker_group_seconds_input = $timepicker_group_seconds.find('input')
-                var $timepicker_group_seconds_minus = $timepicker_group_seconds.find('.minus')
-                var $timepicker_group_seconds_plus = $timepicker_group_seconds.find('.plus')
+                    // var $timepicker_group_seconds_minus = $timepicker_group_seconds.find('.minus')
+                    // var $timepicker_group_seconds_plus = $timepicker_group_seconds.find('.plus')
 
                 $container
                     .on('click', YEAR_PICKER_HEADER_MINUS, function( /*event*/ ) {
@@ -316,7 +318,7 @@ define(
                     }
                 }
 
-                function renderTimePicker(dir) {
+                function renderTimePicker() {
                     var date = moment(that.data.date)
                     $timepicker_group_hours_input.val(date.format('HH'))
                     $timepicker_group_minutes_input.val(date.format('mm'))
