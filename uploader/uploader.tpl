@@ -1,0 +1,1 @@
+<input name="<%= name %>" type="file" multiple="multiple">

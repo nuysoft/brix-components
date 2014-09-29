@@ -23,6 +23,8 @@ require.config({
         'components/table': 'bower_components/brix-components/table/table',
         'components/datepicker': 'bower_components/brix-components/datepicker/datepicker',
         'components/popover': 'bower_components/brix-components/popover/popover',
+        'components/uploader': 'bower_components/brix-components/uploader/uploader',
+
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/footer': 'bower_components/brix-components/footer/footer',
         'components/boilerplate': 'bower_components/brix-components/boilerplate/boilerplate',
