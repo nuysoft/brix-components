@@ -24,8 +24,10 @@ require.config({
         'components/datepicker': 'bower_components/brix-components/datepicker/datepicker',
         'components/popover': 'bower_components/brix-components/popover/popover',
         'components/uploader': 'bower_components/brix-components/uploader/uploader',
+        'components/editor': 'bower_components/brix-components/editor/editor',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
+        'components/header': 'bower_components/brix-components/header/header',
         'components/footer': 'bower_components/brix-components/footer/footer',
         'components/boilerplate': 'bower_components/brix-components/boilerplate/boilerplate',
 
@@ -33,6 +35,7 @@ require.config({
         jquery: 'bower_components/jquery/dist/jquery',
         underscore: 'bower_components/underscore/underscore',
         moment: 'bower_components/moment/moment',
+        mousetrap: 'bower_components/mousetrap/mousetrap',
         d3: 'bower_components/d3/d3'
     }
 })

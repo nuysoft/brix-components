@@ -3,7 +3,7 @@
         <li>
             <strong> <%= item.module.moduleId %></strong>
             -
-            <span><%= item.module.clientId %></span>
+            <small><%= item.module.clientId %></small>
             <%= item.childrenFn() %>
         </li>
     <% } %>
