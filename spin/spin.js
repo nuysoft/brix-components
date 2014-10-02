@@ -1,0 +1,47 @@
+/* global define */
+/*
+    Reference:
+        https://github.com/fgnass/spin.js
+        [A collection of loading indicators animated with CSS](http://tobiasahlin.com/spinkit/)
+            
+ */
+define(
+    [
+        'jquery', 'underscore',
+        'base/brix',
+        'text!./spin.tpl',
+        'less!./spin.less'
+    ],
+    function(
+        $, _,
+        Brix,
+        template
+    ) {
+        /*
+            ### 数据
+                {}
+            ### 选项
+                data template
+            ### 属性
+                element moduleId clientId parentClientId childClientIds data template
+            ### 方法
+                .render()
+            ### 事件
+                ready destroyed
+        */
+        function Spin() {}
+
+        _.extend(Spin.prototype, Brix.prototype, {
+            options: {
+                type: 'three-bounce'
+            },
+            render: function() {
+                this.data = this.data || _.extend({}, this.options)
+                var html = _.template(template, this.data)
+                $(this.element).append(html)
+            }
+        })
+
+        return Spin
+    }
+)

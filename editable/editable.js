@@ -101,7 +101,7 @@ define(
                     var relatedBorderBottom = parseInt($related.css('border-bottom-width'), 10)
                     var relatedBorderRight = parseInt($related.css('border-right-width'), 10)
 
-                    $related.css({ // 坑爹的位置修正啊！无法满足所有场景！并且，解决 inline 的场景就基本满足了所有场景。
+                    $related.css({ // 坑爹的位置修正啊！无法满足所有场景！而事实上，解决了 inline 的场景就基本满足了所有场景。
                         // 'margin-left': targetMarginLeft -
                         //     (relatedPaddingLeft - targetPaddingLeft) -
                         //     (relatedBorderLeft - targetBorderLeft),

@@ -26,6 +26,7 @@ require.config({
         'components/uploader': 'bower_components/brix-components/uploader/uploader',
         'components/editor': 'bower_components/brix-components/editor/editor',
         'components/editable': 'bower_components/brix-components/editable/editable',
+        'components/spin': 'bower_components/brix-components/spin/spin',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
