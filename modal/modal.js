@@ -1,6 +1,4 @@
-/* global define     */
-/* global document   */
-/* global setTimeout */
+/* global define, document, setTimeout */
 define(
     [
         'jquery', 'underscore',
