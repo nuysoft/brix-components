@@ -19,5 +19,7 @@
     "mousetrap": "~1.4.6",
     "fontawesome": "~4.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mockjs": "*"
+  }
 }

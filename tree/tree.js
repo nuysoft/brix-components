@@ -44,7 +44,7 @@ define(
 
         function fix(node, template) {
             node.childrenFn = function() {
-                if (!this.children.length) return ''
+                if (!this.children || !this.children.length) return ''
                 return _.template(template, this)
             }
             _.each(node.children, function(item /*, index*/ ) {

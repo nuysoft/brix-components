@@ -27,6 +27,8 @@ require.config({
         'components/editor': 'bower_components/brix-components/editor/editor',
         'components/editable': 'bower_components/brix-components/editable/editable',
         'components/spin': 'bower_components/brix-components/spin/spin',
+        'components/countdown': 'bower_components/brix-components/countdown/countdown',
+        'components/sidebar': 'bower_components/brix-components/sidebar/sidebar',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
@@ -38,6 +40,7 @@ require.config({
         underscore: 'bower_components/underscore/underscore',
         moment: 'bower_components/moment/moment',
         mousetrap: 'bower_components/mousetrap/mousetrap',
+        mock: 'bower_components/mockjs/dist/mock',
         d3: 'bower_components/d3/d3'
     }
 })

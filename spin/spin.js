@@ -1,8 +1,10 @@
 /* global define */
 /*
     Reference:
-        https://github.com/fgnass/spin.js
         [A collection of loading indicators animated with CSS](http://tobiasahlin.com/spinkit/)
+        https://github.com/fgnass/spin.js
+        http://css-spinners.com/#/spinners/
+        http://pasqualevitiello.github.io/Tumblr-Style-Cog-Spinners/#
             
  */
 define(
