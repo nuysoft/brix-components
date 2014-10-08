@@ -1,4 +1,4 @@
-/* global define, console, FileReader, FormData, XMLHttpRequest */
+/* global define, require, console, FileReader, FormData, XMLHttpRequest */
 /*
     http://jasny.github.io/bootstrap/javascript/#inputmask
  */
@@ -79,10 +79,18 @@ define(
                 var that = this
                 var reader = new FileReader()
                 reader.onload = function(event) {
-                    $('<img>')
+                    var img = $('<img>')
+                        .attr('bx-id', 'components/popover')
+                        .attr('data-content', '<img src="' + event.target.result + '">')
+                        .attr('data-placement', 'bottom')
+                        .attr('data-align', 'left')
                         .addClass('uploader-preview')
                         .attr('src', event.target.result)
+                        .attr('title', file.name)
                         .insertAfter(that.form)
+                    require(['loader'], function(Loader) {
+                        Loader.boot(img)
+                    })
                 }
                 reader.readAsDataURL(file)
             },

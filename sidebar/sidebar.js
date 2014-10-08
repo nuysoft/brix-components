@@ -90,16 +90,17 @@ define(
                 var len,
                     result = [];
 
-                if (arguments.length === 0) len = Random.natural(3, 7)
+                if (arguments.length === 0) len = this.natural(3, 7)
                 if (arguments.length === 1) len = max = min
                 if (arguments.length === 2) {
                     min = parseInt(min, 10)
                     max = parseInt(max, 10)
-                    len = Random.natural(min, max)
+                    len = this.natural(min, max)
                 }
 
                 for (var i = 0; i < len; i++) {
                     result.push(
+                        /* jshint -W061 */
                         eval(
                             '"\\u' +
                             (Math.round(Math.random() * 20901) + 19968).toString(16) +

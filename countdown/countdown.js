@@ -1,4 +1,4 @@
-/* global define */
+/* global define, setInterval, clearInterval */
 /*
     https://github.com/hilios/jQuery.countdown/blob/master/dist/jquery.countdown.js
     https://github.com/hilios/jQuery.countdown/blob/gh-pages/documentation.md
@@ -152,20 +152,19 @@ define(
                 }
             },
             run: function() {
-                var timers = this.timers
-                for (var interval in timers) {
-                    if (!timers[interval].length) {
-                        clearInterval(timers[interval].timer)
-                        break
+                _.each(this.timers, function(item, interval) {
+                    if (!item.length) {
+                        clearInterval(item.timer)
+                        return
                     }
-                    if (!timers[interval].timer) {
-                        timers[interval].timer = setInterval(function() {
-                            for (var i = 0; i < timers[interval].length; i++) {
-                                timers[interval][i]()
-                            }
+                    if (!item.timer) {
+                        item.timer = setInterval(function() {
+                            _.each(item, function(fn /*, index*/ ) {
+                                fn()
+                            })
                         }, interval)
                     }
-                }
+                })
             }
         }
 
