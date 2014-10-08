@@ -1,68 +1,11 @@
-# sidebar
+# Sidebar
 
-> Lorem ipsum
+左侧导航组件。{ .lead }
 
-### 示例 Example
+### 示例 Examples
 
-<div bx-id="component/sidebar" bx-options="{}"></div>
-
-### 使用 Usage
-
-1. 安装 Install
-
-  ```sh
-  $ bower install --save-dev brix-component-sidebar
-  ```
-
-2. 配置组件 Package
-
-  ```js
-  require.config({
-    paths: {
-      'component/sidebar': 'bower_components/brix-component-sidebar/sidebar'
-    }
-  })
-  ```
-
-3. 应用组件 Apply
-
-  ```html
-  <div bx-id="component/sidebar" bx-options="{}"></div>
-  ```
-
-### 配置 Options
-
-Name | Type | Default | Description
-:--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
-template | string | '' | 渲染组件所需的 HTML 模板。
-
-### 方法 Methods
-
-#### .render()
-
-渲染组件。
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/sidebar')
-instance.render()
-```
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/sidebar')
-instance.method()
-```
-
-### 事件 Events
-
-Event Type | Description
-:--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
-
+<div class="bs-example">
+    <div class="content">
+        <div bx-id="components/sidebar"></div>
+    </div>
+</div>

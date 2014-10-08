@@ -110,7 +110,8 @@ define(
                 var relatedElement = $(html).css({
                     left: $trigger.offset().left,
                     top: $trigger.offset().top + $trigger.outerHeight() + 1
-                }).appendTo(document.body).hide()
+                }).insertAfter(this.element).hide()
+
                 this.relatedElement = relatedElement[0]
 
                 this.pickerDragNode = relatedElement.find('.picker-indicator')
@@ -158,7 +159,11 @@ define(
                 $(this.relatedElement).hide()
             },
             toggle: function() {
-                $(this.relatedElement).toggle()
+                var $element = $(this.element)
+                $(this.relatedElement).toggle().offset({
+                    left: $element.offset().left,
+                    top: $element.offset().top + $element.outerHeight() + 1
+                })
             },
             /**
              * Sets color of the picker in hsv/rgb/hex format.

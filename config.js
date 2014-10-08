@@ -33,6 +33,7 @@ require.config({
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
         'components/footer': 'bower_components/brix-components/footer/footer',
+        'components/readme': 'bower_components/brix-components/readme/readme',
         'components/boilerplate': 'bower_components/brix-components/boilerplate/boilerplate',
 
         // 运行依赖库
@@ -41,6 +42,8 @@ require.config({
         moment: 'bower_components/moment/moment',
         mousetrap: 'bower_components/mousetrap/mousetrap',
         mock: 'bower_components/mockjs/dist/mock',
+        marked: 'bower_components/marked/lib/marked',
+        'marked-extra': 'bower_components/brix-components/marked-extra/marked-extra',
         d3: 'bower_components/d3/d3'
     }
 })

@@ -1,68 +1,30 @@
-# editable
+# Editable
 
-> Lorem ipsum
+可编辑的页面元素。{ .lead }
+<!-- Editable enables user click element to edit it. -->
 
-### 示例 Example
+### 示例 Examples
 
-<div bx-id="component/editable" bx-options="{}"></div>
-
-### 使用 Usage
-
-1. 安装 Install
-
-  ```sh
-  $ bower install --save-dev brix-component-editable
-  ```
-
-2. 配置组件 Package
-
-  ```js
-  require.config({
-    paths: {
-      'component/editable': 'bower_components/brix-component-editable/editable'
-    }
-  })
-  ```
-
-3. 应用组件 Apply
-
-  ```html
-  <div bx-id="component/editable" bx-options="{}"></div>
-  ```
-
-### 配置 Options
-
-Name | Type | Default | Description
-:--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
-template | string | '' | 渲染组件所需的 HTML 模板。
-
-### 方法 Methods
-
-#### .render()
-
-渲染组件。
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/editable')
-instance.render()
-```
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/editable')
-instance.method()
-```
-
-### 事件 Events
-
-Event Type | Description
-:--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
-
+<div class="bs-example">
+    <div class="content">
+        <h3 bx-id="components/editable">This is a editable title.</h3>
+        <p bx-id="components/editable">This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph.</p>
+        <pre bx-id="components/editable">This is a editable predefined.</pre>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        <span bx-id="components/editable" bx-options="{ type: 'html' }"><kbd>This is a editable keyboard input element.</kbd> cool!</span>
+        <p bx-id="components/editable" data-type="html"><kbd>This is a editable keyboard input element.</kbd> cool!</p>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        <span bx-id="components/editable" data-content="A editable span with content from data-*."></span>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        Hello <span bx-id="components/editable">Editable</span>!
+    </div>
+</div>

@@ -1,17 +1,17 @@
-# countdown
+# pjax
 
 > Lorem ipsum
 
 ### 示例 Example
 
-<div bx-id="component/countdown" bx-options="{}"></div>
+<div bx-id="component/pjax" bx-options="{}"></div>
 
 ### 使用 Usage
 
 1. 安装 Install
 
   ```sh
-  $ bower install --save-dev brix-component-countdown
+  $ bower install --save-dev brix-component-pjax
   ```
 
 2. 配置组件 Package
@@ -19,7 +19,7 @@
   ```js
   require.config({
     paths: {
-      'component/countdown': 'bower_components/brix-component-countdown/countdown'
+      'component/pjax': 'bower_components/brix-component-pjax/pjax'
     }
   })
   ```
@@ -27,7 +27,7 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-id="component/countdown" bx-options="{}"></div>
+  <div bx-id="component/pjax" bx-options="{}"></div>
   ```
 
 ### 配置 Options
@@ -45,7 +45,7 @@ template | string | '' | 渲染组件所需的 HTML 模板。
 
 ```js
 var Loader = require('loader')
-var instance = Loader.query('component/countdown')
+var instance = Loader.query('component/pjax')
 instance.render()
 ```
 
@@ -55,7 +55,7 @@ Lorem ipsum
 
 ```js
 var Loader = require('loader')
-var instance = Loader.query('component/countdown')
+var instance = Loader.query('component/pjax')
 instance.method()
 ```
 

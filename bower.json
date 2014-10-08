@@ -20,6 +20,7 @@
     "fontawesome": "~4.2.0"
   },
   "devDependencies": {
-    "mockjs": "*"
+    "mockjs": "*",
+    "marked": "~0.3.2"
   }
 }

@@ -1,17 +1,17 @@
-# modal
+# marked-extra
 
-> <%= description %>
+> Lorem ipsum
 
 ### 示例 Example
 
-<div bx-id="component/modal" bx-options="{}"></div>
+<div bx-id="component/marked-extra" bx-options="{}"></div>
 
 ### 使用 Usage
 
 1. 安装 Install
 
   ```sh
-  $ bower install --save-dev brix-component-modal
+  $ bower install --save-dev brix-component-marked-extra
   ```
 
 2. 配置组件 Package
@@ -19,7 +19,7 @@
   ```js
   require.config({
     paths: {
-      'component/modal': 'bower_components/brix-component-modal/modal'
+      'component/marked-extra': 'bower_components/brix-component-marked-extra/marked-extra'
     }
   })
   ```
@@ -27,14 +27,14 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-id="component/modal" bx-options="{}"></div>
+  <div bx-id="component/marked-extra" bx-options="{}"></div>
   ```
 
 ### 配置 Options
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
+data | any | {} | 渲染组件所需的数据。
 template | string | '' | 渲染组件所需的 HTML 模板。
 
 ### 方法 Methods
@@ -45,7 +45,7 @@ template | string | '' | 渲染组件所需的 HTML 模板。
 
 ```js
 var Loader = require('loader')
-var instance = Loader.query('component/modal')
+var instance = Loader.query('component/marked-extra')
 instance.render()
 ```
 
@@ -55,7 +55,7 @@ Lorem ipsum
 
 ```js
 var Loader = require('loader')
-var instance = Loader.query('component/modal')
+var instance = Loader.query('component/marked-extra')
 instance.method()
 ```
 

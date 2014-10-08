@@ -1,68 +1,11 @@
-# tree
+# Tree
 
-> Lorem ipsum
+打印组件树。{ .lead }
 
-### 示例 Example
+### 示例 Examples
 
-<div bx-id="component/tree" bx-options="{}"></div>
-
-### 使用 Usage
-
-1. 安装 Install
-
-  ```sh
-  $ bower install --save-dev brix-component-tree
-  ```
-
-2. 配置组件 Package
-
-  ```js
-  require.config({
-    paths: {
-      'component/tree': 'bower_components/brix-component-tree/tree'
-    }
-  })
-  ```
-
-3. 应用组件 Apply
-
-  ```html
-  <div bx-id="component/tree" bx-options="{}"></div>
-  ```
-
-### 配置 Options
-
-Name | Type | Default | Description
-:--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
-template | string | '' | 渲染组件所需的 HTML 模板。
-
-### 方法 Methods
-
-#### .render()
-
-渲染组件。
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/tree')
-instance.render()
-```
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/tree')
-instance.method()
-```
-
-### 事件 Events
-
-Event Type | Description
-:--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
-
+<div class="bs-example">
+    <div class="content">
+        <div bx-id="components/tree"></div>
+    </div>
+</div>

@@ -326,7 +326,7 @@ define(
                     label: '@HANZI(2,4)',
                     href: '@URL',
                     icon: '@ICON',
-                    'children|3-5': [{
+                    'children|0-5': [{
                         label: '@HANZI(2,4)',
                         href: '@URL',
                         icon: '@ICON'

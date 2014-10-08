@@ -113,7 +113,7 @@ define(
 
                 function parseOption(option) {
                     var $option = $(option)
-                    return {
+                    return $option.hasClass('divider') ? 'divider' : {
                         label: $option.text(),
                         value: $option.attr('value'),
                         selected: $option.prop('selected')
