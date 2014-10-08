@@ -1,4 +1,10 @@
 /* global define */
+/*
+    https://github.com/chjj/marked
+        A markdown parser and compiler. Built for speed.
+    https://github.com/tanakahisateru/js-markdown-extra
+        PHP-Markdown-extra compatible Javascript markdown syntax parser
+ */
 define(
     [
         'marked'

@@ -2,11 +2,13 @@
 define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra',
-        'loader', 'base/brix'
+        'loader', 'base/brix',
+        'text!./readme.tpl'
     ],
     function(
         $, _, marked, renderer,
-        Loader, Brix
+        Loader, Brix,
+        template
     ) {
         /*
             ### 数据
@@ -41,25 +43,33 @@ define(
             },
             render: function() {
                 var that = this
-                $.ajax(this.options.url)
-                    .done(function(response, status, xhr) {
-                        $(that.element).html(
-                            marked(response, {
-                                renderer: renderer,
-                                gfm: true
-                            })
-                        )
-                        Loader.boot(that.element)
-                        window.trimHTML(that.element)
-                        window.trimPredefined(that.element)
-
-                        var tables = $(that.element).find('table')
-                        if (!tables.hasClass('table')) tables.addClass('table table-bordered')
-                        $(that.element).find('pre code').each(function(index, block) {
-                            hljs.highlightBlock(block);
+                $(this.element).append(template)
+                this.load(function(response, status, xhr) {
+                    $(that.element).html(
+                        marked(response, {
+                            renderer: renderer,
+                            gfm: true
                         })
+                    )
+                    Loader.boot(that.element)
+                    window.trimHTML(that.element)
+                    window.trimPredefined(that.element)
+                    var tables = $(that.element).find('table')
+                    if (!tables.hasClass('table')) tables.addClass('table table-bordered')
+                    $(that.element).find('pre code').each(function(index, block) {
+                        hljs.highlightBlock(block);
+                    })
+                })
+            },
+            load: function(done) {
+                return $.ajax(this.options.url)
+                    .done(function(response, status, xhr) {
+                        // setTimeout(function() {
+                            done(response, status, xhr)
+                        // }, Math.random() * 1000)
                     })
             }
+
         })
 
         return Readme

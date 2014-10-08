@@ -70,6 +70,7 @@ define(
                         li.find('>ul.sidebar').show()
                         li.siblings().find('>ul.sidebar').hide()
                     })
+                    .find('a.sidebar-link-1:eq(0)').click()
             }
         })
 
