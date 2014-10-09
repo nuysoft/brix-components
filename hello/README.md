@@ -27,17 +27,18 @@ Name | Type | Default | Description
 data | any | `{}` | 渲染组件所需的数据。
 template | string | `''` | 自定义的组件 HTML 模板文件。
 css | string | `''` | 自定义的组件 CSS 样式文件。
+message | string | `''` | 指定输出的文本。
 
 ### 方法 Methods
 
-#### .say()
+#### .say( message )
 
-Lorem ipsum.
+在页面上输出 `Hello <%= message %>!`
 
 ```js
 var Loader = require('loader')
 var instance = Loader.query('components/hello')
-instance.say()
+instance.say('Brix')
 ```
 
 ### 事件 Events
