@@ -3,7 +3,8 @@ define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra',
         'loader', 'base/brix',
-        'text!./readme.tpl'
+        'text!./readme.tpl',
+        'less!./readme.less'
     ],
     function(
         $, _, marked, renderer,
