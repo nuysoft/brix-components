@@ -1,4 +1,4 @@
-/* global define */
+/* global define, window, hljs */
 define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra',
@@ -45,27 +45,31 @@ define(
             render: function() {
                 var that = this
                 $(this.element).append(template)
-                this.load(function(response, status, xhr) {
+                var promise = this.load(function(response /*, status, xhr*/ ) {
                     $(that.element).html(
                         marked(response, {
                             renderer: renderer,
                             gfm: true
                         })
                     )
-                    Loader.boot(that.element)
+
+                    // Loader.boot(that.element)
                     window.trimHTML(that.element)
                     window.trimPredefined(that.element)
                     var tables = $(that.element).find('table')
                     if (!tables.hasClass('table')) tables.addClass('table table-bordered')
-                    $(that.element).find('pre code').each(function(index, block) {
-                        hljs.highlightBlock(block);
+
+                    /* jshint unused:false */
+                    $(that.element).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
                     })
                 })
+                return promise
             },
             load: function(done) {
                 return $.ajax(this.options.url)
                     .done(function(response, status, xhr) {
-                        // setTimeout(function() {
+                        // window.setTimeout(function() {
                             done(response, status, xhr)
                         // }, Math.random() * 1000)
                     })
