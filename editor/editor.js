@@ -165,14 +165,14 @@ define(
             })
         }
 
-        function markSelection(input, color) {
-            restoreSelection();
-            if (document.queryCommandSupported('hiliteColor')) {
-                document.execCommand('hiliteColor', 0, color || 'transparent');
-            }
-            saveSelection();
-            input.data(options.selectionMarker, color);
-        }
+        // function markSelection(input, color) {
+        //     restoreSelection();
+        //     if (document.queryCommandSupported('hiliteColor')) {
+        //         document.execCommand('hiliteColor', 0, color || 'transparent');
+        //     }
+        //     saveSelection();
+        //     input.data(options.selectionMarker, color);
+        // }
 
         function bindToolbar($editor, $toolbar) {
             $editor = $('.editor')

@@ -2,13 +2,13 @@
 define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra',
-        'loader', 'base/brix',
+        'base/brix',
         'text!./readme.tpl',
         'less!./readme.less'
     ],
     function(
         $, _, marked, renderer,
-        Loader, Brix,
+        Brix,
         template
     ) {
         /*
@@ -52,8 +52,6 @@ define(
                             gfm: true
                         })
                     )
-
-                    // Loader.boot(that.element)
                     window.trimHTML(that.element)
                     window.trimPredefined(that.element)
                     var tables = $(that.element).find('table')
@@ -70,7 +68,7 @@ define(
                 return $.ajax(this.options.url)
                     .done(function(response, status, xhr) {
                         // window.setTimeout(function() {
-                            done(response, status, xhr)
+                        done(response, status, xhr)
                         // }, Math.random() * 1000)
                     })
             }
