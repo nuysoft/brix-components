@@ -33,6 +33,8 @@ require.config({
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
         'components/footer': 'bower_components/brix-components/footer/footer',
+        'components/sticky': 'bower_components/brix-components/sticky/sticky',
+        'components/nav': 'bower_components/brix-components/nav/nav',
         'components/readme': 'bower_components/brix-components/readme/readme',
         'components/boilerplate': 'bower_components/brix-components/boilerplate/boilerplate',
 
