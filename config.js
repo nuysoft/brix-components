@@ -36,6 +36,7 @@ require.config({
         'components/sticky': 'bower_components/brix-components/sticky/sticky',
         'components/nav': 'bower_components/brix-components/nav/nav',
         'components/readme': 'bower_components/brix-components/readme/readme',
+        'components/css-layout-debugger': 'bower_components/brix-components/css-layout-debugger/css-layout-debugger',
         'components/boilerplate': 'bower_components/brix-components/boilerplate/boilerplate',
 
         // 运行依赖库
