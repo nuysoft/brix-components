@@ -51,7 +51,7 @@ define(
 
         _.extend(Countdown.prototype, Brix.prototype, {
             options: {
-                precision: 100,
+                precision: 500,
                 expires: new Date()
             },
             render: function() {
@@ -66,9 +66,14 @@ define(
             },
             start: function() {
                 var that = this
+                this.trigger('start.countdown', this.offset())
 
                 function task() {
-                    that.update()
+                    var offset = that.update()
+                    if (offset.total === 0) {
+                        Timer.pop(that.task, that.options.precision)
+                        that.trigger('complete.countdown', offset)
+                    }
                     return task
                 }
 
@@ -78,15 +83,19 @@ define(
                 return this
             },
             stop: function() {
-                Timer.pop(this.task, this.options.precision)
-                this.trigger('stop.countdown')
+                this.options.expires = new Date()
+                Timer.pop(this.task(), this.options.precision)
                 return this
             },
             pause: function() {
-                return this.stop()
+                this.trigger('pause.countdown', this.offset())
+                Timer.pop(this.task, this.options.precision)
+                return this
             },
             resume: function() {
-                return this.start()
+                this.trigger('resume.countdown', this.offset())
+                Timer.push(this.task(), this.options.precision)
+                return this
             },
             update: function() {
                 var offset = this.offset()
@@ -96,8 +105,9 @@ define(
                     .eq(2).text(fix(offset.minutes)).end()
                     .eq(3).text(fix(offset.seconds)).end()
 
+                this.trigger('update.countdown', offset)
 
-                return this
+                return offset
 
                 function fix(number, length) {
                     length = length || 2
@@ -127,12 +137,6 @@ define(
                     months: Math.floor(total / 60 / 60 / 24 / 30),
                     years: Math.floor(total / 60 / 60 / 24 / 365)
                 }
-                if (total === 0) {
-                    this.stop()
-                    this.trigger('finish.countdown', offset)
-                } else {
-                    this.trigger('update.countdown', offset)
-                }
                 return offset
             }
         })
@@ -148,7 +152,7 @@ define(
                 var timers = this.timers
                 if (!timers || !timers[interval]) return
                 for (var i = 0; i < timers[interval].length; i++) {
-                    if (timers[interval] === task) timers[interval].splice(i--, 1)
+                    if (timers[interval][i] === task) timers[interval].splice(i--, 1)
                 }
             },
             run: function() {
