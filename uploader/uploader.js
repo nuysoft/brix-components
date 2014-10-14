@@ -80,7 +80,7 @@ define(
                 var reader = new FileReader()
                 reader.onload = function(event) {
                     var img = $('<img>')
-                        .attr('bx-id', 'components/popover')
+                        .attr('bx-name', 'components/popover')
                         .attr('data-content', '<img src="' + event.target.result + '">')
                         .attr('data-placement', 'bottom')
                         .attr('data-align', 'left')

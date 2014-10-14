@@ -2,9 +2,9 @@
 
 > Lorem ipsum
 
-### 示例 Example
+### 示例 <small>Examples</small>
 
-<div bx-id="component/nav" bx-options="{}"></div>
+<div bx-name="component/nav" bx-options="{}"></div>
 
 ### 使用 Usage
 
@@ -27,17 +27,17 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-id="component/nav" bx-options="{}"></div>
+  <div bx-name="component/nav" bx-options="{}"></div>
   ```
 
-### 配置 Options
+### 配置 <small>Options</small>
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 data | any | {} | 渲染组件所需的数据对象。
 template | string | '' | 渲染组件所需的 HTML 模板。
 
-### 方法 Methods
+### 方法 <small>Methods</small>
 
 #### .render()
 
@@ -59,7 +59,7 @@ var instance = Loader.query('component/nav')
 instance.method()
 ```
 
-### 事件 Events
+### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------

@@ -2,12 +2,12 @@
 
 上传组件。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example">
     <div class="content">
         <form>
-            <button bx-id="components/uploader" data-action="api/upload.json"class="btn btn-default">选择文件</button>
+            <button bx-name="components/uploader" data-action="api/upload.json"class="btn btn-default">选择文件</button>
         </form>
     </div>
 </div>
@@ -17,7 +17,7 @@
             <div class="col-xs-6">
                 <form>
                     <h4>bx-options + iframe</h4>  
-                    <button bx-id="components/uploader" bx-options="{
+                    <button bx-name="components/uploader" bx-options="{
                         name: 'file1',
                         action: 'api/upload.json',
                         transport: 'iframe'
@@ -27,7 +27,7 @@
             <div class="col-xs-6">
                 <form>
                     <h4>bx-options + xhr</h4>  
-                    <button bx-id="components/uploader" bx-options="{
+                    <button bx-name="components/uploader" bx-options="{
                         name: 'file2',
                         action: 'api/upload.json',
                         transport: 'xhr'
@@ -43,13 +43,13 @@
             <div class="col-xs-6">
                 <form>
                     <h4>data-\* + iframe</h4>  
-                    <button bx-id="components/uploader" data-name="file3" data-action="api/upload.json" data-transport="iframe" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <button bx-name="components/uploader" data-name="file3" data-action="api/upload.json" data-transport="iframe" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
                 </form>
             </div>
             <div class="col-xs-6">
                 <form>
                     <h4>data-\* + xhr</h4>  
-                    <button bx-id="components/uploader" data-name="file4" data-action="api/upload.json" data-transport="xhr" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <button bx-name="components/uploader" data-name="file4" data-action="api/upload.json" data-transport="xhr" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
                 </form>
             </div>
         </div>

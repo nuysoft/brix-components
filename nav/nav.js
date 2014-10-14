@@ -1,4 +1,4 @@
-/* global define */
+/* global define, window */
 define(
     [
         'jquery', 'underscore',
@@ -47,7 +47,8 @@ define(
                     var anchors = $()
                     init($element, h1s, anchors)
                     $(window).on('scroll',
-                        _.throttle(function(event) {
+                        // http://underscorejs.org/#throttle
+                        _.throttle(function( /*event*/ ) {
                             scroller(h1s, anchors)
                         }, 10)
                     )
@@ -59,8 +60,8 @@ define(
             _.each(h1s, function(h1, index) {
                 var name = $(h1).text()
                 $(''.anchor(name)).insertBefore(h1)
-                var className = (!location.hash && index === 0 ||
-                    location.hash.slice(1) === name) ? 'active' : ''
+                var className = (!window.location.hash && index === 0 ||
+                    window.location.hash.slice(1) === name) ? 'active' : ''
                 var anchor = $(name.link('#' + name))
                 anchor
                     .addClass('list-group-item')
@@ -89,7 +90,8 @@ define(
                     if (end < base) distance = base - end
                 }
                 if (index === 0 || distance < minDistance) {
-                    minDistance = distance, minIndex = index
+                    minDistance = distance
+                    minIndex = index
                 }
             })
             anchors.eq(minIndex)

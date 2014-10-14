@@ -2,26 +2,26 @@
 
 浮层。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             placement: 'top',
             title: 'Popover on top',
             content: 'Envy is the ulcer of the soul.'
         }" class="btn btn-default">Popover on top</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             placement: 'right',
             title: 'Popover on right',
             content: 'Envy is the ulcer of the soul.'
         }" class="btn btn-default">Popover on right</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             placement: 'bottom',
             title: 'Popover on bottom',
             content: 'Envy is the ulcer of the soul.'
         }" class="btn btn-default">Popover on bottom</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'Popover on left',
             placement: 'left',
             content: 'Envy is the ulcer of the soul.'
@@ -30,7 +30,7 @@
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: '<h4>Table</h4>',
             content: '<table class=\'table table-striped\'>\
                           <thead>\
@@ -67,25 +67,25 @@
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             content: 'Having the fewest wants, I am nearest to the gods.'
         }" class="btn btn-default">Popover without title</div>
     </div>
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" data-placement="right" data-content="Bad men live so that they may eat and drink, whereas good men eat and drink so that they may live." class="btn btn-default">Popover with data-*</div>
+        <div bx-name="components/popover" data-placement="right" data-content="Bad men live so that they may eat and drink, whereas good men eat and drink so that they may live." class="btn btn-default">Popover with data-*</div>
     </div>
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement top + align left',
             placement: 'top',
             align: 'left',
             content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
         }"class="btn btn-default">placement top + align left</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement top + align right',
             placement: 'top',
             align: 'right',
@@ -95,13 +95,13 @@
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement bottom + align left',
             placement: 'bottom',
             align: 'left',
             content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
         }"class="btn btn-default">placement bottom + align left</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement bottom + align right',
             placement: 'bottom',
             align: 'right',
@@ -111,13 +111,13 @@
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement left + align top',
             placement: 'left',
             align: 'top',
             content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
         }"class="btn btn-default">placement left + align top</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement left + align bottom',
             placement: 'left',
             align: 'bottom',
@@ -127,13 +127,13 @@
 </div>
 <div class="bs-example" id="popover">
     <div class="content">
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement right + align top',
             placement: 'right',
             align: 'top',
             content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
         }"class="btn btn-default">placement right + align top</div>
-        <div bx-id="components/popover" bx-options="{
+        <div bx-name="components/popover" bx-options="{
             title: 'placement right + align bottom',
             placement: 'right',
             align: 'bottom',

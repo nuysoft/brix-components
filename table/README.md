@@ -2,11 +2,11 @@
 
 增强表格。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example bs-example-modal">
     <div class="content">
-        <table bx-id="components/table" class="table table-hover">
+        <table bx-name="components/table" class="table table-hover">
             <thead>
                 <tr>
                     <th><input type="checkbox"></th>

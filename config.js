@@ -15,6 +15,7 @@ require.config({
         // 组件
         'components': 'bower_components/brix-components/',
         'components/hello': 'bower_components/brix-components/hello/hello',
+        'components/hello-extra': 'bower_components/brix-components/hello-extra/hello-extra',
         'components/dropdown': 'bower_components/brix-components/dropdown/dropdown',
         'components/pagination': 'bower_components/brix-components/pagination/pagination',
         'components/pure-pagination': 'bower_components/brix-components/pagination/pure-pagination',
@@ -29,6 +30,7 @@ require.config({
         'components/spin': 'bower_components/brix-components/spin/spin',
         'components/countdown': 'bower_components/brix-components/countdown/countdown',
         'components/sidebar': 'bower_components/brix-components/sidebar/sidebar',
+        'components/chart': 'bower_components/brix-components/chart/chart',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
@@ -47,6 +49,12 @@ require.config({
         mock: 'bower_components/mockjs/dist/mock',
         marked: 'bower_components/marked/lib/marked',
         'marked-extra': 'bower_components/brix-components/marked-extra/marked-extra',
-        d3: 'bower_components/d3/d3'
+        d3: 'bower_components/d3/d3',
+        Chart: 'bower_components/chartjs/Chart'
+    },
+    shim: {
+        Chart: {
+            exports: 'Chart'
+        }
     }
 })

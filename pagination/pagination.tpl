@@ -1,7 +1,7 @@
 <div class="row">
     <div class="pagination-statistics col-md-6" style="margin-bottom: 10px;">
         当前第 <%= start + 1 %> - <%=end%> 条，共 <%= total %> 条，每页展现
-        <select bx-id="components/dropdown">
+        <select bx-name="components/dropdown">
             <% for( var i = 0, limits = [10,15,20,30,50]; i < limits.length; i++ ) { %>
             <option value="<%= limits[i] %>" <%= limits[i] == limit ? 'selected' : '' %>><%=limits[i]%></option>
             <% } %>
@@ -43,7 +43,7 @@
         <li class="<%= hasNext ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=next%>)">Next</a></li>
 
         <li class="hide">
-            <select bx-id="components/dropdown">
+            <select bx-name="components/dropdown">
                 <% for( var i = 1; i <= pages; i++ ) { %>
                     <option value="<%= i %>" <%= i == cursor ? 'selected' : '' %>><%= i %></option>
                 <% } %>

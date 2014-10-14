@@ -2,11 +2,11 @@
 
 下拉框组件。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example">
     <div class="content">
-        <select bx-id="components/dropdown">
+        <select bx-name="components/dropdown">
             <option value="1">Action</option>
             <option value="2">Another action</option>
             <option value="3">Something else here</option>
@@ -15,7 +15,7 @@
 </div>
 <div class="bs-example">
     <div class="content">
-        <select bx-id="components/dropdown" bx-options="{
+        <select bx-name="components/dropdown" bx-options="{
             data: [
                 { label: 'Action', value: 1 },
                 { label: 'Another action', value: 2, selected: true },
@@ -26,7 +26,7 @@
 </div>
 <div class="bs-example">
     <div class="content">
-        <select bx-id="components/dropdown" data-data="[
+        <select bx-name="components/dropdown" data-data="[
             { label: 'Action', value: 1 },
             { label: 'Another action', value: 2, selected: true },
             { label: 'Something else here', value: 3 }
@@ -35,7 +35,7 @@
 </div>
 <div class="bs-example">
     <div class="content">
-        <select bx-id="components/dropdown">
+        <select bx-name="components/dropdown">
             <optgroup label="optgroup 1">
                 <option value="1">Action</option>
             </optgroup>
@@ -50,7 +50,7 @@
 </div>
 <div class="bs-example">
     <div class="content">
-        <select bx-id="components/dropdown">
+        <select bx-name="components/dropdown">
             <optgroup label="optgroup 1">
                 <option value="1">Action</option>
             </optgroup>

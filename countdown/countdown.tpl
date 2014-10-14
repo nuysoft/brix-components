@@ -1,6 +1,6 @@
 <div class="countdown">
-    <span>00</span> 天
-    <span>00</span> 时
-    <span>00</span> 分
-    <span>00</span> 秒
+    <span class="totalDays">00</span> 天
+    <span class="hours"    >00</span> 时
+    <span class="minutes"  >00</span> 分
+    <span class="seconds"  >00</span> 秒
 </div>

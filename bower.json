@@ -19,7 +19,8 @@
     "mousetrap": "~1.4.6",
     "fontawesome": "~4.2.0",
     "mockjs": "*",
-    "marked": "~0.3.2"
+    "marked": "~0.3.2",
+    "chartjs": "~0.2.0"
   },
   "devDependencies": {}
 }

@@ -1,4 +1,4 @@
-/* global define */
+/* global define, window */
 define(
     [
         'jquery', 'underscore',
@@ -39,12 +39,12 @@ define(
         return Brix.extend({
             options: {},
             render: function() {
-                var that = this
                 var $element = $(this.element)
                 Loader.boot(function() {
                     var offset = $element.offset()
                     $(window).on('scroll',
-                        _.throttle(function(event) {
+                        // http://underscorejs.org/#throttle
+                        _.throttle(function( /*event*/ ) {
                             var scrollTop = $(window).scrollTop()
                             if (scrollTop > offset.top) {
                                 $element.offset({

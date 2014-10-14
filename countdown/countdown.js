@@ -61,7 +61,6 @@ define(
                 var html = _.template(template, this.data)
                 var $element = $(this.element)
                 $element.append(html)
-                this.$spans = $element.find('span')
                 this.start()
             },
             start: function() {
@@ -78,6 +77,11 @@ define(
                 }
 
                 this.task = task
+
+                this.on('complete.countdown', function() {
+                    $(that.element).addClass('is-complete')
+                })
+
                 Timer.push(task(), this.options.precision)
 
                 return this
@@ -99,11 +103,11 @@ define(
             },
             update: function() {
                 var offset = this.offset()
-                this.$spans
-                    .eq(0).text(fix(offset.totalDays)).end()
-                    .eq(1).text(fix(offset.hours)).end()
-                    .eq(2).text(fix(offset.minutes)).end()
-                    .eq(3).text(fix(offset.seconds)).end()
+                $(this.element)
+                    .find('.totalDays').text(fix(offset.totalDays)).end()
+                    .find('.hours').text(fix(offset.hours)).end()
+                    .find('.minutes').text(fix(offset.minutes)).end()
+                    .find('.seconds').text(fix(offset.seconds)).end()
 
                 this.trigger('update.countdown', offset)
 

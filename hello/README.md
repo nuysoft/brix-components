@@ -2,11 +2,11 @@
 
 Brix 组件实现示例。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example">
     <div class="content">
-        <div bx-id="components/hello" bx-options="{ 
+        <div bx-name="components/hello" bx-options="{ 
             message: 'World' 
         }"></div>
     </div>
@@ -14,11 +14,11 @@ Brix 组件实现示例。{ .lead }
 
 <div class="bs-example">
     <div class="content">
-        <div bx-id="components/hello" data-message="Brix"></div>
+        <div bx-name="components/hello" data-message="Brix"></div>
     </div>
 </div>
 
-### 配置 Options
+### 配置 <small>Options</small>
 
 Lorem ipsum.
 
@@ -29,7 +29,7 @@ template | string | `''` | 自定义的组件 HTML 模板文件。
 css | string | `''` | 自定义的组件 CSS 样式文件。
 message | string | `''` | 指定输出的文本。
 
-### 方法 Methods
+### 方法 <small>Methods</small>
 
 #### .say( message )
 
@@ -41,7 +41,7 @@ var instance = Loader.query('components/hello')
 instance.say('Brix')
 ```
 
-### 事件 Events
+### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------

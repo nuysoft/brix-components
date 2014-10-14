@@ -1,11 +1,11 @@
 /* global define */
 define(
     [
-        'jquery', 'underscore',
+        'jquery',
         'base/brix'
     ],
     function(
-        $, _,
+        $,
         Brix
     ) {
         return Brix.extend({

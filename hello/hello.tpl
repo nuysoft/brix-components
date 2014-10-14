@@ -1,1 +1,1 @@
-Hello <%= message %>!<br>
+<p>Hello <%= message %>!</p>

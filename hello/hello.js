@@ -31,9 +31,7 @@ define(
             say
 
         */
-        function Hello() {}
-
-        _.extend(Hello.prototype, Brix.prototype, {
+        return Brix.extend({
             options: {
                 message: 'World'
             },
@@ -50,6 +48,6 @@ define(
                 $(this.element).trigger('say', message)
             }
         })
-        return Hello
+
     }
 )

@@ -2,26 +2,26 @@
 
 倒计时。{ .lead }
 
-### 示例 Examples
+### 示例 <small>Examples</small>
 
 <div class="bs-example">
     <div class="content">
-        <div bx-id="components/countdown"></div>
-        <div bx-id="components/countdown" bx-options="{
+        <div bx-name="components/countdown"></div>
+        <div bx-name="components/countdown" bx-options="{
             expires: '2015-1-1'
         }"></div>
-        <div bx-id="components/countdown" data-expires="2015-1-1"></div>
-        <div bx-id="components/countdown" data-expires="2015-2-1 1:1:1"></div>
+        <div bx-name="components/countdown" data-expires="2015-1-1"></div>
+        <div bx-name="components/countdown" data-expires="2015-2-1 1:1:1"></div>
     </div>
 </div>
 
-### 配置 Options
+### 配置 <small>Options</small>
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 expires | date or string | `new Date()` | 过期时间。
 
-### 方法 Methods
+### 方法 <small>Methods</small>
 
 #### .start()
 
@@ -63,7 +63,7 @@ var instance = Loader.query('components/countdown')
 instance.stop()
 ```
 
-### 事件 Events
+### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------

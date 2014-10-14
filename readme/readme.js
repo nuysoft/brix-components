@@ -67,9 +67,7 @@ define(
             load: function(done) {
                 return $.ajax(this.options.url)
                     .done(function(response, status, xhr) {
-                        // window.setTimeout(function() {
                         done(response, status, xhr)
-                        // }, Math.random() * 1000)
                     })
             }
 
