@@ -31,6 +31,7 @@ require.config({
         'components/countdown': 'bower_components/brix-components/countdown/countdown',
         'components/sidebar': 'bower_components/brix-components/sidebar/sidebar',
         'components/chart': 'bower_components/brix-components/chart/chart',
+        'components/spa': 'bower_components/brix-components/spa/spa',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
@@ -50,11 +51,15 @@ require.config({
         marked: 'bower_components/marked/lib/marked',
         'marked-extra': 'bower_components/brix-components/marked-extra/marked-extra',
         d3: 'bower_components/d3/d3',
-        Chart: 'bower_components/chartjs/Chart'
+        Chart: 'bower_components/chartjs/Chart',
+        director: 'bower_components/director/build/director'
     },
     shim: {
         Chart: {
             exports: 'Chart'
+        },
+        director: {
+            exports: 'Router'
         }
     }
 })
