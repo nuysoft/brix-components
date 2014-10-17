@@ -52,7 +52,8 @@ require.config({
         'marked-extra': 'bower_components/brix-components/marked-extra/marked-extra',
         d3: 'bower_components/d3/d3',
         Chart: 'bower_components/chartjs/Chart',
-        director: 'bower_components/director/build/director'
+        director: 'bower_components/director/build/director',
+        highlightjs: 'bower_components/highlightjs/highlight.pack'
     },
     shim: {
         Chart: {
@@ -60,6 +61,9 @@ require.config({
         },
         director: {
             exports: 'Router'
+        },
+        highlightjs: {
+            exports: 'hljs'
         }
     }
 })

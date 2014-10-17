@@ -1,14 +1,14 @@
-/* global define, window, hljs */
+/* global define */
 define(
     [
-        'jquery', 'underscore', 'marked', 'marked-extra',
-        'base/brix',
+        'jquery', 'underscore', 'marked', 'marked-extra', 'highlightjs',
+        'loader', 'base/brix',
         'text!./readme.tpl',
         'less!./readme.less'
     ],
     function(
-        $, _, marked, renderer,
-        Brix,
+        $, _, marked, renderer, hljs,
+        Loader, Brix,
         template
     ) {
         /*
@@ -52,8 +52,8 @@ define(
                             gfm: true
                         })
                     )
-                    window.trimHTML(that.element)
-                    window.trimPredefined(that.element)
+                    that.trimHTML(that.element)
+                    that.trimPredefined(that.element)
                     var tables = $(that.element).find('table')
                     if (!tables.hasClass('table')) tables.addClass('table table-bordered')
 
@@ -69,8 +69,34 @@ define(
                     .done(function(response, status, xhr) {
                         done(response, status, xhr)
                     })
+            },
+            // 提取 HTML 代码
+            trimHTML: function(context) {
+                var elements = $('[bx-name]', context)
+                _.each(elements, function(element /*, index*/ ) {
+                    var htmls = Loader.Util.trimHTML(element)
+                    var parent = $(element).closest('.bs-example')
+                    $('<pre>').append(
+                        $('<code class="html">').text(htmls)
+                    ).appendTo(parent)
+                })
+            },
+            // 去掉 <pre><code></code></pre> 的缩进
+            trimPredefined: function(context) {
+                var pres = $('pre', context)
+                _.each(pres, function(pre /*, index*/ ) {
+                    pre = $(pre)
+                    var code = pre.find('>code')
+                    var trimed
+                    if (code.length) {
+                        trimed = Loader.Util.trimPredefined(code[0])
+                        code.text(trimed)
+                    } else {
+                        trimed = Loader.Util.trimPredefined(pre[0])
+                        pre.text(trimed)
+                    }
+                })
             }
-
         })
 
         return Readme
