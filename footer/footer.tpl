@@ -12,7 +12,7 @@
     <ul class="list-inline">
         <li>Currently v0.0.0</li>
         <li>·</li>
-        <li><a href="https://github.com/thx/brix-loader">Github</a></li>
+        <li><a href="https://github.com/thx/brix-loader">GitHub</a></li>
         <li>·</li>
         <li><a href="">Examples</a></li>
         <li>·</li>

@@ -133,13 +133,13 @@ define(
                         that.data.date.set('year', +$target.attr('data-value'))
                         sync()
                         if (!that.data.typeMap.year) {
-                            $yearpicker.slideUp()
-                            $monthpicker.slideDown()
+                            $yearpicker.slideUp('fast')
+                            $monthpicker.slideDown('fast')
                         }
                     })
                     .on('click', MONTH_PICKER_HEADER_TITLE, function( /*event*/ ) {
-                        $monthpicker.slideUp()
-                        $yearpicker.slideDown()
+                        $monthpicker.slideUp('fast')
+                        $yearpicker.slideDown('fast')
                     })
                     .on('click', MONTH_PICKER_HEADER_MINUS, function( /*event*/ ) {
                         renderMonthPicker(-1)
@@ -156,13 +156,13 @@ define(
                         that.data.date.set('month', +$target.attr('data-value'))
                         sync()
                         if (!that.data.typeMap.month) {
-                            $datepicker.slideDown()
-                            $monthpicker.slideUp()
+                            $datepicker.slideDown('fast')
+                            $monthpicker.slideUp('fast')
                         }
                     })
                     .on('click', DATE_PICKER_HEADER_TITLE, function( /*event*/ ) {
-                        $datepicker.slideUp()
-                        $monthpicker.slideDown()
+                        $datepicker.slideUp('fast')
+                        $monthpicker.slideDown('fast')
                     })
                     .on('click', DATE_PICKER_HEADER_MINUS, function( /*event*/ ) {
                         renderDatePicker(-1)
