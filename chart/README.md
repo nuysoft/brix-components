@@ -171,6 +171,32 @@
         ]"></div>
     </div>
 </div>
+<div class="bs-example">
+    <div class="content">
+        <div bx-name="components/chart" data-type="Doughnut">
+            [
+                {
+                    value: 300,
+                    color: '#F7464A',
+                    highlight: '#FF5A5E',
+                    label: 'Red'
+                },
+                {
+                    value: 50,
+                    color: '#46BFBD',
+                    highlight: '#5AD3D1',
+                    label: 'Green'
+                },
+                {
+                    value: 100,
+                    color: '#FDB45C',
+                    highlight: '#FFC870',
+                    label: 'Yellow'
+                }
+            ]
+        </div>
+    </div>
+</div>
 
 ### 配置 <small>Options</small>
 

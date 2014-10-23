@@ -54,7 +54,13 @@ define(
                 height: 400
             },
             render: function() {
+                // 适配宽度
                 if (!this.options.width) this.options.width = $(this.element).width()
+
+                // 尝试从 innerText 中解析数据
+                /* jshint evil:true */
+                if (!this.options.data) this.options.data = eval('(function(){ return [].splice.call(arguments, 0 )[0] })(' + this.element.innerText + ')')
+
                 var html = _.template(template, this.options)
                 var canvas = $(html).appendTo(this.element)
                 var context = canvas.get(0).getContext("2d")

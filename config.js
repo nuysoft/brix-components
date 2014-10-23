@@ -31,7 +31,7 @@ require.config({
         'components/countdown': 'bower_components/brix-components/countdown/countdown',
         'components/sidebar': 'bower_components/brix-components/sidebar/sidebar',
         'components/chart': 'bower_components/brix-components/chart/chart',
-        'components/spa': 'bower_components/brix-components/spa/spa',
+        'components/imager': 'bower_components/brix-components/imager/imager',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
