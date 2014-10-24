@@ -8,13 +8,31 @@
 
 <div class="bs-example">
     <div class="content">
-        <div><img src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg"></div>
+        <div>
+            原图：
+            <img src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg">
+        </div>
         <hr>
-        <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 100px;"></div>
-        <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 150px;"></div>
-        <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 200px;"></div>
-        <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 250px;"></div>
-        <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 300px;"></div>
+        <div style="display: inline-block;">
+            100px：
+            <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 100px;"></div>
+        </div>
+        <div style="display: inline-block;">
+            150px：
+            <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 150px;"></div>
+        </div>
+        <div style="display: inline-block;">
+            200px：
+            <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 200px;"></div>
+        </div>
+        <div style="display: inline-block;">
+            250px：
+            <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 250px;"></div>
+        </div>
+        <div style="display: inline-block;">
+            300px：
+            <div bx-name="components/imager" data-src="http://3w7ov13ob0hk2kk1w147yffjlu5.wpengine.netdna-cdn.com/wp-content/uploads/2012/05/obama-500.jpg" data-left="185" data-top="65" data-width="100" data-height="100" style="width: 300px;"></div>
+        </div>
     </div>
 </div>
 
@@ -22,7 +40,12 @@
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
+src | string | '' | 图片地址。
+left | number | - | 图片核心区域距左坐标。
+top | number | - | 图片核心区域距上坐标。
+width | number | - | 图片核心区域的宽度。
+height | number | - | 图片核心区域的高度。
+
 template | string | '' | 渲染组件所需的 HTML 模板。
 
 ### 方法 <small>Methods</small>

@@ -39,8 +39,8 @@ define(
         return Brix.extend({
             options: {
                 src: '',
-                left: '',
-                top: '',
+                left: 0,
+                top: 0,
                 width: '',
                 height: ''
             },
@@ -60,6 +60,8 @@ define(
                         if (!imgWidth) {
                             imgWidth = img.width
                             imgHeight = img.height
+                            that.options.width = that.options.width || imgWidth
+                            that.options.height = that.options.height || imgHeight
                         }
                         var width, height, left, top, rate
 

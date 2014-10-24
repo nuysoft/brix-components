@@ -102,4 +102,4 @@ instance.on(events, function(event, offset) {
 })
 ```
 
-> 因为 Countdown 每次更新剩余时间，都会触发 `update.countdown` 事件，所以上面的代码会造成海量的输出。
+> 因为 Countdown 每次更新剩余时间，都会触发 `update.countdown` 事件，所以上面的代码会在控制台造成海量的输出。
