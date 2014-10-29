@@ -1,6 +1,6 @@
 # Imager
 
-响应式图片。{ .lead }
+响应式图片组件，优先显示图片的『核心区域』。{ .lead }
 
 > 灵感源自 <http://blog.cloudfour.com/a-framework-for-discussing-responsive-images-solutions/>。
 
@@ -40,40 +40,8 @@
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-src | string | '' | 图片地址。
+src | string | `''` | 图片地址。
 left | number | - | 图片核心区域距左坐标。
 top | number | - | 图片核心区域距上坐标。
 width | number | - | 图片核心区域的宽度。
 height | number | - | 图片核心区域的高度。
-
-template | string | '' | 渲染组件所需的 HTML 模板。
-
-### 方法 <small>Methods</small>
-
-#### .render()
-
-渲染组件。
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/imager')
-instance.render()
-```
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/imager')
-instance.method()
-```
-
-### 事件 <small>Events</small>
-
-Event Type | Description
-:--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
-

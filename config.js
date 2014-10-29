@@ -9,6 +9,7 @@ require.config({
         }
     },
     paths: {
+        // brix
         'loader': 'bower_components/brix-loader/dist/loader',
         'base': 'bower_components/brix-base/src/',
 
@@ -32,6 +33,7 @@ require.config({
         'components/sidebar': 'bower_components/brix-components/sidebar/sidebar',
         'components/chart': 'bower_components/brix-components/chart/chart',
         'components/imager': 'bower_components/brix-components/imager/imager',
+        'components/nprogress': 'bower_components/brix-components/nprogress/nprogress',
 
         'components/tree': 'bower_components/brix-components/tree/tree',
         'components/header': 'bower_components/brix-components/header/header',
@@ -53,7 +55,8 @@ require.config({
         d3: 'bower_components/d3/d3',
         Chart: 'bower_components/chartjs/Chart',
         director: 'bower_components/director/build/director',
-        highlightjs: 'bower_components/highlightjs/highlight.pack'
+        highlightjs: 'bower_components/highlightjs/highlight.pack',
+        nprogress: 'bower_components/nprogress/nprogress'
     },
     shim: {
         Chart: {

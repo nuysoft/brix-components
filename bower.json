@@ -22,7 +22,8 @@
     "marked": "~0.3.2",
     "chartjs": "~0.2.0",
     "director": "~1.2.2",
-    "highlightjs": "~8.3.0"
+    "highlightjs": "~8.3.0",
+    "nprogress": "~0.1.6"
   },
   "devDependencies": {}
 }

@@ -1,15 +1,13 @@
-/* global define */
+/* global define, window */
 define(
     [
-        'jquery', 'underscore',
+        'jquery',
         'base/brix',
-        'text!./imager.tpl',
         'less!./imager.less'
     ],
     function(
-        $, _,
-        Brix,
-        template
+        $,
+        Brix
     ) {
         /*
             ### 数据
