@@ -6,7 +6,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'less!./editable.less'
+        'css!./editable.css'
     ],
     function(
         $, _,

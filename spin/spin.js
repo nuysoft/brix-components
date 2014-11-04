@@ -12,7 +12,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./spin.tpl',
-        'less!./spin.less'
+        'css!./spin.css'
     ],
     function(
         $, _,

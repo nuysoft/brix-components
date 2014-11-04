@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./hello.tpl',
-        'less!./hello.less'
+        'css!./hello.css'
     ],
     function(
         $, _,

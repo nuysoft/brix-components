@@ -8,7 +8,7 @@ define(
         'base/brix',
         './pure-pagination',
         'text!./pagination.tpl',
-        'less!./pagination.less'
+        'css!./pagination.css'
     ],
     function(
         $, _,

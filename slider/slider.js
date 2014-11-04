@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./slider.tpl',
-        'less!./slider.less'
+        'css!./slider.css'
     ],
     function(
         $, _,

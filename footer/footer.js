@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./footer.tpl',
-        'less!./footer.less'
+        'css!./footer.css'
     ],
     function(
         $, _,

@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore', 'mock',
         'base/brix',
         'text!./sidebar.tpl',
-        'less!./sidebar.less'
+        'css!./sidebar.css'
     ],
     function(
         $, _, Mock,

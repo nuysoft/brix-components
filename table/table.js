@@ -8,7 +8,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'less!./table.less'
+        'css!./table.css'
     ],
     function(
         $, _,

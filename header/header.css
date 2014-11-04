@@ -1,0 +1,33 @@
+.bcs-header {
+  padding: 0 0 50px 0;
+  background-color: #428BCA;
+  /* #ed4242 #428BCA #b84d45 */
+  background-image: url(demo.components.bg.png);
+  margin-bottom: 30px;
+}
+.bcs-header h1 {
+  color: #fff;
+  margin: 0;
+  padding: 30px 0 0 0;
+  font-size: 80px;
+}
+.bcs-header h1:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.bcs-header a {
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.bcs-header a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.bcs-header h2 {
+  color: #fff;
+  margin: 0;
+  padding: 10px 0 0 0px;
+}
+.bcs-header h2:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

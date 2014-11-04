@@ -6,7 +6,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./popover.tpl',
-        'less!./popover.less'
+        'css!./popover.css'
     ],
     function(
         $, _,

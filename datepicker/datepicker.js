@@ -11,7 +11,7 @@ define(
         'jquery', 'underscore', 'moment',
         'base/brix',
         'text!./datepicker.tpl',
-        'less!./datepicker.less'
+        'css!./datepicker.css'
     ],
     function(
         $, _, moment,

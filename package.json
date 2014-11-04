@@ -1,0 +1,25 @@
+{
+  "name": "brix-components",
+  "version": "0.0.1",
+  "description": "brix-components",
+  "main": "config.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuysoft/brix-components"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuysoft/brix-components/issues"
+  },
+  "homepage": "https://github.com/nuysoft/brix-components",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-connect": "*",
+    "gulp-jshint": "*",
+    "jshint-stylish": "*",
+    "through2": "^0.6.3"
+  },
+  "dependencies": {}
+}

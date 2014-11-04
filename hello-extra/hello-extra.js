@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'components/hello',
         'text!./hello-extra.tpl',
-        'less!./hello-extra.less'
+        'css!./hello-extra.css'
     ],
     function(
         $, _,

@@ -5,7 +5,7 @@ define(
         'loader',
         'base/brix',
         'text!./tree.tpl',
-        'less!./tree.less'
+        'css!./tree.css'
     ],
     function(
         $, _,

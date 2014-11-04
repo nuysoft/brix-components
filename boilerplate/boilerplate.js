@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./boilerplate.tpl',
-        'less!./boilerplate.less'
+        'css!./boilerplate.css'
     ],
     function(
         $, _,

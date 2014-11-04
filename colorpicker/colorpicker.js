@@ -8,7 +8,7 @@ define(
         'jquery', 'underscore',
         'base/brix',
         'text!./colorpicker.tpl',
-        'less!./colorpicker.less'
+        'css!./colorpicker.css'
     ],
     function(
         $, _,

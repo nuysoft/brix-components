@@ -23,7 +23,8 @@
     "chartjs": "~0.2.0",
     "director": "~1.2.2",
     "highlightjs": "~8.3.0",
-    "nprogress": "~0.1.6"
+    "nprogress": "~0.1.6",
+    "parsleyjs": "~2.0.5"
   },
   "devDependencies": {}
 }

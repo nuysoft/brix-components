@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore', 'marked', 'marked-extra', 'highlightjs',
         'loader', 'base/brix',
         'text!./readme.tpl',
-        'less!./readme.less'
+        'css!./readme.css'
     ],
     function(
         $, _, marked, renderer, hljs,
