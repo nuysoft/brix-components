@@ -6,7 +6,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'text!./uploader.tpl',
+        './uploader.tpl.js',
         'css!./uploader.css'
     ],
     function(

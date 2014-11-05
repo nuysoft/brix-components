@@ -7,7 +7,7 @@
 <div class="bs-example">
     <div class="content">
         <form>
-            <button bx-name="components/uploader" data-action="api/upload.json"class="btn btn-default">选择文件</button>
+            <button bx-name="components/uploader" data-action="api/upload.json" class="btn btn-default">选择文件</button>
         </form>
     </div>
 </div>

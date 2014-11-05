@@ -11,7 +11,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'text!./spin.tpl',
+        './spin.tpl.js',
         'css!./spin.css'
     ],
     function(

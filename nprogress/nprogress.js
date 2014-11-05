@@ -5,7 +5,7 @@
 define(
     [
         'base/brix', 'nprogress',
-        'css!components/bower_components/nprogress/nprogress.css'
+        'css!../nprogress/nprogress.css'
     ],
     function(
         Brix,
@@ -14,7 +14,7 @@ define(
         return Brix.extend({
             options: {},
             init: function() {
-                require(['css!./components/nprogress.css'])
+                require(['css!./nprogress.css'])
                 this.NProgress = NProgress
             },
             render: function() {

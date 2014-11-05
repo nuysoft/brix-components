@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define, require, window */
 /*
     http://parsleyjs.org/
     Parsley, the ultimate JavaScript form validation library
@@ -6,12 +6,12 @@
  */
 define(
     [
-        'jquery', 'underscore', 'parsley',
+        'parsley',
         'base/brix',
         'css!components/bower_components/parsleyjs/src/parsley.css'
     ],
     function(
-        $, _, Parsley,
+        Parsley,
         Brix
 
     ) {
@@ -20,10 +20,11 @@ define(
                 i18n: 'zh_cn'
             },
             init: function() {
+                if (!Parsley) Parsley = window.Parsley
                 require(['components/validation/i18n/' + this.options.i18n])
             },
             render: function() {
-                this.parsley = new window.Parsley(this.element)
+                this.parsley = new Parsley(this.element)
             }
         })
     }

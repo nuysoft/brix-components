@@ -3,7 +3,7 @@ define(
     [
         'jquery', 'underscore', 'mock',
         'base/brix',
-        'text!./sidebar.tpl',
+        './sidebar.tpl.js',
         'css!./sidebar.css'
     ],
     function(

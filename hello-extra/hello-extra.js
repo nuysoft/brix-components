@@ -3,7 +3,7 @@ define(
     [
         'jquery', 'underscore',
         'components/hello',
-        'text!./hello-extra.tpl',
+        './hello-extra.tpl.js',
         'css!./hello-extra.css'
     ],
     function(

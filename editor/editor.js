@@ -7,9 +7,9 @@ define(
     [
         'jquery', 'underscore', 'mousetrap',
         'base/brix',
-        'text!./editor.tpl',
+        './editor.tpl.js',
         'css!./editor.css',
-        'css!/bower_components/fontawesome/css/font-awesome.css'
+        'css!./bower_components/fontawesome/css/font-awesome.css'
     ],
     function(
         $, _, Mousetrap,

@@ -4,7 +4,7 @@ define(
         'jquery', 'underscore',
         'loader',
         'base/brix',
-        'text!./tree.tpl',
+        './tree.tpl.js',
         'css!./tree.css'
     ],
     function(

@@ -6,7 +6,7 @@ define(
     [
         'jquery', 'underscore', 'Chart',
         'base/brix',
-        'text!./chart.tpl',
+        './chart.tpl.js',
         'css!./chart.css'
     ],
     function(
@@ -59,7 +59,10 @@ define(
 
                 // 尝试从 innerText 中解析数据
                 /* jshint evil:true */
-                if (!this.options.data) this.options.data = eval('(function(){ return [].splice.call(arguments, 0 )[0] })(' + this.element.innerText + ')')
+                if (!this.options.data) {
+                    this.options.data = eval('(function(){ return [].splice.call(arguments, 0 )[0] })(' + this.element.innerText + ')')
+                    this.element.innerText = ''
+                }
 
                 var html = _.template(template, this.options)
                 var canvas = $(html).appendTo(this.element)

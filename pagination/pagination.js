@@ -6,8 +6,8 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        './pure-pagination',
-        'text!./pagination.tpl',
+        './pure-pagination.js',
+        './pagination.tpl.js',
         'css!./pagination.css'
     ],
     function(

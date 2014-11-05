@@ -3,7 +3,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'text!./modal.tpl',
+        './modal.tpl.js',
         'css!./modal.css'
     ],
     function(

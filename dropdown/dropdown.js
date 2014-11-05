@@ -7,7 +7,7 @@ define(
     [
         'jquery', 'underscore',
         'base/brix',
-        'text!./dropdown.tpl',
+        './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
     function(
