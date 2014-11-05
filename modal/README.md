@@ -6,6 +6,6 @@
 
 <div class="bs-example bs-example-modal">
     <div class="content">
-        <div bx-name="components/modal" bx-click="toggle" class="btn btn-default">Dialog</div>
+        <div bx-name="components/modal" data-title="Title" data-body="Body" bx-click="toggle" class="btn btn-default">Dialog</div>
     </div>
 </div>

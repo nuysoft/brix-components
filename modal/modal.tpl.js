@@ -9,12 +9,7 @@ define(function() {
         <h4 class="modal-title"><%= title %></h4>
       </div>
       <div class="modal-body">
-        <ul>
-          <li>moduleId: <%= moduleId %></li>
-          <li>clientId: <%= clientId %></li>
-          <li>parentClientId: <%= parentClientId %></li>
-          <li>childClientIds: <%= childClientIds %></li>
-        </ul>
+        <%= body %>
       </div>
       <div class="modal-footer">
       <button bx-click="hide" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
