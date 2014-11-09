@@ -24,6 +24,7 @@ require.config({
         'components/modal': 'bower_components/brix-components/modal/modal',
         'components/table': 'bower_components/brix-components/table/table',
         'components/datepicker': 'bower_components/brix-components/datepicker/datepicker',
+        'components/datepickerwrapper': 'bower_components/brix-components/datepickerwrapper/datepickerwrapper',
         'components/popover': 'bower_components/brix-components/popover/popover',
         'components/uploader': 'bower_components/brix-components/uploader/uploader',
         'components/editor': 'bower_components/brix-components/editor/editor',
