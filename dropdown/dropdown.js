@@ -84,8 +84,7 @@ define(
                 </optgroup>
             </select>
         */
-        function Dropdown() {}
-        _.extend(Dropdown.prototype, Brix.prototype, {
+        return Brix.extend({
             options: {},
             parseData: function(select) {
                 var $select = $(select)
@@ -132,11 +131,24 @@ define(
                     // 如果提供了选项 data，则反过来修改子元素
                     $select.empty()
                     _.each(this.data, function(item) {
-                        $('<option>')
-                            .attr('value', item.value)
-                            .prop('selected', item.selected)
-                            .text(item.label)
-                            .appendTo($select)
+                        if (item.children && item.children.length) {
+                            var $optgroup = $('<optgroup>').attr('label', item.label)
+                            _.each(item.children, function(item /*, index*/ ) {
+                                $('<option>')
+                                    .attr('value', item.value)
+                                    .prop('selected', item.selected)
+                                    .text(item.label)
+                                    .appendTo($optgroup)
+                            })
+                            $optgroup.appendTo($select)
+
+                        } else {
+                            $('<option>')
+                                .attr('value', item.value)
+                                .prop('selected', item.selected)
+                                .text(item.label)
+                                .appendTo($select)
+                        }
                     })
                 }
 
@@ -208,6 +220,5 @@ define(
                 this.toggle()
             }
         })
-        return Dropdown
     }
 )
