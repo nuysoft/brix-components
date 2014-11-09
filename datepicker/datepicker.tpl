@@ -24,7 +24,7 @@
     <div class="datepicker picker-group">
         <div class="picker-header">
             <button class="btn btn-default minus" type="button"><span class="glyphicon glyphicon-step-backward"></span></button>
-            <h4>2014-09</h4>
+            <h4>?</h4>
             <button class="btn btn-default plus" type="button"><span class="glyphicon glyphicon-step-forward"></span></button>
         </div>
         <div class="picker-body">
