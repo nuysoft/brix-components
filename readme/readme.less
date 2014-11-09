@@ -3,3 +3,31 @@
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.bs-example {
+    position: relative;
+    margin: 0 0 18px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    &:after {
+        content: "Example";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    > .content {
+        padding: 45px 15px 15px;
+    }
+    pre {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        border-top: 1px solid #ddd;
+    }
+}
