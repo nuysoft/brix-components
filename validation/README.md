@@ -1,68 +1,54 @@
-# validation
+# Validation
 
-Lorem ipsum{ .lead }
+表单验证组件。{ .lead }
 
 ### 示例 <small>Examples</small>
 
-<div bx-name="component/validation" bx-options="{}"></div>
+<div class="bs-example">
+    <div class="content">
+        <form bx-name="components/validation" data-parsley-validate class="form" action="">
+            <div class="form-group">
+                <label>Full Name \* :</label>
+                <input type="text" class="form-control" placeholder="Full Name" data-parsley-trigger="change" required>
+            </div>
+            <div class="form-group">
+                <label>Email \* :</label>
+                <input type="email" class="form-control" placeholder="Email" data-parsley-trigger="change" required>
+            </div>
+            <div class="form-group">
+                <label>Gender * :</label>
+                <p>
+                    M: <input type="radio" name="gender" value="M" required>
+                    F: <input type="radio" name="gender" value="F">
+                </p>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
 
-### 使用 <small>Usage</small>
-
-1. 安装 <small>Install</small>
-
-  ```sh
-  $ bower install --save-dev brix-component-validation
-  ```
-
-2. 配置组件 <small>Package</small>
-
-  ```js
-  require.config({
-    paths: {
-      'component/validation': 'bower_components/brix-component-validation/validation'
-    }
-  })
-  ```
-
-3. 应用组件 <small>Apply</small>
-
-  ```html
-  <div bx-name="component/validation" bx-options="{}"></div>
-  ```
+```js
+require(['loader'], function(Loader) {
+    var vs = Loader.query('components/validation')
+    vs[0].parsley.validate()
+})
+```
 
 ### 配置 <small>Options</small>
 
+无。
+
+### 属性 <small>Properties</small>
+
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-data | any | {} | 渲染组件所需的数据对象。
-template | string | '' | 渲染组件所需的 HTML 模板。
+parsley | Parsley | - | <http://parsleyjs.org/>
 
 ### 方法 <small>Methods</small>
 
-#### .render()
-
-渲染组件。
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/validation')
-instance.render()
-```
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/validation')
-instance.method()
-```
+无。
 
 ### 事件 <small>Events</small>
 
-Event Type | Description
-:--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
+无。
 

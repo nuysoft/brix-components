@@ -8,7 +8,8 @@ define(
     [
         'parsley',
         'base/brix',
-        'css!components/bower_components/parsleyjs/src/parsley.css'
+        'css!dependencies/parsleyjs/src/parsley.css',
+        'css!./validation.css'
     ],
     function(
         Parsley,
@@ -21,7 +22,7 @@ define(
             },
             init: function() {
                 if (!Parsley) Parsley = window.Parsley
-                require(['components/validation/i18n/' + this.options.i18n])
+                require(['dependencies/parsleyjs/src/i18n/' + this.options.i18n])
             },
             render: function() {
                 this.parsley = new Parsley(this.element)
