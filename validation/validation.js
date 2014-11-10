@@ -26,6 +26,13 @@ define(
             },
             render: function() {
                 this.parsley = new Parsley(this.element)
+            },
+            validate: function() {
+                this.parsley.validate()
+                return this
+            },
+            isValid: function() {
+                return this.parsley.isValid()
             }
         })
     }

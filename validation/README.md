@@ -2,6 +2,8 @@
 
 表单验证组件。{ .lead }
 
+> 引用了 <http://parsleyjs.org/>。
+
 ### 示例 <small>Examples</small>
 
 <div class="bs-example">
@@ -28,10 +30,9 @@
 </div>
 
 ```js
-require(['loader'], function(Loader) {
-    var vs = Loader.query('components/validation')
-    vs[0].parsley.validate()
-})
+var Loader = require('loader')
+var instances = Loader.query('components/validation')
+instances.validate()
 ```
 
 ### 配置 <small>Options</small>
@@ -46,7 +47,13 @@ parsley | Parsley | - | <http://parsleyjs.org/>
 
 ### 方法 <small>Methods</small>
 
-无。
+####  .validate()
+
+<http://parsleyjs.org/doc/index.html#usage-form>
+
+####  .isValid()
+
+<http://parsleyjs.org/doc/index.html#usage-form>
 
 ### 事件 <small>Events</small>
 
