@@ -8,6 +8,12 @@
 
 <div class="bs-example">
     <div class="content clearfix">
+        <div bx-name="components/spin"></div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content clearfix">
         <div class="row">
             <div class="col-xs-3">
                 <div bx-name="components/spin" data-type="rotating-plane"></div>
@@ -42,3 +48,11 @@
         </div>
     </div>
 </div>
+
+### 配置 <small>Options</small>
+
+配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+type | string | `'three-bounce'` | 可选。指定加载动画的类型，可选值有：`rotating-plane`、`double-bounce`、`rectangle-bounce`、`wandering-cubes`、`pulse`、`chasing-dots`、`three-bounce`、`circle-spinner`。
