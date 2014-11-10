@@ -30,7 +30,7 @@ define(
         _.extend(Tree.prototype, Brix.prototype, {
             options: {},
             render: function() {
-                var $element = $(this.element).empty()
+                var $element = $(this.element) // .empty()
                 Loader.boot(function() {
                     var root = Loader.tree()
                     fix(root, template)
