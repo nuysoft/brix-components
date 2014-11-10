@@ -1,7 +1,7 @@
-/* global define */
-/* global document */
+/* global define, window, document */
 /*
     http://getbootstrap.com/components/#dropdowns
+    http://silviomoreto.github.io/bootstrap-select/
  */
 define(
     [
@@ -83,99 +83,55 @@ define(
                     <option value ="audi">Audi</option>
                 </optgroup>
             </select>
+
+            TODO
+                multiple disabled
+                responsive http://silviomoreto.github.io/bootstrap-select/
         */
         return Brix.extend({
-            options: {},
-            parseData: function(select) {
-                var $select = $(select)
-                return _.map($select.children(), function(child /*, index*/ ) {
-                    var $child = $(child)
-
-                    // <optgroup
-                    if (/optgroup/i.test(child.nodeName)) {
-                        return {
-                            label: $child.attr('label'),
-                            children: parseOptions($child.children())
-                        }
-
-                    } else {
-                        // <option 
-                        return parseOption(child)
-                    }
-                })
-
-                function parseOptions(options) {
-                    return _.map(options, function(option /*, index*/ ) {
-                        return parseOption(option)
-                    })
-                }
-
-                function parseOption(option) {
-                    var $option = $(option)
-                    return $option.hasClass('divider') ? 'divider' : {
-                        label: $option.text(),
-                        value: $option.attr('value'),
-                        selected: $option.prop('selected')
-                    }
-                }
+            options: {
+                data: []
             },
             render: function() {
                 var that = this
                 var $select = $(this.element).hide()
 
                 // 如果没有提供选项 data，则从子元素中收集数据
-                if (!this.data) {
-                    this.data = this.parseData(this.element)
+                // 如果提供了选项 data，则反过来修改子元素
+                if (!this.data) this.data = this._parseData(this.element)
+                else this._fill()
 
-                } else {
-                    // 如果提供了选项 data，则反过来修改子元素
-                    $select.empty()
-                    _.each(this.data, function(item) {
-                        if (item.children && item.children.length) {
-                            var $optgroup = $('<optgroup>').attr('label', item.label)
-                            _.each(item.children, function(item /*, index*/ ) {
-                                $('<option>')
-                                    .attr('value', item.value)
-                                    .prop('selected', item.selected)
-                                    .text(item.label)
-                                    .appendTo($optgroup)
-                            })
-                            $optgroup.appendTo($select)
-
-                        } else {
-                            $('<option>')
-                                .attr('value', item.value)
-                                .prop('selected', item.selected)
-                                .text(item.label)
-                                .appendTo($select)
-                        }
-                    })
-                }
-
-                this.selectedIndex = $select.prop('selectedIndex')
-                this.selectedIndex = this.selectedIndex !== -1 ? this.selectedIndex : 0
-                var selectedOption = $(this.element.options[this.selectedIndex])
-                this.label = selectedOption.text()
-                this.value = selectedOption.attr('value')
-
-                // ？？？
-                // if ($select.prev().is('div.btn-group:has(ul.dropdown-menu)')) $select.prev().remove()
-                var html = _.template(template, this)
-                var relatedElement = $(html).insertAfter($select)
-                this.relatedElement = relatedElement[0]
+                var data = _.extend({
+                    data: this.data
+                }, function() {
+                    var selectedIndex = $select.prop('selectedIndex')
+                    var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
+                    return {
+                        label: selectedOption.text(),
+                        value: selectedOption.attr('value')
+                    }
+                }())
+                var html = _.template(template, data)
+                var $relatedElement = $(html).insertAfter($select)
+                this.relatedElement = $relatedElement[0]
 
                 this.delegateBxTypeEvents()
 
                 var type = 'click.dropdown_' + this.clientId
-                $(document.body)
-                    .off(type)
+                $(document.body).off(type)
                     .on(type, function(event) {
-                        if (relatedElement.has(event.target).length) return
+                        if ($relatedElement.has(event.target).length) return
                         that.hide()
                     })
+
+                // this._responsive()
             },
-            toggle: function() {
+            toggle: function(event) {
                 $(this.relatedElement).toggleClass('open')
+                if (event) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
                 return this
             },
             show: function() {
@@ -187,30 +143,35 @@ define(
                 return this
             },
             /*
-                .val( { label: "", value: "" } )
                 .val( value )
+                .val()
             */
             val: function(value) {
-                var data = _.isObject(value) ? value :
-                    _.each(this.data, function(item /*, index*/ ) {
-                        // label value selected
-                        if (item.value === value) {
-                            item.selected = true
-                            data = item
-                        } else {
-                            item.selected = false
-                        }
-                    })
+                var that = this
+                if (value === undefined) return function() {
+                    var selectedIndex = $(that.element).prop('selectedIndex')
+                    return $(that.element.options[
+                        selectedIndex !== -1 ? selectedIndex : 0
+                    ]).attr('value')
+                }()
+
+                var data /* { label: '', value: '', selected: true|false } */
+                if (_.isObject(value)) data = value
+                else _.each(this.data, function(item /*, index*/ ) {
+                    if (item.value == value) data = item
+                    item.selected = item.value == value
+                })
+
                 $(this.relatedElement).find('button.dropdown-toggle > span:first')
-                    .attr('value', data.value)
                     .text(data.label)
-                    .trigger('change', data)
-                $(this.element).val(data.value)
-                    .trigger('change', data)
+                    .trigger('change.dropdown', data)
+                $(this.element)
+                    .val(data.value)
+                    .trigger('change.dropdown', data)
+
                 return this
             },
-            // trigger?
-            select: function(event /*, trigger*/ ) {
+            _select: function(event /*, trigger*/ ) {
                 var $target = $(event.currentTarget)
                 var data = {
                     label: $target.text(),
@@ -218,6 +179,74 @@ define(
                 }
                 this.val(data)
                 this.toggle()
+            },
+            _parseData: function(select) {
+                var that = this
+                var $select = $(select)
+                return _.map($select.children(), function(child /*, index*/ ) {
+                    // <optgroup> <option>
+                    var $child = $(child)
+                    return /optgroup/i.test(child.nodeName) ? {
+                        label: $child.attr('label'),
+                        children: that._parseOptions($child.children())
+                    } : that._parseOption(child)
+                })
+            },
+            _parseOptions: function(options) {
+                var that = this
+                return _.map(options, function(option /*, index*/ ) {
+                    return that._parseOption(option)
+                })
+            },
+            _parseOption: function(option) {
+                var $option = $(option)
+                return $option.hasClass('divider') ? 'divider' : {
+                    label: $option.text(),
+                    value: $option.attr('value'),
+                    selected: $option.prop('selected')
+                }
+            },
+            _fill: function() {
+                var that = this
+                var $select = $(this.element).hide().empty()
+                _.each(this.data, function(item) {
+                    if (item.children && item.children.length) {
+                        var $optgroup = $('<optgroup>').attr('label', item.label)
+                        _.each(item.children, function(item /*, index*/ ) {
+                            that._genOption(item).appendTo($optgroup)
+                        })
+                        $optgroup.appendTo($select)
+
+                    } else {
+                        that._genOption(item).appendTo($select)
+                    }
+                })
+            },
+            _genOption: function(item) {
+                // item { label: '', value: '', selected: true|false }
+                return $('<option>')
+                    .attr('value', item.value)
+                    .prop('selected', item.selected)
+                    .text(item.label)
+            },
+            _responsive: function() {
+                var $window = $(window)
+                var $relatedElement = $(this.relatedElement)
+                var $menu = $relatedElement.find('ul.dropdown-menu')
+                $(window).on('scroll', function() {
+                    var offset = $relatedElement.offset()
+                    var top = offset.top - $window.scrollTop()
+                    var button = $window.scrollTop() + $window.height() - offset.top - $relatedElement.outerHeight()
+                    var placement = button >= top ? 'button' : 'top'
+                    switch (placement) {
+                        case 'button':
+                            $menu.css('max-height', top - 10)
+                            break
+                        case 'top':
+                            $menu.css('max-height', button - 10)
+                            break
+                    }
+                })
             }
         })
     }

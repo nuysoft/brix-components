@@ -6,7 +6,7 @@
 
 <div class="bs-example">
     <div class="content">
-        <h4>推荐用法，直接在 `<select>` 节点附加 `bx-name="components/dropdown"`。</h4>
+        <h4>直接在 `<select>` 节点上附加 `bx-name="components/dropdown"`。</h4>
         <select bx-name="components/dropdown">
             <option value="1">Action</option>
             <option value="2">Another action</option>
@@ -87,36 +87,7 @@
         </select>
     </div>
 </div>
-<div class="bs-example">
-    <div class="content">
-        <h4>支持分隔线 `<option class="divider"></option>`。</h4>
-        <select bx-name="components/dropdown">
-            <option value="1">Action</option>
-            <option value="2">Another action</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-            <option value="3">Something else here</option>
-        </select>
-    </div>
-</div>
+<!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
 ### 配置 <small>Options</small>
 
@@ -124,23 +95,34 @@
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-data | array | - | 可选。下拉框中的数据。默认从子节点 `optgroup` 和 `option` 读取。
+data | array | - | 可选。下拉框中的数据。默认从子节点 `<optgroup>` 和 `<option>` 读取。
 
 ### 方法 <small>Methods</small>
 
-无。
+#### .val( [ value ] )
+
+* .val( value )
+* .val()
+
+
+设置或读取下拉框的值。
+
+```js
+var Loader = require('loader')
+var instances = Loader.query('components/dropdown')
+console.log(instances[0].val())
+```
 
 ### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------
-change | 当日期组件变化时被触发。
+change.dropdown | 当日期组件变化时被触发。
 
 ```js
-require(['loader'], function(Loader) {
-    Loader.query('components/dropdown')
-        .on('change', function(event, extra) {
-            console.log(event, extra)
-        })
+var Loader = require('loader')
+var instances = Loader.query('components/dropdown')
+instances.on('change.dropdown', function(event, extra) {
+    console.log(event, extra)
 })
 ```
