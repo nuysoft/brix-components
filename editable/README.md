@@ -14,7 +14,6 @@
 </div>
 <div class="bs-example">
     <div class="content">
-        <span bx-name="components/editable" bx-options="{ type: 'html' }"><kbd>This is a editable keyboard input element.</kbd> cool!</span>
         <p bx-name="components/editable" data-type="html"><kbd>This is a editable keyboard input element.</kbd> cool!</p>
     </div>
 </div>
