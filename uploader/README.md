@@ -55,38 +55,53 @@
         </div>
     </div>
 </div>
-<h3><!-- 配置  -->Options</h3>
-<p>Lorem ipsum.</p>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th align="left"> Name </th>
-            <th align="left"> Type </th>
-            <th align="left"> Default </th>
-            <th align="left"> Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align="left"> action </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>''</code> </td>
-            <td align="left"> 指定接收文件的 URL。 </td>
-        </tr>
-        <tr>
-            <td align="left"> name </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>'file'</code> </td>
-            <td align="left"> 指定文件域的名称。 </td>
-        </tr>
-        <tr>
-            <td align="left"> transport </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>'iframe'</code> </td>
-            <td align="left"> 指定上传文件的方式，可选值有 <code>'iframe'</code>、<code>'xhr'</code>。 </td>
-        </tr>
-    </tbody>
-</table>
+
+<script type="text/javascript">
+    require(['loader', 'log'], function(Loader, log) {
+        Loader.boot(function() {
+            var instances = Loader.query('components/uploader')
+            instances.on('success.uploader error.uploader complete.uploader start.uploader', function(event, extra) {
+                log(
+                    '_' + event.type + '_ ' + 
+                    '*' + event.namespace + '* ',
+                    extra
+                )
+            })
+        })
+    })
+</script>
+
+### 配置 <small>Options</small>
+
+配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+action | string | `''` | 指定接收文件的 URL。
+name | string | `'file'` | 指定文件域的名称。
+transport | string | `'iframe'` | 指定上传文件的方式，可选值有 `'iframe'`、`'xhr'`。
+
+### 方法 <small>Methods</small>
+
+无。
+
+### 事件 <small>Events</small>
+
+Event Type | Description
+:--------- | :----------
+success.uploader | 上传成功。
+error.uploader | 上传失败。
+complete.uploader | 上传完成。
+start.uploader | 开始上传，如果返回 false，则终止上传。
+
+```js
+var Loader = require('loader')
+var instances = Loader.query('components/uploader')
+instances.on('success.uploader error.uploader complete.uploader start.uploader', function(event, extra) {
+    console.log(event.type, event.namespace, extra)
+})
+```
+
 <h3><!-- 事件  -->Events</h3>
 <p>Lorem ipsum.</p>
 <table class="table table-bordered">

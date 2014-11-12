@@ -2,6 +2,10 @@
 /*
     http://mindmup.github.io/bootstrap-wysiwyg/
     http://fontawesome.io/
+
+    TODO
+        line number
+        options bar
  */
 define(
     [

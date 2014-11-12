@@ -1,16 +1,19 @@
 /* global define */
+/*
+    var Loader = require('loader')
+    var tree = Loader.query('components/tree')
+    tree[0]._renderTree()
+ */
 define(
     [
         'jquery', 'underscore',
-        'loader',
-        'base/brix',
+        'loader', 'base/brix',
         './tree.tpl.js',
         'css!./tree.css'
     ],
     function(
         $, _,
-        Loader,
-        Brix,
+        Loader, Brix,
         template
     ) {
         /*
@@ -30,15 +33,19 @@ define(
         _.extend(Tree.prototype, Brix.prototype, {
             options: {},
             render: function() {
-                var $element = $(this.element) // .empty()
+                var that = this
                 Loader.boot(function() {
-                    var root = Loader.tree()
-                    fix(root, template)
-                    $element.append(
-                        // _.template 如果递归？
-                        _.template(template, root)
-                    )
+                    that._renderTree()
                 })
+            },
+            _renderTree: function() {
+                var $element = $(this.element) // .empty()
+                var root = Loader.tree()
+                fix(root, template)
+                $element.append(
+                    // _.template 如果递归？
+                    _.template(template, root)
+                )
             }
         })
 

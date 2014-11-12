@@ -9,7 +9,7 @@
         <div bx-name="components/pagination" data-total="100" data-cursor="1" data-limit="9"></div>
         <div bx-name="components/pagination" data-total="100" data-cursor="2" data-limit="10"></div>
         <div bx-name="components/pagination" data-total="100" data-cursor="3" data-limit="11"></div>
-        <div bx-name="components/pagination" data-total="100" data-cursor="3" data-limit="12" data-limits="[40, 30, 20]"></div>
+        <div bx-name="components/pagination" data-total="100" data-cursor="4" data-limit="12" data-limits="[40, 30, 20]"></div>
     </div>
 </div>
 
