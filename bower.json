@@ -24,7 +24,9 @@
     "director": "~1.2.2",
     "highlightjs": "~8.3.0",
     "nprogress": "~0.1.6",
-    "parsleyjs": "~2.0.5"
+    "parsleyjs": "~2.0.5",
+    "log": "~0.1.5",
+    "colors": "~2.0.0"
   },
   "devDependencies": {}
 }
