@@ -89,6 +89,21 @@
 </div>
 <!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
+<script type="text/javascript">
+    require(['loader', 'log'], function(Loader, log) {
+        Loader.boot(function() {
+            var instances = Loader.query('components/dropdown')
+            instances.on('change.dropdown', function(event, extra) {
+                log(
+                    '_' + event.type + '_ ' + 
+                    '*' + event.namespace + '* ',
+                    extra
+                )
+            })
+        })
+    })
+</script>
+
 ### 配置 <small>Options</small>
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
