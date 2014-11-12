@@ -45,26 +45,52 @@ define(
             render: function() {
                 var that = this
                 $(this.element).append(template)
-                var promise = this.load(function(response /*, status, xhr*/ ) {
-                    $(that.element).html(
-                        marked(response, {
-                            renderer: renderer,
-                            gfm: true
-                        })
-                    )
-                    that.trimHTML(that.element)
-                    that.trimPredefined(that.element)
-                    var tables = $(that.element).find('table')
-                    if (!tables.hasClass('table')) tables.addClass('table table-bordered')
+                this.load(function(response /*, status, xhr*/ ) {
+                    Loader.boot(this.element, function() {
+                        var spin = Loader.query('components/spin', that.element)
+                        Loader.destroy(spin, function() {
+                            $(that.element).html(
+                                marked(response, {
+                                    renderer: renderer,
+                                    gfm: true
+                                })
+                            )
+                            that.trimHTML(that.element)
+                            that.trimPredefined(that.element)
 
-                    /* jshint unused:false */
-                    $(that.element).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
+                            // 为 table 元素增加类样式 .table .table-bordered
+                            // 逐个检测和增加，以防其中某个 table 元素含有类样式 .table，导致其他 table 元素不会被添加。
+                            var tables = $(that.element).find('table')
+                            _.each(tables, function(item /*, index*/ ) {
+                                item = $(item)
+                                if (!item.hasClass('table')) item.addClass('table table-bordered')
+                            })
+
+                            /* jshint unused:false */
+                            $(that.element).find('pre code').each(function(index, code) {
+                                hljs.highlightBlock(code)
+                            })
+                            Loader.boot(this.element)
+                        })
                     })
+
                 })
-                return promise
+                // var promise = this.load(function(response, status, xhr) {})
+                // return promise
             },
             load: function(done) {
+                // 模拟延时加载
+                // var that = this
+                // var deferred = $.Deferred()
+                // setTimeout(function() {
+                //     $.ajax(that.options.url)
+                //         .done(function(response, status, xhr) {
+                //             done(response, status, xhr)
+                //             deferred.resolve()
+                //         })
+                // }, 3000)
+                // return deferred.promise()
+
                 return $.ajax(this.options.url)
                     .done(function(response, status, xhr) {
                         done(response, status, xhr)
