@@ -43,24 +43,25 @@ define(
                 this.relatedElement = $relatedElement[0]
 
                 var timer
-                $(this.element).hover(function( /*event*/ ) {
-                    clearTimeout(timer)
-                    $relatedElement.offset(
-                        getPosition(that.options.placement, that.element, that.relatedElement, that.options.align)
-                    ).show()
-                    if (that.options.align) {
-                        $relatedElement.find('.arrow').offset(
-                            getArrowPosition(that.options.placement, that.element, that.relatedElement, that.options.align)
-                        )
+                $(this.element).hover(
+                    function( /*event*/ ) {
+                        clearTimeout(timer)
+                        $relatedElement.offset(
+                            getPosition(that.options.placement, that.element, that.relatedElement, that.options.align)
+                        ).show()
+                        if (that.options.align) {
+                            $relatedElement.find('.arrow').offset(
+                                getArrowPosition(that.options.placement, that.element, that.relatedElement, that.options.align)
+                            )
+                        }
+                    },
+                    function( /*event*/ ) {
+                        clearTimeout(timer)
+                        timer = setTimeout(function() {
+                            $relatedElement.hide()
+                        }, that.options.delay)
                     }
-
-                }, function() {
-                    clearTimeout(timer)
-                    timer = setTimeout(function() {
-                        $relatedElement.hide()
-                    }, that.options.delay)
-
-                })
+                )
                 $relatedElement.hover(function( /*event*/ ) {
                     clearTimeout(timer)
                 }, function() {

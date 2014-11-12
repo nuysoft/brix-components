@@ -141,47 +141,24 @@
         }"class="btn btn-default">placement right + align bottom</div>
     </div>
 </div>
-<h3><!-- 配置  -->Options</h3>
-<p>Lorem ipsum.</p>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th align="left">Name </th>
-            <th align="left"> Type </th>
-            <th align="left"> Default </th>
-            <th align="left"> Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align="left"> placement </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>'right'</code> </td>
-            <td align="left"> 指定浮层的位置，可选值有 <code>'top'</code>、<code>'bottom'</code>、<code>'left'</code>、<code>'right'</code>。</td>
-        </tr>
-        <tr>
-            <td align="left"> align </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>''</code> </td>
-            <td align="left"> 指定浮层的对齐方式，可选值有 <code>''</code>、<code>'top'</code>、<code>'bottom'</code>、<code>'left'</code>、<code>'right'</code>。 </td>
-        </tr>
-        <tr>
-            <td align="left"> title </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>''</code> </td>
-            <td align="left"> 浮层的标题。</td>
-        </tr>
-        <tr>
-            <td align="left"> content </td>
-            <td align="left"> string </td>
-            <td align="left"> <code>''</code> </td>
-            <td align="left"> 浮层的内容。</td>
-        </tr>
-        <tr>
-            <td align="left"> delay </td>
-            <td align="left"> number </td>
-            <td align="left"> <code>100</code> </td>
-            <td align="left"> 延迟关闭浮层的时间，单位为毫秒。</td>
-        </tr>
-    </tbody>
-</table>
+
+### 配置 <small>Options</small>
+
+配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+placement | string | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+align | string | `''` | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+title | string | `''` | 指定浮层的标题。
+content | string | `''` | 指定浮层的内容。
+~~delay~~ | number | `100` | 指定延迟关闭浮层的时间，单位为毫秒。
+
+
+### 方法 <small>Methods</small>
+
+无。
+
+### 事件 <small>Events</small>
+
+无。
