@@ -11,9 +11,9 @@
                 <tr>
                     <th><input type="checkbox"></th>
                     <th>Id</th>
-                    <th>Feature</th>
-                    <th>More</th>
-                    <th>Operations</th>
+                    <th>Feature <span bx-name="components/popover" data-content="功能列表。" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
+                    <th>More <span bx-name="components/popover" data-content="鼠标移入之后显示更多内容。" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
+                    <th width="150px">Operations <span bx-name="components/popover" data-content="注意到最后一列了吗？鼠标移入之后才会显示。" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                     </td>
                     <td>
                         <div class="operation">
-                            <a href="#Table">详情</a>
+                            <a href="javascript: void(0);">详情</a>
                         </div>
                     </td>
                 </tr>
@@ -51,17 +51,17 @@
                     </td>
                     <td>
                         <div class="operation">
-                            <a href="#Table">详情</a>
+                            <a href="javascript: void(0);">详情</a>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" value="Akali"></td>
                     <td>Akali</td>
-                    <td>注意到最后一列了吗</td>
+                    <td>增强了 Table 的样式和事件</td>
                     <td>
                         <div class="more">
-                            <div class="title">增强了 Table 的样式和事件</div>
+                            <div class="title">卡马克在他们分手时...</div>
                             <div class="content">
                                 <p>卡马克在他们分手时有过一句简短的描述：“罗梅洛想建立一个帝国，而我只想写出优秀的程序。” </p>
                             </div>
@@ -69,7 +69,10 @@
                     </td>
                     <td>
                         <div class="operation">
-                            <a href="#Table">详情</a>
+                            <a href="javascript: void(0);">详情</a>
+                            <a href="javascript: void(0);">详情</a>
+                            <a href="javascript: void(0);">详情</a>
+                            <a href="javascript: void(0);">链接不会折行</a>
                         </div>
                     </td>
                 </tr>
@@ -77,3 +80,36 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    require(['loader', 'log'], function(Loader, log) {
+        Loader.boot(function() {
+            var instances = Loader.query('components/table')
+            instances.on('toggle.table', function(event, values) {
+                console.log(event.type, event.namespace, values)
+            })
+        })
+    })
+</script>
+
+### 配置 <small>Options</small>
+
+无。
+
+### 方法 <small>Methods</small>
+
+无。
+
+### 事件 <small>Events</small>
+
+Event Type | Description
+:--------- | :----------
+toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受两个参数：`event`、`values`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。
+
+```js
+var Loader = require('loader')
+var instances = Loader.query('components/table')
+instances.on('toggle.table', function(event, values) {
+    console.log(event.type, event.namespace, values)
+})
+```

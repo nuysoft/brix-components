@@ -3,12 +3,16 @@
 }
 .table .more .content {
   position: absolute;
-  top: -5px;
-  padding: 10px;
-  z-index: 1000;
-  background-color: #FFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  top: -8px;
   display: none;
+  z-index: 1000;
+  padding: 9px 14px;
+  text-align: left;
+  white-space: normal;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .table .more .indicator {
   position: absolute;
@@ -20,6 +24,9 @@
 }
 .table tr .operation {
   display: none;
+}
+.table tr .operation a {
+  white-space: nowrap;
 }
 .table tr:hover .operation {
   display: block;
