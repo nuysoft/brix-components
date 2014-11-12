@@ -4,10 +4,12 @@
   left: 0;
   z-index: 1010;
   display: none;
-  padding: 15px;
   text-align: left;
   white-space: normal;
   background-color: #ffffff;
+}
+.datepickerwrapper.multiple {
+  padding: 15px;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;

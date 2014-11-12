@@ -1,7 +1,13 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="datepickerwrapper">
+<div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : ''%>">
+    <!--  -->
+    <% if (mode === 'signal') { %>
+    <div bx-name="components/datepicker" data-date="<%= dates[0] %>" data-type="date" class="picker"></div>
+    <% } %>
+    <!--  -->
+    <% if (mode === 'multiple') { %>
     <div class="datepickerwrapper-inputs form-inline form-group">
         <% for (var i = 0; i < dates.length; i++ ) { %>
             <input type="text" class="form-control"> 
@@ -15,8 +21,9 @@ define(function() {
     </div>
     <div>
         <button class="btn btn-default" bx-click="submit">确认</button>
-        <a href="javascript: void(0);">取消</a>
+        <a href="javascript: void(0);" class="ml5">取消</a>
     </div>
+    <% } %>
 </div>
     */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
 })

@@ -14,10 +14,24 @@ define(
         /*
             shortcut
             dates
+
+            TODO
+            一个日期
+            多个日期
+            input trigger
+            输入回调，输出回调
          */
         return Brix.extend({
-            options: {},
+            options: {
+                mode: 'signal', // signal multiple
+                shortcut: [],
+                dates: []
+            },
             init: function() {
+                // 修正选项
+                if (this.options.dates.length > 1) this.options.mode = 'multiple'
+                if (!this.options.dates.length) this.options.dates = [moment().format('YYYY-MM-DD')]
+
                 // 支持自定义 HTML 模板 template
                 template = this.options.template || template
                 // 支持自定义 CSS 样式
@@ -25,11 +39,51 @@ define(
             },
             render: function() {
                 var that = this
-                var $element = $(this.element).css('position', 'relative')
+                var $element = $(this.element)
                 var html = _.template(template, this.options)
                 var $relatedElement = $(html).insertAfter($element)
                 this.relatedElement = $relatedElement[0]
 
+                this['_' + this.options.mode]()
+
+                this._bindEvents()
+                this.delegateBxTypeEvents(this.element)
+                this.delegateBxTypeEvents(this.relatedElement)
+
+                var type = 'click.datepickerwrapper_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
+                        if ($(event.target).parents('.datepickerwrapper').length) return
+                        that.hide()
+                    })
+            },
+            _bindEvents: function() {
+                var that = this
+                $(this.element).on('click', function(event) {
+                    that.toggle()
+                    event.preventDefault()
+                    event.stopPropagation()
+                })
+            },
+            _signal: function() {
+                var that = this
+                Loader.boot(this.relatedElement, function() {
+                    var pickers = $('.datepickerwrapper-pickers .picker', that.relatedElement)
+                    var pickerComponents = Loader.query('components/datepicker', that.relatedElement)
+                    _.each(pickerComponents, function(item, index) {
+                        /* jshint unused:false */
+                        item.on('change.datepicker', function(event, date, type) {
+                            if (type !== 'date') return
+                            $(that.element)[
+                                /^input|textarea$/i.test(that.element.nodeName) ? 'val' : 'html'
+                            ](date.format('YYYY-MM-DD'))
+                            $(that.relatedElement).hide()
+                        })
+                    })
+                })
+            },
+            _multiple: function() {
+                var that = this
                 Loader.boot(this.relatedElement, function() {
                     var inputs = $('.datepickerwrapper-inputs input', that.relatedElement)
                     var pickers = $('.datepickerwrapper-pickers .picker', that.relatedElement)
@@ -48,15 +102,25 @@ define(
                     })
                     _.each(pickerComponents, function(item, index) {
                         /* jshint unused:false */
-                        item.on('change.date', function(event, extra) {
-                            inputs.eq(index).val(extra.format('YYYY-MM-DD'))
+                        item.on('change.datepicker', function(event, date, type) {
+                            if (type !== 'date') return
+                            inputs.eq(index).val(date.format('YYYY-MM-DD'))
                             pickers.eq(index).hide()
                         })
                     })
                 })
-
-                this.delegateBxTypeEvents(this.element)
-                this.delegateBxTypeEvents(this.relatedElement)
+            },
+            show: function( /*event*/ ) {
+                var $element = $(this.element)
+                var offset = $element.offset()
+                $(this.relatedElement).show()
+                    .offset({
+                        left: offset.left,
+                        top: offset.top + $element.outerHeight()
+                    })
+            },
+            hide: function( /*event*/ ) {
+                $(this.relatedElement).hide()
             },
             toggle: function( /*event*/ ) {
                 var $element = $(this.element)
@@ -76,7 +140,7 @@ define(
                         return item.format('YYYY-MM-DD')
                     }).join(', ')
                 )
-                this.trigger('change', dates)
+                this.trigger('change.datepickerwrapper', [dates])
                 this.toggle()
             }
         })

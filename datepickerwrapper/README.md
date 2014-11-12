@@ -6,11 +6,40 @@
 
 <div class="bs-example">
     <div class="content">
-        <div bx-name="components/datepickerwrapper" data-dates="[ '2014-11-06', '2014-11-07', '2014-11-08' ]" bx-click="toggle" class="form-control">
-          <span>0</span> - <span>1</span>
+    	<input bx-name="components/datepickerwrapper" type="text" class="form-control">
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+    	<a bx-name="components/datepickerwrapper" href="javascript: void(0);">请选择日期</a>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <div bx-name="components/datepickerwrapper" data-dates="[ '2014-11-06', '2014-11-07', '2014-11-08' ]" class="form-control">
+        	<span>0</span> - <span>1</span>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    require(['loader', 'log'], function(Loader, log) {
+        Loader.boot(function() {
+            var instances = Loader.query('components/datepickerwrapper')
+            instances.on('change.datepickerwrapper', function(event, dates) {
+                log(
+                    '_' + event.type + '_ ' + 
+                    '*' + event.namespace + '* ' + 
+                    _.map(dates, function(item) {
+                        return item.format('YYYY-MM-DD HH:mm:ss.SSS')
+                    }).join(' ')
+                )
+            })
+        })
+    })
+</script>
 
 ### 配置 <small>Options</small>
 
@@ -35,4 +64,4 @@ dates | array | `[]` | 初始日期。
 
 Event Type | Description
 :--------- | :----------
-change | 当日期组件变化时被触发。
+change.datepickerwrapper | 当日期组件变化时被触发。
