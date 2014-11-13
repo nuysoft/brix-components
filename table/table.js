@@ -1,5 +1,4 @@
 /* global define  */
-/* global console */
 /*
     TODO
         

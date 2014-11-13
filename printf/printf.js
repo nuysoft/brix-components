@@ -1,4 +1,4 @@
-/* global define */
+/* global define, console */
 
 /*
     # Print Tool
@@ -17,7 +17,7 @@
     })
 */
 
-define(function(require, exports, module) {
+define(function( /*require, exports, module*/ ) {
 
     var rformat = /%([-+]?)(\d+)?(?:\.?(\d+)?)(s|d)/ig
 
@@ -38,6 +38,7 @@ define(function(require, exports, module) {
         // 格式化
         args = [].slice.call(arguments, 1)
         var index = 0
+        /* jshint unused:false */
         var out = format.replace(rformat, function(match, dir, m, n, flag) {
             // console.log(match, dir, m, n, flag)
             var arg = args[index++] + ''
@@ -57,7 +58,8 @@ define(function(require, exports, module) {
             // dir m
             var fix = parseInt(m) - arg.length
             for (var i = 0; i < fix; i++) {
-                dir === '-' ? suffix += ' ' : prefix += ' '
+                if (dir === '-') suffix += ' '
+                else prefix += ' '
             }
             return prefix + arg + suffix
         })
@@ -106,16 +108,18 @@ define(function(require, exports, module) {
 
     function genStyle(rs) {
         var style = {}
-            // init
-        for (var r in rs) {
-            for (var key in rs[r]) {
+        var key, r
+
+        // init
+        for (r in rs) {
+            for (key in rs[r]) {
                 style[key] = getLen(key)
             }
         }
         // calculate max width of a colume
         var width = 0
-        for (var key in style) {
-            for (var r in rs) {
+        for (key in style) {
+            for (r in rs) {
                 width = getLen(rs[r][key])
                 style[key] = width > style[key] ? width : style[key]
             }

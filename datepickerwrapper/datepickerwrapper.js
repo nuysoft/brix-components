@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define, require, document */
 define(
     [
         'jquery', 'underscore', 'moment',
@@ -68,7 +68,7 @@ define(
             _signal: function() {
                 var that = this
                 Loader.boot(this.relatedElement, function() {
-                    var pickers = $('.datepickerwrapper-pickers .picker', that.relatedElement)
+                    // var pickers = $('.datepickerwrapper-pickers .picker', that.relatedElement)
                     var pickerComponents = Loader.query('components/datepicker', that.relatedElement)
                     _.each(pickerComponents, function(item, index) {
                         /* jshint unused:false */

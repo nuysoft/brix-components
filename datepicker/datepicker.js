@@ -47,7 +47,7 @@ define(
                 // 修正选项 range
                 this.options.range = function(range) {
                     var result = []
-                    _.each(range, function(item, index) {
+                    _.each(range, function(item /*, index*/ ) {
                         if (_.isArray(item)) result = result.concat(item)
                         else result.push(item)
                     })
@@ -59,6 +59,7 @@ define(
                 this.data.options = this.options
                 this.data.moment = moment
                 this.data.date = moment(this.data.date)
+
                 // { time: bool, date: bool, month: bool, year: bool, all: bool }
                 this.data.typeMap = function(type) {
                     var result = {}
@@ -191,8 +192,8 @@ define(
                 var $body = $(this.element).find('.monthpicker .picker-body')
                 $title.text(date.get('year'))
                 $body.empty()
-                // ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-                // ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月', '十一', '十二']
+                    // ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+                    // ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月', '十一', '十二']
                 var months = function() {
                     var result = []
                     for (var i = 1; i <= 12; i++) {
@@ -225,27 +226,28 @@ define(
                         .appendTo($body)
                 }
                 for (var ii = 1; ii <= days; ii++) {
-                    var disabled = function() {
-                        if (!range.length) return false
-                        var cur = moment(date).set('date', ii)
-                        var min, max
-                        for (var i = 0; i < range.length; i += 2) {
-                            min = range[i] && moment(range[i])
-                            max = range[i + 1] && moment(range[i + 1])
-                            if (min && max && cur.diff(min) > 0 && cur.diff(max) < 0) return false
-                            if (min && !max && cur.diff(min) > 0) return false
-                            if (!min && max && cur.diff(max) < 0) return false
-                            if (!min && !max) return false
-                        }
-                        return true
-                    }()
                     $('<span>').text(ii).attr('data-value', ii)
                         .addClass(date.date() === ii ? 'active' : '')
-                        .addClass(disabled ? 'disabled' : '')
+                        .addClass(disabled(ii) ? 'disabled' : '')
                         .attr('bx-click', '_active("date")')
                         .appendTo($body)
                 }
                 return this
+
+                function disabled(date) {
+                    if (!range.length) return false
+                    var cur = moment(date).set('date', date)
+                    var min, max
+                    for (var i = 0; i < range.length; i += 2) {
+                        min = range[i] && moment(range[i])
+                        max = range[i + 1] && moment(range[i + 1])
+                        if (min && max && cur.diff(min) > 0 && cur.diff(max) < 0) return false
+                        if (min && !max && cur.diff(min) > 0) return false
+                        if (!min && max && cur.diff(max) < 0) return false
+                        if (!min && !max) return false
+                    }
+                    return true
+                }
             },
             _renderTimePicker: function() {
                 var date = moment(this.data.date)
