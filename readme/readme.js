@@ -49,7 +49,7 @@ define(
                     Loader.boot(this.element, function() {
                         var spin = Loader.query('components/spin', that.element)
                         Loader.destroy(spin, function() {
-                            $(that.element).html(
+                            $(that.element).find('div.readme').html(
                                 marked(response, {
                                     renderer: renderer,
                                     gfm: true
