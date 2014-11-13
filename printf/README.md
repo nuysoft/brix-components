@@ -3,6 +3,8 @@
 1. printf in JavaScript
 2. Prettify JSONArray to table
 
+> 请打开控制台查看。
+
 ### printf in JavaScript
 
     // syntax
