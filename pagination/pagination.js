@@ -91,7 +91,7 @@ define(
                         limits: limits
                     }
                 }(this.options, this._status), this._status)
-                var html = _.template(template, this.data)
+                var html = _.template(template)(this.data)
                 $(this.element).empty().append(html)
 
                 // 重新 render 之后的 ready 事件？再次触发？

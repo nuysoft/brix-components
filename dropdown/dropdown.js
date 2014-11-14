@@ -111,7 +111,7 @@ define(
                         value: selectedOption.attr('value')
                     }
                 }())
-                var html = _.template(template, data)
+                var html = _.template(template)(data)
                 var $relatedElement = $(html).insertAfter($select)
                 this.relatedElement = $relatedElement[0]
 

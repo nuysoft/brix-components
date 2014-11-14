@@ -51,12 +51,12 @@ define(
             },
             render: function() {
                 // this.data = this.data || _.extend({}, this.options)
-                // var html = _.template(template, this.data)
+                // var html = _.template(template)(this.data)
                 // $(this.element).append(html)
                 var $element = $(this.element).empty()
                 fix(this.options.data, template)
                 $element.append(
-                    _.template(template, this.options.data)
+                    _.template(template)(this.options.data)
                 )
 
                 $element
@@ -79,7 +79,7 @@ define(
             node.deep = deep
             node.childrenFn = function() {
                 if (!this.children || !this.children.length) return ''
-                return _.template(template, this)
+                return _.template(template)(this)
             }
             _.each(node.children, function(item /*, index*/ ) {
                 fix(item, template, deep + 1)

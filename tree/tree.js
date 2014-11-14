@@ -44,7 +44,7 @@ define(
                 fix(root, template)
                 $element.append(
                     // _.template 如果递归？
-                    _.template(template, root)
+                    _.template(template)(root)
                 )
             }
         })
@@ -52,7 +52,7 @@ define(
         function fix(node, template) {
             node.childrenFn = function() {
                 if (!this.children || !this.children.length) return ''
-                return _.template(template, this)
+                return _.template(template)(this)
             }
             _.each(node.children, function(item /*, index*/ ) {
                 fix(item, template)

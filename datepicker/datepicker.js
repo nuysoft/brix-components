@@ -71,7 +71,7 @@ define(
             },
             render: function() {
                 var $element = $(this.element)
-                var html = _.template(template, this.data)
+                var html = _.template(template)(this.data)
                 $element.append(html)
 
                 this.delegateBxTypeEvents(this.element)

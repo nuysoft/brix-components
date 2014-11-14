@@ -13,7 +13,7 @@ define(
     ) {
         return Hello.extend({
             render: function() {
-                var html = _.template(template, this.options)
+                var html = _.template(template)(this.options)
                 $(this.element).append(html)
             }
         })

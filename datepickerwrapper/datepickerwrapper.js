@@ -40,7 +40,7 @@ define(
             render: function() {
                 var that = this
                 var $element = $(this.element)
-                var html = _.template(template, this.options)
+                var html = _.template(template)(this.options)
                 var $relatedElement = $(html).insertAfter($element)
                 this.relatedElement = $relatedElement[0]
 

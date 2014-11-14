@@ -64,7 +64,7 @@ define(
                     this.element.innerText = ''
                 }
 
-                var html = _.template(template, this.options)
+                var html = _.template(template)(this.options)
                 var canvas = $(html).appendTo(this.element)
                 var context = canvas.get(0).getContext("2d")
                 var type = this.options.TYPES[this.options.type.toLowerCase()]

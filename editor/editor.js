@@ -40,7 +40,7 @@ define(
                 this.data = this.data || _.extend({}, this.options)
 
                 var $element = this.$element = $(this.element)
-                var html = _.template(template, this.data)
+                var html = _.template(template)(this.data)
                 $element.append(html)
 
                 var $toolbar = this.$toolbar = $element.find('.btn-toolbar')

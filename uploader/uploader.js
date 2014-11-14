@@ -38,7 +38,7 @@ define(
                 var that = this
                 var $element = $(this.element)
                 $element.parent().css('position', 'relative')
-                var $relatedElement = $(_.template(template, this.options))
+                var $relatedElement = $(_.template(template)(this.options))
                     .insertAfter($element)
                     .css({
                         position: 'absolute',

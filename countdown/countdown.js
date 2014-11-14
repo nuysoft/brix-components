@@ -58,7 +58,7 @@ define(
                 this.options.expires = moment(this.options.expires).toDate()
                 this.data = this.data || _.extend({}, this.options)
 
-                var html = _.template(template, this.data)
+                var html = _.template(template)(this.data)
                 var $element = $(this.element)
                 $element.append(html)
                 this.start()

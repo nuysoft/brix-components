@@ -37,7 +37,7 @@ define(
             },
             render: function() {
                 this.data = this.data || _.extend({}, _.pick(this.options, 'message'))
-                var html = _.template(template, this.data)
+                var html = _.template(template)(this.data)
                 $(this.element).append(html)
 
                 this.delegateBxTypeEvents()
