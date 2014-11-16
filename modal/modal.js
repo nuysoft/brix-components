@@ -1,4 +1,7 @@
 /* global define, document, setTimeout */
+/*
+    http://zombiej.github.io/bootstrap-components-3.0/
+ */
 define(
     [
         'jquery', 'underscore',
@@ -11,44 +14,34 @@ define(
         Brix,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                data template
-            ### 属性
-                element relatedElement moduleId clientId parentClientId childClientIds data template
-            ### 方法
-                .render()
-            ### 事件
-                ready destroyed
-
-            http://zombiej.github.io/bootstrap-components-3.0/
-        */
-        function modal() {}
-
-        _.extend(modal.prototype, Brix.prototype, {
+        return Brix.extend({
             options: {
                 title: Math.random(),
                 body: Math.random()
             },
+            init: function() {
+                this.$element = $(this.element)
+            },
             render: function() {
                 var that = this
-                this.data = this.data || _.extend({}, this.options)
-                var html = _.template(template)(this.data)
-                var relatedElement = $(html).insertAfter(this.element)
-                this.relatedElement = relatedElement[0]
 
-                var backdropElement = $('.modal-backdrop')
-                if (!backdropElement.length) backdropElement = $('<div class="modal-backdrop fade"></div>').hide().appendTo(document.body)
-                this.backdropElement = backdropElement[0]
+                var html = _.template(template)(this.options)
+                this.$relatedElement = $(html).insertAfter(this.$element)
+                this.$dialog = this.$relatedElement.find('.modal-dialog')
 
-                this.delegateBxTypeEvents(this.element)
-                this.delegateBxTypeEvents(this.relatedElement)
+                this.$backdropElement = $('.modal-backdrop')
+                if (!this.$backdropElement.length) {
+                    this.$backdropElement = $('<div class="modal-backdrop fade"></div>').hide()
+                        .appendTo(document.body)
+                }
 
-                // $(this.element).on('click', function() {
-                //     // that.toggle()
-                // })
+                this.delegateBxTypeEvents(this.$element)
+                this.delegateBxTypeEvents(this.$relatedElement)
+
+                // 显示对话框
+                this.$element.on('click',function(){
+                    that.show()
+                })
 
                 var type = 'keyup.modal_' + this.clientId
                 $(document.body)
@@ -57,33 +50,29 @@ define(
                         if (event.which == 27) that.hide()
                     })
             },
-            toggle: function() {
-                var target = $([this.relatedElement, this.backdropElement])
-                target.toggle()
-                setTimeout(function() {
-                    target.toggleClass('in')
-                }, 150)
-                $(document.body).toggleClass('modal-open')
-            },
             show: function() {
-                var target = $([this.relatedElement, this.backdropElement])
-                target.show()
-                setTimeout(function() {
-                    target.addClass('in')
-                }, 150)
                 $(document.body).addClass('modal-open')
+
+                var that = this
+                this.$relatedElement.show()
+                this.$backdropElement.show()
+                setTimeout(function() {
+                    that.$relatedElement.addClass('in')
+                    that.$backdropElement.addClass('in')
+                }, 150)
             },
             hide: function() {
-                var target = $([this.relatedElement, this.backdropElement])
-                target.removeClass('in')
-                setTimeout(function() {
-                    target.hide()
-                    $(document.body).removeClass('modal-open')
-                }, 150)
+                $(document.body).removeClass('modal-open')
 
+                var that = this
+                this.$relatedElement.removeClass('in')
+                this.$backdropElement.removeClass('in')
+                setTimeout(function() {
+                    that.$relatedElement.hide()
+                    that.$backdropElement.hide()
+
+                }, 150)
             }
         })
-
-        return modal
     }
 )
