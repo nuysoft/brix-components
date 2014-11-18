@@ -30,7 +30,7 @@
 </div>
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/validation')
 instances.validate()
 ```

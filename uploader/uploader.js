@@ -5,7 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './uploader.tpl.js',
         'css!./uploader.css'
     ],
@@ -54,7 +54,7 @@ define(
                 $(form).on('change', 'input[type=file]', function(event) {
                     var input = event.currentTarget
                     _.each(input.files, function(file /*, index*/ ) {
-                        that.preview(file)
+                        that.preview(file, '#preview')
                         console.log('[uploader]', that.options.transport, file.name, file.size + 'b')
                         that.transports[that.options.transport](
                             form,
@@ -75,7 +75,7 @@ define(
                 this.relatedElement = $relatedElement[0]
                 this.form = form
             },
-            preview: function(file) {
+            preview: function(file, target) {
                 var that = this
                 var reader = new FileReader()
                 reader.onload = function(event) {
@@ -87,8 +87,8 @@ define(
                         .addClass('uploader-preview')
                         .attr('src', event.target.result)
                         .attr('title', file.name)
-                        .insertAfter(that.form)
-                    require(['loader'], function(Loader) {
+                        .insertAfter(target || that.form)
+                    require(['brix/loader'], function(Loader) {
                         Loader.boot(img)
                     })
                 }
@@ -104,7 +104,7 @@ define(
                     form.method = 'POST'
                     form.enctype = "multipart/form-data"
 
-                    var html = _.template(IFRAME_HTML, {
+                    var html = _.template(IFRAME_HTML)({
                         id: form.target
                     })
                     $(html)

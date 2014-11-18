@@ -28,7 +28,7 @@ expires | date or string | `new Date()` | 过期时间。
 开始倒计时。默认会自动开始。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/countdown')
 instance.start()
 ```
@@ -38,7 +38,7 @@ instance.start()
 暂停倒计时。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/countdown')
 instance.pause()
 ```
@@ -48,7 +48,7 @@ instance.pause()
 恢复倒计时。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/countdown')
 instance.stop()
 ```
@@ -58,7 +58,7 @@ instance.stop()
 结束倒计时。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/countdown')
 instance.stop()
 ```
@@ -94,7 +94,7 @@ complete.countdown | 当计时器结束后触发。
 > 其中，`total` 的单位是秒。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/countdown')
 var events = 'start.countdown update.countdown pause.countdown resume.countdown complete.countdown'
 instance.on(events, function(event, offset) {

@@ -5,7 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './pure-pagination.js',
         './pagination.tpl.js',
         'css!./pagination.css'
@@ -104,7 +104,7 @@ define(
                         that._wrapper()
                     })
                 // this.on('ready', function() {
-                //     var Loader = require('loader')
+                //     var Loader = require('brix/loader')
                 //     var dropdown = Loader.query('components/dropdown', that)[0]
                 //     dropdown.on('change', function(event, data) {
                 //         debugger

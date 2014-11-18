@@ -36,7 +36,7 @@ message | string | `''` | 指定输出的文本。
 在页面上输出 `Hello <%= message %>!`
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('components/hello')
 instance.say('Brix')
 ```

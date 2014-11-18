@@ -1,8 +1,179 @@
+.cursor-default {
+  cursor: default;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.nowrap {
+  white-space: nowrap;
+}
 .ml5 {
   margin-left: 5px;
 }
+.ml7 {
+  margin-left: 7px;
+}
 .ml10 {
   margin-left: 10px;
+}
+.ml15 {
+  margin-left: 15px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+.ml25 {
+  margin-left: 25px;
+}
+.ml30 {
+  margin-left: 30px;
+}
+.mr5 {
+  margin-right: 5px;
+}
+.mr7 {
+  margin-right: 7px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mr15 {
+  margin-right: 15px;
+}
+.mr20 {
+  margin-right: 20px;
+}
+.mr25 {
+  margin-right: 25px;
+}
+.mr30 {
+  margin-right: 30px;
+}
+.mt5 {
+  margin-top: 5px;
+}
+.mt7 {
+  margin-top: 7px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mt15 {
+  margin-top: 15px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.mt25 {
+  margin-top: 25px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+.mb7 {
+  margin-bottom: 7px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.mb15 {
+  margin-bottom: 15px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.mb25 {
+  margin-bottom: 25px;
+}
+.mb30 {
+  margin-bottom: 30px;
+}
+.pl5 {
+  padding-left: 5px;
+}
+.pl7 {
+  padding-left: 7px;
+}
+.pl10 {
+  padding-left: 10px;
+}
+.pl15 {
+  padding-left: 15px;
+}
+.pl20 {
+  padding-left: 20px;
+}
+.pl25 {
+  padding-left: 25px;
+}
+.pl30 {
+  padding-left: 30px;
+}
+.pr5 {
+  padding-right: 5px;
+}
+.pr7 {
+  padding-right: 7px;
+}
+.pr10 {
+  padding-right: 10px;
+}
+.pr15 {
+  padding-right: 15px;
+}
+.pr20 {
+  padding-right: 20px;
+}
+.pr25 {
+  padding-right: 25px;
+}
+.pr30 {
+  padding-right: 30px;
+}
+.pt5 {
+  padding-top: 5px;
+}
+.pt7 {
+  padding-top: 7px;
+}
+.pt10 {
+  padding-top: 10px;
+}
+.pt15 {
+  padding-top: 15px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+.pt25 {
+  padding-top: 25px;
+}
+.pt30 {
+  padding-top: 30px;
+}
+.pb5 {
+  padding-bottom: 5px;
+}
+.pb7 {
+  padding-bottom: 7px;
+}
+.pb10 {
+  padding-bottom: 10px;
+}
+.pb15 {
+  padding-bottom: 15px;
+}
+.pb20 {
+  padding-bottom: 20px;
+}
+.pb25 {
+  padding-bottom: 25px;
+}
+.pb30 {
+  padding-bottom: 30px;
 }
 .w100 {
   width: 100px;
@@ -13,6 +184,51 @@
 .w200 {
   width: 200px;
 }
+.w250 {
+  width: 250px;
+}
 .w300 {
   width: 300px;
+}
+.fontsize-10 {
+  font-size: 10px;
+}
+.fontsize-12 {
+  font-size: 12px;
+}
+.fontsize-14 {
+  font-size: 14px;
+}
+.fontsize-16 {
+  font-size: 16px;
+}
+.fontsize-18 {
+  font-size: 18px;
+}
+.fontsize-20 {
+  font-size: 20px;
+}
+.fontsize-22 {
+  font-size: 22px;
+}
+.fontsize-24 {
+  font-size: 24px;
+}
+.fontsize-26 {
+  font-size: 26px;
+}
+.fontsize-28 {
+  font-size: 28px;
+}
+.fontsize-30 {
+  font-size: 30px;
+}
+.fontsize-32 {
+  font-size: 32px;
+}
+.fontsize-34 {
+  font-size: 34px;
+}
+.fontsize-36 {
+  font-size: 36px;
 }

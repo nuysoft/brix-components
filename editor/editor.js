@@ -10,7 +10,7 @@
 define(
     [
         'jquery', 'underscore', 'mousetrap',
-        'base/brix',
+        'brix/base',
         './editor.tpl.js',
         'css!./editor.css',
         'css!./bower_components/fontawesome/css/font-awesome.css'

@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'loader', 'base/brix'
+        'brix/loader', 'brix/base'
     ],
     function(
         $, _,

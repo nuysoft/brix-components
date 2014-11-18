@@ -1,3 +1,10 @@
+.pagination-statistics {
+  margin-bottom: 10px;
+}
 .pagination-statistics .dropdown .dropdown-menu {
   min-width: initial;
+}
+.pagination {
+  margin: 0;
+  margin-bottom: 10px;
 }

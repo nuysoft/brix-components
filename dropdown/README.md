@@ -90,7 +90,7 @@
 <!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
 <script type="text/javascript">
-    require(['loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/dropdown')
             instances.on('change.dropdown', function(event, extra) {
@@ -123,7 +123,7 @@ data | array | - | 可选。下拉框中的数据。默认从子节点 `<optgrou
 设置或读取下拉框的值。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/dropdown')
 console.log(instances[0].val())
 ```
@@ -135,7 +135,7 @@ Event Type | Description
 change.dropdown | 当日期组件变化时被触发。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/dropdown')
 instances.on('change.dropdown', function(event, extra) {
     console.log(event, extra)

@@ -7,6 +7,7 @@
   "dependencies": {
     "brix-loader": "*",
     "brix-base": "*",
+    "brix-event": "*",
     "requirejs": "*",
     "requirejs-text": "*",
     "require-less": "*",
@@ -26,7 +27,8 @@
     "nprogress": "*",
     "parsleyjs": "*",
     "log": "*",
-    "colors": "*"
+    "colors": "*",
+    "handlebars": "~2.0.0"
   },
   "devDependencies": {}
 }

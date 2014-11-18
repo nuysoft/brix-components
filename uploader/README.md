@@ -19,7 +19,7 @@
                     <h4>bx-options + iframe</h4>  
                     <button bx-name="components/uploader" bx-options="{
                         name: 'file1',
-                        action: 'api/upload.json',
+                        action: './package.json',
                         transport: 'iframe'
                     }" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
                 </form>
@@ -57,7 +57,7 @@
 </div>
 
 <script type="text/javascript">
-    require(['loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/uploader')
             instances.on('success.uploader error.uploader complete.uploader start.uploader', function(event, extra) {
@@ -95,7 +95,7 @@ complete.uploader | 上传完成。
 start.uploader | 开始上传，如果返回 false，则终止上传。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/uploader')
 instances.on('success.uploader error.uploader complete.uploader start.uploader', function(event, extra) {
     console.log(event.type, event.namespace, extra)

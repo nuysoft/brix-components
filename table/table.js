@@ -6,7 +6,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         'css!./table.css'
     ],
     function(

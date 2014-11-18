@@ -32,7 +32,7 @@ limits | array | `[10, 20, 30, 40, 50]` | 可选。可供选择的分页大小�
 移动到指定页。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/pagination')
 instances.moveTo(2)
 ```
@@ -44,9 +44,31 @@ Event Type | Description
 change.pagination | 当分页状态变化时被触发。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 Loader.query('components/pagination')
-    .on('change.pagination', function(event, extra) {
-        console.log(event, extra)
+    .on('change.pagination', function(event, status) {
+        console.log(event, status)
     })
+```
+
+上面代码中的参数 `status` 是一个对象，其中包含了有关分页状态的所有信息：
+
+```json
+{
+    "total": 101,
+    "cursor": 2,
+    "limit": 40,
+    "pages": 3,
+    "start": 40,
+    "end": 80,
+    "hasPrev": true,
+    "hasNext": true,
+    "hasFirst": true,
+    "hasLast": true,
+    "prev": 1,
+    "next": 3,
+    "first": 1,
+    "last": 3,
+    "focus": 40
+}
 ```

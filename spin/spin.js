@@ -10,7 +10,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './spin.tpl.js',
         'css!./spin.css'
     ],

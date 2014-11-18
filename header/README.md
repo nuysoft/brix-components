@@ -44,7 +44,7 @@ template | string | '' | 渲染组件所需的 HTML 模板。
 渲染组件。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('component/header')
 instance.render()
 ```
@@ -54,7 +54,7 @@ instance.render()
 Lorem ipsum
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instance = Loader.query('component/header')
 instance.method()
 ```

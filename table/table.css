@@ -23,11 +23,11 @@
   display: block;
 }
 .table tr .operation {
-  display: none;
+  visibility: hidden;
 }
 .table tr .operation a {
   white-space: nowrap;
 }
 .table tr:hover .operation {
-  display: block;
+  visibility: visible;
 }

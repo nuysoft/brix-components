@@ -4,7 +4,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './popover.tpl.js',
         'css!./popover.css'
     ],

@@ -25,7 +25,7 @@
 </div>
 
 <script type="text/javascript">
-    require(['loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/datepickerwrapper')
             instances.on('change.datepickerwrapper', function(event, dates) {

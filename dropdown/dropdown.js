@@ -6,7 +6,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
@@ -101,6 +101,7 @@ define(
                 if (!this.data) this.data = this._parseData(this.element)
                 else this._fill()
 
+                // data.label data.value
                 var data = _.extend({
                     data: this.data
                 }, function() {
@@ -111,11 +112,12 @@ define(
                         value: selectedOption.attr('value')
                     }
                 }())
+                
                 var html = _.template(template)(data)
                 var $relatedElement = $(html).insertAfter($select)
                 this.relatedElement = $relatedElement[0]
 
-                this.delegateBxTypeEvents()
+                this.delegateBxTypeEvents(this.relatedElement)
 
                 var type = 'click.dropdown_' + this.clientId
                 $(document.body).off(type)
@@ -148,6 +150,8 @@ define(
             */
             val: function(value) {
                 var that = this
+
+                // .val()
                 if (value === undefined) return function() {
                     var selectedIndex = $(that.element).prop('selectedIndex')
                     return $(that.element.options[
@@ -155,19 +159,22 @@ define(
                     ]).attr('value')
                 }()
 
+                // .val( value )
                 var data /* { label: '', value: '', selected: true|false } */
                 if (_.isObject(value)) data = value
                 else _.each(this.data, function(item /*, index*/ ) {
                     if (item.value == value) data = item
                     item.selected = item.value == value
                 })
+                data.name = $(this.element).attr('name')
 
                 $(this.relatedElement).find('button.dropdown-toggle > span:first')
                     .text(data.label)
                     .trigger('change.dropdown', data)
+
                 $(this.element)
                     .val(data.value)
-                    .trigger('change.dropdown', data)
+                    .trigger('change.dropdown.original', data)
 
                 return this
             },
@@ -179,6 +186,7 @@ define(
                 }
                 this.val(data)
                 this.toggle()
+                event.stopPropagation()
             },
             _parseData: function(select) {
                 var that = this

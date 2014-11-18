@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './boilerplate.tpl.js',
         'css!./boilerplate.css'
     ],

@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         './hello.tpl.js',
         'css!./hello.css'
     ],

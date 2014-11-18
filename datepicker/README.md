@@ -99,7 +99,7 @@
             // console.log(types)
  -->
 <script type="text/javascript">
-    require(['loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/datepicker')
             instances.on('change.datepicker', function(event, date, type) {
@@ -160,7 +160,7 @@ range | array | `[]` | 设置可选日期的范围。下面列举了一些合法
 获取或设置选中的日期。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/datepicker')
 var current = instances[0].val()
 console.log(current.format('YYYY-MM-DD HH:mm:ss.SSS'))
@@ -175,7 +175,7 @@ Event Type | Description
 change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `date` 是一个 [moment 对象](http://momentjs.com/docs/)；参数 `type` 指示了变化的属性，可选值有 `'year'`、`'month'`、`'date'`、`'hour'`、`'minute'`、`'second'`、`undefined`。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/datepicker')
 instances.on('change.datepicker', function(event, date, type) {
     var pattern = 'YYYY-MM-DD HH:mm:ss.SSS'

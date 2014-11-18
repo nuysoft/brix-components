@@ -82,7 +82,7 @@
 </div>
 
 <script type="text/javascript">
-    require(['loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/table')
             instances.on('toggle.table', function(event, values) {
@@ -107,7 +107,7 @@ Event Type | Description
 toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受两个参数：`event`、`values`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。
 
 ```js
-var Loader = require('loader')
+var Loader = require('brix/loader')
 var instances = Loader.query('components/table')
 instances.on('toggle.table', function(event, values) {
     console.log(event.type, event.namespace, values)

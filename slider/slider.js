@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
+        'brix/base',
         'text!./slider.tpl',
         'css!./slider.css'
     ],
