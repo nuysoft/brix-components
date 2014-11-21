@@ -11,7 +11,7 @@
 </div>
 <div class="bs-example bs-example-modal">
     <div class="content">
-        <input id="inputTrigger" bx-name="components/dialog" bx-focus="show" bx-blur="hide" data-content="hello" data-placement="right" data-align="top" data-closable="false" data-offset="{ top: -7, left: 5 }" data-width="400" type="text" class="form-control w200">
+        <input id="inputTrigger" bx-name="components/dialog" bx-focus="show" bx-blur="hide" data-content="hello" data-placement="right" data-align="top" data-closable="false" data-offset="{ top: -10, left: 5 }" data-width="400" type="text" class="form-control w200">
     </div>
 </div>
 <div class="bs-example bs-example-modal">
@@ -26,7 +26,7 @@
             align: 'top',
             closable: false,
             offset: {
-                top: -15, 
+                top: -10, 
                 left: 5
             },
             width: 400

@@ -5,6 +5,18 @@
   z-index: 1040;
   display: none;
 }
+.dialog.top {
+  margin-bottom: 2px;
+}
+.dialog.bottom {
+  margin-top: 2px;
+}
+.dialog.left {
+  margin-right: 2px;
+}
+.dialog.right {
+  margin-left: 2px;
+}
 .dialog .close {
   position: absolute;
   top: 15px;

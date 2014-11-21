@@ -1,7 +1,7 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="dialog">
+<div class="dialog <%= placement %>">
     <button bx-click="hide" type="button" class="close <%= closable ? '' : 'hide' %>">×</button>
     <div class="content">
         <%= content %>

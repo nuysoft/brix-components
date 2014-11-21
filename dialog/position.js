@@ -20,8 +20,8 @@ define(
             var $related = $(related).show()
             var relatedWidth = $related.outerWidth()
             var relatedHeight = $related.outerHeight()
-            var relatedMarginLeft = parseInt($related.css('margin-left'), 10)
-            var relatedMarginTop = parseInt($related.css('margin-top'), 10)
+                // var relatedMarginLeft = parseInt($related.css('margin-left'), 10)
+                // var relatedMarginTop = parseInt($related.css('margin-top'), 10)
 
             var left, top
             switch (placement) {
@@ -64,8 +64,8 @@ define(
             }
 
             return {
-                left: left + relatedMarginLeft,
-                top: top + relatedMarginTop
+                left: left, //  + relatedMarginLeft
+                top: top //  + relatedMarginTop
             }
         }
 
