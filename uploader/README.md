@@ -8,6 +8,7 @@
     <div class="content">
         <form>
             <button bx-name="components/uploader" data-action="api/upload.json" class="btn btn-default">选择文件</button>
+            <div class="preview"></div>
         </form>
     </div>
 </div>
@@ -22,6 +23,7 @@
                         action: './package.json',
                         transport: 'iframe'
                     }" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <div class="preview"></div>
                 </form>
             </div>
             <div class="col-xs-6">
@@ -32,6 +34,7 @@
                         action: 'api/upload.json',
                         transport: 'xhr'
                     }" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <div class="preview"></div>
                 </form>
             </div>
         </div>
@@ -44,12 +47,14 @@
                 <form>
                     <h4>data-\* + iframe</h4>  
                     <button bx-name="components/uploader" data-name="file3" data-action="api/upload.json" data-transport="iframe" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <div class="preview"></div>
                 </form>
             </div>
             <div class="col-xs-6">
                 <form>
                     <h4>data-\* + xhr</h4>  
                     <button bx-name="components/uploader" data-name="file4" data-action="api/upload.json" data-transport="xhr" type="button" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> 选择文件</button>
+                    <div class="preview"></div>
                 </form>
             </div>
         </div>
@@ -57,15 +62,33 @@
 </div>
 
 <script type="text/javascript">
-    require(['brix/loader', 'log'], function(Loader, log) {
+    require(['brix/loader', 'jquery', 'underscore', 'log'], function(Loader, $, _, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/uploader')
-            instances.on('success.uploader error.uploader complete.uploader start.uploader', function(event, extra) {
-                log(
-                    '_' + event.type + '_ ' + 
-                    '*' + event.namespace + '* ',
-                    extra
-                )
+            instances.on('start.uploader', function(event, files) {
+                console.log(event.type, event.namespace)
+                var preview = $(event.target).parent().find('div.preview')
+                _.each(files, function(file /*, index*/ ) {
+                    var reader = new FileReader()
+                    reader.onload = function(event) {
+                        $('<img>')
+                            .addClass('uploader-preview')
+                            .attr('src', event.target.result)
+                            .attr('title', file.name)
+                            .appendTo(preview)
+                    }
+                    reader.readAsDataURL(file)
+                })
+                // event.preventDefault()
+            })
+            instances.on('success.uploader', function(event, files, response) {
+                console.log(event.type, event.namespace)
+            })
+            instances.on('error.uploader', function(event, files, error) {
+                console.log(event.type, event.namespace)  
+            })
+            instances.on('complete.uploader', function(event, files) {
+                console.log(event.type, event.namespace)
             })
         })
     })
@@ -89,10 +112,12 @@ transport | string | `'iframe'` | 指定上传文件的方式，可选值有 `'i
 
 Event Type | Description
 :--------- | :----------
-success.uploader | 上传成功。
-error.uploader | 上传失败。
-complete.uploader | 上传完成。
-start.uploader | 开始上传，如果返回 false，则终止上传。
+success.uploader | 上传成功。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和响应内容 `response`。
+error.uploader | 上传失败。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和错误描述 `response`。
+complete.uploader | 上传完成。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
+start.uploader | 开始上传，如果返回 false，则终止上传。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
+
+> 如果在事件 `start.uploader` 的监听函数中调用了 `event.preventDefault()`，则立即终止上传。
 
 ```js
 var Loader = require('brix/loader')
@@ -101,35 +126,3 @@ instances.on('success.uploader error.uploader complete.uploader start.uploader',
     console.log(event.type, event.namespace, extra)
 })
 ```
-
-<h3><!-- 事件  -->Events</h3>
-<p>Lorem ipsum.</p>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th align="left"> Event Type </th>
-            <th align="left"> Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align="left"> success.uploader </td>
-            <td align="left"> 上传成功。</td>
-        </tr>
-        <tr>
-            <td align="left"> error.uploader </td>
-            <td align="left"> 上传失败。</td>
-        </tr>
-        <tr>
-            <td align="left"> complete.uploader </td>
-            <td align="left"> 上传完成。</td>
-        </tr>
-        <tr>
-            <td align="left"> start.uploader </td>
-            <td align="left"> 开始上传，如果返回 false，则终止上传。</td>
-        </tr>
-    </tbody>
-</table>
-<blockquote>
-    <p>TODO</p>
-</blockquote>

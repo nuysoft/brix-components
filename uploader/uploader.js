@@ -14,21 +14,7 @@ define(
         Brix,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                data template
-            ### 属性
-                element moduleId clientId parentClientId childClientIds data template
-            ### 方法
-                .render()
-            ### 事件
-                ready destroyed
-        */
-        function Uploader() {}
-
-        _.extend(Uploader.prototype, Brix.prototype, {
+        return Brix.extend({
             options: {
                 action: '',
                 name: 'file',
@@ -36,63 +22,59 @@ define(
             },
             render: function() {
                 var that = this
+
                 var $element = $(this.element)
                 $element.parent().css('position', 'relative')
+
                 var $relatedElement = $(_.template(template)(this.options))
+                    .attr('data-token', this.tokon())
                     .insertAfter($element)
-                    .css({
-                        position: 'absolute',
-                        width: $element.outerWidth(),
-                        height: $element.outerHeight(),
-                        opacity: 0,
-                        direction: 'ltr',
-                        cursor: 'pointer'
-                    })
+                    .width($element.outerWidth())
+                    .height($element.outerHeight())
                     .offset($element.offset())
 
                 var form = $relatedElement[0].form
                 $(form).on('change', 'input[type=file]', function(event) {
                     var input = event.currentTarget
-                    _.each(input.files, function(file /*, index*/ ) {
-                        that.preview(file, '#preview')
-                        console.log('[uploader]', that.options.transport, file.name, file.size + 'b')
-                        that.transports[that.options.transport](
-                            form,
-                            that.options.action,
-                            input,
-                            that.options.name,
-                            file,
-                            function( /*response*/ ) {
-                                var $input = $(input)
-                                $input.replaceWith(
-                                    $input.clone(true, true).attr('data-random', Math.random())
-                                )
-                            }
-                        )
+
+                    var isDefaultPrevented
+                    that
+                        .on('start.uploader.isDefaultPrevented', function(event) {
+                            isDefaultPrevented = event.isDefaultPrevented()
+                        })
+                        .trigger('start.uploader', [input.files])
+                        .off('start.uploader.isDefaultPrevented')
+                    if (isDefaultPrevented) return
+
+                    that.send(form, input, function(error, response) {
+                        // console.log(response)
+                        if (error) that.trigger('error.uploader', [input.files, error])
+                        else that.trigger('success.uploader', [input.files, response])
+                        that.trigger('complete.uploader', [input.files])
                     })
                 })
-
-                this.relatedElement = $relatedElement[0]
-                this.form = form
             },
-            preview: function(file, target) {
+            send: function(form, input, callback) {
                 var that = this
-                var reader = new FileReader()
-                reader.onload = function(event) {
-                    var img = $('<img>')
-                        .attr('bx-name', 'components/popover')
-                        .attr('data-content', '<img src="' + event.target.result + '">')
-                        .attr('data-placement', 'bottom')
-                        .attr('data-align', 'left')
-                        .addClass('uploader-preview')
-                        .attr('src', event.target.result)
-                        .attr('title', file.name)
-                        .insertAfter(target || that.form)
-                    require(['brix/loader'], function(Loader) {
-                        Loader.boot(img)
-                    })
-                }
-                reader.readAsDataURL(file)
+                _.each(input.files, function(file /*, index*/ ) {
+                    that.transports[that.options.transport](
+                        form, that.options.action,
+                        input, that.options.name,
+                        file,
+                        function(response) {
+                            that.burn(input)
+                            if (callback) callback(response)
+                            that.previewInConsole(file)
+                        }
+                    )
+                })
+            },
+            // [阅后即焚 Burn After Reading](http://movie.douban.com/subject/2054933/)
+            burn: function(input) {
+                var $input = $(input)
+                $input.replaceWith(
+                    $input.clone(true, true).attr('data-token', this.tokon())
+                )
             },
             transports: {
                 /* jshint unused:true */
@@ -107,16 +89,24 @@ define(
                     var html = _.template(IFRAME_HTML)({
                         id: form.target
                     })
-                    $(html)
-                        .insertAfter(form)
-                        .on('load', function() {
-                            var target = this
-                            try {
-                                // console.log(this.contentWindow.document.body.innerHTML)
-                                if (callback) callback(this.contentWindow.document.body.innerHTML)
+                    $(html).insertAfter(form)
+                        .on('load', function(event) {
+                            var iframe = event.target
+                            var response = iframe.contentWindow.document.body.innerHTML
+                            try { // console.log(this.contentWindow.document.body.innerHTML)
+                                callback(
+                                    undefined,
+                                    JSON.parse(response)
+                                )
+                            } catch (error) {
+                                console.error(error)
+                                callback(error, response)
                             } finally {
-                                $(target).remove()
+                                $(event.target).remove()
                             }
+                        })
+                        .on('error', function(event) {
+                            callback(event, undefined)
                         })
                     form.submit()
                 },
@@ -130,20 +120,74 @@ define(
                     xhr.open('post', action, true)
                     xhr.upload.onprogress = function(event) {
                         var percent = Math.round((event.loaded / event.total) * 100)
-                        console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
+                            // console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
                     };
                     xhr.onerror = function(err) {
                         console.error(err)
                     }
                     xhr.onload = function() {
-                        console.log('[uploader]', xhr.status, xhr.statusText, xhr.responseText)
+                        // console.log('[uploader]', xhr.status, xhr.statusText, xhr.responseText)
                         if (callback) callback(xhr.responseText)
                     };
                     xhr.send(data)
                 }
+            },
+            tokon: function() {
+                return '.' + ('token' + Math.random()).replace(/\D/g, '')
+            },
+            previewInConsole: function(file) {
+                var reader = new FileReader()
+                reader.onload = function(event) {
+                    var img = $('<img>')
+                        .attr('src', event.target.result)
+                        .attr('title', file.name)
+                        .hide().appendTo('body')
+                    var width = img.width()
+                    var height = img.height()
+                    var style = _.template(
+                        'padding: <%=pt%>px <%=pr%>px <%=pb%>px <%=pl%>px; line-height: <%=height%>px; background:url("<%=result%>") no-repeat center center;'
+                    )({
+                        pt: height / 2,
+                        pr: width / 2,
+                        pb: height / 2,
+                        pl: width / 2,
+                        height: height + 10,
+                        result: event.target.result
+                    })
+                    console.group(file.name)
+                    console.log('%c', style)
+                    console.log(file.size + ' byte')
+                    console.groupEnd(file.name)
+                    img.remove()
+                }
+                reader.readAsDataURL(file)
+            },
+            previewAsComponent: function(file, callback) {
+                var that = this
+                var reader = new FileReader()
+                reader.onload = function(event) {
+                    var img = $('<img>')
+                        .addClass('uploader-preview')
+                        .attr('src', event.target.result)
+                        .attr('title', file.name)
+                    if (callback) callback(undefined, img)
+                    return
+
+                    var img = $('<img>')
+                        .attr('bx-name', 'components/popover')
+                        .attr('data-content', '<img src="' + event.target.result + '">')
+                        .attr('data-placement', 'bottom')
+                        .attr('data-align', 'left')
+                        .addClass('uploader-preview')
+                        .attr('src', event.target.result)
+                        .attr('title', file.name)
+                    if (callback) callback(undefined, img)
+                    require(['brix/loader'], function(Loader) {
+                        Loader.boot(img)
+                    })
+                }
+                reader.readAsDataURL(file)
             }
         })
-
-        return Uploader
     }
 )

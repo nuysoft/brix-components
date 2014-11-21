@@ -1,1 +1,1 @@
-<input name="<%= name %>" type="file" multiple="multiple">
+<input name="<%= name %>" type="file" multiple="multiple" class="uploader-ghost">
