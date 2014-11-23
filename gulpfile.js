@@ -1,7 +1,22 @@
-/* global require */
+/* global require, console */
 var gulp = require('gulp')
 var jshint = require('gulp-jshint')
 var less = require('gulp-less')
+
+gulp.task('hello', function() {
+    console.log((function() {
+        /*
+______        _         _____                                                      _        
+| ___ \      (_)       /  __ \                                                    | |       
+| |_/ / _ __  _ __  __ | /  \/  ___   _ __ ___   _ __    ___   _ __    ___  _ __  | |_  ___ 
+| ___ \| '__|| |\ \/ / | |     / _ \ | '_ ` _ \ | '_ \  / _ \ | '_ \  / _ \| '_ \ | __|/ __|
+| |_/ /| |   | | >  <  | \__/\| (_) || | | | | || |_) || (_) || | | ||  __/| | | || |_ \__ \
+\____/ |_|   |_|/_/\_\  \____/ \___/ |_| |_| |_|| .__/  \___/ |_| |_| \___||_| |_| \__||___/
+                                                | |                                         
+                                                |_|                                         
+        */
+    }).toString().split('\n').slice(2, -2).join('\n') + '\n')
+})
 
 // https://github.com/spenceralger/gulp-jshint
 gulp.task('jshint', function() {
@@ -21,9 +36,9 @@ gulp.task('watch', function( /*callback*/ ) {
         '!bower_components/**/*',
         '!node_modules/**/*'
     ]
-    gulp.watch(['**/*.js'].concat(globs), ['jshint'])
-    gulp.watch(['**/*.less'].concat(globs), ['less'])
-    gulp.watch(['**/*.tpl'].concat(globs), ['tpl'])
+    gulp.watch(['**/*.js'].concat(globs), ['hello', 'jshint'])
+    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less'])
+    gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl'])
 })
 
 // https://github.com/plus3network/gulp-less
@@ -59,6 +74,7 @@ gulp.task('tpl', function() {
                 "\n    */}).toString().split('\\n').slice(1,-1).join('\\n') + '\\n'" +
                 '\n})'
             )
+
             // console.log(file.contents.toString())
             // console.log(encoding)
             callback(null, file)
@@ -66,4 +82,4 @@ gulp.task('tpl', function() {
         .pipe(gulp.dest('./'))
 })
 
-gulp.task('default', ['jshint', 'less', 'tpl', 'watch'])
+gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'watch'])

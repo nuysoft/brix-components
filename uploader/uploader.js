@@ -1,4 +1,4 @@
-/* global define, require, console, FileReader, FormData, XMLHttpRequest */
+/* global define, console, FileReader, FormData, XMLHttpRequest */
 /*
     http://jasny.github.io/bootstrap/javascript/#inputmask
  */
@@ -118,9 +118,9 @@ define(
                     var xhr = new XMLHttpRequest()
                     xhr.overrideMimeType('application/json')
                     xhr.open('post', action, true)
-                    xhr.upload.onprogress = function(event) {
-                        var percent = Math.round((event.loaded / event.total) * 100)
-                            // console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
+                    xhr.upload.onprogress = function( /*event*/ ) {
+                        // var percent = Math.round((event.loaded / event.total) * 100)
+                        // console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
                     };
                     xhr.onerror = function(err) {
                         console.error(err)
@@ -163,7 +163,6 @@ define(
                 reader.readAsDataURL(file)
             },
             previewAsComponent: function(file, callback) {
-                var that = this
                 var reader = new FileReader()
                 reader.onload = function(event) {
                     var img = $('<img>')
@@ -171,9 +170,8 @@ define(
                         .attr('src', event.target.result)
                         .attr('title', file.name)
                     if (callback) callback(undefined, img)
-                    return
 
-                    var img = $('<img>')
+                    /*var img = $('<img>')
                         .attr('bx-name', 'components/popover')
                         .attr('data-content', '<img src="' + event.target.result + '">')
                         .attr('data-placement', 'bottom')
@@ -184,7 +182,7 @@ define(
                     if (callback) callback(undefined, img)
                     require(['brix/loader'], function(Loader) {
                         Loader.boot(img)
-                    })
+                    })*/
                 }
                 reader.readAsDataURL(file)
             }
