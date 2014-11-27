@@ -96,24 +96,15 @@ define(
 
                 // 重新 render 之后的 ready 事件？再次触发？
                 /* jshint unused:true */
-                this.off('change.dropdown', 'select')
-                    .on('change.dropdown', 'select', function(event, data) {
+                this.off('change.dropdown.original', 'select')
+                    .on('change.dropdown.original', 'select', function(event, data) {
                         /* data { label: label, value: value } */
                         that._status.setLimit(data.value)
                         that.trigger('change.pagination', that._status)
-                        that._wrapper()
+                        that.render()
                     })
-                // this.on('ready', function() {
-                //     var Loader = require('brix/loader')
-                //     var dropdown = Loader.query('components/dropdown', that)[0]
-                //     dropdown.on('change', function(event, data) {
-                //         debugger
-                //         /* data { label, value } */
-                //         that._status.setLimit(data.value)
-                //         that.render()
-                //     })
-                // })
 
+                this.undelegateBxTypeEvents()
                 this.delegateBxTypeEvents()
             },
             moveTo: function(event, extra) { // extraParameters
@@ -121,7 +112,7 @@ define(
                 if (arguments.length === 1) extra = event
                 this._status.moveTo(extra)
                 this.trigger('change.pagination', this._status)
-                this._wrapper()
+                this.render()
             }
         })
     }

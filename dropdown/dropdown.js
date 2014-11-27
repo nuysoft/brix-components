@@ -130,10 +130,10 @@ define(
             },
             toggle: function(event) {
                 $(this.relatedElement).toggleClass('open')
-                if (event) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
+                // if (event) {
+                //     event.preventDefault()
+                //     event.stopPropagation()
+                // }
                 return this
             },
             show: function() {
@@ -186,7 +186,7 @@ define(
                 }
                 this.val(data)
                 this.toggle()
-                event.stopPropagation()
+                // event.stopPropagation()
             },
             _parseData: function(select) {
                 var that = this
