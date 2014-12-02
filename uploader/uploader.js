@@ -61,9 +61,9 @@ define(
                         form, that.options.action,
                         input, that.options.name,
                         file,
-                        function(response) {
+                        function(error, response) {
                             that.burn(input)
-                            if (callback) callback(response)
+                            callback(error, response)
                             that.previewInConsole(file)
                         }
                     )
@@ -92,15 +92,18 @@ define(
                     $(html).insertAfter(form)
                         .on('load', function(event) {
                             var iframe = event.target
-                            var response = iframe.contentWindow.document.body.innerHTML
+                            var response = $.trim(iframe.contentWindow.document.body.innerHTML)
                             try { // console.log(this.contentWindow.document.body.innerHTML)
-                                callback(
-                                    undefined,
-                                    JSON.parse(response)
-                                )
+                                callback(undefined, JSON.parse(response))
                             } catch (error) {
-                                console.error(error)
-                                callback(error, response)
+                                // 再次尝试解析返回的数据
+                                /* jshint evil:true */
+                                try {
+                                    callback(undefined, (new Function("return " + response))())
+                                } catch (error) {
+                                    console.error(error)
+                                    callback(error, response)
+                                }
                             } finally {
                                 $(event.target).remove()
                             }
