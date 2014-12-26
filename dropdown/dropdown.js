@@ -6,13 +6,14 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'brix/base', 'brix/event',
         './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
     function(
         $, _,
-        Brix, template
+        Brix, EventManager,
+        template
     ) {
         /*
             # Dropdown
@@ -95,15 +96,16 @@ define(
             render: function() {
                 var that = this
                 var $select = $(this.element).hide()
+                var manager = new EventManager()
 
                 // 如果没有提供选项 data，则从子元素中收集数据
                 // 如果提供了选项 data，则反过来修改子元素
-                if (!this.data) this.data = this._parseData(this.element)
+                if (!this.options.data.length) this.options.data = this._parseData(this.element)
                 else this._fill()
 
                 // data.label data.value
                 var data = _.extend({
-                    data: this.data
+                    data: this.options.data
                 }, function() {
                     var selectedIndex = $select.prop('selectedIndex')
                     var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
@@ -112,12 +114,14 @@ define(
                         value: selectedOption.attr('value')
                     }
                 }())
-                
+
                 var html = _.template(template)(data)
                 var $relatedElement = $(html).insertAfter($select)
                 this.relatedElement = $relatedElement[0]
 
-                this.delegateBxTypeEvents(this.relatedElement)
+                // this.delegateBxTypeEvents(this.relatedElement)
+                manager.delegate(this.element, this)
+                manager.delegate(this.relatedElement, this)
 
                 var type = 'click.dropdown_' + this.clientId
                 $(document.body).off(type)
@@ -128,12 +132,12 @@ define(
 
                 // this._responsive()
             },
-            toggle: function(event) {
+            toggle: function( /*event*/ ) {
                 $(this.relatedElement).toggleClass('open')
-                // if (event) {
-                //     event.preventDefault()
-                //     event.stopPropagation()
-                // }
+                    // if (event) {
+                    //     event.preventDefault()
+                    //     event.stopPropagation()
+                    // }
                 return this
             },
             show: function() {
@@ -162,7 +166,7 @@ define(
                 // .val( value )
                 var data /* { label: '', value: '', selected: true|false } */
                 if (_.isObject(value)) data = value
-                else _.each(this.data, function(item /*, index*/ ) {
+                else _.each(this.options.data, function(item /*, index*/ ) {
                     if (item.value == value) data = item
                     item.selected = item.value == value
                 })
@@ -186,13 +190,16 @@ define(
                 }
                 this.val(data)
                 this.toggle()
-                // event.stopPropagation()
+                    // event.stopPropagation()
             },
             _parseData: function(select) {
                 var that = this
                 var $select = $(select)
-                return _.map($select.children(), function(child /*, index*/ ) {
+                var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
+                    return /optgroup|option/i.test(child.nodeName)
+                })
+                return _.map(children, function(child /*, index*/ ) {
                     var $child = $(child)
                     return /optgroup/i.test(child.nodeName) ? {
                         label: $child.attr('label'),
@@ -217,7 +224,7 @@ define(
             _fill: function() {
                 var that = this
                 var $select = $(this.element).hide().empty()
-                _.each(this.data, function(item) {
+                _.each(this.options.data, function(item) {
                     if (item.children && item.children.length) {
                         var $optgroup = $('<optgroup>').attr('label', item.label)
                         _.each(item.children, function(item /*, index*/ ) {

@@ -152,7 +152,7 @@ placement | string | `'right'` | 指定浮层的位置，可选值有 `'top'`、
 align | string | `''` | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
 title | string | `''` | 指定浮层的标题。
 content | string | `''` | 指定浮层的内容。
-~~delay~~ | number | `100` | 指定延迟关闭浮层的时间，单位为毫秒。
+~~delay~~ | ~~number~~ | ~~`100`~~ | ~~指定延迟关闭浮层的时间，单位为毫秒。~~
 
 
 ### 方法 <small>Methods</small>

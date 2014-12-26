@@ -19,7 +19,7 @@
   ```js
   require.config({
     paths: {
-      'component/sticky': 'bower_components/brix-component-sticky/sticky'
+      'components/sticky': 'bower_components/brix-component-sticky/sticky'
     }
   })
   ```
@@ -27,7 +27,7 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-name="component/sticky" bx-options="{}"></div>
+  <div bx-name="components/sticky" bx-options="{}"></div>
   ```
 
 ### 配置 <small>Options</small>

@@ -34,6 +34,7 @@ define(
 
                 // 支持自定义 HTML 模板 template
                 template = this.options.template || template
+
                 // 支持自定义 CSS 样式
                 if (this.options.css) require('css!' + this.options.css)
             },
@@ -78,6 +79,7 @@ define(
                                 /^input|textarea$/i.test(that.element.nodeName) ? 'val' : 'html'
                             ](date.format('YYYY-MM-DD'))
                             $(that.relatedElement).hide()
+                            that.trigger('change.datepickerwrapper', date, type)
                         })
                     })
                 })

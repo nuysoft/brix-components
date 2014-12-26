@@ -95,14 +95,14 @@ define(
                             var response = $.trim(iframe.contentWindow.document.body.innerHTML)
                             try { // console.log(this.contentWindow.document.body.innerHTML)
                                 callback(undefined, JSON.parse(response))
-                            } catch (error) {
+                            } catch (parseError) {
                                 // 再次尝试解析返回的数据
                                 /* jshint evil:true */
                                 try {
                                     callback(undefined, (new Function("return " + response))())
-                                } catch (error) {
-                                    console.error(error)
-                                    callback(error, response)
+                                } catch (parseErrorByFunction) {
+                                    console.error(parseErrorByFunction)
+                                    callback(parseErrorByFunction, response)
                                 }
                             } finally {
                                 $(event.target).remove()

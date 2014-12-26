@@ -5,14 +5,14 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'brix/base', 'brix/event',
         './pure-pagination.js',
         './pagination.tpl.js',
         'css!./pagination.css'
     ],
     function(
         $, _,
-        Brix,
+        Brix, EventManager,
         PurePagination,
         template
     ) {
@@ -58,39 +58,8 @@ define(
             },
             render: function() {
                 var that = this
-                this.data = _.extend(function(options, _status) {
-                    var barStart = Math.min(
-                        _status.pages,
-                        Math.max(
-                            1,
-                            _status.cursor - parseInt(options.step / 2, 10)
-                        )
-                    )
-                    var limit = +options.limit
-                    var limits = [].concat(options.limits).sort()
-                    if (!_.contains(limits, limit)) {
-                        switch (true) {
-                            case limit < limits[0]:
-                                limits.unshift(limit)
-                                break
-                            case limit > limits[limits.length - 1]:
-                                limits.push(limit)
-                                break
-                            default:
-                                for (var i = 0; i < limits.length; i++) {
-                                    if (limit > limits[i]) {
-                                        limits.splice(i + 1, 0, limit)
-                                        break
-                                    }
-                                }
-                        }
-                    }
-                    return {
-                        barStart: barStart,
-                        barEnd: Math.min(_status.pages, barStart + options.step - 1),
-                        limits: limits
-                    }
-                }(this.options, this._status), this._status)
+                var manager = new EventManager()
+                this.data = this.fixData()
                 var html = _.template(template)(this.data)
                 $(this.element).empty().append(html)
 
@@ -104,8 +73,7 @@ define(
                         that.render()
                     })
 
-                this.undelegateBxTypeEvents()
-                this.delegateBxTypeEvents()
+                manager.delegate(this.element, this)
             },
             moveTo: function(event, extra) { // extraParameters
                 // moveTo( cursor )
@@ -113,6 +81,39 @@ define(
                 this._status.moveTo(extra)
                 this.trigger('change.pagination', this._status)
                 this.render()
+            },
+            fixData: function() {
+                var barStart = Math.min(
+                    this._status.pages,
+                    Math.max(
+                        1,
+                        this._status.cursor - parseInt(this.options.step / 2, 10)
+                    )
+                )
+                var limit = +this.options.limit
+                var limits = [].concat(this.options.limits).sort()
+                if (!_.contains(limits, limit)) {
+                    switch (true) {
+                        case limit < limits[0]:
+                            limits.unshift(limit)
+                            break
+                        case limit > limits[limits.length - 1]:
+                            limits.push(limit)
+                            break
+                        default:
+                            for (var i = 0; i < limits.length; i++) {
+                                if (limit > limits[i]) {
+                                    limits.splice(i + 1, 0, limit)
+                                    break
+                                }
+                            }
+                    }
+                }
+                return _.extend({
+                    barStart: barStart,
+                    barEnd: Math.min(this._status.pages, barStart + this.options.step - 1),
+                    limits: limits
+                }, this._status)
             }
         })
     }
