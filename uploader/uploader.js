@@ -34,7 +34,7 @@ define(
                     .offset($element.offset())
 
                 var form = $relatedElement[0].form
-                $(form).on('change', 'input[type=file]', function(event) {
+                $(form).on('change', 'input[type=file][data-token]', function(event) {
                     var input = event.currentTarget
 
                     var isDefaultPrevented
