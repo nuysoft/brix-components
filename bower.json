@@ -28,7 +28,8 @@
     "parsleyjs": "*",
     "log": "*",
     "colors": "*",
-    "handlebars": "~2.0.0"
+    "handlebars": "~2.0.0",
+    "swfobject": "*"
   },
   "devDependencies": {}
 }
