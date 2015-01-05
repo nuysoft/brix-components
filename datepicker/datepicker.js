@@ -16,13 +16,13 @@
 define(
     [
         'jquery', 'underscore', 'moment',
-        'brix/base',
+        'brix/base', 'brix/event',
         './datepicker.tpl.js',
         'css!./datepicker.css'
     ],
     function(
         $, _, moment,
-        Brix,
+        Brix, EventManager,
         template
     ) {
         /*
@@ -70,11 +70,12 @@ define(
                 }(this.options.type)
             },
             render: function() {
+                var manager = new EventManager()
                 var $element = $(this.element)
                 var html = _.template(template)(this.data)
                 $element.append(html)
 
-                this.delegateBxTypeEvents(this.element)
+                manager.delegate(this.element, this)
 
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
             },

@@ -6,14 +6,38 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        './uploader.tpl.js',
         'css!./uploader.css'
     ],
     function(
         $, _,
-        Brix,
-        template
+        Brix
     ) {
+        var TEMPLATE = '<input name="<%= name %>" type="file" multiple="multiple" class="uploader-ghost">'
+        var TOKEN = 'data-token'
+        var TOKEN_SELECTOR = '[' + TOKEN + ']'
+        var NAMESPACE = '.uploader'
+        var NAMESPACE_IS_DEFAULT_PREVENTED = '.isDefaultPrevented'
+
+        function tokon() {
+            return ('token' + Math.random()).replace(/\D/g, '')
+        }
+
+        function parseJSONResponse(response, callback) {
+            try { // console.log(this.contentWindow.document.body.innerHTML/innerText)
+                callback(undefined, JSON.parse(response))
+            } catch (parseError) {
+                // 再次尝试解析返回的数据
+                /* jshint evil:true */
+                try {
+                    callback(undefined, (new Function("return " + response))())
+                } catch (parseErrorByFunction) {
+                    console.log(response)
+                    console.error(parseErrorByFunction)
+                    callback(parseErrorByFunction, response)
+                }
+            } finally {}
+        }
+
         return Brix.extend({
             options: {
                 action: '',
@@ -26,63 +50,62 @@ define(
                 var $element = $(this.element)
                 $element.parent().css('position', 'relative')
 
-                var $relatedElement = $(_.template(template)(this.options))
-                    .attr('data-token', this.tokon())
+                var $relatedElement = $(_.template(TEMPLATE)(this.options))
+                    .attr(TOKEN, tokon())
                     .insertAfter($element)
                     .width($element.outerWidth())
                     .height($element.outerHeight())
                     .offset($element.offset())
 
                 var form = $relatedElement[0].form
-                $(form).on('change', 'input[type=file][data-token]', function(event) {
+                $(form).on('change', 'input[type=file]' + TOKEN_SELECTOR, function(event) {
                     var input = event.currentTarget
 
                     var isDefaultPrevented
                     that
-                        .on('start.uploader.isDefaultPrevented', function(event) {
+                        .on('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED, function(event) {
                             isDefaultPrevented = event.isDefaultPrevented()
                         })
-                        .trigger('start.uploader', [input.files])
-                        .off('start.uploader.isDefaultPrevented')
+                        .trigger('start' + NAMESPACE, [input.files])
+                        .off('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED)
                     if (isDefaultPrevented) return
 
                     that.send(form, input, function(error, response) {
                         // console.log(response)
-                        if (error) that.trigger('error.uploader', [input.files, error])
-                        else that.trigger('success.uploader', [input.files, response])
-                        that.trigger('complete.uploader', [input.files])
+                        if (error) that.trigger('error' + NAMESPACE, [input.files, error])
+                        else that.trigger('success' + NAMESPACE, [input.files, response])
+                        that.trigger('complete' + NAMESPACE, [input.files])
                     })
                 })
             },
             send: function(form, input, callback) {
                 var that = this
-                _.each(input.files, function(file /*, index*/ ) {
-                    that.transports[that.options.transport](
-                        form, that.options.action,
-                        input, that.options.name,
-                        file,
-                        function(error, response) {
-                            that.burn(input)
-                            callback(error, response)
-                            that.previewInConsole(file)
-                        }
-                    )
-                })
+                this.transports[this.options.transport](
+                    this.options,
+                    form,
+                    input,
+                    function(error, response) {
+                        that.burn(input)
+                        callback(error, response)
+                        that.previewInConsole(input.files)
+                    }
+                )
             },
             // [阅后即焚 Burn After Reading](http://movie.douban.com/subject/2054933/)
             burn: function(input) {
                 var $input = $(input)
                 $input.replaceWith(
-                    $input.clone(true, true).attr('data-token', this.tokon())
+                    $input.clone(true, true).attr(TOKEN, tokon())
                 )
             },
             transports: {
                 /* jshint unused:true */
-                iframe: function(form, action, input, name, file, callback) {
+                iframe: function(options, form, input, callback) {
                     var IFRAME_ID = 'FILE_UPLOAD_IFRAME_'
                     var IFRAME_HTML = '<iframe id="<%= id %>" name="<%= id %>" style="display: none;"></iframe>'
+
                     form.target = IFRAME_ID + _.uniqueId()
-                    form.action = action
+                    form.action = options.action
                     form.method = 'POST'
                     form.enctype = "multipart/form-data"
 
@@ -92,35 +115,26 @@ define(
                     $(html).insertAfter(form)
                         .on('load', function(event) {
                             var iframe = event.target
-                            var response = $.trim(iframe.contentWindow.document.body.innerHTML)
-                            try { // console.log(this.contentWindow.document.body.innerHTML)
-                                callback(undefined, JSON.parse(response))
-                            } catch (parseError) {
-                                // 再次尝试解析返回的数据
-                                /* jshint evil:true */
-                                try {
-                                    callback(undefined, (new Function("return " + response))())
-                                } catch (parseErrorByFunction) {
-                                    console.error(parseErrorByFunction)
-                                    callback(parseErrorByFunction, response)
-                                }
-                            } finally {
-                                $(event.target).remove()
-                            }
+                            var response = $.trim(iframe.contentWindow.document.body.innerText)
+                            parseJSONResponse(response, callback)
+                            $(event.target).remove()
                         })
                         .on('error', function(event) {
                             callback(event, undefined)
                         })
+
                     form.submit()
                 },
                 /* jshint unused:true */
-                xhr: function(form, action, input, name, file, callback) {
+                xhr: function(options, form, input, callback) {
                     var data = new FormData()
-                    data.append(name, file)
+                    _.each(input.files, function(item /*, index*/ ) {
+                        data.append(options.name, item)
+                    })
 
                     var xhr = new XMLHttpRequest()
                     xhr.overrideMimeType('application/json')
-                    xhr.open('post', action, true)
+                    xhr.open('post', options.action, true)
                     xhr.upload.onprogress = function( /*event*/ ) {
                         // var percent = Math.round((event.loaded / event.total) * 100)
                         // console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
@@ -130,15 +144,22 @@ define(
                     }
                     xhr.onload = function() {
                         // console.log('[uploader]', xhr.status, xhr.statusText, xhr.responseText)
-                        if (callback) callback(xhr.responseText)
+                        var response = xhr.responseText
+                        parseJSONResponse(response, callback)
                     };
                     xhr.send(data)
                 }
             },
-            tokon: function() {
-                return '.' + ('token' + Math.random()).replace(/\D/g, '')
-            },
             previewInConsole: function(file) {
+                // previewInConsole( files )
+                if (file.length) {
+                    var that = this
+                    _.each(file, function(item /*, index*/ ) {
+                        that.previewInConsole(item)
+                    })
+                    return
+                }
+
                 var reader = new FileReader()
                 reader.onload = function(event) {
                     var img = $('<img>')
@@ -169,7 +190,7 @@ define(
                 var reader = new FileReader()
                 reader.onload = function(event) {
                     var img = $('<img>')
-                        .addClass('uploader-preview')
+                        .addClass('uploader-preview-thumbnail')
                         .attr('src', event.target.result)
                         .attr('title', file.name)
                     if (callback) callback(undefined, img)

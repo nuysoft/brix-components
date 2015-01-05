@@ -8,8 +8,7 @@ define(
         'css!../nprogress/nprogress.css'
     ],
     function(
-        Brix,
-        NProgress
+        Brix, NProgress
     ) {
         return Brix.extend({
             options: {},

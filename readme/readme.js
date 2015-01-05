@@ -45,8 +45,10 @@ define(
             render: function() {
                 var that = this
                 $(this.element).append(template)
+
+                var defer = $.Deferred()
                 this.load(function(response /*, status, xhr*/ ) {
-                    Loader.boot(this.element, function() {
+                    Loader.boot(that.element, function() {
                         var spin = Loader.query('components/spin', that.element)
                         Loader.destroy(spin, function() {
                             $(that.element).find('div.readme').html(
@@ -70,13 +72,15 @@ define(
                             $(that.element).find('pre code').each(function(index, code) {
                                 hljs.highlightBlock(code)
                             })
-                            Loader.boot(this.element)
+
+                            Loader.boot(that.element, function() {
+                                defer.resolve()
+                            })
                         })
                     })
-
                 })
-                // var promise = this.load(function(response, status, xhr) {})
-                // return promise
+
+                return defer.promise
             },
             load: function(done) {
                 // 模拟延时加载
