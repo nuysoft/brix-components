@@ -1,23 +1,18 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="dialog <%= placement %>">
-    <button bx-click="hide" type="button" class="close <%= closable ? '' : 'hide' %>">×</button>
-    <div class="content">
+<div class="dialog dialog-singleton dialog-<%= placement %>">
+    <button bx-click="close" type="button" class="dialog-close <%= closable ? '' : 'hide' %>">&times;</button>
+    <div class="dialog-content">
         <%= content %>
         <!-- 
-        <h4>Title</h4>
-        <hr>
-        <ul>
-            <li>moduleId: <%= moduleId %></li>
-            <li>clientId: <%= clientId %></li>
-            <li>parentClientId: <%= parentClientId %></li>
-            <li>childClientIds: <%= childClientIds %></li>
-        </ul>
-        <hr>
-        <div>
+        <div class="dialog-header">
+            <h4 class="dialog-title">Title</h4>
+        </div>
+        <div class="dialog-body">Body</div>
+        <div class="dialog-footer">
+            <button bx-click="hide" type="button" class="btn btn-default">Close</button>
             <button bx-click="hide" type="button" class="btn btn-primary">Save</button>
-            <a bx-click="hide" href="javascript: void(0);" class="ml5">Close</a>
         </div>
          -->
     </div>
