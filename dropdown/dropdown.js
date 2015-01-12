@@ -89,7 +89,10 @@ define(
                 multiple disabled
                 responsive http://silviomoreto.github.io/bootstrap-select/
         */
-        return Brix.extend({
+
+        function Dropdown() {}
+
+        _.extend(Dropdown.prototype, Brix.prototype, {
             options: {
                 data: []
             },
@@ -264,5 +267,8 @@ define(
                 })
             }
         })
+
+        return Dropdown
+            // return Brix.extend()
     }
 )
