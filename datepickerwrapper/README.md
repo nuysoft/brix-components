@@ -6,20 +6,69 @@
 
 <div class="bs-example">
     <div class="content">
-    	<input bx-name="components/datepickerwrapper" type="text" class="form-control">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>为 input 元素绑定日期选择器。</h4>
+                <input bx-name="components/datepickerwrapper" bx-click="toggle" type="text" class="form-control w100">
+            </div>
+            <div class="col-xs-6">
+                <h4>为任意元素绑定日期选择器。</h4>
+                <a bx-name="components/datepickerwrapper" bx-click="toggle" href="javascript: void(0);">请选择日期</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="bs-example">
     <div class="content">
-    	<a bx-name="components/datepickerwrapper" href="javascript: void(0);">请选择日期</a>
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>绑定 2 个日期选择器。</h4>
+                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2']" class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h4>自定义快捷日期。</h4>
+                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2']" 
+                    bx-options="{ 
+                        shortcuts:{
+                            '一期':['2015-1-1', '2015-3-14']
+                        }
+                    }"
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="bs-example">
     <div class="content">
-        <div bx-name="components/datepickerwrapper" data-dates="[ '2014-11-06', '2014-11-07', '2014-11-08' ]" class="form-control">
-        	<span>0</span> - <span>1</span>
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>绑定 3 个日期选择器。</h4>
+                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" class="form-control w300">
+                    <span data-index="0">2015-1-1</span>,
+                    <span data-index="1">2015-1-2</span>,
+                    <span data-index="2">2015-1-3</span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h4>自定义快捷日期。</h4>
+                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" 
+                    bx-options="{ 
+                        shortcuts:{
+                            '一期':['2015-1-1', '2015-3-14', '2015-6-1']
+                        }
+                    }"
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span>,
+                    <span data-index="1">2015-1-2</span>,
+                    <span data-index="2">2015-1-3</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -33,9 +82,10 @@
                     '_' + event.type + '_ ' + 
                     '*' + event.namespace + '* ' + 
                     _.map(dates, function(item) {
-                        return item.format('YYYY-MM-DD HH:mm:ss.SSS')
-                    }).join(' ')
+                        return item.format('YYYY-MM-DD')
+                    })
                 )
+                // event.preventDefault()
             })
         })
     })
@@ -50,10 +100,23 @@ Name | Type | Default | Description
 shortcut | boolean or object | `{}` | 指示是否开启快捷日期和快捷日期的内容。格式见下面的代码。
 dates | array | `[]` | 初始日期。
 
-**配置 `shortcut`**
+#### 配置项 `shortcut`
 
-```json
-{}
+```js
+{
+    '春节': [
+        '2015-2-18',
+        '2015-2-24'
+    ],
+    '今天': [
+        new Date(),
+        new Date()
+    ],
+    '昨天': [
+        moment().startOf('day').subtract(1, 'days'),
+        moment().startOf('day').subtract(1, 'days')
+    ]
+}
 ```
 
 ### 方法 <small>Methods</small>
@@ -65,3 +128,5 @@ dates | array | `[]` | 初始日期。
 Event Type | Description
 :--------- | :----------
 change.datepickerwrapper | 当日期组件变化时被触发。
+
+> 如果在事件 `change.datepickerwrapper` 的监听函数中调用了 `event.preventDefault()`，则不会更新组件的内容。该功能可以用于日期的验证。

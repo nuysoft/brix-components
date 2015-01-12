@@ -25,34 +25,17 @@ define(
         Brix, EventManager,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                data template
-            ### 属性
-                element moduleId clientId parentClientId childClientIds data template
-            ### 方法
-                .render()
-            ### 事件
-                ready destroyed
-        */
-        return Brix.extend({
+        function DatePicker() {}
+
+        _.extend(DatePicker.prototype, Brix.prototype, {
             options: {
                 date: moment(), // date dateShadow
                 type: 'all', // time date month year all
                 range: []
             },
             init: function() {
-                // 修正选项 range
-                this.options.range = function(range) {
-                    var result = []
-                    _.each(range, function(item /*, index*/ ) {
-                        if (_.isArray(item)) result = result.concat(item)
-                        else result.push(item)
-                    })
-                    return result
-                }(this.options.range)
+                // 修正选项 range，转换成一维数组
+                this.options.range = _.flatten(this.options.range)
 
                 // 构造 this.data
                 this.data = this.data || {}
@@ -235,16 +218,16 @@ define(
                 }
                 return this
 
-                function disabled(date) {
+                function disabled(ii) {
                     if (!range.length) return false
-                    var cur = moment(date).set('date', date)
+                    var cur = moment(date).startOf('day').set('date', ii)
                     var min, max
                     for (var i = 0; i < range.length; i += 2) {
-                        min = range[i] && moment(range[i])
-                        max = range[i + 1] && moment(range[i + 1])
-                        if (min && max && cur.diff(min) > 0 && cur.diff(max) < 0) return false
-                        if (min && !max && cur.diff(min) > 0) return false
-                        if (!min && max && cur.diff(max) < 0) return false
+                        min = range[i] && moment(range[i]).startOf('day')
+                        max = range[i + 1] && moment(range[i + 1]).startOf('day')
+                        if (min && max && cur.diff(min, 'days') >= 0 && cur.diff(max, 'days') <= 0) return false
+                        if (min && !max && cur.diff(min, 'days') >= 0) return false
+                        if (!min && max && cur.diff(max, 'days') <= 0) return false
                         if (!min && !max) return false
                     }
                     return true
@@ -261,5 +244,8 @@ define(
                 return this
             }
         })
+
+        return DatePicker
+            // return Brix.extend({})
     }
 )

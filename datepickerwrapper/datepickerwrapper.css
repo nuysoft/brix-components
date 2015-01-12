@@ -7,6 +7,7 @@
   text-align: left;
   white-space: normal;
   background-color: #ffffff;
+  margin-top: 2px;
 }
 .datepickerwrapper.multiple {
   padding: 15px;
@@ -19,14 +20,53 @@
   -webkit-bg-clip: padding-box;
   -moz-bg-clip: padding;
 }
-.datepickerwrapper .datepickerwrapper-inputs input {
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
+  display: inline-block;
   width: 100px;
 }
 .datepickerwrapper .datepickerwrapper-pickers {
   position: absolute;
-  left: 15px;
-  top: 50px;
+  margin-top: 2px;
 }
 .datepickerwrapper .datepickerwrapper-pickers .picker {
   display: none;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts {
+  width: 330px;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
+  display: inline-block;
+  padding: 5px 0;
+  margin: 0px 10px 2px 0px;
+  float: left;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 75px;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:hover {
+  background: #EEE;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:active {
+  background: #DDD;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
+  color: white;
+  background: #3276b1;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.inactive:hover {
+  background: transparent;
+  cursor: default;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled {
+  color: #DDD;
+  cursor: default;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled:hover {
+  color: #DDD;
+  background: #FFF;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled.active {
+  color: #FFF;
+  background: #DDD;
 }

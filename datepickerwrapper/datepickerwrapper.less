@@ -7,6 +7,7 @@
     text-align: left;
     white-space: normal;
     background-color: #ffffff;
+    margin-top: 2px;
 
     &.multiple {
         padding: 15px;
@@ -20,15 +21,67 @@
         -moz-bg-clip: padding;
     }
 
-    .datepickerwrapper-inputs input{
-        width: 100px;
+    .datepickerwrapper-inputs {
+        .datepickerwrapper-inputs-header {}
+        .datepickerwrapper-inputs-body {
+            input {
+                display: inline-block;
+                width: 100px;
+            }
+        }
     }
     .datepickerwrapper-pickers {
         position: absolute;
-        left: 15px;
-        top: 50px;
+        margin-top: 2px;
+
+        .picker{
+            display: none;
+        }
     }
-    .datepickerwrapper-pickers .picker{
-        display: none;
+
+    .datepickerwrapper-shortcuts {
+        width: 330px;
+
+        .datepickerwrapper-shortcuts-header {}
+
+        .datepickerwrapper-shortcuts-body {
+            span {
+                display: inline-block;
+                padding: 5px 0;
+                margin: 0px 10px 2px 0px;
+                float: left;
+                text-align: center;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 75px;
+
+                &:hover {
+                    background: #EEE;
+                }
+                &:active {
+                    background: #DDD;
+                }
+                &.active {
+                    color: white;
+                    background: #3276b1;
+                }
+                &.inactive:hover {
+                    background: transparent;
+                    cursor: default;
+                }
+                &.disabled {
+                    color: #DDD;
+                    cursor: default;
+                }
+                &.disabled:hover {
+                    color: #DDD;
+                    background: #FFF;
+                }
+                &.disabled.active {
+                    color: #FFF;
+                    background: #DDD;
+                }
+            }
+        }
     }
 }
