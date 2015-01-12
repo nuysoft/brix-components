@@ -5,15 +5,17 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'brix/base', 'brix/event',
         './modal.tpl.js',
         'css!./modal.css'
     ],
     function(
         $, _,
-        Brix,
+        Brix, EventManager,
         template
     ) {
+        var TRANSITION_DURATION = 150
+
         return Brix.extend({
             options: {
                 title: Math.random(),
@@ -24,6 +26,7 @@ define(
             },
             render: function() {
                 var that = this
+                var manager = new EventManager('bx-')
 
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $(html).insertAfter(this.$element)
@@ -35,19 +38,18 @@ define(
                         .appendTo(document.body)
                 }
 
-                this.delegateBxTypeEvents(this.$element)
-                this.delegateBxTypeEvents(this.$relatedElement)
+                manager.delegate(this.$element, this)
+                manager.delegate(this.$relatedElement, this)
 
                 // 显示对话框
-                this.$element.on('click',function(){
+                this.$element.on('click', function() {
                     that.show()
                 })
 
                 var type = 'keyup.modal_' + this.clientId
-                $(document.body)
-                    .off(type)
+                $(document.body).off(type)
                     .on(type, function(event) {
-                        if (event.which == 27) that.hide()
+                        if (event.which === 27) that.hide()
                     })
             },
             show: function() {
@@ -59,7 +61,7 @@ define(
                 setTimeout(function() {
                     that.$relatedElement.addClass('in')
                     that.$backdropElement.addClass('in')
-                }, 150)
+                }, TRANSITION_DURATION)
             },
             hide: function() {
                 $(document.body).removeClass('modal-open')
@@ -71,7 +73,7 @@ define(
                     that.$relatedElement.hide()
                     that.$backdropElement.hide()
 
-                }, 150)
+                }, TRANSITION_DURATION)
             }
         })
     }

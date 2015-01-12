@@ -1,3 +1,4 @@
-.modal .modal-backdrop {
+.modal-backdrop {
   display: none;
+  height: 100%;
 }

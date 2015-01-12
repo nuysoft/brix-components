@@ -39,7 +39,7 @@ define(
                 })
             },
             _renderTree: function() {
-                var $element = $(this.element) // .empty()
+                var $element = $(this.element).empty()
                 var root = Loader.tree()
                 fix(root, template)
                 $element.append(

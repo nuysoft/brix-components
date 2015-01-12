@@ -39,7 +39,9 @@ define(
                 公共事件：ready destroyed
                 
         */
-        return Brix.extend({
+        function Pagination() {}
+
+        _.extend(Pagination.prototype, Brix.prototype, {
             options: {
                 statistics: true,
                 simplify: false,
@@ -116,5 +118,8 @@ define(
                 }, this._status)
             }
         })
+
+        return Pagination
+            // return Brix.extend()
     }
 )
