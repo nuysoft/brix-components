@@ -5,9 +5,9 @@
     "**/.*"
   ],
   "dependencies": {
-    "brix-loader": "*",
-    "brix-base": "*",
-    "brix-event": "*",
+    "brix-loader": "master",
+    "brix-base": "master",
+    "brix-event": "master",
     "requirejs": "*",
     "requirejs-text": "*",
     "require-less": "*",
