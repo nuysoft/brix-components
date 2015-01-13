@@ -12,7 +12,7 @@
     "requirejs-text": "*",
     "require-less": "*",
     "require-css": "*",
-    "jquery": "*",
+    "jquery": "1.x.x",
     "underscore": "*",
     "bootstrap": "*",
     "less": "*",

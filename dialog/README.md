@@ -2,7 +2,7 @@
 
 对话框。{ .lead }
 
-### 快速导航 <small>Quick Nav</small>
+<!-- ### 快速导航 <small>Quick Nav</small>
 
 <div class="row">
     <div class="col-sm-4">
@@ -20,7 +20,7 @@
         <div><a href="">TODO</a></div>
         <div><a href="">TODO</a></div>
     </div>
-</div>
+</div> -->
 
 ### 示例 <small>Examples</small>
 

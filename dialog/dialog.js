@@ -79,10 +79,7 @@ define(
 
                 return this
             },
-            render: function() {
-                this.$manager.delegate(this.$element, this)
-                return this
-            },
+            render: function() {},
             fill: function() {
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $('div.dialog.dialog-singleton')
