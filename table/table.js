@@ -7,18 +7,19 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
+        './linkage.js',
         'css!./table.css'
     ],
     function(
         $, _,
-        Brix
+        Brix,
+        linkage
     ) {
         /*
             不需要渲染，只是事件增强。
         */
 
-        var theadCheckboxSelector = 'thead th:first-child input:checkbox'
-        var tbodyCheckboxSelector = 'tbody td:first-child input:checkbox'
+        var tbodyCheckboxSelector = 'input:checkbox'
 
         return Brix.extend({
             options: {},
@@ -27,42 +28,9 @@ define(
             },
             render: function() {
                 var that = this
-
-                // 全选，单选
-                this.$element
-                    .on('click', theadCheckboxSelector, function( /*event*/ ) {
-                        that.toggleAll()
-                    })
-                    .on('click', tbodyCheckboxSelector, tbodyCheckboxSelector, function( /*event*/ ) {
-                        that.toggleOne()
-                    })
-            },
-            toggleAll: function() {
-                var theadCheckbox = this.$element.find(theadCheckboxSelector)
-                var tbodyCheckboxes = this.$element.find(tbodyCheckboxSelector)
-                var checked = theadCheckbox.prop('checked')
-                if (tbodyCheckboxes.length) tbodyCheckboxes.prop('checked', checked)
-                else theadCheckbox.prop('checked', false)
-
-                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
-                    var checked = $(item).prop('checked')
-                    $(item).closest('tr')[checked ? 'addClass' : 'removeClass']('active')
+                linkage(this.element, function() {
+                    that.triggerToggle()
                 })
-
-                this.triggerToggle()
-            },
-            toggleOne: function() {
-                var theadCheckbox = this.$element.find(theadCheckboxSelector)
-                var tbodyCheckboxes = this.$element.find(tbodyCheckboxSelector)
-                var checked = tbodyCheckboxes.filter(':checked')
-                theadCheckbox.prop('checked', tbodyCheckboxes.length === checked.length)
-
-                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
-                    var checked = $(item).prop('checked')
-                    $(item).closest('tr')[checked ? 'addClass' : 'removeClass']('active')
-                })
-
-                this.triggerToggle()
             },
             triggerToggle: function() {
                 var that = this
@@ -71,8 +39,10 @@ define(
                     var tbodyCheckboxes = that.$element.find(tbodyCheckboxSelector)
                     var checked = tbodyCheckboxes.filter(':checked')
                     _.each(checked, function(item /*, index*/ ) {
-                        values.push(item.value)
+                        var value = $(item).attr('value')
+                        if (value !== undefined) values.push(value)
                     })
+                    that.contextual(tbodyCheckboxes)
                     return values
                 }()
                 this.trigger('toggle.table', [values])

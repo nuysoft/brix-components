@@ -9,7 +9,7 @@
         <table bx-name="components/table" class="table table-hover">
             <thead>
                 <tr>
-                    <th><input type="checkbox"></th>
+                    <th><input type="checkbox" data-linkage-name="all"></th>
                     <th>Id</th>
                     <th>Feature <span bx-name="components/popover" data-content="功能列表。" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
                     <th>More <span bx-name="components/popover" data-content="鼠标移入之后显示更多内容。" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="checkbox" value="Aatrox"></td>
+                    <td><input type="checkbox" value="Aatrox" data-linkage-parent-name="all"></td>
                     <td>Aatrox</td>
                     <td>全选&amp;反选</td>
                     <td>
@@ -37,7 +37,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" value="Ahri"></td>
+                    <td><input type="checkbox" value="Ahri" data-linkage-parent-name="all"></td>
                     <td>Ahri</td>
                     <td>打开控制台查看选中的值</td>
                     <td>
@@ -56,7 +56,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" value="Akali"></td>
+                    <td><input type="checkbox" value="Akali" data-linkage-parent-name="all"></td>
                     <td>Akali</td>
                     <td>增强了 Table 的样式和事件</td>
                     <td>
