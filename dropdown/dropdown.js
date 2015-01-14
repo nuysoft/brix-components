@@ -181,7 +181,7 @@ define(
 
                 $(this.element)
                     .val(data.value)
-                    .trigger('change.dropdown.original', data)
+                    .triggerHandler('change', data)
 
                 return this
             },

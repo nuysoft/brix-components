@@ -98,6 +98,51 @@ define(
             }
         }
 
+        function start(dialog, offset, placement) {
+            var $dialog = $(dialog)
+            var width = $dialog.outerWidth()
+            var height = $dialog.outerHeight()
+
+            var result = {
+                opacity: 0,
+                left: offset.left,
+                top: offset.top
+            }
+            switch (placement) {
+                case 'top': // 上方
+                    result.top = result.top - height * 0.25
+                    break
+                case 'bottom': // 下方
+                    result.top = result.top + height * 0.25
+                    break
+                case 'left': // 左侧
+                    result.left = result.left - width * 0.25
+                    break
+                case 'right': // 右侧
+                    /* Expected a 'break' statement before 'default'. */
+                    /* falls through */
+                default:
+                    result.left = result.left + width * 0.25
+                    break
+            }
+
+            return result
+        }
+
+        /* exported dialog */
+        function end(dialog, offset) {
+            if (!dialog) { /* TODO */ }
+            return {
+                opacity: 1,
+                left: offset.left,
+                top: offset.top
+            }
+        }
+
+        position.center = center
+        position.start = start
+        position.end = end
+
         return position
     }
 )

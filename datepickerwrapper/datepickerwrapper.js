@@ -23,7 +23,8 @@ define(
          */
 
         var RE_INPUT = /^input|textarea$/i
-        var NAMESPACES = '.datepickerwrapper'
+        var NAMESPACE = '.datepickerwrapper'
+            // var NAMESPACE_ORIGINAL = '.original'
         var DATE_PATTERN = 'YYYY-MM-DD'
         var SHORTCUTS = function() {
             var now = moment()
@@ -100,7 +101,7 @@ define(
                 manager.delegate(this.$element, this)
                 manager.delegate(this.$relatedElement, this)
 
-                var type = 'click' + NAMESPACES + '_' + this.clientId
+                var type = 'click' + NAMESPACE + '_' + this.clientId
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
@@ -122,7 +123,7 @@ define(
 
                         that.$relatedElement.hide()
 
-                        var validate = $.Event('change' + NAMESPACES)
+                        var validate = $.Event('change' + NAMESPACE)
                         that.trigger(validate, [
                             [date], type
                         ])
@@ -130,6 +131,7 @@ define(
                             that.$element[
                                 RE_INPUT.test(that.element.nodeName) ? 'val' : 'html'
                             ](date.format(DATE_PATTERN))
+                            that.$element.triggerHandler('change') //  + NAMESPACE + NAMESPACE_ORIGINAL, date
                         }
                     })
                 })
@@ -221,7 +223,7 @@ define(
 
                 this.toggle()
 
-                var validate = $.Event('change' + NAMESPACES)
+                var validate = $.Event('change' + NAMESPACE)
                 this.trigger(validate, [dates])
 
                 if (!validate.isDefaultPrevented()) {
