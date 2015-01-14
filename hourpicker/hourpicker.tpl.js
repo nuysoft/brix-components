@@ -1,3 +1,6 @@
+/* global define */
+define(function() {
+    return (function(){/*
 <div class="hourpicker">
     <div class="shortcuts">
         <label><input type="radio" name="shortcut"> 全日程投放</label>
@@ -52,3 +55,5 @@
         </tbody>
     </table>
 </div>
+    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+})
