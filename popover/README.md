@@ -141,6 +141,26 @@
         }"class="btn btn-default">placement right + align bottom</div>
     </div>
 </div>
+<div class="bs-example" id="popover">
+    <div class="content">
+        <div bx-name="components/popover" bx-options="{
+            title: 'placement right + align top + width',
+            placement: 'right',
+            align: 'top',
+            width: 500,
+            content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
+        }"class="btn btn-default">placement right + align top + width</div>
+        <div bx-name="components/popover" bx-options="{
+            title: 'placement right + align bottom + offset',
+            placement: 'right',
+            align: 'bottom',
+            offset: {
+                top: 50
+            },
+            content: 'Remember what is unbecoming to do is also unbecoming to speak of.'
+        }"class="btn btn-default">placement right + align bottom + offset</div>
+    </div>
+</div>
 
 ### 配置 <small>Options</small>
 
@@ -150,6 +170,8 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 placement | string | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
 align | string | `''` | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+offset | object | `{}` | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
+width | int | `'auto'` | 指定浮层的宽度。
 title | string | `''` | 指定浮层的标题。
 content | string | `''` | 指定浮层的内容。
 ~~delay~~ | ~~number~~ | ~~`100`~~ | ~~指定延迟关闭浮层的时间，单位为毫秒。~~
