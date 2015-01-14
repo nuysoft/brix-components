@@ -1,6 +1,26 @@
 .hourpicker {
   font-size: 12px;
 }
+.hourpicker .mr50 {
+  margin-right: 50px;
+}
+.hourpicker .apply-dialog {
+  position: absolute;
+  display: none;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: 0;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  padding: 15px 45px 15px 15px;
+}
+.hourpicker .apply-dialog .apply-dialog-body label {
+  display: block;
+}
+.hourpicker .apply-dialog .apply-dialog-body label input {
+  margin-right: 5px;
+}
 .hourpicker .shortcuts {
   height: 60px;
   line-height: 60px;
@@ -9,10 +29,13 @@
   padding-left: 30px;
 }
 .hourpicker .shortcuts label {
-  margin-right: 50px;
+  float: left;
 }
 .hourpicker .shortcuts label input {
   margin-right: 5px;
+}
+.hourpicker .shortcuts .utc {
+  float: right;
 }
 .hourpicker table.picker-days {
   width: 100%;

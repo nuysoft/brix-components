@@ -1,6 +1,33 @@
 .hourpicker {
     font-size: 12px;
 
+    .mr50 {
+        margin-right: 50px;
+    }
+
+    .apply-dialog {
+        position: absolute;
+        display: none;
+        z-index: 1001;
+
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;
+        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+
+        padding: 15px 45px 15px 15px;
+
+        .apply-dialog-body {
+            label {
+                display: block;
+                input {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+    }
     .shortcuts {
         height: 60px;
         line-height: 60px;
@@ -9,10 +36,13 @@
         padding-left: 30px;
 
         label {
-            margin-right: 50px;
+            float: left;
             input {
                 margin-right: 5px;
             }
+        }
+        .utc {
+            float: right;
         }
     }
     table.picker-days {

@@ -1,8 +1,20 @@
 <div class="hourpicker">
+    <div class="apply-dialog">
+        <div class="apply-dialog-body">
+            <% for ( var i = 0, days = '一二三四五六日', values="1234560"; i < days.length; i++ ) { %>
+            <label data-value="<%= values[i] %>"><input type="checkbox" name="shortcut" value="<%= values[i] %>"> 周<%= days[i] %></label>
+            <% } %>
+        </div>
+        <div class="apply-dialog-footer">
+            <button bx-click="apply('do')" class="btn btn-default btn-sm">确定</button>
+            <a bx-click="apply('close')" href="javascript: void(0);">取消</a>
+        </div>
+    </div>
     <div class="shortcuts">
-        <label><input type="radio" name="shortcut"> 全日程投放</label>
-        <label><input type="radio" name="shortcut"> 工作日（周一至周五）投放</label>
-        <label><input type="radio" name="shortcut"> 休息日（周六、周日）投放</label>
+        <label bx-click="shortcut('0123456')" class="mr50"><input type="radio" name="shortcut"> 全日程投放</label>
+        <label bx-click="shortcut('12345')" class="mr50"><input type="radio" name="shortcut"> 工作日（周一至周五）投放</label>
+        <label bx-click="shortcut('06')"><input type="radio" name="shortcut"> 休息日（周六、周日）投放</label>
+        <div class="utc">当前排期时间：GMT <%= utcOffset %></div>
     </div>
     <table class="picker-days">
         <thead>
@@ -44,7 +56,7 @@
                 </td>
                 <td align="center">
                     <div class="operation">
-                        <a href="">复制到</a>
+                        <a bx-click="apply('to', <%= values[i] %>)" href="javascript: void(0);">复制到</a>
                     </div>
                 </td>
             </tr>
