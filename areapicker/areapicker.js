@@ -1,15 +1,15 @@
-/* global define */
+/* global define, console */
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event', '../table/linkage.js',
+        'brix/base', '../table/linkage.js',
         './area.js',
         './areapicker.tpl.js',
         'css!./areapicker.css'
     ],
     function(
         $, _,
-        Brix, EventManager, linkage,
+        Brix, linkage,
         Area,
         template
     ) {
@@ -24,7 +24,7 @@ define(
                 this.options.data = {
                     id: 'root',
                     name: '全选',
-                    children: tree(Area.REGION)
+                    children: Area.tree(Area.REGION)
                 }
             },
             render: function() {
@@ -36,25 +36,6 @@ define(
                 })
             }
         })
-
-        function tree(list) {
-            var mapped = {}
-            _.each(list, function(item, index) {
-                mapped[item.id] = item
-            })
-
-            var result = []
-            _.each(list, function(item, index) {
-                if (item.pid === undefined) {
-                    result.push(item)
-                    return
-                }
-                var parent = mapped[item.pid]
-                if (!parent.children) parent.children = []
-                parent.children.push(item)
-            })
-            return result
-        }
 
         return AreaPicker
     }

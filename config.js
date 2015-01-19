@@ -36,7 +36,7 @@ require.config({
         'components/imager': 'bower_components/brix-components/imager/imager',
         'components/nprogress': 'bower_components/brix-components/nprogress/nprogress',
 
-        'components/tree': 'bower_components/brix-components/tree/tree',
+        'components/ctree': 'bower_components/brix-components/ctree/ctree',
         'components/header': 'bower_components/brix-components/header/header',
         'components/footer': 'bower_components/brix-components/footer/footer',
         'components/sticky': 'bower_components/brix-components/sticky/sticky',

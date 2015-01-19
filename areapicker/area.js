@@ -1,3 +1,4 @@
+/* global define */
 /*
 华北   北京市 天津市 河北省 山西省 内蒙古自治区
 东北   辽宁省 吉林省 黑龙江省
@@ -78,8 +79,28 @@ define(function () {
         { id: 820000, pid: '港澳台', name: '澳门特别行政区'}
     ]
 
+    function tree(list) {
+        var mapped = {}
+        _.each(list, function(item /*, index*/ ) {
+            mapped[item.id] = item
+        })
+
+        var result = []
+        _.each(list, function(item /*, index*/ ) {
+            if (item.pid === undefined) {
+                result.push(item)
+                return
+            }
+            var parent = mapped[item.pid]
+            if (!parent.children) parent.children = []
+            parent.children.push(item)
+        })
+        return result
+    }
+
     return {
         REGION: REGION,
-        TIER: TIER
+        TIER: TIER,
+        tree: tree
     }
 })

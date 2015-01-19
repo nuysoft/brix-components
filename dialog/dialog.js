@@ -122,6 +122,10 @@ define(
                     left: this.options.left,
                     top: this.options.top
                 } : position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                offset = {
+                    left: offset.left + (this.options.offset.left || 0),
+                    top: offset.top + (this.options.offset.top || 0)
+                }
                 this.$relatedElement.show()
                     .css(
                         position.start(this.$relatedElement, offset)

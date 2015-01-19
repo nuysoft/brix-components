@@ -1,13 +1,16 @@
 /* global define */
 define(function() {
     return (function(){/*
-<ul>
+<ul class="tree">
     <% for(var i = 0, item; item = children[i]; i++ ) { %>
-        <li>
-            <strong title="moduleId"> <%= item.module.moduleId %></strong>
-            -
-            <small title="clientId"><%= item.module.clientId %></small>
-            <%= item.childrenFn() %>
+        <li class="node <%= item.children && item.children.length ? '': 'leaf' %>">
+        	<div class="tree-toggle">
+        		<span class="glyphicon glyphicon-minus-sign"></span>
+            	<!-- <span><%= item.id %></span> -->
+            	 <!-- -  -->
+            	<span><%= item.name %></span>
+            </div>
+        	<%= item.childrenFn() %>
         </li>
     <% } %>
 </ul>

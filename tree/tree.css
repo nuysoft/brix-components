@@ -1,0 +1,23 @@
+/*
+    <span class="glyphicon glyphicon-plus-sign"></span>
+    <span class="glyphicon glyphicon-minus-sign"></span>
+    <span class="glyphicon glyphicon-folder-close"></span>
+    <span class="glyphicon glyphicon-folder-open"></span>
+ */
+.tree {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.tree .tree-toggle {
+  cursor: pointer;
+}
+.tree .glyphicon {
+  display: inline-block;
+  color: #999;
+}
+.tree .leaf > .tree-toggle .glyphicon {
+  visibility: hidden;
+}
+.tree .tree {
+  padding-left: 18px;
+}
