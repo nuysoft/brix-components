@@ -69,6 +69,16 @@ define(
             }
         })
 
-        return DialogView
+        var DialogViewUtil = {
+            open: function(dialogOptions, viewName, viewOptions) {
+                this.dialog = new DialogView(dialogOptions, viewName, viewOptions)
+                this.dialog.open()
+            },
+            close: function() {
+                if (this.dialog) this.dialog.close()
+            }
+        }
+
+        return DialogViewUtil
     }
 )

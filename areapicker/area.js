@@ -51,7 +51,7 @@ define(['underscore'], function(_) {
         { id: 330000, pid: '华东', name: '浙江省' },
         { id: 340000, pid: '华东', name: '安徽省' },
         { id: 350000, pid: '华东', name: '福建省' },
-        { id: 360000, pid: '华东', name: '江西省' },
+        { id: 360000, pid: '华中', name: '江西省' },
         { id: 370000, pid: '华东', name: '山东省' },
 
         { id: 410000, pid: '华中', name: '河南省' },
@@ -78,6 +78,8 @@ define(['underscore'], function(_) {
         { id: 810000, pid: '港澳台', name: '香港特别行政区' },
         { id: 820000, pid: '港澳台', name: '澳门特别行政区'}
     ]
+
+    var IPDATA = {}
 
     function tree(list) {
         var mapped = {}
