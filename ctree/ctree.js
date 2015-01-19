@@ -2,7 +2,7 @@
 /*
     var Loader = require('brix/loader')
     var tree = Loader.query('components/ctree')
-    tree[0]._renderTree()
+    tree[0].render()
  */
 define(
     [

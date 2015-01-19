@@ -1,5 +1,6 @@
 /* global define */
 /*
+file:///Users/mo/Downloads/cities.txt
 华北   北京市 天津市 河北省 山西省 内蒙古自治区
 东北   辽宁省 吉林省 黑龙江省
 华东   上海市 江苏省 浙江省 安徽省 福建省 江西省 山东省
