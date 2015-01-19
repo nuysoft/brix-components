@@ -9,7 +9,7 @@
 西北   陕西省 甘肃省 青海省 宁夏回族自治区 新疆维吾尔自治区
 港澳台 香港特别行政区 澳门特别行政区 台湾省
  */
-define(function () {
+define(['underscore'], function(_) {
 
     var TIER = [
         { id: '一线', name: '一线' },

@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define */
 /*
     Tree
     * Node
