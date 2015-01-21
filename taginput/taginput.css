@@ -1,0 +1,32 @@
+.taginput .taginput-placeholder {
+  display: inline-block;
+}
+.taginput .taginput-item {
+  position: relative;
+  display: inline-block;
+  padding: 2px 16px 2px 4px;
+  margin: 2px;
+  cursor: pointer;
+  background-color: #EEE;
+  border-radius: 4px;
+}
+.taginput .taginput-item:hover {
+  background-color: #DDD;
+}
+.taginput .taginput-item.active {
+  background-color: #497ED9;
+  color: #FFF;
+}
+.taginput .taginput-item .taginput-item-close {
+  position: absolute;
+  right: 4px;
+  top: 0px;
+}
+.taginput .taginput-input {
+  border: none;
+  outline: none;
+  margin: 2px;
+  padding: 2px 4px 2px 4px;
+  border-radius: 4px;
+  background-color: #EEE;
+}
