@@ -1,0 +1,6 @@
+.suggest {
+  position: relative;
+}
+.suggest .dropdown-menu {
+  display: block;
+}
