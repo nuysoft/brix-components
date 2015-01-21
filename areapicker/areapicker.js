@@ -16,23 +16,40 @@ define(
 
         function AreaPicker() {}
 
+        // AreaPicker.data
+
         _.extend(AreaPicker.prototype, Brix.prototype, {
             options: {
+                type: 'TIER', // REGION TIER
                 data: []
             },
             init: function() {
                 this.options.data = {
                     id: 'root',
                     name: '全选',
-                    children: Area.tree(Area.REGION)
+                    children: Area.tree(AreaPicker.data || Area.REGION)
                 }
             },
             render: function() {
-                var html = _.template(template)(this.options.data)
-                $(this.element).append(html)
+                var that = this
+                this.$element = $(this.element)
 
-                linkage(this.element, function() {
-                    console.log(arguments)
+                var html = _.template(template)(this.options.data)
+                this.$element.append(html)
+
+                linkage(this.$element, function() {
+                    var values = function() {
+                        var values = []
+                        var checkboxes = that.$element.find('input:checkbox')
+                        var checked = checkboxes.filter(':checked')
+                        _.each(checked, function(item /*, index*/ ) {
+                            var value = $(item).attr('value')
+                            if (value !== undefined) values.push(value)
+                        })
+                        return values
+                    }()
+                    that.trigger('toggle.areapicker', [values])
+                    console.log(values)
                 })
             }
         })

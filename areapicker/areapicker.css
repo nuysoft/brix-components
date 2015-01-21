@@ -5,6 +5,10 @@
   display: inline-block;
   margin-right: 10px;
 }
+.areapicker .areapicker-header .areapicker-header-toggle {
+  position: absolute;
+  margin-top: 26px;
+}
 .areapicker .areapicker-header label,
 .areapicker .areapicker-body label {
   margin: 5px 5px 0 0;

@@ -1,6 +1,11 @@
 /* global define */
 /*
 file:///Users/mo/Downloads/cities.txt
+钻展 http://zuanshi.taobao.com/code/all.json?csrfID=142175445941304037227370851158592
+淘宝 http://www.taobao.com/home/js/sys/districtselector.js?t=20140318.js
+DMP http://dmp.taobao.com/api/tag/4?csrfId=61a1eec37e1398aaf3c6d8&t=1421758479250
+国标 省（市）级行政区划码表
+
 华北   北京市 天津市 河北省 山西省 内蒙古自治区
 东北   辽宁省 吉林省 黑龙江省
 华东   上海市 江苏省 浙江省 安徽省 福建省 江西省 山东省
@@ -52,7 +57,7 @@ define(['underscore'], function(_) {
         { id: 330000, pid: '华东', name: '浙江省' },
         { id: 340000, pid: '华东', name: '安徽省' },
         { id: 350000, pid: '华东', name: '福建省' },
-        { id: 360000, pid: '华中', name: '江西省' },
+        { id: 360000, pid: '华东', name: '江西省' },
         { id: 370000, pid: '华东', name: '山东省' },
 
         { id: 410000, pid: '华中', name: '河南省' },
@@ -104,6 +109,7 @@ define(['underscore'], function(_) {
     return {
         REGION: REGION,
         TIER: TIER,
+        IPDATA: IPDATA,
         tree: tree
     }
 })

@@ -4,7 +4,7 @@ define(function() {
 <div class="areapicker">
     <div class="areapicker-header">
         <h3 class="areapicker-header-title">地区选择</h3>
-        <label>
+        <label class="areapicker-header-toggle">
             <input type="checkbox" data-linkage-name="<%= id %>">
             <%= name %>
         </label>
@@ -16,7 +16,8 @@ define(function() {
                 <tr>
                     <td width="100">
                         <label>
-                            <input type="checkbox" value="<%= id %>"
+                            <input type="checkbox" 
+                                value="<%= children[i].id %>"
                                 data-linkage-name="<%= children[i].id %>"
                                 data-linkage-parent-name="<%= id %>">
                             <%= children[i].name %>
@@ -26,6 +27,7 @@ define(function() {
                         <% for ( var ii = 0; ii < children[i].children.length; ii++ ) { %>
                         <label>
                             <input type="checkbox" 
+                                value="<%= children[i].children[ii].id %>"
                                 data-linkage-name="<%= children[i].children[ii].id %>" 
                                 data-linkage-parent-name="<%= children[i].id %>">
                             <%= children[i].children[ii].name %>
