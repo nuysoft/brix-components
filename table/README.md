@@ -4,6 +4,38 @@
 
 ### 示例 <small>Examples</small>
 
+<!-- <table bx-name="components/table" class="table table-hover">
+    <thead>
+        <tr>
+            <th><input type="checkbox" data-linkage-name="all"> all</th>
+            <th>table</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox" data-linkage-name="1" data-linkage-parent-name="all"> 1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <table bx-name="components/table" class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" value="1.1" data-linkage-name="1.1" data-linkage-parent-name="1"> 1.1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="1.2" data-linkage-name="1.2" data-linkage-parent-name="1"> 1.2</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+
 <div class="bs-example bs-example-modal">
     <div class="content">
         <table bx-name="components/table" class="table table-hover">
@@ -86,6 +118,9 @@
         Loader.boot(function() {
             var instances = Loader.query('components/table')
             instances.on('toggle.table', function(event, values) {
+                console.log('delegateTarget', event.delegateTarget)
+                console.log('currentTarget', event.currentTarget)
+                console.log('target', event.target)
                 console.log(event.type, event.namespace, values)
             })
         })
@@ -108,8 +143,50 @@ toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函�
 
 ```js
 var Loader = require('brix/loader')
-var instances = Loader.query('components/table')
+var instances = Loader.query('components/table')[0]
 instances.on('toggle.table', function(event, values) {
     console.log(event.type, event.namespace, values)
 })
 ```
+
+# Linkage
+
+<div class="bs-example bs-example-modal">
+    <div class="content">
+        <div id="sexLinkage" bx-name>
+            <div><input type="checkbox" data-linkage-name="all"> All</div>
+            <ul>
+                <li>
+                    <label><input type="checkbox" value="1" data-linkage-name="1" data-linkage-parent-name="all"> 1</label>
+                    <ul>
+                        <li><label><input type="checkbox" value="1.1" data-linkage-name="1.1" data-linkage-parent-name="1"> 1.1</label></li>
+                        <li><label><input type="checkbox" value="1.2" data-linkage-name="1.2" data-linkage-parent-name="1"> 1.2</label></li>
+                        <li><label><input type="checkbox" value="1.3" data-linkage-name="1.3" data-linkage-parent-name="1"> 1.3</label></li>
+                    </ul>
+                </li>
+                <li>
+                    <label><input type="checkbox" data-linkage-name="2" data-linkage-parent-name="all"> 不限</label>
+                    <label><input type="checkbox" value="2.1" data-linkage-name="2.1" data-linkage-parent-name="2"> 2.1</label>
+                    <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="2"> 2.2</label>
+                    <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="2"> 2.3</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+```js
+require(['components/table/linkage'], function(linkage) {
+    linkage('#sexLinkage', function(event, values) {
+        console.log(event, values)
+    })
+})
+```
+
+<script type="text/javascript">
+    require(['components/table/linkage'], function(linkage) {
+        linkage('#sexLinkage', function(event, values) {
+            console.log(event, values)
+        })
+    })
+</script>

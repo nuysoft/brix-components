@@ -22,9 +22,18 @@ define(
             $(container).on('click', selector, function(event) {
                 _parent($(event.currentTarget), $(event.delegateTarget))
                 _children($(event.currentTarget), $(event.delegateTarget))
-                if (callback) callback(event)
+
+                var values = function() {
+                    var values = []
+                    var checked = $(event.delegateTarget).find('input:checkbox:checked')
+                    _.each(checked, function(item /*, index*/ ) {
+                        var value = $(item).attr('value')
+                        if (value !== undefined) values.push(value)
+                    })
+                    return values
+                }()
+                if (callback) callback(event, values)
             })
-            $('[data-checkbox-name]').on('')
         }
 
         function _parent($target, $container) {

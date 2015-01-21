@@ -18,9 +18,6 @@ define(
         /*
             不需要渲染，只是事件增强。
         */
-
-        var tbodyCheckboxSelector = 'input:checkbox'
-
         return Brix.extend({
             options: {},
             init: function() {
@@ -28,27 +25,19 @@ define(
             },
             render: function() {
                 var that = this
-                linkage(this.element, function() {
-                    that.triggerToggle()
+
+                /* jshint unused:false */
+                linkage(this.element, function(event, values) {
+                    that.triggerToggle(values)
+                    that.contextual()
                 })
             },
-            triggerToggle: function() {
-                var that = this
-                var values = function() {
-                    var values = []
-                    var tbodyCheckboxes = that.$element.find(tbodyCheckboxSelector)
-                    var checked = tbodyCheckboxes.filter(':checked')
-                    _.each(checked, function(item /*, index*/ ) {
-                        var value = $(item).attr('value')
-                        if (value !== undefined) values.push(value)
-                    })
-                    that.contextual(tbodyCheckboxes)
-                    return values
-                }()
+            /* jshint unused:false */
+            triggerToggle: function(event, values) {
                 this.trigger('toggle.table', [values])
             },
-            contextual: function(tbodyCheckboxes) {
-                _.each(tbodyCheckboxes, function(item /*, index*/ ) {
+            contextual: function() {
+                _.each(this.$element.find('input:checkbox'), function(item /*, index*/ ) {
                     var checked = $(item).prop('checked')
                     $(item).closest('tr')[
                         checked ? 'addClass' : 'removeClass'
