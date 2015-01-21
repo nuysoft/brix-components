@@ -1,4 +1,4 @@
-/* global define */
+/* global define, require */
 /*
     不方便之处：
     1. 需要记忆 chartx/chart/line/index
@@ -11,17 +11,17 @@ define(
         'jquery', 'underscore',
         'brix/base',
         'chartx/index',
-        './chartxwrapper.tpl.js',
         'css!./chartxwrapper.css'
     ],
     function(
         $, _,
         Brix,
-        Chartx,
-        template
+        Chartx
     ) {
 
         function ChartxWrapper() {}
+
+        ChartxWrapper.Chartx = Chartx
 
         _.extend(ChartxWrapper.prototype, Brix.prototype, {
             options: {},
@@ -29,7 +29,10 @@ define(
                 // 尝试从 innerText 中解析数据
                 /* jshint evil:true */
                 if (!this.options.data) {
-                    this.options.data = eval('(function(){ return [].splice.call(arguments, 0 )[0] })(' + this.element.innerText + ')')
+                    var text = $.trim(this.element.innerText)
+                    this.options.data = eval(
+                        '(function(){ return [].splice.call(arguments, 0 )[0] })(' + text + ')'
+                    )
                     this.element.innerText = ''
                 }
             },
@@ -38,6 +41,12 @@ define(
                 require(['chartx/chart/' + this.options.type + '/index'], function(Chart) {
                     var chart = new Chart(that.element, that.options.data, that.options.options)
                     chart.draw()
+                        // chart.resize()
+                        // chart.reset()
+                        // window[that.options.type + 'chart'] = chart
+                        // $(window).on('resize', function() {
+                        //     chart.resize()
+                        // })
                 })
             }
         })
