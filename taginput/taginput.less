@@ -1,11 +1,14 @@
 .taginput {
+	position: relative;
+
     .taginput-placeholder {
     	display: inline-block;
     }
+    
 	.taginput-item {
 		position: relative;
 		display: inline-block;
-		padding: 2px 16px 2px 4px;
+		// padding: 2px 16px 2px 4px;
 		margin: 2px;
 		cursor: pointer;
 		background-color: #EEE;
@@ -19,10 +22,24 @@
 			color: #FFF;
 		}
 
-		.taginput-item-close {
-			position: absolute;
-			right: 4px;
-			top: 0px;
+		.taginput-item-name {
+			display: inline-block;
+			padding: 2px 4px 2px 4px;
+			border-right: 1px solid #FFF;
+		}
+
+		.taginput-item-divider {
+			display: inline-block;
+		}
+
+		.taginput-item-delete {
+			display: inline-block;
+			width: 16px;
+			text-align: center;
+			font-size: 10px;
+			// position: absolute;
+			// right: 4px;
+			// top: 0px;
 		}
 	}
 
@@ -30,9 +47,9 @@
 		border: none;
 		outline: none;
 		// test
-		margin: 2px;
-		padding: 2px 4px 2px 4px;
-		border-radius: 4px;
-		background-color: #EEE;
+		// margin: 2px;
+		// padding: 2px 4px 2px 4px;
+		// border-radius: 4px;
+		// background-color: #EEE;
 	}
 }

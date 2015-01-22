@@ -1,6 +1,13 @@
 .suggest {
   position: relative;
+  display: inline-block;
 }
 .suggest .dropdown-menu {
   display: block;
+}
+.suggest .dropdown-menu .highlight {
+  background-color: yellow;
+}
+.suggest .dropdown-menu .active .highlight {
+  color: #000;
 }
