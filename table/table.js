@@ -28,7 +28,7 @@ define(
 
                 /* jshint unused:false */
                 linkage(this.element, function(event, values) {
-                    that.triggerToggle(values)
+                    that.triggerToggle(event, values)
                     that.contextual()
                 })
             },
