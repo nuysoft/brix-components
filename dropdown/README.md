@@ -119,7 +119,6 @@ data | array | - | 可选。下拉框中的数据。默认从子节点 `<optgrou
 * .val( value )
 * .val()
 
-
 设置或读取下拉框的值。
 
 ```js

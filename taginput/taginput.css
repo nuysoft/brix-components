@@ -7,7 +7,7 @@
 .taginput .taginput-item {
   position: relative;
   display: inline-block;
-  margin: 2px;
+  margin: 2px 4px 2px 0;
   cursor: pointer;
   background-color: #EEE;
   border-radius: 4px;
@@ -23,9 +23,6 @@
   display: inline-block;
   padding: 2px 4px 2px 4px;
   border-right: 1px solid #FFF;
-}
-.taginput .taginput-item .taginput-item-divider {
-  display: inline-block;
 }
 .taginput .taginput-item .taginput-item-delete {
   display: inline-block;

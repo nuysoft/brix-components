@@ -149,12 +149,44 @@ instances.on('toggle.table', function(event, values) {
 })
 ```
 
-# Linkage
+# linkage( container, callback( event, values ) )
+
+联动复选框工具函数。
+
+* linkage( container, callback( event, values ) )
+
+首先，需要在复选框 `<input type="checkbox">` 上附加两个属性 `data-linkage-name` 和 `data-linkage-parent-name`，分别表示当前复选框和父级复选框的唯一标识。例如：
+
+```html
+<label>
+    <input type="checkbox" data-linkage-name="all"> All
+</label>
+<label>
+    <input type="checkbox" data-linkage-name="item0" data-linkage-parent-name="all"> item 0
+</label>
+<label>
+    <input type="checkbox" data-linkage-name="item1" data-linkage-parent-name="all"> item 1
+</label>
+```
+
+然后，执行下面的代码，使容器元素 `container` 中的复选框的选中状态联动更新。如果子级复选框全部选中，则自动选中父级复选框；如果选中父级复选框，则自动选中全部子级复选框。
+
+```js
+require(['components/table/linkage'], function(linkage) {
+    linkage('#container', function(event, values) {
+        console.log(event, values)
+    })
+})
+```
+
+每当有复选框被点击时，会触发回调函数 `callback( event, values )`。其中，参数 `event` 是一个 [jQuery Event 对象](http://api.jquery.com/category/events/event-object/)，参数 `values` 是一个数组，包含了所有被选中复选框的值（即属性 `value`）。
+
+### 示例 <small>Examples</small>
 
 <div class="bs-example bs-example-modal">
     <div class="content">
         <div id="sexLinkage" bx-name>
-            <div><input type="checkbox" data-linkage-name="all"> All</div>
+            <label><input type="checkbox" data-linkage-name="all"> All</label>
             <ul>
                 <li>
                     <label><input type="checkbox" value="1" data-linkage-name="1" data-linkage-parent-name="all"> 1</label>

@@ -1,5 +1,7 @@
 # Suggest
 
+提示补全组件。{ .lead }
+
 <div class="bs-example">
     <div class="content">
         <input bx-name="components/suggest" class="form-control">
@@ -10,8 +12,8 @@
     require(['brix/loader', 'mock'], function(Loader, Mock) {
         Mock.Random.extend({
             hanzi: function(min, max) {
-                var len,
-                    result = [];
+                var len
+                var result = []
 
                 if (arguments.length === 0) len = this.natural(3, 7)
                 if (arguments.length === 1) len = max = min
@@ -31,12 +33,13 @@
                         )
                     )
                 }
+
                 return result.join('')
             }
         })
         Loader.boot(function() {
             var data = Mock.mock({
-                'list|5-10': ['@NAME', '@NATURAL', '@HANZI']
+                'list|5-10': ['@NAME', '@NATURAL(1,1000000)', '@HANZI']
             }).list
 
             var suggest = Loader.query('components/suggest')

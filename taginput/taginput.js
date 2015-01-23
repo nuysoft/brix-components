@@ -4,100 +4,142 @@ define(
         'jquery', 'underscore',
         'brix/loader', 'brix/base', 'brix/event',
         './taginput.tpl.js',
-        'less!./taginput.less'
+        './taginput.item.tpl.js',
+        'css!./taginput.css'
     ],
     function(
         $, _,
         Loader, Brix, EventManager,
-        template
+        template,
+        itemTemplate
     ) {
         var NAMESPACE = '.taginput'
+        var CLASS_ITEM = '.taginput-item'
+        var CLASS_ITEM_NAME = '.taginput-item-name'
         var INPUT_MIN_WIDTH = 20
 
         function TagInput() {}
 
         _.extend(TagInput.prototype, Brix.prototype, {
             options: {
-                placeholder: 'placeholder',
-                data: '一二三四五六七八九十'.split('')
+                placeholder: '',
+                data: []
             },
             init: function() {
-                this._focus = 'input'
-                this._selection = []
+                // this._focus = 'input'
             },
             render: function() {
                 var that = this
                 var manager = new EventManager()
-                this.$element = $(this.element)
+                this.$element = $(this.element) // .hide()
 
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $(html).insertAfter(this.$element)
                 this.$input = this.$relatedElement.find('input')
-                this.beautify(this.$element, this.$relatedElement)
+                if (this.options.placeholder) this.$input.attr('placeholder', this.options.placeholder)
+
+                this.val(this.options.data)
+
+                this._beautify(this.$element, this.$relatedElement)
 
                 manager.delegate(this.$element, this)
                 manager.delegate(this.$relatedElement, this)
 
                 Loader.boot(this.$relatedElement, function() {
-                    // var suggest = Loader.query('components/suggest', that.$relatedElement)[0]
-                    // suggest.on('change.suggest', function(event, value) {})
-                    // suggest.data([value, value, value])
                     that.suggest = Loader.query('components/suggest', that.$relatedElement)[0]
                     that.suggest.on('change.suggest.done', function(event, value) {
-                        that.handler(event, value)
+                        that.add(value)
+                        that.$input.focus()
                     })
                 })
+            },
+            add: function(value) {
+                if (!('' + value)) return
 
-                // this.$relatedElement
-                //     .on('click' + NAMESPACE, function(event) {
-                //         console.log(event.target)
-                //         if (event.target === that.$relatedElement[0]) that.$input.focus()
-                //         that._focus = 'input'
-                //     })
-            },
-            focus: function(evnet) {
-                if (event.target === this.$relatedElement[0]) this.$input.focus()
-                this.fixInput()
-            },
-            active: function(event) {
-                $(event.currentTarget).addClass('active')
+                this.options.data.push(value)
+                this.$element.val(this.options.data.join(','))
+
+                var itemHTML = _.template(itemTemplate)({
+                    data: value
+                })
+                $(itemHTML).insertBefore(this.$input)
+
+                this.$input.val('')
+                this._fixInput()
+
+                return this
             },
             delete: function(event) {
-                $(event.target).parent().remove()
-                this.fixInput()
-            },
-            handler: function(event) {
-                // var label = 'handler ' + event.which + ' ' + event.target.value
-                // console.group(label)
-                // console.log('selectionStart    ', event.target.selectionStart)
-                // console.log('selectionEnd      ', event.target.selectionEnd)
-                // console.log('selectionDirection', event.target.selectionDirection)
-                // console.groupEnd(label)
+                var that = this
 
-                switch (event.which) {
-                    case 13: // enter
-                        this.add(event)
-                        break
+                // delete()
+                if (event === undefined) {
+                    this.options.data = []
+                    this.$element.val(this.options.data.join(','))
+                    this.$relatedElement.find(CLASS_ITEM).remove()
+
+                } else {
+                    // delete(event)
+                    if (event.type) {
+                        var item = $(event.target).closest(CLASS_ITEM)
+                        this.options.data = _.without(this.options.data, $(item).find(CLASS_ITEM_NAME).text())
+                        this.$element.val(this.options.data.join(','))
+                        $(event.target).closest(CLASS_ITEM).remove()
+                        this.$input.focus()
+
+                    } else {
+                        // delete( value )
+                        event += ''
+                        var items = this.$relatedElement.find(CLASS_ITEM)
+                        var matched = _.filter(items, function(item, index) {
+                            var text = $(item).find(CLASS_ITEM_NAME).text()
+                            if (text === event) {
+                                that.options.data = _.without(that.options.data, text)
+                                that.$element.val(that.options.data.join(','))
+                                return true
+                            }
+                            return false
+                        })
+                        $(matched).remove()
+                    }
                 }
-            },
-            add: function(event) {
-                if (!event.target.value.length) return
 
-                /*jshint multistr:true */
-                var itemTpl = ' <div class="taginput-item">\
-                                    <div class="taginput-item-name"><%= name %></div>\
-                                    <div class="taginput-item-delete glyphicon glyphicon-remove" bx-click="delete"></div><!-- &times; -->\
-                                </div>'
-                var itemHTML = _.template(itemTpl)({
-                    name: event.target.value
+                this._fixInput()
+
+                return this
+            },
+            val: function(value) {
+                // .val()
+                if (value === undefined) return this.options.data
+
+                // .val( value )
+                var that = this
+                this.delete()
+                    // this.options.data = []
+                    // this.$relatedElement.find(CLASS_ITEM).remove()
+                _.each(value, function(item, index) {
+                    that.add(item)
                 })
-                $(itemHTML).insertBefore(event.target)
-
-                $(event.target).val('').blur().focus()
-
-                this.fixInput()
+                return this
             },
-            beautify: function($element, $relatedElement) {
+            _focus: function(evnet) {
+                if (event.target === this.$relatedElement[0]) this.$input.focus()
+                evnet.preventDefault()
+                this._fixInput()
+            },
+            active: function(event) {
+                $(event.currentTarget).toggleClass('active')
+            },
+            _selection: function(event) {
+                var label = 'handler ' + event.which + ' ' + event.target.value
+                console.group(label)
+                console.log('selectionStart    ', event.target.selectionStart)
+                console.log('selectionEnd      ', event.target.selectionEnd)
+                console.log('selectionDirection', event.target.selectionDirection)
+                console.groupEnd(label)
+                return this
+            },
+            _beautify: function($element, $relatedElement) {
                 $relatedElement
                     .addClass($element.attr('class'))
                     .css({
@@ -105,14 +147,16 @@ define(
                         'min-height': $element.css('height'),
                         height: 'auto'
                     })
-                this.fixInput()
+                this._fixInput()
+                return this
             },
-            fixInput: function() {
+            _fixInput: function() {
                 this.$input.width(INPUT_MIN_WIDTH) // 
                 var width = this.$relatedElement.width() - this.$input.position().left
                 this.$input.width(
                     width >= INPUT_MIN_WIDTH ? width : INPUT_MIN_WIDTH
                 )
+                return this
             }
         })
 

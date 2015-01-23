@@ -1,8 +1,6 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="suggest">
-    <ul class="dropdown-menu"></ul>
-</div>
+<a href="javascript:;"><%= data %></a>
     */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
 })

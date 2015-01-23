@@ -1,5 +1,5 @@
 .suggest {
-  position: relative;
+  position: absolute;
   display: inline-block;
 }
 .suggest .dropdown-menu {
@@ -7,6 +7,7 @@
 }
 .suggest .dropdown-menu .highlight {
   background-color: yellow;
+  font-weight: bold;
 }
 .suggest .dropdown-menu .active .highlight {
   color: #000;
