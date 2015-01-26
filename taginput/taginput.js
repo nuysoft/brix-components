@@ -31,14 +31,14 @@ define(
             render: function() {
                 var that = this
                 var manager = new EventManager()
-                this.$element = $(this.element) // .hide()
+                this.$element = $(this.element).hide()
 
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $(html).insertAfter(this.$element)
                 this.$input = this.$relatedElement.find('input')
                 if (this.options.placeholder) this.$input.attr('placeholder', this.options.placeholder)
 
-                this.val(this.options.data)
+                this.val(this.options.data, false)
 
                 this._beautify(this.$element, this.$relatedElement)
 
@@ -47,14 +47,18 @@ define(
 
                 Loader.boot(this.$relatedElement, function() {
                     that.suggest = Loader.query('components/suggest', that.$relatedElement)[0]
+
+                    /* jshint unused:false */
                     that.suggest.on('change.suggest.done', function(event, value) {
                         that.add(value)
                         that.$input.focus()
                     })
                 })
             },
-            add: function(value) {
-                if (!('' + value)) return
+            // trigger is for internal usage only
+            add: function(value, trigger) {
+                value += ''
+                if (value.length === 0) return
 
                 this.options.data.push(value)
                 this.$element.val(this.options.data.join(','))
@@ -67,9 +71,12 @@ define(
                 this.$input.val('')
                 this._fixInput()
 
+                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data])
+
                 return this
             },
-            delete: function(event) {
+            // trigger is for internal usage only
+            delete: function(event, trigger) {
                 var that = this
 
                 // delete()
@@ -91,7 +98,7 @@ define(
                         // delete( value )
                         event += ''
                         var items = this.$relatedElement.find(CLASS_ITEM)
-                        var matched = _.filter(items, function(item, index) {
+                        var matched = _.filter(items, function(item /*, index*/ ) {
                             var text = $(item).find(CLASS_ITEM_NAME).text()
                             if (text === event) {
                                 that.options.data = _.without(that.options.data, text)
@@ -106,25 +113,32 @@ define(
 
                 this._fixInput()
 
+                if (trigger === false) this.trigger('change' + NAMESPACE, [this.options.data])
+
                 return this
             },
-            val: function(value) {
+            // trigger is for internal usage only
+            val: function(value, trigger) {
                 // .val()
                 if (value === undefined) return this.options.data
 
                 // .val( value )
                 var that = this
-                this.delete()
-                    // this.options.data = []
-                    // this.$relatedElement.find(CLASS_ITEM).remove()
-                _.each(value, function(item, index) {
-                    that.add(item)
+
+                this.delete(undefined, false)
+
+                // this.add()
+                _.each(value, function(item /*, index*/ ) {
+                    that.add(item, false)
                 })
+
+                if (trigger === false) this.trigger('change' + NAMESPACE, [this.options.data])
+
                 return this
             },
-            _focus: function(evnet) {
+            _focus: function(event) {
                 if (event.target === this.$relatedElement[0]) this.$input.focus()
-                evnet.preventDefault()
+                event.preventDefault()
                 this._fixInput()
             },
             active: function(event) {

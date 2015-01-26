@@ -28,7 +28,7 @@
     require(['brix/loader', 'underscore', 'mock'], function(Loader, _, Mock) {
         Loader.boot(function() {
             var data = Mock.mock({
-                'list|5-10': ['@NAME', '@NATURAL']
+                'list|5-10': ['@NAME', 'N@NATURAL']
             }).list
             var taginputs = Loader.query('components/taginput')
             _.each(taginputs, function(taginput, index) {
@@ -36,9 +36,12 @@
                     if (!event.namespace) return
                     // if (!value) taginput.suggest.data([])
                     taginput.suggest.data(
-                        _.filter(data, function(item, index){
-                            return ('' + item).indexOf(value) !== -1
-                        })
+                        _.difference(
+                            _.filter(data, function(item, index) {
+                                return ('' + item).indexOf(value) !== -1
+                            }),
+                            taginput.val()
+                        )
                     )
                 })
             })
@@ -59,9 +62,9 @@ placeholder | string | `''` | 描述预期值的简短提示。
 
 #### .add( value )
 
-增加一个值。
-
 * .add( value )
+
+增加一个值。
 
 **使用示例**如下所示：
 
@@ -132,17 +135,19 @@ _.each(instances, function(taginput, index) {
 })
 ```
 
+> 可以利用 Underscore 提供的 [`_.difference(array, *others)`](http://underscorejs.org/#difference) 从构造提示补全的内容中过滤已输入的词条。
+
 
 ### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------
-change.dropdown | 当日期组件变化时被触发。
+change.taginput | 当值变化时触发。
 
 ```js
 var Loader = require('brix/loader')
-var instances = Loader.query('components/dropdown')
-instances.on('change.dropdown', function(event, extra) {
+var instances = Loader.query('components/taginput')
+instances.on('change.taginput', function(event, extra) {
     console.log(event, extra)
 })
 ```

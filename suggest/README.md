@@ -8,6 +8,15 @@
     </div>
 </div>
 
+<!-- <div class="bs-example">
+    <div class="content">
+        <h4>自动在组件原始节点上触发 change 事件。</h4>
+        <input bx-name="components/suggest" class="form-control" onchange="alert(this.value)">
+    </div>
+</div> -->
+
+<!-- > Suggest 组件会触发两个 `change` 事件：`change.suggest.done` 和 `change`，前者带有命名空间，后者没有。可以通过检测命名空间来区分。 -->
+
 <script>
     require(['brix/loader', 'mock'], function(Loader, Mock) {
         Mock.Random.extend({

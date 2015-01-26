@@ -1,4 +1,4 @@
-/* global define */
+/* global define, require, document */
 define(
     [
         'jquery', 'underscore',
@@ -35,7 +35,6 @@ define(
                 data: []
             },
             init: function() {
-                var that = this
                 var defer = $.Deferred()
 
                 // 支持自定义 HTML 模板 template
@@ -143,6 +142,7 @@ define(
                     index: index
                 }
             },
+            /* jshint unused:false */
             _handlerHooks: {
                 // up
                 38: function(event, items, active, index) {
@@ -158,7 +158,7 @@ define(
                 },
                 // enter
                 13: function(event, items, active, index) {
-                    this._select(items,active,index)
+                    this._select(items, active, index)
                 },
                 // esc
                 27: function(event, items, active, index) {
@@ -182,6 +182,9 @@ define(
                     target: this.element
                 })
                 this.trigger(event, value)
+
+                // TODO 自动在组件原始节点上触发 change 事件
+                // this.$element.trigger('change')
 
                 this.close().focus()
 
