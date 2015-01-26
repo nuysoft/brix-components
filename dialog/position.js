@@ -6,8 +6,8 @@ define(
     function(
         $
     ) {
-        var tb = /top|bottom/
-        var lr = /left|right/
+        var RE_TOP_OR_BOTTOM = /top|bottom/
+        var RE_LEFT_OR_RIGHT = /left|right/
 
         /**
          * 计算浮层位置的工具函数
@@ -17,10 +17,10 @@ define(
          * @param  {[type]} align      浮层相对于参照的对齐方式
          * @return {[type]}            { left: left, top: top }
          */
-        function position(trigger, dialog, placement, align) {
+        function position(trigger, overlay, placement, align) {
             var $trigger = $(trigger)
 
-            if (!$trigger.length) return center(dialog)
+            if (!$trigger.length) return center(overlay)
 
             var triggerOffset = $trigger.offset()
             var triggerLeft = triggerOffset.left
@@ -28,26 +28,26 @@ define(
             var triggerWidth = $trigger.outerWidth()
             var triggerHeight = $trigger.outerHeight()
 
-            var $dialog = $(dialog).show()
-            var dialogWidth = $dialog.outerWidth()
-            var dialogHeight = $dialog.outerHeight()
-                // var dialogMarginLeft = parseInt($dialog.css('margin-left'), 10)
-                // var dialogMarginTop = parseInt($dialog.css('margin-top'), 10)
+            var $overlay = $(overlay).show()
+            var overlayWidth = $overlay.outerWidth()
+            var overlayHeight = $overlay.outerHeight()
+                // var overlayMarginLeft = parseInt($overlay.css('margin-left'), 10)
+                // var overlayMarginTop = parseInt($overlay.css('margin-top'), 10)
 
             var left, top
-            var leftDiff = triggerWidth / 2 - dialogWidth / 2
-            var topDiff = triggerHeight / 2 - dialogHeight / 2
+            var leftDiff = triggerWidth / 2 - overlayWidth / 2
+            var topDiff = triggerHeight / 2 - overlayHeight / 2
             switch (placement) {
                 case 'top': // 上方，水平局中
                     left = triggerLeft + leftDiff
-                    top = triggerTop - dialogHeight
+                    top = triggerTop - overlayHeight
                     break
                 case 'bottom': // 下方，水平局中
                     left = triggerLeft + leftDiff
                     top = triggerTop + triggerHeight
                     break
                 case 'left': // 左侧，垂直局中
-                    left = triggerLeft - dialogWidth
+                    left = triggerLeft - overlayWidth
                     top = triggerTop + topDiff
                     break
                 case 'right': // 右侧，垂直局中
@@ -58,50 +58,50 @@ define(
 
             // 浮层节点不能覆盖参照节点
             if (
-                tb.test(placement) !== tb.test(align) &&
-                lr.test(placement) !== lr.test(align)
+                RE_TOP_OR_BOTTOM.test(placement) !== RE_TOP_OR_BOTTOM.test(align) &&
+                RE_LEFT_OR_RIGHT.test(placement) !== RE_LEFT_OR_RIGHT.test(align)
             ) {
                 switch (align) {
                     case 'top': // 上边框对齐
                         top = triggerTop
                         break
                     case 'bottom': // 下边框对齐
-                        top = triggerTop + triggerHeight - dialogHeight
+                        top = triggerTop + triggerHeight - overlayHeight
                         break
                     case 'left': // 做边框对齐
                         left = triggerLeft
                         break
                     case 'right': // 右边框对齐
-                        left = triggerLeft + triggerWidth - dialogWidth
+                        left = triggerLeft + triggerWidth - overlayWidth
                         break
                 }
             }
 
             return {
-                left: left, //  + dialogMarginLeft
-                top: top //  + dialogMarginTop
+                left: left, //  + overlayMarginLeft
+                top: top //  + overlayMarginTop
             }
         }
 
-        function center(dialog) {
-            var $dialog = $(dialog).show()
-            var dialogWidth = $dialog.outerWidth()
-            var dialogHeight = $dialog.outerHeight()
+        function center(overlay) {
+            var $overlay = $(overlay).show()
+            var overlayWidth = $overlay.outerWidth()
+            var overlayHeight = $overlay.outerHeight()
 
             var $window = $(window)
             var windowWidth = $window.width()
             var windowHeight = $window.height()
 
             return {
-                left: windowWidth / 2 - dialogWidth / 2,
-                top: windowHeight / 2 - dialogHeight / 2 + window.scrollY
+                left: windowWidth / 2 - overlayWidth / 2,
+                top: windowHeight / 2 - overlayHeight / 2 + window.scrollY
             }
         }
 
-        function start(dialog, offset, placement) {
-            var $dialog = $(dialog)
-            var width = $dialog.outerWidth()
-            var height = $dialog.outerHeight()
+        function start(overlay, offset, placement) {
+            var $overlay = $(overlay)
+            var width = $overlay.outerWidth()
+            var height = $overlay.outerHeight()
 
             var result = {
                 opacity: 0,
@@ -129,9 +129,9 @@ define(
             return result
         }
 
-        /* exported dialog */
-        function end(dialog, offset) {
-            if (!dialog) { /* TODO */ }
+        /* exported overlay */
+        function end(overlay, offset) {
+            if (!overlay) { /* TODO */ }
             return {
                 opacity: 1,
                 left: offset.left,
