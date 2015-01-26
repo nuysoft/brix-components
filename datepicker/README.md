@@ -90,6 +90,17 @@
         </div>
     </div>
 </div>
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>支持不限</h4>
+                <div bx-name="components/datepicker" data-type="date" data-date="2015-1-1" data-unlimit="2099-1-1"></div>
+            </div>
+            <div class="col-xs-6"></div>
+        </div>
+    </div>
+</div>
 
 <!-- 
             // 

@@ -31,17 +31,24 @@ define(
             options: {
                 date: moment(), // date dateShadow
                 type: 'all', // time date month year all
-                range: []
+                range: [],
+                unlimit: false
             },
             init: function() {
                 // 修正选项 range，转换成一维数组
                 this.options.range = _.flatten(this.options.range)
 
+                // 支持不限
+                if (this.options.unlimit) {
+                    this.options.unlimit = moment(this.options.unlimit)
+                    this.options.date = moment().startOf('day')
+                }
+
                 // 构造 this.data
                 this.data = this.data || {}
                 this.data.options = this.options
                 this.data.moment = moment
-                this.data.date = moment(this.data.date)
+                this.data.date = moment(this.options.date)
 
                 // { time: bool, date: bool, month: bool, year: bool, all: bool }
                 this.data.typeMap = function(type) {
@@ -64,12 +71,11 @@ define(
             },
             // 获取或设置选中的日期。
             val: function(value) {
-                var milliseconds = this.data.date.toDate().getTime()
+                // var milliseconds = this.data.date.toDate().getTime()
                 if (value) {
                     this.data.date = moment(value)
-                    if (this.data.date.toDate().getTime() !== milliseconds) {
-                        this.trigger('change.datepicker', moment(this.data.date))
-                    }
+                    this.trigger('change.datepicker', moment(this.data.date))
+                        // if (this.data.date.toDate().getTime() !== milliseconds) {}
                     this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
                     return this
                 }
@@ -90,15 +96,17 @@ define(
             _move: function(event, unit, dir) {
                 var date = this.data.date
                 var milliseconds = date.toDate().getTime()
-                if (unit === 'year') {
+                if (unit === 'period') {
                     this._renderYearPicker(dir)._renderDatePicker()
+                        // date.add(dir, unit)
+                        // this._renderYearPicker(dir)._renderMonthPicker()._renderDatePicker()
                     return
                 }
-                // month date
+                // year month date
                 date.add(dir, unit)
-                if (date.toDate().getTime() !== milliseconds) {
-                    this.trigger('change.datepicker', [moment(date), unit])
-                }
+                    // if (date.toDate().getTime() !== milliseconds) 
+                this.trigger('change.datepicker', [moment(date), unit])
+
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
             _active: function(event, unit) {
@@ -107,7 +115,8 @@ define(
                 var $target = $(event.target).toggleClass('active')
                 $target.siblings().removeClass('active').end()
                 date.set(unit, +$target.attr('data-value'))
-                if (date.toDate().getTime() !== milliseconds) this.trigger('change.datepicker', [moment(date), unit])
+                    // if (date.toDate().getTime() !== milliseconds) 
+                this.trigger('change.datepicker', [moment(date), unit])
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
                 if (unit === 'year' && !this.data.typeMap.year) {
                     this._slide('.yearpicker', '.monthpicker')
@@ -134,7 +143,8 @@ define(
                 event.preventDefault()
                 event.stopPropagation()
                 date.add(extra, units)
-                if (date.toDate().getTime() !== milliseconds) this.trigger('change.datepicker', [moment(date), unit])
+                    // if (date.toDate().getTime() !== milliseconds) 
+                this.trigger('change.datepicker', [moment(date), unit])
                 this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
             _changeHour: function(event, extra) {
@@ -148,12 +158,20 @@ define(
             },
             _renderYearPicker: function(dir) {
                 dir = dir || 0
+
+                var date = this.data.date
+                var unlimitMode = false
+                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
+                    unlimitMode = true
+                    date = moment().startOf('day')
+                }
+
                 var $title = $(this.element).find('.yearpicker .picker-header h4')
                 var $body = $(this.element).find('.yearpicker .picker-body')
 
                 var limit = 20
                 var data = $body.data()
-                var current = this.data.date.get('year')
+                var current = date.get('year')
                 data.start = (data.start || (current - current % limit)) + dir * limit
                 data.end = data.start + limit - 1
 
@@ -162,7 +180,7 @@ define(
                 for (var i = data.start; i <= data.end; i++) {
                     $('<span>').text(i).attr('data-value', i)
                         .attr('bx-click', '_active("year")')
-                        .addClass(current === i ? 'active' : '')
+                        .addClass(!unlimitMode && current === i ? 'active' : '')
                         .appendTo($body)
                 }
 
@@ -171,6 +189,11 @@ define(
             _renderMonthPicker: function() {
                 var that = this
                 var date = this.data.date
+                var unlimitMode = false
+                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
+                    unlimitMode = true
+                    date = moment().startOf('day')
+                }
 
                 var $title = $(this.element).find('.monthpicker .picker-header h4')
                 var $body = $(this.element).find('.monthpicker .picker-body')
@@ -187,7 +210,7 @@ define(
                 }()
                 _.each(months, function(item, index) {
                     $('<span>').text(item).attr('data-value', index)
-                        .addClass(date.get('month') === index ? 'active' : '')
+                        .addClass(!unlimitMode && date.get('month') === index ? 'active' : '')
                         .attr('bx-click', '_active("month")')
                         .appendTo($body)
                 })
@@ -196,6 +219,12 @@ define(
             },
             _renderDatePicker: function() {
                 var date = this.data.date
+                var unlimitMode = false
+                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
+                    unlimitMode = true
+                    date = moment().startOf('day')
+                }
+
                 var days = date.daysInMonth()
                 var startDay = moment(date).date(1).day()
                 var range = this.options.range
@@ -211,7 +240,7 @@ define(
                 }
                 for (var ii = 1; ii <= days; ii++) {
                     $('<span>').text(ii).attr('data-value', ii)
-                        .addClass(date.date() === ii ? 'active' : '')
+                        .addClass(!unlimitMode && date.date() === ii ? 'active' : '')
                         .addClass(disabled(ii) ? 'disabled' : '')
                         .attr('bx-click', '_active("date")')
                         .appendTo($body)
@@ -242,6 +271,14 @@ define(
                 inputs.eq(2).val(date.format('ss'))
 
                 return this
+            },
+            _unlimit: function(event) {
+                var date = this.data.date
+                var unlimit = this.options.unlimit
+                this.data.date = moment(unlimit)
+                    // if (date.toDate().getTime() !== unlimit.toDate().getTime())
+                this.trigger('change.datepicker', [unlimit, 'date'])
+                this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             }
         })
 

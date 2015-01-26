@@ -2,9 +2,9 @@
     <!--  -->
     <div class="yearpicker picker-group" style="<%= typeMap.year ? '' : 'display: none;' %>">
         <div class="picker-header">
-            <button class="btn btn-default minus" type="button" bx-click="_move('year', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            <button class="btn btn-default minus" type="button" bx-click="_move('period', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button>
             <h4 >? - ?</h4>
-            <button class="btn btn-default plus" type="button" bx-click="_move('year', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            <button class="btn btn-default plus" type="button" bx-click="_move('period', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button>
         </div>
         <div class="picker-body picker-selectable clearfix">
             <!-- <span data-value="2014" class="active">2014</span> -->
@@ -61,6 +61,8 @@
             <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
+    <!-- -->
+    <div class="picker-footer picker-group" style="<%= options.unlimit ? '' : 'display: none;' %>">
+        <a href="javascript:;" bx-click="_unlimit">不限</a>
+    </div>
 </div>
-
-

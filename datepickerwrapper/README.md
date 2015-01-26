@@ -9,11 +9,11 @@
         <div class="row">
             <div class="col-xs-6">
                 <h4>为 input 元素绑定日期选择器。</h4>
-                <input bx-name="components/datepickerwrapper" bx-click="toggle" type="text" class="form-control w100">
+                <input bx-name="components/datepickerwrapper" type="text" class="form-control w100">
             </div>
             <div class="col-xs-6">
                 <h4>为任意元素绑定日期选择器。</h4>
-                <a bx-name="components/datepickerwrapper" bx-click="toggle" href="javascript: void(0);">请选择日期</a>
+                <a bx-name="components/datepickerwrapper" href="javascript: void(0);">请选择日期</a>
             </div>
         </div>
     </div>
@@ -24,13 +24,13 @@
         <div class="row">
             <div class="col-xs-6">
                 <h4>绑定 2 个日期选择器。</h4>
-                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2']" class="form-control w300">
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="form-control w300">
                     <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
                 </div>
             </div>
             <div class="col-xs-6">
                 <h4>自定义快捷日期。</h4>
-                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2']" 
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" 
                     bx-options="{ 
                         shortcuts:{
                             '一期':['2015-1-1', '2015-3-14']
@@ -49,7 +49,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h4>绑定 3 个日期选择器。</h4>
-                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" class="form-control w300">
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" class="form-control w300">
                     <span data-index="0">2015-1-1</span>,
                     <span data-index="1">2015-1-2</span>,
                     <span data-index="2">2015-1-3</span>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-xs-6">
                 <h4>自定义快捷日期。</h4>
-                <div bx-name="components/datepickerwrapper" bx-click="toggle" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" 
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2', '2015-1-3' ]" 
                     bx-options="{ 
                         shortcuts:{
                             '一期':['2015-1-1', '2015-3-14', '2015-6-1']
@@ -67,6 +67,76 @@
                     <span data-index="0">2015-1-1</span>,
                     <span data-index="1">2015-1-2</span>,
                     <span data-index="2">2015-1-3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>支持不限（单个日期选择器）。</h4>
+                <input bx-name="components/datepickerwrapper" 
+                    data-unlimits="[ '2099-1-1' ]" type="text" 
+                    class="form-control w100">
+            </div>
+            <div class="col-xs-6">
+                <h4>支持不限（多个日期选择器）。</h4>
+                <div bx-name="components/datepickerwrapper" 
+                    data-dates="[ '2015-1-1', '2015-1-2' ]" 
+                    data-unlimits="[ undefined, '2099-1-1' ]" 
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>单个日期选择器：自动触发 input 元素的 change 事件。</h4>
+                <input bx-name="components/datepickerwrapper" 
+                    data-unlimits="[ '2099-1-1' ]"
+                    onchange="alert(this.value)"
+                    type="text" class="form-control w100">
+            </div>
+            <div class="col-xs-6">
+                <h4>单个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h4>
+                <a bx-name="components/datepickerwrapper" href="javascript: void(0);">
+                    <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
+                    请选择日期
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h4>
+                <div bx-name="components/datepickerwrapper" 
+                    data-dates="[ '2015-1-1', '2015-1-2']" 
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                    <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
+                    <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h4>对于不限，隐藏域的值是真实日期，。</h4>
+                <div bx-name="components/datepickerwrapper" 
+                    data-dates="[ '2015-1-1', '2015-1-2']" 
+                    data-unlimits="[ undefined, '2099-1-1' ]" 
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                    <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
+                    <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
                 </div>
             </div>
         </div>

@@ -131,3 +131,6 @@
   width: 29px;
   text-align: center;
 }
+.datepicker-container .picker-footer {
+  text-align: center;
+}

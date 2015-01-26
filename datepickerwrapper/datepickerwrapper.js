@@ -68,7 +68,8 @@ define(
             options: {
                 mode: 'signal', // signal multiple
                 shortcuts: SHORTCUTS,
-                dates: []
+                dates: [],
+                unlimits: []
             },
             init: function() {
                 // 修正选项
@@ -81,6 +82,11 @@ define(
                         })
                     })
                 }
+                // if (this.options.unlimits.length) {
+                //     _.each(this.options.unlimits, function(date, index, unlimits) {
+                //         if (date) unlimits[index] = moment(date)
+                //     })
+                // }
 
                 // 支持自定义 HTML 模板 template
                 template = this.options.template || template
@@ -96,6 +102,10 @@ define(
                 ).insertAfter(this.$element)
 
                 this['_' + this.options.mode]()
+
+                this.$element.on('click', function(event) {
+                    that.toggle(event)
+                })
 
                 var manager = new EventManager('bx-')
                 manager.delegate(this.$element, this)
@@ -128,10 +138,19 @@ define(
                             [date], type
                         ])
                         if (!validate.isDefaultPrevented()) {
+                            var isInput = RE_INPUT.test(that.element.nodeName)
+                            var value = that._unlimitFilter(date, that.options.unlimits[0])
                             that.$element[
-                                RE_INPUT.test(that.element.nodeName) ? 'val' : 'html'
-                            ](date.format(DATE_PATTERN))
-                            that.$element.triggerHandler('change') //  + NAMESPACE + NAMESPACE_ORIGINAL, date
+                                isInput ? 'val' : 'html'
+                            ](value)
+
+                            // 单个日期选择器：自动触发 input 元素的 change 事件。</h4>
+                            // 单个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h4>
+                            that.$element.trigger('change') //  + NAMESPACE + NAMESPACE_ORIGINAL, date
+                            if (!isInput) {
+                                var items = $('[data-hidden-index]', this.$element)
+                                items.eq(0).val(value).trigger('change')
+                            }
                         }
                     })
                 })
@@ -172,11 +191,18 @@ define(
                         item.val(that.options.dates[index])
                             .on('change.datepicker', function(event, date, type) {
                                 if (type !== undefined && type !== 'date') return
-                                inputs.eq(index).val(date.format(DATE_PATTERN))
+
+                                var value = that._unlimitFilter(date, that.options.unlimits[index])
+                                inputs.eq(index).val(value)
                                 pickers.eq(index).hide()
                             })
                     })
                 })
+            },
+            _unlimitFilter: function(date, unlimit) {
+                var text = date.format(DATE_PATTERN)
+                if (unlimit && text === moment(unlimit).format(DATE_PATTERN)) text = '不限'
+                return text
             },
             _inputToggleDatePicker: function(event, index, type) {
                 var inputWrapper = $('.datepickerwrapper-inputs', this.$relatedElement)
@@ -205,7 +231,7 @@ define(
                 this.$relatedElement.hide()
             },
             toggle: function( /*event*/ ) {
-                $(this.$relatedElement).toggle()
+                this.$relatedElement.toggle()
                     .offset(this._offset())
             },
             _offset: function() {
@@ -216,6 +242,7 @@ define(
                 }
             },
             submit: function( /*event*/ ) {
+                var that = this
                 var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
                 var dates = _.map(pickerComponents, function(item /*, index*/ ) {
                     return item.val()
@@ -234,16 +261,27 @@ define(
                             index = +$item.attr('data-index')
                             $item[
                                 RE_INPUT.test(item.nodeName) ? 'val' : 'html'
-                            ](dates[index].format(DATE_PATTERN))
+                            ](
+                                that._unlimitFilter(dates[index], that.options.unlimits[index])
+                            )
 
                         })
                     } else {
                         this.$element.text(
-                            _.map(dates, function(item /*, index*/ ) {
-                                return item.format(DATE_PATTERN)
+                            _.map(dates, function(item, index) {
+                                return that._unlimitFilter(item, that.options.unlimits[index])
                             }).join(', ')
                         )
                     }
+
+                    // 多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。
+                    items = $('[data-hidden-index]', this.$element)
+                    _.each(items, function(item, index) {
+                        var $item = $(item)
+                        index = +$item.attr('data-hidden-index')
+                        var value = that._unlimitFilter(dates[index], undefined)
+                        $item.val(value).trigger('change')
+                    })
                 }
             },
             _change: function(event, type, index) {
