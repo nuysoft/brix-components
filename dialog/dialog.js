@@ -79,7 +79,9 @@ define(
 
                 return this
             },
-            render: function() {},
+            render: function() {
+                this.$manager.delegate(this.$element, this)
+            },
             fill: function() {
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $('div.dialog.dialog-singleton')
@@ -111,7 +113,6 @@ define(
                     }
                 }
 
-                this.$manager.delegate(this.$element, this)
                 this.$manager.delegate(this.$relatedElement, this)
                 return this
             },
@@ -132,7 +133,8 @@ define(
                     )
                     .animate(
                         position.end(this.$relatedElement, offset),
-                        TRANSITION_DURATION, EASING
+                        TRANSITION_DURATION,
+                        EASING
                     )
 
                 if (this.options.modal) {

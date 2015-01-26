@@ -1,6 +1,6 @@
 # TagInput
 
-下拉框组件。{ .lead }
+标签输入组件。{ .lead }
 
 ### 示例 <small>Examples</small>
 
