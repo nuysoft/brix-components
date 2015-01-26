@@ -179,7 +179,29 @@ content | string | `''` | 指定浮层的内容。
 
 ### 方法 <small>Methods</small>
 
-无。
+#### .show()
+
+* .show()
+
+显示浮层。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/popover')
+console.log(instances[0].show())
+```
+
+#### hide()
+
+* hide()
+
+关闭窗口。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/popover')
+console.log(instances[0].hide())
+```
 
 ### 事件 <small>Events</small>
 

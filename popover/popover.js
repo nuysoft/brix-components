@@ -45,63 +45,67 @@ define(
             render: function() {
                 var that = this
                 this.$element = $(this.element)
+                this.$relatedElement = $(
+                    _.template(template)(this.options)
+                ).insertAfter(this.$element)
 
-                var html = _.template(template)(this.options)
-                this.$relatedElement = $(html).insertAfter(this.$element)
+                this.$element.hover(function( /*event*/ ) {
+                    that.show()
+                }, function( /*event*/ ) {
+                    that.hide()
+                })
 
-                var timer
-                $(this.element).hover(
-                    function( /*event*/ ) {
-                        clearTimeout(timer)
-                        that.$relatedElement.show().css({
-                            width: that.options.width,
-                            'max-width': that.options.width
-                        })
-                        var offset = position(that.element, that.$relatedElement, that.options.placement, that.options.align)
-                        var relatedMarginLeft = parseInt(that.$relatedElement.css('margin-left'), 10)
-                        var relatedMarginTop = parseInt(that.$relatedElement.css('margin-top'), 10)
-                        that.$relatedElement.offset({
-                            left: offset.left + relatedMarginLeft + (that.options.offset.left || 0),
-                            top: offset.top + relatedMarginTop + (that.options.offset.top || 0)
-                        })
-                        if (that.options.align) {
-                            that.$relatedElement.find('.arrow').offset(
-                                getArrowPosition(that.options.placement, that.$element, that.$relatedElement, that.options.align)
-                            )
-                        }
-                    },
-                    function( /*event*/ ) {
-                        clearTimeout(timer)
-                        timer = setTimeout(function() {
-                            that.$relatedElement.hide()
-                        }, that.options.delay)
-                    }
-                )
                 that.$relatedElement.hover(function( /*event*/ ) {
-                    clearTimeout(timer)
-                }, function() {
-                    clearTimeout(timer)
+                    clearTimeout(that._timer)
+                }, function( /*event*/ ) {
+                    clearTimeout(that._timer)
                     that.$relatedElement.hide()
                 })
+            },
+            show: function() {
+                clearTimeout(this._timer)
+                this.$relatedElement.show().css({
+                    width: this.options.width,
+                    'max-width': this.options.width // 覆盖 bootstrap overlay 的 max-width
+                })
+                var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10)
+                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10)
+                this.$relatedElement.offset({
+                    left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
+                    top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
+                })
+                if (this.options.align) {
+                    this.$relatedElement.find('.arrow').offset(
+                        getArrowPosition(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                    )
+                }
+            },
+            hide: function() {
+                var that = this
+                clearTimeout(this._timer)
+                this._timer = setTimeout(function() {
+                    that.$relatedElement.hide()
+                }, this.options.delay)
             }
         })
 
         var tb = /top|bottom/
         var lr = /left|right/
 
-        function getArrowPosition(placement, target, related, align) {
-            var $target = $(target)
-            var targetOffset = $target.offset()
-            var targetLeft = targetOffset.left
-            var targetTop = targetOffset.top
-            var targetWidth = $target.outerWidth()
-            var targetHeight = $target.outerHeight()
+        function getArrowPosition(trigger, overlay, placement, align) {
+            var $trigger = $(trigger)
+            var triggerOffset = $trigger.offset()
+            var triggerLeft = triggerOffset.left
+            var triggerTop = triggerOffset.top
+            var triggerWidth = $trigger.outerWidth()
+            var triggerHeight = $trigger.outerHeight()
 
-            var $related = $(related).show()
-            var relatedWidth = $related.outerWidth()
-            var relatedHeight = $related.outerHeight()
+            var $overlay = $(overlay).show()
+            var overlayWidth = $overlay.outerWidth()
+            var overlayHeight = $overlay.outerHeight()
 
-            var $arrow = $(related).find('.arrow')
+            var $arrow = $(overlay).find('.arrow')
             var arrowWidth = $arrow.outerWidth()
             var arrowHeight = $arrow.outerHeight()
 
@@ -114,14 +118,14 @@ define(
                 switch (align) {
                     case 'top':
                     case 'bottom':
-                        if (relatedHeight > targetHeight) {
-                            top = targetTop + targetHeight / 2 - arrowHeight / 2
+                        if (overlayHeight > triggerHeight) {
+                            top = triggerTop + triggerHeight / 2 - arrowHeight / 2
                         }
                         break
                     case 'left':
                     case 'right':
-                        if (relatedWidth > targetWidth) {
-                            left = targetLeft + targetWidth / 2 - arrowWidth / 2
+                        if (overlayWidth > triggerWidth) {
+                            left = triggerLeft + triggerWidth / 2 - arrowWidth / 2
                         }
                         break
                 }
