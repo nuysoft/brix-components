@@ -110,14 +110,14 @@
             // console.log(types)
  -->
 <script type="text/javascript">
-    require(['brix/loader', 'log'], function(Loader, log) {
+    require(['brix/loader'], function(Loader) {
         Loader.boot(function() {
             var instances = Loader.query('components/datepicker')
             instances.on('change.datepicker', function(event, date, type) {
-                log(
-                    '_' + event.type + '_ ' + 
-                    '*' + event.namespace + '* ' + 
-                    '*' + type + '*', 
+                console.log(
+                    event.type,
+                    event.namespace,
+                    type, 
                     date.format('YYYY-MM-DD HH:mm:ss.SSS')
                 )
             })

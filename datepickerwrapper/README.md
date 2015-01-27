@@ -144,13 +144,13 @@
 </div>
 
 <script type="text/javascript">
-    require(['brix/loader', 'log'], function(Loader, log) {
+    require(['brix/loader'], function(Loader) {
         Loader.boot(function() {
             var instances = Loader.query('components/datepickerwrapper')
             instances.on('change.datepickerwrapper', function(event, dates) {
-                log(
-                    '_' + event.type + '_ ' + 
-                    '*' + event.namespace + '* ' + 
+                console.log(
+                    event.type,
+                    event.namespace,
                     _.map(dates, function(item) {
                         return item.format('YYYY-MM-DD')
                     })

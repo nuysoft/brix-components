@@ -90,13 +90,13 @@
 <!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
 <script type="text/javascript">
-    require(['brix/loader', 'log'], function(Loader, log) {
+    require(['brix/loader'], function(Loader) {
         Loader.boot(function() {
             var instances = Loader.query('components/dropdown')
             instances.on('change.dropdown', function(event, extra) {
-                log(
-                    '_' + event.type + '_ ' + 
-                    '*' + event.namespace + '* ',
+                console.log(
+                    event.type,
+                    event.namespace,
                     extra
                 )
             })

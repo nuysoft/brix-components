@@ -148,7 +148,7 @@ define(
                             // 单个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h4>
                             that.$element.trigger('change') //  + NAMESPACE + NAMESPACE_ORIGINAL, date
                             if (!isInput) {
-                                var items = $('[data-hidden-index]', this.$element)
+                                var items = $('[data-hidden-index]', that.$element)
                                 items.eq(0).val(value).trigger('change')
                             }
                         }
