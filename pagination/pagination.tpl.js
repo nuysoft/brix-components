@@ -14,7 +14,7 @@ define(function() {
     <div class="col-md-6" style="text-align: right;">
         <ul class="pagination">
 
-            <li class="<%= hasPrev ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=prev%>)">Previous</a></li>
+            <li class="<%= hasPrev ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=prev%>)"><span class="brixfont">&#xe601;</span></a></li><!-- Previous -->
 
             <% if( barStart == 2 ) { %>
                 <li><a class="page" href="javascript: void(0);">1</a></li>
@@ -44,7 +44,7 @@ define(function() {
                 <li><a href="javascript: void(0);" bx-click="moveTo(<%=pages%>)"><%= pages %></a></li>
             <% } %>
 
-            <li class="<%= hasNext ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=next%>)">Next</a></li>
+            <li class="<%= hasNext ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=next%>)"><span class="brixfont">&#xe600;</span></a></li><!-- Next -->
 
             <!-- <li>
                 <select bx-name="components/dropdown">
