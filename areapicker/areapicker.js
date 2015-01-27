@@ -16,18 +16,26 @@ define(
 
         function AreaPicker() {}
 
-        // AreaPicker.data
-
         _.extend(AreaPicker.prototype, Brix.prototype, {
             options: {
                 type: 'TIER', // REGION TIER
-                data: []
+                data: undefined
             },
             init: function() {
+                // 尝试从 innerText 中解析数据
+                /* jshint evil:true */
+                if (!this.options.data) {
+                    var text = $.trim(this.element.innerText)
+                    this.options.data = eval(
+                        '(function(){ return [].splice.call(arguments, 0 )[0] })(' + text + ')'
+                    )
+                    this.element.innerText = ''
+                }
+
                 this.options.data = {
                     id: 'root',
                     name: '全选',
-                    children: Area.tree(AreaPicker.data || Area.REGION)
+                    children: Area.tree(this.options.data || Area.REGION)
                 }
             },
             render: function() {
@@ -37,19 +45,8 @@ define(
                 var html = _.template(template)(this.options.data)
                 this.$element.append(html)
 
-                linkage(this.$element, function() {
-                    var values = function() {
-                        var values = []
-                        var checkboxes = that.$element.find('input:checkbox')
-                        var checked = checkboxes.filter(':checked')
-                        _.each(checked, function(item /*, index*/ ) {
-                            var value = $(item).attr('value')
-                            if (value !== undefined) values.push(value)
-                        })
-                        return values
-                    }()
+                linkage(this.$element, function(event, values) {
                     that.trigger('toggle.areapicker', [values])
-                    console.log(values)
                 })
             }
         })

@@ -23,17 +23,28 @@ define(
                 _parent($(event.currentTarget), $(event.delegateTarget))
                 _children($(event.currentTarget), $(event.delegateTarget))
 
-                var values = function() {
-                    var values = []
-                    var checked = $(event.delegateTarget).find('input:checkbox:checked')
-                    _.each(checked, function(item /*, index*/ ) {
-                        var value = $(item).attr('value')
-                        if (value !== undefined) values.push(value)
-                    })
-                    return values
-                }()
-                if (callback) callback(event, values)
+                if (callback) callback(event, linkage.val(container))
             })
+        }
+
+        linkage.val = function(container, values) {
+            if (values) {
+                var checkboxs = $(container).find('input:checkbox').prop('checked', false)
+                _.each(values, function(item /*, index*/ ) {
+                    var $target = checkboxs.filter('[value="' + item + '"]').prop('checked', true)
+                    _parent($target, $(container))
+                    _children($target, $(container))
+                })
+                return linkage
+            }
+
+            values = []
+            var checked = $(container).find('input:checkbox:checked')
+            _.each(checked, function(item /*, index*/ ) {
+                var value = $(item).attr('value')
+                if (value !== undefined) values.push(value)
+            })
+            return values
         }
 
         function _parent($target, $container) {
