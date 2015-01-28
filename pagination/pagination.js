@@ -1,18 +1,18 @@
-/* global define  */
+/* global define */
 /*
     分页组件。
  */
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event',
-        './pure-pagination.js',
+        'brix/loader', 'brix/base', 'brix/event',
+        './state.js',
         './pagination.tpl.js',
         'css!./pagination.css'
     ],
     function(
         $, _,
-        Brix, EventManager,
+        Loader, Brix, EventManager,
         PurePagination,
         template
     ) {
@@ -61,21 +61,23 @@ define(
             render: function() {
                 var that = this
                 var manager = new EventManager()
+
                 this.data = this.fixData()
                 var html = _.template(template)(this.data)
                 $(this.element).empty().append(html)
 
+                manager.delegate(this.element, this)
+
                 // 重新 render 之后的 ready 事件？再次触发？
-                /* jshint unused:true */
-                this.off('change.dropdown.original', 'select')
-                    .on('change.dropdown.original', 'select', function(event, data) {
-                        /* data { label: label, value: value } */
+                Loader.boot(this.element, function() {
+                    that.dropdown = Loader.query('components/dropdown', that.element)[0]
+                        /* jshint unused:false */
+                    that.dropdown.on('change.dropdown', function(event, data) {
                         that._status.setLimit(data.value)
                         that.trigger('change.pagination', that._status)
                         that.render()
                     })
-
-                manager.delegate(this.element, this)
+                })
             },
             moveTo: function(event, extra) { // extraParameters
                 // moveTo( cursor )

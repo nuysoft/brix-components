@@ -45,17 +45,17 @@ define(function( /*require, exports*/ ) {
 
     return (function(global) {
         /*
-            new Pagination( data, cursor, limit )
-            new Pagination( total, cursor, limit )  
+            new State( data, cursor, limit )
+            new State( total, cursor, limit )  
         */
-        function Pagination(data, cursor, limit) {
+        function State(data, cursor, limit) {
             this.data = (typeof data === 'number' || typeof data === 'string') ? undefined : data
             this.total = this.data ? this.data.length : parseInt(data, 10)
             this.cursor = parseInt(cursor, 10)
             this.limit = parseInt(limit, 10)
             this.calc()
         }
-        Pagination.prototype = {
+        State.prototype = {
             calc: function() {
                 if (this.total && parseInt(this.total, 10) > 0) {
                     this.limit = this.limit < 1 ? 1 : this.limit
@@ -137,18 +137,18 @@ define(function( /*require, exports*/ ) {
                 return JSON.stringify(this, null, 4);
             }
         }
-        Pagination.prototype.to = Pagination.prototype.moveTo;
-        Pagination.prototype.toPrev = Pagination.prototype.moveToPrev;
-        Pagination.prototype.toNext = Pagination.prototype.moveToNext;
-        Pagination.prototype.toFirst = Pagination.prototype.moveToFirst;
-        Pagination.prototype.toLast = Pagination.prototype.moveToLast;
+        State.prototype.to = State.prototype.moveTo;
+        State.prototype.toPrev = State.prototype.moveToPrev;
+        State.prototype.toNext = State.prototype.moveToNext;
+        State.prototype.toFirst = State.prototype.moveToFirst;
+        State.prototype.toLast = State.prototype.moveToLast;
 
         if (typeof module !== 'undefined' && module.exports) {
-            module.exports = Pagination;
+            module.exports = State;
         } else {
-            global.Pagination = Pagination;
+            global.State = State;
         }
-        return Pagination;
+        return State;
     })(this)
 
 });

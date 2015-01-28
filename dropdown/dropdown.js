@@ -175,9 +175,12 @@ define(
                 })
                 data.name = $(this.element).attr('name')
 
+
                 $(this.relatedElement).find('button.dropdown-toggle > span:first')
                     .text(data.label)
-                    .trigger('change.dropdown', data)
+                    // .trigger('change.dropdown', data)
+
+                this.trigger('change.dropdown', data)
 
                 $(this.element)
                     .val(data.value)
