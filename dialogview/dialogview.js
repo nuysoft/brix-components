@@ -54,7 +54,7 @@ define(
                 var vframe = new Magix.Vframe(DIALOG_VIEW_ID)
                 if (vframe && vframe.view) vframe.unmountView()
                 vframe.mountView(this.options.view.name, this.options.view.options)
-                console.log($('#' + DIALOG_VIEW_ID))
+                    // console.log($('#' + DIALOG_VIEW_ID))
                     // $('#' + DIALOG_VIEW_ID).html(
                     //     this.options.view.name +
                     //     JSON.stringify(this.options.view.options)
