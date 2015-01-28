@@ -52,7 +52,7 @@ define(
                     defer.resolve()
                 })
 
-                if (deps.length) return defer.promise
+                if (deps.length) return defer.promise()
             },
             render: function() {
                 this.$element = $(this.element)

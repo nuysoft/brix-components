@@ -8,24 +8,36 @@
     list-style-type: none;
     padding-left: 0px;
 
-    .tree-toggle {
-        cursor: pointer;
-    }
+    @padding: 18px;
 
-    .glyphicon {
-        display: inline-block;
-        color: #999;
-    }
+    .tree-node {
+        .tree-node-control {
+            margin-left: @padding;
 
-    .leaf {
-        > .tree-toggle {
-            .glyphicon {
-                visibility: hidden;
+            .tree-node-toggle {
+                float: left;
+                margin-left: -@padding;
+                cursor: pointer;
+
+                .brixfont {
+                    color: #999;
+                }
+
+                .brixfont-plus-sign {
+                    display: none;
+                }
+            }
+
+            .tree-node-content {
+                
             }
         }
+        
+        &.tree-leaf .tree-node-toggle {
+            visibility: hidden;
+        }
     }
-
     .tree {
-        padding-left: 18px;
+        padding-left: @padding;
     }
 }

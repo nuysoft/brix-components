@@ -97,11 +97,11 @@ define(['underscore'], function(_) {
 
         var result = []
         _.each(list, function(item /*, index*/ ) {
-            if (item.pid === undefined) {
+            if (item.pid === undefined && item.parentId === undefined) {
                 result.push(item)
                 return
             }
-            var parent = mapped[item.pid]
+            var parent = mapped[item.pid] || mapped[item.parentId]
             if (!parent.children) parent.children = []
             parent.children.push(item)
         })

@@ -1,4 +1,4 @@
-/* global define, console */
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -45,6 +45,7 @@ define(
                 var html = _.template(template)(this.options.data)
                 this.$element.append(html)
 
+                /* jshint unused:false */
                 linkage(this.$element, function(event, values) {
                     that.trigger('toggle.areapicker', [values])
                 })
