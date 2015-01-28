@@ -1,5 +1,9 @@
 # Tree
 
+树组件。{ .lead }
+
+### 示例 <small>Examples</small>
+
 <div class="bs-example">
     <div class="content">
         <h4>把扁平数据渲染成树结构。</h4>

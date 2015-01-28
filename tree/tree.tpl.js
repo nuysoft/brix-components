@@ -6,8 +6,8 @@ define(function() {
         <li class="tree-node <%= item.children && item.children.length ? '': 'tree-leaf' %>">
             <div class="tree-node-control clearfix">
                 <div class="tree-node-toggle">
-                    <span class="brixfont brixfont-plus-sign">&#xe61d;</span>
-                    <span class="brixfont brixfont-minus-sign">&#xe61e;</span>
+                    <span class="brixfont brixfont-plus-sign">&#xe61f;</span>
+                    <span class="brixfont brixfont-minus-sign">&#xe620;</span>
                 </div>
                 <div class="tree-node-content">
                     <%= contentFn(item) %>
