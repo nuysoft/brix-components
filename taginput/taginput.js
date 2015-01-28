@@ -23,7 +23,8 @@ define(
         _.extend(TagInput.prototype, Brix.prototype, {
             options: {
                 placeholder: '',
-                data: []
+                data: [],
+                limit: 0,
             },
             init: function() {
                 // this._focus = 'input'
@@ -45,13 +46,21 @@ define(
                 manager.delegate(this.$element, this)
                 manager.delegate(this.$relatedElement, this)
 
+                this.$input
+                    .on('focus', function() {
+                        that.triggerHandler('focus' + NAMESPACE)
+                    })
+                    .on('blur', function() {
+                        that.triggerHandler('blur' + NAMESPACE)
+                    })
+
                 Loader.boot(this.$relatedElement, function() {
                     that.suggest = Loader.query('components/suggest', that.$relatedElement)[0]
 
                     /* jshint unused:false */
                     that.suggest.on('change.suggest.done', function(event, value) {
                         that.add(value)
-                        that.$input.focus()
+                            // that.$input.focus()
                     })
                 })
             },
@@ -73,6 +82,8 @@ define(
 
                 if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data])
 
+                if (this.options.limit && this.options.data.length >= this.options.limit) this.$input.hide()
+
                 return this
             },
             // trigger is for internal usage only
@@ -92,7 +103,6 @@ define(
                         this.options.data = _.without(this.options.data, $(item).find(CLASS_ITEM_NAME).text())
                         this.$element.val(this.options.data.join(','))
                         $(event.target).closest(CLASS_ITEM).remove()
-                        this.$input.focus()
 
                     } else {
                         // delete( value )
@@ -114,6 +124,13 @@ define(
                 this._fixInput()
 
                 if (trigger === false) this.trigger('change' + NAMESPACE, [this.options.data])
+
+                if (this.options.limit && this.options.data.length < this.options.limit) this.$input.show()
+
+                // delete(event)
+                if (event && event.type) {
+                    this.$input.focus()
+                }
 
                 return this
             },

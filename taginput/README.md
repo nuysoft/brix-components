@@ -24,6 +24,13 @@
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <p>可以限制词条的个数。</p>
+        <input bx-name="components/taginput" data-limit="3" class="form-control">
+    </div>
+</div>
+
 <script>
     require(['brix/loader', 'underscore', 'mock'], function(Loader, _, Mock) {
         Loader.boot(function() {
