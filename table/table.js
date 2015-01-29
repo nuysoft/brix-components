@@ -27,8 +27,8 @@ define(
                 var that = this
 
                 /* jshint unused:false */
-                linkage(this.element, function(event, values) {
-                    that.trigger('toggle.table', [values])
+                linkage(this.element, function(event, values, target) {
+                    that.trigger('toggle.table', [values, target])
                     that.contextual()
                 })
             },

@@ -46,8 +46,8 @@ define(
                 this.$element.append(html)
 
                 /* jshint unused:false */
-                linkage(this.$element, function(event, values) {
-                    that.trigger('toggle.areapicker', [values])
+                linkage(this.$element, function(event, values, target) {
+                    that.trigger('toggle.areapicker', [values, target])
                 })
             }
         })

@@ -117,10 +117,11 @@
     require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/table')
-            instances.on('toggle.table', function(event, values) {
-                console.log('delegateTarget', event.delegateTarget)
-                console.log('currentTarget', event.currentTarget)
-                console.log('target', event.target)
+            instances.on('toggle.table', function(event, values, target) {
+                console.log('event.delegateTarget', event.delegateTarget)
+                console.log('event.currentTarget', event.currentTarget)
+                console.log('event.target', event.target)
+                console.log('target', target)
                 console.log(event.type, event.namespace, values)
             })
         })
@@ -139,13 +140,13 @@
 
 Event Type | Description
 :--------- | :----------
-toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受两个参数：`event`、`values`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。
+toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受三个参数：`event`、`values`、`target`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。参数 `target` 是被点击的复选框。
 
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/table')[0]
-instances.on('toggle.table', function(event, values) {
-    console.log(event.type, event.namespace, values)
+instances.on('toggle.table', function(event, values, target) {
+    console.log(event.type, event.namespace, values, target)
 })
 ```
 
@@ -217,8 +218,8 @@ require(['components/table/linkage'], function(linkage) {
 
 <script type="text/javascript">
     require(['components/table/linkage'], function(linkage) {
-        linkage('#sexLinkage', function(event, values) {
-            console.log(event, values)
+        linkage('#sexLinkage', function(event, values, target) {
+            console.log(event, values, target)
         })
     })
 </script>

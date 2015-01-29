@@ -23,7 +23,7 @@ define(
                 _parent($(event.currentTarget), $(event.delegateTarget))
                 _children($(event.currentTarget), $(event.delegateTarget))
 
-                if (callback) callback(event, linkage.val(container))
+                if (callback) callback(event, linkage.val(container), event.currentTarget)
             })
         }
 
