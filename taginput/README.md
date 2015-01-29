@@ -31,6 +31,13 @@
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <p>设置属性 `data-suggest="false"` 可以关闭 Suggest 组件。</p>
+        <input bx-name="components/taginput" data-suggest="false" class="form-control">
+    </div>
+</div>
+
 <script>
     require(['brix/loader', 'underscore', 'mock'], function(Loader, _, Mock) {
         Loader.boot(function() {
@@ -64,6 +71,7 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 data | array | `[]` | 初始值。例如 `['foo', 'bar', 'baz']`。
 placeholder | string | `''` | 描述预期值的简短提示。
+suggest | boolean | `true` | 指示是否关闭 Suggest 组件。默认启用。
 
 ### 方法 <small>Methods</small>
 

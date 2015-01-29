@@ -25,6 +25,7 @@ define(
                 placeholder: '',
                 data: [],
                 limit: 0,
+                suggest: true
             },
             init: function() {
                 // this._focus = 'input'
@@ -38,6 +39,7 @@ define(
                 this.$relatedElement = $(html).insertAfter(this.$element)
                 this.$input = this.$relatedElement.find('input')
                 if (this.options.placeholder) this.$input.attr('placeholder', this.options.placeholder)
+                if (!this.options.suggest) this.$input.hide()
 
                 this.val(this.options.data, false)
 
@@ -103,6 +105,7 @@ define(
                         this.options.data = _.without(this.options.data, $(item).find(CLASS_ITEM_NAME).text())
                         this.$element.val(this.options.data.join(','))
                         $(event.target).closest(CLASS_ITEM).remove()
+                        event.preventDefault()
 
                     } else {
                         // delete( value )
