@@ -52,7 +52,7 @@ define(
                 limits: [10, 20, 30, 40, 50]
             },
             init: function() {
-                this._status = new PurePagination(
+                this._state = new PurePagination(
                     this.options.total,
                     this.options.cursor,
                     this.options.limit
@@ -73,8 +73,8 @@ define(
                     that.dropdown = Loader.query('components/dropdown', that.element)[0]
                         /* jshint unused:false */
                     that.dropdown.on('change.dropdown', function(event, data) {
-                        that._status.setLimit(data.value)
-                        that.trigger('change.pagination', that._status)
+                        that._state.setLimit(data.value)
+                        that.trigger('change.pagination', that._state)
                         that.render()
                     })
                 })
@@ -82,16 +82,16 @@ define(
             moveTo: function(event, extra) { // extraParameters
                 // moveTo( cursor )
                 if (arguments.length === 1) extra = event
-                this._status.moveTo(extra)
-                this.trigger('change.pagination', this._status)
+                this._state.moveTo(extra)
+                this.trigger('change.pagination', this._state)
                 this.render()
             },
             fixData: function() {
                 var barStart = Math.min(
-                    this._status.pages,
+                    this._state.pages,
                     Math.max(
                         1,
-                        this._status.cursor - parseInt(this.options.step / 2, 10)
+                        this._state.cursor - parseInt(this.options.step / 2, 10)
                     )
                 )
                 var limit = +this.options.limit
@@ -115,9 +115,9 @@ define(
                 }
                 return _.extend({
                     barStart: barStart,
-                    barEnd: Math.min(this._status.pages, barStart + this.options.step - 1),
+                    barEnd: Math.min(this._state.pages, barStart + this.options.step - 1),
                     limits: limits
-                }, this._status)
+                }, this._state)
             }
         })
 

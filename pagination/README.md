@@ -46,12 +46,12 @@ change.pagination | 当分页状态变化时被触发。
 ```js
 var Loader = require('brix/loader')
 Loader.query('components/pagination')
-    .on('change.pagination', function(event, status) {
-        console.log(event, status)
+    .on('change.pagination', function(event, state) {
+        console.log(event, state)
     })
 ```
 
-上面代码中的参数 `status` 是一个对象，其中包含了有关分页状态的所有信息：
+上面代码中的参数 `state` 是一个对象，其中包含了有关分页状态的所有信息：
 
 ```json
 {
