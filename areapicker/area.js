@@ -92,16 +92,19 @@ define(['underscore'], function(_) {
     function tree(list) {
         var mapped = {}
         _.each(list, function(item /*, index*/ ) {
+            if (!item || !item.id) return
             mapped[item.id] = item
         })
 
         var result = []
         _.each(list, function(item /*, index*/ ) {
+            if (!item) return
             if (item.pid === undefined && item.parentId === undefined) {
                 result.push(item)
                 return
             }
             var parent = mapped[item.pid] || mapped[item.parentId]
+            if (!parent) return
             if (!parent.children) parent.children = []
             parent.children.push(item)
         })

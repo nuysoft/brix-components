@@ -1,3 +1,1 @@
-<span><%= id %></span>
- -
-<span><%= name %></span>
+<span class="tree-node-content-name"><%= name %></span>

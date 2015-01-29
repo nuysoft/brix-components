@@ -4,6 +4,13 @@
     <span class="glyphicon glyphicon-folder-close"></span>
     <span class="glyphicon glyphicon-folder-open"></span>
  */
+.tree-wrapper {
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+}
+
 .tree {
     list-style-type: none;
     padding-left: 0px;
@@ -23,13 +30,25 @@
                     color: #999;
                 }
 
-                .brixfont-plus-sign {
+                .plus-sign {
                     display: none;
                 }
             }
 
             .tree-node-content {
+                padding: 2px 5px;
+
+                &:hover {
+                    color: #262626;
+                    background-color: #f5f5f5;
+                }
                 
+                .tree-node-content-name {
+                    .highlight {
+                        background-color: yellow;
+                        font-weight: bold;
+                    }
+                }
             }
         }
         

@@ -4,6 +4,12 @@
     <span class="glyphicon glyphicon-folder-close"></span>
     <span class="glyphicon glyphicon-folder-open"></span>
  */
+.tree-wrapper {
+  margin-top: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+}
 .tree {
   list-style-type: none;
   padding-left: 0px;
@@ -19,8 +25,19 @@
 .tree .tree-node .tree-node-control .tree-node-toggle .brixfont {
   color: #999;
 }
-.tree .tree-node .tree-node-control .tree-node-toggle .brixfont-plus-sign {
+.tree .tree-node .tree-node-control .tree-node-toggle .plus-sign {
   display: none;
+}
+.tree .tree-node .tree-node-control .tree-node-content {
+  padding: 2px 5px;
+}
+.tree .tree-node .tree-node-control .tree-node-content:hover {
+  color: #262626;
+  background-color: #f5f5f5;
+}
+.tree .tree-node .tree-node-control .tree-node-content .tree-node-content-name .highlight {
+  background-color: yellow;
+  font-weight: bold;
 }
 .tree .tree-node.tree-leaf .tree-node-toggle {
   visibility: hidden;
