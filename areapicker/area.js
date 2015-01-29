@@ -99,7 +99,7 @@ define(['underscore'], function(_) {
         var result = []
         _.each(list, function(item /*, index*/ ) {
             if (!item) return
-            if (item.pid === undefined && item.parentId === undefined) {
+            if (item.pid == undefined && item.parentId == undefined) {
                 result.push(item)
                 return
             }

@@ -31,7 +31,10 @@ define(
         function Tree() {}
 
         _.extend(Tree.prototype, Brix.prototype, {
-            options: {},
+            options: {
+                data: undefined,
+                nodeTemplate: undefined
+            },
             init: function() {
                 var that = this
                 var defer = $.Deferred()
@@ -57,8 +60,8 @@ define(
                 var mapped = {}
                 _.each(this.options.data, function(item, index) {
                     if (!item || !item.id) return
-                    if (item.pid !== undefined && item.parentId === undefined) item.parentId = item.pid
-                    if (item.pid === undefined && item.parentId !== undefined) item.pid = item.parentId
+                    if (item.pid != undefined && item.parentId == undefined) item.parentId = item.pid
+                    if (item.pid == undefined && item.parentId != undefined) item.pid = item.parentId
                     mapped[item.id] = item
                 })
                 this.options.mapped = mapped
@@ -116,7 +119,7 @@ define(
                     .find('> ul.tree').slideUp('fast')
             },
             search: function(value) {
-                if (value == undefined) return
+                if (value === undefined) return
 
                 var that = this
                 $('li[data-node-id]', this.$element).hide()

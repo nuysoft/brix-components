@@ -47,7 +47,14 @@
         </div>
     </div>
 </div>
-
+<div class="bs-example">
+    <div class="content">
+        <h4>把扁平数据渲染成树结构。</h4>
+        <div bx-name="components/tree" class="tree-wrapper">
+            [{"id":2,"parentId":null,"name":"test2","order":1},{"id":3,"parentId":null,"name":"test3","order":2},{"id":1,"parentId":null,"name":"test1","order":3},{"id":12,"parentId":1,"name":"test12","order":1},{"id":11,"parentId":1,"name":"test11","order":2},{"id":32,"parentId":3,"name":"test32","order":3},{"id":21,"parentId":2,"name":"test21","order":4},{"id":31,"parentId":3,"name":"test31","order":5}] 
+        </div>
+    </div>
+</div>
 
 <script id="custom_tree_node_template" type="text/template">
     <div>
@@ -86,6 +93,24 @@
         </div>
     </div>
 </div>
+
+模块 `custom/tree/node/template` 的内容如下：
+
+```html
+<script id="custom_tree_node_template" type="text/template">
+    <div>
+        id: <%= id %>,
+        name: <span class="tree-node-content-name"><%= name %></span>,
+        <span style="float: right;">count: 9999,</span>
+        operation: <a href="#" style="float: right;">+</a>
+    </div>
+</script>
+<script>
+    define('custom/tree/node/template', function() {
+        return document.getElementById('custom_tree_node_template').innerHTML
+    })
+</script>
+```
 
 <div class="bs-example">
     <div class="content">
@@ -146,24 +171,6 @@
     })
 </script>
 
-模块 `custom/tree/node/template` 的内容如下：
-
-```html
-<script id="custom_tree_node_template" type="text/template">
-    <div>
-        id: <%= id %>,
-        name: <span class="tree-node-content-name"><%= name %></span>,
-        <span style="float: right;">count: 9999,</span>
-        operation: <a href="#" style="float: right;">+</a>
-    </div>
-</script>
-<script>
-    define('custom/tree/node/template', function() {
-        return document.getElementById('custom_tree_node_template').innerHTML
-    })
-</script>
-```
-
 <div class="bs-example">
     <div class="content">
         <h4>TagInput + Tree + SearchInput 示例</h4>
@@ -203,19 +210,11 @@
     })
     Loader.boot(function(){
         var tree = Loader.query($('#demoTree'))
-        var taginput = Loader.query($('#demoTagInput'))
         tree.on('click.tree',function(event, data, target){
             if (event.namespace !== 'tree') return
-            console.log(arguments)
+            console.log(event, data, target)
+            var taginput = Loader.query($('#demoTagInput'))
             taginput.add(data.name)
-        })
-        tree.on('mouseenter.tree',function(event, data, target){
-            if (event.namespace !== 'tree') return
-            console.log(arguments)
-        })
-        tree.on('mouseleave.tree',function(event, data, target){
-            if (event.namespace !== 'tree') return
-            console.log(arguments)
         })
         // $('#demoTree').on('click', '.tree-node-content', function(event){
         //     var taginput = Loader.query($('#demoTagInput'))
@@ -223,3 +222,58 @@
         // })    
     })
 </script>
+
+
+### 配置 <small>Options</small>
+
+配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+data | array | - | 必须。描述树结构的扁平数据。示例见上面的示例。
+nodeTemplate | array | - | 可选。自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。
+
+
+### 方法 <small>Methods</small>
+
+#### .expand( id )
+
+* .expand( id )
+* .expand()
+* .expand( event, id )
+
+#### .collapse( id )
+
+* .collapse( id )
+* .collapse()
+* .collapse( event, id )
+
+#### .search( value )
+
+* .search( value )
+
+
+### 事件 <small>Events</small>
+
+Event Type | Description
+:--------- | :----------
+click.tree | -
+mouseenter.tree | -
+mouseleave.tree | -
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/tree')
+instances.on('click.tree', function(event, data, target) {
+    if (event.namespace !== 'tree') return
+    console.log(event, data, target)
+})
+instances.on('mouseenter.tree', function(event, data, target) {
+    if (event.namespace !== 'tree') return
+    console.log(event, data, target)
+})
+instances.on('mouseleave.tree', function(event, data, target) {
+    if (event.namespace !== 'tree') return
+    console.log(event, data, target)
+})
+```
