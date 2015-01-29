@@ -91,9 +91,10 @@
 }
 .hourpicker table.picker-days .picker-day .picker-label {
   vertical-align: middle;
+  cursor: default;
 }
 .hourpicker table.picker-days .picker-day .picker-hours {
-  height: 70px;
+  height: 60px;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour {
   position: relative;

@@ -13,31 +13,6 @@ define(
         position,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                TODO
-            ### 属性
-                TODO
-            ### 方法
-                TODO
-            ### 事件
-                TODO
-            ===
-
-            ### 公共选项
-                data template css
-            ### 公共属性
-                element relatedElement 
-                moduleId clientId parentClientId childClientIds 
-                data template css
-            ### 公共方法
-                .render()
-            ### 公共事件
-                ready destroyed
-
-        */
 
         var DEBUG = ~location.search.indexOf('debug')
 
@@ -77,6 +52,8 @@ define(
                     $target.toggleClass('active')
                     that._merge()
 
+                    $('.shortcuts input[name=shortcut]', this.$element).prop('checked', false)
+
                     var siblings = $(this).siblings()
                     siblings.on('mouseenter.drag', function(event) {
                         var $target = $(this)
@@ -93,6 +70,8 @@ define(
                     event.preventDefault()
                 })
             },
+            // { day: [] }
+            // day, hours []
             val: function() {
                 // picker-day picker-hour
                 return arguments.length ?
@@ -101,7 +80,17 @@ define(
             },
             /* jshint unused:true */
             shortcut: function(event, days) {
+                days += ''
                 var hours = _.range(0, 24)
+
+                if (days.length === 1) {
+                    var tmpDayHours = this.val()[days]
+                    if (tmpDayHours.length === 24) this.val(days, [])
+                    else this.val(days, hours)
+                    event.preventDefault()
+                    return
+                }
+
                 var mapped = {}
                 _.each(days, function(day /*, index*/ ) {
                     mapped[day] = hours
@@ -111,7 +100,7 @@ define(
             apply: function(event, todo, day) {
                 var that = this
                 var $target = $(event.target)
-                var $relatedElement = $('.apply-dialog')
+                var $relatedElement = $('.apply-dialog', this.$element)
                 switch (todo) {
                     case 'to':
                         this._tmp = this._tmp || {}

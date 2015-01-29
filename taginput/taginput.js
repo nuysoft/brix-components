@@ -32,6 +32,7 @@ define(
             },
             render: function() {
                 var that = this
+                var defer = $.Deferred()
                 var manager = new EventManager()
                 this.$element = $(this.element).hide()
 
@@ -64,7 +65,11 @@ define(
                         that.add(value)
                             // that.$input.focus()
                     })
+
+                    defer.resolve()
                 })
+
+                // return defer.promise()
             },
             // trigger is for internal usage only
             add: function(value, trigger) {
@@ -126,7 +131,7 @@ define(
 
                 this._fixInput()
 
-                if (trigger === false) this.trigger('change' + NAMESPACE, [this.options.data])
+                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data])
 
                 if (this.options.limit && this.options.data.length < this.options.limit) this.$input.show()
 
