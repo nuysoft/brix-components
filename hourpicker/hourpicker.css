@@ -13,10 +13,13 @@
   border-radius: 6px;
   outline: 0;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  padding: 15px 45px 15px 15px;
+  padding: 15px;
 }
 .hourpicker .apply-dialog .apply-dialog-body label {
   display: block;
+}
+.hourpicker .apply-dialog .apply-dialog-body label.disabled {
+  color: #999;
 }
 .hourpicker .apply-dialog .apply-dialog-body label input {
   margin-right: 5px;
@@ -95,35 +98,36 @@
 }
 .hourpicker table.picker-days .picker-day .picker-hours {
   height: 60px;
+  padding: 5px 0;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour {
   position: relative;
   width: 4%;
   display: inline-block;
   height: 100%;
-  top: 5px;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour:last-child {
   width: 0;
 }
-.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-line {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-line,
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-duration {
   position: absolute;
   left: 0px;
-  top: 15px;
+  top: 30%;
+}
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-line {
   display: inline-block;
-  height: 10px;
   width: 1px;
+  height: 20%;
   border-left: 1px solid #999;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour.milestone .picker-hour-line {
-  height: 20px;
+  height: 40%;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-duration {
-  position: absolute;
   display: inline-block;
   width: 100%;
-  height: 20px;
-  top: 15px;
+  height: 40%;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour.active .picker-hour-duration {
   background-color: #2378FF;

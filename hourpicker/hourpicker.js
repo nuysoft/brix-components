@@ -109,9 +109,13 @@ define(
                         var offset = position($target, $relatedElement, 'bottom', 'right')
                         $relatedElement.show().offset(offset)
                         $relatedElement
-                            .find('input').prop('checked', false).end()
-                            .find('label[data-value] input').prop('disabled', false).end()
-                            .find('label[data-value=' + day + '] input').prop('disabled', true)
+                            .find('label[data-value]').removeClass('disabled')
+                            .find('input[name="shortcut"]').prop({
+                                'checked': false,
+                                'disabled': false
+                            }).end().end()
+                            .find('label[data-value=' + day + ']').addClass('disabled')
+                            .find('input').prop('disabled', true)
                         break
                     case 'do':
                         var days = _.map($relatedElement.find('input:checked'), function(item /*, index*/ ) {
