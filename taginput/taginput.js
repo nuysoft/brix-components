@@ -1,4 +1,4 @@
-/* global define, console */
+/* global define, document, console */
 define(
     [
         'jquery', 'underscore',
@@ -68,6 +68,30 @@ define(
 
                     defer.resolve()
                 })
+
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
+                        if (event.target === that.element || // 点击组件节点
+                            $.contains(that.element, event.target) || // 点击组件子节点
+                            event.target === that.$relatedElement[0] || // 点击组件关联节点
+                            $.contains(that.$relatedElement[0], event.target) || // 点击组件关联子节点
+                            !event.target.parentNode // 点击不存在节点
+                        ) {
+                            that.trigger(
+                                $.Event('active' + NAMESPACE, {
+                                    target: event.target
+                                })
+                            )
+                            return
+                        }
+
+                        that.trigger(
+                            $.Event('inactive' + NAMESPACE, {
+                                target: event.target
+                            })
+                        )
+                    })
 
                 // return defer.promise()
             },

@@ -1,5 +1,7 @@
 .taginput {
   position: relative;
+  font-size: 75%;
+  padding: 4px;
 }
 .taginput .taginput-placeholder {
   display: inline-block;
@@ -7,7 +9,7 @@
 .taginput .taginput-item {
   position: relative;
   display: inline-block;
-  margin: 0px 4px 2px 0;
+  margin: 0px 4px 0px 0;
   cursor: pointer;
   background-color: #EEE;
   border-radius: 4px;
@@ -19,16 +21,18 @@
   background-color: #497ED9;
   color: #FFF;
 }
-.taginput .taginput-item .taginput-item-name {
+.taginput .taginput-item .taginput-item-name,
+.taginput .taginput-item .taginput-item-delete {
   display: inline-block;
   padding: 2px 4px 2px 4px;
+}
+.taginput .taginput-item .taginput-item-name {
+  float: left;
   border-right: 1px solid #FFF;
 }
 .taginput .taginput-item .taginput-item-delete {
-  display: inline-block;
-  width: 16px;
-  text-align: center;
-  font-size: 10px;
+  font-size: 75%;
+  color: #999;
 }
 .taginput .taginput-input {
   border: none;
