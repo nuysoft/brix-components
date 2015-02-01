@@ -47,7 +47,7 @@ define(
                 $(this.element).append(template)
 
                 var defer = $.Deferred()
-                this.load(function(response /*, status, xhr*/ ) {
+                this.loadDoc(function(response /*, status, xhr*/ ) {
                     Loader.boot(that.element, function() {
                         var spin = Loader.query('components/spin', that.element)
                         Loader.destroy(spin, function() {
@@ -80,9 +80,9 @@ define(
                     })
                 })
 
-                return defer.promise
+                // return defer.promise()
             },
-            load: function(done) {
+            loadDoc: function(done) {
                 // 模拟延时加载
                 // var that = this
                 // var deferred = $.Deferred()
