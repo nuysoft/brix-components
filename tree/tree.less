@@ -5,10 +5,10 @@
     <span class="glyphicon glyphicon-folder-open"></span>
  */
 .tree-wrapper {
-    margin-top: 2px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 2px 0 0;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 15px;
 }
 
 .tree {
@@ -20,11 +20,18 @@
     .tree-node {
         .tree-node-control {
             margin-left: @padding;
+            white-space: nowrap;
+
+            &:hover {
+                color: #262626;
+                background-color: #f5f5f5;
+            }
 
             .tree-node-toggle {
                 float: left;
                 margin-left: -@padding;
                 cursor: pointer;
+                padding: 2px 5px;
 
                 .brixfont {
                     color: #999;
@@ -38,11 +45,6 @@
             .tree-node-content {
                 padding: 2px 5px;
 
-                &:hover {
-                    color: #262626;
-                    background-color: #f5f5f5;
-                }
-                
                 .tree-node-content-name {
                     .highlight {
                         background-color: yellow;

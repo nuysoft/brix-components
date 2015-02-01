@@ -72,7 +72,7 @@
 
 <div class="bs-example">
     <div class="content">
-        <h4>通过设置属性 `data-node-template` 可以自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。</h4>
+        <h4>通过设置属性 `data-node-template` 自定义节点模板。</h4>
         <div bx-name="components/tree" data-node-template="custom/tree/node/template" class="tree-wrapper">
             [
                 { id: '华北', name: '华北' },
@@ -114,7 +114,7 @@
 
 <div class="bs-example">
     <div class="content">
-        <h4>你也可以在每条数据上附加一个 `content` 属性，指定节点渲染时的内容。</h4>
+        <h4>也可以在每条数据上附加一个 `content` 属性，指定节点渲染时的内容。</h4>
         <div bx-name="components/tree" class="tree-wrapper">
             [
                 { id: '华北', name: '华北', content: '<i>hello</i>' },
@@ -177,7 +177,7 @@
         <div>
             <input id="demoTagInput" bx-name="components/taginput" data-suggest="false" class="form-control">
             <div class="input-group" style="margin-top: 2px;">
-              <input id="demoSearchInput" type="text" class="form-control" >
+              <input id="demoSearchInput" type="text" placeholder="华北" class="form-control" >
               <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
             </div>
             <div id="demoTree" bx-name="components/tree" class="tree-wrapper">
@@ -213,14 +213,70 @@
         tree.on('click.tree',function(event, data, target){
             if (event.namespace !== 'tree') return
             console.log(event, data, target)
+
             var taginput = Loader.query($('#demoTagInput'))
             taginput.add(data.name)
         })
-        // $('#demoTree').on('click', '.tree-node-content', function(event){
-        //     var taginput = Loader.query($('#demoTagInput'))
-        //     taginput.add(event.target.innerText)
-        // })    
     })
+</script>
+
+<div class="bs-example">
+    <div class="content">
+        <h4>TagInput + Tree 的 `active`、`inactive` 事件示例</h4>
+        <div>
+            <input id="demoTagInput2" bx-name="components/taginput" data-suggest="false" class="form-control">
+            <div id="demoTree2" bx-name="components/tree" class="tree-wrapper">
+                [
+                    { id: '华北', name: '华北', content: '<i class="tree-node-content-name">华北</i>' },
+                    { id: '东北', name: '东北' },
+                    { id: '华东', name: '华东' },
+                    { id: '华南', name: '华南' },
+                    { id: '华中', name: '华中' },
+                    { id: '西南', name: '西南' },
+                    { id: '西北', name: '西北' },
+                    { id: '港澳台', name: '港澳台' },
+                    { id: 110000, parentId: '华北', name: '北京市', content: '<i>北京市</i>' },
+                    { id: 120000, parentId: '华北', name: '天津市' },
+                    { id: 130000, parentId: '华北', name: '河北省' },
+                    { id: 140000, parentId: '华北', name: '山西省' },
+                    { id: 150000, parentId: '华北', name: '内蒙古自治区' }
+                ]
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var Loader = require('brix/loader')
+    Loader.boot(function(){
+        var taginput = Loader.query($('#demoTagInput2'))[0]
+        var tree = Loader.query($('#demoTree2'))[0]
+        taginput.on('active.taginput', function(event) {
+            if (event.namespace !== 'taginput') return
+            $(tree.element).show()
+        })
+        taginput.on('inactive.taginput', function(event) {
+            if (event.namespace !== 'taginput') return
+            $(tree.element).hide()
+        })
+        tree.on('inactive.tree', function(event) {
+            if (event.namespace !== 'tree') return
+            // debugger
+        })
+        tree.on('click.tree', function(event, data, target) {
+            if (event.namespace !== 'tree') return
+            taginput.add(data.name)
+        })
+    })
+</script>
+
+<script>
+    // Loader.boot(function() {
+    //     var instances = Loader.query('components/taginput')
+    //     instances.on('active.taginput inactive.taginput', function(event) {
+    //         console.log(event)
+    //     })
+    // })
 </script>
 
 

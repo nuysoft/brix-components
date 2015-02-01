@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define, require, document */
 /*
     Tree
     * Node
@@ -41,7 +41,7 @@ define(
 
                 // 支持自定义 HTML 模板 template
                 var deps = []
-                var customNodeTemplate = this.options['nodeTemplate'] || this.options['node-template']
+                var customNodeTemplate = this.options.nodeTemplate || this.options['node-template']
                 if (customNodeTemplate) deps.push(customNodeTemplate)
                 require(deps, function() {
                     if (customNodeTemplate) that.options.customNodeTemplate = arguments[0]
@@ -58,10 +58,13 @@ define(
                 }
 
                 var mapped = {}
-                _.each(this.options.data, function(item, index) {
+                _.each(this.options.data, function(item /*, index*/ ) {
                     if (!item || !item.id) return
-                    if (item.pid != undefined && item.parentId == undefined) item.parentId = item.pid
-                    if (item.pid == undefined && item.parentId != undefined) item.pid = item.parentId
+
+                    /*jshint eqnull:true */
+                    if (item.pid != null && item.parentId == null) item.parentId = item.pid
+                    if (item.pid == null && item.parentId != null) item.pid = item.parentId
+
                     mapped[item.id] = item
                 })
                 this.options.mapped = mapped
@@ -75,6 +78,7 @@ define(
                 if (deps.length) return defer.promise()
             },
             render: function() {
+                var that = this
                 var manager = new EventManager()
                 this.$element = $(this.element)
 
@@ -84,6 +88,28 @@ define(
                 )
 
                 manager.delegate(this.$element, this)
+
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
+                        if (event.target === that.element || // 点击组件节点
+                            $.contains(that.element, event.target) || // 点击组件子节点
+                            !event.target.parentNode // 点击不存在节点
+                        ) {
+                            that.trigger(
+                                $.Event('active' + NAMESPACE, {
+                                    target: event.target
+                                })
+                            )
+                            return
+                        }
+
+                        that.trigger(
+                            $.Event('inactive' + NAMESPACE, {
+                                target: event.target
+                            })
+                        )
+                    })
             },
             toggle: function(event, id) {
                 var selector
@@ -125,13 +151,13 @@ define(
                 $('li[data-node-id]', this.$element).hide()
 
                 var matched = []
-                _.each(this.options.mapped, function(item, id) {
+                _.each(this.options.mapped, function(item /*, id*/ ) {
                     if (item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1) {
                         matched.push(item)
                         clan(item, matched)
                     }
                 })
-                _.each(_.uniq(matched), function(item, index) {
+                _.each(_.uniq(matched), function(item /*, index*/ ) {
                     that.expand(item.id)
                 })
 
@@ -146,7 +172,7 @@ define(
 
                 function highlight($container, value) {
                     var value_re = new RegExp(value, 'ig')
-                    _.each($('.tree-node-content-name', $container), function(item, index) {
+                    _.each($('.tree-node-content-name', $container), function(item /*, index*/ ) {
                         var $item = $(item)
                         $item.html(
                             $item.text().replace(value_re, function(matched) {
