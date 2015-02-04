@@ -33,6 +33,13 @@
 
 <div class="bs-example">
     <div class="content">
+        <p>不允许增加重复值。</p>
+        <input bx-name="components/taginput" data-limit="3" data-same="false" class="form-control">
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
         <p>设置属性 `data-suggest="false"` 可以关闭 Suggest 组件。</p>
         <input bx-name="components/taginput" data-suggest="false" class="form-control">
     </div>
@@ -53,8 +60,8 @@
                         _.difference(
                             _.filter(data, function(item, index) {
                                 return ('' + item).indexOf(value) !== -1
-                            }),
-                            taginput.val()
+                            })
+                            , taginput.val()
                         )
                     )
                 })
@@ -166,4 +173,15 @@ instances.on('change.taginput', function(event, extra) {
     console.log(event, extra)
 })
 ```
-
+<script type="text/javascript">
+    // require(['brix/loader', 'underscore'], function(Loader, _){
+    //     Loader.boot(function(){
+    //         var instances = Loader.query('components/taginput')
+    //         _.each(instances, function(item, index){
+    //             item.on('active.taginput inactive.taginput', function(event) {
+    //                 console.log(item.clientId, event.type, event.namespace)
+    //             })    
+    //         })
+    //     })
+    // })
+</script>

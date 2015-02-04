@@ -25,6 +25,7 @@ define(
                 placeholder: '',
                 data: [],
                 limit: 0,
+                same: true,
                 suggest: true
             },
             init: function() {
@@ -76,7 +77,12 @@ define(
                             $.contains(that.element, event.target) || // 点击组件子节点
                             event.target === that.$relatedElement[0] || // 点击组件关联节点
                             $.contains(that.$relatedElement[0], event.target) || // 点击组件关联子节点
-                            !event.target.parentNode // 点击不存在节点
+                            (
+                                // 点击不存在节点
+                                !$.contains(document.body, event.target) &&
+                                $(event.target).closest('.taginput-item-delete').length &&
+                                $(event.target).closest('.taginput-item-delete').attr('data-taginput-clientid') == that.clientId
+                            )
                         ) {
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
@@ -100,11 +106,18 @@ define(
                 value += ''
                 if (value.length === 0) return
 
+                // 如果选项 same 为 false，则不允许插入重复的值
+                if (!this.options.same && _.indexOf(this.options.data, value) !== -1) {
+                    this.$input.val('')
+                    return
+                }
+
                 this.options.data.push(value)
                 this.$element.val(this.options.data.join(','))
 
                 var itemHTML = _.template(itemTemplate)({
-                    data: value
+                    data: value,
+                    clientId: this.clientId
                 })
                 $(itemHTML).insertBefore(this.$input)
 
