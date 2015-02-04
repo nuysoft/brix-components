@@ -1,4 +1,7 @@
 /* global define */
+/*
+    http://kimmobrunfeldt.github.io/progressbar.js/
+ */
 define(
     [
         'jquery', 'underscore', 'progressbar',
@@ -21,13 +24,12 @@ define(
                 },
                 type: 'Line'
             },
-            init: function() {},
+            init: function() {
+                this.options.type = this.options.TYPES[this.options.type.toLowerCase()]
+            },
             render: function() {
-                var type = this.options.TYPES[this.options.type.toLowerCase()]
-                var shape = new ProgressBar[type](this.element, this.options)
-                if (this.options.progress) shape.animate(+this.options.progress)
-                
-                this.shape = shape
+                this.shape = new ProgressBar[this.options.type](this.element, this.options)
+                if (this.options.progress) this.shape.animate(+this.options.progress)
             }
         })
 
