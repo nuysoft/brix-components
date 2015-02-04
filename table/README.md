@@ -208,6 +208,12 @@ require(['components/table/linkage'], function(linkage) {
                     <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="2"> 2.2</label>
                     <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="2"> 2.3</label>
                 </li>
+                <li>
+                    <label><input type="checkbox" data-linkage-name="3" data-linkage-parent-name="all"> 不限</label>
+                    <label><input type="checkbox" value="2.1" data-linkage-name="2.1" data-linkage-parent-name="3"> 2.1</label>
+                    <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="3"> 2.2</label>
+                    <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="3"> 2.3</label>
+                </li>
             </ul>
         </div>
     </div>

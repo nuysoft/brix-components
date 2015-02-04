@@ -32,8 +32,10 @@ define(
                 var checkboxs = $(container).find('input:checkbox').prop('checked', false)
                 _.each(values, function(item /*, index*/ ) {
                     var $target = checkboxs.filter('[value="' + item + '"]').prop('checked', true)
-                    _parent($target, $(container))
-                    _children($target, $(container))
+                    _.each($target, function(item /*, index*/ ) {
+                        _parent($(item), $(container))
+                        _children($(item), $(container))
+                    })
                 })
                 return linkage
             }
