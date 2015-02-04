@@ -29,7 +29,7 @@ define(
                 suggest: true
             },
             init: function() {
-                // this._focus = 'input'
+                this.options.limit = +this.options.limit
             },
             render: function() {
                 var that = this
@@ -106,9 +106,14 @@ define(
                 value += ''
                 if (value.length === 0) return
 
-                // 如果选项 same 为 false，则不允许插入重复的值
+                // 如果选项 same 为 false，则不允许插入重复的值。
                 if (!this.options.same && _.indexOf(this.options.data, value) !== -1) {
                     this.$input.val('')
+                    return
+                }
+
+                // 如果选项 limit 不是 0，则值的个数不允许超过它。
+                if (this.options.limit && this.options.data.length >= this.options.limit) {
                     return
                 }
 
