@@ -30,7 +30,8 @@
     "colors": "*",
     "handlebars": "~2.0.0",
     "swfobject": "*",
-    "accountingjs": "~0.3.2"
+    "accountingjs": "~0.3.2",
+    "progressbar.js": "~0.7.4"
   },
   "devDependencies": {}
 }
