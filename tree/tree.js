@@ -49,6 +49,7 @@ define(
                 })
 
                 if (!this.options.data) {
+                    $(this.element).find('script').remove()
                     var text = $.trim(this.element.innerHTML)
                         /* jshint evil:true */
                     this.options.data = eval(
