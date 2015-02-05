@@ -66,6 +66,8 @@ define(
             },
             close: function() {
                 this.dialog.close()
+                var vframe = new Magix.Vframe(DIALOG_VIEW_ID)
+                if (vframe && vframe.view) vframe.unmountView()
             }
         })
 
