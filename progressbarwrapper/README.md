@@ -1,4 +1,4 @@
-# progressbarwrapper
+# ProgressBarWrapper
 
 Lorem ipsum{ .lead }
 
