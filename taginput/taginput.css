@@ -31,6 +31,7 @@
   border-right: 1px solid #FFF;
 }
 .taginput .taginput-item .taginput-item-delete {
+  width: 20px;
   font-size: 75%;
   color: #999;
 }
