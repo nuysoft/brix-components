@@ -51,7 +51,7 @@ define(
             },
             render: function() {},
             fill: function() {
-                var vframe = new Magix.Vframe(DIALOG_VIEW_ID)
+                var vframe = Magix.VOM.get(DIALOG_VIEW_ID) || new Magix.Vframe(DIALOG_VIEW_ID)
                 if (vframe && vframe.view) vframe.unmountView()
                 vframe.mountView(this.options.view.name, this.options.view.options)
                     // console.log($('#' + DIALOG_VIEW_ID))
@@ -66,7 +66,8 @@ define(
             },
             close: function() {
                 this.dialog.close()
-                var vframe = new Magix.Vframe(DIALOG_VIEW_ID)
+
+                var vframe = Magix.VOM.get(DIALOG_VIEW_ID)
                 if (vframe && vframe.view) vframe.unmountView()
             }
         })
