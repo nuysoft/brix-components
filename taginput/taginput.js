@@ -81,7 +81,7 @@ define(
                     trees.on('active.taginput inactive.taginput', function(e){ console.log(e.type, e.namespace, e.target) } )
                  */
                 var type = 'click' + NAMESPACE + '_' + this.clientId
-                this._state = 'inactive'
+                this._state = STATE.INACTIVE
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
@@ -101,23 +101,25 @@ define(
                                     target: event.target
                                 })
                             )
-                            that._state = 'active'
+                            that._state = STATE.ACTIVE
                             return
                         }
 
-                        if (that._state === 'inactive') return
+                        if (that._state === STATE.INACTIVE) return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
                             })
                         )
-                        that._state = 'inactive'
+                        that._state = STATE.INACTIVE
                     })
 
                 // return defer.promise()
             },
             // trigger is for internal usage only
             add: function(value, trigger) {
+                this._state = STATE.ACTIVE
+
                 value += ''
                 if (value.length === 0) return
 
