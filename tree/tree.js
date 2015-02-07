@@ -49,7 +49,9 @@ define(
                 })
 
                 if (!this.options.data) {
+                    // 解析数据时先移除 BiSheng 插入的 script 节点
                     $(this.element).find('script').remove()
+
                     var text = $.trim(this.element.innerHTML)
                         /* jshint evil:true */
                     this.options.data = eval(
@@ -90,26 +92,36 @@ define(
 
                 manager.delegate(this.$element, this)
 
+                /*
+                    var Loader = require('brix/loader')
+                    var trees = Loader.query('components/taginput')
+                    trees.on('active.taginput inactive.taginput', function(e){ console.log(e.type, e.namespace, e.target) } )
+                 */
                 var type = 'click' + NAMESPACE + '_' + this.clientId
+                var state = 'inactive'
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
                             $.contains(that.element, event.target) || // 点击组件子节点
                             !event.target.parentNode // 点击不存在节点
                         ) {
+                            if (state === 'active') return
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
                                     target: event.target
                                 })
                             )
+                            state = 'active'
                             return
                         }
 
+                        if (state === 'inactive') return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
                             })
                         )
+                        state = 'inactive'
                     })
             },
             toggle: function(event, id) {

@@ -116,8 +116,9 @@
     <div class="content">
         <h4>也可以在每条数据上附加一个 `content` 属性，指定节点渲染时的内容。</h4>
         <div bx-name="components/tree" class="tree-wrapper">
+            <script type="text/javascript"></script>
             [
-                { id: '华北', name: '华北', content: '<i>hello <a href="#" style="float: right;">#</a></i>' },
+                { id: '华北', name: '华北', content: '<span class="tree-node-content-name"><i>hello</i></span><a href="#" style="float: right;">#</a>' },
                 { id: '东北', name: '东北' },
                 { id: '华东', name: '华东' },
                 { id: '华南', name: '华南' },
@@ -132,6 +133,7 @@
                 { id: 140000, parentId: '华北', name: '山西省' },
                 { id: 150000, parentId: '华北', name: '内蒙古自治区' }
             ]
+            <script type="text/javascript"></script>
         </div>
     </div>
 </div>

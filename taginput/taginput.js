@@ -70,7 +70,13 @@ define(
                     defer.resolve()
                 })
 
+                /*
+                    var Loader = require('brix/loader')
+                    var trees = Loader.query('components/taginput')
+                    trees.on('active.taginput inactive.taginput', function(e){ console.log(e.type, e.namespace, e.target) } )
+                 */
                 var type = 'click' + NAMESPACE + '_' + this.clientId
+                var state = 'inactive'
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
@@ -84,19 +90,23 @@ define(
                                 $(event.target).closest('.taginput-item-delete').attr('data-taginput-clientid') == that.clientId
                             )
                         ) {
+                            if (state === 'active') return
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
                                     target: event.target
                                 })
                             )
+                            state = 'active'
                             return
                         }
 
+                        if (state === 'inactive') return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
                             })
                         )
+                        state = 'inactive'
                     })
 
                 // return defer.promise()
