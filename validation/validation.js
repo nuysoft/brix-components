@@ -16,7 +16,10 @@ define(
         Brix
 
     ) {
-        return Brix.extend({
+
+        function Validation() {}
+
+        _.extend(Validation.prototype, Brix.prototype, {
             options: {
                 i18n: 'zh_cn'
             },
@@ -27,13 +30,23 @@ define(
             render: function() {
                 this.parsley = new Parsley(this.element)
             },
-            validate: function() {
-                this.parsley.validate()
+            validate: function(group, force) {
+                this.parsley.validate(group, force)
                 return this
             },
-            isValid: function() {
-                return this.parsley.isValid()
+            isValid: function(group, force) {
+                return this.parsley.isValid(group, force)
+            },
+            reset: function() {
+                this.parsley.reset()
+                return this
+            },
+            destroy: function() {
+                this.parsley.destroy()
+                return this
             }
         })
+
+        return Validation
     }
 )
