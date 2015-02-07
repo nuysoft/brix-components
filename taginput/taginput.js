@@ -17,6 +17,11 @@ define(
         var CLASS_ITEM = '.taginput-item'
         var CLASS_ITEM_NAME = '.taginput-item-name'
         var INPUT_MIN_WIDTH = 20
+        var STATE = {
+            PENDING: 'pending',
+            ACTIVE: 'active',
+            INACTIVE: 'inactive'
+        }
 
         function TagInput() {}
 
@@ -76,7 +81,7 @@ define(
                     trees.on('active.taginput inactive.taginput', function(e){ console.log(e.type, e.namespace, e.target) } )
                  */
                 var type = 'click' + NAMESPACE + '_' + this.clientId
-                var state = 'inactive'
+                this._state = 'inactive'
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
@@ -90,23 +95,23 @@ define(
                                 $(event.target).closest('.taginput-item-delete').attr('data-taginput-clientid') == that.clientId
                             )
                         ) {
-                            if (state === 'active') return
+                            // if (that._state === 'active') return
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
                                     target: event.target
                                 })
                             )
-                            state = 'active'
+                            that._state = 'active'
                             return
                         }
 
-                        if (state === 'inactive') return
+                        if (that._state === 'inactive') return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
                             })
                         )
-                        state = 'inactive'
+                        that._state = 'inactive'
                     })
 
                 // return defer.promise()
@@ -218,7 +223,7 @@ define(
                 event.preventDefault()
                 this._fixInput()
             },
-            active: function(event) {
+            _active: function(event) {
                 $(event.currentTarget).toggleClass('active')
             },
             _selection: function(event) {
