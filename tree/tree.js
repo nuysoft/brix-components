@@ -33,7 +33,8 @@ define(
         _.extend(Tree.prototype, Brix.prototype, {
             options: {
                 data: undefined,
-                nodeTemplate: undefined
+                nodeTemplate: undefined,
+                state: 'expand' // expand, collapse
             },
             init: function() {
                 var that = this
@@ -91,6 +92,9 @@ define(
                 )
 
                 manager.delegate(this.$element, this)
+
+                if (this.options.state === 'collapse') this.collapse()
+                if (this.options.state === 'expand') this.expand()
 
                 /*
                     var Loader = require('brix/loader')

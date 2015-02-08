@@ -7,7 +7,7 @@
 <div class="bs-example">
     <div class="content">
         <h4>把扁平数据渲染成树结构。</h4>
-        <div bx-name="components/tree" class="tree-wrapper">
+        <div bx-name="components/tree" class="tree-wrapper" data-state="collapse">
             [
                 { id: '0', name: 'Loader' },
                 { id: '1', name: 'Base' },
@@ -298,13 +298,11 @@ nodeTemplate | array | - | 可选。自定义节点模板，属性值是一个 A
 
 * .expand( id )
 * .expand()
-* .expand( event, id )
 
 #### .collapse( id )
 
 * .collapse( id )
 * .collapse()
-* .collapse( event, id )
 
 #### .search( value )
 
