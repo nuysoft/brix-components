@@ -83,10 +83,19 @@ define(
             }
         }
 
-        function center(overlay) {
-            var $overlay = $(overlay).show()
-            var overlayWidth = $overlay.outerWidth()
-            var overlayHeight = $overlay.outerHeight()
+        function center(width, height) {
+            var overlayWidth, overlayHeight
+
+            // center(overlay) {
+            if (!height) {
+                var $overlay = $(width).show()
+                overlayWidth = $overlay.outerWidth()
+                overlayHeight = $overlay.outerHeight()
+            } else {
+                // center(width, height)
+                overlayWidth = parseFloat(width, 12)
+                overlayHeight = parseFloat(height, 12)
+            }
 
             var $window = $(window)
             var windowWidth = $window.width()
