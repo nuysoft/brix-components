@@ -81,7 +81,7 @@
                 <input type="text" id="password2" data-parsley-trigger="change keyup" data-parsley-equalto="#password1" class="form-control" placeholder="equalto">
             </div>
             <div>
-                <input type="text" data-parsley-trigger="change keyup" data-parsley-gt="6" data-parsley-id="666" class="form-control" placeholder="gt">
+                <input type="text" data-parsley-trigger="change keyup" data-parsley-gt="6" data-parsley-required class="form-control" placeholder="gt">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
