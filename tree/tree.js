@@ -146,20 +146,22 @@ define(
                 var mapped = this.options.mapped
                 if (id !== undefined && mapped[id] && mapped[id].parentId) this.expand(mapped[id].parentId)
 
-                $(selector, this.$element).show()
+                var liNode = $(selector, this.$element).show()
                     .find('> .tree-node-control .brixfont.plus-sign').hide().end()
                     .find('> .tree-node-control .brixfont.minus-sign').show().end()
-                    .find('> ul.tree').slideDown('fast')
+                if (id === undefined) liNode.find('> ul.tree').show()
+                else liNode.find('> ul.tree').slideDown('fast')
             },
             collapse: function(id) {
                 var selector
                 if (id === undefined) selector = 'li[data-node-id]'
                 else selector = 'li[data-node-id="' + id + '"]'
 
-                $(selector, this.$element).show()
+                var liNode = $(selector, this.$element).show()
                     .find('> .tree-node-control .brixfont.plus-sign').show().end()
                     .find('> .tree-node-control .brixfont.minus-sign').hide().end()
-                    .find('> ul.tree').slideUp('fast')
+                if (id === undefined) liNode.find('> ul.tree').hide()
+                else liNode.find('> ul.tree').slideUp('fast')
             },
             search: function(value) {
                 if (value === undefined) return
