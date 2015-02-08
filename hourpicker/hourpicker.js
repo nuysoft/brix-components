@@ -51,14 +51,14 @@ define(
                     var has = !$target.hasClass('active')
                     $target.toggleClass('active')
                     that._merge()
-
-                    $('.shortcuts input[name=shortcut]', this.$element).prop('checked', false)
+                    that._syncShortcut()
 
                     var siblings = $(this).siblings()
                     siblings.on('mouseenter.drag', function(event) {
                         var $target = $(this)
                         $target[has ? 'addClass' : 'removeClass']('active')
                         that._merge()
+                        that._syncShortcut()
                         event.preventDefault()
                     })
                     $(document.body).off('mouseup.drag')
@@ -178,6 +178,7 @@ define(
                 })
 
                 this._merge()
+                this._syncShortcut()
             },
             _merge: function() {
                 var hours = $('.picker-hour')
@@ -199,6 +200,27 @@ define(
                         ]()
                     }
                 })
+            },
+            _syncShortcut: function() {
+                var value = this.val()
+
+                function is(days, other) {
+                    var day
+                    for (var i = 0; i < days.length; i++) {
+                        day = days[i]
+                        if (value[day].length < 24) return false
+                    }
+                    for (var j = 0; j < other.length; j++) {
+                        day = other[j]
+                        if (value[day].length !== 0) return false
+                    }
+
+                    return true
+                }
+
+                $('.shortcuts input[name=shortcut]:eq(0)', this.$element).prop('checked', is('0123456', ''))
+                $('.shortcuts input[name=shortcut]:eq(1)', this.$element).prop('checked', is('12345', '06'))
+                $('.shortcuts input[name=shortcut]:eq(2)', this.$element).prop('checked', is('06', '12345'))
             }
         })
 
