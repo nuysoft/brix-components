@@ -290,6 +290,7 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 data | array | - | 必须。描述树结构的扁平数据。示例见上面的示例。
 nodeTemplate | array | - | 可选。自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。
+state | string | `'expand'` | 可选。指定树结构的初始状态。可选值有 `'expand'`、`'collapse'`，分别表示展开、收起。
 
 
 ### 方法 <small>Methods</small>
