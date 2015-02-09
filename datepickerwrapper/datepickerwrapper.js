@@ -83,6 +83,15 @@ define(
                         })
                     })
                 }
+                this.options.ranges = _.flatten(this.options.ranges)
+                _.each(this.options.ranges, function(date, index, ranges) {
+                    if (date) ranges[index] = moment(date)
+                })
+                this.options._ranges = _.map(this.options.ranges, function(date) {
+                    if (date) return date.format(DATE_PATTERN)
+                })
+                this.options._ranges = "['" + this.options._ranges.join("','") + "']"
+
                 // if (this.options.unlimits.length) {
                 //     _.each(this.options.unlimits, function(date, index, unlimits) {
                 //         if (date) unlimits[index] = moment(date)

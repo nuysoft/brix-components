@@ -191,6 +191,7 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 shortcut | boolean or object | `{}` | 指示是否开启快捷日期和快捷日期的内容。格式见下面的代码。
 dates | array | `[]` | 初始日期。
+ranges | array | `[]` | 设置可选日期的范围。合法值参见 [DatePicker](./readme.html?name=DatePicker)。
 
 #### 配置项 `shortcut`
 

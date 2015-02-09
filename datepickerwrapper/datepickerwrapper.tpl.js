@@ -4,7 +4,7 @@ define(function() {
 <div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : '' %>">
     <!--  -->
     <% if (mode === 'signal') { %>
-    <div bx-name="components/datepicker" data-type="date" data-date="<%= dates[0] %>" data-unlimit="<%= unlimits[0] %>" class="picker"></div>
+    <div bx-name="components/datepicker" data-type="date" data-date="<%= dates[0] %>" data-range="<%= _ranges %>" data-unlimit="<%= unlimits[0] %>" class="picker"></div>
     <% } %>
     <!--  -->
     <% if (mode === 'multiple') { %>
@@ -37,7 +37,7 @@ define(function() {
     </div>
     <div class="datepickerwrapper-pickers">
         <% for (var i = 0; i < dates.length; i++ ) { %>
-            <div bx-name="components/datepicker" data-date="<%= dates[i] %>" data-unlimit="<%= unlimits[i] %>" data-type="date" class="picker"></div>
+            <div bx-name="components/datepicker" data-date="<%= dates[i] %>" data-range="<%= _ranges %>" data-unlimit="<%= unlimits[i] %>" data-type="date" class="picker"></div>
         <% } %>
     </div>
     <div class="datepickerwrapper-footer">
