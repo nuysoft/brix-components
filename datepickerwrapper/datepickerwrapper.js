@@ -3,12 +3,14 @@ define(
     [
         'jquery', 'underscore', 'moment',
         'brix/loader', 'brix/base', 'brix/event',
+        '../dialog/position.js',
         './datepickerwrapper.tpl.js',
         'css!./datepickerwrapper.css'
     ],
     function(
         $, _, moment,
         Loader, Brix, EventManager,
+        position,
         template
     ) {
         /*
@@ -57,7 +59,11 @@ define(
             }
             return shortcuts
         }()
-
+        var STATE = {
+            PENDING: 'pending',
+            ACTIVE: 'active',
+            INACTIVE: 'inactive'
+        }
 
         function DatePickerWrapper() {}
 
@@ -66,6 +72,10 @@ define(
 
         _.extend(DatePickerWrapper.prototype, Brix.prototype, {
             options: {
+                placement: 'bottom', // top bottom left right
+                align: 'left', // left right top bottom
+                offset: {},
+
                 mode: 'signal', // signal multiple
                 shortcuts: SHORTCUTS,
                 dates: [],
@@ -124,11 +134,32 @@ define(
                 var type = 'click' + NAMESPACE + '_' + this.clientId
                 $(document.body).off(type)
                     .on(type, function(event) {
-                        if (event.target === that.element || // 点击组件节点
-                            $.contains(that.element, event.target) ||
-                            $(event.target).closest('.datepickerwrapper').length || // 点击关联节点
-                            !event.target.parentNode // 点击不存在节点
-                        ) return
+                        // 点击不存在节点
+                        if (!$.contains(document.body, event.target)) return
+                        if (
+                            event.target === that.element || // 点击组件节点
+                            $.contains(that.element, event.target) || // 点击组件子节点
+                            event.target === that.$relatedElement[0] || // 点击关联节点
+                            $.contains(that.$relatedElement[0], event.target) // 点击组件关联子节点
+                        ) {
+                            if (that._state === STATE.ACTIVE) return
+                            that.trigger(
+                                $.Event('active' + NAMESPACE, {
+                                    target: event.target
+                                })
+                            )
+                            that._state = STATE.ACTIVE
+                            return
+                        }
+
+                        if (that._state === STATE.INACTIVE) return
+                        var inactiveEvent = $.Event('inactive' + NAMESPACE, {
+                            target: event.target
+                        })
+                        that.trigger(inactiveEvent)
+                        that._state = STATE.INACTIVE
+
+                        if (inactiveEvent.isDefaultPrevented()) return
 
                         that.hide()
                     })
@@ -245,6 +276,14 @@ define(
                     .offset(this._offset())
             },
             _offset: function() {
+                var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10)
+                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10)
+                return {
+                    left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
+                    top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
+                }
+
                 var offset = this.$element.offset()
                 return {
                     left: offset.left,

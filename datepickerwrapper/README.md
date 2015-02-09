@@ -165,6 +165,23 @@
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>事件 active、inactive。</h4>
+                <div bx-name="components/datepickerwrapper" type="text" class="form-control w100 cursor-pointer demo-active"></div>
+            </div>
+            <div class="col-xs-6">
+                <h4>事件 active、inactive。</h4>
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="form-control w300 cursor-pointer demo-active">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {
         Loader.boot(function() {
@@ -181,7 +198,31 @@
             })
         })
     })
+    require(['brix/loader', 'underscore'], function(Loader, _) {
+        Loader.boot(function() {
+            var target = $('.demo-active')
+            var targetInstances = Loader.query(target)
+            _.each(targetInstances, function(instance){
+                instance.on('active.datepickerwrapper', function(event) {
+                    $(instance.element).addClass('focus')
+                    console.log(event.type, event.namespace, instance.element)
+                })
+                instance.on('inactive.datepickerwrapper', function(event) {
+                    $(instance.element).removeClass('focus')
+                    console.log(event.type, event.namespace, instance.element)
+                })
+            })
+        })
+    })
 </script>
+
+<style type="text/css">
+    .demo-active.focus {
+        border-color: #66afe9;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    }
+</style>
 
 ### 配置 <small>Options</small>
 
