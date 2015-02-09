@@ -158,6 +158,7 @@ define(
                 },
                 // enter
                 13: function(event, items, active, index) {
+                    if (!this.$relatedElement.is(':visible')) return
                     this._select(items, active, index)
                 },
                 // esc
