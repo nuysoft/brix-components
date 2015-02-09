@@ -77,10 +77,32 @@
     <div class="content">
         <div class="row">
             <div class="col-xs-6">
+                <h4>设置可选范围：最小日期（单个日期选择器）。</h4>
+                <input bx-name="components/datepickerwrapper" 
+                    data-ranges="[[new Date(), '2015-3-14']]" 
+                    type="text" class="form-control w100">
+            </div>
+            <div class="col-xs-6">
+                <h4>设置可选范围：最小日期（多个日期选择器）。</h4>
+                <div bx-name="components/datepickerwrapper" 
+                    data-dates="[ '2015-1-1', '2015-1-2' ]" 
+                    data-ranges="[[ '2015-1-1', '2015-1-2' ]]" 
+                    class="form-control w300">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
                 <h4>支持不限（单个日期选择器）。</h4>
                 <input bx-name="components/datepickerwrapper" 
-                    data-unlimits="[ '2099-1-1' ]" type="text" 
-                    class="form-control w100">
+                    data-unlimits="[ '2099-1-1' ]" 
+                    type="text" class="form-control w100">
             </div>
             <div class="col-xs-6">
                 <h4>支持不限（多个日期选择器）。</h4>

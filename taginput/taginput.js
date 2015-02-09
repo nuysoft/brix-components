@@ -105,7 +105,7 @@ define(
                             return
                         }
 
-                        if (that._state === STATE.INACTIVE) return
+                        // if (that._state === STATE.INACTIVE) return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target

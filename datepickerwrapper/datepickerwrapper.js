@@ -69,6 +69,7 @@ define(
                 mode: 'signal', // signal multiple
                 shortcuts: SHORTCUTS,
                 dates: [],
+                ranges: [],
                 unlimits: []
             },
             init: function() {
