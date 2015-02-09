@@ -27,6 +27,11 @@ define(
     ) {
 
         var NAMESPACE = '.tree'
+        var STATE = {
+            PENDING: 'pending',
+            ACTIVE: 'active',
+            INACTIVE: 'inactive'
+        }
 
         function Tree() {}
 
@@ -102,30 +107,30 @@ define(
                     trees.on('active.taginput inactive.taginput', function(e){ console.log(e.type, e.namespace, e.target) } )
                  */
                 var type = 'click' + NAMESPACE + '_' + this.clientId
-                this._state = 'inactive'
+                this._state = STATE.INACTIVE
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (event.target === that.element || // 点击组件节点
                             $.contains(that.element, event.target) || // 点击组件子节点
                             !event.target.parentNode // 点击不存在节点
                         ) {
-                            // if (that._state === 'active') return
+                            if (that._state === STATE.ACTIVE) return
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
                                     target: event.target
                                 })
                             )
-                            that._state = 'active'
+                            that._state = STATE.ACTIVE
                             return
                         }
 
-                        if (that._state === 'inactive') return
+                        if (that._state === STATE.INACTIVE) return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
                             })
                         )
-                        that._state = 'inactive'
+                        that._state = STATE.INACTIVE
                     })
             },
             toggle: function(event, id) {
@@ -203,7 +208,11 @@ define(
 
             },
             forward: function(event, id) {
-                this.trigger(event.type + NAMESPACE, [this.options.mapped[id], event.currentTarget])
+                var forwardEvent = $.Event(event.type + NAMESPACE, {
+                    target: event.target,
+                    currentTarget: event.currentTarget
+                })
+                this.trigger(forwardEvent, [this.options.mapped[id], event.currentTarget])
             }
         })
 

@@ -253,22 +253,45 @@
     Loader.boot(function(){
         var taginput = Loader.query($('#demoTagInput2'))[0]
         var tree = Loader.query($('#demoTree2'))[0]
-        taginput.on('active.taginput', function(event) {
-            if (event.namespace !== 'taginput') return
-            $(tree.element).show()
+
+        taginput.$relatedElement.on('click', function(event){
+            if ($(event.target).attr('class').indexOf('-remove') >= 0) return
+            if (taginput.val().length < 3) $(tree.element).show()
         })
-        taginput.on('inactive.taginput', function(event) {
-            if (event.namespace !== 'taginput') return
-            $(tree.element).hide()
-        })
-        tree.on('inactive.tree', function(event) {
-            if (event.namespace !== 'tree') return
-            // debugger
-        })
+
         tree.on('click.tree', function(event, data, target) {
             if (event.namespace !== 'tree') return
             taginput.add(data.name)
+            if(taginput.val().length >= 3) $(tree.element).hide()
         })
+
+        taginput.on('active.taginput inactive.taginput', function(event){
+            if (event.namespace !== 'taginput') return
+            console.log(event.type, event.namespace)
+        })
+        tree.on('active.tree inactive.tree', function(event){
+            if (event.namespace !== 'tree') return
+            console.log(event.type, event.namespace)
+        })
+        
+        // taginput.on('active.taginput', function(event) {
+        //     if (event.namespace !== 'taginput') return
+        //     console.log(event.type, event.namespace)
+        //     if ($(event.target).attr('class').indexOf('-remove') >= 0) return
+        //     $(tree.element).show()
+        // })
+        // taginput.on('inactive.taginput', function(event) {
+        //     if (event.namespace !== 'taginput') return
+        //     console.log(event.type, event.namespace)
+        //     $(tree.element).hide()
+        // })
+
+        // tree.on('inactive.tree', function(event) {
+        //     if (event.namespace !== 'tree') return
+        //     console.log(event.type, event.namespace)
+        //     // debugger
+        // })
+        
     })
 </script>
 
