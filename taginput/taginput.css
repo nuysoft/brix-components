@@ -1,7 +1,7 @@
 .taginput {
   position: relative;
   font-size: 75%;
-  padding: 4px;
+  padding: 4px 4px 2px 4px;
 }
 .taginput .taginput-placeholder {
   display: inline-block;
@@ -9,7 +9,7 @@
 .taginput .taginput-item {
   position: relative;
   display: inline-block;
-  margin: 0px 4px 0px 0;
+  margin: 0px 4px 2px 0px;
   cursor: pointer;
   background-color: #EEE;
   border-radius: 4px;
@@ -38,4 +38,5 @@
 .taginput .taginput-input {
   border: none;
   outline: none;
+  height: 24px;
 }
