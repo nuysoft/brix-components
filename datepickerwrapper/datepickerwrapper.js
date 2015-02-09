@@ -132,6 +132,7 @@ define(
                 manager.delegate(this.$relatedElement, this)
 
                 var type = 'click' + NAMESPACE + '_' + this.clientId
+                this._state = STATE.INACTIVE
                 $(document.body).off(type)
                     .on(type, function(event) {
                         // 点击不存在节点
