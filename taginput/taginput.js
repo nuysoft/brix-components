@@ -95,7 +95,7 @@ define(
                                 $(event.target).closest('.taginput-item-delete').attr('data-taginput-clientid') == that.clientId
                             )
                         ) {
-                            // if (that._state === 'active') return
+                            if (that._state === STATE.ACTIVE) return
                             that.trigger(
                                 $.Event('active' + NAMESPACE, {
                                     target: event.target
@@ -105,7 +105,7 @@ define(
                             return
                         }
 
-                        // if (that._state === STATE.INACTIVE) return
+                        if (that._state === STATE.INACTIVE) return
                         that.trigger(
                             $.Event('inactive' + NAMESPACE, {
                                 target: event.target
@@ -154,6 +154,8 @@ define(
             },
             // trigger is for internal usage only
             delete: function(event, trigger) {
+                this._state = STATE.ACTIVE
+
                 var that = this
 
                 // delete()
