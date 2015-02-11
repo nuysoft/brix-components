@@ -208,12 +208,12 @@ define(
                 return this
             },
             _beautify: function() {
-                var offset = position(this.$element, this.$relatedElement, 'bottom', 'left')
-                this.$relatedElement.offset(offset)
-
                 this.$relatedElement[
                     (this.options.data && this.options.data.length) ? 'show' : 'hide'
                 ]()
+
+                var offset = position(this.$element, this.$relatedElement, 'bottom', 'left')
+                this.$relatedElement.offset(offset)
 
                 return this
             },

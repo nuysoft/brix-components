@@ -273,25 +273,6 @@
             if (event.namespace !== 'tree') return
             console.log(event.type, event.namespace)
         })
-        
-        // taginput.on('active.taginput', function(event) {
-        //     if (event.namespace !== 'taginput') return
-        //     console.log(event.type, event.namespace)
-        //     if ($(event.target).attr('class').indexOf('-remove') >= 0) return
-        //     $(tree.element).show()
-        // })
-        // taginput.on('inactive.taginput', function(event) {
-        //     if (event.namespace !== 'taginput') return
-        //     console.log(event.type, event.namespace)
-        //     $(tree.element).hide()
-        // })
-
-        // tree.on('inactive.tree', function(event) {
-        //     if (event.namespace !== 'tree') return
-        //     console.log(event.type, event.namespace)
-        //     // debugger
-        // })
-        
     })
 </script>
 
@@ -340,6 +321,8 @@ Event Type | Description
 click.tree | -
 mouseenter.tree | -
 mouseleave.tree | -
+active.tree | -
+inactive.tree | -
 
 ```js
 var Loader = require('brix/loader')
