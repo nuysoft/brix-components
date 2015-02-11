@@ -36,7 +36,7 @@ define(
                 // var overlayMarginLeft = parseInt($overlay.css('margin-left'), 10)
                 // var overlayMarginTop = parseInt($overlay.css('margin-top'), 10)
 
-            // if (!visible) $overlay.hide()
+            if (!visible) $overlay.hide()
 
             var left, top
             var leftDiff = triggerWidth / 2 - overlayWidth / 2
