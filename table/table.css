@@ -1,3 +1,6 @@
+.table-fixed {
+  table-layout: fixed;
+}
 .table .more {
   position: relative;
 }
@@ -30,4 +33,50 @@
 }
 .table tr:hover .operation {
   visibility: visible;
+}
+.column-scroll-arrow {
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #E6E6E6;
+  opacity: .5;
+  width: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+.column-scroll-arrow:hover {
+  background-color: #999;
+}
+.column-priority {
+  width: 500px;
+  margin-top: 2px;
+  display: none;
+}
+.column-priority .candidates,
+.column-priority .queue {
+  height: 300px;
+  overflow: scroll;
+}
+.column-priority .candidates .item {
+  float: left;
+  width: 50%;
+  padding: 5px;
+  white-space: nowrap;
+}
+.column-priority .queue .item {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #E6E6E6;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.column-priority .candidates .item span,
+.column-priority .queue .item span {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: normal;
 }
