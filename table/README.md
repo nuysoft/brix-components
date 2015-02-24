@@ -47,11 +47,7 @@
         width: 75px;
     }
     .column-priority {
-        display: block;
-    }
-    .column-priority .queue .item {
-        cursor: move;
-        transition: * 0.15s ease-in;
+        /*display: block;*/
     }
 </style>
 
@@ -60,51 +56,52 @@
         <h4>响应式表格</h4>
         <button id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
         <table bx-name="components/table" class="table table-hover table-fixed" 
-            data-column-range="[3,-2]" data-column-limit="5"
-            data-priority-trigger="#clickme">
+            data-column-rwd-range="[3,-2]"
+            data-column-rwd-limit="5"
+            data-column-priority-trigger="#clickme">
             <thead>
                 <tr>
                     <th class="w30"><input type="checkbox" data-linkage-name="all"></th>
                     <th class="w75">不动列 1</th>
                     <th class="w75">不动列 2</th>
-                    <th data-priority>滚动列 1 <span bx-name="components/popover" data-content="components/popover" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
-                    <th data-priority>滚动列 2</th>
-                    <th data-priority>滚动列 3</th>
-                    <th data-priority>滚动列 4</th>
-                    <th data-priority>滚动列 5</th>
-                    <th data-priority>滚动列 6</th>
-                    <th data-priority>滚动列 7</th>
-                    <th data-priority>滚动列 8</th>
-                    <th data-priority>滚动列 9</th>
-                    <th data-priority>滚动列 10</th>
-                    <th data-priority>滚动列 11</th>
-                    <th data-priority>滚动列 12</th>
-                    <th data-priority>滚动列 13</th>
-                    <th data-priority>滚动列 14</th>
-                    <th data-priority>滚动列 15</th>
-                    <th data-priority>滚动列 16</th>
-                    <th data-priority>滚动列 17</th>
-                    <th data-priority>滚动列 18</th>
-                    <th data-priority>滚动列 19</th>
-                    <th data-priority>滚动列 20</th>
-                    <th data-priority>滚动列 21</th>
-                    <th data-priority>滚动列 22</th>
-                    <th data-priority>滚动列 23</th>
-                    <th data-priority>滚动列 24</th>
-                    <th data-priority>滚动列 25</th>
-                    <th data-priority>滚动列 26</th>
-                    <th data-priority>滚动列 27</th>
-                    <th data-priority>滚动列 28</th>
-                    <th data-priority>滚动列 29</th>
-                    <th data-priority>滚动列 30</th>
-                    <th data-priority>滚动列 31</th>
-                    <th data-priority>滚动列 32</th>
-                    <th data-priority>滚动列 33</th>
-                    <th data-priority>滚动列 34</th>
-                    <th data-priority>滚动列 35</th>
-                    <th data-priority>滚动列 36</th>
-                    <th data-priority>滚动列 37</th>
-                    <th data-priority>滚动列 38</th>
+                    <th data-column-priority-name="滚动列 1">滚动列 1 <span bx-name="components/popover" data-content="components/popover" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
+                    <th>滚动列 2</th>
+                    <th>滚动列 3</th>
+                    <th>滚动列 4</th>
+                    <th>滚动列 5</th>
+                    <th>滚动列 6</th>
+                    <th>滚动列 7</th>
+                    <th>滚动列 8</th>
+                    <th>滚动列 9</th>
+                    <th>滚动列 10</th>
+                    <th>滚动列 11</th>
+                    <th>滚动列 12</th>
+                    <th>滚动列 13</th>
+                    <th>滚动列 14</th>
+                    <th>滚动列 15</th>
+                    <th>滚动列 16</th>
+                    <th>滚动列 17</th>
+                    <th>滚动列 18</th>
+                    <th>滚动列 19</th>
+                    <th>滚动列 20</th>
+                    <th>滚动列 21</th>
+                    <th>滚动列 22</th>
+                    <th>滚动列 23</th>
+                    <th>滚动列 24</th>
+                    <th>滚动列 25</th>
+                    <th>滚动列 26</th>
+                    <th>滚动列 27</th>
+                    <th>滚动列 28</th>
+                    <th>滚动列 29</th>
+                    <th>滚动列 30</th>
+                    <th>滚动列 31</th>
+                    <th>滚动列 32</th>
+                    <th>滚动列 33</th>
+                    <th>滚动列 34</th>
+                    <th>滚动列 35</th>
+                    <th>滚动列 36</th>
+                    <th>滚动列 37</th>
+                    <th>滚动列 38</th>
                     <th class="w75">不动列 3</th>
                     <th class="w75">不动列 4</th>
                 </tr>

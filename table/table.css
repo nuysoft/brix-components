@@ -59,17 +59,30 @@
 }
 .column-priority .candidates .item {
   float: left;
-  width: 50%;
+  width: 33%;
   padding: 5px;
   white-space: nowrap;
+  overflow: hidden;
 }
 .column-priority .queue .item {
   width: 100%;
   padding: 5px;
-  border: 1px solid #E6E6E6;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 5px;
+}
+.column-priority .queue .item-move {
+  border: 1px solid #E6E6E6;
+  cursor: move;
+}
+.column-priority .queue .item-not-allowed {
+  border: 1px dashed #E6E6E6;
+  cursor: not-allowed;
+}
+.column-priority .queue .sortable-wrapper .sortable-ghost {
+  opacity: 0.4;
+  background-color: #F4E2C9;
 }
 .column-priority .candidates .item span,
 .column-priority .queue .item span {
@@ -79,4 +92,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   font-weight: normal;
+}
+.column-priority.dialog .dialog-content .dialog-footer {
+  text-align: left;
 }

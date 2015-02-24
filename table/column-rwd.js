@@ -14,17 +14,18 @@ define(
         var SELECTOR_TH = '> thead > tr > th:nth-child(<%= nth %>)'
         var SELECTOR_TD = '> tbody > tr > td:nth-child(<%= nth %>)'
 
-        function column(tableComponentInstance, tableComponentOptions, callback) {
-            var range = tableComponentOptions['column-range'] || [0, -1]
-            var limit = tableComponentOptions['column-limit'] || 5
+        function column(tableComponentInstance, tableComponentOptions, Constant, callback) {
+            var range = tableComponentOptions[Constant.COLUMN.RWD.RANGE] || [0, -1]
+            var limit = tableComponentOptions[Constant.COLUMN.RWD.LIMIT] || 5
 
             var $table = $(tableComponentInstance.element)
-            var state = _flush($table, range, limit)
+            var state = _flush(Constant, $table, range, limit)
 
             var $leftArrow = _create($table, '<span class="glyphicon glyphicon-chevron-left"></span>')
             var $rightArrow = _create($table, '<span class="glyphicon glyphicon-chevron-right"></span>')
 
             var spree = {
+                Constant: Constant,
                 $table: $table,
                 range: range,
                 limit: limit,
@@ -40,7 +41,7 @@ define(
             return {
                 state: state,
                 flush: function() {
-                    _flush($table, range, limit, state)
+                    _flush(Constant, $table, range, limit, state)
                     _beautify(spree)
                     return this
                 }
@@ -61,7 +62,7 @@ define(
         }
 
         function _handler(event, spree) {
-            _flush(spree.$table, spree.range, spree.limit, spree.state)
+            _flush(spree.Constant, spree.$table, spree.range, spree.limit, spree.state)
             _beautify(spree)
             event.preventDefault()
             event.stopPropagation()
@@ -97,7 +98,7 @@ define(
             })
         }
 
-        function _flush($table, range, limit, state) {
+        function _flush(Constant, $table, range, limit, state) {
             var $thead = $table.find('> thead')
             var $tbody = $table.find('> tbody')
             var $ths = $table.find('> thead > tr > th')
@@ -106,6 +107,13 @@ define(
             range[0] = (+range[0] + $ths.length) % $ths.length
             range[1] = (+range[1] + $ths.length) % $ths.length
 
+            // 自动应用 priority 插件
+            _.each($ths, function(item, index) {
+                if (index >= range[0] && index < range[1]) {
+                    $(item).attr('data-' + Constant.COLUMN.PRIORITY.TAG, '')
+                }
+            })
+
             // 过滤不参与分页的列
             $ths = _.filter($ths, function(item, index) {
                 return index >= range[0] && index < range[1]
@@ -113,8 +121,9 @@ define(
 
             // 过滤被 priority 插件隐藏的列
             $ths = _.filter($ths, function(item, index) {
-                var priority = $(item).attr('data-priority')
-                return priority !== undefined && priority !== 'hide'
+                var priorityTag = $(item).attr('data-' + Constant.COLUMN.PRIORITY.TAG)
+                var priorityState = $(item).attr('data-' + Constant.COLUMN.PRIORITY.STATE)
+                return priorityTag !== undefined && priorityState !== 'hide'
             })
 
             $ths = $($ths)
@@ -128,6 +137,8 @@ define(
             } else {
                 state.setTotal($ths.length)
             }
+
+            // 调整被 priority 插件排序的列
 
             for (var i = 0, m, index; i < state.total; i++) {
                 m = (i >= state.start && i < state.end) ? 'show' : 'hide'

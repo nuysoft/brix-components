@@ -31,7 +31,8 @@
     "handlebars": "~2.0.0",
     "swfobject": "*",
     "accountingjs": "~0.3.2",
-    "progressbar.js": "~0.7.4"
+    "progressbar.js": "~0.7.4",
+    "Sortable": "~1.1.1"
   },
   "devDependencies": {}
 }
