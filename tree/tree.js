@@ -148,9 +148,11 @@ define(
                 if (id === undefined) selector = 'li[data-node-id]'
                 else selector = 'li[data-node-id="' + id + '"]'
 
+                // 先展开父节点和祖先节点
                 var mapped = this.options.mapped
                 if (id !== undefined && mapped[id] && mapped[id].parentId) this.expand(mapped[id].parentId)
 
+                // 再展开当前节点
                 var liNode = $(selector, this.$element).show()
                     .find('> .tree-node-control .brixfont.plus-sign').hide().end()
                     .find('> .tree-node-control .brixfont.minus-sign').show().end()
@@ -206,6 +208,101 @@ define(
                     })
                 }
 
+            },
+            parent: function(element) {
+                if (!element) return
+
+                var mapped = this.options.mapped
+                var result = {}
+
+                // .parent( jQuery ) .parent( element ) .parent( id )
+                var id = element.jquery ? element.attr('data-node-id') :
+                    element.nodeType ? $(element).attr('data-node-id') :
+                    element
+                var parentId, selector
+
+                if (!id ||
+                    !mapped[id] ||
+                    !mapped[id].parentId ||
+                    !mapped[mapped[id].parentId]
+                ) return
+
+                parentId = mapped[id].parentId
+                selector = 'li[data-node-id="' + parentId + '"]'
+                result.data = mapped[parentId]
+                result.element = $(selector, this.$element).find('> .tree-node-control > .tree-node-content')[0]
+
+                return result
+            },
+            children: function(element) {
+                if (!element) return
+
+                var that = this
+                var mapped = this.options.mapped
+                var result = []
+
+                // .children( jQuery ) .children( element ) .children( id )
+                var id = element.jquery ? element.attr('data-node-id') :
+                    element.nodeType ? $(element).attr('data-node-id') :
+                    element
+                var selector
+
+                if (!id ||
+                    !mapped[id] ||
+                    !mapped[id].children ||
+                    !mapped[id].children.length
+                ) return result
+
+                _.each(mapped[id].children, function(item, index) {
+                    selector = 'li[data-node-id="' + item.id + '"]'
+                    result.push({
+                        data: mapped[item.id],
+                        element: $(selector, that.$element).find('> .tree-node-control > .tree-node-content')[0]
+                    })
+                })
+
+                return result
+            },
+            siblings: function(element) {
+                if (!element) return
+
+                var that = this
+                var mapped = this.options.mapped
+
+                // .siblings( jQuery ) .siblings( element ) .siblings( id )
+                var id = element.jquery ? element.attr('data-node-id') :
+                    element.nodeType ? $(element).attr('data-node-id') :
+                    element
+
+                var parent = this.parent(element)
+                var children = []
+
+                // 当前节点不是根节点
+                if (parent) {
+                    children = this.children(parent.element)
+
+                } else {
+                    // 当前节点是根节点
+                    if (!id || !mapped[id]) return []
+                    var parentId = mapped[id].parentId
+                    var selector
+                    _.each(mapped, function(item, index) {
+                        if (item.parentId !== parentId) return
+
+                        selector = 'li[data-node-id="' + item.id + '"]'
+                        children.push({
+                            data: item,
+                            element: $(selector, that.$element).find('> .tree-node-control > .tree-node-content')[0]
+                        })
+                    })
+                }
+
+                var result = []
+                _.each(children, function(item, index) {
+                    if (item.data.id !== id) result.push(item)
+                })
+
+                return result
             },
             forward: function(event, id) {
                 var forwardEvent = $.Event(event.type + NAMESPACE, {

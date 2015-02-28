@@ -52,12 +52,12 @@ define(
                         var spin = Loader.query('components/spin', that.element)
                         Loader.destroy(spin, function() {
                             $(that.element).find('div.readme').html(
-                                _.template(
-                                    marked(response, {
-                                        renderer: renderer,
-                                        gfm: true
-                                    })
-                                )()
+                                // _.template(
+                                marked(response, {
+                                    renderer: renderer,
+                                    gfm: true
+                                })
+                                // )()
                             )
                             that.trimHTML(that.element)
                             that.trimPredefined(that.element)

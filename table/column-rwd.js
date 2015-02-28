@@ -119,6 +119,11 @@ define(
                 return index >= range[0] && index < range[1]
             })
 
+            // 调整被 priority 插件排序的列
+            _.each($ths, function(item, index) {
+                // $(item).parent().prepend(item)
+            })
+
             // 过滤被 priority 插件隐藏的列
             $ths = _.filter($ths, function(item, index) {
                 var priorityTag = $(item).attr('data-' + Constant.COLUMN.PRIORITY.TAG)
@@ -128,6 +133,7 @@ define(
 
             $ths = $($ths)
 
+            // 初始化或更新分页状态
             if (!state) {
                 state = new State(
                     $ths.length,
@@ -138,8 +144,7 @@ define(
                 state.setTotal($ths.length)
             }
 
-            // 调整被 priority 插件排序的列
-
+            // 调整被 priority 插件隐藏或显示的列
             for (var i = 0, m, index; i < state.total; i++) {
                 m = (i >= state.start && i < state.end) ? 'show' : 'hide'
                 index = $ths.eq(i)[m]().index()
