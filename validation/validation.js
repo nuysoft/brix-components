@@ -6,15 +6,14 @@
  */
 define(
     [
-        'parsley',
+        'underscore', 'parsley',
         'brix/base',
         'css!dependencies/parsleyjs/src/parsley.css',
         'css!./validation.css'
     ],
     function(
-        Parsley,
+        _, Parsley,
         Brix
-
     ) {
 
         function Validation() {}

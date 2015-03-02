@@ -4,12 +4,12 @@
  */
 define(
     [
-        'jquery', 'underscore', 'progressbar',
+        'underscore', 'progressbar',
         'brix/base',
         'css!./progressbarwrapper.css'
     ],
     function(
-        $, _, ProgressBar,
+        _, ProgressBar,
         Brix
     ) {
 

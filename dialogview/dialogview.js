@@ -1,13 +1,13 @@
-/* global define, console */
+/* global define */
 define(
     [
-        'jquery', 'underscore',
+        'underscore',
         'brix/base', 'magix',
         '../dialog/dialog.js',
         'css!./dialogview.css'
     ],
     function(
-        $, _,
+        _,
         Brix, Magix,
         Dialog
     ) {

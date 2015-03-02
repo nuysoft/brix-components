@@ -253,7 +253,7 @@ define(
                     !mapped[id].children.length
                 ) return result
 
-                _.each(mapped[id].children, function(item, index) {
+                _.each(mapped[id].children, function(item /*, index*/ ) {
                     selector = 'li[data-node-id="' + item.id + '"]'
                     result.push({
                         data: mapped[item.id],
@@ -286,7 +286,7 @@ define(
                     if (!id || !mapped[id]) return []
                     var parentId = mapped[id].parentId
                     var selector
-                    _.each(mapped, function(item, index) {
+                    _.each(mapped, function(item /*, index*/ ) {
                         if (item.parentId !== parentId) return
 
                         selector = 'li[data-node-id="' + item.id + '"]'
@@ -298,7 +298,7 @@ define(
                 }
 
                 var result = []
-                _.each(children, function(item, index) {
+                _.each(children, function(item /*, index*/ ) {
                     if (item.data.id !== id) result.push(item)
                 })
 

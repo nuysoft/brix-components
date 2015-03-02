@@ -284,12 +284,6 @@ define(
                     left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
                 }
-
-                var offset = this.$element.offset()
-                return {
-                    left: offset.left,
-                    top: offset.top + this.$element.outerHeight() + parseInt(this.$relatedElement.css('margin-top'), 10)
-                }
             },
             submit: function( /*event*/ ) {
                 var that = this

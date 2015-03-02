@@ -1,4 +1,4 @@
-/* global define */
+/* global define, require */
 /*
     样式赞 http://abpetkov.github.io/switchery/
     文档赞 http://www.bootstrap-switch.org/examples.html
