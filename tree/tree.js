@@ -209,6 +209,26 @@ define(
                 }
 
             },
+            current: function(element) {
+                if (!element) return
+
+                var mapped = this.options.mapped
+                var result = {}
+
+                // .current( jQuery ) .current( element ) .current( id )
+                var id = element.jquery ? element.attr('data-node-id') :
+                    element.nodeType ? $(element).attr('data-node-id') :
+                    element
+                var selector
+
+                if (!id || !mapped[id]) return
+
+                selector = 'li[data-node-id="' + id + '"]'
+                result.data = mapped[id]
+                result.element = $(selector, this.$element).find('> .tree-node-control > .tree-node-content')[0]
+
+                return result
+            },
             parent: function(element) {
                 if (!element) return
 
@@ -300,6 +320,22 @@ define(
                 var result = []
                 _.each(children, function(item /*, index*/ ) {
                     if (item.data.id !== id) result.push(item)
+                })
+
+                return result
+            },
+            all: function() {
+                var that = this
+                var mapped = this.options.mapped
+                var result = []
+                var selector
+
+                _.each(mapped, function(item /*, index*/ ) {
+                    selector = 'li[data-node-id="' + item.id + '"]'
+                    result.push({
+                        data: mapped[item.id],
+                        element: $(selector, that.$element).find('> .tree-node-control > .tree-node-content')[0]
+                    })
                 })
 
                 return result
