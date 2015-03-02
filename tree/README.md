@@ -474,7 +474,7 @@ instances[0].siblings('0')
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/tree')
-instances[0].siblings('0')
+instances[0].all('0')
 ```
 
 ### 事件 <small>Events</small>
