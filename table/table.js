@@ -47,6 +47,7 @@ define(
                     TRIGGER: 'column-priority-trigger',
                     STATE: 'column-priority-state',
                     NAME: 'column-priority-name',
+                    INDEX: 'column-priority-index',
                     PLACEMENT: 'column-priority-placement',
                     ALIGN: 'column-priority-align'
                 }

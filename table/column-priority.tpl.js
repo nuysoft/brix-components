@@ -4,7 +4,7 @@ define(function() {
 <div class="dialog column-priority">
     <div class="dialog-content">
         <div class="dialog-header row">
-            <div class="col-xs-12">
+            <div class="col-xs-8">
                 <h4>
                     <span>请选择列</span>
                     <!-- <small>
@@ -13,38 +13,43 @@ define(function() {
                     </small> -->
                 </h4>
             </div>
-            <!-- <div class="col-xs-4">
+            <div class="col-xs-4">
                 <h4>自定义列顺序</h4>
-            </div> -->
+            </div>
         </div>
         <div class="dialog-body row">
-            <div class="col-xs-12 candidates">
+            <div class="col-xs-8 candidates">
                 <% for ( var i = 0; i < candidates.length; i++ ) { %>
                 <label class="item">
-                    <input type="checkbox" checked data-index="<%= candidates[i].index %>">
+                    <input type="checkbox" checked data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>">
                     <span><%= candidates[i].name %></span>
                 </label>
                 <% } %>
             </div>
-            <!-- <div class="col-xs-4 queue">
+            <div class="col-xs-4 queue">
+                <!-- immovables -->
                 <div>
+                    <% for( var i = 0; i < leftImmovables.length; i++ ) { %>
                     <div class="item item-not-allowed">
-                        <span>不动列</span>
+                        <span><%= leftImmovables[i].name %></span>
                     </div>
+                    <% } %>
                 </div>
                 <div class="sortable-wrapper">
                     <% for ( var i = 0; i < candidates.length; i++ ) { %>
-                    <div class="item item-move">
+                    <div class="item item-move" data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>">
                         <span class="item-name"><%= candidates[i].name %></span>
                     </div>
                     <% } %>
                 </div>
                 <div>
+                    <% for( var i = 0; i < rightImmovables.length; i++ ) { %>
                     <div class="item item-not-allowed">
-                        <span>不动列</span>
+                        <span><%= rightImmovables[i].name %></span>
                     </div>
+                    <% } %>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="dialog-footer">
             <button bx-click="submit" class="btn btn-default btn-sm">确定</button>

@@ -1,4 +1,4 @@
-/* global define, console */
+/* global define */
 define(
     [
         'jquery', 'underscore',
@@ -101,7 +101,7 @@ define(
         function _flush(Constant, $table, range, limit, state) {
             var $thead = $table.find('> thead')
             var $tbody = $table.find('> tbody')
-            var $ths = $table.find('> thead > tr > th')
+            var $ths = $thead.find('> tr > th')
 
             // 修正滚动列所需的参数
             range[0] = (+range[0] + $ths.length) % $ths.length
@@ -115,13 +115,34 @@ define(
             })
 
             // 过滤不参与分页的列
+            /* jshint unused:false */
             $ths = _.filter($ths, function(item, index) {
                 return index >= range[0] && index < range[1]
             })
 
             // 调整被 priority 插件排序的列
-            _.each($ths, function(item, index) {
-                // $(item).parent().prepend(item)
+            var $firstPrev = $($ths[0]).prev()
+                // var $lastNext = $($ths[$ths.length - 1]).next()
+            $ths.sort(function(a, b) { // test
+                var $a = $(a)
+                var $b = $(b)
+                a = +$a.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
+                b = +$b.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
+                if (isNaN(a)) a = $a.index()
+                if (isNaN(b)) b = $b.index()
+                return a - b
+            })
+            _.each($ths, function(th, thIndex) {
+                var currentIndex = $(th).index()
+
+                if (thIndex === 0) $firstPrev.after(th)
+                else $($ths[thIndex - 1]).after(th)
+
+                var newIndex = $(th).index()
+                var $tds = $tbody.find('> tr > td:nth-child(' + (currentIndex + 1) + ')')
+                _.each($tds, function(td, tdIndex) {
+                    $(td).parent().find('> td:nth-child(' + newIndex + ')').after(td)
+                })
             })
 
             // 过滤被 priority 插件隐藏的列
@@ -158,9 +179,9 @@ define(
         }
 
         function _beautify(spree) {
+            // var tableHeight = spree.$table.height()
+            // var tableTop = spree.$table.offset().top
             var $tbody = spree.$table.find('> tbody')
-            var tableHeight = spree.$table.height()
-            var tableTop = spree.$table.offset().top
             var tbodyHeight = $tbody.height()
             var tbodyTop = $tbody.offset().top
 

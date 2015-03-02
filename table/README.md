@@ -47,7 +47,7 @@
         width: 75px;
     }
     .column-priority {
-        /*display: block;*/
+        display: block;
     }
 </style>
 

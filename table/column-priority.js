@@ -1,4 +1,5 @@
-/* global define, console */
+/* global define */
+/* global document */
 /*
     https://github.com/RubaXa/Sortable
         http://rubaxa.github.io/Sortable/
@@ -47,12 +48,33 @@ define(
                 handle: '.item-move',
                 animation: 150,
                 onEnd: function(event) {
+                    // 同步顺序
+                    var cache = {}
+                    var candidates = $relatedElement.find('.queue .sortable-wrapper .item')
+                    _.each(candidates, function(item, index) {
+                        var $item = $(item)
+                        var text = $.trim($item.text())
+                        cache[text] = index
+                        $item.attr('data-' + Constant.COLUMN.PRIORITY.INDEX, index)
+                    })
+                    var $ths = $table.find('> thead th')
+                    _.each($ths, function(item /*, index*/ ) {
+                        var $item = $(item)
+                        if (!$item.is('[data-' + Constant.COLUMN.PRIORITY.TAG + ']')) return
+
+                        var text = $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME)
+                        $item.attr('data-' + Constant.COLUMN.PRIORITY.INDEX, cache[text])
+                    })
+
                     _handler(event, Constant, $table, $relatedElement)
+
+
+                    if (callback) callback()
                 }
             });
 
             // test
-            $relatedElement.on('change' + NAMESPACE, 'input:checkbox', function(event) {
+            $relatedElement.on('change' + NAMESPACE, 'input:checkbox', function( /*event*/ ) {
                 // _handler(event,Constant, $table, $relatedElement)
                 // if (callback) callback()
             })
@@ -89,9 +111,10 @@ define(
             }
         }
 
+        /* jshint unused:vars */
         function _handler(event, Constant, $table, $relatedElement) {
             var candidates = $relatedElement.find('.candidates input:checkbox')
-            _.each(candidates, function(item, index) {
+            _.each(candidates, function(item /*, index*/ ) {
                 var $item = $(item)
                 var index = $item.attr('data-index')
                 if (index === undefined) return
@@ -109,13 +132,13 @@ define(
 
             var names = []
             candidates = $relatedElement.find('.queue .sortable-wrapper .item')
-            _.each(candidates, function(item, index) {
+            _.each(candidates, function(item /*, index*/ ) {
                 names.push($(item).find('.item-name').text())
             })
         }
 
         function _toggle($trigger, $relatedElement, placement, align) {
-            $trigger.on('click' + NAMESPACE, function(event) {
+            $trigger.on('click' + NAMESPACE, function( /*event*/ ) {
                 if ($relatedElement.is(':visible')) {
                     $relatedElement.hide()
                     $(document.body).removeClass('modal-open')
@@ -138,7 +161,7 @@ define(
                     if (callback) callback()
                     $relatedElement.hide()
                 },
-                cancel: function(event) {
+                cancel: function( /*event*/ ) {
                     $relatedElement.hide()
                 },
                 all: function(event) {
@@ -155,6 +178,7 @@ define(
             manager.delegate($relatedElement, owner)
         }
 
+        /* jshint unused:vars */
         function _autoHide(tableComponentInstance, $table, $trigger, $relatedElement) {
             var type = 'click' + NAMESPACE + '_' + tableComponentInstance.clientId
             $(document.body).off(type)
@@ -171,34 +195,44 @@ define(
         }
 
         function _data(Constant, $table) {
+            var ths = $table.find('> thead th')
+            var found = false
+            var leftImmovables = []
+            var rightImmovables = []
+            var candidates = _.map(ths, function(item, index) {
+                var $item = $(item)
+                var text = $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME)
+
+                if (!text) {
+                    text = $.trim($item.text())
+                    $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME, text)
+                }
+                if (!text) return
+
+                if (!$item.is('[data-' + Constant.COLUMN.PRIORITY.TAG + ']')) {
+                    (found ? rightImmovables : leftImmovables).push({
+                        index: index,
+                        name: text
+                    })
+                    return
+                }
+
+                found = true
+
+                return {
+                    index: index,
+                    name: text
+                }
+            })
+            candidates = _.filter(candidates, function(item /*, index*/ ) {
+                return !!item
+            })
+
             return {
-                candidates: function() {
-                    return _.filter(
-                        _.map(
-                            $table.find('> thead th'),
-                            function(item, index) {
-                                var $item = $(item)
-                                if (!$item.is('[data-' + Constant.COLUMN.PRIORITY.TAG + ']')) return
-
-                                var text = $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME)
-                                if (!text) {
-                                    text = $.trim($item.text())
-                                    $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME, text)
-                                }
-
-                                if (!text) return
-
-                                return {
-                                    index: index,
-                                    name: text
-                                }
-                            }
-                        ),
-                        function(item, index) {
-                            return !!item
-                        }
-                    )
-                }()
+                Constant: Constant,
+                candidates: candidates,
+                leftImmovables: leftImmovables,
+                rightImmovables: rightImmovables
             }
         }
 
