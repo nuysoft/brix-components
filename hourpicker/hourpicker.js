@@ -130,8 +130,6 @@ define(
                         break
                     case 'close':
                         this._tmp.$target.css('visibility', 'inherit')
-                        break
-                    default:
                         $relatedElement.hide()
                 }
             },
