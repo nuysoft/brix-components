@@ -338,8 +338,8 @@
             instances.on('change.table_column_rwd', function(event, state) {
                 console.log(event.type, event.namespace, state)
             })
-            instances.on('change.table_column_priority', function(event, values) {
-                console.log(event.type, event.namespace, values)
+            instances.on('change.table_column_priority', function(event, fields) {
+                console.log(event.type, event.namespace, fields)
             })
         })
     })
@@ -347,7 +347,24 @@
 
 ### 配置 <small>Options</small>
 
-无。
+column-rwd-range="[3,-2]"
+
+配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+column-name | string | - | **Th** 可选。指定列名，默认取单元格 `th` 的文本内容。
+column-field | string | - | **Th** 可选。指定列名对应数据字段名，默认取单元格 `th` 的文本内容。
+column-rwd-range | array | - | **Table** 可选。指定列分页的范围，例如 `[3,-2]`。
+column-rwd-limit | array | 5 | **Table** 可选。指定列分页的单页个数，例如 `5`。
+column-priority-trigger | string | - | **Table** 可选。指定触发列配置浮层的节点选择器表达式，例如 `'#clickme'`
+column-priority-placement | string | 'bottom' | **Table** 可选。指定列配置浮层相对于触发节点的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+column-priority-align | string | 'right' | **Table** 可选。指定列配置浮层相对于触发节点的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+
+**注意**
+
+1. 设置 `column-rwd-range` 启用列分页功能。
+1. 设置 `data-column-priority-trigger` 启用列配置功能。
 
 ### 方法 <small>Methods</small>
 
@@ -358,6 +375,8 @@
 Event Type | Description
 :--------- | :----------
 toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受三个参数：`event`、`values`、`target`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。参数 `target` 是被点击的复选框。
+change.table_column_rwd | 当列滚动时触发。事件监听函数接受两个参数：`event`、`state`。参数 `state` 是一个对象，其中存放了列分页的状态。
+change.table_column_priority | 当列配置发生变化时触发。事件监听函数接受两个参数：`event`、`fields`。参数 `fields` 是一个数组，其中存放了排序后的列名。
 
 ```js
 var Loader = require('brix/loader')
@@ -365,7 +384,34 @@ var instances = Loader.query('components/table')[0]
 instances.on('toggle.table', function(event, values, target) {
     console.log(event.type, event.namespace, values, target)
 })
+instances.on('change.table_column_rwd', function(event, state) {
+    console.log(event.type, event.namespace, state)
+})
+instances.on('change.table_column_priority', function(event, fields) {
+    console.log(event.type, event.namespace, fields)
+})
 ```
+
+### 属性 <small>Properties</small>
+
+Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+columnPriorityHandler | object | - | 列配置浮层的实例。
+
+#### 属性 columnPriorityHandler
+
+* .columnPriorityHandler.show()
+
+    显示列配置浮层。
+
+* .columnPriorityHandler.hide()
+
+    隐藏列配置浮层。
+
+* .columnPriorityHandler.fields( [ fields ] )
+
+    读取或设置可显示的列。
+
 
 # linkage( container, callback( event, values ) )
 
