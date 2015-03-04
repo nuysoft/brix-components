@@ -82,6 +82,10 @@ define(
             render: function() {
                 this.$manager.delegate(this.$element, this)
             },
+            destroy: function() {
+                this.$manager.undelegate(this.$element)
+                this.$relatedElement.remove()
+            },
             fill: function() {
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $('div.dialog.dialog-singleton')
@@ -117,6 +121,11 @@ define(
                 return this
             },
             open: function() {
+                if (!this.element &&
+                    this.options.element &&
+                    (this.options.element !== this.$element[0])
+                ) this.$element = $(this.options.element)
+
                 this.fill()
 
                 var offset = this.options.left !== undefined && this.options.top !== undefined ? {
