@@ -11,6 +11,8 @@
         data-column-priority-state
         data-column-priority-name
 
+    data-column-id
+
     > RWD responsive web design
  */
 define(
@@ -36,17 +38,18 @@ define(
 
         var NAMESPACE = '.table'
         var Constant = {
+            UUID: 0,
             COLUMN: {
+                ID: 'column-id',
+                FIELD: 'column-field',
+                NAME: 'column-name',
                 RWD: {
-                    TAG: 'column-rwd',
                     RANGE: 'column-rwd-range',
                     LIMIT: 'column-rwd-limit'
                 },
                 PRIORITY: {
-                    TAG: 'column-priority',
                     TRIGGER: 'column-priority-trigger',
                     STATE: 'column-priority-state',
-                    NAME: 'column-priority-name',
                     INDEX: 'column-priority-index',
                     PLACEMENT: 'column-priority-placement',
                     ALIGN: 'column-priority-align'
@@ -72,14 +75,19 @@ define(
 
                 var columnRWDHandler, columnPriorityHandler
                 if (this.options[Constant.COLUMN.RWD.RANGE]) {
-                    columnRWDHandler = ColumnRWD(this, this.options, Constant, function() {})
+                    columnRWDHandler = ColumnRWD(this, this.options, Constant, function(event, state) {
+                        that.trigger('change' + ColumnRWD.NAMESPACE, [state])
+                    })
                 }
                 if (this.options[Constant.COLUMN.PRIORITY.TRIGGER]) {
-                    columnPriorityHandler = ColumnPriority(this, this.options, Constant, function() {
-                        if (!columnRWDHandler) return
+                    columnPriorityHandler = ColumnPriority(this, this.options, Constant, function(event, fields) {
+                        that.trigger('change' + ColumnPriority.NAMESPACE, [fields])
                         columnRWDHandler.flush()
                     })
                 }
+
+                this.columnRWDHandler = columnRWDHandler
+                this.columnPriorityHandler = columnPriorityHandler
             },
             contextual: function() {
                 _.each(this.$element.find('input:checkbox'), function(item /*, index*/ ) {

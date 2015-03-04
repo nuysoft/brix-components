@@ -9,7 +9,7 @@ define(
         State
     ) {
 
-        var NAMESPACE = '.column'
+        var NAMESPACE = '.table_column_rwd'
         var TEMPLATE_ARROW = '<div class="column-scroll-arrow"><%= text %></div>'
         var SELECTOR_TH = '> thead > tr > th:nth-child(<%= nth %>)'
         var SELECTOR_TD = '> tbody > tr > td:nth-child(<%= nth %>)'
@@ -48,6 +48,8 @@ define(
             }
         }
 
+        column.NAMESPACE = NAMESPACE
+
         function _create($table, text) {
             var $tbody = $table.find('> tbody')
             var html = _.template(TEMPLATE_ARROW)({
@@ -58,6 +60,7 @@ define(
                 .offset({
                     top: $tbody.offset().top
                 })
+
             return $arrow
         }
 
@@ -72,13 +75,13 @@ define(
             spree.$leftArrow.on('click' + NAMESPACE, function(event) {
                 spree.state.moveToPrev()
                 _handler(event, spree)
-                if (spree.callback) spree.callback()
+                if (spree.callback) spree.callback(event, spree.state, event.currentTarget)
             })
 
             spree.$rightArrow.on('click' + NAMESPACE, function(event) {
                 spree.state.moveToNext()
                 _handler(event, spree)
-                if (spree.callback) spree.callback()
+                if (spree.callback) spree.callback(event, spree.state, event.currentTarget)
             })
 
             spree.$table.hover(function() {
@@ -107,10 +110,12 @@ define(
             range[0] = (+range[0] + $ths.length) % $ths.length
             range[1] = (+range[1] + $ths.length) % $ths.length
 
-            // 自动应用 priority 插件
+            // 自动应用 priority 插件：增加标识 data-column-id
             _.each($ths, function(item, index) {
+                item = $(item)
                 if (index >= range[0] && index < range[1]) {
-                    $(item).attr('data-' + Constant.COLUMN.PRIORITY.TAG, '')
+                    if (item.data(Constant.COLUMN.ID) !== undefined) return
+                    item.attr('data-' + Constant.COLUMN.ID, Constant.UUID++)
                 }
             })
 
@@ -120,14 +125,14 @@ define(
                 return index >= range[0] && index < range[1]
             })
 
-            // 调整被 priority 插件排序的列
+            // 调整被 priority 插件排序的列：按照标记 data-column-priority-index 排序，并调整 DOM 结构
             var $firstPrev = $($ths[0]).prev()
                 // var $lastNext = $($ths[$ths.length - 1]).next()
             $ths.sort(function(a, b) { // test
                 var $a = $(a)
                 var $b = $(b)
-                a = +$a.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
-                b = +$b.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
+                a = +$a.data(Constant.COLUMN.PRIORITY.INDEX)
+                b = +$b.data(Constant.COLUMN.PRIORITY.INDEX)
                 if (isNaN(a)) a = $a.index()
                 if (isNaN(b)) b = $b.index()
                 return a - b
@@ -141,15 +146,16 @@ define(
                 var newIndex = $(th).index()
                 var $tds = $tbody.find('> tr > td:nth-child(' + (currentIndex + 1) + ')')
                 _.each($tds, function(td, tdIndex) {
-                    $(td).parent().find('> td:nth-child(' + newIndex + ')').after(td)
+                    $(td).siblings(':nth-child(' + newIndex + ')').after(td)
                 })
             })
 
-            // 过滤被 priority 插件隐藏的列
-            $ths = _.filter($ths, function(item, index) {
-                var priorityTag = $(item).attr('data-' + Constant.COLUMN.PRIORITY.TAG)
-                var priorityState = $(item).attr('data-' + Constant.COLUMN.PRIORITY.STATE)
-                return priorityTag !== undefined && priorityState !== 'hide'
+            // 过滤被 priority 插件隐藏的列：它们不再参与分页
+            $ths = _.filter($ths, function(item /*, index*/ ) {
+                var $item = $(item)
+                var id = $item.data(Constant.COLUMN.ID)
+                var state = $item.data(Constant.COLUMN.PRIORITY.STATE)
+                return id !== undefined && state !== 'hide'
             })
 
             $ths = $($ths)
@@ -165,7 +171,7 @@ define(
                 state.setTotal($ths.length)
             }
 
-            // 调整被 priority 插件隐藏或显示的列
+            // 调整被 priority 插件隐藏或显示的列（内容列，非表头）
             for (var i = 0, m, index; i < state.total; i++) {
                 m = (i >= state.start && i < state.end) ? 'show' : 'hide'
                 index = $ths.eq(i)[m]().index()
@@ -175,6 +181,7 @@ define(
                     })
                 )[m]()
             }
+
             return state
         }
 

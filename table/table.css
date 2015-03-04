@@ -43,6 +43,8 @@
   width: 16px;
   text-align: center;
   cursor: pointer;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 .column-scroll-arrow:hover {
   background-color: #999;

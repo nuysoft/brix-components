@@ -7,10 +7,10 @@ define(function() {
             <div class="col-xs-8">
                 <h4>
                     <span>请选择列</span>
-                    <!-- <small>
+                    <small>
                         <a href="javascript: void(0);" bx-click="all">全选</a>
                         <a href="javascript: void(0);" bx-click="clear">清空</a>
-                    </small> -->
+                    </small>
                 </h4>
             </div>
             <div class="col-xs-4">
@@ -21,8 +21,13 @@ define(function() {
             <div class="col-xs-8 candidates">
                 <% for ( var i = 0; i < candidates.length; i++ ) { %>
                 <label class="item">
-                    <input type="checkbox" checked data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>">
-                    <span><%= candidates[i].name %></span>
+                    <input type="checkbox" 
+                        data-<%= Constant.COLUMN.ID %>="<%= candidates[i].id %>" 
+                        data-<%= Constant.COLUMN.NAME %>="<%= candidates[i].name %>" 
+                        data-<%= Constant.COLUMN.FIELD %>="<%= candidates[i].field %>" 
+                        data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>" 
+                        checked>
+                    <span title="<%= candidates[i].name %>"><%= candidates[i].name %></span>
                 </label>
                 <% } %>
             </div>
@@ -37,8 +42,12 @@ define(function() {
                 </div>
                 <div class="sortable-wrapper">
                     <% for ( var i = 0; i < candidates.length; i++ ) { %>
-                    <div class="item item-move" data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>">
-                        <span class="item-name"><%= candidates[i].name %></span>
+                    <div class="item item-move" 
+                        data-<%= Constant.COLUMN.ID %>="<%= candidates[i].id %>" 
+                        data-<%= Constant.COLUMN.NAME %>="<%= candidates[i].name %>" 
+                        data-<%= Constant.COLUMN.FIELD %>="<%= candidates[i].field %>" 
+                        data-<%= Constant.COLUMN.PRIORITY.INDEX %>="<%= candidates[i].index %>">
+                        <span class="item-name" title="<%= candidates[i].name %>"><%= candidates[i].name %></span>
                     </div>
                     <% } %>
                 </div>

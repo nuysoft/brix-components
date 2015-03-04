@@ -38,7 +38,7 @@ define(
 
             _toggle($trigger, $relatedElement, placement, align)
 
-            _autoHide(tableComponentInstance, $table, $trigger, $relatedElement)
+            _autoHide(tableComponentInstance, $trigger, $relatedElement)
 
             _delegate(Constant, $table, $trigger, $relatedElement, callback)
 
@@ -47,36 +47,36 @@ define(
             if (wrapper.length) Sortable.create(wrapper[0], {
                 handle: '.item-move',
                 animation: 150,
-                onEnd: function(event) {
-                    // 同步顺序
+                onEnd: function( /*event*/ ) {
+                    // 同步顺序：解析新顺序，然后同步到表头 th 的标记 data-column-priority-index 
                     var cache = {}
                     var candidates = $relatedElement.find('.queue .sortable-wrapper .item')
                     _.each(candidates, function(item, index) {
                         var $item = $(item)
-                        var text = $.trim($item.text())
-                        cache[text] = index
+                        var id = $item.data(Constant.COLUMN.ID)
+                        cache[id] = index
                         $item.attr('data-' + Constant.COLUMN.PRIORITY.INDEX, index)
                     })
                     var $ths = $table.find('> thead th')
                     _.each($ths, function(item /*, index*/ ) {
                         var $item = $(item)
-                        if (!$item.is('[data-' + Constant.COLUMN.PRIORITY.TAG + ']')) return
-
-                        var text = $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME)
-                        $item.attr('data-' + Constant.COLUMN.PRIORITY.INDEX, cache[text])
+                        var id = $item.data(Constant.COLUMN.ID)
+                        if (id === undefined) return
+                        $item.attr('data-' + Constant.COLUMN.PRIORITY.INDEX, cache[id])
                     })
-
-                    _handler(event, Constant, $table, $relatedElement)
-
-
-                    if (callback) callback()
                 }
-            });
+            })
 
-            // test
-            $relatedElement.on('change' + NAMESPACE, 'input:checkbox', function( /*event*/ ) {
-                // _handler(event,Constant, $table, $relatedElement)
-                // if (callback) callback()
+            // 勾选左侧复选框，更新右侧排序区域
+            $relatedElement.on('change' + NAMESPACE, 'input:checkbox', function(event) {
+                var $target = $(event.target)
+                var id = $target.data(Constant.COLUMN.ID)
+                var checked = $target.prop('checked')
+
+                $relatedElement.find('.queue .sortable-wrapper .item')
+                    .filter('[data-' + Constant.COLUMN.ID + '="' + id + '"]')[
+                        checked ? 'slideDown' : 'slideUp'
+                    ]('fast')
             })
 
             return {
@@ -89,9 +89,44 @@ define(
                 },
                 hide: function() {
                     $relatedElement.hide()
+                },
+                fields: function(fields) {
+                    if (fields) {
+                        var candidates = $relatedElement.find('.candidates input:checkbox')
+                        var queue = $relatedElement.find('.queue .sortable-wrapper .item')
+                        var sortableItems = []
+                        _.each(candidates, function(item /*, index*/ ) {
+                            var $item = $(item)
+                            var field = $item.data(Constant.COLUMN.FIELD)
+                            var priorityIndex = _.indexOf(fields, field)
+                            $item.prop('checked', priorityIndex !== -1).triggerHandler('change' + NAMESPACE)
+
+                            var $sortableItem = queue.filter('[data-' + Constant.COLUMN.FIELD + '="' + field + '"]')
+                            if (priorityIndex === -1) {
+                                $sortableItem.hide()
+                            } else {
+                                $sortableItem.show()
+                                sortableItems[priorityIndex] = $sortableItem
+                            }
+                        })
+
+                        _.each(sortableItems, function(item, index) {
+                            if (!item) return
+                            if (index === 0) $(item).parent().prepend(item)
+                            else sortableItems[index - 1].after(item)
+                        })
+
+                        _handler(Constant, $table, $relatedElement)
+                        if (callback) callback(undefined, fields)
+
+                        return this
+                    }
+                    return _handler(Constant, $table, $relatedElement)
                 }
             }
         }
+
+        priority.NAMESPACE = NAMESPACE
 
         function _render(Constant, $table) {
             var data = _data(Constant, $table)
@@ -111,30 +146,34 @@ define(
             }
         }
 
+        // 同步标记 data-column-priority-state，并隐藏或显示
         /* jshint unused:vars */
-        function _handler(event, Constant, $table, $relatedElement) {
+        function _handler(Constant, $table, $relatedElement) {
             var candidates = $relatedElement.find('.candidates input:checkbox')
             _.each(candidates, function(item /*, index*/ ) {
                 var $item = $(item)
-                var index = $item.attr('data-index')
-                if (index === undefined) return
+                var id = $item.data(Constant.COLUMN.ID)
+                if (id === undefined) return
 
                 var checked = $item.prop('checked')
                 var method = checked ? 'show' : 'hide'
-                $table
-                    .find('> thead th:nth-child(' + (+index + 1) + ')')
+                var $th = $table.find('> thead th[data-' + Constant.COLUMN.ID + '="' + id + '"]')
                     .attr('data-' + Constant.COLUMN.PRIORITY.STATE, method)[method]()
-                    .end()
-                    .find('> tbody td:nth-child(' + (+index + 1) + ')')
+                $table.find('> tbody td:nth-child(' + ($th.index() + 1) + ')')
                     .attr('data-' + Constant.COLUMN.PRIORITY.STATE, method)[method]()
-                    .end()
             })
 
-            var names = []
+            var fields = []
             candidates = $relatedElement.find('.queue .sortable-wrapper .item')
             _.each(candidates, function(item /*, index*/ ) {
-                names.push($(item).find('.item-name').text())
+                var $item = $(item)
+                if (!$item.is(':visible')) return
+                fields.push(
+                    $item.data(Constant.COLUMN.FIELD) || $item.data(Constant.COLUMN.NAME)
+                )
             })
+
+            return fields
         }
 
         function _toggle($trigger, $relatedElement, placement, align) {
@@ -157,29 +196,27 @@ define(
             var manager = new EventManager('bx-')
             var owner = {
                 submit: function(event) {
-                    _handler(event, Constant, $table, $relatedElement)
-                    if (callback) callback()
+                    var fields = _handler(Constant, $table, $relatedElement)
+                    if (callback) callback(event, fields, event.currentTarget)
                     $relatedElement.hide()
                 },
                 cancel: function( /*event*/ ) {
                     $relatedElement.hide()
                 },
-                all: function(event) {
+                all: function( /*event*/ ) {
                     $relatedElement.find('.candidates input:checkbox').prop('checked', true)
-                    _handler(event, Constant, $table, $relatedElement)
-                    if (callback) callback()
+                    $relatedElement.find('.queue .sortable-wrapper .item').show()
                 },
-                clear: function(event) {
+                clear: function( /*event*/ ) {
                     $relatedElement.find('.candidates input:checkbox').prop('checked', false)
-                    _handler(event, Constant, $table, $relatedElement)
-                    if (callback) callback()
+                    $relatedElement.find('.queue .sortable-wrapper .item').hide()
                 }
             }
             manager.delegate($relatedElement, owner)
         }
 
         /* jshint unused:vars */
-        function _autoHide(tableComponentInstance, $table, $trigger, $relatedElement) {
+        function _autoHide(tableComponentInstance, $trigger, $relatedElement) {
             var type = 'click' + NAMESPACE + '_' + tableComponentInstance.clientId
             $(document.body).off(type)
                 .on(type, function(event) {
@@ -201,18 +238,18 @@ define(
             var rightImmovables = []
             var candidates = _.map(ths, function(item, index) {
                 var $item = $(item)
-                var text = $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME)
+                var name = $item.data(Constant.COLUMN.NAME)
 
-                if (!text) {
-                    text = $.trim($item.text())
-                    $item.attr('data-' + Constant.COLUMN.PRIORITY.NAME, text)
+                if (!name) {
+                    name = $.trim($item.text())
+                    $item.attr('data-' + Constant.COLUMN.NAME, name)
                 }
-                if (!text) return
+                if (!name) return
 
-                if (!$item.is('[data-' + Constant.COLUMN.PRIORITY.TAG + ']')) {
+                if ($item.data(Constant.COLUMN.ID) === undefined) {
                     (found ? rightImmovables : leftImmovables).push({
                         index: index,
-                        name: text
+                        name: name
                     })
                     return
                 }
@@ -221,7 +258,9 @@ define(
 
                 return {
                     index: index,
-                    name: text
+                    id: $item.data(Constant.COLUMN.ID),
+                    name: name,
+                    field: $item.data(Constant.COLUMN.FIELD) || name
                 }
             })
             candidates = _.filter(candidates, function(item /*, index*/ ) {
