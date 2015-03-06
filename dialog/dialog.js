@@ -83,7 +83,7 @@ define(
                 this.$manager.delegate(this.$element, this)
             },
             destroy: function() {
-                this.$manager.undelegate(this.$element)
+                if ($manager) this.$manager.undelegate(this.$element)
                 this.$relatedElement.remove()
             },
             fill: function() {

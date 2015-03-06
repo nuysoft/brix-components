@@ -24,7 +24,7 @@ define(
          */
 
         var DIALOG_VIEW_ID = 'vf-dialog';
-        var DIALOG_VIEW_CONTAINER = '<div class="dialog-body"><vframe id="' + DIALOG_VIEW_ID + '"></vframe></div>'
+        var DIALOG_VIEW_CONTAINER = '<div class="dialog-body"><div id="' + DIALOG_VIEW_ID + '" mx-vframe="true"></div></div>'
 
         function DialogView() {
             // 支持构造函数
@@ -47,13 +47,15 @@ define(
                         options: this.options['view-options']
                     }
                 }
+                if (this.dialog) this.dialog.destroy()
                 this.dialog = new Dialog(this.options)
             },
             render: function() {},
             fill: function() {
                 var vframe = Magix.VOM.get(DIALOG_VIEW_ID) || new Magix.Vframe(DIALOG_VIEW_ID)
-                if (vframe && vframe.view) vframe.unmountView()
-                vframe.mountView(this.options.view.name, this.options.view.options)
+                vframe.unmountVframe(DIALOG_VIEW_ID)
+                vframe.mountVframe(DIALOG_VIEW_ID, this.options.view.name, this.options.view.options)
+                    
                     // console.log($('#' + DIALOG_VIEW_ID))
                     // $('#' + DIALOG_VIEW_ID).html(
                     //     this.options.view.name +
@@ -66,9 +68,10 @@ define(
             },
             close: function() {
                 this.dialog.close()
-
                 var vframe = Magix.VOM.get(DIALOG_VIEW_ID)
-                if (vframe && vframe.view) vframe.unmountView()
+                if (vframe) {
+                    vframe.unmountVframe(DIALOG_VIEW_ID)
+                }
             }
         })
 
