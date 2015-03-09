@@ -45,11 +45,30 @@
                 data-type="pie"
                 data-options="{}"
                 data-data="[
-                    ['Opera', 1],
-                    ['IE', 3],
-                    ['Chrome', 5],
-                    ['Firefox', 2],
-                    ['Safari', 1]
+                    ['Firefox', 20],
+                    ['Opera2', 1],        
+                    ['Opera2', 1],
+                    ['Opera3', 1],
+                    ['Opera4', 1],
+                    ['Opera5', 1],
+                    ['Opera2', 1],
+                    ['Opera2', 1],
+                    ['Opera3', 1],
+                    ['Opera4', 1],
+                    ['Opera5', 1],
+                    ['Firefox', 20],
+                    ['Firefox', 20],
+                    ['Opera2', 1],
+                    ['Opera2', 1],
+                    ['Opera3', 1],
+                    ['Opera4', 1],
+                    ['Opera5', 1],
+                    ['Opera2', 1],
+                    ['Opera2', 1],
+                    ['Opera3', 1],
+                    ['Opera4', 1],
+                    ['Opera5', 1],
+                    ['Firefox', 20]
                 ]" style="width: 100%; height: 320px;"></div>
         </div>
     </div>
@@ -63,161 +82,55 @@
         </div>
     </div>
 </div>
+
 <div class="bs-example">
     <div class="content">
-        <div bx-name="components/chartxwrapper" data-type="force" style="width: 100%; height: 320px;">
-            {
-                "nodes": {
-                    "a": {},
-                    "c": {},
-                    "b": {},
-                    "e": {},
-                    "d": {},
-                    "g": {},
-                    "i": {},
-                    "h": {},
-                    "k": {},
-                    "n": {},
-                    "w": {}
-                },
-                "edges": {
-                    "a": {
-                        "b": {
-                            "weight": 0.2
-                        },
-                        "e": {
-                            "weight": 0.7
-                        },
-                        "w": {
-                            "weight": 0.9
-                        },
-                        "n": {
-                            "weight": 0.7
-                        }
-                    },
-                    "c": {
-                        "b": {
-                            "weight": 0.5
-                        },
-                        "d": {
-                            "weight": 0.9
-                        }
-                    },
-                    "b": {
-                        "a": {
-                            "weight": 0.2
-                        },
-                        "c": {
-                            "weight": 0.9
-                        },
-                        "i": {
-                            "weight": 0.7
-                        },
-                        "h": {
-                            "weight": 0.8
-                        },
-                        "k": {
-                            "weight": 0.1
-                        },
-                        "n": {
-                            "weight": 0.2
-                        }
-                    },
-                    "e": {
-                        "a": {
-                            "weight": 0.3
-                        },
-                        "k": {
-                            "weight": 0.2
-                        },
-                        "d": {
-                            "weight": 0.9
-                        }
-                    },
-                    "d": {
-                        "c": {
-                            "weight": 0.9
-                        },
-                        "e": {
-                            "weight": 0.9
-                        },
-                        "n": {
-                            "weight": 0.1
-                        }
-                    },
-                    "g": {
-                        "i": {
-                            "weight": 0.2
-                        },
-                        "h": {
-                            "weight": 0.9
-                        }
-                    },
-                    "i": {
-                        "k": {
-                            "weight": 0.2
-                        },
-                        "b": {
-                            "weight": 0.2
-                        },
-                        "w": {
-                            "weight": 0.7
-                        },
-                        "g": {
-                            "weight": 0.9
-                        }
-                    },
-                    "h": {
-                        "g": {
-                            "weight": 0.9
-                        }
-                    },
-                    "k": {
-                        "i": {
-                            "weight": 0.3
-                        },
-                        "e": {
-                            "weight": 0.2
-                        }
-                    },
-                    "n": {
-                        "w": {
-                            "weight": 0.1
-                        }
-                    },
-                    "w": {
-                        "i": {
-                            "weight": 0.4
-                        },
-                        "a": {
-                            "weight": 0.1
-                        },
-                        "n": {
-                            "weight": 0.8
-                        }
-                    }
-                },
-                "_": ""
-            }
-        </div>
+        <div bx-name="components/chartxwrapper" data-type="line" style="width: 480px; height: 320px;">
+            [
+                ["date", "uv1", "uv3", "uv2"],
+                ["2014-12-24", 100, 200, 300],
+                ["2014-12-25", 200, 250, 100],
+                ["2014-12-26", 160, 260, 180]
+            ]
         </div>
     </div>
 </div>
 
 <div class="bs-example">
     <div class="content">
-        <div bx-name="components/chartxwrapper" data-type="line" style="width: 480px; height: 320px;">
+        <div bx-name="components/chartxwrapper" data-type="radar" style="width: 480px; height: 320px;">
             [
-                ['VAL1: ', 'VAL2: ', 'VAL3: ', 'VAL4: '],
-                [1, 101, 20, 33],
-                [2, 67, 51, 26],
-                [3, 76, 45, 43],
-                [4, 58, 35, 31],
-                [5, 79, 73, 71],
-                [6, 88, 54, 39],
-                [7, 56, 68, 65],
-                [8, 99, 83, 51]
+                ["val1", "val2", "val3"],
+                ["Eating", 65, 28],
+                ["Drinking", 59, 48],
+                ["Sleeping", 90, 40],
+                ["Designing", 81, 19],
+                ["Coding", 56, 96],
+                ["Cycling", 55, 27],
+                ["Running", 40, 100]
             ]
         </div>
     </div>
 </div>
+
+<div class="bs-example">
+    <div class="content">
+        <div bx-name="components/chartxwrapper" data-type="scat" style="width: 480px; height: 320px;">
+            [
+                ["val1", "val2", "val3", "val4"],
+                [26, 101, 201, 151],
+                [77, 0, 145, 90],
+                [84, 488, 88, 200],
+                [134, 290, 346, 350],
+                [325, 90, 188, 400],
+                [61, 300, 546, 280],
+                [17, 201, 101, 500],
+                [228, 145, 145, 100],
+                [199, 388, 288, 530],
+                [100, 390, 225, 330]
+            ]
+        </div>
+    </div>
+</div>
+
+

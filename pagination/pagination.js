@@ -86,6 +86,16 @@ define(
                 this.trigger('change.pagination', this._state)
                 this.render()
             },
+            total: function(total) {
+                if (total === undefined || total === null) return this._state.total
+                this._state.setTotal(total)
+                return this
+            },
+            cursor: function(cursor) {
+                if (cursor === undefined || cursor === null) return this._state.cursor
+                this._state.setCursor(cursor)
+                return this
+            },
             fixData: function() {
                 var barStart = Math.min(
                     this._state.pages,
