@@ -87,6 +87,22 @@ define(
                 this._timer = setTimeout(function() {
                     that.$relatedElement.hide()
                 }, this.options.delay)
+            },
+            title: function(title) {
+                if (title === undefined || title === null) return this.options.title
+
+                this.options.title = title
+                this.$relatedElement.find('.popover-title').html(title)
+
+                return this
+            },
+            content: function(content) {
+                if (content === undefined || content === null) return this.options.content
+
+                this.options.content = content
+                this.$relatedElement.find('.popover-content').html(content)
+
+                return this
             }
         })
 
