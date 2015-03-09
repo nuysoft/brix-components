@@ -47,6 +47,8 @@ define(
                         // $(window).on('resize', function() {
                         //     chart.resize()
                         // })
+
+                    that.chart = chart
                 })
             }
         })
