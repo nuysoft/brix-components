@@ -11,7 +11,7 @@ define(function() {
     <% if( shortcuts ) { %>
     <div class="datepickerwrapper-shortcuts form-inline form-group">
         <div class="datepickerwrapper-shortcuts-header">
-            <h4>快捷日期：</h4>
+            <div class="datepickerwrapper-shortcuts-header-title">快捷日期：</div>
         </div>
         <div class="datepickerwrapper-shortcuts-body clearfix">
             <% for (var title in shortcuts) { %>
@@ -19,14 +19,14 @@ define(function() {
                     _.map(shortcuts[title], function(item) {
                         return item.format('YYYY-MM-DD')
                     }).join(',')
-                %>" class=""><%= title %></span>
+                %>" class="shortcut"><%= title %></span>
             <% } %>
         </div>
     </div>
     <% } %>
     <div class="datepickerwrapper-inputs form-inline form-group">
         <div class="datepickerwrapper-inputs-header">
-            <h4>日期范围：</h4>
+            <div class="datepickerwrapper-inputs-header-title">日期范围：</div>
         </div>
         <div class="datepickerwrapper-inputs-body">
             <% for (var i = 0; i < dates.length; i++ ) { %>

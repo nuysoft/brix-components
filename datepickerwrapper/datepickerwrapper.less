@@ -10,7 +10,7 @@
     margin-top: 2px;
 
     &.multiple {
-        padding: 15px;
+        padding: 15px 0px;
         border: 1px solid #cccccc;
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 6px;
@@ -22,8 +22,15 @@
     }
 
     .datepickerwrapper-inputs {
-        .datepickerwrapper-inputs-header {}
+        padding: 0 15px;
+        .datepickerwrapper-inputs-header {
+            .datepickerwrapper-inputs-header-title {
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+        }
         .datepickerwrapper-inputs-body {
+            white-space: nowrap;
             input {
                 display: inline-block;
                 width: 100px;
@@ -40,20 +47,26 @@
     }
 
     .datepickerwrapper-shortcuts {
+        padding: 0 15px;
         width: 330px;
 
-        .datepickerwrapper-shortcuts-header {}
+        .datepickerwrapper-shortcuts-header {
+            .datepickerwrapper-shortcuts-header-title {
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+        }
 
         .datepickerwrapper-shortcuts-body {
             span {
                 display: inline-block;
-                padding: 5px 0;
+                padding: 5px;
                 margin: 0px 10px 2px 0px;
                 float: left;
                 text-align: center;
                 border-radius: 5px;
                 cursor: pointer;
-                width: 75px;
+                width: 30%;
 
                 &:hover {
                     background: #EEE;
@@ -83,5 +96,12 @@
                 }
             }
         }
+    }
+
+    .datepickerwrapper-footer {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #DDD;
     }
 }
