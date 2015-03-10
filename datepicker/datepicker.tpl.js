@@ -35,7 +35,7 @@ define(function() {
         </div>
         <div class="picker-body">
             <div class="datepicker-body-description clearfix">
-                <span class="disabled">Sun</span><span class="disabled">Mon</span><span class="disabled">Tue</span><span class="disabled">Wed</span><span class="disabled">Thur</span><span class="disabled">Fri</span><span class="disabled">Sat</span>
+                <span class="disabled">日</span><span class="disabled">一</span><span class="disabled">二</span><span class="disabled">三</span><span class="disabled">四</span><span class="disabled">五</span><span class="disabled">六</span>
             </div>
             <div class="datepicker-body-value picker-selectable clearfix">
                 <!-- <span class="inactive"></span> -->
