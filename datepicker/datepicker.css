@@ -1,5 +1,5 @@
 .datepicker-container {
-  background: white;
+  background-color: white;
   display: inline-block;
   border: 1px solid #CCC;
   padding: 0 10px;
@@ -9,7 +9,7 @@
   z-index: 10;
 }
 .datepicker-container .picker-group {
-  border-top: 1px solid gray;
+  border-top: 1px solid #DDD;
   padding: 15px 0 13px 0;
   margin-top: -2px;
 }
@@ -56,14 +56,14 @@
   cursor: pointer;
 }
 .datepicker-container .picker-group .picker-body span:hover {
-  background: #EEE;
+  background-color: #EEE;
 }
 .datepicker-container .picker-group .picker-body span:active {
-  background: #DDD;
+  background-color: #DDD;
 }
 .datepicker-container .picker-group .picker-body span.active {
   color: white;
-  background: #3276b1;
+  background-color: #3276b1;
 }
 .datepicker-container .picker-group .picker-body span.inactive:hover {
   background: transparent;
@@ -75,11 +75,11 @@
 }
 .datepicker-container .picker-group .picker-body span.disabled:hover {
   color: #DDD;
-  background: #FFF;
+  background-color: #FFF;
 }
 .datepicker-container .picker-group .picker-body span.disabled.active {
   color: #FFF;
-  background: #DDD;
+  background-color: #DDD;
 }
 .datepicker-container > .yearpicker .picker-body span {
   width: 43px;
@@ -91,13 +91,13 @@
   width: 55px;
 }
 .datepicker-container > .monthpicker .picker-header h4:hover {
-  background: #EEE;
+  background-color: #EEE;
 }
 .datepicker-container > .datepicker .picker-body span {
   width: 30px;
 }
 .datepicker-container > .datepicker .picker-header h4:hover {
-  background: #EEE;
+  background-color: #EEE;
 }
 .datepicker-container > .timepicker {
   width: 238px;
