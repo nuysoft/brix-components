@@ -203,6 +203,34 @@ var instances = Loader.query('components/popover')
 console.log(instances[0].hide())
 ```
 
+#### .title( [ title ] )
+
+* .title()
+* .title( title )
+
+获取或设置浮层的标题。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/popover')
+instances[0].title(Math.random())
+console.log(instances[0].title())
+```
+
+#### .content( [ content ] )
+
+* .content()
+* .content( content )
+
+获取或设置浮层的标题。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/popover')
+instances[0].content(Math.random())
+console.log(instances[0].content())
+```
+
 ### 事件 <small>Events</small>
 
 无。

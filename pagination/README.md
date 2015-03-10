@@ -37,6 +37,32 @@ var instances = Loader.query('components/pagination')
 instances.moveTo(2)
 ```
 
+#### .total( [ total ] )
+
+获取或设置总条数。
+
+> 该方法不会触发事件 `change.pagination`。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/pagination')
+instances[0].total( instances[0].total() + 1 )
+console.log( instances[0].total() )
+```
+
+#### .cursor( [ cursor ] )
+
+获取或设置当前页数。
+
+> 该方法不会触发事件 `change.pagination`。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/pagination')
+instances[0].cursor( instances[0].cursor() + 1 )
+console.log( instances[0].cursor() )
+```
+
 ### 事件 <small>Events</small>
 
 Event Type | Description
