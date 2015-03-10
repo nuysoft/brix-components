@@ -255,7 +255,25 @@ ranges | array | `[]` | 设置可选日期的范围。合法值参见 [DatePicke
 
 ### 方法 <small>Methods</small>
 
-无。
+#### .shortcutText( dates )
+
+* .shortcutText( dates )
+
+获取日期对应的快捷日期文本。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepickerwrapper')
+_.each(instances, function(picker, index) {
+    picker.on('change.datepickerwrapper', function(event, dates) {
+        var shortcutText = picker.shortcutText(dates)
+        if( shortcutText ) {
+            event.preventDefault()
+            picker.$element.text(shortcutText)
+        }
+    })
+})
+```
 
 ### 事件 <small>Events</small>
 
