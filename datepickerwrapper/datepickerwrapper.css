@@ -25,7 +25,6 @@
 }
 .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-header .datepickerwrapper-inputs-header-title {
   margin-bottom: 10px;
-  font-weight: bold;
 }
 .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body {
   white-space: nowrap;
@@ -43,11 +42,9 @@
 }
 .datepickerwrapper .datepickerwrapper-shortcuts {
   padding: 0 15px;
-  width: 330px;
 }
 .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-header .datepickerwrapper-shortcuts-header-title {
   margin-bottom: 10px;
-  font-weight: bold;
 }
 .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
   display: inline-block;

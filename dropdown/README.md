@@ -4,6 +4,18 @@
 
 ### 示例 <small>Examples</small>
 
+<style type="text/css">
+    .dropdown .dropdown-toggle {
+        height: 32px;
+        padding-top: 5px;
+    }
+    .dropdown .dropdown-toggle .dropdown-toggle-label {
+        display: inline-block;
+        min-width: 100px;
+        text-align: left;
+    }
+</style>
+
 <div class="bs-example">
     <div class="content">
         <h4>直接在 `<select>` 节点上附加 `bx-name="components/dropdown"`。</h4>

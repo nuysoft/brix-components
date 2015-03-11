@@ -11,7 +11,7 @@ define(function() {
     <% if( shortcuts ) { %>
     <div class="datepickerwrapper-shortcuts form-inline form-group">
         <div class="datepickerwrapper-shortcuts-header">
-            <div class="datepickerwrapper-shortcuts-header-title">快捷日期：</div>
+            <div class="datepickerwrapper-shortcuts-header-title">快捷日期</div>
         </div>
         <div class="datepickerwrapper-shortcuts-body clearfix">
             <% for (var title in shortcuts) { %>
@@ -26,7 +26,7 @@ define(function() {
     <% } %>
     <div class="datepickerwrapper-inputs form-inline form-group">
         <div class="datepickerwrapper-inputs-header">
-            <div class="datepickerwrapper-inputs-header-title">日期范围：</div>
+            <div class="datepickerwrapper-inputs-header-title">日期范围</div>
         </div>
         <div class="datepickerwrapper-inputs-body">
             <% for (var i = 0; i < dates.length; i++ ) { %>
@@ -41,8 +41,8 @@ define(function() {
         <% } %>
     </div>
     <div class="datepickerwrapper-footer">
-        <button class="btn btn-default" bx-click="submit">确认</button>
-        <a href="javascript: void(0);" bx-click="hide" class="ml5">取消</a>
+        <button class="btn btn-default submit" bx-click="submit">确认</button>
+        <a href="javascript: void(0);" bx-click="hide" class="btn btn-default cancel ml5">取消</a>
     </div>
     <% } %>
 </div>

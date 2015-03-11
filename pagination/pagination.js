@@ -71,7 +71,10 @@ define(
                 // 重新 render 之后的 ready 事件？再次触发？
                 Loader.boot(this.element, function() {
                     that.dropdown = Loader.query('components/dropdown', that.element)[0]
-                        /* jshint unused:false */
+
+                    if (!that.dropdown) return
+
+                    /* jshint unused:false */
                     that.dropdown.on('change.dropdown', function(event, data) {
                         that._state.setLimit(data.value)
                         that.trigger('change.pagination', that._state)
@@ -88,14 +91,18 @@ define(
             },
             total: function(total) {
                 if (total === undefined || total === null) return this._state.total
-                this._state.setTotal(total)
-                this.render()
+                if (this._state.total !== total) {
+                    this._state.setTotal(total)
+                    this.render()
+                }
                 return this
             },
             cursor: function(cursor) {
                 if (cursor === undefined || cursor === null) return this._state.cursor
-                this._state.setCursor(cursor)
-                this.render()
+                if (this._state.cursor !== cursor) {
+                    this._state.setCursor(cursor)
+                    this.render()
+                }
                 return this
             },
             fixData: function() {

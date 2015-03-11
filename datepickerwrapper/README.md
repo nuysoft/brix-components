@@ -4,6 +4,80 @@
 
 ### 示例 <small>Examples</small>
 
+<style type="text/css">
+    * {
+        font-size: 12px;
+    }
+    .datepickerwrapper {
+        margin-top: 10px;
+        border: 1px solid #E6E6E6!important;
+        border-radius: 4px!important;
+        box-shadow: none!important;
+    }
+    .datepickerwrapper.multiple {
+        padding: 20px 0px 10px 0px;
+    }
+
+    .datepickerwrapper .datepickerwrapper-shortcuts {
+        padding: 0 10px;
+        margin-bottom: 15px;
+    }
+    .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body {
+        width: 240px;
+    }
+    .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
+        height: 24px;
+        border-radius: 4px;
+        margin: 0px 10px 10px 0px;
+        width: 70px;
+        padding: 4px; 
+    }
+    .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
+        background: #2378ff;
+    }
+
+    .datepickerwrapper .datepickerwrapper-inputs {
+        padding: 0 10px;
+        margin-bottom: 15px;
+    }
+    .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
+        background-color: #F0F0F0;
+        border: 0;
+        box-shadow: none;
+        font-size: 12px;
+        height: 24px;
+        width: 110px;
+        text-align: center;
+    }
+
+    .datepickerwrapper .datepickerwrapper-footer {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #E6E6E6;
+    }
+    .datepickerwrapper .datepickerwrapper-footer .btn {
+        height: 24px;
+        font-size: 12px;
+        padding: 4px 14px;
+        font-weight: normal;
+        border: 0;
+    }
+    .datepickerwrapper .datepickerwrapper-footer .btn.submit {
+        background-color: #2378FF;
+        color: #FFF;
+    }
+    .datepickerwrapper .datepickerwrapper-footer .btn.submit:hover {
+        background-color: #0F64EB;
+    }
+    .datepickerwrapper .datepickerwrapper-footer .btn.cancel {
+        background-color: #F0F0F0;
+    }
+    .datepickerwrapper .datepickerwrapper-footer .btn.cancel:hover {
+        background-color: #E6E6E6;
+    }
+</style>
+
 <div class="bs-example">
     <div class="content">
         <div class="row">

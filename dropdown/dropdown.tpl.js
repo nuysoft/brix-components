@@ -3,7 +3,7 @@ define(function() {
     return (function(){/*
 <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" value="<%= value %>" bx-click="toggle()">
-        <span><%= label %></span>
+        <span class="dropdown-toggle-label"><%= label %></span>
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
