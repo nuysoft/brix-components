@@ -12,7 +12,7 @@ define(
         $, _,
         Brix
     ) {
-        var TEMPLATE = '<input name="<%= name %>" type="file" multiple="multiple" class="uploader-ghost">'
+        var TEMPLATE = '<input name="<%= name %>" type="file" class="uploader-ghost">'
         var TOKEN = 'data-token'
         var TOKEN_SELECTOR = '[' + TOKEN + ']'
         var NAMESPACE = '.uploader'
@@ -42,7 +42,8 @@ define(
             options: {
                 action: '',
                 name: 'file',
-                transport: 'iframe'
+                transport: 'iframe',
+                multiple: true
             },
             render: function() {
                 var that = this
@@ -56,6 +57,8 @@ define(
                     .width($element.outerWidth())
                     .height($element.outerHeight())
                     .offset($element.offset())
+
+                if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
 
                 var form = $relatedElement[0].form
                 $(form).on('change', 'input[type=file]' + TOKEN_SELECTOR, function(event) {

@@ -103,6 +103,7 @@ Name | Type | Default | Description
 action | string | `''` | 指定接收文件的 URL。
 name | string | `'file'` | 指定文件域的名称。
 transport | string | `'iframe'` | 指定上传文件的方式，可选值有 `'iframe'`、`'xhr'`。
+multiple | boolean | `true` | 是否允许多选。
 
 ### 方法 <small>Methods</small>
 
