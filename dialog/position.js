@@ -132,19 +132,19 @@ define(
             }
             switch (placement) {
                 case 'top': // 上方
-                    result.top = result.top - height * 0.25
+                    result.top = result.top - height * 0.5
                     break
                 case 'bottom': // 下方
-                    result.top = result.top + height * 0.25
+                    result.top = result.top + height * 0.5
                     break
                 case 'left': // 左侧
-                    result.left = result.left - width * 0.25
+                    result.left = result.left - width * 0.5
                     break
                 case 'right': // 右侧
                     /* Expected a 'break' statement before 'default'. */
                     /* falls through */
                 default:
-                    result.left = result.left + width * 0.25
+                    result.left = result.left + width * 0.5
                     break
             }
 

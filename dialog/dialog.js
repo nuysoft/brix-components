@@ -128,15 +128,9 @@ define(
 
                 this.fill()
 
-                var offset = this.options.left !== undefined && this.options.top !== undefined ? {
-                    left: this.options.left,
-                    top: this.options.top
-                } : position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                offset = {
-                    left: offset.left + (this.options.offset.left || 0),
-                    top: offset.top + (this.options.offset.top || 0)
-                }
+                var offset = this._offset()
                 this.$relatedElement.show()
+                    .stop()
                     .css(
                         position.start(this.$relatedElement, offset)
                     )
@@ -157,10 +151,22 @@ define(
             close: function() {
                 // var that = this
                 // var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                this.$relatedElement.hide()
-                    // .animate(this._start(offset), TRANSITION_DURATION, EASING, function() {
-                    //     that.$relatedElement.hide()
-                    // })
+                // this.$relatedElement.hide()
+                // .animate(this._start(offset), TRANSITION_DURATION, EASING, function() {
+                //     that.$relatedElement.hide()
+                // })
+                var that = this
+                var offset = this._offset()
+                this.$relatedElement
+                    .stop()
+                    .animate(
+                        position.start(this.$relatedElement, offset),
+                        TRANSITION_DURATION,
+                        EASING,
+                        function() {
+                            that.$relatedElement.hide()
+                        }
+                    )
 
                 if (this.options.modal) {
                     $(document.body).removeClass('modal-open')
@@ -169,6 +175,17 @@ define(
 
                 this.triggerHandler('close' + NAMESPACE)
                 return this
+            },
+            _offset: function() {
+                var offset = this.options.left !== undefined && this.options.top !== undefined ? {
+                    left: this.options.left,
+                    top: this.options.top
+                } : position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                offset = {
+                    left: offset.left + (this.options.offset.left || 0),
+                    top: offset.top + (this.options.offset.top || 0)
+                }
+                return offset
             }
         })
 

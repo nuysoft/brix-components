@@ -9,8 +9,8 @@ define(function() {
             <% } %>
         </div>
         <div class="apply-dialog-footer">
-            <button bx-click="apply('do')" class="btn btn-default btn-sm">确定</button>
-            <a bx-click="apply('close')" href="javascript: void(0);">取消</a>
+            <button class="btn btn-default submit" bx-click="apply('do')">确认</button>
+            <a href="javascript: void(0);" bx-click="apply('close')" class="btn btn-default cancel ml5">取消</a>
         </div>
     </div>
     <div class="shortcuts">
@@ -22,14 +22,15 @@ define(function() {
     <table class="picker-days">
         <thead>
             <tr>
-                <td width="100">时间段</td>
+                <td width="160">时间段</td>
                 <td class="picker-day-range">
                     <span class="item item-0">0:00</span>
                     <span class="item item-6">6:00</span>
                     <span class="item item-12">12:00</span>
                     <span class="item item-18">18:00</span>
+                    <span class="item item-24">24:00</span>
                 </td>
-                <td width="100" align="center">操作</td>
+                <td width="160" align="center">操作</td>
             </tr>
         </thead>
         <tbody>

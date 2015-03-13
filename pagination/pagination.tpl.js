@@ -3,7 +3,7 @@ define(function() {
     return (function(){/*
 <div class="row">
     <div class="pagination-statistics col-md-6">
-        当前第 <%= start + 1 %> - <%=end%> 条，共 <%= total %> 条，每页展现
+        当前第 <b><%= start + 1 %> - <%=end%></b> 条，共 <b><%= total %></b> 条，每页展现
         <select bx-name="components/dropdown">
             <% for( var i = 0; i < limits.length; i++ ) { %>
             <option value="<%= limits[i] %>" <%= limits[i] == limit ? 'selected' : '' %>><%=limits[i]%></option>

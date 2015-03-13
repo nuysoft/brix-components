@@ -1,6 +1,9 @@
 /* global define */
 /*
     分页组件。
+
+    TODO
+        去掉边框。
  */
 define(
     [
@@ -61,6 +64,7 @@ define(
             render: function() {
                 var that = this
                 var manager = new EventManager()
+                this.$element = $(this.element)
 
                 this.data = this.fixData()
                 var html = _.template(template)(this.data)

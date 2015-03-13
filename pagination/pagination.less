@@ -1,5 +1,6 @@
 .pagination-statistics {
 	margin-bottom: 10px;
+	color: #999;
 
 	.dropdown .dropdown-menu {
 		min-width: initial;
@@ -8,6 +9,21 @@
 .pagination {
 	margin: 0;
 	margin-bottom: 10px;
+
+	& > li > a,
+	& > li > span {
+		color: #999;
+	}
+
+	& > li.active > a,
+	& > li.active > span {
+		background-color: #2378FF;
+	}
+
+	& > li.active > a:hover,
+	& > li.active > span:hover {
+		background-color: #1C6BFD;
+	}
 
 	.brixfont {
 		font-size: 12px;

@@ -9,17 +9,19 @@
   display: none;
   z-index: 1001;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
   outline: 0;
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  padding: 15px;
+  padding: 20px 20px 10px 20px;
+  margin-top: 10px;
 }
 .hourpicker .apply-dialog .apply-dialog-body label {
   display: block;
+  color: #999;
+  margin-bottom: 16px;
 }
 .hourpicker .apply-dialog .apply-dialog-body label.disabled {
-  color: #999;
+  color: #CCC;
 }
 .hourpicker .apply-dialog .apply-dialog-body label input {
   margin-right: 5px;
@@ -39,6 +41,7 @@
 }
 .hourpicker .shortcuts .utc {
   float: right;
+  color: #999999;
 }
 .hourpicker table.picker-days {
   width: 100%;
@@ -48,7 +51,7 @@
 .hourpicker table.picker-days thead > tr {
   height: 60px;
   background-color: #FAFAFA;
-  color: #CCCCCC;
+  color: #999999;
 }
 .hourpicker table.picker-days > thead > tr > th:first-child,
 .hourpicker table.picker-days > thead > tr > td:first-child,
@@ -88,9 +91,15 @@
 .hourpicker table.picker-days .picker-day-range .item-18 {
   left: 72%;
 }
+.hourpicker table.picker-days .picker-day-range .item-24 {
+  left: 96%;
+}
 .hourpicker table.picker-days .picker-day {
   border-top: 1px solid #eee;
   height: 60px;
+}
+.hourpicker table.picker-days .picker-day:first-child {
+  border-top: none;
 }
 .hourpicker table.picker-days .picker-day .picker-label {
   vertical-align: middle;
@@ -119,7 +128,7 @@
   display: inline-block;
   width: 1px;
   height: 20%;
-  border-left: 1px solid #999;
+  border-left: 1px solid #E6E6E6;
 }
 .hourpicker table.picker-days .picker-day .picker-hours .picker-hour.milestone .picker-hour-line {
   height: 40%;

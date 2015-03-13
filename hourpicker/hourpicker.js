@@ -107,7 +107,11 @@ define(
                         this._tmp.from = day
                         this._tmp.$target = $target.css('visibility', 'visible')
                         var offset = position($target, $relatedElement, 'bottom', 'right')
-                        $relatedElement.show().offset(offset)
+                        var marginTop = parseInt($relatedElement.css('margin-top'), 10)
+                        $relatedElement.show().offset({
+                            left: offset.left,
+                            top: offset.top + marginTop
+                        })
                         $relatedElement
                             .find('label[data-value]').removeClass('disabled')
                             .find('input[name="shortcut"]').prop({

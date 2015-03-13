@@ -11,17 +11,19 @@
         z-index: 1001;
 
         background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 6px;
+        border: 1px solid #E6E6E6;
+        border-radius: 4px;
         outline: 0;
-        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-        padding: 15px;
+        padding: 20px 20px 10px 20px;
+        margin-top: 10px;
 
         .apply-dialog-body {
             label {
                 display: block;
+                color: #999;
+                margin-bottom: 16px;
                 &.disabled {
-                    color: #999;
+                    color: #CCC;
                 }
                 input {
                     margin-right: 5px;
@@ -45,6 +47,7 @@
         }
         .utc {
             float: right;
+            color: #999999;
         }
     }
     table.picker-days {
@@ -55,7 +58,7 @@
         thead > tr {
             height: 60px;
             background-color: #FAFAFA;
-            color: #CCCCCC;
+            color: #999999;
         }
 
         > thead > tr > th:first-child, 
@@ -103,11 +106,18 @@
             .item-18 {
                 left: 72%;
             }
+            .item-24 {
+                left: 96%;
+            }
         }
 
         .picker-day {
             border-top: 1px solid #eee;
             height: 60px;
+
+            &:first-child {
+                border-top: none;
+            }
 
             .picker-label {
                 vertical-align: middle;
@@ -139,7 +149,7 @@
                         display: inline-block;
                         width: 1px;
                         height: 20%;
-                        border-left: 1px solid #999;
+                        border-left: 1px solid #E6E6E6;
                     }
                     &.milestone .picker-hour-line {
                         height: 40%;
