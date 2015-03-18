@@ -91,8 +91,13 @@ define(
                 var len,
                     result = [];
 
+                // hanzi()
                 if (arguments.length === 0) len = this.natural(3, 7)
+
+                // hanzi(len)
                 if (arguments.length === 1) len = max = min
+
+                // hanzi(min, max)
                 if (arguments.length === 2) {
                     min = parseInt(min, 10)
                     max = parseInt(max, 10)

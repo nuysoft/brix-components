@@ -146,7 +146,7 @@ define(
                 this.$input.val('')
                 this._fixInput()
 
-                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data])
+                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data, 'add', value])
 
                 if (this.options.limit && this.options.data.length >= this.options.limit) this.$input.hide()
 
@@ -157,9 +157,11 @@ define(
                 this._state = STATE.ACTIVE
 
                 var that = this
+                var deleted
 
                 // delete()
                 if (event === undefined) {
+                    deleted = this.options.data
                     this.options.data = []
                     this.$element.val(this.options.data.join(','))
                     this.$relatedElement.find(CLASS_ITEM).remove()
@@ -168,6 +170,7 @@ define(
                     // delete(event)
                     if (event.type) {
                         var item = $(event.target).closest(CLASS_ITEM)
+                        deleted = $(item).find(CLASS_ITEM_NAME).text()
                         this.options.data = _.without(this.options.data, $(item).find(CLASS_ITEM_NAME).text())
                         this.$element.val(this.options.data.join(','))
                         $(event.target).closest(CLASS_ITEM).remove()
@@ -180,6 +183,7 @@ define(
                         var matched = _.filter(items, function(item /*, index*/ ) {
                             var text = $(item).find(CLASS_ITEM_NAME).text()
                             if (text === event) {
+                                deleted = text
                                 that.options.data = _.without(that.options.data, text)
                                 that.$element.val(that.options.data.join(','))
                                 return true
@@ -192,7 +196,7 @@ define(
 
                 this._fixInput()
 
-                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data])
+                if (trigger !== false) this.trigger('change' + NAMESPACE, [this.options.data, 'delete', deleted])
 
                 if (this.options.limit && this.options.data.length < this.options.limit) this.$input.show()
 

@@ -169,8 +169,8 @@ change.taginput | 当值变化时触发。
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/taginput')
-instances.on('change.taginput', function(event, extra) {
-    console.log(event, extra)
+instances.on('change.taginput', function(event, data, action, value) {
+    console.log(event, data, action, value)
 })
 ```
 <script type="text/javascript">
