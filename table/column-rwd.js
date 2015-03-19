@@ -51,14 +51,14 @@ define(
         column.NAMESPACE = NAMESPACE
 
         function _create($table, text) {
-            var $tbody = $table.find('> tbody')
+            var $thead = $table.find('> thead')
             var html = _.template(TEMPLATE_ARROW)({
                 text: text,
-                height: $tbody.height()
+                height: $thead.height()
             })
             var $arrow = $(html).insertAfter($table)
                 .offset({
-                    top: $tbody.offset().top
+                    top: $thead.offset().top
                 })
 
             return $arrow
@@ -188,6 +188,10 @@ define(
         function _beautify(spree) {
             // var tableHeight = spree.$table.height()
             // var tableTop = spree.$table.offset().top
+            var $thead = spree.$table.find('> thead')
+            var theadHeight = $thead.height()
+            var theadTop = $thead.offset().top
+
             var $tbody = spree.$table.find('> tbody')
             var tbodyHeight = $tbody.height()
             var tbodyTop = $tbody.offset().top
@@ -196,22 +200,22 @@ define(
                 nth: spree.range[0]
             }))
             spree.$leftArrow.css({
-                height: tbodyHeight,
-                'line-height': tbodyHeight + 'px'
+                height: theadHeight,
+                'line-height': theadHeight + 'px'
             }).offset({
-                top: tbodyTop,
-                left: $leftTarget.offset().left + $leftTarget.outerWidth() - spree.$leftArrow.width() / 2
+                top: theadTop,
+                left: $leftTarget.offset().left + $leftTarget.outerWidth() // - spree.$leftArrow.width() / 2
             })
 
             var $rightTarget = spree.$table.find(_.template(SELECTOR_TH)({
                 nth: spree.range[1] + 1
             }))
             spree.$rightArrow.css({
-                height: tbodyHeight,
-                'line-height': tbodyHeight + 'px'
+                height: theadHeight,
+                'line-height': theadHeight + 'px'
             }).offset({
-                top: tbodyTop,
-                left: $rightTarget.offset().left - spree.$rightArrow.width() / 2
+                top: theadTop,
+                left: $rightTarget.offset().left - spree.$rightArrow.width() // / 2
             })
 
             if (!spree.state.total || !spree.state.hasPrev) spree.$leftArrow.hide()

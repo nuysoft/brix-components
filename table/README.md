@@ -4,41 +4,19 @@
 
 ### 示例 <small>Examples</small>
 
-<!-- <table bx-name="components/table" class="table table-hover">
-    <thead>
-        <tr>
-            <th><input type="checkbox" data-linkage-name="all"> all</th>
-            <th>table</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="checkbox" data-linkage-name="1" data-linkage-parent-name="all"> 1</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <table bx-name="components/table" class="table table-hover">
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" value="1.1" data-linkage-name="1.1" data-linkage-parent-name="1"> 1.1</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value="1.2" data-linkage-name="1.2" data-linkage-parent-name="1"> 1.2</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
-</table> -->
-
 <style type="text/css">
     .table th {
         white-space: nowrap;
+        background-color: #FAFAFA;
+    }
+    .table th.scrollable {
+
+    }
+    .table th.stable {
+        background-color: #F0F0F0;
+    }
+    .table thead:hover th.stable {
+        background-color: #E6E6E6;
     }
     .w30 {
         width: 30px;
@@ -50,6 +28,202 @@
         /*display: block;*/
     }
 </style>
+
+<div class="bs-example bs-example-modal">
+    <div class="content">
+        <h4>响应式表格</h4>
+        <button id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
+        <table bx-name="components/table" class="table table-hover table-fixed" 
+            data-column-rwd-range="[3,-2]"
+            data-column-rwd-limit="5"
+            data-column-priority-trigger="#clickme">
+            <thead>
+                <tr>
+                    <th class="w30"><input type="checkbox" data-linkage-name="all"></th>
+                    <th class="w75 stable">不动列 1</th>
+                    <th class="w75 stable">不动列 2</th>
+                    <th data-column-field="gungungun" data-column-name="滚滚滚滚滚滚长江东逝水">滚动列 1 <span bx-name="components/popover" data-content="components/popover" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
+                    <th>滚动列 2</th>
+                    <th>滚动列 3</th>
+                    <th>滚动列 4</th>
+                    <th>滚动列 5</th>
+                    <th>滚动列 6</th>
+                    <th>滚动列 7</th>
+                    <th>滚动列 8</th>
+                    <th>滚动列 9</th>
+                    <th>滚动列 10</th>
+                    <th>滚动列 11</th>
+                    <th>滚动列 12</th>
+                    <th>滚动列 13</th>
+                    <th>滚动列 14</th>
+                    <th>滚动列 15</th>
+                    <th>滚动列 16</th>
+                    <th>滚动列 17</th>
+                    <th>滚动列 18</th>
+                    <th>滚动列 19</th>
+                    <th>滚动列 20</th>
+                    <th>滚动列 21</th>
+                    <th>滚动列 22</th>
+                    <th>滚动列 23</th>
+                    <th>滚动列 24</th>
+                    <th>滚动列 25</th>
+                    <th>滚动列 26</th>
+                    <th>滚动列 27</th>
+                    <th>滚动列 28</th>
+                    <th>滚动列 29</th>
+                    <th>滚动列 30</th>
+                    <th>滚动列 31</th>
+                    <th>滚动列 32</th>
+                    <th>滚动列 33</th>
+                    <th>滚动列 34</th>
+                    <th>滚动列 35</th>
+                    <th>滚动列 36</th>
+                    <th>滚动列 37</th>
+                    <th>滚动列 38</th>
+                    <th class="w75 stable">不动列 3</th>
+                    <th class="w75 stable">不动列 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
+                    <td>约瑟翰·庞麦郎</td>
+                    <td>我的滑板鞋</td>
+                    <td>有些事我都已忘记</td>
+                    <td>但我现在还记得</td>
+                    <td>在一个晚上我的母亲问我</td>
+                    <td>今天怎么不开心</td>
+                    <td>我说在我的想象中有一双滑板鞋</td>
+                    <td>与众不同最时尚跳舞肯定棒</td>
+                    <td>整个城市找遍所有的街都没有</td>
+                    <td>她说将来会找到的</td>
+                    <td>时间会给我答案</td>
+                    <td>星期天我再次寻找依然没有发现</td>
+                    <td>一个月后我去了第二个城市</td>
+                    <td>这里的人们称它为魅力之都</td>
+                    <td>时间过的很快夜幕就要降临</td>
+                    <td>我想我必须要离开</td>
+                    <td>当我正要走时我看到了一家专卖店</td>
+                    <td>那就是我要的滑板鞋</td>
+                    <td>我的滑板鞋时尚时尚最时尚</td>
+                    <td>回家的路上我情不自禁</td>
+                    <td>摩擦 摩擦</td>
+                    <td>在这光滑的地上摩擦</td>
+                    <td>月光下我看到自己的身影</td>
+                    <td>有时很远有时很近</td>
+                    <td>感到一种力量驱使我的脚步</td>
+                    <td>有了滑板鞋天黑都不怕</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦</td>
+                    <td>我给自己打着节拍</td>
+                    <td>这是我生命中美好的时刻</td>
+                    <td>我要完成我最喜欢的舞蹈</td>
+                    <td>在这美丽的月光下在这美丽的街道上</td>
+                    <td>我告诉自己这是真的这不是梦</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦……</td>
+                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
+                    <td>电子，舞曲</td>
+                    <td>简体中文</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
+                    <td>约瑟翰·庞麦郎</td>
+                    <td>我的滑板鞋</td>
+                    <td>有些事我都已忘记</td>
+                    <td>但我现在还记得</td>
+                    <td>在一个晚上我的母亲问我</td>
+                    <td>今天怎么不开心</td>
+                    <td>我说在我的想象中有一双滑板鞋</td>
+                    <td>与众不同最时尚跳舞肯定棒</td>
+                    <td>整个城市找遍所有的街都没有</td>
+                    <td>她说将来会找到的</td>
+                    <td>时间会给我答案</td>
+                    <td>星期天我再次寻找依然没有发现</td>
+                    <td>一个月后我去了第二个城市</td>
+                    <td>这里的人们称它为魅力之都</td>
+                    <td>时间过的很快夜幕就要降临</td>
+                    <td>我想我必须要离开</td>
+                    <td>当我正要走时我看到了一家专卖店</td>
+                    <td>那就是我要的滑板鞋</td>
+                    <td>我的滑板鞋时尚时尚最时尚</td>
+                    <td>回家的路上我情不自禁</td>
+                    <td>摩擦 摩擦</td>
+                    <td>在这光滑的地上摩擦</td>
+                    <td>月光下我看到自己的身影</td>
+                    <td>有时很远有时很近</td>
+                    <td>感到一种力量驱使我的脚步</td>
+                    <td>有了滑板鞋天黑都不怕</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦</td>
+                    <td>我给自己打着节拍</td>
+                    <td>这是我生命中美好的时刻</td>
+                    <td>我要完成我最喜欢的舞蹈</td>
+                    <td>在这美丽的月光下在这美丽的街道上</td>
+                    <td>我告诉自己这是真的这不是梦</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦……</td>
+                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
+                    <td>电子，舞曲</td>
+                    <td>简体中文</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
+                    <td>约瑟翰·庞麦郎</td>
+                    <td>我的滑板鞋</td>
+                    <td>有些事我都已忘记</td>
+                    <td>但我现在还记得</td>
+                    <td>在一个晚上我的母亲问我</td>
+                    <td>今天怎么不开心</td>
+                    <td>我说在我的想象中有一双滑板鞋</td>
+                    <td>与众不同最时尚跳舞肯定棒</td>
+                    <td>整个城市找遍所有的街都没有</td>
+                    <td>她说将来会找到的</td>
+                    <td>时间会给我答案</td>
+                    <td>星期天我再次寻找依然没有发现</td>
+                    <td>一个月后我去了第二个城市</td>
+                    <td>这里的人们称它为魅力之都</td>
+                    <td>时间过的很快夜幕就要降临</td>
+                    <td>我想我必须要离开</td>
+                    <td>当我正要走时我看到了一家专卖店</td>
+                    <td>那就是我要的滑板鞋</td>
+                    <td>我的滑板鞋时尚时尚最时尚</td>
+                    <td>回家的路上我情不自禁</td>
+                    <td>摩擦 摩擦</td>
+                    <td>在这光滑的地上摩擦</td>
+                    <td>月光下我看到自己的身影</td>
+                    <td>有时很远有时很近</td>
+                    <td>感到一种力量驱使我的脚步</td>
+                    <td>有了滑板鞋天黑都不怕</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦</td>
+                    <td>我给自己打着节拍</td>
+                    <td>这是我生命中美好的时刻</td>
+                    <td>我要完成我最喜欢的舞蹈</td>
+                    <td>在这美丽的月光下在这美丽的街道上</td>
+                    <td>我告诉自己这是真的这不是梦</td>
+                    <td>一步两步一步两步</td>
+                    <td>一步一步似爪牙</td>
+                    <td>似魔鬼的步伐</td>
+                    <td>摩擦 摩擦……</td>
+                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
+                    <td>电子，舞曲</td>
+                    <td>简体中文</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <div class="bs-example bs-example-modal">
     <div class="content">
@@ -122,202 +296,6 @@
                             <a href="javascript: void(0);">链接不会折行</a>
                         </div>
                     </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="bs-example bs-example-modal">
-    <div class="content">
-        <h4>响应式表格</h4>
-        <button id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
-        <table bx-name="components/table" class="table table-hover table-fixed" 
-            data-column-rwd-range="[3,-2]"
-            data-column-rwd-limit="5"
-            data-column-priority-trigger="#clickme">
-            <thead>
-                <tr>
-                    <th class="w30"><input type="checkbox" data-linkage-name="all"></th>
-                    <th class="w75">不动列 1</th>
-                    <th class="w75">不动列 2</th>
-                    <th data-column-field="gungungun" data-column-name="滚滚滚滚滚滚长江东逝水">滚动列 1 <span bx-name="components/popover" data-content="components/popover" data-placement="bottom" class="glyphicon glyphicon-question-sign gray"></span></th>
-                    <th>滚动列 2</th>
-                    <th>滚动列 3</th>
-                    <th>滚动列 4</th>
-                    <th>滚动列 5</th>
-                    <th>滚动列 6</th>
-                    <th>滚动列 7</th>
-                    <th>滚动列 8</th>
-                    <th>滚动列 9</th>
-                    <th>滚动列 10</th>
-                    <th>滚动列 11</th>
-                    <th>滚动列 12</th>
-                    <th>滚动列 13</th>
-                    <th>滚动列 14</th>
-                    <th>滚动列 15</th>
-                    <th>滚动列 16</th>
-                    <th>滚动列 17</th>
-                    <th>滚动列 18</th>
-                    <th>滚动列 19</th>
-                    <th>滚动列 20</th>
-                    <th>滚动列 21</th>
-                    <th>滚动列 22</th>
-                    <th>滚动列 23</th>
-                    <th>滚动列 24</th>
-                    <th>滚动列 25</th>
-                    <th>滚动列 26</th>
-                    <th>滚动列 27</th>
-                    <th>滚动列 28</th>
-                    <th>滚动列 29</th>
-                    <th>滚动列 30</th>
-                    <th>滚动列 31</th>
-                    <th>滚动列 32</th>
-                    <th>滚动列 33</th>
-                    <th>滚动列 34</th>
-                    <th>滚动列 35</th>
-                    <th>滚动列 36</th>
-                    <th>滚动列 37</th>
-                    <th>滚动列 38</th>
-                    <th class="w75">不动列 3</th>
-                    <th class="w75">不动列 4</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
-                    <td>约瑟翰·庞麦郎</td>
-                    <td>我的滑板鞋</td>
-                    <td>有些事我都已忘记</td>
-                    <td>但我现在还记得</td>
-                    <td>在一个晚上我的母亲问我</td>
-                    <td>今天怎么不开心</td>
-                    <td>我说在我的想象中有一双滑板鞋</td>
-                    <td>与众不同最时尚跳舞肯定棒</td>
-                    <td>整个城市找遍所有的街都没有</td>
-                    <td>她说将来会找到的</td>
-                    <td>时间会给我答案</td>
-                    <td>星期天我再次寻找依然没有发现</td>
-                    <td>一个月后我去了第二个城市</td>
-                    <td>这里的人们称它为魅力之都</td>
-                    <td>时间过的很快夜幕就要降临</td>
-                    <td>我想我必须要离开</td>
-                    <td>当我正要走时我看到了一家专卖店</td>
-                    <td>那就是我要的滑板鞋</td>
-                    <td>我的滑板鞋时尚时尚最时尚</td>
-                    <td>回家的路上我情不自禁</td>
-                    <td>摩擦 摩擦</td>
-                    <td>在这光滑的地上摩擦</td>
-                    <td>月光下我看到自己的身影</td>
-                    <td>有时很远有时很近</td>
-                    <td>感到一种力量驱使我的脚步</td>
-                    <td>有了滑板鞋天黑都不怕</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦</td>
-                    <td>我给自己打着节拍</td>
-                    <td>这是我生命中美好的时刻</td>
-                    <td>我要完成我最喜欢的舞蹈</td>
-                    <td>在这美丽的月光下在这美丽的街道上</td>
-                    <td>我告诉自己这是真的这不是梦</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦……</td>
-                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
-                    <td>电子，舞曲</td>
-                    <td>简体中文</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
-                    <td>约瑟翰·庞麦郎</td>
-                    <td>我的滑板鞋</td>
-                    <td>有些事我都已忘记</td>
-                    <td>但我现在还记得</td>
-                    <td>在一个晚上我的母亲问我</td>
-                    <td>今天怎么不开心</td>
-                    <td>我说在我的想象中有一双滑板鞋</td>
-                    <td>与众不同最时尚跳舞肯定棒</td>
-                    <td>整个城市找遍所有的街都没有</td>
-                    <td>她说将来会找到的</td>
-                    <td>时间会给我答案</td>
-                    <td>星期天我再次寻找依然没有发现</td>
-                    <td>一个月后我去了第二个城市</td>
-                    <td>这里的人们称它为魅力之都</td>
-                    <td>时间过的很快夜幕就要降临</td>
-                    <td>我想我必须要离开</td>
-                    <td>当我正要走时我看到了一家专卖店</td>
-                    <td>那就是我要的滑板鞋</td>
-                    <td>我的滑板鞋时尚时尚最时尚</td>
-                    <td>回家的路上我情不自禁</td>
-                    <td>摩擦 摩擦</td>
-                    <td>在这光滑的地上摩擦</td>
-                    <td>月光下我看到自己的身影</td>
-                    <td>有时很远有时很近</td>
-                    <td>感到一种力量驱使我的脚步</td>
-                    <td>有了滑板鞋天黑都不怕</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦</td>
-                    <td>我给自己打着节拍</td>
-                    <td>这是我生命中美好的时刻</td>
-                    <td>我要完成我最喜欢的舞蹈</td>
-                    <td>在这美丽的月光下在这美丽的街道上</td>
-                    <td>我告诉自己这是真的这不是梦</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦……</td>
-                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
-                    <td>电子，舞曲</td>
-                    <td>简体中文</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" data-linkage-parent-name="all"></td>
-                    <td>约瑟翰·庞麦郎</td>
-                    <td>我的滑板鞋</td>
-                    <td>有些事我都已忘记</td>
-                    <td>但我现在还记得</td>
-                    <td>在一个晚上我的母亲问我</td>
-                    <td>今天怎么不开心</td>
-                    <td>我说在我的想象中有一双滑板鞋</td>
-                    <td>与众不同最时尚跳舞肯定棒</td>
-                    <td>整个城市找遍所有的街都没有</td>
-                    <td>她说将来会找到的</td>
-                    <td>时间会给我答案</td>
-                    <td>星期天我再次寻找依然没有发现</td>
-                    <td>一个月后我去了第二个城市</td>
-                    <td>这里的人们称它为魅力之都</td>
-                    <td>时间过的很快夜幕就要降临</td>
-                    <td>我想我必须要离开</td>
-                    <td>当我正要走时我看到了一家专卖店</td>
-                    <td>那就是我要的滑板鞋</td>
-                    <td>我的滑板鞋时尚时尚最时尚</td>
-                    <td>回家的路上我情不自禁</td>
-                    <td>摩擦 摩擦</td>
-                    <td>在这光滑的地上摩擦</td>
-                    <td>月光下我看到自己的身影</td>
-                    <td>有时很远有时很近</td>
-                    <td>感到一种力量驱使我的脚步</td>
-                    <td>有了滑板鞋天黑都不怕</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦</td>
-                    <td>我给自己打着节拍</td>
-                    <td>这是我生命中美好的时刻</td>
-                    <td>我要完成我最喜欢的舞蹈</td>
-                    <td>在这美丽的月光下在这美丽的街道上</td>
-                    <td>我告诉自己这是真的这不是梦</td>
-                    <td>一步两步一步两步</td>
-                    <td>一步一步似爪牙</td>
-                    <td>似魔鬼的步伐</td>
-                    <td>摩擦 摩擦……</td>
-                    <td>似魔鬼的步伐 是爪牙 是大家的步伐</td>
-                    <td>电子，舞曲</td>
-                    <td>简体中文</td>
                 </tr>
             </tbody>
         </table>

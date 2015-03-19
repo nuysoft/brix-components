@@ -24,16 +24,24 @@
   text-align: center;
   margin-bottom: 5px;
 }
-.datepicker-container .picker-group .picker-header button {
+.datepicker-container .picker-group .picker-header .minus,
+.datepicker-container .picker-group .picker-header .plus {
+  color: #CCC;
+  display: inline-block;
   padding: 6px 7px;
   line-height: 100%;
   vertical-align: top;
 }
-.datepicker-container .picker-group .picker-header button.minus {
+.datepicker-container .picker-group .picker-header .minus {
   float: left;
 }
-.datepicker-container .picker-group .picker-header button.plus {
+.datepicker-container .picker-group .picker-header .plus {
   float: right;
+}
+.datepicker-container .picker-group .picker-header .minus:hover,
+.datepicker-container .picker-group .picker-header .plus:hover {
+  color: #3276b1;
+  text-decoration: none;
 }
 .datepicker-container .picker-group .picker-header h4 {
   display: inline-block;

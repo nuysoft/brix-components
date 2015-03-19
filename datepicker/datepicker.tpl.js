@@ -5,9 +5,11 @@ define(function() {
     <!--  -->
     <div class="yearpicker picker-group" style="<%= typeMap.year ? '' : 'display: none;' %>">
         <div class="picker-header">
-            <button class="btn btn-default minus" type="button" bx-click="_move('period', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            <a href="javascript:;" class="minus" bx-click="_move('period', -1)"><span class="brixfont">&#xe601;</span></a>
+            <!-- <button class="btn btn-default minus" type="button" bx-click="_move('period', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button> -->
             <h4 >? - ?</h4>
-            <button class="btn btn-default plus" type="button" bx-click="_move('period', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            <a href="javascript:;" class="plus" type="button" bx-click="_move('period', 1)"><span class="brixfont">&#xe600;</span></a>
+            <!-- <button class="btn btn-default plus" type="button" bx-click="_move('period', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button> -->
         </div>
         <div class="picker-body picker-selectable clearfix">
             <!-- <span data-value="2014" class="active">2014</span> -->
@@ -17,9 +19,11 @@ define(function() {
     <!--  -->
     <div class="monthpicker picker-group" style="<%= typeMap.month ? '' : 'display: none;' %>">
         <div class="picker-header">
-            <button class="btn btn-default minus" type="button" bx-click="_move('year', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            <a href="javascript:;" class="minus" type="button" bx-click="_move('year', -1)"><span class="brixfont">&#xe601;</span></a>
+            <!-- <button class="btn btn-default minus" type="button" bx-click="_move('year', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button> -->
             <h4 bx-click="_slide('.monthpicker', '.yearpicker')">?</h4>
-            <button class="btn btn-default plus" type="button" bx-click="_move('year', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            <a href="javascript:;" class="plus" type="button" bx-click="_move('year', 1)"><span class="brixfont">&#xe600;</span></a>
+            <!-- <button class="btn btn-default plus" type="button" bx-click="_move('year', 1)"><span class="glyphicon glyphicon-chevron-right"></span></button> -->
         </div>
         <div class="picker-body picker-selectable clearfix">
             <!-- <span data-value="1" class="active">Jan</span -->
@@ -29,9 +33,11 @@ define(function() {
     <!--  -->
     <div class="datepicker picker-group" style="<%= typeMap.date || typeMap.all ? '' : 'display: none;' %>">
         <div class="picker-header">
-            <button class="btn btn-default minus" type="button" bx-click="_move('month', -1)"><span class="glyphicon glyphicon-step-backward"></span></button>
+            <a href="javascript:;" class="minus" type="button" bx-click="_move('month', -1)"><span class="brixfont">&#xe601;</span></a>
+            <!-- <button class="btn btn-default minus" type="button" bx-click="_move('month', -1)"><span class="glyphicon glyphicon-step-backward"></span></button> -->
             <h4 bx-click="_slide('.datepicker', '.monthpicker')">?</h4>
-            <button class="btn btn-default plus" type="button" bx-click="_move('month', 1)"><span class="glyphicon glyphicon-step-forward"></span></button>
+            <a href="javascript:;" class="plus" type="button" bx-click="_move('month', 1)"><span class="brixfont">&#xe600;</span></a>
+            <!-- <button class="btn btn-default plus" type="button" bx-click="_move('month', 1)"><span class="glyphicon glyphicon-step-forward"></span></button> -->
         </div>
         <div class="picker-body">
             <div class="datepicker-body-description clearfix">

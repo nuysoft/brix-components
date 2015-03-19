@@ -38,7 +38,7 @@
   position: absolute;
   display: inline-block;
   vertical-align: middle;
-  background-color: #E6E6E6;
+  color: #E6E6E6;
   opacity: .5;
   width: 16px;
   text-align: center;
@@ -47,7 +47,7 @@
   transition: background-color 0.2s ease-in-out;
 }
 .column-scroll-arrow:hover {
-  background-color: #999;
+  color: #3276b1;
 }
 .column-priority {
   width: 500px;
