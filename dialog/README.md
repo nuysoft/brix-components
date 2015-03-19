@@ -25,10 +25,6 @@
 ### 示例 <small>Examples</small>
 
 <style type="text/css">
-    .dialog .dialog-content {
-        border: 1px solid #E6E6E6;
-        box-shadow: none;
-    }
 </style>
 
 <div class="bs-example bs-example-modal">

@@ -1,7 +1,7 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : '' %>">
+<div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>">
     <!--  -->
     <% if (mode === 'signal') { %>
     <div bx-name="components/datepicker" data-type="date" data-date="<%= dates[0] %>" data-range="<%= _ranges %>" data-unlimit="<%= unlimits[0] %>" class="picker"></div>

@@ -5,56 +5,6 @@
 ### 示例 <small>Examples</small>
 
 <style type="text/css">
-    .btn:focus, 
-    .btn.focus,
-    .btn:active:focus {
-        outline: none;
-        box-shadow: none;
-    }
-    .dropdown .dropdown-toggle.btn-default {
-        height: 32px;
-        padding-top: 5px;
-        border: 1px solid #E6E6E6;
-        border-radius: 4px;
-        color: #999;
-        background-color: transparent;
-    }
-    .dropdown .dropdown-toggle.btn-default:hover {
-        border-color: #CCC;
-    }
-    .dropdown.open .dropdown-toggle.btn-default {
-        border-color: #CCC;
-        color: #000;
-    }
-    .dropdown .dropdown-toggle.btn-default .dropdown-toggle-label {
-        display: inline-block;
-        min-width: 100px;
-        text-align: left;
-    }
-    .dropdown.open .dropdown-toggle.btn-default .caret {
-        color: #2378FF;
-    }
-    .dropdown .dropdown-menu {
-        margin-top: 10px;
-        box-shadow: none;
-        border: 1px solid #E6E6E6;
-        padding: 10px 0;
-    }
-    .dropdown .dropdown-menu > li {
-        padding: 4px 10px;
-    }
-    .dropdown .dropdown-menu > li > a {
-        padding: 3px 10px;
-    }
-    .dropdown .dropdown-menu > li > a:hover {
-        background-color: #F0F0F0;
-        border-radius: 4px;
-    }
-    /*
-        选中
-        background-color: #2378FF;
-        color: #FFF;
-     */
 </style>
 
 <div class="bs-example">

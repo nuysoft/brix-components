@@ -1,33 +1,6 @@
 # HourPicker
 
 <style type="text/css">
-    a {
-        color: #2378FF
-    }
-    a:hover, a:focus {
-        color: #1C6BFD;
-        text-decoration: none;
-    }
-    .apply-dialog .btn {
-        height: 24px;
-        font-size: 12px;
-        padding: 4px 14px;
-        font-weight: normal;
-        border: 0;
-    }
-    .apply-dialog .btn.submit {
-        background-color: #2378FF;
-        color: #FFF;
-    }
-    .apply-dialog .btn.submit:hover {
-        background-color: #0F64EB;
-    }
-    .apply-dialog .btn.cancel {
-        background-color: #F0F0F0;
-    }
-    .apply-dialog .btn.cancel:hover {
-        background-color: #E6E6E6;
-    }
 </style>
 
 <div class="bs-example">
