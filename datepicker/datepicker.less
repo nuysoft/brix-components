@@ -57,7 +57,9 @@
         .picker-body {
             width: 238px;
 
-            span {
+            > span,
+            > .datepicker-body-description span,
+            > .datepicker-body-value span {
                 display: inline-block;
                 padding: 5px 0;
                 margin: 3px 2px 0 2px;
@@ -65,7 +67,10 @@
                 text-align: center;
                 border-radius: 5px;
                 cursor: pointer;
+            }
 
+            > span,
+            > .datepicker-body-value span {
                 &:hover {
                     background-color: #EEE;
                 }

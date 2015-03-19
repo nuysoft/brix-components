@@ -54,7 +54,9 @@
 .datepicker-container .picker-group .picker-body {
   width: 238px;
 }
-.datepicker-container .picker-group .picker-body span {
+.datepicker-container .picker-group .picker-body > span,
+.datepicker-container .picker-group .picker-body > .datepicker-body-description span,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span {
   display: inline-block;
   padding: 5px 0;
   margin: 3px 2px 0 2px;
@@ -63,29 +65,36 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.datepicker-container .picker-group .picker-body span:hover {
+.datepicker-container .picker-group .picker-body > span:hover,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span:hover {
   background-color: #EEE;
 }
-.datepicker-container .picker-group .picker-body span:active {
+.datepicker-container .picker-group .picker-body > span:active,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span:active {
   background-color: #DDD;
 }
-.datepicker-container .picker-group .picker-body span.active {
+.datepicker-container .picker-group .picker-body > span.active,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span.active {
   color: white;
   background-color: #3276b1;
 }
-.datepicker-container .picker-group .picker-body span.inactive:hover {
+.datepicker-container .picker-group .picker-body > span.inactive:hover,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span.inactive:hover {
   background: transparent;
   cursor: default;
 }
-.datepicker-container .picker-group .picker-body span.disabled {
+.datepicker-container .picker-group .picker-body > span.disabled,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span.disabled {
   color: #DDD;
   cursor: default;
 }
-.datepicker-container .picker-group .picker-body span.disabled:hover {
+.datepicker-container .picker-group .picker-body > span.disabled:hover,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span.disabled:hover {
   color: #DDD;
   background-color: #FFF;
 }
-.datepicker-container .picker-group .picker-body span.disabled.active {
+.datepicker-container .picker-group .picker-body > span.disabled.active,
+.datepicker-container .picker-group .picker-body > .datepicker-body-value span.disabled.active {
   color: #FFF;
   background-color: #DDD;
 }
