@@ -83,7 +83,14 @@ define(function( /*require, exports*/ ) {
                     this.focus = this.focus ? this.focus : 0
                     this.focus = this.focus % this.limit + this.start
                     this.focus = this.focus > this.end - 1 ? this.end - 1 : this.focus
+
+                } else {
+                    this.pages = this.cursor = this.start = this.end = 0
+                    this.hasPrev = this.hasNext = this.hasFirst = this.hasLast = false
+                    this.prev = this.next = this.first = this.last = 0
+                    this.focus = 0
                 }
+                
                 return this
             },
             moveTo: function(cursor) {
