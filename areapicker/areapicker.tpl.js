@@ -2,15 +2,23 @@
 define(function() {
     return (function(){/*
 <div class="areapicker">
-    <div class="areapicker-header">
-        <h3 class="areapicker-header-title">地区选择</h3>
-        <label class="areapicker-header-toggle">
-            <input type="checkbox" data-linkage-name="<%= id %>">
-            <%= name %>
-        </label>
+    <div class="areapicker-header dialog-header">
+        <h4 class="areapicker-header-title dialog-title">选择地域</h4>
     </div>
     <div class="areapicker-body">
         <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>区域</th>
+                    <th>
+                        省份/城市
+                        <label class="areapicker-header-toggle" style="vertical-align: bottom; margin-left: 10px;">
+                            <input type="checkbox" data-linkage-name="<%= id %>">
+                            <%= name %>
+                        </label>
+                    </th>
+                </tr>
+            </thead>
             <tbody>
                 <% for ( var i = 0; i < children.length; i++ ) { %>
                 <tr>

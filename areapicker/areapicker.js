@@ -5,6 +5,7 @@ define(
         'brix/base', '../table/linkage.js',
         './area.js',
         './areapicker.tpl.js',
+        'components/dialog',
         'css!./areapicker.css'
     ],
     function(
@@ -34,7 +35,7 @@ define(
 
                 this.options.data = {
                     id: 'root',
-                    name: '全选',
+                    name: '全部选择',
                     children: Area.tree(this.options.data || Area.REGION)
                 }
             },
