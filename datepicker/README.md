@@ -183,6 +183,23 @@ instances[0].val(current)
 
 [moment 对象]: http://momentjs.com/docs/
 
+#### .range( [ value ] )
+
+.range( [ value ] )
+
+* .range()
+* .range( value )
+
+获取或设置可选日期的范围。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepicker')
+var range = instances[0].range()
+console.log(range.format('YYYY-MM-DD HH:mm:ss.SSS'))
+instances[0].range([new Date(), '2015-12-31'])
+```
+
 ### 事件 <small>Events</small>
 
 Event Type | Description

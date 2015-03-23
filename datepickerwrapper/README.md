@@ -278,6 +278,48 @@ _.each(instances, function(picker, index) {
 })
 ```
 
+#### .val( [ value ] )
+
+* .val()
+* .val( value )
+
+获取或设置选中的日期。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepickerwrapper')
+var current = instances[0].val()
+current.forEach(function(item, index){
+    console.log(index, item.format('YYYY-MM-DD HH:mm:ss.SSS'))
+})
+current[0].add(1, 'year')
+instances[0].val(current)
+```
+
+> 方法 `.val()` 返回一个 [moment 对象]数组。
+
+[moment 对象]: http://momentjs.com/docs/
+
+#### .range( [ value ] )
+
+.range( [ value ] )
+
+* .range()
+* .range( value )
+
+获取或设置可选日期的范围。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepickerwrapper')
+var range = instances[6].range()
+range.forEach(function(item, index){
+    console.log(index, item.format('YYYY-MM-DD HH:mm:ss.SSS'))
+})
+range[0].add(1, 'year')
+instances[6].range([new Date(), '2015-12-31'])
+```
+
 ### 事件 <small>Events</small>
 
 Event Type | Description

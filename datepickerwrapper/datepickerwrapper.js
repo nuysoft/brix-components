@@ -93,7 +93,8 @@ define(
                         })
                     })
                 }
-                this.options.ranges = _.flatten(this.options.ranges)
+                if (this.options.range && this.options.range.length) this.options.ranges = this.options.range
+                this.options.ranges = _.flatten(this.options.ranges || this.options.range)
                 _.each(this.options.ranges, function(date, index, ranges) {
                     if (date) ranges[index] = moment(date)
                 })
@@ -132,6 +133,29 @@ define(
                 manager.delegate(this.$relatedElement, this)
 
                 this._autoHide()
+            },
+            val: function(value) {
+                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                if (value) {
+                    _.each(pickerComponents, function(item, index) {
+                        item.val(value[index])
+                    })
+                    return this
+                }
+                return _.map(pickerComponents, function(item /*, index*/ ) {
+                    return item.val()
+                })
+            },
+            range: function(value) {
+                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                if (value) {
+                    this.options.ranges = value = _.flatten(value)
+                    _.each(pickerComponents, function(item /*, index*/ ) {
+                        item.range(value)
+                    })
+                    return this
+                }
+                return this.options.ranges
             },
             _signal: function() {
                 var that = this

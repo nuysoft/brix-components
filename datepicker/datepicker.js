@@ -82,6 +82,14 @@ define(
                 }
                 return moment(this.data.date)
             },
+            range: function(value) {
+                if (value) {
+                    this.options.range = _.flatten(value)
+                    this._renderDatePicker()
+                    return this
+                }
+                return this.options.range
+            },
             // 在 .yearpicker .monthpicker .datepicker 之间切换（滑动效果）
             _slide: function(event, from, to) {
                 // _slide(from, to)
