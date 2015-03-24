@@ -17,6 +17,7 @@
 .tree .tree-node .tree-node-control {
   margin-left: 18px;
   white-space: nowrap;
+  border-radius: 4px;
 }
 .tree .tree-node .tree-node-control:hover {
   color: #262626;

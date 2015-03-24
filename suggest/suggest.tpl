@@ -1,3 +1,3 @@
-<div class="suggest">
+<div class="suggest dropdown">
     <ul class="dropdown-menu"></ul>
 </div>
