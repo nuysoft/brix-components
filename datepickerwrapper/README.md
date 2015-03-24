@@ -5,6 +5,9 @@
 ### 示例 <small>Examples</small>
 
 <style type="text/css">
+    * {
+        /*transition: all 0.1s ease-in-out;*/
+    }
 </style>
 
 <div class="bs-example">

@@ -36,6 +36,8 @@
 .datepickerwrapper .datepickerwrapper-pickers {
   position: absolute;
   margin-top: 2px;
+  width: 0px;
+  height: 0px;
 }
 .datepickerwrapper .datepickerwrapper-pickers .picker {
   display: none;

@@ -266,6 +266,11 @@ define(
                     })
                     .siblings().hide()
             },
+            _hideDatePicker: function( /*event*/ ) {
+                var pickerWrapper = $('.datepickerwrapper-pickers', this.$relatedElement)
+                var pickers = $('.picker', pickerWrapper)
+                pickers.hide()
+            },
             show: function( /*event*/ ) {
                 this.$element.addClass('datepickerwrapper-open')
                 this.$relatedElement.show()
@@ -273,6 +278,7 @@ define(
             },
             hide: function( /*event*/ ) {
                 this.$element.removeClass('datepickerwrapper-open')
+                this._hideDatePicker()
                 this.$relatedElement.hide()
             },
             toggle: function( /*event*/ ) {
@@ -415,6 +421,22 @@ define(
                         if (inactiveEvent.isDefaultPrevented()) return
 
                         that.hide()
+                    })
+                    .on(type, function(event) {
+                        var inputWrapper = $('.datepickerwrapper-inputs-body', that.$relatedElement)
+                        var pickerWrapper = $('.datepickerwrapper-pickers', that.$relatedElement)
+                        if (
+                            ( // 点击关联节点，点击组件关联子节点
+                                event.target === that.$relatedElement[0] ||
+                                $.contains(that.$relatedElement[0], event.target)
+                            ) &&
+                            ( // 但不在 inputs 和 pickers 之内
+                                !$.contains(inputWrapper[0], event.target) &&
+                                !$.contains(pickerWrapper[0], event.target)
+                            )
+                        ) {
+                            that._hideDatePicker()
+                        }
                     })
             }
         })
