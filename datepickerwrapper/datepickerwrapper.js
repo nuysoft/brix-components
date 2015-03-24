@@ -249,11 +249,20 @@ define(
                     top: inputWrapperOffset.top + inputWrapper.outerHeight() + parseInt(pickerWrapper.css('margin-top'), 10)
                 })
 
+                var $picker = pickers.eq(index)
                 var $target = $(event.target)
                 var targetOffset = $target.offset()
-                pickers.eq(index)[type ? type : 'toggle']()
+                var pickerLeft
+                switch (this.options.align) {
+                    case 'left':
+                        pickerLeft = targetOffset.left
+                        break
+                    case 'right':
+                        pickerLeft = targetOffset.left - ($picker.outerWidth() - $target.outerWidth())
+                }
+                $picker[type ? type : 'toggle']()
                     .offset({ // 修正单个日期组件的位置
-                        left: targetOffset.left
+                        left: pickerLeft
                     })
                     .siblings().hide()
             },
