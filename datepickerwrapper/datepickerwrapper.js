@@ -165,7 +165,7 @@ define(
                     pickerComponent.on('change.datepicker', function(event, date, type) {
                         if (type !== undefined && type !== 'date') return
 
-                        that.$relatedElement.hide()
+                        that.hide()
 
                         var validate = $.Event('change' + NAMESPACE)
                         that.trigger(validate, [
@@ -258,13 +258,16 @@ define(
                     .siblings().hide()
             },
             show: function( /*event*/ ) {
+                this.$element.addClass('datepickerwrapper-open')
                 this.$relatedElement.show()
                     .offset(this._offset())
             },
             hide: function( /*event*/ ) {
+                this.$element.removeClass('datepickerwrapper-open')
                 this.$relatedElement.hide()
             },
             toggle: function( /*event*/ ) {
+                this.$element.toggleClass('datepickerwrapper-open')
                 this.$relatedElement.toggle()
                     .offset(this._offset())
             },
@@ -295,7 +298,7 @@ define(
                     return item.val()
                 })
 
-                this.toggle()
+                this.hide()
 
                 var validate = $.Event('change' + NAMESPACE)
                 this.trigger(validate, [dates])
