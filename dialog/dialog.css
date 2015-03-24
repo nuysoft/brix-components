@@ -40,6 +40,9 @@
   opacity: .2;
   z-index: 1041;
 }
+.dialog .dialog-close .brixfont {
+  font-size: 21px;
+}
 .dialog .dialog-close:hover,
 .dialog .dialog-close:focus {
   color: #000;
