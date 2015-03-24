@@ -2,7 +2,7 @@
 define(function() {
     return (function(){/*
 <div class="dialog dialog-singleton dialog-<%= placement %>">
-    <button bx-click="close" type="button" class="dialog-close <%= closable ? '' : 'hide' %>">&times;</button>
+    <button bx-click="close" type="button" class="dialog-close <%= closable ? '' : 'hide' %>"><span class="brixfont">&#xe62d;</span><!-- &times; --></button>
     <div class="dialog-content">
         <%= content %>
         <!-- 
