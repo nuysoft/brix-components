@@ -124,7 +124,8 @@ define(
 
                 this['_' + this.options.mode]()
 
-                this.$element.on('click', function(event) {
+                // 多次绑定造成toggle失效，最好的解决办法是destroy时手动remove $element 和 $relatedElement
+                this.$element.off().on('click', function(event) {
                     that.toggle(event)
                 })
 
