@@ -263,6 +263,12 @@ define(
                     for (var i = 0; i < range.length; i += 2) {
                         min = range[i] && moment(range[i]).startOf('day')
                         max = range[i + 1] && moment(range[i + 1]).startOf('day')
+                        if (min && max) {
+                            var tmpMin = moment.min(min, max)
+                            var tmpMax = moment.max(min, max)
+                            min = tmpMin
+                            max = tmpMax
+                        }
                         if (min && max && cur.diff(min, 'days') >= 0 && cur.diff(max, 'days') <= 0) return false
                         if (min && !max && cur.diff(min, 'days') >= 0) return false
                         if (!min && max && cur.diff(max, 'days') <= 0) return false

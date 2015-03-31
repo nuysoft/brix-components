@@ -139,7 +139,9 @@ define(
                 var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
                 if (value) {
                     _.each(pickerComponents, function(item, index) {
-                        item.val(value[index])
+                        item.val(
+                            _.isArray(value) ? value[index] : value
+                        )
                     })
                     return this
                 }
@@ -432,6 +434,7 @@ define(
                                 $.contains(that.$relatedElement[0], event.target)
                             ) &&
                             ( // 但不在 inputs 和 pickers 之内
+                                (inputWrapper.length && pickerWrapper.length) &&
                                 !$.contains(inputWrapper[0], event.target) &&
                                 !$.contains(pickerWrapper[0], event.target)
                             )
