@@ -90,7 +90,7 @@ define(
                     function(error, response) {
                         that.burn(input)
                         callback(error, response)
-                        that.previewInConsole(input.files)
+                        // that.previewInConsole(input.files)
                     }
                 )
             },
