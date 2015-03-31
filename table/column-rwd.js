@@ -192,9 +192,9 @@ define(
             var theadHeight = $thead.height()
             var theadTop = $thead.offset().top
 
-            var $tbody = spree.$table.find('> tbody')
-            var tbodyHeight = $tbody.height()
-            var tbodyTop = $tbody.offset().top
+            // var $tbody = spree.$table.find('> tbody')
+            // var tbodyHeight = $tbody.height()
+            // var tbodyTop = $tbody.offset().top
 
             var $leftTarget = spree.$table.find(_.template(SELECTOR_TH)({
                 nth: spree.range[0]
