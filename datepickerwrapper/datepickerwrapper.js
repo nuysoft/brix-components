@@ -124,10 +124,11 @@ define(
 
                 this['_' + this.options.mode]()
 
-                // 多次绑定造成toggle失效，最好的解决办法是destroy时手动remove $element 和 $relatedElement
-                this.$element.off().on('click', function(event) {
-                    that.toggle(event)
-                })
+                var type = 'click.datepickerwrapper_toggle_' + this.clientId
+                this.$element.off(type)
+                    .on(type, function(event) {
+                        that.toggle(event)
+                    })
 
                 var manager = new EventManager('bx-')
                 manager.delegate(this.$element, this)
@@ -442,6 +443,10 @@ define(
                             that._hideDatePicker()
                         }
                     })
+            },
+            destroy: function() {
+                var type = 'click.datepickerwrapper_toggle_' + this.clientId
+                this.$element.off(type)
             }
         })
 

@@ -126,7 +126,7 @@ define(
                 manager.delegate(this.element, this)
                 manager.delegate(this.relatedElement, this)
 
-                var type = 'click.dropdown_' + this.clientId
+                var type = 'click.dropdown_autohide_' + this.clientId
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if ($relatedElement.has(event.target).length) return
@@ -268,6 +268,10 @@ define(
                             break
                     }
                 })
+            },
+            destroy: function() {
+                var type = 'click.dropdown_autohide_' + this.clientId
+                $(document.body).off(type)
             }
         })
 
