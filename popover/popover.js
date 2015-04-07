@@ -76,9 +76,12 @@ define(
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
                 })
                 if (this.options.align) {
-                    this.$relatedElement.find('.arrow').offset(
-                        getArrowPosition(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                    )
+                    var $arrow = this.$relatedElement.find('.arrow')
+                    if ($arrow.is(':visible')) {
+                        $arrow.offset(
+                            getArrowPosition(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                        )
+                    }
                 }
             },
             hide: function() {

@@ -325,8 +325,6 @@
 
 ### 配置 <small>Options</small>
 
-column-rwd-range="[3,-2]"
-
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
 Name | Type | Default | Description
