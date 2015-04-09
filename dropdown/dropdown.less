@@ -1,3 +1,20 @@
 .dropdown {
     display: inline-block;
+
+    .caret_brixfont {
+    	span:first-child {
+    		display: inline;
+    	}
+    	span:last-child {
+    		display: none;
+    	}
+    }
+    &.open .caret_brixfont {
+    	span:first-child {
+    		display: none;
+    	}
+    	span:last-child {
+    		display: inline;
+    	}
+    }
 }
