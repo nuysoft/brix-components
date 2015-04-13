@@ -90,7 +90,6 @@
         </select>
     </div>
 </div>
-<!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {
@@ -106,6 +105,8 @@
         })
     })
 </script>
+
+<!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
 
 ### 配置 <small>Options</small>
 

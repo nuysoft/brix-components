@@ -131,8 +131,8 @@ define(
             $ths.sort(function(a, b) { // test
                 var $a = $(a)
                 var $b = $(b)
-                a = +$a.data(Constant.COLUMN.PRIORITY.INDEX)
-                b = +$b.data(Constant.COLUMN.PRIORITY.INDEX)
+                a = +$a.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
+                b = +$b.attr('data-' + Constant.COLUMN.PRIORITY.INDEX)
                 if (isNaN(a)) a = $a.index()
                 if (isNaN(b)) b = $b.index()
                 return a - b
