@@ -122,7 +122,6 @@ define(
                 var $relatedElement = $(html).insertAfter($select)
                 this.relatedElement = $relatedElement[0]
 
-                // this.delegateBxTypeEvents(this.relatedElement)
                 manager.delegate(this.element, this)
                 manager.delegate(this.relatedElement, this)
 
@@ -184,7 +183,7 @@ define(
 
                 $(this.element)
                     .val(data.value)
-                    .triggerHandler('change', data)
+                    .trigger('change', data)
 
                 return this
             },
