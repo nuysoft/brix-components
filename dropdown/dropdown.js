@@ -96,21 +96,24 @@ define(
             options: {
                 data: []
             },
-            render: function() {
+            init: function() {
                 var that = this
-                var $select = $(this.element).hide()
-                var manager = new EventManager()
+                this.$element = $(this.element).hide()
 
                 // 如果没有提供选项 data，则从子元素中收集数据
                 // 如果提供了选项 data，则反过来修改子元素
-                if (!this.options.data.length) this.options.data = this._parseData(this.element)
+                if (!this.options.data.length) this.options.data = this._parseData(this.$element)
                 else this._fill()
+            },
+            render: function() {
+                var that = this
+                var manager = new EventManager()
 
-                // data.label data.value
+                // { data, label value }
                 var data = _.extend({
                     data: this.options.data
                 }, function() {
-                    var selectedIndex = $select.prop('selectedIndex')
+                    var selectedIndex = that.$element.prop('selectedIndex')
                     var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
                     return {
                         label: selectedOption.text(),
@@ -118,36 +121,27 @@ define(
                     }
                 }())
 
-                var html = _.template(template)(data)
-                var $relatedElement = $(html).insertAfter($select)
-                this.relatedElement = $relatedElement[0]
+                this.$relatedElement = $(
+                    _.template(template)(data)
+                ).insertAfter(this.$element)
 
-                manager.delegate(this.element, this)
-                manager.delegate(this.relatedElement, this)
-
-                var type = 'click.dropdown_autohide_' + this.clientId
-                $(document.body).off(type)
-                    .on(type, function(event) {
-                        if ($relatedElement.has(event.target).length) return
-                        that.hide()
-                    })
+                manager.delegate(this.$element, this)
+                manager.delegate(this.$relatedElement, this)
 
                 // this._responsive()
+
+                this._autoHide()
             },
             toggle: function( /*event*/ ) {
-                $(this.relatedElement).toggleClass('open')
-                    // if (event) {
-                    //     event.preventDefault()
-                    //     event.stopPropagation()
-                    // }
+                this.$relatedElement.toggleClass('open')
                 return this
             },
             show: function() {
-                $(this.relatedElement).addClass('open')
+                this.$relatedElement.addClass('open')
                 return this
             },
             hide: function() {
-                $(this.relatedElement).removeClass('open')
+                this.$relatedElement.removeClass('open')
                 return this
             },
             /*
@@ -159,10 +153,12 @@ define(
 
                 // .val()
                 if (value === undefined) return function() {
-                    var selectedIndex = $(that.element).prop('selectedIndex')
-                    return $(that.element.options[
-                        selectedIndex !== -1 ? selectedIndex : 0
-                    ]).attr('value')
+                    var selectedIndex = that.$element.prop('selectedIndex')
+                    return $(
+                        that.element.options[
+                            selectedIndex !== -1 ? selectedIndex : 0
+                        ]
+                    ).attr('value')
                 }()
 
                 // .val( value )
@@ -175,7 +171,7 @@ define(
                 data.name = $(this.element).attr('name')
 
 
-                $(this.relatedElement).find('button.dropdown-toggle > span:first')
+                this.$relatedElement.find('button.dropdown-toggle > span:first')
                     .text(data.label)
                     // .trigger('change.dropdown', data)
 
@@ -183,7 +179,7 @@ define(
 
                 $(this.element)
                     .val(data.value)
-                    .trigger('change', data)
+                    .triggerWithComponent(that, 'change', data)
 
                 return this
             },
@@ -195,11 +191,9 @@ define(
                 }
                 this.val(data)
                 this.toggle()
-                    // event.stopPropagation()
             },
-            _parseData: function(select) {
+            _parseData: function($select) {
                 var that = this
-                var $select = $(select)
                 var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
                     return /optgroup|option/i.test(child.nodeName)
@@ -228,7 +222,7 @@ define(
             },
             _fill: function() {
                 var that = this
-                var $select = $(this.element).hide().empty()
+                var $select = this.$element.hide().empty()
                 _.each(this.options.data, function(item) {
                     if (item.children && item.children.length) {
                         var $optgroup = $('<optgroup>').attr('label', item.label)
@@ -251,7 +245,7 @@ define(
             },
             _responsive: function() {
                 var $window = $(window)
-                var $relatedElement = $(this.relatedElement)
+                var $relatedElement = this.$relatedElement
                 var $menu = $relatedElement.find('ul.dropdown-menu')
                 $(window).on('scroll', function() {
                     var offset = $relatedElement.offset()
@@ -267,6 +261,15 @@ define(
                             break
                     }
                 })
+            },
+            _autoHide: function() {
+                var that = this
+                var type = 'click.dropdown_autohide_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
+                        if (that.$relatedElement.has(event.target).length) return
+                        that.hide()
+                    })
             },
             destroy: function() {
                 var type = 'click.dropdown_autohide_' + this.clientId
