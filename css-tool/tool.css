@@ -20,11 +20,8 @@
 .cursor-pointer {
   cursor: pointer;
 }
-.float-left {
-  float: left;
-}
-.float-right {
-  float: right;
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 .nowrap {
   white-space: nowrap;
@@ -253,4 +250,28 @@
 }
 .fontsize-36 {
   font-size: 36px;
+}
+.color-3 {
+  color: #333;
+}
+.color-6 {
+  color: #666;
+}
+.color-9 {
+  color: #999;
+}
+.color-c {
+  color: #ccc;
+}
+.color-e6 {
+  color: #e6e6e6;
+}
+.color-line {
+  color: #ebebeb;
+}
+.color-fail {
+  color: #e00000;
+}
+.color-success {
+  color: #51a300;
 }
