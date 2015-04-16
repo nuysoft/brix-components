@@ -25,6 +25,9 @@ define(
         Brix, EventManager,
         template
     ) {
+
+        var NAMESPACE = '.datepicker'
+
         function DatePicker() {}
 
         _.extend(DatePicker.prototype, Brix.prototype, {
@@ -75,8 +78,7 @@ define(
                 // var milliseconds = this.data.date.toDate().getTime()
                 if (value) {
                     this.data.date = moment(value)
-                    this.trigger('change.datepicker', moment(this.data.date))
-                        // if (this.data.date.toDate().getTime() !== milliseconds) {}
+                    this.trigger('change' + NAMESPACE, moment(this.data.date))
                     this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
                     return this
                 }
@@ -114,7 +116,7 @@ define(
                 // year month date
                 date.add(dir, unit)
                     // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change.datepicker', [moment(date), unit])
+                this.trigger('change' + NAMESPACE, [moment(date), unit])
 
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
@@ -125,7 +127,7 @@ define(
                 $target.siblings().removeClass('active').end()
                 date.set(unit, +$target.attr('data-value'))
                     // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change.datepicker', [moment(date), unit])
+                this.trigger('change' + NAMESPACE, [moment(date), unit])
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
                 if (unit === 'year' && !this.data.typeMap.year) {
                     this._slide('.yearpicker', '.monthpicker')
@@ -153,7 +155,7 @@ define(
                 event.stopPropagation()
                 date.add(extra, units)
                     // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change.datepicker', [moment(date), unit])
+                this.trigger('change' + NAMESPACE, [moment(date), unit])
                 this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
             _changeHour: function(event, extra) {
@@ -292,7 +294,7 @@ define(
                 var unlimit = this.options.unlimit
                 this.data.date = moment(unlimit)
                     // if (date.toDate().getTime() !== unlimit.toDate().getTime())
-                this.trigger('change.datepicker', [unlimit, 'date'])
+                this.trigger('change' + NAMESPACE, [unlimit, 'date'])
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             }
         })
