@@ -24,6 +24,7 @@ total | number | - | 必需。记录总条数。
 cursor | number | `1` | 可选。当前页数，第几页，从 1 开始计数。
 limit | number | `10` | 可选。当前分页大小。如果不在 `limits` 中，则会自动插入 `limits`。
 limits | array | `[10, 20, 30, 40, 50]` | 可选。可供选择的分页大小。
+simplify | boolean | `false` | 可选。是否开启简易模式。
 
 
 ### 方法 <small>Methods</small>
