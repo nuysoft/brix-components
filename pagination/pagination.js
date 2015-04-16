@@ -8,7 +8,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/loader', 'brix/base', 'brix/event',
+        'brix/loader', 'components/base', 'brix/event',
         './state.js',
         './pagination.tpl.js',
         'css!./pagination.css'

@@ -18,7 +18,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'components/base',
         './linkage.js',
         './column-rwd.js',
         './column-priority.js',

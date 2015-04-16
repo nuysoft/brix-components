@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/loader', 'brix/base', 'brix/event',
+        'brix/loader', 'components/base', 'brix/event',
         './taginput.tpl.js',
         './taginput.item.tpl.js',
         'css!./taginput.css'
@@ -48,13 +48,6 @@ define(
                 if (this.options.placeholder) this.$input.attr('placeholder', this.options.placeholder)
                 if (!this.options.suggest) this.$input.hide()
 
-                this.val(this.options.data, false)
-
-                this._beautify(this.$element, this.$relatedElement)
-
-                manager.delegate(this.$element, this)
-                manager.delegate(this.$relatedElement, this)
-
                 this.$input
                     .on('focus', function() {
                         that.triggerHandler('focus' + NAMESPACE)
@@ -65,6 +58,17 @@ define(
 
                 Loader.boot(this.$relatedElement, function() {
                     that.suggest = Loader.query('components/suggest', that.$relatedElement)[0]
+
+                    that.val(that.options.data, false)
+
+                    that._beautify(that.$element, that.$relatedElement)
+
+                    manager.delegate(that.$element, that)
+                    manager.delegate(that.$relatedElement, that)
+
+                    that.suggest.on('change.suggest.input', function(event, value) {
+                        that.trigger('change.suggest.input', value)
+                    })
 
                     /* jshint unused:false */
                     that.suggest.on('change.suggest.done', function(event, value) {

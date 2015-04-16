@@ -220,7 +220,7 @@ define(
             var type = 'click' + NAMESPACE + '_' + tableComponentInstance.clientId
             $(document.body).off(type)
                 .on(type, function(event) {
-                    if (
+                    if (!$trigger[0] ||
                         event.target === $trigger[0] ||
                         $.contains($trigger[0], event.target) ||
                         event.target === $relatedElement[0] ||

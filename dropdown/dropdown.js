@@ -6,7 +6,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event',
+        'components/base', 'brix/event',
         './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
@@ -175,13 +175,14 @@ define(
 
                 this.$relatedElement.find('button.dropdown-toggle > span:first')
                     .text(data.label)
-                    // .trigger('change.dropdown', data)
+
+                this.$element
+                    .val(data.value)
 
                 this.trigger('change' + NAMESPACE, data)
 
                 this.$element
-                    .val(data.value)
-                    .triggerHandler('change', data)
+                    .triggerHandler('change')
 
                 return this
             },

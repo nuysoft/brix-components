@@ -5,7 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event',
+        'components/base', 'brix/event',
         './position.js',
         './dialog.tpl.js',
         'css!./dialog.css'
@@ -81,8 +81,12 @@ define(
             },
             render: function() {
                 this.$manager.delegate(this.$element, this)
+                this._autoHide()
             },
             destroy: function() {
+                var type = 'keyup.dialog_autohide_' + this.clientId
+                $(document.body).off(type)
+
                 if (this.$manager) this.$manager.undelegate(this.$element)
                 this.$relatedElement.remove()
             },
@@ -145,16 +149,13 @@ define(
                     this.$backdropElement.show()
                 }
 
-                this.triggerHandler('open' + NAMESPACE)
+                this.trigger('open' + NAMESPACE)
+
                 return this
             },
             close: function() {
-                // var that = this
-                // var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                // this.$relatedElement.hide()
-                // .animate(this._start(offset), TRANSITION_DURATION, EASING, function() {
-                //     that.$relatedElement.hide()
-                // })
+                if (!this.$relatedElement || !this.$relatedElement.length) return this
+
                 var that = this
                 var offset = this._offset()
                 this.$relatedElement
@@ -173,7 +174,7 @@ define(
                     this.$backdropElement.hide()
                 }
 
-                this.triggerHandler('close' + NAMESPACE)
+                this.trigger('close' + NAMESPACE)
                 return this
             },
             _offset: function() {
@@ -186,6 +187,14 @@ define(
                     top: offset.top + (this.options.offset.top || 0)
                 }
                 return offset
+            },
+            _autoHide: function() {
+                var that = this
+                var type = 'keyup.dialog_autohide_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
+                        if (event.keyCode === 27) that.close()
+                    })
             }
         })
 

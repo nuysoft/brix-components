@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'components/base',
         '../dialog/position.js',
         './suggest.tpl.js',
         './suggest.item.tpl.js',

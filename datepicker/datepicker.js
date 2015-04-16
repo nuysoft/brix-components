@@ -16,7 +16,7 @@
 define(
     [
         'jquery', 'underscore', 'moment',
-        'brix/base', 'brix/event',
+        'components/base', 'brix/event',
         './datepicker.tpl.js',
         'css!./datepicker.css'
     ],
