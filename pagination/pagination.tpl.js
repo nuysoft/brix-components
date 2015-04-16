@@ -7,7 +7,7 @@ define(function() {
             <ul class="pagination" style="text-align: right;">
                 <li class="<%= hasPrev ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=prev%>)"><span class="brixfont">&#xe601;</span></a></li><!-- Previous -->
 
-                <li><span><%= cursor %>/<%= pages %></span></li>
+                <li class="pagination-statistics-simplify"><span><%= cursor %>/<%= pages %></span></li>
                 
                 <li class="<%= hasNext ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=next%>)"><span class="brixfont">&#xe600;</span></a></li><!-- Next -->
             </ul>
@@ -67,7 +67,7 @@ define(function() {
             </li> -->
         </ul>
     </div>
-    
+
     <% } %>
 </div>
     */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
