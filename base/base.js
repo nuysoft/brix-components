@@ -6,7 +6,7 @@ define(
     ],
     function(
         $,
-        BrixBase, BrixEvent
+        Brix, EventManager
     ) {
         /*
             ## ComponentBase
@@ -15,8 +15,8 @@ define(
         */
         function ComponentBase() {}
 
-        _.extend(Base.prototype, BrixBase.prototype, {
-            _bak_trigger: BrixBase.prototype.trigger,
+        _.extend(ComponentBase.prototype, Brix.prototype, {
+            _bak_trigger: Brix.prototype.trigger,
             trigger: function(type, data) {
                 this._bak_trigger(type, data)
 
@@ -26,7 +26,7 @@ define(
                 }
 
                 var bxevent = jQuery.Event(type + EventManager.NAMESPACE)
-                event.component = this
+                bxevent.component = this
                 $(this.element).trigger(bxevent, data)
 
                 return this
