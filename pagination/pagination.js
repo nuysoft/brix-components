@@ -139,7 +139,8 @@ define(
                 return _.extend({
                     barStart: barStart,
                     barEnd: Math.min(this._state.pages, barStart + this.options.step - 1),
-                    limits: limits
+                    limits: limits,
+                    simplify: this.options.simplify
                 }, this._state)
             }
         })

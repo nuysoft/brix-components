@@ -1,4 +1,16 @@
 <div class="row paginationwrapper">
+    <% if(simplify) { %>
+        <div class="col-md-12" style="text-align: right;">
+            <ul class="pagination" style="text-align: right;">
+                <li class="<%= hasPrev ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=prev%>)"><span class="brixfont">&#xe601;</span></a></li><!-- Previous -->
+
+                <li><span><%= cursor %>/<%= pages %></span></li>
+                
+                <li class="<%= hasNext ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=next%>)"><span class="brixfont">&#xe600;</span></a></li><!-- Next -->
+            </ul>
+        </div>
+    <% } else { %>
+
     <div class="pagination-statistics col-md-6">
         当前第 <b><%= start + 1 %> - <%=end%></b> 条，共 <b><%= total %></b> 条，每页展现
         <select bx-name="components/dropdown">
@@ -52,4 +64,6 @@
             </li> -->
         </ul>
     </div>
+    
+    <% } %>
 </div>
