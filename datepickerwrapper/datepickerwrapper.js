@@ -234,6 +234,8 @@ define(
                                 inputs.eq(index).val(value)
                                 pickers.eq(index).hide()
                             })
+                        var value = that._unlimitFilter(moment(that.options.dates[index]), that.options.unlimits[index])
+                        inputs.eq(index).val(value)
                     })
                 })
             },
