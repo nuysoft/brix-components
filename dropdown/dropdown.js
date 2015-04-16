@@ -90,6 +90,8 @@ define(
                 responsive http://silviomoreto.github.io/bootstrap-select/
         */
 
+        var NAMESPACE = '.dropdown'
+
         function Dropdown() {}
 
         _.extend(Dropdown.prototype, Brix.prototype, {
@@ -168,18 +170,18 @@ define(
                     if (item.value == value) data = item
                     item.selected = item.value == value
                 })
-                data.name = $(this.element).attr('name')
+                data.name = this.$element.attr('name')
 
 
                 this.$relatedElement.find('button.dropdown-toggle > span:first')
                     .text(data.label)
                     // .trigger('change.dropdown', data)
 
-                this.trigger('change.dropdown', data)
+                this.trigger('change' + NAMESPACE, data)
 
-                $(this.element)
+                this.$element
                     .val(data.value)
-                    .triggerWithComponent(that, 'change', data)
+                    .triggerHandler('change', data)
 
                 return this
             },
