@@ -99,7 +99,6 @@ define(
                 data: []
             },
             init: function() {
-                var that = this
                 this.$element = $(this.element).hide()
 
                 // 如果没有提供选项 data，则从子元素中收集数据

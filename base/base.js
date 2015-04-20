@@ -1,11 +1,11 @@
 /* global define */
 define(
     [
-        'jquery',
+        'jquery', 'underscore',
         'brix/base', 'brix/event'
     ],
     function(
-        $,
+        $, _,
         Brix, EventManager
     ) {
         /*
@@ -25,12 +25,12 @@ define(
                     namespaces = tmp.split('.')
                     tmp = namespaces.shift()
                 }
-                
+
                 // 正常触发
                 this._bak_trigger(type, data)
 
                 // 触发 brix/event 绑定的事件
-                var bxevent = jQuery.Event(tmp + EventManager.NAMESPACE)
+                var bxevent = $.Event(tmp + EventManager.NAMESPACE)
                 bxevent.originalNamespace = namespaces.join('.')
                 bxevent.component = this
                 $(this.element).trigger(bxevent, data)

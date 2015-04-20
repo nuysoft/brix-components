@@ -66,6 +66,7 @@ define(
                     manager.delegate(that.$element, that)
                     manager.delegate(that.$relatedElement, that)
 
+                    /* jshint unused:false */
                     that.suggest.on('change.suggest.input', function(event, value) {
                         that.trigger('change.suggest.input', value)
                     })
