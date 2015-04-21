@@ -61,25 +61,26 @@ define(
                 if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
 
                 var form = $relatedElement[0].form
-                $(form).on('change', 'input[type=file]' + TOKEN_SELECTOR, function(event) {
-                    var input = event.currentTarget
+                $(form).off('change' + NAMESPACE)
+                    .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {
+                        var input = event.currentTarget
 
-                    var isDefaultPrevented
-                    that
-                        .on('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED, function(event) {
-                            isDefaultPrevented = event.isDefaultPrevented()
+                        var isDefaultPrevented
+                        that
+                            .on('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED, function(event) {
+                                isDefaultPrevented = event.isDefaultPrevented()
+                            })
+                            .trigger('start' + NAMESPACE, [input.files])
+                            .off('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED)
+                        if (isDefaultPrevented) return
+
+                        that.send(form, input, function(error, response) {
+                            // console.log(response)
+                            if (error) that.trigger('error' + NAMESPACE, [input.files, error])
+                            else that.trigger('success' + NAMESPACE, [input.files, response])
+                            that.trigger('complete' + NAMESPACE, [input.files])
                         })
-                        .trigger('start' + NAMESPACE, [input.files])
-                        .off('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED)
-                    if (isDefaultPrevented) return
-
-                    that.send(form, input, function(error, response) {
-                        // console.log(response)
-                        if (error) that.trigger('error' + NAMESPACE, [input.files, error])
-                        else that.trigger('success' + NAMESPACE, [input.files, response])
-                        that.trigger('complete' + NAMESPACE, [input.files])
                     })
-                })
             },
             send: function(form, input, callback) {
                 var that = this
@@ -90,7 +91,7 @@ define(
                     function(error, response) {
                         that.burn(input)
                         callback(error, response)
-                        // that.previewInConsole(input.files)
+                            // that.previewInConsole(input.files)
                     }
                 )
             },
@@ -120,7 +121,7 @@ define(
                             var iframe = event.target
                             var response = $.trim(iframe.contentWindow.document.body.innerText)
                             parseJSONResponse(response, callback)
-                            $(event.target).remove()
+                                // $(iframe).remove()
                         })
                         .on('error', function(event) {
                             callback(event, undefined)
