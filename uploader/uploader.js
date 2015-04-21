@@ -121,7 +121,7 @@ define(
                             var iframe = event.target
                             var response = $.trim(iframe.contentWindow.document.body.innerText)
                             parseJSONResponse(response, callback)
-                                // $(iframe).remove()
+                            $(iframe).remove()
                         })
                         .on('error', function(event) {
                             callback(event, undefined)
