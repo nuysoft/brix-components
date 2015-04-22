@@ -68,7 +68,7 @@ define(
                 var canvas = $(html).appendTo(this.element)
                 var context = canvas.get(0).getContext("2d")
                 var type = this.options.TYPES[this.options.type.toLowerCase()]
-                new Chart(context)[type](this.options.data, {})
+                this.chart = new Chart(context)[type](this.options.data, {})
             }
         })
     }
