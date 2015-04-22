@@ -9,18 +9,6 @@
   margin: 0;
   margin-bottom: 10px;
 }
-.pagination > li > a,
-.pagination > li > span {
-  color: #999;
-}
-.pagination > li.active > a,
-.pagination > li.active > span {
-  background-color: #2378FF;
-}
-.pagination > li.active > a:hover,
-.pagination > li.active > span:hover {
-  background-color: #1C6BFD;
-}
 .pagination .brixfont {
   font-size: 12px;
 }
