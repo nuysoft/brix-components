@@ -15,6 +15,11 @@
             <option value="2">Another action</option>
             <option value="3">Something else here</option>
         </select>
+        <select bx-name="components/dropdown" data-value="2">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3">Something else here</option>
+        </select>
     </div>
 </div>
 <div class="bs-example">
@@ -115,6 +120,7 @@
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 data | array | - | 可选。下拉框中的数据。默认从子节点 `<optgroup>` 和 `<option>` 读取。
+value | string | - | 可选。下拉框的值。
 
 ### 方法 <small>Methods</small>
 

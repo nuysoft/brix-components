@@ -96,6 +96,7 @@ define(
 
         _.extend(Dropdown.prototype, Brix.prototype, {
             options: {
+                value: '',
                 data: []
             },
             init: function() {
@@ -114,6 +115,7 @@ define(
                 var data = _.extend({
                     data: this.options.data
                 }, function() {
+                    if (that.options.value) that.$element.val(that.options.value)
                     var selectedIndex = that.$element.prop('selectedIndex')
                     var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
                     return {
