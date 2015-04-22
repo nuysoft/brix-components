@@ -52,15 +52,19 @@ define(
             },
             render: function() {},
             fill: function() {
+                if (this.options.hostView) {
+                    this.options.hostView.owner
+                        .mountVframe(
+                            DIALOG_VIEW_ID,
+                            this.options.view.name,
+                            this.options.view.options
+                        )
+                    return
+                }
+
                 var vframe = Magix.VOM.get(DIALOG_VIEW_ID) || new Magix.Vframe(DIALOG_VIEW_ID)
                 vframe.unmountVframe(DIALOG_VIEW_ID)
                 vframe.mountVframe(DIALOG_VIEW_ID, this.options.view.name, this.options.view.options)
-                    
-                    // console.log($('#' + DIALOG_VIEW_ID))
-                    // $('#' + DIALOG_VIEW_ID).html(
-                    //     this.options.view.name +
-                    //     JSON.stringify(this.options.view.options)
-                    // )
             },
             open: function() {
                 this.dialog.open()
@@ -72,13 +76,19 @@ define(
                 if (vframe) {
                     vframe.unmountVframe(DIALOG_VIEW_ID)
                 }
+            },
+            destroy: function() {
+                this.close()
             }
         })
 
         var DialogViewUtil = {
-            open: function(dialogOptions, viewName, viewOptions) {
+            open: function(dialogOptions /* hostView */ , viewName, viewOptions) {
                 this.dialog = new DialogView(dialogOptions, viewName, viewOptions)
                 this.dialog.open()
+                if (dialogOptions.hostView) {
+                    dialogOptions.hostView.manage(this.dialog)
+                }
             },
             close: function() {
                 if (this.dialog) this.dialog.close()
