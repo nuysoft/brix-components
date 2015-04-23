@@ -27,33 +27,40 @@ Brix 组件实现示例。{ .lead }
 
 ### 配置 <small>Options</small>
 
-Lorem ipsum.
+width: 180, //提示框的宽度,
+msg: '操作<span>不正确</span>，请重新操作', //提示文案，支持标签,
+duration: 2000, //提示持续的时间,
+btnShake: true //按钮是否抖动反馈,
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-data | any | `{}` | 渲染组件所需的数据。
-template | string | `''` | 自定义的组件 HTML 模板文件。
-css | string | `''` | 自定义的组件 CSS 样式文件。
-message | string | `''` | 指定输出的文本。
+width | number | `180` | 提示框的宽度
+msg | string | `'操作<span>不正确</span>，请重新操作'` | 提示文案，支持html标签
+duration | number | `2000` | 提示持续的时间
+btnShake | boolean | `true` | 按钮是否抖动反馈, 为false则只给出提示框
 
 ### 方法 <small>Methods</small>
 
-#### .say( message )
+#### .showTips( message )
 
-在页面上输出 `Hello <%= message %>!`
+提示框里的错误提示信息，支持html标签
 
 ```js
 var Loader = require('brix/loader')
-var instance = Loader.query('components/hello')
-instance.say('Brix')
+var instance = Loader.query(e.currentTarget)
+instance.showTips('这里显示的是错误提示信息')
+```
+另一种调用方式：new
+```js
+var instance = new ErrorTips(e.currentTarget, options)
+instance.showTips('这里显示的是错误提示信息')
 ```
 
 ### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------
-ready | 当前组件完全渲染完成后触发，包括子组件的渲染。
-destroyed | 当前组件销毁后触发，包括子组件的销毁。
+complete | 提示信息整个动画完成后的事件触发
 
 
-> 这里仅仅约束了文档的格式，关于 Hello 组件的任何说明都是胡言乱语。
+> none

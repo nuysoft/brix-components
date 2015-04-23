@@ -8,7 +8,8 @@ define(
     'jquery', 'underscore', 'handlebars',
     'components/base', 'brix/event',
     // 'text!./sidebar.tpl',
-    'css!./sidenav.css'
+    'css!./sidenav.css',
+    'css!./header.css'
   ],
   function(
     $, _, Handlebars,

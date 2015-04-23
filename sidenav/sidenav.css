@@ -44,7 +44,7 @@
 }*/
 .sidebar-fixed {
   float: none;
-  position: fixed;
+  /*position: fixed;*/
   margin-left: 0;
   display: block;
   top: 0;
