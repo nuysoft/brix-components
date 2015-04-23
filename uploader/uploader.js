@@ -100,7 +100,9 @@ define(
             burn: function(input) {
                 var $input = $(input)
                 $input.replaceWith(
-                    $input.clone(true, true).attr(TOKEN, tokon())
+                    $input.clone(true, true)
+                    .attr(TOKEN, tokon())
+                    .prop('clientId', this.options.clientId)
                 )
             },
             transports: {
