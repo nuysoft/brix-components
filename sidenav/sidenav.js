@@ -1,4 +1,4 @@
-/* global define, window, document */
+// jshint ignore: start
 /*
     http://getbootstrap.com/components/#dropdowns
     http://silviomoreto.github.io/bootstrap-select/
