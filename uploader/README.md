@@ -67,7 +67,7 @@
         Loader.boot(function() {
             var instances = Loader.query('components/uploader')
             instances.on('start.uploader', function(event, files) {
-                console.log(event.type, event.namespace)
+                console.log(event.type, event.namespace, event.component)
                 var preview = $(event.target).parent().find('div.preview')
                 _.each(files, function(file /*, index*/ ) {
                     var reader = new FileReader()

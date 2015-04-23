@@ -5,12 +5,12 @@
 define(
     [
         'jquery', 'underscore',
-        'components/base',
+        'brix/loader', 'components/base',
         'css!./uploader.css'
     ],
     function(
         $, _,
-        Brix
+        Loader, Brix
     ) {
         var TEMPLATE = '<input name="<%= name %>" type="file" class="uploader-ghost">'
         var TOKEN = 'data-token'
@@ -38,7 +38,9 @@ define(
             } finally {}
         }
 
-        return Brix.extend({
+        function Uploader() {}
+
+        _.extend(Uploader.prototype, Brix.prototype, {
             options: {
                 action: '',
                 name: 'file',
@@ -46,27 +48,26 @@ define(
                 multiple: true
             },
             render: function() {
-                var that = this
+                this.$element = $(this.element)
+                this.$element.parent().css('position', 'relative')
 
-                var $element = $(this.element)
-                $element.parent().css('position', 'relative')
-
-                var $relatedElement = $(_.template(TEMPLATE)(this.options))
+                this.$relatedElement = $(_.template(TEMPLATE)(this.options))
                     .attr(TOKEN, tokon())
-                    .insertAfter($element)
-                    .width($element.outerWidth())
-                    .height($element.outerHeight())
-                    .offset($element.offset())
+                    .insertAfter(this.$element)
+                    .width(this.$element.outerWidth())
+                    .height(this.$element.outerHeight())
+                    .offset(this.$element.offset())
 
-                if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
+                if (this.options.multiple) this.$relatedElement.attr('multiple', 'multiple')
 
-                var form = $relatedElement[0].form
+                var form = this.$relatedElement[0].form
                 $(form).off('change' + NAMESPACE)
                     .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {
                         var input = event.currentTarget
+                        var uploader = Loader.query(input)
 
                         var isDefaultPrevented
-                        that
+                        uploader
                             .on('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED, function(event) {
                                 isDefaultPrevented = event.isDefaultPrevented()
                             })
@@ -74,11 +75,11 @@ define(
                             .off('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED)
                         if (isDefaultPrevented) return
 
-                        that.send(form, input, function(error, response) {
+                        uploader.send(form, input, function(error, response) {
                             // console.log(response)
-                            if (error) that.trigger('error' + NAMESPACE, [input.files, error])
-                            else that.trigger('success' + NAMESPACE, [input.files, response])
-                            that.trigger('complete' + NAMESPACE, [input.files])
+                            if (error) uploader.trigger('error' + NAMESPACE, [input.files, error])
+                            else uploader.trigger('success' + NAMESPACE, [input.files, response])
+                            uploader.trigger('complete' + NAMESPACE, [input.files])
                         })
                     })
             },
@@ -215,5 +216,7 @@ define(
                 reader.readAsDataURL(file)
             }
         })
+
+        return Uploader
     }
 )
