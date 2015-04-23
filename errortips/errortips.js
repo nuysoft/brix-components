@@ -1,11 +1,12 @@
+/* global define, clearTimeout, setTimeout */
 define([
   'jquery', 'underscore', 'handlebars',
-  'components/base', 'brix/event',
+  'components/base',
   './errortips.tpl.js',
   'css!./errortips.css'
 ], function(
   $, _, Handlebars,
-  Brix, EventManager, tpl) {
+  Brix, tpl) {
 
   //arguments: [el, options]
   function Errortips() {
@@ -28,7 +29,9 @@ define([
     },
 
     destroy: function() {
-      this._tips && this._tips.remove()
+      if (this._tips) {
+        this._tips.remove()
+      }
     },
 
     showTips: function(msg) {
@@ -59,7 +62,9 @@ define([
 
       msg = msg || this.options.msg
 
-      self.fadeOut && self.fadeOut.stop()
+      if (self.fadeOut) {
+        self.fadeOut.stop()
+      }
 
       //tips 6 秒后消失，或者点击页面其他地方也消失
       this.itv = setTimeout(function() {
@@ -100,12 +105,8 @@ define([
     },
 
     //抖动按钮
-    _btnShake: function(e) {
-      var self = this
+    _btnShake: function() {
       var el = $(this.element)
-      var msg = this.options.msg
-      var tipsWidth = this.options.width
-      var duration = this.options.duration
       var iconCode = this.options.iconCode
 
       //错误反馈按钮动画
