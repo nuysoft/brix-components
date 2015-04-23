@@ -21,7 +21,7 @@ define([
       width: 180, //提示框的宽度,
       msg: '操作<span>不正确</span>，请重新操作', //提示文案，支持标签,
       duration: 2000, //提示持续的时间,
-      btnShake: true //按钮是否抖动反馈,
+      shake: true //按钮是否抖动反馈,
     },
     render: function() {
 
@@ -46,8 +46,8 @@ define([
         $('.btn-error-tips[data-btn-error]').remove()
       }
 
-      if (this.options.btnShake) {
-        this._btnShake()
+      if (this.options.shake) {
+        this._shake()
       }
 
       this._showTips(msg)
@@ -69,7 +69,7 @@ define([
       this.itv = setTimeout(function() {
         self.fadeOut = self._tips.fadeOut(250, 'swing', function() {
           self._tips.remove()
-          self.trigger('complete', self)
+          self.trigger('complete.errortips', self)
         })
       }, duration)
 
@@ -104,7 +104,7 @@ define([
     },
 
     //抖动按钮
-    _btnShake: function() {
+    _shake: function() {
       var el = $(this.element)
 
       //错误反馈按钮动画
