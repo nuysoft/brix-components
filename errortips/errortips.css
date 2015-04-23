@@ -1,0 +1,101 @@
+ @-webkit-keyframes btn-err-flash {
+    0% {
+      -webkit-transform: translate(0);
+    }
+    16% {
+      -webkit-transform: translate(10px);
+    }
+    32% {
+      -webkit-transform: translate(-10px);
+    }
+    48% {
+      -webkit-transform: translate(7px);
+    }
+    64% {
+      -webkit-transform: translate(-7px);
+    }
+    80% {
+      -webkit-transform: translate(5px);
+    }
+    100% {
+      -webkit-transform: translate(0);
+    }
+  }
+
+   @-moz-keyframes btn-err-flash {
+    0% {
+      -moz-transform: translate(0);
+    }
+    16% {
+      -moz-transform: translate(10px);
+    }
+    32% {
+      -moz-transform: translate(-10px);
+    }
+    48% {
+      -moz-transform: translate(7px);
+    }
+    64% {
+      -moz-transform: translate(-7px);
+    }
+    80% {
+      -moz-transform: translate(5px);
+    }
+    100% {
+      -moz-transform: translate(0);
+    }
+  }
+  @keyframes btn-err-flash {
+    0% {
+      transform: translate(0);
+    }
+    16% {
+      transform: translate(10px);
+    }
+    32% {
+      transform: translate(-10px);
+    }
+    48% {
+      transform: translate(7px);
+    }
+    64% {
+      transform: translate(-7px);
+    }
+    80% {
+      transform: translate(5px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  .btn-error {
+    -webkit-animation: btn-err-flash 0.7s ease-in-out 0s 1;
+    -moz-animation: btn-err-flash 0.7s ease-in-out 0s 1;
+    animation: btn-err-flash 0.7s ease-in-out 0s 1;
+    text-align: center;
+  }
+
+  .btn-error-tips {
+    position: absolute;
+    background-color: #aaa;
+    color: white;
+    border-radius: 5px;
+    padding: 15px 15px 20px;
+    line-height: 1.8;
+    top: -1000px;
+    z-index: 999999;
+  }
+  .btn-error-tips i {
+    position: absolute;
+    width: 0;
+    height: 0px;
+    overflow: hidden;
+    bottom: -20px;
+    left: 28%;
+    border: 10px solid #aaa;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+  }
+
