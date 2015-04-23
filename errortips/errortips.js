@@ -1,7 +1,7 @@
 define([
   'jquery', 'underscore', 'handlebars',
   'components/base', 'brix/event',
-  'text!./errortips.tpl',
+  './errortips.tpl.js',
   'css!./errortips.css'
 ], function(
   $, _, Handlebars,
@@ -21,7 +21,7 @@ define([
       msg: '操作<span>不正确</span>，请重新操作', //提示文案，支持标签,
       duration: 2000, //提示持续的时间,
       btnShake: true, //按钮是否抖动反馈,
-      iconCode: '&#xe625;' //按钮中间叹号icon的编码，因不同项目可能编码不同
+      iconCode: '&#xe600;' //按钮中间叹号icon的编码，因不同项目可能编码不同
     },
     render: function() {
 
@@ -114,7 +114,7 @@ define([
 
       el.addClass('btn-error')
       el.width(_w)
-      el.html('<i class="bp-iconfont" style="font-size:20px;line-height:1;">' + iconCode + '</i>')
+      el.html('<i class="errortips-icon">' + iconCode + '</i>')
 
       //错误抖动反馈1秒
       setTimeout(function() {

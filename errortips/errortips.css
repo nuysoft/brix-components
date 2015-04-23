@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'errortips-icon';
+  src: url('//at.alicdn.com/t/font_1429759710_6393254.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1429759710_6393254.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1429759710_6393254.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1429759710_6393254.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1429759710_6393254.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.errortips-icon {
+  font-family: 'errortips-icon';
+  font-size: 20px;
+  line-height: 1;
+  font-style: normal;
+}
+
  @-webkit-keyframes btn-err-flash {
     0% {
       -webkit-transform: translate(0);
