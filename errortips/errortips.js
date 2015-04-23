@@ -21,8 +21,7 @@ define([
       width: 180, //提示框的宽度,
       msg: '操作<span>不正确</span>，请重新操作', //提示文案，支持标签,
       duration: 2000, //提示持续的时间,
-      btnShake: true, //按钮是否抖动反馈,
-      iconCode: '&#xe600;' //按钮中间叹号icon的编码，因不同项目可能编码不同
+      btnShake: true //按钮是否抖动反馈,
     },
     render: function() {
 
@@ -107,7 +106,6 @@ define([
     //抖动按钮
     _btnShake: function() {
       var el = $(this.element)
-      var iconCode = this.options.iconCode
 
       //错误反馈按钮动画
       var _w = el.width()
@@ -115,7 +113,7 @@ define([
 
       el.addClass('btn-error')
       el.width(_w)
-      el.html('<i class="errortips-icon">' + iconCode + '</i>')
+      el.html('<i class="errortips-icon">&#xe600;</i>')
 
       //错误抖动反馈1秒
       setTimeout(function() {
