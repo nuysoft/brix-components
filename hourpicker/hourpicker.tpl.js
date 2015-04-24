@@ -37,7 +37,7 @@ define(function() {
             <% for ( var i = 0, days = '一二三四五六日', values="1234560"; i < days.length; i++ ) { %>
             <tr class="picker-day" data-value="<%= values[i] %>">
                 <td class="picker-label">
-                    <span bx-click="shortcut(<%= values[i] %>)">周<%= days[i] %></span>
+                    <span bx-click="toggle(<%= values[i] %>)">周<%= days[i] %></span>
                 </td>
                 <td class="">
                     <div class="picker-hours">

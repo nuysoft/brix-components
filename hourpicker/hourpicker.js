@@ -80,22 +80,30 @@ define(
             },
             /* jshint unused:true */
             shortcut: function(event, days) {
-                days += ''
-                var hours = _.range(0, 24)
-
-                if (days.length === 1) {
-                    var tmpDayHours = this.val()[days]
-                    if (tmpDayHours.length === 24) this.val(days, [])
-                    else this.val(days, hours)
-                    event.preventDefault()
-                    return
+                if (days === undefined) {
+                    days = event
+                    event = undefined
                 }
 
+                days += ''
+                var hours = _.range(0, 24)
                 var mapped = {}
                 _.each(days, function(day /*, index*/ ) {
                     mapped[day] = hours
                 })
                 this.val(mapped)
+            },
+            toggle: function(event, day) {
+                if (day === undefined) {
+                    day = event
+                    event = undefined
+                }
+
+                var hours = _.range(0, 24)
+                var tmpDayHours = this.val()[day]
+                if (tmpDayHours.length === 24) this.val(day, [])
+                else this.val(day, hours)
+                if (event) event.preventDefault()
             },
             apply: function(event, todo, day) {
                 var that = this
