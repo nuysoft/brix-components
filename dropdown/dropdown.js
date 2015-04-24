@@ -115,7 +115,9 @@ define(
                 var data = _.extend({
                     data: this.options.data
                 }, function() {
+                    // data-value
                     if (that.options.value) that.$element.val(that.options.value)
+
                     var selectedIndex = that.$element.prop('selectedIndex')
                     var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
                     return {
@@ -153,9 +155,7 @@ define(
             */
             val: function(value) {
                 var that = this
-
-                // .val()
-                if (value === undefined) return function() {
+                var oldValue = function() {
                     var selectedIndex = that.$element.prop('selectedIndex')
                     return $(
                         that.element.options[
@@ -163,6 +163,9 @@ define(
                         ]
                     ).attr('value')
                 }()
+
+                // .val()
+                if (value === undefined) return oldValue
 
                 // .val( value )
                 var data /* { label: '', value: '', selected: true|false } */
@@ -173,8 +176,9 @@ define(
                 })
                 data.name = this.$element.attr('name')
 
+                if (data.value === oldValue) return this
 
-                this.$relatedElement.find('button.dropdown-toggle > span:first')
+                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
                     .text(data.label)
 
                 this.$element
