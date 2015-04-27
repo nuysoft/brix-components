@@ -1,4 +1,4 @@
-# Tree
+# CTree
 
 打印组件树。{ .lead }
 
