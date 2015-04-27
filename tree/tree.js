@@ -12,7 +12,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event',
+        'components/base', 'brix/event',
         '../areapicker/area.js',
         './tree.tpl.js',
         './tree.node.tpl.js',
@@ -134,6 +134,8 @@ define(
                     })
             },
             toggle: function(event, id) {
+                event.stopPropagation()
+
                 var selector
                 if (event === undefined) selector = 'li[data-node-id]' // toggle()
                 else if (!event.type) selector = 'li[data-node-id="' + event + '"]' // toggle( id )
@@ -341,6 +343,7 @@ define(
                 return result
             },
             forward: function(event, id) {
+                event.stopPropagation()
                 var forwardEvent = $.Event(event.type + NAMESPACE, {
                     target: event.target,
                     currentTarget: event.currentTarget

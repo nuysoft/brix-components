@@ -47,6 +47,26 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+/*
+    on-click="hello"
+    // 开发调试
+    require(['brix/event'], function(EventManager){
+        var manager = new EventManager('on-')
+        var owner = {
+            hello: function(event){
+                debugger
+            }
+        }
+        setTimeout(function(){
+            manager.delegate($('.bs-example'), owner)
+        }, 1000)
+        
+    })
+*/
+</script>
+
 <div class="bs-example">
     <div class="content">
         <h4>把扁平数据渲染成树结构。</h4>
@@ -481,11 +501,13 @@ instances[0].all('0')
 
 Event Type | Description
 :--------- | :----------
-click.tree | -
-mouseenter.tree | -
-mouseleave.tree | -
+click.tree | 当点树击节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+mouseenter.tree | 当鼠标移入树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+mouseleave.tree | 当鼠标移出树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
 active.tree | -
 inactive.tree | -
+
+> 如果在组件节点上设置了 `prefix-click`、`prefix-mouseenter`、`prefix-mouseleave`，那么当鼠标点击、移入、移出非节点（即空白部分）时，也会触发响应的事件，但是传给监听函数的参数只有 jQuery 事件对象，没有树节点关联的数据和树节点。因此，可以通过判断第二个参数的值或参数个数来区分这两种事件。
 
 ```js
 var Loader = require('brix/loader')
