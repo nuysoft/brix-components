@@ -507,7 +507,7 @@ mouseleave.tree | 当鼠标移出树节点时被触发。监听函数接受 3 �
 active.tree | -
 inactive.tree | -
 
-> 如果在组件节点上设置了 `prefix-click`、`prefix-mouseenter`、`prefix-mouseleave`，那么当鼠标点击、移入、移出非节点（即空白部分）时，也会触发响应的事件，但是传给监听函数的参数只有 jQuery 事件对象，没有树节点关联的数据和树节点。因此，可以通过判断第二个参数的值或参数个数来区分这两种事件。
+> 如果在组件节点上设置了 `prefix-click`、`prefix-mouseenter`、`prefix-mouseleave`，那么当鼠标点击、移入、移出非节点部分（即组件的空白部分）时，也会触发相应的事件，但是传给监听函数的参数只有 jQuery 事件对象，没有树节点关联的数据和树节点。此时，可以通过判断 `event.originalNamespace` 是否为 `tree` 来区分这两种事件。
 
 ```js
 var Loader = require('brix/loader')

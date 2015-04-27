@@ -356,14 +356,14 @@ change.table_column_priority | 当列配置发生变化时触发。事件监听�
 
 ```js
 var Loader = require('brix/loader')
-var instances = Loader.query('components/table')[0]
-instances.on('toggle.table', function(event, values, target) {
+var instance = Loader.query('components/table')[0]
+instance.on('toggle.table', function(event, values, target) {
     console.log(event.type, event.namespace, values, target)
 })
-instances.on('change.table_column_rwd', function(event, state) {
+instance.on('change.table_column_rwd', function(event, state) {
     console.log(event.type, event.namespace, state)
 })
-instances.on('change.table_column_priority', function(event, fields) {
+instance.on('change.table_column_priority', function(event, fields) {
     console.log(event.type, event.namespace, fields)
 })
 ```

@@ -17,6 +17,7 @@ define(
         function column(tableComponentInstance, tableComponentOptions, Constant, callback) {
             var range = tableComponentOptions[Constant.COLUMN.RWD.RANGE] || [0, -1]
             var limit = tableComponentOptions[Constant.COLUMN.RWD.LIMIT] || 5
+            var fade = tableComponentOptions[Constant.COLUMN.RWD.FADE] || false
 
             var $table = $(tableComponentInstance.element)
             var state = _flush(Constant, $table, range, limit)
@@ -29,6 +30,7 @@ define(
                 $table: $table,
                 range: range,
                 limit: limit,
+                fade: fade,
                 state: state,
                 $leftArrow: $leftArrow,
                 $rightArrow: $rightArrow,
@@ -84,21 +86,28 @@ define(
                 if (spree.callback) spree.callback(event, spree.state, event.currentTarget)
             })
 
-            spree.$table.hover(function() {
-                spree.$leftArrow.fadeIn('fast')
-                spree.$rightArrow.fadeIn('fast')
-                _beautify(spree)
-            }, function(event) {
-                if (
-                    event.relatedTarget === spree.$leftArrow.get(0) || // 移出向左按钮
-                    $.contains(spree.$leftArrow.get(0), event.relatedTarget) || // 移出向左按钮子节点
-                    event.relatedTarget === spree.$rightArrow.get(0) || // 移出向右按钮
-                    $.contains(spree.$rightArrow.get(0), event.relatedTarget) // 移出向右按钮子节点
-                ) return
+            if (spree.fade) {
+                spree.$table.hover(function() {
+                    spree.$leftArrow.fadeIn('fast')
+                    spree.$rightArrow.fadeIn('fast')
+                    _beautify(spree)
+                }, function(event) {
+                    if (
+                        event.relatedTarget === spree.$leftArrow.get(0) || // 移出向左按钮
+                        $.contains(spree.$leftArrow.get(0), event.relatedTarget) || // 移出向左按钮子节点
+                        event.relatedTarget === spree.$rightArrow.get(0) || // 移出向右按钮
+                        $.contains(spree.$rightArrow.get(0), event.relatedTarget) // 移出向右按钮子节点
+                    ) return
 
-                spree.$leftArrow.fadeOut('fast')
-                spree.$rightArrow.fadeOut('fast')
-            })
+                    spree.$leftArrow.fadeOut('fast')
+                    spree.$rightArrow.fadeOut('fast')
+                })
+
+            } else {
+                spree.$leftArrow.show()
+                spree.$rightArrow.show()
+                _beautify(spree)
+            }
         }
 
         function _flush(Constant, $table, range, limit, state) {
@@ -186,6 +195,11 @@ define(
         }
 
         function _beautify(spree) {
+            if (!spree.fade) {
+                spree.$leftArrow.show()
+                spree.$rightArrow.show()
+            }
+
             // var tableHeight = spree.$table.height()
             // var tableTop = spree.$table.offset().top
             var $thead = spree.$table.find('> thead')
@@ -199,17 +213,18 @@ define(
             var $leftTarget = spree.$table.find(_.template(SELECTOR_TH)({
                 nth: spree.range[0]
             }))
+            var $rightTarget = spree.$table.find(_.template(SELECTOR_TH)({
+                nth: spree.range[1] + 1
+            }))
+
             spree.$leftArrow.css({
                 height: theadHeight,
                 'line-height': theadHeight + 'px'
             }).offset({
                 top: theadTop,
-                left: $leftTarget.offset().left + $leftTarget.outerWidth() // - spree.$leftArrow.width() / 2
+                left: $rightTarget.offset().left - spree.$rightArrow.width() - (spree.state.hasNext ? spree.$leftArrow.width() : 0)
+                    // left: $leftTarget.offset().left + $leftTarget.outerWidth() // - spree.$leftArrow.width() / 2
             })
-
-            var $rightTarget = spree.$table.find(_.template(SELECTOR_TH)({
-                nth: spree.range[1] + 1
-            }))
             spree.$rightArrow.css({
                 height: theadHeight,
                 'line-height': theadHeight + 'px'
