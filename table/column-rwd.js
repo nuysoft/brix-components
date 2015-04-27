@@ -163,7 +163,7 @@ define(
             $ths = _.filter($ths, function(item /*, index*/ ) {
                 var $item = $(item)
                 var id = $item.data(Constant.COLUMN.ID)
-                var state = $item.data(Constant.COLUMN.PRIORITY.STATE)
+                var state = $item.attr('data-' + Constant.COLUMN.PRIORITY.STATE)
                 return id !== undefined && state !== 'hide'
             })
 
@@ -210,9 +210,10 @@ define(
             // var tbodyHeight = $tbody.height()
             // var tbodyTop = $tbody.offset().top
 
-            var $leftTarget = spree.$table.find(_.template(SELECTOR_TH)({
-                nth: spree.range[0]
-            }))
+            // var $leftTarget = spree.$table.find(_.template(SELECTOR_TH)({
+            //     nth: spree.range[0]
+            // }))
+
             var $rightTarget = spree.$table.find(_.template(SELECTOR_TH)({
                 nth: spree.range[1] + 1
             }))

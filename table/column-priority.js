@@ -121,7 +121,7 @@ define(
 
                         return this
                     }
-                    return _handler(Constant, $table, $relatedElement)
+                    return _get(Constant, $relatedElement)
                 }
             }
         }
@@ -147,7 +147,6 @@ define(
         }
 
         // 同步标记 data-column-priority-state，并隐藏或显示
-        /* jshint unused:vars */
         function _handler(Constant, $table, $relatedElement) {
             var candidates = $relatedElement.find('.candidates input:checkbox')
             _.each(candidates, function(item /*, index*/ ) {
@@ -163,16 +162,19 @@ define(
                     .attr('data-' + Constant.COLUMN.PRIORITY.STATE, method)[method]()
             })
 
+            return _get(Constant, $relatedElement)
+        }
+
+        function _get(Constant, $relatedElement) {
             var fields = []
-            candidates = $relatedElement.find('.queue .sortable-wrapper .item')
+            var candidates = $relatedElement.find('.queue .sortable-wrapper .item')
             _.each(candidates, function(item /*, index*/ ) {
                 var $item = $(item)
-                if (!$item.is(':visible')) return
+                if ($item.css('display') === 'none') return
                 fields.push(
                     $item.data(Constant.COLUMN.FIELD) || $item.data(Constant.COLUMN.NAME)
                 )
             })
-
             return fields
         }
 
