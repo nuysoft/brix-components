@@ -374,7 +374,21 @@ instance.on('change.table_column_priority', function(event, fields) {
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
+columnRWDHandler | object | - | 负责处理列分页。
 columnPriorityHandler | object | - | 列配置浮层的实例。
+
+#### 属性 columnRWDHandler
+
+* .state
+
+    包含了有关分页状态的所有信息。
+
+* .flush( [ cursor ] )
+
+    * .flush()
+    * .flush( cursor )
+
+    刷新或移动到指定页。
 
 #### 属性 columnPriorityHandler
 

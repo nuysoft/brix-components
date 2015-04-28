@@ -180,6 +180,7 @@ define(
                 )
             } else {
                 state.setTotal($ths.length)
+                state.setCursor(cursor)
             }
 
             // 调整被 priority 插件隐藏或显示的列（内容列，非表头）
