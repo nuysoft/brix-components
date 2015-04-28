@@ -16,11 +16,12 @@ define(
 
         function column(tableComponentInstance, tableComponentOptions, Constant, callback) {
             var range = tableComponentOptions[Constant.COLUMN.RWD.RANGE] || [0, -1]
+            var cursor = tableComponentOptions[Constant.COLUMN.RWD.CURSOR] || 1
             var limit = tableComponentOptions[Constant.COLUMN.RWD.LIMIT] || 5
             var fade = tableComponentOptions[Constant.COLUMN.RWD.FADE] || false
 
             var $table = $(tableComponentInstance.element)
-            var state = _flush(Constant, $table, range, limit)
+            var state = _flush(Constant, $table, range, cursor, limit)
 
             var $leftArrow = _create($table, '<span class="glyphicon glyphicon-chevron-left"></span>')
             var $rightArrow = _create($table, '<span class="glyphicon glyphicon-chevron-right"></span>')
@@ -29,6 +30,7 @@ define(
                 Constant: Constant,
                 $table: $table,
                 range: range,
+                cursor: cursor,
                 limit: limit,
                 fade: fade,
                 state: state,
@@ -42,8 +44,8 @@ define(
 
             return {
                 state: state,
-                flush: function() {
-                    _flush(Constant, $table, range, limit, state)
+                flush: function(moveto) {
+                    _flush(Constant, $table, range, moveto || cursor, limit, state)
                     _beautify(spree)
                     return this
                 }
@@ -67,7 +69,7 @@ define(
         }
 
         function _handler(event, spree) {
-            _flush(spree.Constant, spree.$table, spree.range, spree.limit, spree.state)
+            _flush(spree.Constant, spree.$table, spree.range, spree.cursor, spree.limit, spree.state)
             _beautify(spree)
             event.preventDefault()
             event.stopPropagation()
@@ -110,7 +112,7 @@ define(
             }
         }
 
-        function _flush(Constant, $table, range, limit, state) {
+        function _flush(Constant, $table, range, cursor, limit, state) {
             var $thead = $table.find('> thead')
             var $tbody = $table.find('> tbody')
             var $ths = $thead.find('> tr > th')
@@ -173,7 +175,7 @@ define(
             if (!state) {
                 state = new State(
                     $ths.length,
-                    1,
+                    cursor,
                     limit
                 )
             } else {

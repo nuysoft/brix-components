@@ -46,7 +46,8 @@ define(
                 RWD: {
                     RANGE: 'column-rwd-range',
                     LIMIT: 'column-rwd-limit',
-                    FADE: 'column-rwd-fade'
+                    FADE: 'column-rwd-fade',
+                    CURSOR: 'column-rwd-cursor'
                 },
                 PRIORITY: {
                     TRIGGER: 'column-priority-trigger',

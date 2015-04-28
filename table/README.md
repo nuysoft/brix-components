@@ -36,6 +36,7 @@
         <table bx-name="components/table" class="table table-hover table-fixed" 
             data-column-rwd-range="[3,-2]"
             data-column-rwd-limit="5"
+            data-column-rwd-cursor="2"
             data-column-priority-trigger="#clickme">
             <thead>
                 <tr>
@@ -332,6 +333,7 @@ Name | Type | Default | Description
 column-name | string | - | **Th** 可选。指定列名，默认取单元格 `th` 的文本内容。
 column-field | string | - | **Th** 可选。指定列名对应数据字段名，默认取单元格 `th` 的文本内容。
 column-rwd-range | array | - | **Table** 可选。指定列分页的范围，例如 `[3,-2]`。
+column-rwd-cursor | number | 1 | **Table** 可选。指定列分页的当前页数，例如 `1`、`2`。
 column-rwd-limit | array | 5 | **Table** 可选。指定列分页的单页个数，例如 `5`。
 column-priority-trigger | string | - | **Table** 可选。指定触发列配置浮层的节点选择器表达式，例如 `'#clickme'`
 column-priority-placement | string | 'bottom' | **Table** 可选。指定列配置浮层相对于触发节点的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
