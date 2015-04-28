@@ -1,4 +1,4 @@
-/* global define  */
+/* global define, window  */
 /*
     Responsive tables
         http://gergeo.se/RWD-Table-Patterns/#features

@@ -1,4 +1,4 @@
-/* global define */
+/* global define, setTimeout */
 define(
     [
         'jquery', 'underscore',
@@ -40,7 +40,9 @@ define(
             }
 
             _bind(spree)
-            _beautify(spree)
+            setTimeout(function() {
+                _beautify(spree)
+            }, 100)
 
             return {
                 state: state,
