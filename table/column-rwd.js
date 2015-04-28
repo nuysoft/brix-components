@@ -48,6 +48,10 @@ define(
                     _flush(Constant, $table, range, moveto || cursor, limit, state)
                     _beautify(spree)
                     return this
+                },
+                beautify: function() {
+                    _beautify(spree)
+                    return this
                 }
             }
         }
