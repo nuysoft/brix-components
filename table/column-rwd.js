@@ -23,8 +23,8 @@ define(
             var $table = $(tableComponentInstance.element)
             var state = _flush(Constant, $table, range, cursor, limit)
 
-            var $leftArrow = _create($table, '<span class="glyphicon glyphicon-chevron-left"></span>')
-            var $rightArrow = _create($table, '<span class="glyphicon glyphicon-chevron-right"></span>')
+            var $leftArrow = _create($table, '<span class="brixfont chevron-left">&#xe62f;</span>')
+            var $rightArrow = _create($table, '<span class="brixfont chevron-right">&#xe630;</span>')
 
             var spree = {
                 Constant: Constant,
@@ -69,7 +69,7 @@ define(
         }
 
         function _handler(event, spree) {
-            _flush(spree.Constant, spree.$table, spree.range, spree.cursor, spree.limit, spree.state)
+            _flush(spree.Constant, spree.$table, spree.range, spree.state.cursor, spree.state.limit, spree.state)
             _beautify(spree)
             event.preventDefault()
             event.stopPropagation()
@@ -149,7 +149,7 @@ define(
                 return a - b
             })
             _.each($ths, function(th, thIndex) {
-                var currentIndex = $(th).index()
+                var currentIndex = $(th).index() // index 从 0 开始，nth-child 从 1 开始
 
                 if (thIndex === 0) $firstPrev.after(th)
                 else $($ths[thIndex - 1]).after(th)

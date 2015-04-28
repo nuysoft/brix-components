@@ -38,15 +38,13 @@
   position: absolute;
   display: inline-block;
   vertical-align: middle;
+  background-color: #2378FF;
   color: #E6E6E6;
   width: 16px;
   text-align: center;
   cursor: pointer;
   -webkit-transition: background-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
-}
-.column-scroll-arrow:hover {
-  color: #3276b1;
 }
 .column-priority {
   width: 500px;
