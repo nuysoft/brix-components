@@ -80,6 +80,10 @@ define(
                     columnRWDHandler = ColumnRWD(this, this.options, Constant, function(event, state) {
                         that.trigger('change' + ColumnRWD.NAMESPACE, [state])
                     })
+                    var type = 'resize.table_' + this.clientId
+                    $(window).on(type, _.throttle(function( /*event*/ ) {
+                        columnRWDHandler.beautify()
+                    }, 50))
                 }
                 if (this.options[Constant.COLUMN.PRIORITY.TRIGGER]) {
                     columnPriorityHandler = ColumnPriority(this, this.options, Constant, function(event, fields) {
@@ -98,6 +102,10 @@ define(
                         checked ? 'addClass' : 'removeClass'
                     ]('active')
                 })
+            },
+            destroy: function() {
+                var type = 'resize.table_' + this.clientId
+                $(window).off(type)
             }
         })
 
