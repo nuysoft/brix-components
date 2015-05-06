@@ -768,8 +768,8 @@ define(
         // this.main.animate({
         //   'marginLeft': '40px'
         // }, this.duration, EASING, function() {
-          self.currentNav.hide()
-        // });
+        self.currentNav.hide()
+          // });
 
         //
         this._collapseThirdNav();
@@ -852,9 +852,11 @@ define(
          *main width setting
          */
 
-        this.main.animate({
-          'marginLeft': this.isFullSubNav === '1' ? '200px' : '40px'
-        }, this.duration, EASING);
+        if ($(this.element).find('.side-hold span').hasClass('on')) {
+          this.main.animate({
+            'marginLeft': this.isFullSubNav === '1' ? '200px' : '40px'
+          }, this.duration, EASING);
+        }
 
         //菜单有三级菜单时的动画，禁用了
         if (this.isFullSubNav === '1') {
