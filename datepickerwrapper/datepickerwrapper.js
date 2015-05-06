@@ -171,7 +171,7 @@ define(
                 Loader.boot(this.$relatedElement, function( /*records*/ ) {
                     var pickerComponent = Loader.query('components/datepicker', that.$relatedElement)[0]
                         /* jshint unused:false */
-                    pickerComponent.on('change.datepicker', function(event, date, type) {
+                    pickerComponent.on('change.datepicker unchange.datepicker', function(event, date, type) {
                         if (type !== undefined && type !== 'date') return
 
                         that.hide()
@@ -232,7 +232,7 @@ define(
                     _.each(pickerComponents, function(item, index) {
                         /* jshint unused:false */
                         item.val(that.options.dates[index])
-                            .on('change.datepicker', function(event, date, type) {
+                            .on('change.datepicker unchange.datepicker ', function(event, date, type) {
                                 if (type !== undefined && type !== 'date') return
 
                                 var value = that._unlimitFilter(date, that.options.unlimits[index])

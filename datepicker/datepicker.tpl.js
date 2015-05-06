@@ -3,7 +3,8 @@ define(function() {
     return (function(){/*
 <div class="datepicker-container">
     <!--  -->
-    <div class="yearpicker picker-group" style="<%= typeMap.year ? '' : 'display: none;' %>">
+    <% var yearDisplay = typeMap.year && !typeMap.month && !typeMap.date ? '' : 'display: none;' %>
+    <div class="yearpicker picker-group" style="<%= yearDisplay %>">
         <div class="picker-header">
             <a href="javascript:;" class="minus" bx-click="_move('period', -1)"><span class="brixfont">&#xe601;</span></a>
             <!-- <button class="btn btn-default minus" type="button" bx-click="_move('period', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button> -->
@@ -17,7 +18,8 @@ define(function() {
         </div>
     </div>
     <!--  -->
-    <div class="monthpicker picker-group" style="<%= typeMap.month ? '' : 'display: none;' %>">
+    <% var monthDisplay = typeMap.month && !typeMap.date ? '' : 'display: none;' %>
+    <div class="monthpicker picker-group" style="<%= monthDisplay %>">
         <div class="picker-header">
             <a href="javascript:;" class="minus" type="button" bx-click="_move('year', -1)"><span class="brixfont">&#xe601;</span></a>
             <!-- <button class="btn btn-default minus" type="button" bx-click="_move('year', -1)"><span class="glyphicon glyphicon-chevron-left"></span></button> -->
@@ -31,7 +33,8 @@ define(function() {
         </div>
     </div>
     <!--  -->
-    <div class="datepicker picker-group" style="<%= typeMap.date || typeMap.all ? '' : 'display: none;' %>">
+    <% var dateDisplay = typeMap.date ? '' : 'display: none;' %>
+    <div class="datepicker picker-group" style="<%= dateDisplay %>">
         <div class="picker-header">
             <a href="javascript:;" class="minus" type="button" bx-click="_move('month', -1)"><span class="brixfont">&#xe601;</span></a>
             <!-- <button class="btn btn-default minus" type="button" bx-click="_move('month', -1)"><span class="glyphicon glyphicon-step-backward"></span></button> -->
@@ -51,28 +54,39 @@ define(function() {
         </div>
     </div>
     <!--  -->
-    <div class="timepicker picker-group clearfix" style="<%= typeMap.time || typeMap.all ? '' : 'display: none;' %>">
+    <% var timeDisplay = typeMap.time || typeMap.second || typeMap.minute || typeMap.hour  ? '': 'display: none;' %>
+    <div class="timepicker picker-group clearfix" style="<%= timeDisplay %>">
+        <div class="timepicker-body clearfix">
         <div class="timepicker-group">
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeHour()" bx-blur="_changeHour()">
+            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeHour()" bx-focusout="_changeHour()">
             <button type="button" class="btn btn-default time-minus" bx-click="_changeHour(-1)"><span class="glyphicon glyphicon-minus"></span></button>
             <button type="button" class="btn btn-default time-plus" bx-click="_changeHour(1)"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
         <span class="timepicker-spliter">:</span>
         <div class="timepicker-group">
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeMinute()" bx-blur="_changeMinute()">
-            <button type="button" class="btn btn-default time-minus" bx-click="_changeMinute(-1)"><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default time-plus" bx-click="_changeMinute(1)"><span class="glyphicon glyphicon-plus"></span></button>
+            <% var minuteDisabled = typeMap.hour && !typeMap.minute  ? 'disabled': '' %>
+            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeMinute()" bx-focusout="_changeMinute()" <%= minuteDisabled %>>
+            <button type="button" class="btn btn-default time-minus" bx-click="_changeMinute(-1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
+            <button type="button" class="btn btn-default time-plus" bx-click="_changeMinute(1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
         </div>
         <span class="timepicker-spliter">:</span>
         <div class="timepicker-group">
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeSecond()" bx-blur="_changeSecond()">
-            <button type="button" class="btn btn-default time-minus" bx-click="_changeSecond(-1)"><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)"><span class="glyphicon glyphicon-plus"></span></button>
+            <% var secondDisabled = (typeMap.hour || typeMap.minute) && !typeMap.second  ? 'disabled': '' %>
+            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeSecond()" bx-focusout="_changeSecond()" <%= secondDisabled %>>
+            <button type="button" class="btn btn-default time-minus" bx-click="_changeSecond(-1)" <%= secondDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
+            <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)" <%= secondDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        </div>
+        <div class="timepicker-footer" style="<%= typeMap.time || typeMap.all ? '' : 'display: none;' %>">
+            <div class="timepicker-handelr">
+                <button class="btn btn-default submit" bx-click="_changeTime()">确认</button>
+                <a href="javascript: void(0);" bx-click="hide" class="btn btn-default cancel ml5">取消</a>
+            </div>
         </div>
     </div>
     <!-- -->
     <div class="picker-footer picker-group" style="<%= options.unlimit ? '' : 'display: none;' %>">
-        <a href="javascript:;" bx-click="_unlimit">不限</a>
+        <a href="javascript:;" bx-click="_unlimit()">不限</a>
     </div>
 </div>
     */}).toString().split('\n').slice(1,-1).join('\n') + '\n'

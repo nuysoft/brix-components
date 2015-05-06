@@ -27,13 +27,14 @@ define(
     ) {
 
         var NAMESPACE = '.datepicker'
+        var TYPES = 'second minute hour time date month year'
 
         function DatePicker() {}
 
         _.extend(DatePicker.prototype, Brix.prototype, {
             options: {
                 date: moment(), // date dateShadow
-                type: 'all', // time date month year all
+                type: 'all',
                 range: [],
                 unlimit: false
             },
@@ -42,10 +43,7 @@ define(
                 this.options.range = _.flatten(this.options.range)
 
                 // 支持不限
-                if (this.options.unlimit) {
-                    this.options.unlimit = moment(this.options.unlimit)
-                    this.options.date = moment().startOf('day')
-                }
+                if (this.options.unlimit) this.options.unlimit = moment(this.options.unlimit)
 
                 // 构造 this.data
                 this.data = this.data || {}
@@ -53,14 +51,22 @@ define(
                 this.data.moment = moment
                 this.data.date = moment(this.options.date)
 
+                // 初始值为不限
+                if (this.options.unlimit &&
+                    this.options.unlimit.toDate().getTime() === this.data.date.toDate().getTime()) {
+                    this.__unlimit = this.options.unlimit
+                }
+
                 // { time: bool, date: bool, month: bool, year: bool, all: bool }
+                var type = this.options.type
+                if (_.indexOf(['all', '', undefined], type) !== -1) type = TYPES
                 this.data.typeMap = function(type) {
                     var result = {}
                     _.each(type.split(' '), function(item /*, index*/ ) {
                         result[item] = true
                     })
                     return result
-                }(this.options.type)
+                }(type)
             },
             render: function() {
                 var manager = new EventManager()
@@ -75,13 +81,22 @@ define(
             },
             // 获取或设置选中的日期。
             val: function(value) {
-                // var milliseconds = this.data.date.toDate().getTime()
+                var milliseconds = this.data.date.toDate().getTime()
+
                 if (value) {
+                    // 取消 unlimit 模式
+                    this.__unlimit = false
+
                     this.data.date = moment(value)
-                    this.trigger('change' + NAMESPACE, moment(this.data.date))
-                    this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
+
+                    var same = this.data.date.toDate().getTime() === milliseconds
+                    this.trigger((same ? 'unchange' : 'change') + NAMESPACE, moment(this.data.date))
+
+                    if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
+
                     return this
                 }
+
                 return moment(this.data.date)
             },
             range: function(value) {
@@ -103,37 +118,55 @@ define(
                 this.$element.find(to).slideDown('fast')
             },
             // 点击 minus plus
-            /* jshint unused:false */
-            _move: function(event, unit, dir) {
+            _move: function(event /* jshint unused:false */ , unit, dir) {
+                // 取消 unlimit 模式
+                this.__unlimit = false
+
                 var date = this.data.date
                 var milliseconds = date.toDate().getTime()
+
                 if (unit === 'period') {
                     this._renderYearPicker(dir)._renderDatePicker()
-                        // date.add(dir, unit)
-                        // this._renderYearPicker(dir)._renderMonthPicker()._renderDatePicker()
                     return
                 }
+
                 // year month date
                 date.add(dir, unit)
-                    // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change' + NAMESPACE, [moment(date), unit])
 
-                this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
+                var same = date.toDate().getTime() === milliseconds
+                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+
+                if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
             _active: function(event, unit) {
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) this.data.date = moment().startOf('day')
+
+                // 取消 unlimit 模式
+                this.__unlimit = false
+
                 var date = this.data.date
                 var milliseconds = date.toDate().getTime()
-                var $target = $(event.target).toggleClass('active')
-                $target.siblings().removeClass('active').end()
+                var $target = $(event.target)
+                    // .toggleClass('active')
+                    // $target.siblings().removeClass('active').end()
+
                 date.set(unit, +$target.attr('data-value'))
-                    // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change' + NAMESPACE, [moment(date), unit])
-                this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
-                if (unit === 'year' && !this.data.typeMap.year) {
-                    this._slide('.yearpicker', '.monthpicker')
-                }
-                if (unit === 'month' && !this.data.typeMap.month) {
-                    this._slide('.monthpicker', '.datepicker')
+
+                var same = date.toDate().getTime() === milliseconds
+                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+
+                if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
+
+                switch (unit) {
+                    case 'year':
+                        if (this.data.typeMap.year) break
+                        this._slide('.yearpicker', '.monthpicker')
+                        break
+                    case 'month':
+                        if (this.data.typeMap.month) break
+                        this._slide('.monthpicker', '.datepicker')
+                        break
                 }
             },
             _hooks: {
@@ -141,8 +174,19 @@ define(
                 40: -1 // down
             },
             _changeTime: function(event, extra, unit, units) {
+                // 取消 unlimit 模式
+                this.__unlimit = false
+
                 var date = this.data.date
+
+                // submit
+                if (extra === undefined && unit === undefined && units === undefined) {
+                    this.trigger('change' + NAMESPACE, [moment(date), 'time'])
+                    return
+                }
+
                 var milliseconds = date.toDate().getTime()
+
                 if (event.type === 'keydown') {
                     if (!this._hooks[event.which]) return
                     extra = this._hooks[event.which] || 0
@@ -151,12 +195,15 @@ define(
                     this.data.date.set(unit, event.target.value)
                     extra = 0
                 }
+                date.add(extra, units)
+
                 event.preventDefault()
                 event.stopPropagation()
-                date.add(extra, units)
-                    // if (date.toDate().getTime() !== milliseconds) 
-                this.trigger('change' + NAMESPACE, [moment(date), unit])
-                this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
+
+                var same = date.toDate().getTime() === milliseconds
+                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+
+                if (!same) this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
             _changeHour: function(event, extra) {
                 this._changeTime(event, extra, 'hour', 'hours')
@@ -167,15 +214,20 @@ define(
             _changeSecond: function(event, extra) {
                 this._changeTime(event, extra, 'second', 'seconds')
             },
+            __isUnlimitMode: function() {
+                return (
+                    this.options.unlimit && (
+                        this.__unlimit ||
+                        this.options.unlimit.toDate().getTime() === this.data.date.toDate().getTime()
+                    )
+                ) && true || false
+            },
             _renderYearPicker: function(dir) {
                 dir = dir || 0
 
                 var date = this.data.date
-                var unlimitMode = false
-                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
-                    unlimitMode = true
-                    date = moment().startOf('day')
-                }
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) date = moment().startOf('day')
 
                 var $title = this.$element.find('.yearpicker .picker-header h4')
                 var $body = this.$element.find('.yearpicker .picker-body')
@@ -198,13 +250,9 @@ define(
                 return this
             },
             _renderMonthPicker: function() {
-                var that = this
                 var date = this.data.date
-                var unlimitMode = false
-                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
-                    unlimitMode = true
-                    date = moment().startOf('day')
-                }
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) date = moment().startOf('day')
 
                 var $title = this.$element.find('.monthpicker .picker-header h4')
                 var $body = this.$element.find('.monthpicker .picker-body')
@@ -230,11 +278,8 @@ define(
             },
             _renderDatePicker: function() {
                 var date = this.data.date
-                var unlimitMode = false
-                if (this.options.unlimit && this.options.unlimit.toDate().getTime() === date.toDate().getTime()) {
-                    unlimitMode = true
-                    date = moment().startOf('day')
-                }
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) date = moment().startOf('day')
 
                 var days = date.daysInMonth()
                 var startDay = moment(date).date(1).day()
@@ -289,12 +334,13 @@ define(
 
                 return this
             },
-            _unlimit: function(event) {
-                var date = this.data.date
+            _unlimit: function( /*event*/ ) {
                 var unlimit = this.options.unlimit
-                this.data.date = moment(unlimit)
-                    // if (date.toDate().getTime() !== unlimit.toDate().getTime())
-                this.trigger('change' + NAMESPACE, [unlimit, 'date'])
+                this.__unlimit = unlimit
+
+                var same = unlimit.isSame(this.data.date)
+                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [unlimit, 'date'])
+
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             }
         })

@@ -94,10 +94,27 @@
     <div class="content">
         <div class="row">
             <div class="col-xs-6">
+                <h4>时间（小时可修改，分钟和秒不可修改）</h4>
+                <div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="hour"></div>
+            </div>
+            <div class="col-xs-6">
+                <h4>日期 + 时间（小时可修改，分钟和秒不可修改）</h4>
+                <div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="date hour"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
                 <h4>支持不限</h4>
                 <div bx-name="components/datepicker" data-type="date" data-date="2015-1-1" data-unlimit="2099-1-1"></div>
             </div>
-            <div class="col-xs-6"></div>
+            <div class="col-xs-6">
+                <h4>支持不限，初始值即为不限</h4>
+                <div bx-name="components/datepicker" data-type="date" data-date="2099-1-1" data-unlimit="2099-1-1"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -113,7 +130,7 @@
     require(['brix/loader'], function(Loader) {
         Loader.boot(function() {
             var instances = Loader.query('components/datepicker')
-            instances.on('change.datepicker', function(event, date, type) {
+            instances.on('change.datepicker unchange.datepicker', function(event, date, type) {
                 console.log(
                     event.type,
                     event.namespace,
@@ -132,8 +149,21 @@
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 date | string | `new Date()` | 当前选中的日期。
-type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'year'`、`'month'`、`'time'`。
+type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
 range | array | `[]` | 设置可选日期的范围。下面列举了一些合法值。
+
+#### 配置项 `type`
+
+Value | Description
+:---- | :----------
+`'all'` | 年份 + 月份 + 天 + 小时 + 分钟 + 秒。默认值。等同于 `'date time'`
+`'date'` | 年份 + 月份 + 天。
+`'month'` | 年份 + 月份。
+`'year'` | 年份。
+`'time'` | 小时 + 分钟 + 秒。
+`'hour'` | 小时。
+`'minute'` | 小时 + 分钟。
+~~`'second'`~~ | ~~小时 + 分钟 + 秒。等同于 `'time'`。~~
 
 #### 配置项 `range`
 
@@ -204,11 +234,13 @@ instances[0].range([new Date(), '2015-12-31'])
 
 Event Type | Description
 :--------- | :----------
-change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `event` 是一个 [jQuery 事件对象]；参数 `date` 是一个 [moment 对象]；参数 `type` 指示了发生变化的属性，可选值有 `'year'`、`'month'`、`'date'`、`'hour'`、`'minute'`、`'second'`、`undefined`。
+change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `event` 是一个 [jQuery 事件对象]；参数 `date` 是一个 [moment 对象]；参数 `type` 指示了发生变化的属性，可选值有：年份 `'year'`、月份 `'month'`、日 `'date'`、时间 `'time'`、小时 `'hour'`、分 `'minute'`、秒 `'second'`、`undefined`。
 
 [jQuery 事件对象]: http://api.jquery.com/category/events/event-object/
 
-> 当执行 `instances.val( value )` 时，事件 `change.datepicker` 的参数 `type` 为 `undefined`。
+> 当执行 `.val( value )` 时，事件 `change.datepicker` 的参数 `type` 为 `undefined`。
+
+> 当点击时间区域的『确定』按钮时，事件 `change.datepicker` 的参数 `type` 为 `'time'`。**只有在组件 DatePickerWrapper 中才会用到。**
 
 ```js
 var Loader = require('brix/loader')
