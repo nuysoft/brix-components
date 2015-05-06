@@ -39,7 +39,9 @@
   float: right;
 }
 .datepicker-container .picker-group .picker-header .minus:hover,
-.datepicker-container .picker-group .picker-header .plus:hover {
+.datepicker-container .picker-group .picker-header .minus:focus,
+.datepicker-container .picker-group .picker-header .plus:hover,
+.datepicker-container .picker-group .picker-header .plus:focus {
   color: #3276b1;
   text-decoration: none;
 }
