@@ -58,6 +58,7 @@ define([
       var el = $(this.element)
       var tipsWidth = this.options.width
       var duration = this.options.duration
+      var fixLeft = 30
 
       msg = msg || this.options.msg
 
@@ -82,7 +83,7 @@ define([
       var tipsHtml = Handlebars.compile(tipsTmpl)({
         width: tipsWidth,
         msg: msg,
-        left: _arrLeft
+        left: _arrLeft + fixLeft
       })
 
       this._tips = $(tipsHtml)
@@ -91,7 +92,7 @@ define([
       var tipsTop = offset.top - this._tips.outerHeight() - 20
 
       this._tips.css({
-        left: tipsLeft,
+        left: tipsLeft - fixLeft,
         top: tipsTop + 25,
         opacity: 0
       })

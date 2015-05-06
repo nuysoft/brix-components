@@ -13,6 +13,7 @@
   left: 0;
   top: 50px;
   background-color: #423f48;
+  z-index: 10;
 }
 .sidebar a:hover {
   text-decoration: none;
@@ -44,7 +45,7 @@
 }*/
 .sidebar-fixed {
   float: none;
-  /*position: fixed;*/
+  position: fixed;
   margin-left: 0;
   display: block;
   top: 0;
@@ -211,7 +212,7 @@
 .top-nav-li a {
   float: left;
   padding: 0 25px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.6);
 }
 .top-nav li a:hover,
 .top-nav-li a:hover {

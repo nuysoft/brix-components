@@ -8,8 +8,7 @@ define(
     'jquery', 'underscore', 'handlebars',
     'components/base', 'brix/event',
     // 'text!./sidebar.tpl',
-    'css!./sidenav.css',
-    'css!./header.css'
+    'css!./sidenav.css'
   ],
   function(
     $, _, Handlebars,
@@ -125,6 +124,17 @@ define(
           click: function(e, self) {
             var el = $(e.currentTarget)
             el.toggleClass('on')
+
+            if (!el.hasClass('on')) {
+              self.main.css({
+                'margin-left': 40
+              })
+            } else {
+              self.main.css({
+                'margin-left': 200
+              })
+            }
+
           }
         },
 
@@ -749,11 +759,17 @@ define(
          *main width setting
          */
 
-        this.main.animate({
-          'marginLeft': '40px'
-        }, this.duration, EASING, function() {
+        // this.main.animate({
+        //   'marginLeft': '40px'
+        // }, this.duration, EASING, function() {
+        //   self.currentNav.hide()
+        // });
+
+        // this.main.animate({
+        //   'marginLeft': '40px'
+        // }, this.duration, EASING, function() {
           self.currentNav.hide()
-        });
+        // });
 
         //
         this._collapseThirdNav();
@@ -772,11 +788,12 @@ define(
          */
 
         self.currentNav.show()
-        this.main.animate({
-          'marginLeft': '200px'
-        }, this.duration, EASING, function() {
 
-        }); //main动画太快会导致main的maring-left太多引起抖动，故减少些
+        // this.main.animate({
+        //   'marginLeft': '200px'
+        // }, this.duration, EASING);
+
+
         //
         this._expandThirdNav();
         // this.subNavView.css('left', '-10000px');
