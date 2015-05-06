@@ -28,6 +28,8 @@ define(
         var NAMESPACE = '.datepickerwrapper'
             // var NAMESPACE_ORIGINAL = '.original'
         var DATE_PATTERN = 'YYYY-MM-DD'
+        var TIME_PATTERN = 'HH:mm:ss'
+        var DATE_TIME_PATTERN = DATE_PATTERN + ' ' + TIME_PATTERN
         var SHORTCUTS = function() {
             var now = moment()
             var nowDate = now.get('date')
@@ -68,6 +70,8 @@ define(
         function DatePickerWrapper() {}
 
         DatePickerWrapper.DATE_PATTERN = DATE_PATTERN
+        DatePickerWrapper.TIME_PATTERN = TIME_PATTERN
+        DatePickerWrapper.DATE_TIME_PATTERN = DATE_TIME_PATTERN
         DatePickerWrapper.SHORTCUTS = SHORTCUTS
 
         _.extend(DatePickerWrapper.prototype, Brix.prototype, {
@@ -78,6 +82,7 @@ define(
 
                 mode: 'signal', // signal multiple
                 shortcuts: SHORTCUTS,
+                type: 'date', // all date year month time
                 dates: [],
                 ranges: [],
                 unlimits: []
