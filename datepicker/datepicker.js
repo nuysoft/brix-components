@@ -30,6 +30,18 @@ define(
         var TYPES = 'second minute hour time date month year'
 
         function DatePicker() {}
+        DatePicker.NAMESPACE = NAMESPACE
+        DatePicker.TYPES = TYPES
+        DatePicker.typeMap = function(type) {
+            if (_.indexOf(['all', '', undefined], type) !== -1) type = TYPES
+            var result = {}
+            _.each(type.split(' '), function(item /*, index*/ ) {
+                result[item] = true
+            })
+
+            result.time = result.time || result.hour || result.minute || result.second
+            return result
+        }
 
         _.extend(DatePicker.prototype, Brix.prototype, {
             options: {
@@ -58,15 +70,7 @@ define(
                 }
 
                 // { time: bool, date: bool, month: bool, year: bool, all: bool }
-                var type = this.options.type
-                if (_.indexOf(['all', '', undefined], type) !== -1) type = TYPES
-                this.data.typeMap = function(type) {
-                    var result = {}
-                    _.each(type.split(' '), function(item /*, index*/ ) {
-                        result[item] = true
-                    })
-                    return result
-                }(type)
+                this.data.typeMap = DatePicker.typeMap(this.options.type)
             },
             render: function() {
                 var manager = new EventManager()

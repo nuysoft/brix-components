@@ -77,10 +77,10 @@ define(function() {
             <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)" <%= secondDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
         </div>
         </div>
-        <div class="timepicker-footer" style="<%= typeMap.time || typeMap.all ? '' : 'display: none;' %>">
+        <div class="timepicker-footer">
             <div class="timepicker-handelr">
                 <button class="btn btn-default submit" bx-click="_changeTime()">确认</button>
-                <a href="javascript: void(0);" bx-click="hide" class="btn btn-default cancel ml5">取消</a>
+                <a href="javascript: void(0);" class="btn btn-default cancel ml5">取消</a>
             </div>
         </div>
     </div>
