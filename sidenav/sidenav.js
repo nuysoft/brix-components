@@ -765,11 +765,11 @@ define(
         //   self.currentNav.hide()
         // });
 
-        // this.main.animate({
-        //   'marginLeft': '40px'
-        // }, this.duration, EASING, function() {
-        self.currentNav.hide()
-          // });
+        this.main.animate({
+          'marginLeft': '40px'
+        }, this.duration, EASING, function() {
+          self.currentNav.hide()
+        });
 
         //
         this._collapseThirdNav();
@@ -853,6 +853,16 @@ define(
 
         var isOn = $(this.element).find('.side-hold span').hasClass('on')
         var ml = isOn ? 200 : 40
+
+        /**
+         * 在菜单非hold状态，点击侧边菜单地址，主体main的main-left设为200
+         * 在侧边菜单mouseleave时再恢复原逻辑
+         */
+        if (this.subNav.width() === 200) {
+          ml = 200
+        }
+        // -------
+
         this.main.animate({
           'marginLeft': ml
         }, this.duration, EASING);
