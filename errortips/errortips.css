@@ -101,7 +101,7 @@
   top: -1000px;
   z-index: 999999;
 }
-.btn-error-tips i {
+.btn-error-tips .arrow {
   position: absolute;
   width: 0;
   height: 0px;
