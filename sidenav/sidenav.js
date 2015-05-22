@@ -726,6 +726,7 @@ define(
           //隐藏icon，显示按钮
           $('.menu-icon').hide()
           $('.menu-btn').show()
+          $(self.element).find('.side-hold').show()
 
         }
 
@@ -734,6 +735,7 @@ define(
           self._collapseSubNav(function() {
             animCallBack.call(self); //菜单收缩时在动画结束时设置isFullSubNav
             self._switchTrigger();
+            $(self.element).find('.side-hold').hide()
           });
 
           if (isThirdNavSelected && closestUl.prev()) {
