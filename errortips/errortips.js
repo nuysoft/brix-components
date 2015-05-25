@@ -88,11 +88,33 @@ define([
 
       this._tips = $(tipsHtml)
       $('body').append(this._tips)
-      var tipsLeft = offset.left
+      var tipsLeft = offset.left - fixLeft
       var tipsTop = offset.top - this._tips.outerHeight() - 20
 
+
+      /**
+       * 超过边界调整
+       * @type {[type]}
+       */
+      var winWidth = $(window).width()
+      var mm = tipsLeft + this._tips.outerWidth() - winWidth
+      if (mm > 0) { //右边界
+        tipsLeft -= mm
+        this._tips.find('.arrow').css({
+          'left': _arrLeft + fixLeft + mm
+        })
+      }
+      //左边界
+      if (tipsLeft < 0) {
+        this._tips.find('.arrow').css({
+          'left': _arrLeft + fixLeft + tipsLeft
+        })
+        tipsLeft = 0
+      }
+
+
       this._tips.css({
-        left: tipsLeft - fixLeft,
+        left: tipsLeft,
         top: tipsTop + 25,
         opacity: 0
       })

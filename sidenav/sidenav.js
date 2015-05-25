@@ -126,13 +126,13 @@ define(
             el.toggleClass('on')
 
             if (!el.hasClass('on')) {
-              self.main.css({
-                'margin-left': 40
-              })
+              self.main.animate({
+                'marginLeft': 40
+              }, self.duration, EASING);
             } else {
-              self.main.css({
-                'margin-left': 200
-              })
+              self.main.animate({
+                'marginLeft': 200
+              }, self.duration, EASING);
             }
 
           }
@@ -726,6 +726,7 @@ define(
           //隐藏icon，显示按钮
           $('.menu-icon').hide()
           $('.menu-btn').show()
+          $(self.element).find('.side-hold').show()
 
         }
 
@@ -734,6 +735,7 @@ define(
           self._collapseSubNav(function() {
             animCallBack.call(self); //菜单收缩时在动画结束时设置isFullSubNav
             self._switchTrigger();
+            $(self.element).find('.side-hold').hide()
           });
 
           if (isThirdNavSelected && closestUl.prev()) {
@@ -765,11 +767,11 @@ define(
         //   self.currentNav.hide()
         // });
 
-        // this.main.animate({
-        //   'marginLeft': '40px'
-        // }, this.duration, EASING, function() {
-        self.currentNav.hide()
-          // });
+        this.main.animate({
+          'marginLeft': '40px'
+        }, this.duration, EASING, function() {
+          self.currentNav.hide()
+        });
 
         //
         this._collapseThirdNav();
@@ -847,16 +849,25 @@ define(
           "marginLeft": '0'
         }, this.duration, EASING, cb);
 
-
         /**
          *main width setting
          */
 
-        if ($(this.element).find('.side-hold span').hasClass('on')) {
-          this.main.animate({
-            'marginLeft': this.isFullSubNav === '1' ? '200px' : '40px'
-          }, this.duration, EASING);
+        var isOn = $(this.element).find('.side-hold span').hasClass('on')
+        var ml = isOn ? 200 : 40
+
+        /**
+         * 在菜单非hold状态，点击侧边菜单地址，主体main的main-left设为200
+         * 在侧边菜单mouseleave时再恢复原逻辑
+         */
+        if (this.subNav.width() === 200) {
+          ml = 200
         }
+        // -------
+
+        this.main.animate({
+          'marginLeft': ml
+        }, this.duration, EASING);
 
         //菜单有三级菜单时的动画，禁用了
         if (this.isFullSubNav === '1') {

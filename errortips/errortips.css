@@ -93,7 +93,7 @@
 
 .btn-error-tips {
   position: absolute;
-  background-color: #aaa;
+  background-color: rgba(0,0,0,0.6);
   color: white;
   border-radius: 5px;
   padding: 15px 15px 20px;
@@ -101,14 +101,14 @@
   top: -1000px;
   z-index: 999999;
 }
-.btn-error-tips i {
+.btn-error-tips .arrow {
   position: absolute;
   width: 0;
   height: 0px;
   overflow: hidden;
   bottom: -20px;
   left: 28%;
-  border: 10px solid #aaa;
+  background-color: rgba(0,0,0,0.6);
   border-left-color: rgba(0, 0, 0, 0);
   border-bottom-color: rgba(0, 0, 0, 0);
   border-right-color: rgba(0, 0, 0, 0);
