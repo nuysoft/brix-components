@@ -16,12 +16,49 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+// ----------------------------------------
+// https://github.com/seven-phases-max/less.curious
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n)  {
+    .for((@i + (@n - @i) / abs(@n - @i)), @n);
+}
+.for(@array)   when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+.for-impl_(@i) when (@i > 0)    {.-each(extract(@array, @i))}
+
+// ----------------------------------------
 .cursor-default { cursor: default; }
 .cursor-pointer { cursor: pointer; }
 .cursor-not-allowed { cursor: not-allowed; }
 
 .nowrap { white-space: nowrap; }
 
+// ----------------------------------------
+// .fontsize- {
+//     .for(12 14 16 20); .-each(@name) {
+//         &@{name} {
+//             font-size: @name * 1px;
+//         }
+//     }
+// }
+
+// .ml { .for(5); .-each(@i) { &@{i} { margin-left: @i * 1px; } } }
+// .mr { .for(5); .-each(@i) { &@{i} { margin-right: @i * 1px; } } }
+
+// .m {
+//   .for(t b l r); .-each(@name) {
+//     &@{name} {
+//       .for(5); .-each(@px) { 
+//         &@{i} { 
+//           margin-left: @i * 1px; 
+//         } 
+//       }
+//     }
+//   }
+// }
+
+// ----------------------------------------
 .ml0  { margin-left: 0px;  }
 .ml5  { margin-left: 5px;  }
 .ml7  { margin-left: 7px;  }

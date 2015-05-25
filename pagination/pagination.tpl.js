@@ -29,12 +29,12 @@ define(function() {
             <li class="<%= hasPrev ? '' : 'disabled' %>"><a href="javascript: void(0);" bx-click="moveTo(<%=prev%>)"><span class="brixfont">&#xe601;</span></a></li><!-- Previous -->
 
             <% if( barStart == 2 ) { %>
-                <li><a class="page" href="javascript: void(0);">1</a></li>
+                <li><a class="page" href="javascript: void(0);" bx-click="moveTo(1)">1</a></li>
             <% } %>
 
             <% if( barStart >= 3 ) { %>
                 <li><a href="javascript: void(0);" bx-click="moveTo(1)">1</a></li>
-                <li><a href="javascript: void(0);" bx-click="moveTo(1)">2</a></li>
+                <li><a href="javascript: void(0);" bx-click="moveTo(2)">2</a></li>
                 <% if( barStart > 3 ) { %>
                     <li class="disabled"><a href="javascript: void(0);">...</a></li>
                 <% } %>
