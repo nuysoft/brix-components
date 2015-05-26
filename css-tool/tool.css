@@ -26,6 +26,18 @@
 .nowrap {
   white-space: nowrap;
 }
+.fontsize-12 {
+  font-size: 12px;
+}
+.fontsize-14 {
+  font-size: 14px;
+}
+.fontsize-16 {
+  font-size: 16px;
+}
+.fontsize-20 {
+  font-size: 20px;
+}
 .ml0 {
   margin-left: 0px;
 }
@@ -49,6 +61,12 @@
 }
 .ml30 {
   margin-left: 30px;
+}
+.ml35 {
+  margin-left: 35px;
+}
+.ml40 {
+  margin-left: 40px;
 }
 .mr0 {
   margin-right: 0px;
@@ -74,6 +92,12 @@
 .mr30 {
   margin-right: 30px;
 }
+.mr35 {
+  margin-right: 35px;
+}
+.mr40 {
+  margin-right: 40px;
+}
 .mt0 {
   margin-top: 0px;
 }
@@ -97,6 +121,12 @@
 }
 .mt30 {
   margin-top: 30px;
+}
+.mt35 {
+  margin-top: 35px;
+}
+.mt40 {
+  margin-top: 40px;
 }
 .mb0 {
   margin-bottom: 0px;
@@ -122,6 +152,12 @@
 .mb30 {
   margin-bottom: 30px;
 }
+.mb35 {
+  margin-bottom: 35px;
+}
+.mb40 {
+  margin-bottom: 40px;
+}
 .pl0 {
   padding-left: 0px;
 }
@@ -145,6 +181,12 @@
 }
 .pl30 {
   padding-left: 30px;
+}
+.pl35 {
+  padding-left: 35px;
+}
+.pl40 {
+  padding-left: 40px;
 }
 .pr0 {
   padding-right: 0px;
@@ -170,6 +212,12 @@
 .pr30 {
   padding-right: 30px;
 }
+.pr35 {
+  padding-right: 35px;
+}
+.pr40 {
+  padding-right: 40px;
+}
 .pt0 {
   padding-top: 0px;
 }
@@ -193,6 +241,12 @@
 }
 .pt30 {
   padding-top: 30px;
+}
+.pt35 {
+  padding-top: 35px;
+}
+.pt40 {
+  padding-top: 40px;
 }
 .pb0 {
   padding-bottom: 0px;
@@ -218,6 +272,12 @@
 .pb30 {
   padding-bottom: 30px;
 }
+.pb35 {
+  padding-bottom: 35px;
+}
+.pb40 {
+  padding-bottom: 40px;
+}
 .w100 {
   width: 100px;
 }
@@ -232,48 +292,6 @@
 }
 .w300 {
   width: 300px;
-}
-.fontsize-10 {
-  font-size: 10px;
-}
-.fontsize-12 {
-  font-size: 12px;
-}
-.fontsize-14 {
-  font-size: 14px;
-}
-.fontsize-16 {
-  font-size: 16px;
-}
-.fontsize-18 {
-  font-size: 18px;
-}
-.fontsize-20 {
-  font-size: 20px;
-}
-.fontsize-22 {
-  font-size: 22px;
-}
-.fontsize-24 {
-  font-size: 24px;
-}
-.fontsize-26 {
-  font-size: 26px;
-}
-.fontsize-28 {
-  font-size: 28px;
-}
-.fontsize-30 {
-  font-size: 30px;
-}
-.fontsize-32 {
-  font-size: 32px;
-}
-.fontsize-34 {
-  font-size: 34px;
-}
-.fontsize-36 {
-  font-size: 36px;
 }
 .color-3 {
   color: #333;
