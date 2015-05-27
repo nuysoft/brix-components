@@ -2,20 +2,30 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event'
+        'brix/loader', 'brix/base', 'brix/event'
     ],
     function(
         $, _,
-        Brix, EventManager
+        Loader, Brix, EventManager
     ) {
         /*
             ## ComponentBase
 
-            基于 Brix Base 的增强。
+            基于 Brix Base 的（组件）增强。
         */
         function ComponentBase() {}
 
         _.extend(ComponentBase.prototype, Brix.prototype, {
+            query: function(moduleId) {
+                // TODO element, relatedElement, $relatedElement
+                return Loader.query(moduleId, this)
+            },
+            boot: function(callback, progress) {
+                // TODO √ element, ? relatedElement, ? $relatedElement
+                Loader.boot(this.element, callback, progress)
+                return this
+            },
+
             _bak_trigger: Brix.prototype.trigger,
             trigger: function(type, data) {
                 // 拦截 type namespace

@@ -1,4 +1,4 @@
-/* global define, clearTimeout, setTimeout */
+/* global define, window, clearTimeout, setTimeout */
 define([
   'jquery', 'underscore', 'handlebars',
   'components/base',
