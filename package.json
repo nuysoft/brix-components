@@ -19,7 +19,8 @@
     "gulp-jshint": "*",
     "gulp-less": "*",
     "jshint-stylish": "*",
-    "through2": "*"
+    "through2": "*",
+    "gulp-requirejs": "*"
   },
   "dependencies": {}
 }

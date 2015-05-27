@@ -2,6 +2,7 @@
 var gulp = require('gulp')
 var jshint = require('gulp-jshint')
 var less = require('gulp-less')
+var rjs = require('gulp-requirejs')
 
 gulp.task('hello', function() {
     console.log((function() {
@@ -80,6 +81,22 @@ gulp.task('tpl', function() {
             callback(null, file)
         }))
         .pipe(gulp.dest('./'))
+})
+
+// https://github.com/RobinThrift/gulp-requirejs
+gulp.task('rjs', function() {
+    var build = {
+        baseUrl: 'src',
+        name: 'brix/base',
+        out: 'dist/base.js',
+        paths: {
+            jquery: 'empty:',
+            underscore: 'empty:',
+            'brix/event': 'empty:'
+        }
+    }
+    rjs(build)
+        .pipe(gulp.dest('.')) // pipe it to the output DIR
 })
 
 gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'watch'])
