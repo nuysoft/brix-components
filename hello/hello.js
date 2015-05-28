@@ -39,8 +39,6 @@ define(
                 this.data = this.data || _.extend({}, _.pick(this.options, 'message'))
                 var html = _.template(template)(this.data)
                 $(this.element).append(html)
-
-                this.delegateBxTypeEvents()
             },
             say: function(message) {
                 if (message) this.data.message = message

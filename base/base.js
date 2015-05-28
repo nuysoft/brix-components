@@ -47,6 +47,10 @@ define(
 
                 return this
             }
+            // , ajax: function() {
+            //     var jqXHR= $.ajax.apply($, arguments)
+            //     this.clientId
+            // }
         })
 
         ComponentBase.extend = Brix.extend
