@@ -253,6 +253,8 @@ body .dropdown .dropdown-menu > li > a:hover {
 body .dropdown .dropdown-menu > li.active a,
 body .dropdown .dropdown-menu > li.active a:hover,
 body .dropdown .dropdown-menu > li.active a:focus {
+  border-radius: 4px;
+  color: white;
   background-color: #4d7fff;
 }
 body .dialog .dialog-content {

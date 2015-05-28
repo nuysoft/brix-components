@@ -199,6 +199,9 @@ define(
                 }
                 this.val(data)
                 this.toggle()
+
+                $target.parent().addClass('active')
+                    .siblings().removeClass('active')
             },
             _parseData: function($select) {
                 var that = this
