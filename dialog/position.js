@@ -109,10 +109,12 @@ define(
             var $window = $(window)
             var windowWidth = $window.width()
             var windowHeight = $window.height()
+            var scrollLeft = $window.scrollLeft()
+            var scrollTop = $window.scrollTop()
 
             return {
-                left: windowWidth / 2 - overlayWidth / 2,
-                top: windowHeight / 2 - overlayHeight / 2 + window.scrollY
+                left: windowWidth / 2 - overlayWidth / 2 + scrollLeft,
+                top: windowHeight / 2 - overlayHeight / 2 + scrollTop
             }
         }
 
