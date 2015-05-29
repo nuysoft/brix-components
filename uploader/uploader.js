@@ -90,8 +90,9 @@ define(
                     form,
                     input,
                     function(error, response) {
-                        that.burn(input)
+                        // 先执行回调，再销毁文件域，否则事件不会触发！
                         callback(error, response)
+                        that.burn(input)
                             // that.previewInConsole(input.files)
                     }
                 )
