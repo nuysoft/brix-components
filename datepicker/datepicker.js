@@ -28,10 +28,16 @@ define(
 
         var NAMESPACE = '.datepicker'
         var TYPES = 'second minute hour time date month year'
+        var DATE_PATTERN = 'YYYY-MM-DD'
+        var TIME_PATTERN = 'HH:mm:ss'
+        var DATE_TIME_PATTERN = DATE_PATTERN + ' ' + TIME_PATTERN
 
         function DatePicker() {}
         DatePicker.NAMESPACE = NAMESPACE
         DatePicker.TYPES = TYPES
+        DatePicker.DATE_PATTERN = DATE_PATTERN
+        DatePicker.TIME_PATTERN = TIME_PATTERN
+        DatePicker.DATE_TIME_PATTERN = DATE_TIME_PATTERN
         DatePicker.typeMap = function(type) {
             if (_.indexOf(['all', '', undefined], type) !== -1) type = TYPES
             var result = {}
@@ -55,13 +61,19 @@ define(
                 this.options.range = _.flatten(this.options.range)
 
                 // 支持不限
-                if (this.options.unlimit) this.options.unlimit = moment(this.options.unlimit)
+                if (this.options.unlimit) this.options.unlimit = moment(
+                    this.options.unlimit,
+                    _.isString(this.options.unlimit) && DATE_TIME_PATTERN
+                )
 
                 // 构造 this.data
                 this.data = this.data || {}
                 this.data.options = this.options
                 this.data.moment = moment
-                this.data.date = moment(this.options.date)
+                this.data.date = moment(
+                    this.options.date,
+                    _.isString(this.options.date) && DATE_TIME_PATTERN
+                )
 
                 // 初始值为不限
                 if (this.options.unlimit &&
@@ -91,7 +103,10 @@ define(
                     // 取消 unlimit 模式
                     this.__unlimit = false
 
-                    this.data.date = moment(value)
+                    this.data.date = moment(
+                        value,
+                        _.isString(value) && DATE_TIME_PATTERN
+                    )
 
                     var same = this.data.date.toDate().getTime() === milliseconds
                     this.trigger((same ? 'unchange' : 'change') + NAMESPACE, moment(this.data.date))
@@ -312,8 +327,14 @@ define(
                     var cur = moment(date).startOf('day').set('date', ii)
                     var min, max
                     for (var i = 0; i < range.length; i += 2) {
-                        min = range[i] && moment(range[i]).startOf('day')
-                        max = range[i + 1] && moment(range[i + 1]).startOf('day')
+                        min = range[i] && moment(
+                            range[i],
+                            _.isString(range[i]) && DATE_TIME_PATTERN
+                        ).startOf('day')
+                        max = range[i + 1] && moment(
+                            range[i + 1],
+                            _.isString(range[i + 1]) && DATE_TIME_PATTERN
+                        ).startOf('day')
                         if (min && max) {
                             var tmpMin = moment.min(min, max)
                             var tmpMax = moment.max(min, max)

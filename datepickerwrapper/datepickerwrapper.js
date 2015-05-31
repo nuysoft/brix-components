@@ -29,9 +29,9 @@ define(
         var RE_INPUT = /^input|textarea$/i
         var NAMESPACE = '.datepickerwrapper'
             // var NAMESPACE_ORIGINAL = '.original'
-        var DATE_PATTERN = 'YYYY-MM-DD'
-        var TIME_PATTERN = 'HH:mm:ss'
-        var DATE_TIME_PATTERN = DATE_PATTERN + ' ' + TIME_PATTERN
+        var DATE_PATTERN = DatePicker.DATE_PATTERN
+        var TIME_PATTERN = DatePicker.TIME_PATTERN
+        var DATE_TIME_PATTERN = DatePicker.DATE_TIME_PATTERN
         var SHORTCUTS = function() {
             var now = moment()
             var nowDate = now.get('date')
@@ -97,14 +97,20 @@ define(
                 if (this.options.shortcuts) {
                     _.each(this.options.shortcuts, function(dates /*, title*/ ) {
                         _.each(dates, function(date, index) {
-                            dates[index] = moment(date)
+                            dates[index] = moment(
+                                date,
+                                _.isString(date) && DATE_TIME_PATTERN
+                            )
                         })
                     })
                 }
                 if (this.options.range && this.options.range.length) this.options.ranges = this.options.range
                 this.options.ranges = _.flatten(this.options.ranges || this.options.range)
                 _.each(this.options.ranges, function(date, index, ranges) {
-                    if (date) ranges[index] = moment(date)
+                    if (date) ranges[index] = moment(
+                        date,
+                        _.isString(date) && DATE_TIME_PATTERN
+                    )
                 })
                 this.options._ranges = _.map(this.options.ranges, function(date) {
                     if (date) return date.format(DATE_PATTERN)
@@ -223,7 +229,11 @@ define(
                         _.each(_.values(that.options.shortcuts), function(dates, index) {
                             var same = true
                             _.each(dates, function(date, index) {
-                                if (!date.isSame(that.options.dates[index]), 'days') same = false
+                                var optionDate = moment(
+                                    that.options.dates[index],
+                                    _.isString(that.options.dates[index]) && DATE_TIME_PATTERN
+                                )
+                                if (!date.isSame(optionDate, 'days')) same = false
                             })
                             if (same) {
                                 shortcuts.eq(index).addClass('active')
@@ -233,7 +243,14 @@ define(
                     }
 
                     _.each(inputs, function(item, index) {
-                        $(item).val(moment(that.options.dates[index]).format(DATE_PATTERN)) // 初始值
+                        $(item)
+                            .val(
+                                moment(
+                                    that.options.dates[index],
+                                    _.isString(that.options.dates[index]) && DATE_TIME_PATTERN
+                                )
+                                .format(DATE_PATTERN)
+                            ) // 初始值
                     })
 
                     _.each(pickerComponents, function(item, index) {
@@ -246,7 +263,13 @@ define(
                                 inputs.eq(index).val(value)
                                 pickers.eq(index).hide()
                             })
-                        var value = that._unlimitFilter(moment(that.options.dates[index]), that.options.unlimits[index])
+                        var value = that._unlimitFilter(
+                            moment(
+                                that.options.dates[index],
+                                _.isString(that.options.dates[index]) && DATE_TIME_PATTERN
+                            ),
+                            that.options.unlimits[index]
+                        )
                         inputs.eq(index).val(value)
                     })
                 })
@@ -257,7 +280,10 @@ define(
                     typeMap.date && DATE_PATTERN ||
                     typeMap.time && TIME_PATTERN
                 var text = date.format(pattern)
-                if (unlimit && text === moment(unlimit).format(pattern)) text = '不限'
+                if (unlimit && text === moment(
+                        unlimit,
+                        _.isString(unlimit) && DATE_TIME_PATTERN
+                    ).format(pattern)) text = '不限'
                 return text
             },
             _inputToggleDatePicker: function(event, index, type) {
