@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint')
 var less = require('gulp-less')
 var rjs = require('gulp-requirejs')
 var uglify = require('gulp-uglify')
+var minifyCss = require('gulp-minify-css')
 
 gulp.task('hello', function() {
     console.log((function() {
@@ -104,20 +105,42 @@ gulp.task('rjs', function() { // TODO
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
     var globs = [
-        '**/*.js',
+        '*/**/*.js',
+        '!**/*.tpl.js',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ]
+    gulp.src(globs)
+        .pipe(uglify({
+            preserveComments: 'some'
+        }))
+        .pipe(gulp.dest('dist'))
+        // .pipe(through.obj(function(file, encoding, callback) {
+        //     console.log(file.path)
+        //     callback(null, file)
+        // }))
+
+    globs = [
+        '**/*.tpl.js'
+    ]
+    gulp.src(globs)
+        .pipe(gulp.dest('dist'))
+})
+
+// https://github.com/murphydanger/gulp-minify-css
+gulp.task('minify-css', function() {
+    var globs = [
+        '*/**/*.css',
         '!bower_components/**/*',
         '!node_modules/**/*',
         '!dist/**/*'
     ]
     return gulp.src(globs)
-        .pipe(through.obj(function(file, encoding, callback) {
-            console.log(file.path)
-            callback(null, file)
+        .pipe(minifyCss({
+            compatibility: 'ie8'
         }))
-        .pipe(uglify({
-            preserveComments: 'some'
-        }))
-        // .pipe(gulp.dest('dist'))
-});
+        .pipe(gulp.dest('dist'));
+})
 
 gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'watch'])
