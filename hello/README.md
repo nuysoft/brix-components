@@ -65,10 +65,14 @@ Brix 组件实现示例。{ .lead }
         <input placeholder="input[disabled]" disabled>
         <textarea placeholder="textarea[disabled]" disabled></textarea>
     </div>
-    <div class="col-md-6 mb10">
-        <div class="searchbox">
+    <div class="col-md-12 mb10">
+        <div class="searchbox pull-left">
             <span class="brixfont">&#xe61c;</span>
-            <input placeholder="searchbox">
+            <input placeholder="searchbox pull-left">
+        </div>
+        <div class="searchbox pull-right">
+            <span class="brixfont">&#xe61c;</span>
+            <input placeholder="searchbox pull-right">
         </div>
     </div>
 </div>

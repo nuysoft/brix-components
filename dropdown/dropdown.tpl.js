@@ -5,9 +5,9 @@ define(function() {
     <button class="btn btn-default dropdown-toggle" type="button" value="<%= value %>" bx-click="toggle()">
         <span class="dropdown-toggle-label"><%= label %></span>
         <!-- <span class="caret"> -->
-        <span class="caret_brixfont">
-            <span class="brixfont fontsize-14">&#xe623;</span><!-- 向下 -->
-            <span class="brixfont fontsize-14">&#xe62e;</span><!-- 向上 -->
+        <span class="caret_custom caret_brixfont"><!-- 保留 caret_brixfont 是为了向后兼容，在下个版本中移除  -->
+            <span class="brixfont down">&#xe623;</span><!-- 向下 -->
+            <span class="brixfont up">&#xe62e;</span><!-- 向上 -->
         </span>
     </button>
     <ul class="dropdown-menu">

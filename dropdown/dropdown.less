@@ -1,19 +1,24 @@
 .dropdown {
     display: inline-block;
 
-    .caret_brixfont {
-    	span:first-child {
+    .caret_custom {
+        float: right;
+        margin-left: 5px;
+        .brixfont {
+            font-size: 14px;    
+        }
+    	.brixfont.down {
     		display: inline;
     	}
-    	span:last-child {
+    	.brixfont.up {
     		display: none;
     	}
     }
-    &.open .caret_brixfont {
-    	span:first-child {
+    &.open .caret_custom {
+    	.brixfont.down {
     		display: none;
     	}
-    	span:last-child {
+    	.brixfont.up {
     		display: inline;
     	}
     }
