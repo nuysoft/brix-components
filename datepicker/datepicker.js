@@ -116,7 +116,7 @@ define(
                     return this
                 }
 
-                return moment(this.data.date)
+                return moment(this.__unlimit || this.data.date)
             },
             range: function(value) {
                 if (value) {
