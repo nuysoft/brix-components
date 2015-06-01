@@ -9,5 +9,5 @@ define(function() {
         <v:fill type="gradient" method="none" angle="0" color="#000000" opacity="100%" color2="#CC9A81" o:opacity2="0%"></v:fill>
     </v:rect>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

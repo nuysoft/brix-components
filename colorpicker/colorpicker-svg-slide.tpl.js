@@ -17,5 +17,5 @@ define(function() {
     </defs>
     <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-hsv)"></rect>
 </svg>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

@@ -30,5 +30,5 @@ define(function() {
         <a class="btn btn-default" bx-click="submit">确定</a>
     </div>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

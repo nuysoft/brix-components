@@ -26,5 +26,5 @@ define(function() {
         <div><b>Bold (Ctrl/Cmd+B)</b></div><div><i>Italic (Ctrl/Cmd+I)</i></div><div><strike>Strikethrough</strike></div><div><u>Underline (Ctrl/Cmd+U)</u></div><div><ul><li><span style="line-height: 1.42857143;">Bullet list</span><br></li></ul></div><div><ol><li><span style="line-height: 1.42857143;">Number list</span><br></li></ol></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>Reduce indent (Shift+Tab)</div></blockquote><div>Indent (Tab)</div><div>Align Left (Ctrl/Cmd+L)</div><div style="text-align: center;">Center (Ctrl/Cmd+E)</div><div style="text-align: right;">Align Right (Ctrl/Cmd+R)</div><div style="text-align: justify;">Justify (Ctrl/Cmd+J)</div>
     </div>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

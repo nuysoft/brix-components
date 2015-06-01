@@ -6,5 +6,5 @@ define(function() {
     <div class="popover-title <%= title ? '' : 'hide' %>"><%= title %></div>
     <div class="popover-content"><%= content %></div>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

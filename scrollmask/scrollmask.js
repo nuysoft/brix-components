@@ -4,12 +4,12 @@
  * 给有滚动条出现的容器加上简单的阴影遮罩
  */
 define([
-  'jquery', 'underscore', 'handlebars',
+  'jquery', 'underscore',
   'components/base',
   'css!./scrollmask.css'
 ], function(
-  $, _, Handlebars,
-  Brix, tpl) {
+  $, _,
+  Brix) {
 
   function ScrollMask() {
     if (arguments.length) {
@@ -47,7 +47,7 @@ define([
 
       $(self).on('scroll', function() {
         clearTimeout(t);
-        t = setTimeout(function(arg) {
+        t = setTimeout(function() {
           maskShowHide(self, mask);
         }, 10);
       });

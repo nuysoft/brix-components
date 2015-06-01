@@ -15,5 +15,5 @@ define(function() {
     <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>
     <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>
 </svg>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

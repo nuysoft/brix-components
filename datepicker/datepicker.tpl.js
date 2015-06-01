@@ -89,5 +89,5 @@ define(function() {
         <a href="javascript:;" bx-click="_unlimit()">不限</a>
     </div>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })

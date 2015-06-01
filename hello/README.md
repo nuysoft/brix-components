@@ -33,11 +33,11 @@ Brix 组件实现示例。{ .lead }
             <option value="3">Something else here</option>
         </select>
     </div>
-    <div class="col-md-6 mb10">
+    <div class="col-md-12 mb10">
         <div bx-name="components/pagination" data-total="100" data-cursor="1" data-limit="9"></div>
         <div bx-name="components/pagination" data-total="100" data-cursor="4" data-limit="12" data-limits="[40, 30, 20]" data-simplify="true"></div>
     </div>
-    <div class="col-md-6 mb10">
+    <div class="col-md-12 mb10">
         <ul class="mm-tabs clearfix mb10">
             <li class="active"><a href="javascript:;">Home</a></li>
             <li><a href="javascript:;">Profile</a></li>
@@ -76,6 +76,7 @@ Brix 组件实现示例。{ .lead }
         </div>
     </div>
 </div>
+<hr>
 
 <div class="bs-example">
     <div class="content">

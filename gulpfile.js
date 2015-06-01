@@ -75,7 +75,7 @@ gulp.task('tpl', function() {
                 'define(function() {\n' +
                 '    return (function(){/*\n' +
                 file.contents.toString() +
-                "\n    */}).toString().split('\\n').slice(1,-1).join('\\n') + '\\n'" +
+                '\n    */}).toString().split("\\n").slice(1,-1).join("\\n")' +
                 '\n})'
             )
 
@@ -104,27 +104,21 @@ gulp.task('rjs', function() { // TODO
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    var globs = [
-        '*/**/*.js',
-        '!**/*.tpl.js',
-        '!bower_components/**/*',
-        '!node_modules/**/*',
-        '!dist/**/*'
-    ]
-    gulp.src(globs)
+    gulp.src([
+            '*/**/*.js',
+            '!**/*.tpl.js',
+            '!bower_components/**/*',
+            '!node_modules/**/*',
+            '!dist/**/*'
+        ])
         .pipe(uglify({
             preserveComments: 'some'
         }))
         .pipe(gulp.dest('dist'))
-        // .pipe(through.obj(function(file, encoding, callback) {
-        //     console.log(file.path)
-        //     callback(null, file)
-        // }))
 
-    globs = [
-        '**/*.tpl.js'
-    ]
-    gulp.src(globs)
+    gulp.src([
+            '**/*.tpl.js'
+        ])
         .pipe(gulp.dest('dist'))
 })
 

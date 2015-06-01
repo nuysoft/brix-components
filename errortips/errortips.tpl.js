@@ -5,5 +5,5 @@ define(function() {
   {{{msg}}}
   <i class="arrow" style="left: {{left}}px;"></i>
 </div>
-    */}).toString().split('\n').slice(1,-1).join('\n') + '\n'
+    */}).toString().split("\n").slice(1,-1).join("\n")
 })
