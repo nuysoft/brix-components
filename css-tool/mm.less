@@ -147,6 +147,10 @@ a {
 }
 
 // ----------------------------------------
+input[type="radio"], input[type="checkbox"] {
+    margin-top: -2px;
+}
+
 input, .input, 
 textarea, .textarea,
 .form-control {
@@ -554,6 +558,33 @@ button.error, button.input-error, button.parsley-error {
             border-radius: 4px;
             box-shadow: none;
         }
+    }
+}
+
+.tree {
+    .tree-node {
+        .tree-node-control {
+            margin-left: 24px;
+            .tree-node-toggle {
+                margin-left: -24px;
+            }
+            .tree-node-content {
+                  padding: 4px 5px;
+            }
+        }
+    }
+}
+
+.spinner {
+    .rotating-plane,
+    .double-bounce1, .double-bounce2,
+    .rectangle-bounce div,
+    .cube1, .cube2,
+    .chasing-dots .dot1, .chasing-dots .dot2,
+    .pulse,
+    .three-bounce > div,
+    .container1 > div, .container2 > div, .container3 > div {
+        background-color: @brand;
     }
 }
 

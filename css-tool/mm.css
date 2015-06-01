@@ -88,6 +88,10 @@ body .btn:active:focus {
   outline: none;
   box-shadow: none;
 }
+body input[type="radio"],
+body input[type="checkbox"] {
+  margin-top: -2px;
+}
 body input,
 body .input,
 body textarea,
@@ -508,6 +512,30 @@ body .table .more .content {
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   box-shadow: none;
+}
+body .tree .tree-node .tree-node-control {
+  margin-left: 24px;
+}
+body .tree .tree-node .tree-node-control .tree-node-toggle {
+  margin-left: -24px;
+}
+body .tree .tree-node .tree-node-control .tree-node-content {
+  padding: 4px 5px;
+}
+body .spinner .rotating-plane,
+body .spinner .double-bounce1,
+body .spinner .double-bounce2,
+body .spinner .rectangle-bounce div,
+body .spinner .cube1,
+body .spinner .cube2,
+body .spinner .chasing-dots .dot1,
+body .spinner .chasing-dots .dot2,
+body .spinner .pulse,
+body .spinner .three-bounce > div,
+body .spinner .container1 > div,
+body .spinner .container2 > div,
+body .spinner .container3 > div {
+  background-color: #4d7fff;
 }
 body .mm-tabs {
   padding-left: 0;

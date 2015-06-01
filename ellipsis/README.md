@@ -8,11 +8,12 @@
     .box {
         width: 125px;
         height: 4.5em;
-        border: 1px solid #ccc;
+        border: 1px solid #E6E6E6;
         padding: 0.5em 1em;
         margin-right: 10px;
         overflow: hidden;
         float: left;
+        border-radius: 4px;
     }
     .box-responsive {
         width: 40%;
