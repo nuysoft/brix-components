@@ -41,9 +41,18 @@ gulp.task('watch', function( /*callback*/ ) {
         '!node_modules/**/*',
         '!dist/**/*'
     ]
-    gulp.watch(['**/*.js'].concat(globs), ['hello', 'jshint', 'compress'])
+    gulp.watch(['**/*.js', '!**/*.tpl.js'].concat(globs), ['hello', 'jshint', 'compress'])
+        .on('change', function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+        })
     gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'minify-css'])
+        .on('change', function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+        })
     gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl', 'compress'])
+        .on('change', function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+        })
 })
 
 // https://github.com/plus3network/gulp-less
