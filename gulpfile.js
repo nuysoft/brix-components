@@ -3,7 +3,6 @@ var gulp = require('gulp')
 var through = require('through2')
 var jshint = require('gulp-jshint')
 var less = require('gulp-less')
-var rjs = require('gulp-requirejs')
 var uglify = require('gulp-uglify')
 var minifyCss = require('gulp-minify-css')
 
@@ -39,11 +38,12 @@ gulp.task('jshint', function() {
 gulp.task('watch', function( /*callback*/ ) {
     var globs = [
         '!bower_components/**/*',
-        '!node_modules/**/*'
+        '!node_modules/**/*',
+        '!dist/**/*'
     ]
-    gulp.watch(['**/*.js'].concat(globs), ['hello', 'jshint'])
-    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less'])
-    gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl'])
+    gulp.watch(['**/*.js'].concat(globs), ['hello', 'jshint', 'compress'])
+    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'minify-css'])
+    gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl', 'compress'])
 })
 
 // https://github.com/plus3network/gulp-less
@@ -51,7 +51,8 @@ gulp.task('less', function() {
     var globs = [
         '**/*.less',
         '!bower_components/**/*',
-        '!node_modules/**/*'
+        '!node_modules/**/*',
+        '!dist/**/*'
     ]
     gulp.src(globs)
         .pipe(less({}))
@@ -64,7 +65,8 @@ gulp.task('tpl', function() {
     var globs = [
         '**/*.tpl',
         '!bower_components/**/*',
-        '!node_modules/**/*'
+        '!node_modules/**/*',
+        '!dist/**/*'
     ];
     /* jshint unused:false */
     gulp.src(globs)
@@ -84,22 +86,6 @@ gulp.task('tpl', function() {
             callback(null, file)
         }))
         .pipe(gulp.dest('./'))
-})
-
-// https://github.com/RobinThrift/gulp-requirejs
-gulp.task('rjs', function() { // TODO
-    var build = {
-        baseUrl: 'src',
-        name: 'brix/base',
-        out: 'dist/base.js',
-        paths: {
-            jquery: 'empty:',
-            underscore: 'empty:',
-            'brix/event': 'empty:'
-        }
-    }
-    rjs(build)
-        .pipe(gulp.dest('.')) // pipe it to the output DIR
 })
 
 // https://github.com/terinjokes/gulp-uglify
@@ -137,4 +123,4 @@ gulp.task('minify-css', function() {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'watch'])
+gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'compress', 'minify-css', 'watch'])

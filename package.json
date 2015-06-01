@@ -18,9 +18,9 @@
     "gulp": "*",
     "gulp-jshint": "*",
     "gulp-less": "*",
-    "gulp-minify-css": "^1.1.3",
+    "gulp-minify-css": "*",
     "gulp-requirejs": "*",
-    "gulp-uglify": "^1.2.0",
+    "gulp-uglify": "*",
     "jshint-stylish": "*",
     "through2": "*"
   },
