@@ -19,6 +19,10 @@ body a {
   color: #4d7fff;
   text-decoration: none;
 }
+body a:hover,
+body a:focus {
+  color: #4776ed;
+}
 body a,
 body a:hover,
 body a:focus,

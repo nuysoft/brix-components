@@ -75,6 +75,9 @@ body {
 a {
     color: @brand;
     text-decoration: none;
+    &:hover, &:focus {
+        color: @brand-hover;
+    }
     &, &:hover, &:focus, &:active, &:visited {
         outline: 0;
         text-decoration: none;
