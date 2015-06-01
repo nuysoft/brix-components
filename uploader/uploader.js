@@ -51,16 +51,17 @@ define(
                 this.$element = $(this.element)
                 this.$element.parent().css('position', 'relative')
 
-                this.$relatedElement = $(_.template(TEMPLATE)(this.options))
+                var $relatedElement = $(_.template(TEMPLATE)(this.options))
                     .attr(TOKEN, tokon())
+                    .prop('clientId', this.options.clientId)
                     .insertAfter(this.$element)
                     .width(this.$element.outerWidth())
                     .height(this.$element.outerHeight())
                     .offset(this.$element.offset())
 
-                if (this.options.multiple) this.$relatedElement.attr('multiple', 'multiple')
+                if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
 
-                var form = this.$relatedElement[0].form
+                var form = $relatedElement[0].form
                 $(form).off('change' + NAMESPACE)
                     .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {
                         var input = event.currentTarget
