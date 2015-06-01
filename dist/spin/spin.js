@@ -1,0 +1,1 @@
+define(["jquery","underscore","brix/base","./spin.tpl.js","css!./spin.css"],function(t,e,n,s){function i(){}return e.extend(i.prototype,n.prototype,{options:{type:"three-bounce"},render:function(){this.data=this.data||e.extend({},this.options);var n=e.template(s)(this.data);t(this.element).addClass("spin").append(n)}}),i});
