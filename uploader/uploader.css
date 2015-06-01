@@ -2,6 +2,8 @@
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 .uploader-preview-thumbnail {
   margin-top: 5px;

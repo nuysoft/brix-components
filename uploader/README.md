@@ -7,9 +7,16 @@
 <div class="bs-example">
     <div class="content">
         <form>
-            <button bx-name="components/uploader" data-action="api/upload.json" data-name="foo" class="btn btn-default">选择文件</button>
-            <button bx-name="components/uploader" data-action="api/upload.json" data-name="bar" class="btn btn-default">选择文件</button>
-            <div class="preview"></div>
+            <div class="row">
+            <div class="col-xs-6">
+                <button bx-name="components/uploader" data-action="api/upload.json" data-name="foo" class="btn btn-default">选择文件</button>
+                <div class="preview"></div>
+            </div>
+            <div class="col-xs-6">
+                <button bx-name="components/uploader" data-action="api/upload.json" data-name="bar" class="btn btn-default">选择文件</button>
+                <div class="preview"></div>
+            </div>
+            </div>
         </form>
     </div>
 </div>

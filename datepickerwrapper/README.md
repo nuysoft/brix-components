@@ -4,29 +4,6 @@
 
 ### 示例 <small>Examples</small>
 
-<style type="text/css">
-    * {
-        /*transition: all 0.1s ease-in-out;*/
-    }
-    .datepickerwrapper-trigger {
-        cursor: pointer;
-        display: inline-block;
-        width: auto;
-    }
-    .datepickerwrapper-trigger .brixfont.up {
-        display: none;
-    }
-    .datepickerwrapper-trigger .brixfont.down {
-        display: block;
-    }
-    .datepickerwrapper-trigger.datepickerwrapper-open .brixfont.up {
-        display: block;
-    }
-    .datepickerwrapper-trigger.datepickerwrapper-open .brixfont.down {
-        display: none;
-    }
-</style>
-
 <div class="bs-example">
     <div class="content">
         <div class="row">

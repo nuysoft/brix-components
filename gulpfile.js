@@ -112,7 +112,10 @@ gulp.task('compress', function() {
         .pipe(gulp.dest('dist'))
 
     gulp.src([
-            '**/*.tpl.js'
+            '**/*.tpl.js',
+            '!bower_components/**/*',
+            '!node_modules/**/*',
+            '!dist/**/*'
         ])
         .pipe(gulp.dest('dist'))
 })

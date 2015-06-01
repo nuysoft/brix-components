@@ -154,7 +154,7 @@ textarea, .textarea,
     height: 32px;
     vertical-align: middle;
     font-size: 12px;
-    padding: 0 9px;
+    padding: 6px 9px;
     color: @333;
     border: 1px solid @e6e6e6;
     background-color: white;
@@ -197,11 +197,18 @@ textarea, .textarea,
     }
 }
 
-input.error, input.input-error,
-textarea.error, textarea.input-error, 
-button.error, button.input-error, {
+input.error, input.input-error, input.parsley-error,
+textarea.error, textarea.input-error, textarea.parsley-error,
+button.error, button.input-error, button.parsley-error {
+    color: @333;
+    background-color: white;
+    border-color: @red;
     border-color: @red;
     .box-shadow(none);
+}
+
+.parsley-errors-list {
+    color: @red;
 }
 
 .searchbox {
@@ -274,6 +281,9 @@ button.error, button.input-error, {
                     color: white;
                     background-color: @brand;
                 }
+            }
+            &.divider {
+                padding: 0;
             }
         }
     }
@@ -484,6 +494,13 @@ button.error, button.input-error, {
                 }
             }
         }
+        &.timepicker {
+            width: 100%;
+            padding: 10px;
+        }
+        &.picker-footer {
+            padding: 6px 0;
+        }
     }
 }
 
@@ -491,12 +508,52 @@ button.error, button.input-error, {
     border: 1px solid @e6e6e6;
     border-radius: 4px;
     box-shadow: none;
+    padding: 0px;
     .arrow {
         display: none;
     }
-    .popover-title {}
+    .popover-title {
+        background-color: @fafafa;
+        border-bottom: 1px solid @e6e6e6;
+        border-radius: 4px 4px 0 0;
+    }
     .popover-content {
         font-size: 12px;
+    }
+}
+
+.table {
+    thead {
+        tr {
+            th {
+                height: 60px;
+                padding: 0 8px;
+                background-color: @fafafa;
+                color: @999;
+                font-weight: 400;
+                vertical-align: middle;
+                border: 0;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                padding: 21px 8px;
+                min-height: 60px;
+                max-height: 90px;
+                color: @333;
+                border-top: 0;
+                border-bottom: 1px solid @e6e6e6;
+            }
+        }
+    } 
+    .more {
+        .content {
+            border: 1px solid @e6e6e6;
+            border-radius: 4px;
+            box-shadow: none;
+        }
     }
 }
 

@@ -294,7 +294,10 @@ define(
                 var inputWrapperOffset = inputWrapper.offset()
                 pickerWrapper.offset({ // 修正日期组件容器的位置
                     left: inputWrapperOffset.left,
-                    top: inputWrapperOffset.top + inputWrapper.outerHeight() + parseInt(pickerWrapper.css('margin-top'), 10)
+                    top: inputWrapperOffset.top + inputWrapper.outerHeight() + (
+                        parseInt(pickerWrapper.css('margin-top'), 10) ||
+                        0
+                    )
                 })
 
                 var $picker = pickers.eq(index)
@@ -336,8 +339,8 @@ define(
             },
             _offset: function() {
                 var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10)
-                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10)
+                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10) || 0
+                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10) || 0
                 return {
                     left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)

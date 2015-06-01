@@ -97,7 +97,7 @@ body .form-control {
   height: 32px;
   vertical-align: middle;
   font-size: 12px;
-  padding: 0 9px;
+  padding: 6px 9px;
   color: #333333;
   border: 1px solid #e6e6e6;
   background-color: white;
@@ -184,14 +184,22 @@ body .error button:hover {
 }
 body input.error,
 body input.input-error,
+body input.parsley-error,
 body textarea.error,
 body textarea.input-error,
+body textarea.parsley-error,
 body button.error,
-body button.input-error {
+body button.input-error,
+body button.parsley-error {
+  color: #333333;
+  background-color: white;
   border-color: #a40100;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+body .parsley-errors-list {
+  color: #a40100;
 }
 body .searchbox {
   position: relative;
@@ -260,6 +268,9 @@ body .dropdown .dropdown-menu > li.active a:focus {
   border-radius: 4px;
   color: white;
   background-color: #4d7fff;
+}
+body .dropdown .dropdown-menu > li.divider {
+  padding: 0;
 }
 body .dialog .dialog-content {
   border: 1px solid #e6e6e6;
@@ -452,16 +463,51 @@ body .datepicker-container .picker-group .picker-body .datepicker-body-value spa
   color: white;
   background-color: #4d7fff;
 }
+body .datepicker-container .picker-group.timepicker {
+  width: 100%;
+  padding: 10px;
+}
+body .datepicker-container .picker-group.picker-footer {
+  padding: 6px 0;
+}
 body .popover {
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   box-shadow: none;
+  padding: 0px;
 }
 body .popover .arrow {
   display: none;
 }
+body .popover .popover-title {
+  background-color: #fafafa;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: 4px 4px 0 0;
+}
 body .popover .popover-content {
   font-size: 12px;
+}
+body .table thead tr th {
+  height: 60px;
+  padding: 0 8px;
+  background-color: #fafafa;
+  color: #999999;
+  font-weight: 400;
+  vertical-align: middle;
+  border: 0;
+}
+body .table tbody tr td {
+  padding: 21px 8px;
+  min-height: 60px;
+  max-height: 90px;
+  color: #333333;
+  border-top: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+body .table .more .content {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  box-shadow: none;
 }
 body .mm-tabs {
   padding-left: 0;
