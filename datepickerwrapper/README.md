@@ -189,17 +189,29 @@
         <div class="row">
             <div class="col-xs-6">
                 <h4>日期 + 时间</h4>
-                <input bx-name="components/datepickerwrapper" type="text" data-type="date time" data-dates="[ '2015-1-1 1:1:1']" class="form-control w200">
+                <input bx-name="components/datepickerwrapper" type="text" data-type="date time" data-dates="[ '2015-1-1 1:1:1' ]" class="form-control w200">
             </div>
             <div class="col-xs-6">
                 <h4>日期 + 时间（小时可修改，分钟和秒不可修改）</h4>
-                <input bx-name="components/datepickerwrapper" type="text" data-type="date hour" data-dates="[ '2015-1-1 1:1:1']" class="form-control w200">
+                <input bx-name="components/datepickerwrapper" type="text" data-type="date hour" data-dates="[ '2015-1-1 1:1:1' ]" class="form-control w200">
             </div>
         </div>
     </div>
 </div>
-
-
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>多个日期 + 时间</h4>
+                <input bx-name="components/datepickerwrapper" type="text" data-type="date time" data-dates="[ '2015-1-1 1:1:1', '2016-1-1 1:1:1' ]" class="form-control w300">
+            </div>
+            <div class="col-xs-6">
+                <h4>多个日期 + 时间（小时可修改，分钟和秒不可修改）</h4>
+                <input bx-name="components/datepickerwrapper" type="text" data-type="date hour" data-dates="[ '2015-1-1 1:1:1', '2016-1-1 1:1:1' ]" class="form-control w300">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {

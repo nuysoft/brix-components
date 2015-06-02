@@ -414,10 +414,13 @@ button.error, button.input-error, button.parsley-error {
                 width: 110px;
                 text-align: center;
             }
+            &.time input {
+                width: 145px;
+            }
         }
     }
     .datepickerwrapper-pickers {
-
+        margin-top: 10px;
     }
     .datepickerwrapper-footer {
         padding-left: 10px;
@@ -501,6 +504,29 @@ button.error, button.input-error, button.parsley-error {
         &.timepicker {
             width: 100%;
             padding: 10px;
+            .timepicker-body {
+                .timepicker-group {
+                    input {
+
+                    }
+                }
+                .timepicker-spliter {
+
+                }
+            }
+            .timepicker-footer {
+                .timepicker-handelr {
+                    .btn {
+                        &.submit {
+                            color: #FFF;
+                            background-color: @brand;
+                            &:hover {
+                                background-color: @brand-hover;
+                            }
+                        }
+                    }
+                }
+            }
         }
         &.picker-footer {
             padding: 6px 0;

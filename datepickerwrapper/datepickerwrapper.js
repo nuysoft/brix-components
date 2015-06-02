@@ -258,6 +258,7 @@ define(
                         item.val(that.options.dates[index])
                             .on('change.datepicker unchange.datepicker ', function(event, date, type) {
                                 if (type !== undefined && type !== 'date' && type !== 'time') return
+                                if (that.options.typeMap.time && type === 'date') return
 
                                 var value = that._unlimitFilter(date, that.options.unlimits[index])
                                 inputs.eq(index).val(value)
@@ -271,6 +272,9 @@ define(
                             that.options.unlimits[index]
                         )
                         inputs.eq(index).val(value)
+                        item.$element.on('click', '.timepicker .timepicker-footer .cancel', function() {
+                            pickers.eq(index).hide()
+                        })
                     })
                 })
             },
@@ -383,7 +387,9 @@ define(
 
                         })
                     } else {
-                        this.$element.text(
+                        this.$element[
+                            RE_INPUT.test(this.element.nodeName) ? 'val' : 'html'
+                        ](
                             _.map(dates, function(item, index) {
                                 return that._unlimitFilter(item, that.options.unlimits[index])
                             }).join(', ')

@@ -387,6 +387,12 @@ body .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body
   width: 110px;
   text-align: center;
 }
+body .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body.time input {
+  width: 145px;
+}
+body .datepickerwrapper .datepickerwrapper-pickers {
+  margin-top: 10px;
+}
 body .datepickerwrapper .datepickerwrapper-footer {
   padding-left: 10px;
   padding-right: 10px;
@@ -470,6 +476,13 @@ body .datepicker-container .picker-group .picker-body .datepicker-body-value spa
 body .datepicker-container .picker-group.timepicker {
   width: 100%;
   padding: 10px;
+}
+body .datepicker-container .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit {
+  color: #FFF;
+  background-color: #4d7fff;
+}
+body .datepicker-container .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit:hover {
+  background-color: #4776ed;
 }
 body .datepicker-container .picker-group.picker-footer {
   padding: 6px 0;

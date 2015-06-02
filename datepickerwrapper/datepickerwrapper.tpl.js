@@ -28,7 +28,7 @@ define(function() {
         <div class="datepickerwrapper-inputs-header">
             <div class="datepickerwrapper-inputs-header-title">日期范围</div>
         </div>
-        <div class="datepickerwrapper-inputs-body">
+        <div class="datepickerwrapper-inputs-body <%= typeMap.time ? 'time' : '' %>">
             <% for (var i = 0; i < dates.length; i++ ) { %>
                 <input bx-click="_inputToggleDatePicker(<%= i %>)" bx-change="_change('date', <%= i %>)" value="<%= dates[i] %>" type="text" class="form-control">
                 <%= i < dates.length -1 ? '-' : '' %>
