@@ -221,7 +221,7 @@ body .searchbox input {
 body .dropdown {
   min-width: 140px;
 }
-body .dropdown .dropdown-toggle.btn-default {
+body .dropdown .dropdown-toggle {
   width: 100%;
   height: 32px;
   padding: 6px 12px;
@@ -231,14 +231,14 @@ body .dropdown .dropdown-toggle.btn-default {
   text-align: left;
   background-color: transparent;
 }
-body .dropdown .dropdown-toggle.btn-default:hover {
+body .dropdown .dropdown-toggle:hover {
   border-color: #CCC;
 }
-body .dropdown .dropdown-toggle.btn-default .dropdown-toggle-label {
+body .dropdown .dropdown-toggle .dropdown-toggle-label {
   display: inline-block;
   text-align: left;
 }
-body .dropdown .dropdown-toggle.btn-default .caret_brixfont {
+body .dropdown .dropdown-toggle .caret_brixfont {
   float: right;
   margin-left: 10px;
 }

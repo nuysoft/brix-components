@@ -4,11 +4,72 @@ Brix 组件实现示例。{ .lead }
 
 ### 示例 <small>Examples</small>
 
-<div class="row">
-    <div class="col-md-6 mb10">
-        
+<style type="text/css">
+    .browser .datepickerwrapper-trigger,
+    .browser .dropdown .dropdown-toggle {
+        background-color: white;
+    }
+</style>
+<div class="browser">
+    <div class="topbar">
+        <div class="circles">
+            <div class="circle shutup"></div>
+            <div class="circle minimize"></div>
+            <div class="circle maximize"></div>
+        </div>
     </div>
-    <div class="col-md-6 mb10"></div>
+    <div class="content">
+        <div class="site-layout-example-top">
+            <div class="container">
+                <span class="flat-text-logo">Examples</span>
+            </div>
+        </div>
+        <div class="site-layout-example-right">
+            <div class="container" style="padding: 27px;">
+                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="datepickerwrapper-trigger">
+                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                    <span class="brixfont down">&#xe623;</span><!-- 向下 -->
+                    <span class="brixfont up">&#xe62e;</span><!-- 向上 -->
+                </div>
+                <select bx-name="components/dropdown">
+                    <option value="1">Action</option>
+                    <option value="2">Another action</option>
+                    <option value="3">Something else here</option>
+                </select>
+                <select bx-name="components/dropdown" data-value="2">
+                    <option value="1">Action</option>
+                    <option value="2">Another action</option>
+                    <option value="3">Something else here</option>
+                </select>
+                <input placeholder="input">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="browser">
+    <div class="topbar">
+        <div class="circles">
+            <div class="circle shutup"></div>
+            <div class="circle minimize"></div>
+            <div class="circle maximize"></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="site-layout-example-top">
+            <div class="container">
+                <span class="flat-text-logo">hello</span>
+            </div>
+        </div>
+        <div class="site-layout-example-right">
+            <div class="container">
+                <p class="flat-text small"></p>
+                <p class="flat-text full-width"></p>
+                <p class="flat-text full-width"></p>
+                <p class="flat-text full-width"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -127,6 +188,7 @@ destroyed | 当前组件销毁后触发，包括子组件的销毁。
 
 <script type="text/javascript">
     require(['css!css-tool/mm.css'])
+    require(['css!css-tool/browser.css'])
     $('ul.mm-tabs')
         .on('mouseleave', function(event) {
             $(event.currentTarget).find('li').removeClass('border-bottom-color-transparent')
