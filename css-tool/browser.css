@@ -7,12 +7,15 @@
   height: 300px;
 }
 .site-layout-example-right {
-  background-color: #26a69a;
+  background-color: #fafafa;
   height: 300px;
   overflow: auto;
+  padding: 27px;
 }
 .site-layout-example-top {
+  color: white;
   background-color: #E57373;
+  padding: 0px 12px;
   height: 42px;
   line-height: 42px;
   vertical-align: middle;
@@ -50,7 +53,6 @@
   border-radius: 5px 5px 2px 2px;
   background-color: #fff;
   margin: 20px 0px;
-  overflow: hidden;
 }
 .browser .topbar {
   height: 30px;
@@ -86,5 +88,4 @@
   width: 100%;
   display: inline-block;
   border-radius: 0 0 5px 5px;
-  background-color: #fafafa;
 }

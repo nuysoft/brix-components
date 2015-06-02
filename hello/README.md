@@ -7,7 +7,7 @@ Brix 组件实现示例。{ .lead }
 <style type="text/css">
     .browser .datepickerwrapper-trigger,
     .browser .dropdown .dropdown-toggle {
-        background-color: white;
+        /*background-color: white;*/
     }
 </style>
 <div class="browser">
@@ -20,29 +20,25 @@ Brix 组件实现示例。{ .lead }
     </div>
     <div class="content">
         <div class="site-layout-example-top">
-            <div class="container">
-                <span class="flat-text-logo">Examples</span>
-            </div>
+            <span class="flat-text-logo">Examples</span>
         </div>
         <div class="site-layout-example-right">
-            <div class="container" style="padding: 27px;">
-                <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="datepickerwrapper-trigger">
-                    <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
-                    <span class="brixfont down">&#xe623;</span><!-- 向下 -->
-                    <span class="brixfont up">&#xe62e;</span><!-- 向上 -->
-                </div>
-                <select bx-name="components/dropdown">
-                    <option value="1">Action</option>
-                    <option value="2">Another action</option>
-                    <option value="3">Something else here</option>
-                </select>
-                <select bx-name="components/dropdown" data-value="2">
-                    <option value="1">Action</option>
-                    <option value="2">Another action</option>
-                    <option value="3">Something else here</option>
-                </select>
-                <input placeholder="input">
+            <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="datepickerwrapper-trigger">
+                <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+                <span class="brixfont down">&#xe623;</span><!-- 向下 -->
+                <span class="brixfont up">&#xe62e;</span><!-- 向上 -->
             </div>
+            <select bx-name="components/dropdown">
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown" data-value="2">
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <input placeholder="input">
         </div>
     </div>
 </div>
@@ -57,17 +53,13 @@ Brix 组件实现示例。{ .lead }
     </div>
     <div class="content">
         <div class="site-layout-example-top">
-            <div class="container">
-                <span class="flat-text-logo">hello</span>
-            </div>
+            <span class="flat-text-logo">Hello</span>
         </div>
         <div class="site-layout-example-right">
-            <div class="container">
-                <p class="flat-text small"></p>
-                <p class="flat-text full-width"></p>
-                <p class="flat-text full-width"></p>
-                <p class="flat-text full-width"></p>
-            </div>
+            <p class="flat-text small"></p>
+            <p class="flat-text full-width"></p>
+            <p class="flat-text full-width"></p>
+            <p class="flat-text full-width"></p>
         </div>
     </div>
 </div>
