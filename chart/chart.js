@@ -60,7 +60,7 @@ define(
                 // 尝试从 innerText 中解析数据
                 /* jshint evil:true */
                 if (!this.options.data) {
-                    this.options.data = eval('(function(){ return [].splice.call(arguments, 0 )[0] })(' + this.element.innerText + ')')
+                    this.options.data = eval('(function(){ return Array.prototype.slice.call(arguments)[0] })(' + this.element.innerText + ')')
                     this.element.innerText = ''
                 }
 

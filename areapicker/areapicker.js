@@ -28,7 +28,7 @@ define(
                 if (!this.options.data) {
                     var text = $.trim(this.element.innerText)
                     this.options.data = eval(
-                        '(function(){ return [].splice.call(arguments, 0 )[0] })(' + text + ')'
+                        '(function(){ return Array.prototype.slice.call(arguments)[0] })(' + text + ')'
                     )
                     this.element.innerText = ''
                 }

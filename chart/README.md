@@ -204,5 +204,5 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 type | string | 'line' | 指定图表类型。可选值有：折线图 `line`、柱状图 `bar`、雷达图 `radar`、极区图 `polararea`、饼图 `pie`、环形图 `doughnut`。
 width | number | 自适应 | 指定图表的宽度。默认为图表所在容器的宽度。
-height | number | `400` | 指定图标的高度。
+height | number | `400` | 指定图表的高度。
 data | object or array | - | 参见 <http://www.chartjs.org/docs/>。
