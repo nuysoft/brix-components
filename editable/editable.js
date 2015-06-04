@@ -100,14 +100,14 @@ define(
                 var display = $element.css('display')
                 var zIndex = $element.css('z-index')
                 var outerWidth = $element.outerWidth(true)
-                var targetPaddingLeft = parseInt($element.css('padding-left'), 10)
-                var targetPaddingRight = parseInt($element.css('padding-right'), 10)
-                var targetBorderLeft = parseInt($element.css('border-left-width'), 10)
-                var targetBorderRight = parseInt($element.css('border-right-width'), 10)
-                var relatedPaddingLeft = parseInt($relatedElement.css('padding-left'), 10)
-                var relatedPaddingRight = parseInt($relatedElement.css('padding-right'), 10)
-                var relatedBorderLeft = parseInt($relatedElement.css('border-left-width'), 10)
-                var relatedBorderRight = parseInt($relatedElement.css('border-right-width'), 10)
+                var targetPaddingLeft = parseInt($element.css('padding-left'), 10) || 0
+                var targetPaddingRight = parseInt($element.css('padding-right'), 10) || 0
+                var targetBorderLeft = parseInt($element.css('border-left-width'), 10) || 0
+                var targetBorderRight = parseInt($element.css('border-right-width'), 10) || 0
+                var relatedPaddingLeft = parseInt($relatedElement.css('padding-left'), 10) || 0
+                var relatedPaddingRight = parseInt($relatedElement.css('padding-right'), 10) || 0
+                var relatedBorderLeft = parseInt($relatedElement.css('border-left-width'), 10) || 0
+                var relatedBorderRight = parseInt($relatedElement.css('border-right-width'), 10) || 0
 
                 this.$relatedElement
                     .addClass('form-control')

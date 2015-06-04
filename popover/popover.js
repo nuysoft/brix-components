@@ -69,8 +69,8 @@ define(
                     'max-width': this.options.width // 覆盖 bootstrap overlay 的 max-width
                 })
                 var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
-                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10)
-                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10)
+                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10) || 0
+                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10) || 0
                 this.$relatedElement.offset({
                     left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)

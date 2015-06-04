@@ -115,7 +115,7 @@ define(
                         this._tmp.from = day
                         this._tmp.$target = $target.css('visibility', 'visible')
                         var offset = position($target, $relatedElement, 'bottom', 'right')
-                        var marginTop = parseInt($relatedElement.css('margin-top'), 10)
+                        var marginTop = parseInt($relatedElement.css('margin-top'), 10) || 0
                         $relatedElement.show().offset({
                             left: offset.left,
                             top: offset.top + marginTop

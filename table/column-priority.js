@@ -138,8 +138,8 @@ define(
 
         function _offset($trigger, $relatedElement, placement, align) {
             var offset = position($trigger, $relatedElement, placement, align)
-            var relatedMarginLeft = parseInt($relatedElement.css('margin-left'), 10)
-            var relatedMarginTop = parseInt($relatedElement.css('margin-top'), 10)
+            var relatedMarginLeft = parseInt($relatedElement.css('margin-left'), 10) || 0
+            var relatedMarginTop = parseInt($relatedElement.css('margin-top'), 10) || 0
             return {
                 left: offset.left + relatedMarginLeft,
                 top: offset.top + relatedMarginTop
