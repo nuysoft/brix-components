@@ -1,1 +1,0 @@
-define(["marked"],function(e){var r=/\{\s*([#.].*)\s*\}$/,a=new e.Renderer;return a.paragraph=function(e){var a,n=r.exec(e),c="",s="<p";if(n){a=n[1].split(" ");for(var i=0;i<a.length;i++)switch(a[i][0]){case"#":s+=' id="'+a[i].slice(1)+'" ';break;case".":c+=" "+a[i].slice(1)}c&&(s+=' class="'+c+'" '),e=e.replace(r,"")}return s+">"+e+"</p>\n"},a});

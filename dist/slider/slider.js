@@ -1,1 +1,0 @@
-define(["jquery","underscore","brix/base","text!./slider.tpl","css!./slider.css"],function(t,e,n,s){function i(){}return e.extend(i.prototype,n.prototype,{options:{},render:function(){this.data=this.data||e.extend({},this.options);var n=e.template(s)(this.data);t(this.element).append(n)}}),i});

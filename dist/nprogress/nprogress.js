@@ -1,1 +1,0 @@
-define(["brix/base","nprogress","css!../nprogress/nprogress.css"],function(n,s){return n.extend({options:{},init:function(){require(["css!./nprogress.css"]),this.NProgress=s},render:function(){s.start()},start:function(){s.start()},done:function(){s.done()},set:function(n){s.set(n)},inc:function(){s.inc()}})});
