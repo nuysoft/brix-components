@@ -1,7 +1,7 @@
 /* global define */
 define(
     [
-        'jquery', 'underscore', 'marked', 'marked-extra', 'highlightjs',
+        'jquery', 'underscore', 'marked', './marked-extra.js', 'highlightjs',
         'brix/loader', 'brix/base',
         './readme.tpl.js',
         'css!./readme.css'
