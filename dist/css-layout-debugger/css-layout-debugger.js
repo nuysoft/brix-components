@@ -1,0 +1,1 @@
+define(["jquery","brix/base"],function(n,e){return e.extend({render:function(){n(this.element).on("click",function(){[].forEach.call(n("*"),function(n){n.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)})})}})});

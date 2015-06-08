@@ -1,0 +1,1 @@
+define(["jquery","underscore","brix/loader","brix/base"],function(o,t,e,n){return n.extend({options:{},render:function(){var n=o(this.element);e.boot(function(){var e=n.offset();o(window).on("scroll",t.throttle(function(){var t=o(window).scrollTop();n.offset(t>e.top?{top:t}:{top:e.top})},10))})}})});

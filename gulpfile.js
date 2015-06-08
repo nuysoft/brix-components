@@ -41,15 +41,15 @@ gulp.task('watch', function( /*callback*/ ) {
         '!node_modules/**/*',
         '!dist/**/*'
     ]
-    gulp.watch(['**/*.js', '!**/*.tpl.js'].concat(globs), ['hello', 'jshint' /* , 'compress' */ ])
+    gulp.watch(['**/*.js', '!**/*.tpl.js'].concat(globs), ['hello', 'jshint', 'compress'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
-    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less' /* , 'minify-css' */ ])
+    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'minify-css'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
-    gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl' /* , 'compress' */ ])
+    gulp.watch(['**/*.tpl'].concat(globs), ['hello', 'tpl', 'compress'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
@@ -135,4 +135,4 @@ gulp.task('minify-css', function() {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('default', ['hello', 'jshint', 'less', 'tpl', /* 'compress', 'minify-css', */ 'watch'])
+gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'compress', 'minify-css', 'watch'])
