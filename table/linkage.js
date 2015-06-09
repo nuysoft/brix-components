@@ -44,7 +44,7 @@ define(
             var checked = $(container).find('input:checkbox:checked')
             _.each(checked, function(item /*, index*/ ) {
                 var value = $(item).attr('value')
-                if (value !== undefined) values.push(value)
+                if (value !== undefined && value !== '') values.push(value)
             })
             return values
         }
