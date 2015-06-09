@@ -13,7 +13,7 @@ define(
         'brix/base',
         './editor.tpl.js',
         'css!./editor.css',
-        'css!./bower_components/fontawesome/css/font-awesome.css'
+        'css!fontawesome/css/font-awesome.css'
     ],
     function(
         $, _, Mousetrap,
