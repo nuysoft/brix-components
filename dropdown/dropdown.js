@@ -113,7 +113,8 @@ define(
 
                 // { data, label value }
                 var data = _.extend({
-                    data: this.options.data
+                    data: this.options.data,
+                    disabled: this.options.disabled || this.$element.prop('disabled')
                 }, function() {
                     // data-value
                     if (that.options.value) that.$element.val(that.options.value)

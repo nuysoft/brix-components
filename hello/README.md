@@ -38,6 +38,22 @@ Brix 组件实现示例。{ .lead }
                 <option value="2">Another action</option>
                 <option value="3">Something else here</option>
             </select>
+            <br>
+            <select disabled>
+                <option value="1">disabled</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown" disabled>
+                <option value="1">disabled</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown" data-disabled="true">
+                <option value="1">data-disabled="true"</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
             <input placeholder="input">
         </div>
     </div>
@@ -144,6 +160,146 @@ Brix 组件实现示例。{ .lead }
         <div bx-name="components/hello" data-message="Brix"></div>
     </div>
 </div>
+
+<hr>
+
+> [CSS Stats](http://cssstats.com/), [Apple](http://cssstats.com/stats?url=http%3A%2F%2Fapple.com&name=Apple)
+
+<style type="text/css">
+    .demo-bg {}
+    .demo-bg .item {
+        color: #FFF;
+        height: 64px; 
+        line-height: 64px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 5px;
+    }
+    .demo-bg .item .up,
+    .demo-bg .item .down {
+        height: 48px;
+        line-height: 48px;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .demo-bg .item .up {
+        border-radius: 5px 5px 0 0;
+    }
+    .demo-bg .item .down {
+        border-radius: 0 0 5px 5px;
+    }
+</style>
+
+<h3>Colors</h3>
+<div class="row">
+    <div class="col-xs-3 mb10">
+        <div style="font-size: 48px; color: #000000;">Aa</div>
+        <div>#000000</div>
+    </div>
+    <div class="col-xs-3 mb10">
+        <div style="font-size: 48px; color: #333333;">Aa</div>
+        <div>#333333</div>
+    </div>
+    <div class="col-xs-3 mb10">
+        <div style="font-size: 48px; color: #666666;">Aa</div>
+        <div>#666666</div>
+    </div>
+    <div class="col-xs-3 mb10">
+        <div style="font-size: 48px; color: #999999;">Aa</div>
+        <div>#999999</div>
+    </div>
+</div>
+<h3>Background Colors</h3>
+<div class="row">
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #000000; ">#000000</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #333333;">#333333</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #666666;">#666666</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #999999;">#999999</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #4D7FFF;">#4D7FFF</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #9561F0;">#9561F0</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #68499E;">#68499E</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #339966;">#339966</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #56abe4;">#56abe4</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #428BCA;">#428BCA</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #ED4242;">#ED4242</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #16C98D;">#16C98D</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #2378FF;">#2378FF</div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item" style="background-color: #FF6600;">#FF6600</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item">
+            <div class="up" style="background-color: #1ABC9C;">#1ABC9C</div>
+            <div class="down" style="background-color: #16A085;">#16A085</div>
+        </div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item">
+            <div class="up" style="background-color: #2ECC71;">#2ECC71</div>
+            <div class="down" style="background-color: #21AE60;">#21AE60</div>
+        </div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item">
+            <div class="up" style="background-color: #3498DB;">#3498DB</div>
+            <div class="down" style="background-color: #2980B9;">#2980B9</div>
+        </div>
+    </div>
+    <div class="col-xs-3 mb10 demo-bg">
+        <div class="item">
+            <div class="up" style="background-color: #9B59B6;">#9B59B6</div>
+            <div class="down" style="background-color: #8E44AD;">#8E44AD</div>
+        </div>
+    </div>
+</div>
+<h3>Font Sizes</h3>
+<div class="">
+    <div style="font-size: 20px;">Font Size 20px</div>
+    <div style="font-size: 16px;">Font Size 16px</div>
+    <div style="font-size: 14px;">Font Size 14px</div>
+    <div style="font-size: 12px;">Font Size 12px</div>
+</div>
+<h3>Font Families</h3>
+<div class="" style="font-size: 16px;">
+    <div style="font-family: 'Microsoft YaHei';">"Microsoft YaHei"</div>
+    <div style="font-family: '微软雅黑';">"微软雅黑</div>
+    <div style="font-family: STXihe;">STXihe</div>
+    <div style="font-family: '华文细黑';">"华文细黑</div>
+    <div style="font-family: Georgi;">Georgi</div>
+    <div style="font-family: 'Times New Roman';">"Times New Roman</div>
+    <div style="font-family: Aria;">Aria</div>
+    <div style="font-family: sans-serif;">sans-serif</div>
+</div>
+
+<hr>
 
 ### 配置 <small>Options</small>
 
