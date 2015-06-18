@@ -20,3 +20,6 @@
 .dropdown.open .caret_custom .brixfont.up {
   display: inline;
 }
+.dropdown.disabled .dropdown-toggle {
+  cursor: not-allowed;
+}
