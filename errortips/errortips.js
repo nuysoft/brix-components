@@ -8,6 +8,21 @@ define([
   $, _, Handlebars,
   Brix, tpl) {
 
+  var ALL_EVENTS = {
+    EVENTS: {
+      //三级导航点击标题收缩扩展子菜单
+      '.errortips-icon': {
+        click: function(e, self) {
+          self._tips.fadeOut(0.25, function() {
+            self._tips.remove()
+            self.trigger('complete.errortips')
+          }, 'easeOut')
+        }
+      }
+    }
+  }
+
+
   //arguments: [el, options]
   function Errortips() {
     if (arguments.length) {
@@ -20,7 +35,7 @@ define([
     options: {
       width: 180, //提示框的宽度,
       msg: '操作<span>不正确</span>，请重新操作', //提示文案，支持标签,
-      duration: 2000, //提示持续的时间,
+      duration: null, //提示持续的时间,
       shake: true //按钮是否抖动反馈,
     },
     render: function() {
@@ -51,6 +66,48 @@ define([
       }
 
       this._showTips(msg)
+      this._bindUI()
+    },
+
+    /**
+     * 事件绑定
+     * @return {[type]} [description]
+     */
+    _bindUI: function() {
+      var el = this._tips
+      var self = this
+        //旧brix事件绑定转换
+      $.each(ALL_EVENTS, function(k, v) {
+        switch (k) {
+          case 'EVENTS':
+            $.each(v, function(_k, _v) {
+              $.each(_v, function(__k, __v) {
+                el.delegate(_k, __k, function(e) {
+                  __v(e, self)
+                })
+              })
+            })
+            break
+
+          case 'DOCEVENTS':
+            $.each(v, function(_k, _v) {
+              $.each(_v, function(__k, __v) {
+                $(document).delegate(_k, __k, function(e) {
+                  __v(e, self)
+                })
+              })
+            })
+            break
+
+          case 'WINEVENTS':
+            $.each(v, function(_k, _v) {
+              $(window).on(_k, function(e) {
+                _v(e, self)
+              })
+            })
+            break
+        }
+      })
     },
 
     _showTips: function(msg) {
@@ -67,12 +124,14 @@ define([
       }
 
       //tips 6 秒后消失，或者点击页面其他地方也消失
-      this.itv = setTimeout(function() {
-        self.fadeOut = self._tips.fadeOut(250, 'swing', function() {
-          self._tips.remove()
-          self.trigger('complete.errortips', self)
-        })
-      }, duration)
+      if (duration) {
+        this.itv = setTimeout(function() {
+          self.fadeOut = self._tips.fadeOut(250, 'swing', function() {
+            self._tips.remove()
+            self.trigger('complete.errortips', self)
+          })
+        }, duration)
+      }
 
       var offset = el.offset()
 
@@ -83,7 +142,8 @@ define([
       var tipsHtml = Handlebars.compile(tipsTmpl)({
         width: tipsWidth,
         msg: msg,
-        left: _arrLeft + fixLeft
+        left: _arrLeft + fixLeft,
+        duration: duration
       })
 
       this._tips = $(tipsHtml)
