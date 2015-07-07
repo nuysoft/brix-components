@@ -6,13 +6,13 @@
  */
 define(
     [
-        'underscore', 'parsley',
+        'jquery', 'underscore', 'parsley',
         'brix/base',
         'css!dependencies/parsleyjs/src/parsley.css',
         'css!./validation.css'
     ],
     function(
-        _, Parsley,
+        $, _, Parsley,
         Brix
     ) {
 
@@ -27,7 +27,8 @@ define(
                 require(['dependencies/parsleyjs/src/i18n/' + this.options.i18n])
             },
             render: function() {
-                this.parsley = new Parsley(this.element)
+                this.parsley = $(this.element).parsley()
+                // this.parsley = new Parsley(this.element)
             },
             validate: function(group, force) {
                 this.parsley.validate(group, force)

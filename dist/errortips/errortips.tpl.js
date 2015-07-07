@@ -5,8 +5,8 @@ define(function() {
   {{{msg}}}
   <i class="arrow" style="left: {{left}}px;"></i>
    {{^duration}}
-    <i class="errortips-icon">&#xe601;</i>
-    {{/duration}}
+  <i class="errortips-icon">&#xe601;</i>
+  {{/duration}}
 </div>
     */}).toString().split("\n").slice(1,-1).join("\n")
 })

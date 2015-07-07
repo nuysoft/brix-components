@@ -172,6 +172,12 @@ body .form-control[readonly] {
   background-color: #fafafa;
   color: #cccccc;
 }
+body textarea,
+body .textarea,
+body textarea.form-control,
+body .textarea.form-control {
+  height: auto;
+}
 body .error input,
 body .error input:focus,
 body .error input:hover,
