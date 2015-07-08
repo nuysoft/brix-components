@@ -54,6 +54,7 @@ define(
                 var $relatedElement = $(_.template(TEMPLATE)(this.options))
                     .attr(TOKEN, tokon())
                     .prop('clientId', this.options.clientId)
+                    .prop('disabled', this.$element.prop('disabled'))
                     .insertAfter(this.$element)
                     .width(this.$element.outerWidth())
                     .height(this.$element.outerHeight())
@@ -86,6 +87,7 @@ define(
             },
             send: function(form, input, callback) {
                 var that = this
+                $(input).prop('disabled', true)
                 this.transports[this.options.transport](
                     this.options,
                     form,
@@ -105,6 +107,7 @@ define(
                     $input.clone(true, true)
                     .attr(TOKEN, tokon())
                     .prop('clientId', this.options.clientId)
+                    .prop('disabled', this.$element.prop('disabled'))
                 )
             },
             transports: {

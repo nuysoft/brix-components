@@ -483,6 +483,10 @@ body .datepicker-container .picker-group.timepicker {
   width: 100%;
   padding: 10px;
 }
+body .datepicker-container .picker-group.timepicker .timepicker-body .timepicker-group button.time-minus,
+body .datepicker-container .picker-group.timepicker .timepicker-body .timepicker-group button.time-plus {
+  width: 28px;
+}
 body .datepicker-container .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit {
   color: #FFF;
   background-color: #4d7fff;
