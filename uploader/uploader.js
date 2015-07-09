@@ -87,7 +87,6 @@ define(
             },
             send: function(form, input, callback) {
                 var that = this
-                $(input).prop('disabled', true)
                 this.transports[this.options.transport](
                     this.options,
                     form,
