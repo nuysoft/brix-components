@@ -112,6 +112,7 @@ action | string | `''` | 指定接收文件的 URL。
 name | string | `'file'` | 指定文件域的名称。
 transport | string | `'iframe'` | 指定上传文件的方式，可选值有 `'iframe'`、`'xhr'`。
 multiple | boolean | `true` | 是否允许多选。
+accept | stirng | `''` | 指定服务端可接受的文件类型，例如 `'.jpg,.png'`、`'image/*'`。详细的合法值请参考 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes)。
 
 ### 方法 <small>Methods</small>
 

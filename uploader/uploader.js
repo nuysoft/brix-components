@@ -45,7 +45,8 @@ define(
                 action: '',
                 name: 'file',
                 transport: 'iframe',
-                multiple: true
+                multiple: true,
+                accept: ''
             },
             render: function() {
                 this.$element = $(this.element)
@@ -61,6 +62,7 @@ define(
                     .offset(this.$element.offset())
 
                 if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
+                if (this.options.accept) $relatedElement.prop('accept', this.options.accept)
 
                 var form = $relatedElement[0].form
                 $(form).off('change' + NAMESPACE)
@@ -106,7 +108,6 @@ define(
                     $input.clone(true, true)
                     .attr(TOKEN, tokon())
                     .prop('clientId', this.options.clientId)
-                    .prop('disabled', this.$element.prop('disabled'))
                 )
             },
             transports: {
