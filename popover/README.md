@@ -222,7 +222,7 @@ console.log(instances[0].title())
 * .content()
 * .content( content )
 
-获取或设置浮层的标题。
+获取或设置浮层的内容。
 
 ```js
 var Loader = require('brix/loader')
