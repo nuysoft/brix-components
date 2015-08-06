@@ -138,6 +138,9 @@ define(
             },
             // 点击 minus plus
             _move: function(event /* jshint unused:false */ , unit, dir) {
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) this.data.date = moment().startOf('day')
+
                 // 取消 unlimit 模式
                 this.__unlimit = false
 
