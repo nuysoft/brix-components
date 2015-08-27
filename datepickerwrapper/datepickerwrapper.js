@@ -181,6 +181,12 @@ define(
                     var pickerComponent = Loader.query('components/datepicker', that.$relatedElement)[0]
                         /* jshint unused:false */
                     pickerComponent.on('change.datepicker unchange.datepicker', function(event, date, type) {
+                        // 过滤 timepicker 中的 input 触发的原生 change 事件
+                        if (!date) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                            return
+                        }
                         if (type !== undefined && type !== 'date' && type !== 'time') return
                         if (that.options.typeMap.time && type === 'date') return
 
