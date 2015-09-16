@@ -125,9 +125,9 @@ var instances = Loader.query('components/dialog')
 console.log(instances[0].open())
 ```
 
-#### close()
+#### .close()
 
-* close()
+* .close()
 
 关闭窗口。
 

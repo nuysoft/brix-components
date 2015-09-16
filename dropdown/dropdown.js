@@ -185,6 +185,11 @@ define(
                 this.$element
                     .val(data.value)
 
+                this.$relatedElement
+                    .find('ul.dropdown-menu li:has([value="' + oldValue + '"])').removeClass('active')
+                this.$relatedElement
+                    .find('ul.dropdown-menu li:has([value="' + data.value + '"])').addClass('active')
+
                 this.trigger('change' + NAMESPACE, data)
 
                 this.$element

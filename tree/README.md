@@ -323,14 +323,14 @@ state | string | `'expand'` | 可选。指定树结构的初始状态。可选�
 
 ### 方法 <small>Methods</small>
 
-#### .expand( id )
+#### .expand( [ id ] )
 
 * .expand( id )
 * .expand()
 
 展开节点。
 
-#### .collapse( id )
+#### .collapse( [ id ] )
 
 * .collapse( id )
 * .collapse()
@@ -473,7 +473,7 @@ instances[0].siblings('0')
 
 查找所有节点。
 
-该方法返回一个数组，其中的元素是对象，含有两个属性：`element` 和 `data`，分别表示兄弟节点以及兄弟节点对应的数据：
+该方法返回一个数组，其中的元素是对象，含有两个属性：`element` 和 `data`，分别表示节点以及节点对应的数据：
 
 ```json
 [
@@ -494,7 +494,7 @@ instances[0].siblings('0')
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/tree')
-instances[0].all('0')
+instances[0].all()
 ```
 
 ### 事件 <small>Events</small>

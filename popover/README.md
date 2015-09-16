@@ -191,11 +191,11 @@ var instances = Loader.query('components/popover')
 console.log(instances[0].show())
 ```
 
-#### hide()
+#### .hide()
 
-* hide()
+* .hide()
 
-关闭窗口。
+关闭浮层。
 
 ```js
 var Loader = require('brix/loader')
