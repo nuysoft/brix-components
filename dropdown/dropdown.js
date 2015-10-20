@@ -7,12 +7,14 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
+        './common.js',
         './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
     function(
         $, _,
         Brix, EventManager,
+        CommonDropdown,
         template
     ) {
         /*
@@ -92,7 +94,13 @@ define(
 
         var NAMESPACE = '.dropdown'
 
-        function Dropdown() {}
+        function Dropdown(options) {
+            if (options && options.element) {
+                if ('select' !== options.element.nodeName.toLowerCase()) {
+                    return new CommonDropdown()
+                }
+            }
+        }
 
         _.extend(Dropdown.prototype, Brix.prototype, {
             options: {
