@@ -33,11 +33,36 @@ define(
                 debugger
             })
             dialog.open()
+
+            // 多个浮层
+            var Dialog = require('components/dialog')
+            var _ = require('underscore')
+            var options = {
+                modal: true,
+                singleton: false,
+                top: 400
+            }
+
+            new Dialog(_.extend({
+                content: Math.random(),
+                left: 100
+            }, options)).open()
+
+            new Dialog(_.extend({
+                content: Math.random(),
+                left: 200
+            }, options)).open()
+
+            new Dialog(_.extend({
+                content: Math.random(),
+                left: 300
+            }, options)).open()
          */
 
         var TRANSITION_DURATION = 150
         var EASING = 'swing'
         var NAMESPACE = '.dialog'
+        var DIALOG_OPENED_CACHE = []
 
         function Dialog() {
             // 支持构造函数
@@ -45,7 +70,6 @@ define(
                 this.options = _.extend({}, this.options, arguments[0])
                 this.init()
                 this.render()
-                this.fill()
             }
         }
 
@@ -75,38 +99,55 @@ define(
                 // 支持自定义 CSS 样式
                 if (this.options.css) require('css!' + this.options.css)
 
-                if (this.options.content.indexOf('<') === -1) this.options.content = '<div class="dialog-body">' + this.options.content + '<div>'
+                // 为文本内容自动加上样式 dialog-body
+                if (('' + this.options.content).indexOf('<') === -1) {
+                    this.options.content =
+                        '<div class="dialog-body">' +
+                        this.options.content +
+                        '<div>'
+                }
 
                 return this
             },
             render: function() {
                 this.$manager.delegate(this.$element, this)
-                this._autoHide()
             },
             destroy: function() {
+                // 先关闭，把当前实例从缓存 DIALOG_OPENED_CACHE 中移除
+                this.close()
+
                 var type = 'keyup.dialog_autohide_' + this.clientId
-                $(document.body).off(type)
+                if (!DIALOG_OPENED_CACHE.length) $(document.body).off(type) // 只有当窗口全部关闭后，才能移除
 
                 if (this.$manager) this.$manager.undelegate(this.$element)
                 this.$relatedElement.remove()
             },
             fill: function() {
                 var html = _.template(template)(this.options)
-                this.$relatedElement = $('div.dialog.dialog-singleton')
 
-                if (!this.options.singleton || !this.$relatedElement.length) {
-                    this.$relatedElement = $(html).appendTo(document.body).hide()
-                }
-
+                // 单例模式：共用一个浮层 div.dialog.dialog-singleton
                 if (this.options.singleton) {
-                    this.$relatedElement
-                        .removeClass('dialog-top dialog-bottom dialog-left dialog-right')
-                        .addClass('dialog-' + this.options.placement)
-                        .find('.dialog-close')[
-                            this.options.closable ? 'removeClass' : 'addClass'
-                        ]('hide').end()
-                        .find('.dialog-content').html(this.options.content)
+                    this.$relatedElement = $('div.dialog.dialog-singleton')
+                    if (!this.$relatedElement.length) {
+                        this.$relatedElement = $(html).appendTo(document.body).hide()
+                    }
                 }
+
+                // 非单例模式：初始化
+                if (!this.options.singleton) {
+                    if (!this.$relatedElement || !this.$relatedElement.length) {
+                        this.$relatedElement = $(html).removeClass('dialog-singleton')
+                            .appendTo(document.body).hide()
+                    }
+                }
+
+                this.$relatedElement
+                    .removeClass('dialog-top dialog-bottom dialog-left dialog-right')
+                    .addClass('dialog-' + this.options.placement)
+                    .find('.dialog-close')[
+                        this.options.closable ? 'removeClass' : 'addClass'
+                    ]('hide').end()
+                    .find('.dialog-content').html(this.options.content)
 
                 this.$relatedElement.css({
                     width: this.options.width,
@@ -149,6 +190,11 @@ define(
                     this.$backdropElement.show()
                 }
 
+                this._autoHide()
+
+                // 记录打开的浮层
+                DIALOG_OPENED_CACHE.push(this)
+
                 this.trigger('open' + NAMESPACE)
 
                 return this
@@ -169,9 +215,18 @@ define(
                         }
                     )
 
+                // 从缓存中移除当前实例，包括多次打开的实例
+                DIALOG_OPENED_CACHE = _.without(DIALOG_OPENED_CACHE, this)
+
                 if (this.options.modal) {
-                    $(document.body).removeClass('modal-open')
-                    this.$backdropElement.hide()
+                    // 是否还有模态浮层：只有当前全部模态浮层都关闭后，才能关闭 .dialog-backdrop
+                    var isHasOpenedModal = _.filter(DIALOG_OPENED_CACHE, function(item /*, index*/ ) {
+                        if (item.options.modal) return item
+                    }).length
+                    if (!isHasOpenedModal) {
+                        $(document.body).removeClass('modal-open')
+                        this.$backdropElement.hide()
+                    }
                 }
 
                 this.trigger('close' + NAMESPACE)
@@ -193,7 +248,12 @@ define(
                 var type = 'keyup.dialog_autohide_' + this.clientId
                 $(document.body).off(type)
                     .on(type, function(event) {
-                        if (event.keyCode === 27) that.close()
+                        if (event.keyCode === 27) {
+                            // 优先关闭最后打开的浮层
+                            var dialog = DIALOG_OPENED_CACHE.pop()
+                            if (dialog) dialog.close()
+                            else that.close()
+                        }
                     })
             }
         })
