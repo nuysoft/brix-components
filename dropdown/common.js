@@ -1,4 +1,4 @@
-/* global define, window, document */
+/* global define, document */
 /*
     http://getbootstrap.com/components/#dropdowns
     http://silviomoreto.github.io/bootstrap-select/
@@ -16,8 +16,6 @@ define(
         /*
             非 Select Dropdown
         */
-
-        var NAMESPACE = '.dropdown.common'
 
         function Dropdown() {}
 
