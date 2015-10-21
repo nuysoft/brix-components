@@ -110,6 +110,7 @@ define(
                 return this
             },
             render: function() {
+                this.fill()
                 this.$manager.delegate(this.$element, this)
             },
             destroy: function() {
