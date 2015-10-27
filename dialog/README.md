@@ -22,6 +22,47 @@
     </div>
 </div> -->
 
+<!-- 
+var Dialog = require('components/dialog')
+var content = '\
+    <div class="dialog-header">\
+        <h4 class="dialog-title">abc</h4>\
+    </div>\
+'
+var dialog = new Dialog({
+    content: content,
+    modal: true,
+    left: 100,
+    top: 100
+})
+dialog.on('open.dialog',function(){
+    debugger
+})
+dialog.open()
+
+// 多个浮层
+var Dialog = require('components/dialog')
+var _ = require('underscore')
+var options = {
+    modal: true,
+    singleton: false,
+    left: 0,
+    top: 400
+}
+
+new Dialog(_.extend({}, options, {
+    content: options.left += 100,
+    left: options.left
+}))
+.on('open.dialog', function(event){
+    console.log(event)
+})
+.on('close.dialog', function(event){
+    console.log(event)
+})
+.open()
+ -->
+
 ### 示例 <small>Examples</small>
 
 <style type="text/css">
