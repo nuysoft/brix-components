@@ -33,11 +33,7 @@ define(
         }
         var HOURS = _.range(0, 24)
 
-        function HourPicker(options) {
-            // if (options.simplify) {
-            //     return new SimpleHourPicker()
-            // }
-        }
+        function HourPicker() {}
 
         _.extend(HourPicker.prototype, Brix.prototype, {
             options: {
@@ -84,13 +80,13 @@ define(
                             days = this.options.value.split(
                                 this.options.value.indexOf(',') != -1 ? ',' : ''
                             )
-                            _.each(days, function(item, index) {
+                            _.each(days, function(item /*, index*/ ) {
                                 args[item] = HOURS
                             })
                             break
                         case 'array': // data-value="[1,3,5]"
                             days = this.options.value
-                            _.each(days, function(item, index) {
+                            _.each(days, function(item /*, index*/ ) {
                                 args[item] = HOURS
                             })
                             break
