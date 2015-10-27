@@ -22,6 +22,7 @@ define(
             $(container).on('click', selector, function(event) {
                 _parent($(event.currentTarget), $(event.delegateTarget))
                 _children($(event.currentTarget), $(event.delegateTarget))
+                _siblings($(event.currentTarget), $(event.delegateTarget))
 
                 if (callback) callback(event, linkage.val(container), event.currentTarget)
             })
@@ -29,7 +30,7 @@ define(
 
         linkage.val = function(container, values) {
             if (values) {
-                var checkboxs = $(container).find('input:checkbox').prop('checked', false)
+                var checkboxs = $(container).find('input:checkbox, input:radio').prop('checked', false)
                 _.each(values, function(item /*, index*/ ) {
                     var $target = checkboxs.filter('[value="' + item + '"]').prop('checked', true)
                     _.each($target, function(item /*, index*/ ) {
@@ -41,7 +42,7 @@ define(
             }
 
             values = []
-            var checked = $(container).find('input:checkbox:checked')
+            var checked = $(container).find('input:checkbox:checked, input:radio:checked')
             _.each(checked, function(item /*, index*/ ) {
                 var value = $(item).attr('value')
                 if (value !== undefined && value !== '') values.push(value)
@@ -90,6 +91,17 @@ define(
             $children.prop('checked', checked)
 
             _.each($children, function(item /*, index*/ ) {
+                _children($(item), $container)
+            })
+        }
+
+        function _siblings($target, $container) {
+            if (!$target.is(':radio')) return
+
+            var name = $target.attr('name')
+            var siblings = $('[name="' + name + '"]', $container).not($target)
+            _.each(siblings, function(item /*, index*/ ) {
+                _parent($(item), $container)
                 _children($(item), $container)
             })
         }
