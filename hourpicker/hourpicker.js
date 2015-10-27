@@ -15,11 +15,44 @@ define(
     ) {
 
         var DEBUG = ~location.search.indexOf('debug')
+        var NAMESPACE = '.hourpicker'
+        var DICT = {
+            DEFAULT: [ // 为了保证遍历数序，采用数组
+                [1, '周一'],
+                [2, '周二'],
+                [3, '周三'],
+                [4, '周四'],
+                [5, '周五'],
+                [6, '周六'],
+                [0, '周日']
+            ],
+            GROUPED: [
+                ['12345', '工作日'],
+                ['60', '休息日']
+            ]
+        }
+        var HOURS = _.range(0, 24)
 
-        function HourPicker() {}
+        function HourPicker(options) {
+            // if (options.simplify) {
+            //     return new SimpleHourPicker()
+            // }
+        }
 
         _.extend(HourPicker.prototype, Brix.prototype, {
             options: {
+                simplify: false,
+                /*
+                    正常模式：
+                        data-value="135"
+                        data-value="1,3,5"
+                        data-value="[1,3,5]"
+                        data-value="{1:[0,2,4]}"
+                    简单模式
+                        data-value="[12345，60]"
+                        data-value="{12345:[0,2,4],60:[1,3,5]}"
+                 */
+                value: '',
                 utcOffset: function() {
                     var utcOffset = moment().utcOffset() / 60
                     var abs = Math.abs(utcOffset)
@@ -35,17 +68,50 @@ define(
                 this.$element = $(this.element)
                 this.manager = new EventManager('bx-')
 
-                var html = _.template(template)(this.options)
+                var html = _.template(template)({
+                    utcOffset: this.options.utcOffset,
+                    simplify: this.options.simplify,
+                    DICT: this.options.simplify ? DICT.GROUPED : DICT.DEFAULT,
+                    HOURS: HOURS
+                })
                 this.$element.append(html)
+
+                if (this.options.value) {
+                    var days
+                    var args = {}
+                    switch ($.type(this.options.value)) {
+                        case 'string': // data-value="135" data-value="1,3,5"
+                            days = this.options.value.split(
+                                this.options.value.indexOf(',') != -1 ? ',' : ''
+                            )
+                            _.each(days, function(item, index) {
+                                args[item] = HOURS
+                            })
+                            break
+                        case 'array': // data-value="[1,3,5]"
+                            days = this.options.value
+                            _.each(days, function(item, index) {
+                                args[item] = HOURS
+                            })
+                            break
+                        case 'object': // data-value="{1:[0,2,4]}"
+                            args = this.options.value
+                            break
+                    }
+                    this.val(args)
+                }
 
                 this.manager.delegate(this.$element, this)
 
                 /* jshint unused:true */
-                $('.picker-hours').contents().filter(function(index, element) {
-                    return element.nodeType === 3
-                }).remove()
+                $('.picker-hours', this.$element)
+                    .contents()
+                    .filter(function(index, element) {
+                        return element.nodeType === 3
+                    })
+                    .remove()
 
-                var hours = $('.picker-hour')
+                var hours = $('.picker-hour', this.$element)
                 hours.on('mousedown', function(event) {
                     var $target = $(this)
                     var has = !$target.hasClass('active')
@@ -54,17 +120,17 @@ define(
                     that._syncShortcut()
 
                     var siblings = $(this).siblings()
-                    siblings.on('mouseenter.drag', function(event) {
+                    siblings.on('mouseenter.drag' + NAMESPACE, function(event) {
                         var $target = $(this)
                         $target[has ? 'addClass' : 'removeClass']('active')
                         that._merge()
                         that._syncShortcut()
                         event.preventDefault()
                     })
-                    $(document.body).off('mouseup.drag')
-                        .on('mouseup.drag', function( /*event*/ ) {
-                            siblings.off('mouseenter.drag')
-                            $(document.body).off('mouseup.drag')
+                    $(document.body).off('mouseup.drag' + NAMESPACE)
+                        .on('mouseup.drag' + NAMESPACE, function( /*event*/ ) {
+                            siblings.off('mouseenter.drag' + NAMESPACE)
+                            $(document.body).off('mouseup.drag' + NAMESPACE)
                             if (DEBUG) console.table(that.val())
                         })
                     event.preventDefault()
@@ -85,11 +151,11 @@ define(
                     event = undefined
                 }
 
-                days += ''
-                var hours = _.range(0, 24)
+                // days += ''
+                if (!_.isArray(days)) days = [days]
                 var mapped = {}
                 _.each(days, function(day /*, index*/ ) {
-                    mapped[day] = hours
+                    mapped[day] = HOURS
                 })
                 this.val(mapped)
             },
@@ -99,13 +165,12 @@ define(
                     event = undefined
                 }
 
-                var hours = _.range(0, 24)
                 var tmpDayHours = this.val()[day]
                 if (tmpDayHours.length === 24) this.val(day, [])
-                else this.val(day, hours)
+                else this.val(day, HOURS)
                 if (event) event.preventDefault()
             },
-            apply: function(event, todo, day) {
+            apply: function(event, todo /* to|do|close */ , day) {
                 var that = this
                 var $target = $(event.target)
                 var $relatedElement = $('.apply-dialog', this.$element)
@@ -191,7 +256,7 @@ define(
                 this._syncShortcut()
             },
             _merge: function() {
-                var hours = $('.picker-hour')
+                var hours = $('.picker-hour', this.$element)
                 _.each(hours, function(item /*, index*/ ) {
                     item = $(item)
                     var start = item.find('.picker-hour-start')
@@ -212,6 +277,8 @@ define(
                 })
             },
             _syncShortcut: function() {
+                if (this.options.simplify) return
+
                 var value = this.val()
 
                 function is(days, other) {

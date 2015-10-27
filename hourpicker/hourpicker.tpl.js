@@ -4,8 +4,8 @@ define(function() {
 <div class="hourpicker">
     <div class="apply-dialog">
         <div class="apply-dialog-body">
-            <% for ( var i = 0, days = '一二三四五六日', values="1234560"; i < days.length; i++ ) { %>
-            <label data-value="<%= values[i] %>"><input type="checkbox" name="shortcut" value="<%= values[i] %>"> 周<%= days[i] %></label>
+            <% for ( var i = 0; i < DICT.length; i++ ) { %>
+            <label data-value="<%= DICT[i][0] %>"><input type="checkbox" name="shortcut" value="<%= DICT[i][0] %>"> <%= DICT[i][1] %></label>
             <% } %>
         </div>
         <div class="apply-dialog-footer">
@@ -13,10 +13,10 @@ define(function() {
             <a href="javascript: void(0);" bx-click="apply('close')" class="btn btn-default cancel ml5">取消</a>
         </div>
     </div>
-    <div class="shortcuts">
-        <label bx-click="shortcut('0123456')" class="mr50"><input type="radio" name="shortcut"> 全日程投放</label>
-        <label bx-click="shortcut('12345')" class="mr50"><input type="radio" name="shortcut"> 工作日（周一至周五）投放</label>
-        <label bx-click="shortcut('06')"><input type="radio" name="shortcut"> 休息日（周六、周日）投放</label>
+    <div class="shortcuts <%= simplify ? 'hide' : '' %>">
+        <label bx-click="shortcut([0,1,2,3,4,5,6])" class="mr50"><input type="radio" name="shortcut"> 全日程投放</label>
+        <label bx-click="shortcut([1,2,3,4,5])" class="mr50"><input type="radio" name="shortcut"> 工作日（周一至周五）投放</label>
+        <label bx-click="shortcut([0,6])"><input type="radio" name="shortcut"> 休息日（周六、周日）投放</label>
         <div class="utc">当前排期时间：GMT <%= utcOffset %></div>
     </div>
     <table class="picker-days">
@@ -34,10 +34,10 @@ define(function() {
             </tr>
         </thead>
         <tbody>
-            <% for ( var i = 0, days = '一二三四五六日', values="1234560"; i < days.length; i++ ) { %>
-            <tr class="picker-day" data-value="<%= values[i] %>">
+            <% for ( var i = 0; i < DICT.length; i++ ) { %>
+            <tr class="picker-day" data-value="<%= DICT[i][0] %>">
                 <td class="picker-label">
-                    <span bx-click="toggle(<%= values[i] %>)">周<%= days[i] %></span>
+                    <span bx-click="toggle(<%= DICT[i][0] %>)"><%= DICT[i][1] %></span>
                 </td>
                 <td class="">
                     <div class="picker-hours">
@@ -62,7 +62,7 @@ define(function() {
                 </td>
                 <td align="center">
                     <div class="operation">
-                        <a bx-click="apply('to', <%= values[i] %>)" href="javascript: void(0);">复制到</a>
+                        <a bx-click="apply('to', <%= DICT[i][0] %>)" href="javascript: void(0);">复制到</a>
                     </div>
                 </td>
             </tr>
