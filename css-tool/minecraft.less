@@ -1,0 +1,1887 @@
+/*
+    替代 mm.less, tool.less
+ */
+
+// ----------------------------------------
+// https://github.com/seven-phases-max/less.curious
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n)  {
+    .for((@i + (@n - @i) / abs(@n - @i)), @n);
+}
+.for(@array)   when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+.for-impl_(@i) when (@i > 0)    {.-each(extract(@array, @i))}
+
+// Border Radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+// Box-Sizeing
+.box-sizing(@sizing) {
+  -webkit-box-sizing: @sizing;
+     -moz-box-sizing: @sizing;
+          box-sizing: @sizing;
+}
+
+
+// Opacity
+.opacity(@opacity) {
+    opacity: @opacity / 100;
+    filter: ~"alpha(opacity=@{opacity})";
+}
+
+// ----------------------------------------
+// 字体
+// ----------------------------------------
+
+@font-face {
+    font-family: 'brixfont';
+    src: url('//at.alicdn.com/t/font_1430140325_0320485.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1430140325_0320485.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1430140325_0320485.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1430140325_0320485.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1430140325_0320485.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.brixfont {
+    font-family: "brixfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: 'specfont';
+    src: url('//at.alicdn.com/t/font_1438244124_9732695.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1438244124_9732695.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1438244124_9732695.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1438244124_9732695.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1438244124_9732695.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.specfont {
+    font-family: "specfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-minecraft:before { content: "\e631"; }
+.icon-xialakuang:before { content: "\e623"; }
+
+@font-face {
+    font-family: 'zsfont';
+    src: url('//at.alicdn.com/t/font_1445825114_7257817.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1445825114_7257817.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1445825114_7257817.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1445825114_7257817.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1445825114_7257817.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.zsfont {
+    font-family: "zsfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: 'productfont';
+    src: url('//at.alicdn.com/t/font_1438848723_123487.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1438848723_123487.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1438848723_123487.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1438848723_123487.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1438848723_123487.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.productfont {
+    font-family: "productfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+// ----------------------------------------
+// 颜色
+// ----------------------------------------
+
+// 文字灰度
+.color-3        { color: #333; }
+.color-9        { color: #999; }
+.color-c        { color: #CCC; }
+.color-f        { color: #FFF; }
+
+// 色块灰度
+.bg-c           { background-color: #CCCCCC; }
+.bg-e6          { background-color: #E6E6E6; }
+.bg-f0          { background-color: #F0F0F0; }
+.bg-f5          { background-color: #F5F5F5; }
+.bg-fa          { background-color: #FAFAFA; }
+.bg-f           { background-color: #FFFFFF; }
+
+// MineCraft
+@minecraft-brand            : #FF6600;
+@minecraft-brand-hover      : #FC4218;
+@minecraft-nav-bg           : #423F48;
+@minecraft-table-hover      : #FAF3EB;
+.minecraft-brand            { color: @minecraft-brand; }
+.minecraft-brand-hover      { color: @minecraft-brand-hover; }
+.minecraft-nav-bg           { background-color: @minecraft-nav-bg; }
+.minecraft-table-hover      { color: @minecraft-table-hover; }
+.bg-minecraft-brand         { background-color: @minecraft-brand; }
+.bg-minecraft-brand-hover   { background-color: @minecraft-brand-hover; }
+.bg-minecraft-nav           { background-color: @minecraft-nav-bg; }
+.bg-minecraft-table-hover   { background-color: @minecraft-table-hover; }
+
+// 淘宝联盟
+@pub-brand                  : #FA6419;
+@pub-brand-hover            : #E65C17;
+@pub-nav-bg                 : #443F3C;
+@pub-table-hover            : #FAF1ED;
+.pub-brand                  { color: @pub-brand; }
+.pub-brand-hover            { color: @pub-brand-hover; }
+.pub-nav-bg                 { background-color: @pub-nav-bg; }
+.pub-table-hover            { color: @pub-table-hover; }
+.bg-pub-brand               { background-color: @pub-brand; }
+.bg-pub-brand-hover         { background-color: @pub-brand-hover; }
+.bg-pub-nav                 { background-color: @pub-nav-bg; }
+.bg-pub-table-hover         { background-color: @pub-table-hover; }
+
+// 直通车
+@zhitongche-brand           : #F78400;
+@zhitongche-brand-hover     : #E37900;
+@zhitongche-nav-bg          : #42403C;
+@zhitongche-table-hover     : #FAF3EB;
+.zhitongche-brand           { color: @zhitongche-brand; }
+.zhitongche-brand-hover     { color: @zhitongche-brand-hover; }
+.zhitongche-nav-bg          { background-color: @zhitongche-nav-bg; }
+.zhitongche-table-hover     { color: @zhitongche-table-hover; }
+.bg-zhitongche-brand        { background-color: @zhitongche-brand; }
+.bg-zhitongche-brand-hover  { background-color: @zhitongche-brand-hover; }
+.bg-zhitongche-nav          { background-color: @zhitongche-nav-bg; }
+.bg-zhitongche-table-hover  { background-color: @zhitongche-table-hover; }
+
+// Tanx
+@tanx-brand                 : #50B347;
+@tanx-brand-hover           : #479E3F;
+@tanx-nav-bg                : #3C433C;
+@tanx-table-hover           : #F0F6EF;
+.tanx-brand                 { color: @tanx-brand; }
+.tanx-brand-hover           { color: @tanx-brand-hover; }
+.tanx-nav-bg                { background-color: @tanx-nav-bg; }
+.tanx-table-hover           { color: @tanx-table-hover; }
+.bg-tanx-brand              { background-color: @tanx-brand; }
+.bg-tanx-brand-hover        { background-color: @tanx-brand-hover; }
+.bg-tanx-nav                { background-color: @tanx-nav-bg; }
+.bg-tanx-table-hover        { background-color: @tanx-table-hover; }
+
+// 钻石展位
+@zuanshi-brand              : #4A7BF7;
+@zuanshi-brand-hover        : #4471E3;
+@zuanshi-nav-bg             : #3C404A;
+@zuanshi-table-hover        : #F0F3FA;
+.zuanshi-brand              { color: @zuanshi-brand; }
+.zuanshi-brand-hover        { color: @zuanshi-brand-hover; }
+.zuanshi-nav-bg             { background-color: @zuanshi-nav-bg; }
+.zuanshi-table-hover        { color: @zuanshi-table-hover; }
+.bg-zuanshi-brand           { background-color: @zuanshi-brand; }
+.bg-zuanshi-brand-hover     { background-color: @zuanshi-brand-hover; }
+.bg-zuanshi-nav             { background-color: @zuanshi-nav-bg; }
+.bg-zuanshi-table-hover     { background-color: @zuanshi-table-hover; }
+
+// 易传媒
+@adchina-brand              : #6363E6;
+@adchina-brand-hover        : #5A5AD1;
+@adchina-nav-bg             : #3F3F49;
+@adchina-table-hover        : #F1F1F9;
+.adchina-brand              { color: @adchina-brand; }
+.adchina-brand-hover        { color: @adchina-brand-hover; }
+.adchina-nav-bg             { background-color: @adchina-nav-bg; }
+.adchina-table-hover        { color: @adchina-table-hover; }
+.bg-adchina-brand           { background-color: @adchina-brand; }
+.bg-adchina-brand-hover     { background-color: @adchina-brand-hover; }
+.bg-adchina-nav             { background-color: @adchina-nav-bg; }
+.bg-adchina-table-hover     { background-color: @adchina-table-hover; }
+
+// DMP
+@dmp-brand                  : #895AC7;
+@dmp-brand-hover            : #7B50B3;
+@dmp-nav-bg                 : #47414E;
+@dmp-table-hover            : #F1EDF6;
+.dmp-brand                  { color: @dmp-brand; }
+.dmp-brand-hover            { color: @dmp-brand-hover; }
+.dmp-nav-bg                 { background-color: @dmp-nav-bg; }
+.dmp-table-hover            { color: @dmp-table-hover; }
+.bg-dmp-brand               { background-color: @dmp-brand; }
+.bg-dmp-brand-hover         { background-color: @dmp-brand-hover; }
+.bg-dmp-nav                 { background-color: @dmp-nav-bg; }
+.bg-dmp-table-hover         { background-color: @dmp-table-hover; }
+
+
+// ----------------------------------------
+// 字体
+// ----------------------------------------
+
+.fontsize- {
+    .for(12 14 16 18 20 22 24 26 28 30 32); .-each(@px) {
+        &@{px} {
+            font-size: @px * 1px;
+        }
+    }
+}
+
+body {
+    font-size: 12px;
+    font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-num {
+    font-family: "Tahoma";
+}
+
+// ----------------------------------------
+// 行距 Line Height
+// ----------------------------------------
+
+.ml {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            margin-left: @px * 1px;
+        }
+    }
+}
+.mr {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            margin-right: @px * 1px;
+        }
+    }
+}
+.mt {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            margin-top: @px * 1px;
+        }
+    }
+}
+.mb {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            margin-bottom: @px * 1px;
+        }
+    }
+}
+// ----------------------------------------
+.pl {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            padding-left: @px * 1px;
+        }
+    }
+}
+.pr {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            padding-right: @px * 1px;
+        }
+    }
+}
+.pt {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            padding-top: @px * 1px;
+        }
+    }
+}
+.pb {
+    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+        &@{px} {
+            padding-bottom: @px * 1px;
+        }
+    }
+}
+
+.w {
+    .for(100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270 280 290 300); .-each(@px) {
+        &@{px} {
+            width: @px * 1px;
+        }
+    }
+}
+
+
+// ----------------------------------------
+// 栅格 @一丝
+// ----------------------------------------
+
+@mm-grid-columns: 64;
+.mm-row {
+    *zoom: 1;
+    :after {
+        content: "\200B";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+
+    .col {
+        float: left;
+        _display: inline;
+        position: relative;
+        min-height: 1px;
+    }
+
+    .col {
+        .for(@mm-grid-columns); .-each(@i) {
+            &-@{i} { 
+                width: (@i / @mm-grid-columns * 100%);
+            }
+        }
+    }
+    .offset {
+        .for(@mm-grid-columns); .-each(@i) {
+            &-@{i} { 
+                margin-left: (@i / @mm-grid-columns * 100%);
+            }
+        }
+    }
+}
+
+// ----------------------------------------
+// 栅格
+// ----------------------------------------
+
+// https://github.com/chrisnager/ungrid
+@media (min-width: 30em) {
+    .ungrid-row { 
+        width: 100%; 
+        display: table; 
+        table-layout: fixed; 
+
+        > .col {
+            display: table-cell; 
+        }
+    }
+}
+
+// ----------------------------------------
+// 动画 Animation
+// ----------------------------------------
+
+* {
+  transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}
+
+
+// ----------------------------------------
+// 变量 TODO
+// ----------------------------------------
+
+@brand: #4d7fff;
+@brand-hover: #4776ed;
+@fafafa: #fafafa;
+@f0f0f0: #f0f0f0;
+@e6e6e6: #e6e6e6;
+@green: #51A300;
+@red: #A40100;
+@gray: #999;
+
+.color-primary  { color: @minecraft-brand; }
+.color-success  { color: @green; }
+.color-info     { color: @f0f0f0; }
+.color-warning  { color: @red; }
+.color-danger   { color: @red; }
+.color-gray   { color: @gray; }
+
+.bg-primary     { background-color: @minecraft-brand; }
+.bg-success     { background-color: @green; }
+.bg-info        { background-color: @f0f0f0; }
+.bg-warning     { background-color: @red; }
+.bg-danger      { background-color: @red; }
+.bg-gray        { background-color: @gray; }
+
+.color-help     { color: #999999;}
+.color-info     { color: #999999;}
+.color-warning  { color: #FFB400;}
+.color-danger   { color: #A62A22;}
+.color-success  { color: #6CB12A;}
+.color-fail     { color: #A62A22;}
+
+// ----------------------------------------
+// 按钮 Button
+// ----------------------------------------
+
+.btn {
+    color: #333;
+    height: 32px;
+    padding: 6px 20px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #e6e6e6;
+
+    &:hover {
+        background-color: #ccc;
+        border-color: #e6e6e6;
+    }
+
+    &, 
+    &:focus, &.focus, 
+    &:active, &.active, 
+    &:active:focus {
+        font-size: 12px;
+        outline: none;
+        box-shadow: none;
+    }
+
+    &.btn-brand {
+        color: #fff;
+        border: 1px solid @minecraft-brand;
+        background-color: @minecraft-brand;
+        &:hover, &.hover, 
+        &:focus, &.focus, 
+        &:active, &.active {
+            color: #fff;
+            border: 1px solid @minecraft-brand;
+            background-color: @minecraft-brand-hover;
+        }
+
+        border: 0;
+        background-color: @minecraft-brand;
+        &:hover, &.hover,
+        &:focus, &.focus,
+        &:active, &.active {
+            border: 0;
+            color: #fff;
+            background-color: @minecraft-brand-hover;
+        }
+    }
+    &.btn-disabled {
+        color: #333;
+        background-color: #e6e6e6;
+        border: 1px solid transparent;
+
+        border: 0;
+        cursor: not-allowed;
+        color: #CCC;
+    }
+    &.btn-progress {
+        position: relative;
+        .btn-progress-bar {
+            position: absolute;
+            height: 32px;
+            width: 50%;
+            top: 0px;
+            left: 0px;
+            border-radius: 4px 0px 0px 4px;
+            background-color: #cccccc;
+        }
+        span {
+            position: relative;
+        }
+        &:hover {
+            background-color: #e6e6e6;
+        }
+    }
+    &.btn-brand.btn-progress {
+        .btn-progress-bar {
+            background-color: @minecraft-brand-hover;
+        }
+        &:hover {
+            background-color: @minecraft-brand;
+        }
+    }
+
+    &.btn-bounce {
+        .one, .two, .three {
+            display: inline-block;
+            margin: auto 5px;
+            border-radius: 100%;
+            width: 5px;
+            height: 5px;
+            background-color: #FFF;
+        }
+    }
+}
+
+a {
+    color: @minecraft-brand;
+    text-decoration: none;
+    &:hover, &:focus {
+        color: @minecraft-brand-hover;
+    }
+    &, &:hover, &:focus, &:active, &:visited {
+        outline: 0;
+        text-decoration: none;
+    }
+}
+
+// ----------------------------------------
+// 单选按钮 Radio
+// 复选框 Checkbox
+// ----------------------------------------
+
+input[type="radio"], 
+input[type="checkbox"] {
+    margin-top: -2px;
+    outline: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+label {
+    font-weight: normal;
+    margin-right: 40px;
+    margin-bottom: 0;
+    padding: 9px 0;
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-right: 10px;
+        &:checked:after {
+            background-color: @minecraft-brand;
+        }
+        &[disabled]:after {
+            background-color: #ccc;
+        }
+        &[disabled]:hover {
+            border-color: #E6E6E6;
+        }
+    }
+    p.desc {
+        color: #999;
+        padding-left: 25px;
+        margin-bottom: 0px;
+    }
+    &.disabled {
+        color: #999;
+        cursor: not-allowed;
+    }
+}
+
+ul.checklist {
+    list-style: none;
+    > li {
+        margin-bottom: 10px;
+    }
+    ul.checklist {
+        padding-left: 25px;
+    }
+}
+ul.checklist-linear {
+    list-style: none;
+    > li {
+        float: left;
+    }
+}
+
+
+// ----------------------------------------
+// 下拉框 Dropdown
+// ----------------------------------------
+
+body .dropdown {
+    min-width: 140px;
+    .dropdown-toggle {
+        width: 100%;
+        height: 32px;
+        padding: 6px 12px;
+        border: 1px solid #E6E6E6;
+        border-radius: 4px;
+        color: #999;
+        text-align: left;
+        background-color: transparent;
+        &:hover {
+            border-color: #CCC;
+        }
+        .dropdown-toggle-label {
+            display: inline-block;
+            text-align: left;
+        }
+        .caret_brixfont {
+            float: right;
+            margin-left: 10px;
+        }
+    }
+    &.open .dropdown-toggle {
+        &.btn-default {
+            border-color: #CCC;
+            color: #333;        
+        }
+    }
+    .dropdown-menu {
+        margin-top: 10px;
+        box-shadow: none;
+        border: 1px solid #e6e6e6;
+        padding: 10px 0;
+        font-size: 12px;
+        min-width: 100px;
+        max-height: 270px;
+        overflow: auto;
+        > li {
+            padding: 4px 10px;
+            > a {
+                padding: 3px 10px;
+                &:hover {
+                    background-color: #f0f0f0;
+                    border-radius: 4px;
+                }
+            }
+            &.active {
+                a,
+                a:hover,
+                a:focus {
+                    border-radius: 4px;
+                    color: white;
+                    background-color: @minecraft-brand;
+                }
+            }
+            &.divider {
+                padding: 0;
+            }
+        }
+    }
+}
+
+body .dropdown {
+    min-width: 190px;
+    ul.dropdown-menu {
+        width: 100%;
+        padding-right: 10px;
+        > li {
+            > a {
+                position: relative;
+                padding: 4px 10px;
+                width: 100%;
+            }
+            &.active {
+                > a,
+                > a:hover,
+                > a:focus {
+                    background-color: @minecraft-brand;
+                }
+            }
+            &.dropdown-header {
+                color: #999;
+                padding-left: 20px;
+                & + li {
+                    > a {
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+    > .dropdown-menu-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 4px;
+        background-color: white;
+        z-index: 1001;
+        display: none;
+        > .searchbox {
+            label {
+                margin-bottom: 10px;
+                padding: 0;
+            }
+        }
+        > ul.dropdown-menu {
+            display: block;
+            position: static;
+            margin-top: 0px;
+            padding-top: 0px;
+            border: none;
+            > li {
+                padding: 4px 10px 4px 0;
+            }
+        }
+    }
+    &.open {
+        > .dropdown-menu-wrapper {
+            display: block;
+        }
+    }
+
+    &.dropdown-popover {
+        width: 200px;
+        .dropdown-toggle {
+            padding-right: 25px;
+            .dropdown-toggle-label {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .caret_custom {
+                position: absolute;
+                right: 12px;
+            }
+        }
+    }
+    &.dropdown-ellipsis {
+        ul.dropdown-menu {
+            > li {
+                > a {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
+
+
+// ----------------------------------------
+// 输入框 Input
+// 文本框 Textarea
+// ----------------------------------------
+
+input, .input, 
+textarea, .textarea,
+.form-control {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    font-size: 12px;
+    padding: 6px 9px;
+    color: #333;
+    border: 1px solid #e6e6e6;
+    background-color: white;
+
+    .border-radius(4px);
+    .box-sizing(border-box);
+    .box-shadow(none);
+    .transition(none);
+
+    &:hover {
+        border-color: #ccc;
+        color: #333;
+    }
+    &:focus {
+        border-color: @minecraft-brand;
+        color: #333;
+        outline: none;
+        .box-shadow(none);
+    }
+    &::-moz-placeholder,
+    &::-ms-input-placeholder,
+    &::-webkit-input-placeholder {
+        color: #999;
+    }
+
+    &[disabled], &[readonly] {
+        border-color: #e6e6e6;
+        cursor: not-allowed;
+        background-color: #fafafa;
+        color: #ccc;
+    }
+}
+
+textarea, .textarea,
+textarea.form-control, .textarea.form-control {
+    height: auto;
+}
+
+.error {
+    input, input:focus, input:hover, 
+    textarea, textarea:focus, textarea:hover, 
+    button, button:focus, button:hover{
+        border-color: @red;
+        .box-shadow(none);
+    }
+}
+
+input.error, input.input-error, input.parsley-error,
+textarea.error, textarea.input-error, textarea.parsley-error,
+button.error, button.input-error, button.parsley-error {
+    color: #333;
+    background-color: white;
+    border-color: @red;
+    border-color: @red;
+    .box-shadow(none);
+}
+
+.parsley-errors-list {
+    color: @red;
+}
+
+.parsley-errors-list {
+    list-style: none;
+    padding-left: 9px;
+    color: #999;
+    margin-top: 9px;
+    margin-bottom: 5px;
+}
+.parsley-errors-list + .parsley-errors-list {
+    margin-top: 5px;
+}
+
+.searchbox {
+    position: relative;
+    .brixfont {
+        position: absolute;
+        left: 8px;
+        top: 4px;
+        font-size: 18px;
+        color: #999;
+    }
+    input {
+        padding-left: 30px;
+    }
+}
+
+
+// ----------------------------------------
+// 日历 Calendar
+// ----------------------------------------
+
+.datepickerwrapper-trigger {
+    cursor: pointer;
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    padding: 6px 12px;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    color: #999;
+    font-size: 12px;
+    .brixfont {
+        float: right;
+        margin-left: 10px;
+        font-size: 14px;
+        &.up {
+            display: none;
+        }
+        &.down {
+            display: block;
+        }
+    }
+    &.datepickerwrapper-open {
+        border-color: #CCC;
+        color: #333;
+        .brixfont{
+            &.up {
+                display: block;
+            }
+            &.down {
+                display: none;
+            }
+        }
+    }
+}
+body .datepickerwrapper {
+    border: 1px solid #E6E6E6!important;
+    border-radius: 4px!important;
+    box-shadow: none!important;
+    padding: 0px;
+    margin-top: 10px;
+    .datepickerwrapper-shortcuts {
+        padding: 0 10px;
+        margin-bottom: 15px;
+        .datepickerwrapper-shortcuts-body {
+            width: 240px;
+            span {
+                height: 24px;
+                border-radius: 4px;
+                margin: 0px 10px 10px 0px;
+                width: 70px;
+                padding: 4px;
+                &.active {
+                    background: @minecraft-brand;
+                }
+            }
+        }
+    }
+    .datepickerwrapper-inputs {
+        padding: 0 10px;
+        margin-bottom: 15px;
+        .datepickerwrapper-inputs-body {
+            input {
+                background-color: #F0F0F0;
+                border: 0;
+                box-shadow: none;
+                font-size: 12px;
+                height: 24px;
+                width: 110px;
+                text-align: center;
+            }
+            &.time input {
+                width: 145px;
+            }
+        }
+    }
+    .datepickerwrapper-pickers {
+        margin-top: 10px;
+    }
+    .datepickerwrapper-footer {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #E6E6E6;
+        .btn {
+            height: 24px;
+            font-size: 12px;
+            padding: 4px 14px;
+            font-weight: normal;
+            border: 0;
+            &.submit {
+                color: #FFF;
+                background-color: @minecraft-brand;
+                &:hover {
+                    background-color: @minecraft-brand-hover;
+                }
+            }
+            &.cancel {
+                background-color: #F0F0F0;
+                &:hover {
+                    background-color: #E6E6E6;
+                }
+            }
+        }
+    }
+}
+
+body .datepicker-container {
+    border: 1px solid #e6e6e6;
+    border-radius: 4px!important;
+    box-shadow: none!important;
+    padding: 0px;
+    > .picker-group {
+        padding: 0px;
+        .picker-header {
+            font-size: 12px;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+            padding: 0 15px;
+            border-bottom: 1px solid #e6e6e6;
+            margin-bottom: 0px;
+            .minus, .plus {
+                padding: 8px 0px;
+                color: #999;
+                &:hover {
+                    color: @minecraft-brand;
+                }
+                .brixfont {
+                    font-size: 12px;
+                }
+            }
+            h4 {
+                font-size: 12px;
+                padding: 5px 10px;
+                border-radius: 4px;
+                height: 24px;
+            }
+        }
+        .picker-body {
+            padding: 0 0 10px 0;
+            width: 258px;
+            .datepicker-body-description {
+                color: #999;
+                background-color: #fafafa;
+                padding: 0 10px;
+            }
+            .datepicker-body-value {
+                padding: 0 10px;
+            }
+
+            &, .datepicker-body-value {
+                span.active {
+                    color: white;
+                    background-color: @minecraft-brand;
+                }
+            }
+        }
+        &.timepicker {
+            width: 100%;
+            padding: 10px;
+            .timepicker-body {
+                .timepicker-group {
+                    input {
+
+                    }
+                    button.time-minus,
+                    button.time-plus {
+                        width: 28px;
+                    }
+                }
+                .timepicker-spliter {
+
+                }
+            }
+            .timepicker-footer {
+                .timepicker-handelr {
+                    .btn {
+                        &.submit {
+                            color: #FFF;
+                            background-color: @minecraft-brand;
+                            &:hover {
+                                background-color: @minecraft-brand-hover;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.picker-footer {
+            padding: 6px 0;
+        }
+    }
+}
+
+.datepickerwrapper {
+    .datepickerwrapper-shortcuts {
+        .datepickerwrapper-shortcuts-body {
+            .shortcut {
+                &.active {
+                    background-color: @minecraft-brand;
+                }
+            }
+        }
+    }
+    .datepickerwrapper-inputs {
+
+    }
+    .datepickerwrapper-pickers {
+
+    }
+    .datepickerwrapper-footer {
+        .btn.submit {
+            background-color: @minecraft-brand;
+            &:hover {
+                background-color: @minecraft-brand-hover;
+            }
+        }
+    }
+    .picker {
+        .datepicker-container {
+            .picker-group {
+                .picker-body {
+                    .active {
+                        background-color: @minecraft-brand;
+                    }
+                }
+            }
+        }
+    }
+    &.single {
+        border: none!important;
+    }
+}
+
+// ----------------------------------------
+// 面包屑 Breadcrumb
+// ----------------------------------------
+
+ol.breadcrumb {
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 20px;
+    background-color: transparent;
+    > li {
+        > a {
+            color: #999;
+            &:hover {
+                color: @minecraft-brand;
+            }
+        }
+        &.active {
+            > a {
+                color: #333;
+                &:hover {
+                    color: @minecraft-brand;
+                }
+            }
+        }
+        & + li:before {
+            padding: 0 5px 0 3px;
+            color: #999;
+            content: ">";
+        }
+
+        .dropdown {
+            min-width: inherit;
+            .dropdown-toggle {
+                border-color: transparent;
+                &:hover {
+                    border-color: #CCC;
+                }
+            }
+        }
+    }
+}
+
+// ----------------------------------------
+// 翻页器 Pagination
+// ----------------------------------------
+
+body .paginationwrapper {
+    background-color: #FAFAFA;
+    padding-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    .pagination-statistics {
+        select {
+            display: none;
+        }
+        .dropdown {
+            min-width: initial;
+        }
+    }
+    ul.pagination {
+        > li {
+            > a, > span {
+                color: @minecraft-brand;
+                border: none;
+                border-radius: 4px;
+                background-color: transparent;
+                &:hover {
+                    color: @minecraft-brand-hover;
+                }
+            }
+            &.active {
+                > a, > span {
+                    color: #FFF;
+                    background-color: @minecraft-brand;
+                    &:hover {
+                        background-color: @minecraft-brand-hover;
+                    }
+                }
+            }
+            &.disabled {
+                > a, > span {
+                    &, &:hover {
+                        color: #999;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ----------------------------------------
+// 搜索框 SearchBox
+// ----------------------------------------
+
+.searchbox {
+    display: inline-block;
+    label {
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+    }
+    span.brixfont {
+        color: #CCC;
+    }
+    &.searchbox-simplify {
+        input {
+            padding-left: 22px;
+            width: 0;
+            &:focus {
+                padding-left: 30px;
+                width: auto;
+            }
+        }
+        &.open {
+            input {
+                padding-left: 30px;
+                width: auto;
+            }
+        }
+        // &:hover {
+        //     input {
+        //         padding-left: 30px;
+        //         width: auto;
+        //     }
+        // }
+    }
+}
+
+.input-group-wrapper {
+    .input-group {
+        border: 1px solid #FF6600;
+        border-radius: 4px;
+        .input-group-btn {
+            > .btn {
+                border-width: 0;
+                width: initial;
+                &.bg-brand {
+                    border-radius: 0;
+                    background-color: #FF6600;
+                    color: #FFF;
+                }
+            }
+            .dropdown {
+                min-width: 90px;
+                .dropdown-toggle {
+                    border-radius: 4px 0 0 4px;
+                    border-width: 0;
+                    background-color: #F0F0F0;
+                }
+            }
+        }
+        .input-group-input {
+            position: relative;
+            display: table-cell;
+            input {
+                border-width: 0;
+            }
+            .dropdown.suggest {
+                min-width: 100%;
+                width: 100%;
+                .dropdown-menu {
+                    width: 100%;
+                }
+            }
+        }
+        
+    }
+    .hots {
+        padding-left: 10px;
+        a {
+            margin-right: 10px;
+            color: #999;
+            &:hover {
+                color: @minecraft-brand;
+            }
+        }
+    }
+}
+.bs-example-searchbox-2 {
+    .input-group-tab {
+        padding-left: 10px;
+        .btn {
+            height: 24px;
+            line-height: 0;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+            background-color: transparent;
+            &:hover {
+                background-color: #E6E6E6;
+            }
+            &.active {
+                background-color: #FF6600;
+                color: #FFF;
+            }
+        }
+    }
+    .input-group {
+        border: 1px solid #FF6600;
+        border-radius: 4px;
+        .input-group-btn {
+            > .btn {
+                border-width: 0;
+                width: initial;
+                &.bg-brand {
+                    border-radius: 0;
+                    background-color: #FF6600;
+                    color: #FFF;
+                }
+            }
+        }
+        .input-group-input {
+            position: relative;
+            display: table-cell;
+            input {
+                border-width: 0;
+            }
+            .dropdown.suggest {
+                width: 100%;
+                .dropdown-menu {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+// ----------------------------------------
+// 就地编辑 Editable
+// ----------------------------------------
+
+.suggestwrapper {
+    display: inline-block;
+    position: relative;
+    width: 190px;
+    input {
+        width: 100%;
+    }
+    .suggest.dropdown {
+        width: 100%;
+        .dropdown-menu {
+            width: 100%;
+        }
+    }
+}
+
+table {
+    tbody {
+        tr {
+            td {
+                .editable-content {
+                    overflow: hidden;
+                    display: inline-block;
+                    max-width: 80%;
+                    text-overflow: ellipsis;
+                }
+                .editable-toggle {
+                    position: absolute;
+                    margin-left: 3px;
+                    margin-top: -2px;
+                    display: none;
+                }
+            }
+            &:hover {
+                .editable-toggle {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+// ----------------------------------------
+// 通用信息 Message
+// ----------------------------------------
+
+.contextual-message {
+    padding: 5px 15px;
+    border-radius: 4px;
+    .glyph {
+        margin-right: 15px;
+    }
+}
+
+.mm-message {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid @minecraft-brand;
+    background-color: #FFEFE6;
+    padding: 7px 14px;
+}
+
+.mm-message-overlay {
+    background-color: #FFEFE6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 7px 40px;
+    color: @red
+}
+.mm-message-top {
+    background-color: #FFEFE6;
+    width: 100%;
+    padding: 7px 40px;
+    color: @red;
+    text-align: center;
+}
+
+
+// ----------------------------------------
+// 表格 Table
+// ----------------------------------------
+
+body .table {
+    thead {
+        tr, tr.active {
+            th {
+                color: #999;
+                font-weight: normal;
+                height: 60px;
+                vertical-align: middle;
+                padding: 0 8px 0 14px;
+                white-space: nowrap;
+                background-color: #fafafa;
+                border: none;
+                &.stable {
+                    background-color: #f0f0f0;
+                }
+            }
+        }
+    }
+    tbody tr td {
+        color: #333;
+        height: 60px;
+        max-height: 90px;
+        vertical-align: middle;
+        padding: 0 8px 0 14px;
+        border-top: none;
+        border-bottom: 1px solid #e6e6e6;
+    }
+    tbody tr.active td {
+        background-color: transparent;
+    }
+    tbody tr:hover {
+        background-color: #FAF3EB;
+    }
+    tbody tr.active:hover td {
+        background-color: #FAF3EB;
+    }
+    &.table-bordered {
+        thead tr th {
+            border: 1px solid #e6e6e6;
+        }
+    }
+    tr:hover .operation {
+        visibility: hidden;
+    }
+    tr:hover > td > .operation {
+        visibility: visible;
+    }
+
+    tbody tr {
+        td.sub-toggle {
+            .brixfont {
+                cursor: pointer;
+                display: none;
+                &.plus {
+                    display: block;
+                }
+            }
+        }
+        td.sub-toggle.open {
+            .brixfont {
+                display: none;
+                &.minus {
+                    display: block;
+                }
+            }
+        }
+    }
+    tbody tr.sub {
+        display: none;
+        background-color: transparent!important;
+
+        > td {
+            table.table {
+                margin-bottom: -1px;
+            }
+        }
+    }
+}
+
+body .table {
+    thead {
+        tr {
+            th {
+                height: 60px;
+                padding: 0 8px;
+                background-color: #fafafa;
+                color: #999;
+                font-weight: 400;
+                vertical-align: middle;
+                border: 0;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                padding: 21px 8px;
+                min-height: 60px;
+                max-height: 90px;
+                color: #333;
+                border-top: 0;
+                border-bottom: 1px solid #e6e6e6;
+            }
+        }
+    } 
+    .more {
+        .content {
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+    }
+}
+
+body .table {
+    tbody {
+        tr {
+            td {
+                .operation {
+                    
+                    // visibility: visible;
+                    .btn {
+                        padding: 5px 11px;
+                        height: 26px;
+                    }
+                    .btn-dropdown {
+                        display: inline-block;
+                        position: relative;
+                        .btn-dropdown-toggle {
+                            .down {
+                                font-size: 12px;
+                                display: inline-block;
+                            }
+                            .up {
+                                font-size: 12px;
+                                display: none;
+                            }
+                            &:hover {
+                                background-color: @minecraft-brand;
+                                color: white;
+                            }
+                        }
+                        .btn-dropdown-content {
+                            display: none;
+                            position: absolute;
+                            right: 0;
+                            top: 100%;
+                            border: 1px solid #e6e6e6;
+                            border-radius: 4px;
+                            background-color: white;
+                            padding: 20px 10px 10px 10px;
+                            box-shadow: none;
+                            margin-top: 10px;
+                            z-index: 1;
+                        }
+                        &.open {
+                            .btn-dropdown-toggle {
+                                background-color: @minecraft-brand;
+                                color: white;
+                            }
+                            .btn-dropdown-content {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body .column-scroll-arrow {
+    background-color: #CCC;
+    transition: none;
+    &.hover,
+    &:hover {
+        background-color: @minecraft-brand;
+    }
+}
+
+
+// ----------------------------------------
+// 页脚 Footer
+// ----------------------------------------
+
+
+// ----------------------------------------
+// 进度条 Progress
+// ----------------------------------------
+
+.btn-progress-wrapper {
+    display: inline-block;
+}
+
+// ----------------------------------------
+// 字段控制器 Field
+// ----------------------------------------
+
+.dialog.column-priority {
+    margin-top: 10px;
+    .dialog-content {
+        .dialog-header {
+            &.row {
+                margin: 0;
+                .col-xs-8, .col-xs-4 {
+                    padding: 0;
+                    a {
+                        color: #999;
+                        &:hover {
+                            color: @minecraft-brand;
+                        }
+                    }
+                }
+            }
+            h4 {
+                margin: 0;
+                font-size: 16px;
+                color: #999;
+            }
+        }
+        .dialog-body {
+            &.row {
+                margin: 0;
+                .col-xs-8, .col-xs-4 {
+                    padding: 0;
+                }
+            }
+            .candidates {
+                .item {
+                    span {
+                        vertical-align: text-top;
+                    }
+                }
+            }
+            .queue {
+                padding-right: 20px!important;
+                .item {
+                    text-align: left;
+                    padding: 6px 10px 4px 10px;
+                    border-radius: 4px;
+                }
+            }
+        }
+        .dialog-footer {
+            .btn {
+                color: white;
+                background-color: @minecraft-brand;
+                margin-right: 10px;
+            }
+            a {
+                color: #999;
+            }
+        }
+    }
+}
+
+// ----------------------------------------
+// 步骤条 Wizard
+// ----------------------------------------
+
+.circle-active() {
+    background-color: @minecraft-brand;
+}
+
+body .wizard.wizard-horizontal {
+    ol.wizard-nav {
+        li.item {
+            &.active {
+                span.circle {
+                    .circle-active();
+                }
+            }
+        }
+    }
+    .wizard-cards {}
+    .wizard-footer {}
+}
+body .wizard.wizard-vertical {
+    .wizard-cards {
+        .wizard-card {
+            &.active {
+                span.circle {
+                    .circle-active();
+                }
+            }
+        }
+    }
+}
+.ungrid-row.summary {
+    width: initial;
+    height: 80px;
+    position: absolute;
+    right: 40px;
+    bottom: 0px;
+    > .col:nth-child(1) {
+        background-color: rgb(77,63,56); 
+        padding: 0 40px;
+        vertical-align: middle; 
+        text-align: center;
+        color: #FFF; 
+        border-radius: 6px 0 0 0;
+    }
+    > .col:nth-child(2) {
+        background-color: rgb(252,101,41); 
+        padding: 0 20px;
+        vertical-align: middle;
+        text-align: center;
+        color: #FFF;
+        border-radius: 0 6px 0 0;
+    }
+}
+
+
+// ----------------------------------------
+// 浮层 Dialog
+// ----------------------------------------
+
+
+// ----------------------------------------
+// 时间选择器 HourPicker
+// ----------------------------------------
+
+body .hourpicker {
+    div.shortcuts {
+        label {
+            font-weight: normal;
+            color: #333;
+            padding: 0;
+        }
+    }
+    div.apply-dialog {
+        .apply-dialog-body {
+            margin-bottom: 20px;
+            label {
+                margin-bottom: 10px;
+                font-weight: normal;
+            }
+        }
+        .apply-dialog-footer {
+            .btn.submit {
+                background-color: @minecraft-brand;
+                color: white;
+            }
+        }
+    }
+    table.picker-days {
+        .picker-day {
+            .picker-hours {
+                .picker-hour {
+                    float: left;
+                    .picker-hour-duration {
+                        z-index: 1;
+                    }
+                    &.active .picker-hour-duration {
+                        background-color: @minecraft-brand;
+                    }
+                    .picker-hour-start, .picker-hour-end {
+                        background-color: @minecraft-brand;
+                        z-index: 2;
+                    }
+                    .bottom .picker-hour-arrow {
+                        top: -3px;
+                        border-bottom: 3px solid @minecraft-brand;
+                        margin-left: -3px;
+                    }
+                    .top .picker-hour-arrow {
+                        bottom: -3px;
+                        border-top: 3px solid @minecraft-brand;
+                        margin-left: -3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// ----------------------------------------
+// 标签切换 Tab
+// ----------------------------------------
+
+.mm-tabs {
+    padding-left: 0;
+    list-style: none;
+    border-bottom: 1px solid #E6E6E6;
+    li {
+        position: relative;
+        display: block;
+        float: left;
+        margin-bottom: -1px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        transition: border .2s ease-in-out;
+        cursor: pointer;
+        &.active, &:hover {
+            border-bottom-color: @minecraft-brand;
+        }
+        a {
+            font-size: 16px;
+            color: #999;
+            display: block;
+            padding: 10px 20px 20px 20px;
+            margin: 0;
+            transition: color .1s ease-in-out;
+        }
+        &.active, &:hover {
+            a {
+                color: @minecraft-brand;
+            }
+        }
+        &.active a {
+            cursor: default;
+        }
+        &.border-bottom-color-transparent {
+            border-bottom-color: transparent;
+        }
+    }
+}
+
+.mm-tabs {
+    li {
+        
+    }
+    li:hover, li.active {
+        border-bottom-color: @minecraft-brand;
+        
+    }
+}
+
+
+// ----------------------------------------
+// 滚动条 Scrollbar
+// ----------------------------------------
+
+
+// ----------------------------------------
+// 加载 Loading
+// ----------------------------------------
+
+body {
+    .spin {
+        border-width: 0;
+    }
+    .rotating-plane, 
+    .double-bounce1, .double-bounce2, 
+    .rectangle-bounce div, 
+    .cube1, .cube2, 
+    .chasing-dots .dot1, .chasing-dots .dot2, 
+    .pulse, 
+    .three-bounce > div, 
+    .container1 > div, .container2 > div, .container3 > div {
+        background-color: @minecraft-brand;
+    }
+}
