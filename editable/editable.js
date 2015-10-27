@@ -13,13 +13,29 @@ define(
         Brix
     ) {
 
+        /*
+            简单模式：
+            <h3 bx-name="components/editable">This is a editable title.</h3>
+
+            自定义模式：
+            <div bx-name="components/editable">
+                <div class="editable-content"></div>
+                <div class="editable-toggle"></div>
+                <input class="editable-input">
+            </div>
+         */
+
         var NAMESPACE = '.editable'
         var TPL = {
             pre: '<textarea>',
             _default: '<input type="text">'
         }
 
-        function Editable() {}
+        function Editable(options) {
+            if ($(options.element).find('.editable-content').length) {
+                return new CustomEditable(options)
+            }
+        }
 
         _.extend(Editable.prototype, Brix.prototype, {
             options: {
@@ -90,9 +106,6 @@ define(
                     )
                 }
             },
-            _bind: function() {
-
-            },
             _beautify: function() {
                 var $element = this.$element
                 var $relatedElement = this.$relatedElement
@@ -130,6 +143,74 @@ define(
                     })
             }
         })
+
+
+        function CustomEditable() {}
+
+        _.extend(CustomEditable.prototype, Editable.prototype, {
+            init: function() {
+                var type = this.options.type
+                this.$element = $(this.element)
+
+                this._$content = this.$element.find('.editable-content')
+                this._$toggle = this.$element.find('.editable-toggle')
+                this._$input = this.$element.find('.editable-input')
+
+                if (!this.options.content) this.options.content = this._$content[type]()
+                if (!this._$content[type]()) this._$content[type](this.options.content)
+            },
+            render: function() {
+                var that = this
+                this._$toggle.on('click', function( /*event*/ ) {
+                    that.show()
+                })
+                this._$input.on('keydown', function(event) {
+                    if (!that._hooks[event.which]) return
+                    that._hooks[event.which].call(that, event)
+                }).on('blur', function() {
+                    if (that.update() === false) return
+                    that.hide()
+                })
+            },
+            update: function() {
+                var preContent = this._$content[this.options.type]() || this.options.content
+                var content = this._$input.val()
+                if (preContent === content) return
+
+                var validate = $.Event('change' + NAMESPACE)
+                this.trigger(validate, [content])
+                if (validate.isDefaultPrevented()) return false
+
+                this._$content[this.options.type](content)
+            },
+            show: function() {
+                this._$content.hide()
+                this._$toggle.hide()
+                this._$input.show().focus()
+            },
+            hide: function() {
+                this._$content.show()
+                this._$toggle.css('display', '')
+                this._$input.hide()
+            },
+            _hooks: {
+                // enter
+                13: function(event) {
+                    event.preventDefault()
+                    if (this.update() === false) return
+                    this.hide()
+                },
+                // esc
+                27: function(event) {
+                    event.preventDefault()
+                    this.hide()
+                    this._$input.val(
+                        this._$content[this.options.type]()
+                    )
+                }
+            },
+        })
+
 
         return Editable
     }
