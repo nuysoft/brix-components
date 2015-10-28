@@ -7,8 +7,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        'text!./switch.tpl',
-        'less!./switch.less'
+        'text!./switch.tpl'
     ],
     function(
         $, _,

@@ -15,8 +15,7 @@ define(
         'components/base', 'brix/event',
         '../areapicker/area.js',
         './tree.tpl.js',
-        './tree.node.tpl.js',
-        'css!./tree.css'
+        './tree.node.tpl.js'
     ],
     function(
         $, _,

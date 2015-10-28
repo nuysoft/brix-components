@@ -10,8 +10,7 @@ define(
         'jquery', 'underscore',
         'brix/loader', 'components/base', 'brix/event',
         './state.js',
-        './pagination.tpl.js',
-        'css!./pagination.css'
+        './pagination.tpl.js'
     ],
     function(
         $, _,

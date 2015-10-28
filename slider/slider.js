@@ -3,8 +3,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        'text!./slider.tpl',
-        'css!./slider.css'
+        'text!./slider.tpl'
     ],
     function(
         $, _,

@@ -6,8 +6,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base', 'brix/event',
-        './modal.tpl.js',
-        'css!./modal.css'
+        './modal.tpl.js'
     ],
     function(
         $, _,

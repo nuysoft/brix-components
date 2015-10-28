@@ -7,9 +7,7 @@
 define(
     [
         'jquery', 'underscore', 'parsley',
-        'brix/base',
-        'css!dependencies/parsleyjs/src/parsley.css',
-        'css!./validation.css'
+        'brix/base'
     ],
     function(
         $, _, Parsley,

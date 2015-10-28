@@ -5,8 +5,7 @@ define(
         'brix/base', '../table/linkage.js',
         './area.js',
         './areapicker.tpl.js',
-        'components/dialog',
-        'css!./areapicker.css'
+        'components/dialog'
     ],
     function(
         $, _,

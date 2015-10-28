@@ -5,8 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/loader', 'components/base',
-        'css!./uploader.css'
+        'brix/loader', 'components/base'
     ],
     function(
         $, _,

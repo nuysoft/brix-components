@@ -3,8 +3,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        './boilerplate.tpl.js',
-        'css!./boilerplate.css'
+        './boilerplate.tpl.js'
     ],
     function(
         $, _,

@@ -87,7 +87,7 @@ gulp.task('concat-css', function() {
             )
             callback(null, file)
         }))
-        .pipe(concat('all.css'))
+        .pipe(concat('components.css'))
         .pipe(gulp.dest('./css-tool/'))
 })
 

@@ -21,9 +21,7 @@ define(
         'components/base',
         './linkage.js',
         './column-rwd.js',
-        './column-priority.js',
-        'css!./table.css',
-        'css!../dialog/dialog.css'
+        './column-priority.js'
     ],
     function(
         $, _,

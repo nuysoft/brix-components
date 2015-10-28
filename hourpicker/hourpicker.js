@@ -4,8 +4,7 @@ define(
         'jquery', 'underscore', 'moment',
         'brix/base', 'brix/event',
         '../dialog/position.js',
-        './hourpicker.tpl.js',
-        'css!./hourpicker.css'
+        './hourpicker.tpl.js'
     ],
     function(
         $, _, moment,

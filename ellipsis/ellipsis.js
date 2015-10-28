@@ -7,8 +7,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
-        'css!./ellipsis.css'
+        'brix/base'
     ],
     function(
         $, _,

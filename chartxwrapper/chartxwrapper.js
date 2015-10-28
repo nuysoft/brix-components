@@ -10,8 +10,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        'chartx/index',
-        'css!./chartxwrapper.css'
+        'chartx/index'
     ],
     function(
         $, _,

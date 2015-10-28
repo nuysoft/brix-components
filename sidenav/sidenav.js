@@ -6,14 +6,11 @@
 define(
   [
     'jquery', 'underscore', 'handlebars',
-    'components/base', 'brix/event',
-    // 'text!./sidebar.tpl',
-    'css!./sidenav.css'
+    'components/base', 'brix/event'
   ],
   function(
     $, _, Handlebars,
     Brix, EventManager
-    // template
   ) {
     /*
         # Dropdown

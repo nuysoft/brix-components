@@ -1,1 +1,1 @@
-define(["jquery","underscore","brix/base","text!./slider.tpl","css!./slider.css"],function(t,e,n,s){function i(){}return e.extend(i.prototype,n.prototype,{options:{},render:function(){this.data=this.data||e.extend({},this.options);var n=e.template(s)(this.data);t(this.element).append(n)}}),i});
+define(["jquery","underscore","brix/base","text!./slider.tpl"],function(t,e,n,i){function o(){}return e.extend(o.prototype,n.prototype,{options:{},render:function(){this.data=this.data||e.extend({},this.options);var n=e.template(i)(this.data);t(this.element).append(n)}}),o});

@@ -8,8 +8,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/loader', 'brix/base',
-        './ctree.tpl.js',
-        'css!./ctree.css'
+        './ctree.tpl.js'
     ],
     function(
         $, _,

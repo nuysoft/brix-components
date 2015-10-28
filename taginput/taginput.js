@@ -4,8 +4,7 @@ define(
         'jquery', 'underscore',
         'brix/loader', 'components/base', 'brix/event',
         './taginput.tpl.js',
-        './taginput.item.tpl.js',
-        'css!./taginput.css'
+        './taginput.item.tpl.js'
     ],
     function(
         $, _,

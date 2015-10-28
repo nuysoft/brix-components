@@ -3,8 +3,7 @@ define(
     [
         'underscore',
         'brix/base', 'magix',
-        '../dialog/dialog.js',
-        'css!./dialogview.css'
+        '../dialog/dialog.js'
     ],
     function(
         _,

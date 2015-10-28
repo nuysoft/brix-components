@@ -2,13 +2,11 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
-        /*'./footer.tpl.js',*/
-        'css!./footer.css'
+        'brix/base'
     ],
     function(
         $, _,
-        Brix /*, template*/
+        Brix
     ) {
         function Footer() {}
 

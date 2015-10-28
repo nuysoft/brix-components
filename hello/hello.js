@@ -3,8 +3,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        './hello.tpl.js',
-        'css!./hello.css'
+        './hello.tpl.js'
     ],
     function(
         $, _,

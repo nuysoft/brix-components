@@ -5,8 +5,7 @@ define(
         'brix/loader', 'components/base', 'brix/event',
         'components/datepicker',
         '../dialog/position.js',
-        './datepickerwrapper.tpl.js',
-        'css!./datepickerwrapper.css'
+        './datepickerwrapper.tpl.js'
     ],
     function(
         $, _, moment,

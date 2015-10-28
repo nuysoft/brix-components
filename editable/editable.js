@@ -5,8 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'components/base',
-        'css!./editable.css'
+        'components/base'
     ],
     function(
         $, _,

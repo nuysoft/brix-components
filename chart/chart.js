@@ -6,8 +6,7 @@ define(
     [
         'jquery', 'underscore', 'Chart',
         'brix/base',
-        './chart.tpl.js',
-        'css!./chart.css'
+        './chart.tpl.js'
     ],
     function(
         $, _, Chart,

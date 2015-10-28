@@ -5,14 +5,11 @@
 define(
     [
         'jquery', 'underscore',
-        'components/base', 'brix/event',
-        /*'./wizard.tpl.js',*/
-        'css!./wizard.css'
+        'components/base', 'brix/event'
     ],
     function(
         $, _,
         Brix, EventManager
-        /*, template*/
     ) {
         var ANIMATIONEND = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
 

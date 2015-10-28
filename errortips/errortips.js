@@ -2,8 +2,7 @@
 define([
   'jquery', 'underscore', 'handlebars',
   'components/base',
-  './errortips.tpl.js',
-  'css!./errortips.css'
+  './errortips.tpl.js'
 ], function(
   $, _, Handlebars,
   Brix, tpl) {

@@ -4,8 +4,7 @@
  */
 define(
     [
-        'brix/base', 'nprogress',
-        'css!../nprogress/nprogress.css'
+        'brix/base', 'nprogress'
     ],
     function(
         Brix, NProgress

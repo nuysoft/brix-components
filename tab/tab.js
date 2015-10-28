@@ -2,8 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
-        'css!./tab.css'
+        'brix/base'
     ],
     function(
         $, _,

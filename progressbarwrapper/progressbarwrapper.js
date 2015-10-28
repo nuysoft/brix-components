@@ -5,8 +5,7 @@
 define(
     [
         'underscore', 'progressbar',
-        'brix/base',
-        'css!./progressbarwrapper.css'
+        'brix/base'
     ],
     function(
         _, ProgressBar,

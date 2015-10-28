@@ -5,8 +5,7 @@ define(
         'components/base',
         '../dialog/position.js',
         './suggest.tpl.js',
-        './suggest.item.tpl.js',
-        'css!./suggest.css'
+        './suggest.item.tpl.js'
     ],
     function(
         $, _,

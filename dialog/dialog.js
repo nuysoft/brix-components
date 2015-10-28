@@ -7,8 +7,7 @@ define(
         'jquery', 'underscore',
         'components/base', 'brix/event',
         './position.js',
-        './dialog.tpl.js',
-        'css!./dialog.css'
+        './dialog.tpl.js'
     ],
     function(
         $, _,

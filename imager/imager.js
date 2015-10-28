@@ -2,8 +2,7 @@
 define(
     [
         'jquery',
-        'brix/base',
-        'css!./imager.css'
+        'brix/base'
     ],
     function(
         $,

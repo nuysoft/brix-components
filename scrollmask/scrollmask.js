@@ -5,8 +5,7 @@
  */
 define([
   'jquery', 'underscore',
-  'components/base',
-  'css!./scrollmask.css'
+  'components/base'
 ], function(
   $, _,
   Brix) {
