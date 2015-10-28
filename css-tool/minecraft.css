@@ -1125,9 +1125,7 @@ body {
   background-color: #fc4218;
 }
 .btn.btn-disabled {
-  color: #333;
   background-color: #e6e6e6;
-  border: 1px solid transparent;
   border: 0;
   cursor: not-allowed;
   color: #CCC;
@@ -1142,7 +1140,7 @@ body {
   top: 0px;
   left: 0px;
   border-radius: 4px 0px 0px 4px;
-  background-color: #cccccc;
+  background-color: #CCC;
 }
 .btn.btn-progress span {
   position: relative;
@@ -1211,7 +1209,7 @@ label input[type="checkbox"][disabled]:after {
 }
 label input[type="radio"][disabled]:hover,
 label input[type="checkbox"][disabled]:hover {
-  border-color: #E6E6E6;
+  border-color: #e6e6e6;
 }
 label p.desc {
   color: #999;
@@ -1244,7 +1242,7 @@ ul.checklist-linear > li {
   width: 100%;
   height: 32px;
   padding: 6px 12px;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   border-radius: 4px;
   color: #999;
   text-align: left;
@@ -1268,7 +1266,7 @@ ul.checklist-linear > li {
 .dropdown .dropdown-menu {
   margin-top: 10px;
   box-shadow: none;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   padding: 10px 0;
   font-size: 12px;
   min-width: 100px;
@@ -1323,7 +1321,7 @@ ul.checklist-linear > li {
   position: absolute;
   top: 100%;
   left: 0;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   padding: 10px;
   margin-top: 10px;
   width: 100%;
@@ -1380,7 +1378,7 @@ textarea,
   font-size: 12px;
   padding: 6px 9px;
   color: #333;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1444,7 +1442,7 @@ input[readonly],
 textarea[readonly],
 .textarea[readonly],
 .form-control[readonly] {
-  border-color: #E6E6E6;
+  border-color: #e6e6e6;
   cursor: not-allowed;
   background-color: #FAFAFA;
   color: #ccc;
@@ -1517,7 +1515,7 @@ button.parsley-error {
   height: 32px;
   vertical-align: middle;
   padding: 6px 12px;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   border-radius: 4px;
   color: #999;
   font-size: 12px;
@@ -1543,12 +1541,19 @@ button.parsley-error {
 .datepickerwrapper-trigger.datepickerwrapper-open .brixfont.down {
   display: none;
 }
-.datepickerwrapper {
-  border: 1px solid #E6E6E6!important;
-  border-radius: 4px!important;
-  box-shadow: none!important;
-  padding: 0px;
+.datepickerwrapper.multiple,
+.datepickerwrapper.single {
   margin-top: 10px;
+  border-radius: 4px;
+  box-shadow: none;
+}
+.datepickerwrapper.multiple {
+  padding: 15px 0px;
+  border: 1px solid #e6e6e6;
+}
+.datepickerwrapper.single {
+  padding: 0px;
+  border: none;
 }
 .datepickerwrapper .datepickerwrapper-shortcuts {
   padding: 0 10px;
@@ -1557,22 +1562,22 @@ button.parsley-error {
 .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body {
   width: 240px;
 }
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.shortcut {
   height: 24px;
   border-radius: 4px;
   margin: 0px 10px 10px 0px;
   width: 70px;
   padding: 4px;
 }
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
-  background: #ff6600;
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.shortcut.active {
+  background-color: #ff6600;
 }
 .datepickerwrapper .datepickerwrapper-inputs {
   padding: 0 10px;
   margin-bottom: 15px;
 }
 .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border: 0;
   box-shadow: none;
   font-size: 12px;
@@ -1590,7 +1595,7 @@ button.parsley-error {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
-  border-top: 1px solid #E6E6E6;
+  border-top: 1px solid #e6e6e6;
 }
 .datepickerwrapper .datepickerwrapper-footer .btn {
   height: 24px;
@@ -1607,15 +1612,15 @@ button.parsley-error {
   background-color: #fc4218;
 }
 .datepickerwrapper .datepickerwrapper-footer .btn.cancel {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 .datepickerwrapper .datepickerwrapper-footer .btn.cancel:hover {
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
 }
 .datepicker-container {
-  border: 1px solid #E6E6E6;
-  border-radius: 4px!important;
-  box-shadow: none!important;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  box-shadow: none;
   padding: 0px;
 }
 .datepicker-container > .picker-group {
@@ -1627,7 +1632,7 @@ button.parsley-error {
   line-height: 30px;
   vertical-align: middle;
   padding: 0 15px;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
   margin-bottom: 0px;
 }
 .datepicker-container > .picker-group .picker-header .minus,
@@ -1683,21 +1688,6 @@ button.parsley-error {
 }
 .datepicker-container > .picker-group.picker-footer {
   padding: 6px 0;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body .shortcut.active {
-  background-color: #ff6600;
-}
-.datepickerwrapper .datepickerwrapper-footer .btn.submit {
-  background-color: #ff6600;
-}
-.datepickerwrapper .datepickerwrapper-footer .btn.submit:hover {
-  background-color: #fc4218;
-}
-.datepickerwrapper .picker .datepicker-container .picker-group .picker-body .active {
-  background-color: #ff6600;
-}
-.datepickerwrapper.single {
-  border: none!important;
 }
 ol.breadcrumb {
   list-style: none;
@@ -1794,7 +1784,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   width: auto;
 }
 .input-group-wrapper .input-group {
-  border: 1px solid #FF6600;
+  border: 1px solid #ff6600;
   border-radius: 4px;
 }
 .input-group-wrapper .input-group .input-group-btn > .btn {
@@ -1803,7 +1793,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 }
 .input-group-wrapper .input-group .input-group-btn > .btn.bg-brand {
   border-radius: 0;
-  background-color: #FF6600;
+  background-color: #ff6600;
   color: #FFF;
 }
 .input-group-wrapper .input-group .input-group-btn .dropdown {
@@ -1812,7 +1802,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 .input-group-wrapper .input-group .input-group-btn .dropdown .dropdown-toggle {
   border-radius: 4px 0 0 4px;
   border-width: 0;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 .input-group-wrapper .input-group .input-group-input {
   position: relative;
@@ -1849,14 +1839,14 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   background-color: transparent;
 }
 .bs-example-searchbox-2 .input-group-tab .btn:hover {
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
 }
 .bs-example-searchbox-2 .input-group-tab .btn.active {
-  background-color: #FF6600;
+  background-color: #ff6600;
   color: #FFF;
 }
 .bs-example-searchbox-2 .input-group {
-  border: 1px solid #FF6600;
+  border: 1px solid #ff6600;
   border-radius: 4px;
 }
 .bs-example-searchbox-2 .input-group .input-group-btn > .btn {
@@ -1865,7 +1855,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 }
 .bs-example-searchbox-2 .input-group .input-group-btn > .btn.bg-brand {
   border-radius: 0;
-  background-color: #FF6600;
+  background-color: #ff6600;
   color: #FFF;
 }
 .bs-example-searchbox-2 .input-group .input-group-input {
@@ -1954,7 +1944,7 @@ table tbody tr:hover .editable-toggle {
 }
 .table thead tr th.stable,
 .table thead tr.active th.stable {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 .table tbody tr td {
   color: #333;
@@ -1963,16 +1953,16 @@ table tbody tr:hover .editable-toggle {
   vertical-align: middle;
   padding: 0 8px 0 14px;
   border-top: none;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .table tbody tr.active td {
   background-color: transparent;
 }
 .table tbody tr:hover {
-  background-color: #FAF3EB;
+  background-color: #faf3eb;
 }
 .table tbody tr.active:hover td {
-  background-color: #FAF3EB;
+  background-color: #faf3eb;
 }
 .table.table-bordered thead tr th {
   border: 1px solid #e6e6e6;
@@ -2018,10 +2008,10 @@ table tbody tr:hover .editable-toggle {
   max-height: 90px;
   color: #333;
   border-top: 0;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .table .more .content {
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   border-radius: 4px;
   box-shadow: none;
 }
@@ -2050,7 +2040,7 @@ table tbody tr:hover .editable-toggle {
   position: absolute;
   right: 0;
   top: 100%;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   border-radius: 4px;
   background-color: white;
   padding: 20px 10px 10px 10px;
@@ -2165,7 +2155,7 @@ table tbody tr:hover .editable-toggle {
   font-weight: normal;
 }
 .dialog .dialog-content {
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   box-shadow: none;
 }
 .dialog .dialog-content .dialog-header,
@@ -2224,7 +2214,7 @@ table tbody tr:hover .editable-toggle {
 .mm-tabs {
   padding-left: 0;
   list-style: none;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .mm-tabs li {
   position: relative;

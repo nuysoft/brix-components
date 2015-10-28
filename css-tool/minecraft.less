@@ -248,6 +248,8 @@
 // 默认
 @brand            : @minecraft-brand;
 @brand-hover      : @minecraft-brand-hover;
+@nav-bg           : @minecraft-nav-bg;
+@table-hover      : @minecraft-table-hover;
 
 
 // ----------------------------------------
@@ -453,11 +455,11 @@ body {
     padding: 6px 20px;
     border: 0;
     border-radius: 4px;
-    background-color: #e6e6e6;
+    background-color: @border;
 
     &:hover {
         background-color: #ccc;
-        border-color: #e6e6e6;
+        border-color: @border;
     }
 
     &, 
@@ -492,10 +494,7 @@ body {
         }
     }
     &.btn-disabled {
-        color: #333;
-        background-color: #e6e6e6;
-        border: 1px solid transparent;
-
+        background-color: @border;
         border: 0;
         cursor: not-allowed;
         color: #CCC;
@@ -509,13 +508,13 @@ body {
             top: 0px;
             left: 0px;
             border-radius: 4px 0px 0px 4px;
-            background-color: #cccccc;
+            background-color: #CCC;
         }
         span {
             position: relative;
         }
         &:hover {
-            background-color: #e6e6e6;
+            background-color: @border;
         }
     }
     &.btn-brand.btn-progress {
@@ -580,7 +579,7 @@ label {
             background-color: #ccc;
         }
         &[disabled]:hover {
-            border-color: #E6E6E6;
+            border-color: @border;
         }
     }
     p.desc {
@@ -621,7 +620,7 @@ ul.checklist-linear {
         width: 100%;
         height: 32px;
         padding: 6px 12px;
-        border: 1px solid #E6E6E6;
+        border: 1px solid @border;
         border-radius: 4px;
         color: #999;
         text-align: left;
@@ -647,7 +646,7 @@ ul.checklist-linear {
     .dropdown-menu {
         margin-top: 10px;
         box-shadow: none;
-        border: 1px solid #E6E6E6;
+        border: 1px solid @border;
         padding: 10px 0;
         font-size: 12px;
         min-width: 100px;
@@ -658,7 +657,7 @@ ul.checklist-linear {
             > a {
                 padding: 3px 10px;
                 &:hover {
-                    background-color: #f0f0f0;
+                    background-color: @bg;
                     border-radius: 4px;
                 }
             }
@@ -711,7 +710,7 @@ ul.checklist-linear {
         position: absolute;
         top: 100%;
         left: 0;
-        border: 1px solid #E6E6E6;
+        border: 1px solid @border;
         padding: 10px;
         margin-top: 10px;
         width: 100%;
@@ -785,7 +784,7 @@ textarea, .textarea,
     font-size: 12px;
     padding: 6px 9px;
     color: #333;
-    border: 1px solid #E6E6E6;
+    border: 1px solid @border;
     background-color: white;
 
     .border-radius(4px);
@@ -810,7 +809,7 @@ textarea, .textarea,
     }
 
     &[disabled], &[readonly] {
-        border-color: #E6E6E6;
+        border-color: @border;
         cursor: not-allowed;
         background-color: #FAFAFA;
         color: #ccc;
@@ -881,7 +880,7 @@ button.error, button.input-error, button.parsley-error {
     height: 32px;
     vertical-align: middle;
     padding: 6px 12px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid @border;
     border-radius: 4px;
     color: #999;
     font-size: 12px;
@@ -910,24 +909,33 @@ button.error, button.input-error, button.parsley-error {
     }
 }
 .datepickerwrapper {
-    border: 1px solid #E6E6E6!important;
-    border-radius: 4px!important;
-    box-shadow: none!important;
-    padding: 0px;
-    margin-top: 10px;
+    &.multiple,
+    &.single {
+        margin-top: 10px;
+        border-radius: 4px;
+        box-shadow: none;
+    }
+    &.multiple {
+        padding: 15px 0px;
+        border: 1px solid @border;
+    }
+    &.single {
+        padding: 0px;
+        border: none;
+    }
     .datepickerwrapper-shortcuts {
         padding: 0 10px;
         margin-bottom: 15px;
         .datepickerwrapper-shortcuts-body {
             width: 240px;
-            span {
+            span.shortcut {
                 height: 24px;
                 border-radius: 4px;
                 margin: 0px 10px 10px 0px;
                 width: 70px;
                 padding: 4px;
                 &.active {
-                    background: @brand;
+                    background-color: @brand;
                 }
             }
         }
@@ -937,7 +945,7 @@ button.error, button.input-error, button.parsley-error {
         margin-bottom: 15px;
         .datepickerwrapper-inputs-body {
             input {
-                background-color: #F0F0F0;
+                background-color: @bg;
                 border: 0;
                 box-shadow: none;
                 font-size: 12px;
@@ -957,7 +965,7 @@ button.error, button.input-error, button.parsley-error {
         padding-left: 10px;
         padding-right: 10px;
         padding-top: 10px;
-        border-top: 1px solid #E6E6E6;
+        border-top: 1px solid @border;
         .btn {
             height: 24px;
             font-size: 12px;
@@ -972,9 +980,9 @@ button.error, button.input-error, button.parsley-error {
                 }
             }
             &.cancel {
-                background-color: #F0F0F0;
+                background-color: @bg;
                 &:hover {
-                    background-color: #E6E6E6;
+                    background-color: @border;
                 }
             }
         }
@@ -982,9 +990,9 @@ button.error, button.input-error, button.parsley-error {
 }
 
 .datepicker-container {
-    border: 1px solid #E6E6E6;
-    border-radius: 4px!important;
-    box-shadow: none!important;
+    border: 1px solid @border;
+    border-radius: 4px;
+    box-shadow: none;
     padding: 0px;
     > .picker-group {
         padding: 0px;
@@ -994,7 +1002,7 @@ button.error, button.input-error, button.parsley-error {
             line-height: 30px;
             vertical-align: middle;
             padding: 0 15px;
-            border-bottom: 1px solid #E6E6E6;
+            border-bottom: 1px solid @border;
             margin-bottom: 0px;
             .minus, .plus {
                 padding: 8px 0px;
@@ -1069,45 +1077,6 @@ button.error, button.input-error, button.parsley-error {
     }
 }
 
-.datepickerwrapper {
-    .datepickerwrapper-shortcuts {
-        .datepickerwrapper-shortcuts-body {
-            .shortcut {
-                &.active {
-                    background-color: @brand;
-                }
-            }
-        }
-    }
-    .datepickerwrapper-inputs {
-
-    }
-    .datepickerwrapper-pickers {
-
-    }
-    .datepickerwrapper-footer {
-        .btn.submit {
-            background-color: @brand;
-            &:hover {
-                background-color: @brand-hover;
-            }
-        }
-    }
-    .picker {
-        .datepicker-container {
-            .picker-group {
-                .picker-body {
-                    .active {
-                        background-color: @brand;
-                    }
-                }
-            }
-        }
-    }
-    &.single {
-        border: none!important;
-    }
-}
 
 // ----------------------------------------
 // 面包屑 Breadcrumb
@@ -1240,7 +1209,7 @@ ol.breadcrumb {
 
 .input-group-wrapper {
     .input-group {
-        border: 1px solid #FF6600;
+        border: 1px solid @brand;
         border-radius: 4px;
         .input-group-btn {
             > .btn {
@@ -1248,7 +1217,7 @@ ol.breadcrumb {
                 width: initial;
                 &.bg-brand {
                     border-radius: 0;
-                    background-color: #FF6600;
+                    background-color: @brand;
                     color: #FFF;
                 }
             }
@@ -1257,7 +1226,7 @@ ol.breadcrumb {
                 .dropdown-toggle {
                     border-radius: 4px 0 0 4px;
                     border-width: 0;
-                    background-color: #F0F0F0;
+                    background-color: @bg;
                 }
             }
         }
@@ -1298,16 +1267,16 @@ ol.breadcrumb {
             margin-right: 5px;
             background-color: transparent;
             &:hover {
-                background-color: #E6E6E6;
+                background-color: @border;
             }
             &.active {
-                background-color: #FF6600;
+                background-color: @brand;
                 color: #FFF;
             }
         }
     }
     .input-group {
-        border: 1px solid #FF6600;
+        border: 1px solid @brand;
         border-radius: 4px;
         .input-group-btn {
             > .btn {
@@ -1315,7 +1284,7 @@ ol.breadcrumb {
                 width: initial;
                 &.bg-brand {
                     border-radius: 0;
-                    background-color: #FF6600;
+                    background-color: @brand;
                     color: #FFF;
                 }
             }
@@ -1438,7 +1407,7 @@ table {
                 background-color: #FAFAFA;
                 border: none;
                 &.stable {
-                    background-color: #F0F0F0;
+                    background-color: @bg;
                 }
             }
         }
@@ -1450,20 +1419,20 @@ table {
         vertical-align: middle;
         padding: 0 8px 0 14px;
         border-top: none;
-        border-bottom: 1px solid #E6E6E6;
+        border-bottom: 1px solid @border;
     }
     tbody tr.active td {
         background-color: transparent;
     }
     tbody tr:hover {
-        background-color: #FAF3EB;
+        background-color: @table-hover;
     }
     tbody tr.active:hover td {
-        background-color: #FAF3EB;
+        background-color: @table-hover;
     }
     &.table-bordered {
         thead tr th {
-            border: 1px solid #e6e6e6;
+            border: 1px solid @border;
         }
     }
     tr:hover .operation {
@@ -1526,13 +1495,13 @@ table {
                 max-height: 90px;
                 color: #333;
                 border-top: 0;
-                border-bottom: 1px solid #E6E6E6;
+                border-bottom: 1px solid @border;
             }
         }
     } 
     .more {
         .content {
-            border: 1px solid #E6E6E6;
+            border: 1px solid @border;
             border-radius: 4px;
             box-shadow: none;
         }
@@ -1572,7 +1541,7 @@ table {
                             position: absolute;
                             right: 0;
                             top: 100%;
-                            border: 1px solid #E6E6E6;
+                            border: 1px solid @border;
                             border-radius: 4px;
                             background-color: white;
                             padding: 20px 10px 10px 10px;
@@ -1755,19 +1724,19 @@ table {
         &:hover, &:focus {}
     }
     .dialog-content {
-        border: 1px solid #E6E6E6;
+        border: 1px solid @border;
         box-shadow: none;
         // box-shadow: 0 0 10px rgba(0,0,0,.18);
         .dialog-header, .dialog-body, .dialog-footer {
             padding: 18px 40px;
         }
         .dialog-header {
-            border-bottom: 1px solid #e6e6e6;
+            border-bottom: 1px solid @border;
             padding: 18px 45px 18px 40px;
         }
         .dialog-footer {
             text-align: left;
-            border-top: 1px solid #e6e6e6;
+            border-top: 1px solid @border;
         }
     }
 }
@@ -1842,7 +1811,7 @@ table {
 .mm-tabs {
     padding-left: 0;
     list-style: none;
-    border-bottom: 1px solid #E6E6E6;
+    border-bottom: 1px solid @border;
     li {
         position: relative;
         display: block;

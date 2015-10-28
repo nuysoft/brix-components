@@ -1,10 +1,12 @@
 /* global require, console, Buffer, __dirname */
 var gulp = require('gulp')
 var through = require('through2')
+var gutil = require('gulp-util')
 var concat = require('gulp-concat')
 var jshint = require('gulp-jshint')
-var less = require('gulp-less')
 var uglify = require('gulp-uglify')
+var less = require('gulp-less')
+var csslint = require('gulp-csslint')
 var minifyCss = require('gulp-minify-css')
 
 gulp.task('hello', function() {
@@ -69,6 +71,28 @@ gulp.task('less', function() {
         .pipe(gulp.dest('./'))
 })
 
+// https://github.com/lazd/gulp-csslint
+// https://github.com/ebednarz/csslintrc/blob/master/.csslintrc
+gulp.task('csslint', function() {
+    var globs = [
+        '**/*.css',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ]
+
+    /* jshint unused:false */
+    gulp.src(globs)
+        .pipe(csslint('.csslintrc'))
+        .pipe(csslint.reporter(function(file) {
+            gutil.log(gutil.colors.cyan(file.csslint.errorCount) + ' errors in ' + gutil.colors.magenta(file.path));
+
+            file.csslint.results.forEach(function(result) {
+                gutil.log(result.error.message + ' on line ' + result.error.line);
+            });
+        }))
+})
+
 // https://github.com/contra/gulp-concat
 gulp.task('concat-css', function() {
     var globs = [
@@ -78,6 +102,7 @@ gulp.task('concat-css', function() {
         '!node_modules/**/*',
         '!dist/**/*'
     ]
+
     /* jshint unused:false */
     gulp.src(globs)
         .pipe(through.obj(function(file, encoding, callback) {
@@ -158,4 +183,4 @@ gulp.task('minify-css', function() {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('default', ['hello', 'jshint', 'less', 'concat-css', 'tpl', 'compress', 'minify-css', 'watch'])
+gulp.task('default', ['hello', 'jshint', 'less', 'concat-css', 'csslint', 'tpl', 'compress', 'minify-css', 'watch'])
