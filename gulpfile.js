@@ -1,6 +1,7 @@
-/* global require, console */
+/* global require, console, Buffer, __dirname */
 var gulp = require('gulp')
 var through = require('through2')
+var concat = require('gulp-concat')
 var jshint = require('gulp-jshint')
 var less = require('gulp-less')
 var uglify = require('gulp-uglify')
@@ -45,7 +46,7 @@ gulp.task('watch', function( /*callback*/ ) {
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
-    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'minify-css'])
+    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'concat-css', 'minify-css'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
@@ -66,6 +67,28 @@ gulp.task('less', function() {
     gulp.src(globs)
         .pipe(less({}))
         .pipe(gulp.dest('./'))
+})
+
+// https://github.com/contra/gulp-concat
+gulp.task('concat-css', function() {
+    var globs = [
+        '**/*.css',
+        '!css-tool/**/*',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ]
+    /* jshint unused:false */
+    gulp.src(globs)
+        .pipe(through.obj(function(file, encoding, callback) {
+            file.contents = new Buffer(
+                '/* ' + file.path.replace(__dirname, '') + ' */\n' +
+                file.contents.toString()
+            )
+            callback(null, file)
+        }))
+        .pipe(concat('all.css'))
+        .pipe(gulp.dest('./css-tool/'))
 })
 
 // https://github.com/plus3network/gulp-less
@@ -135,4 +158,4 @@ gulp.task('minify-css', function() {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'compress', 'minify-css', 'watch'])
+gulp.task('default', ['hello', 'jshint', 'less', 'concat-css', 'tpl', 'compress', 'minify-css', 'watch'])

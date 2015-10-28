@@ -16,6 +16,7 @@
   "homepage": "https://github.com/nuysoft/brix-components",
   "devDependencies": {
     "gulp": "*",
+    "gulp-concat": "^2.6.0",
     "gulp-jshint": "*",
     "gulp-less": "*",
     "gulp-minify-css": "*",

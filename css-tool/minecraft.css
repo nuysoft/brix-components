@@ -1040,59 +1040,41 @@ body {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
-.color-primary {
-  color: #ff6600;
-}
-.color-success {
-  color: #51a300;
-}
-.color-info {
-  color: #f0f0f0;
-}
-.color-warning {
-  color: #a40100;
-}
-.color-danger {
-  color: #a40100;
-}
-.color-gray {
-  color: #999999;
-}
-.bg-primary {
-  background-color: #ff6600;
-}
-.bg-success {
-  background-color: #51a300;
-}
-.bg-info {
-  background-color: #f0f0f0;
-}
-.bg-warning {
-  background-color: #a40100;
-}
-.bg-danger {
-  background-color: #a40100;
-}
-.bg-gray {
-  background-color: #999999;
-}
 .color-help {
   color: #999999;
 }
 .color-info {
   color: #999999;
 }
+.color-border {
+  border-color: #e6e6e6;
+}
 .color-warning {
-  color: #FFB400;
+  color: #ffb400;
 }
 .color-danger {
-  color: #A62A22;
+  color: #a62a22;
 }
 .color-success {
-  color: #6CB12A;
+  color: #6cb12a;
 }
 .color-fail {
-  color: #A62A22;
+  color: #a62a22;
+}
+.bg-info {
+  background-color: #f0f0f0;
+}
+.bg-warning {
+  background-color: #ffb400;
+}
+.bg-danger {
+  background-color: #a62a22;
+}
+.bg-success {
+  background-color: #6cb12a;
+}
+.bg-fail {
+  background-color: #a62a22;
 }
 .btn {
   color: #333;
@@ -1255,10 +1237,10 @@ ul.checklist-linear {
 ul.checklist-linear > li {
   float: left;
 }
-body .dropdown {
+.dropdown {
   min-width: 140px;
 }
-body .dropdown .dropdown-toggle {
+.dropdown .dropdown-toggle {
   width: 100%;
   height: 32px;
   padding: 6px 12px;
@@ -1268,80 +1250,80 @@ body .dropdown .dropdown-toggle {
   text-align: left;
   background-color: transparent;
 }
-body .dropdown .dropdown-toggle:hover {
+.dropdown .dropdown-toggle:hover {
   border-color: #CCC;
 }
-body .dropdown .dropdown-toggle .dropdown-toggle-label {
+.dropdown .dropdown-toggle .dropdown-toggle-label {
   display: inline-block;
   text-align: left;
 }
-body .dropdown .dropdown-toggle .caret_brixfont {
+.dropdown .dropdown-toggle .caret_brixfont {
   float: right;
   margin-left: 10px;
 }
-body .dropdown.open .dropdown-toggle.btn-default {
+.dropdown.open .dropdown-toggle.btn-default {
   border-color: #CCC;
   color: #333;
 }
-body .dropdown .dropdown-menu {
+.dropdown .dropdown-menu {
   margin-top: 10px;
   box-shadow: none;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #E6E6E6;
   padding: 10px 0;
   font-size: 12px;
   min-width: 100px;
   max-height: 270px;
   overflow: auto;
 }
-body .dropdown .dropdown-menu > li {
+.dropdown .dropdown-menu > li {
   padding: 4px 10px;
 }
-body .dropdown .dropdown-menu > li > a {
+.dropdown .dropdown-menu > li > a {
   padding: 3px 10px;
 }
-body .dropdown .dropdown-menu > li > a:hover {
+.dropdown .dropdown-menu > li > a:hover {
   background-color: #f0f0f0;
   border-radius: 4px;
 }
-body .dropdown .dropdown-menu > li.active a,
-body .dropdown .dropdown-menu > li.active a:hover,
-body .dropdown .dropdown-menu > li.active a:focus {
+.dropdown .dropdown-menu > li.active a,
+.dropdown .dropdown-menu > li.active a:hover,
+.dropdown .dropdown-menu > li.active a:focus {
   border-radius: 4px;
   color: white;
   background-color: #ff6600;
 }
-body .dropdown .dropdown-menu > li.divider {
+.dropdown .dropdown-menu > li.divider {
   padding: 0;
 }
-body .dropdown {
+.dropdown {
   min-width: 190px;
 }
-body .dropdown ul.dropdown-menu {
+.dropdown ul.dropdown-menu {
   width: 100%;
   padding-right: 10px;
 }
-body .dropdown ul.dropdown-menu > li > a {
+.dropdown ul.dropdown-menu > li > a {
   position: relative;
   padding: 4px 10px;
   width: 100%;
 }
-body .dropdown ul.dropdown-menu > li.active > a,
-body .dropdown ul.dropdown-menu > li.active > a:hover,
-body .dropdown ul.dropdown-menu > li.active > a:focus {
+.dropdown ul.dropdown-menu > li.active > a,
+.dropdown ul.dropdown-menu > li.active > a:hover,
+.dropdown ul.dropdown-menu > li.active > a:focus {
   background-color: #ff6600;
 }
-body .dropdown ul.dropdown-menu > li.dropdown-header {
+.dropdown ul.dropdown-menu > li.dropdown-header {
   color: #999;
   padding-left: 20px;
 }
-body .dropdown ul.dropdown-menu > li.dropdown-header + li > a {
+.dropdown ul.dropdown-menu > li.dropdown-header + li > a {
   padding-left: 20px;
 }
-body .dropdown > .dropdown-menu-wrapper {
+.dropdown > .dropdown-menu-wrapper {
   position: absolute;
   top: 100%;
   left: 0;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #E6E6E6;
   padding: 10px;
   margin-top: 10px;
   width: 100%;
@@ -1350,39 +1332,39 @@ body .dropdown > .dropdown-menu-wrapper {
   z-index: 1001;
   display: none;
 }
-body .dropdown > .dropdown-menu-wrapper > .searchbox label {
+.dropdown > .dropdown-menu-wrapper > .searchbox label {
   margin-bottom: 10px;
   padding: 0;
 }
-body .dropdown > .dropdown-menu-wrapper > ul.dropdown-menu {
+.dropdown > .dropdown-menu-wrapper > ul.dropdown-menu {
   display: block;
   position: static;
   margin-top: 0px;
   padding-top: 0px;
   border: none;
 }
-body .dropdown > .dropdown-menu-wrapper > ul.dropdown-menu > li {
+.dropdown > .dropdown-menu-wrapper > ul.dropdown-menu > li {
   padding: 4px 10px 4px 0;
 }
-body .dropdown.open > .dropdown-menu-wrapper {
+.dropdown.open > .dropdown-menu-wrapper {
   display: block;
 }
-body .dropdown.dropdown-popover {
+.dropdown.dropdown-popover {
   width: 200px;
 }
-body .dropdown.dropdown-popover .dropdown-toggle {
+.dropdown.dropdown-popover .dropdown-toggle {
   padding-right: 25px;
 }
-body .dropdown.dropdown-popover .dropdown-toggle .dropdown-toggle-label {
+.dropdown.dropdown-popover .dropdown-toggle .dropdown-toggle-label {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body .dropdown.dropdown-popover .dropdown-toggle .caret_custom {
+.dropdown.dropdown-popover .dropdown-toggle .caret_custom {
   position: absolute;
   right: 12px;
 }
-body .dropdown.dropdown-ellipsis ul.dropdown-menu > li > a {
+.dropdown.dropdown-ellipsis ul.dropdown-menu > li > a {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1398,7 +1380,7 @@ textarea,
   font-size: 12px;
   padding: 6px 9px;
   color: #333;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #E6E6E6;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1462,9 +1444,9 @@ input[readonly],
 textarea[readonly],
 .textarea[readonly],
 .form-control[readonly] {
-  border-color: #e6e6e6;
+  border-color: #E6E6E6;
   cursor: not-allowed;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   color: #ccc;
 }
 textarea,
@@ -1482,7 +1464,7 @@ textarea.form-control,
 .error button,
 .error button:focus,
 .error button:hover {
-  border-color: #a40100;
+  border-color: #a62a22;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -1498,13 +1480,13 @@ button.input-error,
 button.parsley-error {
   color: #333;
   background-color: white;
-  border-color: #a40100;
+  border-color: #a62a22;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 .parsley-errors-list {
-  color: #a40100;
+  color: #a62a22;
 }
 .parsley-errors-list {
   list-style: none;
@@ -1561,35 +1543,35 @@ button.parsley-error {
 .datepickerwrapper-trigger.datepickerwrapper-open .brixfont.down {
   display: none;
 }
-body .datepickerwrapper {
+.datepickerwrapper {
   border: 1px solid #E6E6E6!important;
   border-radius: 4px!important;
   box-shadow: none!important;
   padding: 0px;
   margin-top: 10px;
 }
-body .datepickerwrapper .datepickerwrapper-shortcuts {
+.datepickerwrapper .datepickerwrapper-shortcuts {
   padding: 0 10px;
   margin-bottom: 15px;
 }
-body .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body {
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body {
   width: 240px;
 }
-body .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
   height: 24px;
   border-radius: 4px;
   margin: 0px 10px 10px 0px;
   width: 70px;
   padding: 4px;
 }
-body .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
   background: #ff6600;
 }
-body .datepickerwrapper .datepickerwrapper-inputs {
+.datepickerwrapper .datepickerwrapper-inputs {
   padding: 0 10px;
   margin-bottom: 15px;
 }
-body .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
   background-color: #F0F0F0;
   border: 0;
   box-shadow: none;
@@ -1598,108 +1580,108 @@ body .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body
   width: 110px;
   text-align: center;
 }
-body .datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body.time input {
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body.time input {
   width: 145px;
 }
-body .datepickerwrapper .datepickerwrapper-pickers {
+.datepickerwrapper .datepickerwrapper-pickers {
   margin-top: 10px;
 }
-body .datepickerwrapper .datepickerwrapper-footer {
+.datepickerwrapper .datepickerwrapper-footer {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
   border-top: 1px solid #E6E6E6;
 }
-body .datepickerwrapper .datepickerwrapper-footer .btn {
+.datepickerwrapper .datepickerwrapper-footer .btn {
   height: 24px;
   font-size: 12px;
   padding: 4px 14px;
   font-weight: normal;
   border: 0;
 }
-body .datepickerwrapper .datepickerwrapper-footer .btn.submit {
+.datepickerwrapper .datepickerwrapper-footer .btn.submit {
   color: #FFF;
   background-color: #ff6600;
 }
-body .datepickerwrapper .datepickerwrapper-footer .btn.submit:hover {
+.datepickerwrapper .datepickerwrapper-footer .btn.submit:hover {
   background-color: #fc4218;
 }
-body .datepickerwrapper .datepickerwrapper-footer .btn.cancel {
+.datepickerwrapper .datepickerwrapper-footer .btn.cancel {
   background-color: #F0F0F0;
 }
-body .datepickerwrapper .datepickerwrapper-footer .btn.cancel:hover {
+.datepickerwrapper .datepickerwrapper-footer .btn.cancel:hover {
   background-color: #E6E6E6;
 }
-body .datepicker-container {
-  border: 1px solid #e6e6e6;
+.datepicker-container {
+  border: 1px solid #E6E6E6;
   border-radius: 4px!important;
   box-shadow: none!important;
   padding: 0px;
 }
-body .datepicker-container > .picker-group {
+.datepicker-container > .picker-group {
   padding: 0px;
 }
-body .datepicker-container > .picker-group .picker-header {
+.datepicker-container > .picker-group .picker-header {
   font-size: 12px;
   height: 30px;
   line-height: 30px;
   vertical-align: middle;
   padding: 0 15px;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #E6E6E6;
   margin-bottom: 0px;
 }
-body .datepicker-container > .picker-group .picker-header .minus,
-body .datepicker-container > .picker-group .picker-header .plus {
+.datepicker-container > .picker-group .picker-header .minus,
+.datepicker-container > .picker-group .picker-header .plus {
   padding: 8px 0px;
   color: #999;
 }
-body .datepicker-container > .picker-group .picker-header .minus:hover,
-body .datepicker-container > .picker-group .picker-header .plus:hover {
+.datepicker-container > .picker-group .picker-header .minus:hover,
+.datepicker-container > .picker-group .picker-header .plus:hover {
   color: #ff6600;
 }
-body .datepicker-container > .picker-group .picker-header .minus .brixfont,
-body .datepicker-container > .picker-group .picker-header .plus .brixfont {
+.datepicker-container > .picker-group .picker-header .minus .brixfont,
+.datepicker-container > .picker-group .picker-header .plus .brixfont {
   font-size: 12px;
 }
-body .datepicker-container > .picker-group .picker-header h4 {
+.datepicker-container > .picker-group .picker-header h4 {
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 4px;
   height: 24px;
 }
-body .datepicker-container > .picker-group .picker-body {
+.datepicker-container > .picker-group .picker-body {
   padding: 0 0 10px 0;
   width: 258px;
 }
-body .datepicker-container > .picker-group .picker-body .datepicker-body-description {
+.datepicker-container > .picker-group .picker-body .datepicker-body-description {
   color: #999;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   padding: 0 10px;
 }
-body .datepicker-container > .picker-group .picker-body .datepicker-body-value {
+.datepicker-container > .picker-group .picker-body .datepicker-body-value {
   padding: 0 10px;
 }
-body .datepicker-container > .picker-group .picker-body span.active,
-body .datepicker-container > .picker-group .picker-body .datepicker-body-value span.active {
+.datepicker-container > .picker-group .picker-body span.active,
+.datepicker-container > .picker-group .picker-body .datepicker-body-value span.active {
   color: white;
   background-color: #ff6600;
 }
-body .datepicker-container > .picker-group.timepicker {
+.datepicker-container > .picker-group.timepicker {
   width: 100%;
   padding: 10px;
 }
-body .datepicker-container > .picker-group.timepicker .timepicker-body .timepicker-group button.time-minus,
-body .datepicker-container > .picker-group.timepicker .timepicker-body .timepicker-group button.time-plus {
+.datepicker-container > .picker-group.timepicker .timepicker-body .timepicker-group button.time-minus,
+.datepicker-container > .picker-group.timepicker .timepicker-body .timepicker-group button.time-plus {
   width: 28px;
 }
-body .datepicker-container > .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit {
+.datepicker-container > .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit {
   color: #FFF;
   background-color: #ff6600;
 }
-body .datepicker-container > .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit:hover {
+.datepicker-container > .picker-group.timepicker .timepicker-footer .timepicker-handelr .btn.submit:hover {
   background-color: #fc4218;
 }
-body .datepicker-container > .picker-group.picker-footer {
+.datepicker-container > .picker-group.picker-footer {
   padding: 6px 0;
 }
 .datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body .shortcut.active {
@@ -1749,42 +1731,42 @@ ol.breadcrumb > li .dropdown .dropdown-toggle {
 ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   border-color: #CCC;
 }
-body .paginationwrapper {
+.paginationwrapper {
   background-color: #FAFAFA;
   padding-top: 10px;
   margin-left: 0;
   margin-right: 0;
 }
-body .paginationwrapper .pagination-statistics select {
+.paginationwrapper .pagination-statistics select {
   display: none;
 }
-body .paginationwrapper .pagination-statistics .dropdown {
+.paginationwrapper .pagination-statistics .dropdown {
   min-width: initial;
 }
-body .paginationwrapper ul.pagination > li > a,
-body .paginationwrapper ul.pagination > li > span {
+.paginationwrapper ul.pagination > li > a,
+.paginationwrapper ul.pagination > li > span {
   color: #ff6600;
   border: none;
   border-radius: 4px;
   background-color: transparent;
 }
-body .paginationwrapper ul.pagination > li > a:hover,
-body .paginationwrapper ul.pagination > li > span:hover {
+.paginationwrapper ul.pagination > li > a:hover,
+.paginationwrapper ul.pagination > li > span:hover {
   color: #fc4218;
 }
-body .paginationwrapper ul.pagination > li.active > a,
-body .paginationwrapper ul.pagination > li.active > span {
+.paginationwrapper ul.pagination > li.active > a,
+.paginationwrapper ul.pagination > li.active > span {
   color: #FFF;
   background-color: #ff6600;
 }
-body .paginationwrapper ul.pagination > li.active > a:hover,
-body .paginationwrapper ul.pagination > li.active > span:hover {
+.paginationwrapper ul.pagination > li.active > a:hover,
+.paginationwrapper ul.pagination > li.active > span:hover {
   background-color: #fc4218;
 }
-body .paginationwrapper ul.pagination > li.disabled > a,
-body .paginationwrapper ul.pagination > li.disabled > span,
-body .paginationwrapper ul.pagination > li.disabled > a:hover,
-body .paginationwrapper ul.pagination > li.disabled > span:hover {
+.paginationwrapper ul.pagination > li.disabled > a,
+.paginationwrapper ul.pagination > li.disabled > span,
+.paginationwrapper ul.pagination > li.disabled > a:hover,
+.paginationwrapper ul.pagination > li.disabled > span:hover {
   color: #999;
   background-color: transparent;
 }
@@ -1929,6 +1911,7 @@ table tbody tr:hover .editable-toggle {
   display: inline-block;
 }
 .contextual-message {
+  min-height: 32px;
   padding: 5px 15px;
   border-radius: 4px;
 }
@@ -1949,125 +1932,125 @@ table tbody tr:hover .editable-toggle {
   left: 0;
   width: 100%;
   padding: 7px 40px;
-  color: #a40100;
+  color: #a62a22;
 }
 .mm-message-top {
   background-color: #FFEFE6;
   width: 100%;
   padding: 7px 40px;
-  color: #a40100;
+  color: #a62a22;
   text-align: center;
 }
-body .table thead tr th,
-body .table thead tr.active th {
+.table thead tr th,
+.table thead tr.active th {
   color: #999;
   font-weight: normal;
   height: 60px;
   vertical-align: middle;
   padding: 0 8px 0 14px;
   white-space: nowrap;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   border: none;
 }
-body .table thead tr th.stable,
-body .table thead tr.active th.stable {
-  background-color: #f0f0f0;
+.table thead tr th.stable,
+.table thead tr.active th.stable {
+  background-color: #F0F0F0;
 }
-body .table tbody tr td {
+.table tbody tr td {
   color: #333;
   height: 60px;
   max-height: 90px;
   vertical-align: middle;
   padding: 0 8px 0 14px;
   border-top: none;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #E6E6E6;
 }
-body .table tbody tr.active td {
+.table tbody tr.active td {
   background-color: transparent;
 }
-body .table tbody tr:hover {
+.table tbody tr:hover {
   background-color: #FAF3EB;
 }
-body .table tbody tr.active:hover td {
+.table tbody tr.active:hover td {
   background-color: #FAF3EB;
 }
-body .table.table-bordered thead tr th {
+.table.table-bordered thead tr th {
   border: 1px solid #e6e6e6;
 }
-body .table tr:hover .operation {
+.table tr:hover .operation {
   visibility: hidden;
 }
-body .table tr:hover > td > .operation {
+.table tr:hover > td > .operation {
   visibility: visible;
 }
-body .table tbody tr td.sub-toggle .brixfont {
+.table tbody tr td.sub-toggle .brixfont {
   cursor: pointer;
   display: none;
 }
-body .table tbody tr td.sub-toggle .brixfont.plus {
+.table tbody tr td.sub-toggle .brixfont.plus {
   display: block;
 }
-body .table tbody tr td.sub-toggle.open .brixfont {
+.table tbody tr td.sub-toggle.open .brixfont {
   display: none;
 }
-body .table tbody tr td.sub-toggle.open .brixfont.minus {
+.table tbody tr td.sub-toggle.open .brixfont.minus {
   display: block;
 }
-body .table tbody tr.sub {
+.table tbody tr.sub {
   display: none;
   background-color: transparent!important;
 }
-body .table tbody tr.sub > td table.table {
+.table tbody tr.sub > td table.table {
   margin-bottom: -1px;
 }
-body .table thead tr th {
+.table thead tr th {
   height: 60px;
   padding: 0 8px;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   color: #999;
   font-weight: 400;
   vertical-align: middle;
   border: 0;
 }
-body .table tbody tr td {
+.table tbody tr td {
   padding: 21px 8px;
   min-height: 60px;
   max-height: 90px;
   color: #333;
   border-top: 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #E6E6E6;
 }
-body .table .more .content {
-  border: 1px solid #e6e6e6;
+.table .more .content {
+  border: 1px solid #E6E6E6;
   border-radius: 4px;
   box-shadow: none;
 }
-body .table tbody tr td .operation .btn {
+.table tbody tr td .operation .btn {
   padding: 5px 11px;
   height: 26px;
 }
-body .table tbody tr td .operation .btn-dropdown {
+.table tbody tr td .operation .btn-dropdown {
   display: inline-block;
   position: relative;
 }
-body .table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle .down {
+.table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle .down {
   font-size: 12px;
   display: inline-block;
 }
-body .table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle .up {
+.table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle .up {
   font-size: 12px;
   display: none;
 }
-body .table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle:hover {
+.table tbody tr td .operation .btn-dropdown .btn-dropdown-toggle:hover {
   background-color: #ff6600;
   color: white;
 }
-body .table tbody tr td .operation .btn-dropdown .btn-dropdown-content {
+.table tbody tr td .operation .btn-dropdown .btn-dropdown-content {
   display: none;
   position: absolute;
   right: 0;
   top: 100%;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #E6E6E6;
   border-radius: 4px;
   background-color: white;
   padding: 20px 10px 10px 10px;
@@ -2075,19 +2058,19 @@ body .table tbody tr td .operation .btn-dropdown .btn-dropdown-content {
   margin-top: 10px;
   z-index: 1;
 }
-body .table tbody tr td .operation .btn-dropdown.open .btn-dropdown-toggle {
+.table tbody tr td .operation .btn-dropdown.open .btn-dropdown-toggle {
   background-color: #ff6600;
   color: white;
 }
-body .table tbody tr td .operation .btn-dropdown.open .btn-dropdown-content {
+.table tbody tr td .operation .btn-dropdown.open .btn-dropdown-content {
   display: block;
 }
-body .column-scroll-arrow {
+.column-scroll-arrow {
   background-color: #CCC;
   transition: none;
 }
-body .column-scroll-arrow.hover,
-body .column-scroll-arrow:hover {
+.column-scroll-arrow.hover,
+.column-scroll-arrow:hover {
   background-color: #ff6600;
 }
 .btn-progress-wrapper {
@@ -2142,10 +2125,10 @@ body .column-scroll-arrow:hover {
 .dialog.column-priority .dialog-content .dialog-footer a {
   color: #999;
 }
-body .wizard.wizard-horizontal ol.wizard-nav li.item.active span.circle {
+.wizard.wizard-horizontal ol.wizard-nav li.item.active span.circle {
   background-color: #ff6600;
 }
-body .wizard.wizard-vertical .wizard-cards .wizard-card.active span.circle {
+.wizard.wizard-vertical .wizard-cards .wizard-card.active span.circle {
   background-color: #ff6600;
 }
 .ungrid-row.summary {
@@ -2171,42 +2154,42 @@ body .wizard.wizard-vertical .wizard-cards .wizard-card.active span.circle {
   color: #FFF;
   border-radius: 0 6px 0 0;
 }
-body .hourpicker div.shortcuts label {
+.hourpicker div.shortcuts label {
   font-weight: normal;
   color: #333;
   padding: 0;
 }
-body .hourpicker div.apply-dialog .apply-dialog-body {
+.hourpicker div.apply-dialog .apply-dialog-body {
   margin-bottom: 20px;
 }
-body .hourpicker div.apply-dialog .apply-dialog-body label {
+.hourpicker div.apply-dialog .apply-dialog-body label {
   margin-bottom: 10px;
   font-weight: normal;
 }
-body .hourpicker div.apply-dialog .apply-dialog-footer .btn.submit {
+.hourpicker div.apply-dialog .apply-dialog-footer .btn.submit {
   background-color: #ff6600;
   color: white;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour {
   float: left;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-duration {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-duration {
   z-index: 1;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour.active .picker-hour-duration {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour.active .picker-hour-duration {
   background-color: #ff6600;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-start,
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-end {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-start,
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .picker-hour-end {
   background-color: #ff6600;
   z-index: 2;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .bottom .picker-hour-arrow {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .bottom .picker-hour-arrow {
   top: -3px;
   border-bottom: 3px solid #ff6600;
   margin-left: -3px;
 }
-body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .top .picker-hour-arrow {
+.hourpicker table.picker-days .picker-day .picker-hours .picker-hour .top .picker-hour-arrow {
   bottom: -3px;
   border-top: 3px solid #ff6600;
   margin-left: -3px;
@@ -2249,25 +2232,21 @@ body .hourpicker table.picker-days .picker-day .picker-hours .picker-hour .top .
 .mm-tabs li.border-bottom-color-transparent {
   border-bottom-color: transparent;
 }
-.mm-tabs li:hover,
-.mm-tabs li.active {
-  border-bottom-color: #ff6600;
-}
-body .spin {
+.spin {
   border-width: 0;
 }
-body .rotating-plane,
-body .double-bounce1,
-body .double-bounce2,
-body .rectangle-bounce div,
-body .cube1,
-body .cube2,
-body .chasing-dots .dot1,
-body .chasing-dots .dot2,
-body .pulse,
-body .three-bounce > div,
-body .container1 > div,
-body .container2 > div,
-body .container3 > div {
+.rotating-plane,
+.double-bounce1,
+.double-bounce2,
+.rectangle-bounce div,
+.cube1,
+.cube2,
+.chasing-dots .dot1,
+.chasing-dots .dot2,
+.pulse,
+.three-bounce > div,
+.container1 > div,
+.container2 > div,
+.container3 > div {
   background-color: #ff6600;
 }

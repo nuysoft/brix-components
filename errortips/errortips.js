@@ -12,6 +12,7 @@ define([
     EVENTS: {
       //三级导航点击标题收缩扩展子菜单
       '.errortips-icon': {
+        /* jshint unused:false */
         click: function(e, self) {
           self._tips.fadeOut(0.25, function() {
             self._tips.remove()

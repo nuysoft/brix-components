@@ -379,10 +379,9 @@ body {
 }
 
 // ----------------------------------------
-// 栅格
+// 栅格 https://github.com/chrisnager/ungrid
 // ----------------------------------------
 
-// https://github.com/chrisnager/ungrid
 @media (min-width: 30em) {
     .ungrid-row { 
         width: 100%; 
@@ -419,35 +418,26 @@ body {
 // 变量 TODO
 // ----------------------------------------
 
-@brand: #4d7fff;
-@brand-hover: #4776ed;
-@fafafa: #fafafa;
-@f0f0f0: #f0f0f0;
-@e6e6e6: #e6e6e6;
-@green: #51A300;
-@red: #A40100;
-@gray: #999;
+@bg:       #F0F0F0;
+@border:   #E6E6E6;
+@warning:  #FFB400;
+@danger:   #A62A22;
+@success:  #6CB12A;
+@fail:     #A62A22;
 
-.color-primary  { color: @minecraft-brand; }
-.color-success  { color: @green; }
-.color-info     { color: @f0f0f0; }
-.color-warning  { color: @red; }
-.color-danger   { color: @red; }
-.color-gray   { color: @gray; }
+.color-help     { color: #999999;               }
+.color-info     { color: #999999;               }
+.color-border   { border-color: @border;        }
+.color-warning  { color: @warning;              }
+.color-danger   { color: @danger;               }
+.color-success  { color: @success;              }
+.color-fail     { color: @fail;                 }
 
-.bg-primary     { background-color: @minecraft-brand; }
-.bg-success     { background-color: @green; }
-.bg-info        { background-color: @f0f0f0; }
-.bg-warning     { background-color: @red; }
-.bg-danger      { background-color: @red; }
-.bg-gray        { background-color: @gray; }
-
-.color-help     { color: #999999;}
-.color-info     { color: #999999;}
-.color-warning  { color: #FFB400;}
-.color-danger   { color: #A62A22;}
-.color-success  { color: #6CB12A;}
-.color-fail     { color: #A62A22;}
+.bg-info        { background-color: @bg;        }
+.bg-warning     { background-color: @warning;   }
+.bg-danger      { background-color: @danger;    }
+.bg-success     { background-color: @success;   }
+.bg-fail        { background-color: @fail;      }
 
 // ----------------------------------------
 // 按钮 Button
@@ -621,7 +611,7 @@ ul.checklist-linear {
 // 下拉框 Dropdown
 // ----------------------------------------
 
-body .dropdown {
+.dropdown {
     min-width: 140px;
     .dropdown-toggle {
         width: 100%;
@@ -653,7 +643,7 @@ body .dropdown {
     .dropdown-menu {
         margin-top: 10px;
         box-shadow: none;
-        border: 1px solid #e6e6e6;
+        border: 1px solid #E6E6E6;
         padding: 10px 0;
         font-size: 12px;
         min-width: 100px;
@@ -684,7 +674,7 @@ body .dropdown {
     }
 }
 
-body .dropdown {
+.dropdown {
     min-width: 190px;
     ul.dropdown-menu {
         width: 100%;
@@ -717,7 +707,7 @@ body .dropdown {
         position: absolute;
         top: 100%;
         left: 0;
-        border: 1px solid #e6e6e6;
+        border: 1px solid #E6E6E6;
         padding: 10px;
         margin-top: 10px;
         width: 100%;
@@ -791,7 +781,7 @@ textarea, .textarea,
     font-size: 12px;
     padding: 6px 9px;
     color: #333;
-    border: 1px solid #e6e6e6;
+    border: 1px solid #E6E6E6;
     background-color: white;
 
     .border-radius(4px);
@@ -816,9 +806,9 @@ textarea, .textarea,
     }
 
     &[disabled], &[readonly] {
-        border-color: #e6e6e6;
+        border-color: #E6E6E6;
         cursor: not-allowed;
-        background-color: #fafafa;
+        background-color: #FAFAFA;
         color: #ccc;
     }
 }
@@ -832,7 +822,7 @@ textarea.form-control, .textarea.form-control {
     input, input:focus, input:hover, 
     textarea, textarea:focus, textarea:hover, 
     button, button:focus, button:hover{
-        border-color: @red;
+        border-color: @fail;
         .box-shadow(none);
     }
 }
@@ -842,13 +832,13 @@ textarea.error, textarea.input-error, textarea.parsley-error,
 button.error, button.input-error, button.parsley-error {
     color: #333;
     background-color: white;
-    border-color: @red;
-    border-color: @red;
+    border-color: @fail;
+    border-color: @fail;
     .box-shadow(none);
 }
 
 .parsley-errors-list {
-    color: @red;
+    color: @fail;
 }
 
 .parsley-errors-list {
@@ -915,7 +905,7 @@ button.error, button.input-error, button.parsley-error {
         }
     }
 }
-body .datepickerwrapper {
+.datepickerwrapper {
     border: 1px solid #E6E6E6!important;
     border-radius: 4px!important;
     box-shadow: none!important;
@@ -987,8 +977,8 @@ body .datepickerwrapper {
     }
 }
 
-body .datepicker-container {
-    border: 1px solid #e6e6e6;
+.datepicker-container {
+    border: 1px solid #E6E6E6;
     border-radius: 4px!important;
     box-shadow: none!important;
     padding: 0px;
@@ -1000,7 +990,7 @@ body .datepicker-container {
             line-height: 30px;
             vertical-align: middle;
             padding: 0 15px;
-            border-bottom: 1px solid #e6e6e6;
+            border-bottom: 1px solid #E6E6E6;
             margin-bottom: 0px;
             .minus, .plus {
                 padding: 8px 0px;
@@ -1024,7 +1014,7 @@ body .datepicker-container {
             width: 258px;
             .datepicker-body-description {
                 color: #999;
-                background-color: #fafafa;
+                background-color: #FAFAFA;
                 padding: 0 10px;
             }
             .datepicker-body-value {
@@ -1161,7 +1151,7 @@ ol.breadcrumb {
 // 翻页器 Pagination
 // ----------------------------------------
 
-body .paginationwrapper {
+.paginationwrapper {
     background-color: #FAFAFA;
     padding-top: 10px;
     margin-left: 0;
@@ -1393,6 +1383,7 @@ table {
 // ----------------------------------------
 
 .contextual-message {
+    min-height: 32px;
     padding: 5px 15px;
     border-radius: 4px;
     .glyph {
@@ -1415,13 +1406,13 @@ table {
     left: 0;
     width: 100%;
     padding: 7px 40px;
-    color: @red
+    color: @fail
 }
 .mm-message-top {
     background-color: #FFEFE6;
     width: 100%;
     padding: 7px 40px;
-    color: @red;
+    color: @fail;
     text-align: center;
 }
 
@@ -1430,7 +1421,7 @@ table {
 // 表格 Table
 // ----------------------------------------
 
-body .table {
+.table {
     thead {
         tr, tr.active {
             th {
@@ -1440,10 +1431,10 @@ body .table {
                 vertical-align: middle;
                 padding: 0 8px 0 14px;
                 white-space: nowrap;
-                background-color: #fafafa;
+                background-color: #FAFAFA;
                 border: none;
                 &.stable {
-                    background-color: #f0f0f0;
+                    background-color: #F0F0F0;
                 }
             }
         }
@@ -1455,7 +1446,7 @@ body .table {
         vertical-align: middle;
         padding: 0 8px 0 14px;
         border-top: none;
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 1px solid #E6E6E6;
     }
     tbody tr.active td {
         background-color: transparent;
@@ -1509,13 +1500,13 @@ body .table {
     }
 }
 
-body .table {
+.table {
     thead {
         tr {
             th {
                 height: 60px;
                 padding: 0 8px;
-                background-color: #fafafa;
+                background-color: #FAFAFA;
                 color: #999;
                 font-weight: 400;
                 vertical-align: middle;
@@ -1531,20 +1522,20 @@ body .table {
                 max-height: 90px;
                 color: #333;
                 border-top: 0;
-                border-bottom: 1px solid #e6e6e6;
+                border-bottom: 1px solid #E6E6E6;
             }
         }
     } 
     .more {
         .content {
-            border: 1px solid #e6e6e6;
+            border: 1px solid #E6E6E6;
             border-radius: 4px;
             box-shadow: none;
         }
     }
 }
 
-body .table {
+.table {
     tbody {
         tr {
             td {
@@ -1577,7 +1568,7 @@ body .table {
                             position: absolute;
                             right: 0;
                             top: 100%;
-                            border: 1px solid #e6e6e6;
+                            border: 1px solid #E6E6E6;
                             border-radius: 4px;
                             background-color: white;
                             padding: 20px 10px 10px 10px;
@@ -1601,7 +1592,7 @@ body .table {
     }
 }
 
-body .column-scroll-arrow {
+.column-scroll-arrow {
     background-color: #CCC;
     transition: none;
     &.hover,
@@ -1694,7 +1685,7 @@ body .column-scroll-arrow {
     background-color: @minecraft-brand;
 }
 
-body .wizard.wizard-horizontal {
+.wizard.wizard-horizontal {
     ol.wizard-nav {
         li.item {
             &.active {
@@ -1707,7 +1698,7 @@ body .wizard.wizard-horizontal {
     .wizard-cards {}
     .wizard-footer {}
 }
-body .wizard.wizard-vertical {
+.wizard.wizard-vertical {
     .wizard-cards {
         .wizard-card {
             &.active {
@@ -1752,7 +1743,7 @@ body .wizard.wizard-vertical {
 // 时间选择器 HourPicker
 // ----------------------------------------
 
-body .hourpicker {
+.hourpicker {
     div.shortcuts {
         label {
             font-weight: normal;
@@ -1850,17 +1841,6 @@ body .hourpicker {
     }
 }
 
-.mm-tabs {
-    li {
-        
-    }
-    li:hover, li.active {
-        border-bottom-color: @minecraft-brand;
-        
-    }
-}
-
-
 // ----------------------------------------
 // 滚动条 Scrollbar
 // ----------------------------------------
@@ -1870,18 +1850,17 @@ body .hourpicker {
 // 加载 Loading
 // ----------------------------------------
 
-body {
-    .spin {
-        border-width: 0;
-    }
-    .rotating-plane, 
-    .double-bounce1, .double-bounce2, 
-    .rectangle-bounce div, 
-    .cube1, .cube2, 
-    .chasing-dots .dot1, .chasing-dots .dot2, 
-    .pulse, 
-    .three-bounce > div, 
-    .container1 > div, .container2 > div, .container3 > div {
-        background-color: @minecraft-brand;
-    }
+
+.spin {
+    border-width: 0;
+}
+.rotating-plane, 
+.double-bounce1, .double-bounce2, 
+.rectangle-bounce div, 
+.cube1, .cube2, 
+.chasing-dots .dot1, .chasing-dots .dot2, 
+.pulse, 
+.three-bounce > div, 
+.container1 > div, .container2 > div, .container3 > div {
+    background-color: @minecraft-brand;
 }
