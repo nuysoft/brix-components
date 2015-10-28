@@ -42,14 +42,14 @@
 }
 .colorpicker .colorpicker-header ul {
   width: 208px;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 .colorpicker .colorpicker-header ul li {
   float: left;
   width: 14px;
   height: 14px;
-  margin: -1px 0px 0 -1px;
+  margin: -1px 0 0 -1px;
   border: 1px solid #000;
   list-style-type: none;
 }
@@ -76,8 +76,8 @@
   font-size: 10px;
   line-height: 11px;
   color: #000;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   cursor: pointer;
 }
 .colorpicker .colorpicker-body .slide-wrapper {
@@ -96,7 +96,7 @@
   line-height: 11px;
   color: #000;
   right: -9px;
-  top: 0px;
+  top: 0;
   cursor: pointer;
 }
 .colorpicker .colorpicker-footer {
@@ -144,8 +144,6 @@
     opacity: 0.0;
   }
 }
-
-/* /ctree/ctree.css */
 
 /* /datepicker/datepicker.css */
 .datepicker-container {
@@ -310,6 +308,8 @@
   text-align: center;
 }
 
+/* /ctree/ctree.css */
+
 /* /datepickerwrapper/datepickerwrapper.css */
 .datepickerwrapper {
   position: absolute;
@@ -435,6 +435,7 @@
 .dialog .dialog-close {
   position: relative;
   -webkit-appearance: none;
+  -moz-appearance: none;
   padding: 0;
   margin: 13px 15px 0 0;
   cursor: pointer;
@@ -467,7 +468,6 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  outline: 0;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
 .dialog .dialog-content .dialog-header {
@@ -903,6 +903,11 @@
 
 /* /nprogress/nprogress.css */
 
+/* /popover/popover.css */
+.popover img {
+  max-width: 100%;
+}
+
 /* /pagination/pagination.css */
 .pagination-statistics {
   margin-bottom: 10px;
@@ -917,11 +922,6 @@
 }
 .pagination .brixfont {
   font-size: 12px;
-}
-
-/* /popover/popover.css */
-.popover img {
-  max-width: 100%;
 }
 
 /* /progressbarwrapper/progressbarwrapper.css */
@@ -1732,6 +1732,8 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   animation-delay: -0.1s;
 }
 
+/* /switch/switch.css */
+
 /* /suggest/suggest.css */
 .suggest {
   position: absolute;
@@ -1747,10 +1749,6 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .suggest .dropdown-menu .active .highlight {
   color: #000;
 }
-
-/* /switch/switch.css */
-
-/* /tab/tab.css */
 
 /* /table/table.css */
 .table-fixed {
@@ -1850,6 +1848,8 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .column-priority.dialog .dialog-content .dialog-footer {
   text-align: left;
 }
+
+/* /tab/tab.css */
 
 /* /taginput/taginput.css */
 .taginput {

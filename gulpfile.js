@@ -48,7 +48,11 @@ gulp.task('watch', function( /*callback*/ ) {
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
-    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'concat-css', 'minify-css'])
+    gulp.watch(['**/*.less'].concat(globs), ['hello', 'less', 'concat-css', 'csslint', 'minify-css'])
+        .on('change', function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+        })
+    gulp.watch(['.csslintrc'].concat(globs), ['csslint'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
         })
@@ -73,9 +77,10 @@ gulp.task('less', function() {
 
 // https://github.com/lazd/gulp-csslint
 // https://github.com/ebednarz/csslintrc/blob/master/.csslintrc
+// https://github.com/CSSLint/csslint/wiki/Rules
 gulp.task('csslint', function() {
     var globs = [
-        '**/*.css',
+        '**/minecraft.css',
         '!bower_components/**/*',
         '!node_modules/**/*',
         '!dist/**/*'

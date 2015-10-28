@@ -71,6 +71,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+// http://iconfont.cn/users/project?pid=12401
 @font-face {
     font-family: 'specfont';
     src: url('//at.alicdn.com/t/font_1438244124_9732695.eot'); /* IE9*/
@@ -92,6 +93,7 @@
 .icon-minecraft:before { content: "\e631"; }
 .icon-xialakuang:before { content: "\e623"; }
 
+// http://iconfont.cn/users/project?pid=641
 @font-face {
     font-family: 'zsfont';
     src: url('//at.alicdn.com/t/font_1445825114_7257817.eot'); /* IE9*/
@@ -110,6 +112,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+// http://iconfont.cn/users/project?pid=29536
 @font-face {
     font-family: 'productfont';
     src: url('//at.alicdn.com/t/font_1438848723_123487.eot'); /* IE9*/
@@ -245,12 +248,6 @@
 .bg-dmp-nav                 { background-color: @dmp-nav-bg; }
 .bg-dmp-table-hover         { background-color: @dmp-table-hover; }
 
-// 默认
-@brand            : @minecraft-brand;
-@brand-hover      : @minecraft-brand-hover;
-@nav-bg           : @minecraft-nav-bg;
-@table-hover      : @minecraft-table-hover;
-
 
 // ----------------------------------------
 // 字体
@@ -353,7 +350,6 @@ body {
 
 @mm-grid-columns: 64;
 .mm-row {
-    *zoom: 1;
     :after {
         content: "\200B";
         display: block;
@@ -363,7 +359,6 @@ body {
 
     .col {
         float: left;
-        _display: inline;
         position: relative;
         min-height: 1px;
     }
@@ -404,18 +399,21 @@ body {
 // 动画 Animation
 // ----------------------------------------
 
-* {
+div {
   transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
 }
 
 .animated {
     -webkit-animation-duration: 1s;
+       -moz-animation-duration: 1s;
             animation-duration: 1s;
     -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
             animation-fill-mode: both;
 }
 .animated.infinite {
     -webkit-animation-iteration-count: infinite;
+       -moz-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
 }
 
@@ -424,6 +422,12 @@ body {
 // 变量 TODO
 // ----------------------------------------
 
+// 默认品牌
+@brand            : @minecraft-brand;
+@brand-hover      : @minecraft-brand-hover;
+@nav-bg           : @minecraft-nav-bg;
+@table-hover      : @minecraft-table-hover;
+
 @bg:       #F0F0F0;
 @border:   #E6E6E6;
 @warning:  #FFB400;
@@ -431,6 +435,7 @@ body {
 @success:  #6CB12A;
 @fail:     #A62A22;
 
+.color-brand    { color: @brand;                }
 .color-help     { color: #999999;               }
 .color-info     { color: #999999;               }
 .color-border   { border-color: @border;        }
@@ -439,6 +444,7 @@ body {
 .color-success  { color: @success;              }
 .color-fail     { color: @fail;                 }
 
+.bg-brand       { background-color: @brand;     }
 .bg-info        { background-color: @bg;        }
 .bg-warning     { background-color: @warning;   }
 .bg-danger      { background-color: @danger;    }
@@ -1134,7 +1140,7 @@ ol.breadcrumb {
             display: none;
         }
         .dropdown {
-            min-width: initial;
+            min-width: inherit;
         }
     }
     ul.pagination {
@@ -1214,7 +1220,6 @@ ol.breadcrumb {
         .input-group-btn {
             > .btn {
                 border-width: 0;
-                width: initial;
                 &.bg-brand {
                     border-radius: 0;
                     background-color: @brand;
@@ -1256,8 +1261,6 @@ ol.breadcrumb {
             }
         }
     }
-}
-.bs-example-searchbox-2 {
     .input-group-tab {
         padding-left: 10px;
         .btn {
@@ -1272,34 +1275,6 @@ ol.breadcrumb {
             &.active {
                 background-color: @brand;
                 color: #FFF;
-            }
-        }
-    }
-    .input-group {
-        border: 1px solid @brand;
-        border-radius: 4px;
-        .input-group-btn {
-            > .btn {
-                border-width: 0;
-                width: initial;
-                &.bg-brand {
-                    border-radius: 0;
-                    background-color: @brand;
-                    color: #FFF;
-                }
-            }
-        }
-        .input-group-input {
-            position: relative;
-            display: table-cell;
-            input {
-                border-width: 0;
-            }
-            .dropdown.suggest {
-                width: 100%;
-                .dropdown-menu {
-                    width: 100%;
-                }
             }
         }
     }
@@ -1415,11 +1390,67 @@ table {
     tbody tr td {
         color: #333;
         height: 60px;
+        min-height: 60px;
         max-height: 90px;
         vertical-align: middle;
         padding: 0 8px 0 14px;
         border-top: none;
         border-bottom: 1px solid @border;
+
+        .more {
+            .content {
+                border: 1px solid @border;
+                border-radius: 4px;
+                box-shadow: none;
+            }
+        }
+        .operation {
+            // visibility: visible;
+            .btn {
+                padding: 5px 11px;
+                height: 26px;
+            }
+            .btn-dropdown {
+                display: inline-block;
+                position: relative;
+                .btn-dropdown-toggle {
+                    .down {
+                        font-size: 12px;
+                        display: inline-block;
+                    }
+                    .up {
+                        font-size: 12px;
+                        display: none;
+                    }
+                    &:hover {
+                        background-color: @brand;
+                        color: white;
+                    }
+                }
+                .btn-dropdown-content {
+                    display: none;
+                    position: absolute;
+                    right: 0;
+                    top: 100%;
+                    border: 1px solid @border;
+                    border-radius: 4px;
+                    background-color: white;
+                    padding: 20px 10px 10px 10px;
+                    box-shadow: none;
+                    margin-top: 10px;
+                    z-index: 1;
+                }
+                &.open {
+                    .btn-dropdown-toggle {
+                        background-color: @brand;
+                        color: white;
+                    }
+                    .btn-dropdown-content {
+                        display: block;
+                    }
+                }
+            }
+        }
     }
     tbody tr.active td {
         background-color: transparent;
@@ -1463,7 +1494,9 @@ table {
     }
     tbody tr.sub {
         display: none;
-        background-color: transparent!important;
+        &, &:hover {
+            background-color: transparent;    
+        }
 
         > td {
             table.table {
@@ -1473,97 +1506,7 @@ table {
     }
 }
 
-.table {
-    thead {
-        tr {
-            th {
-                height: 60px;
-                padding: 0 8px;
-                background-color: #FAFAFA;
-                color: #999;
-                font-weight: 400;
-                vertical-align: middle;
-                border: 0;
-            }
-        }
-    }
-    tbody {
-        tr {
-            td {
-                padding: 21px 8px;
-                min-height: 60px;
-                max-height: 90px;
-                color: #333;
-                border-top: 0;
-                border-bottom: 1px solid @border;
-            }
-        }
-    } 
-    .more {
-        .content {
-            border: 1px solid @border;
-            border-radius: 4px;
-            box-shadow: none;
-        }
-    }
-}
 
-.table {
-    tbody {
-        tr {
-            td {
-                .operation {
-                    
-                    // visibility: visible;
-                    .btn {
-                        padding: 5px 11px;
-                        height: 26px;
-                    }
-                    .btn-dropdown {
-                        display: inline-block;
-                        position: relative;
-                        .btn-dropdown-toggle {
-                            .down {
-                                font-size: 12px;
-                                display: inline-block;
-                            }
-                            .up {
-                                font-size: 12px;
-                                display: none;
-                            }
-                            &:hover {
-                                background-color: @brand;
-                                color: white;
-                            }
-                        }
-                        .btn-dropdown-content {
-                            display: none;
-                            position: absolute;
-                            right: 0;
-                            top: 100%;
-                            border: 1px solid @border;
-                            border-radius: 4px;
-                            background-color: white;
-                            padding: 20px 10px 10px 10px;
-                            box-shadow: none;
-                            margin-top: 10px;
-                            z-index: 1;
-                        }
-                        &.open {
-                            .btn-dropdown-toggle {
-                                background-color: @brand;
-                                color: white;
-                            }
-                            .btn-dropdown-content {
-                                display: block;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 .column-scroll-arrow {
     background-color: #CCC;
@@ -1595,16 +1538,14 @@ table {
 .dialog.column-priority {
     margin-top: 10px;
     .dialog-content {
-        .dialog-header {
-            &.row {
-                margin: 0;
-                .col-xs-8, .col-xs-4 {
-                    padding: 0;
-                    a {
-                        color: #999;
-                        &:hover {
-                            color: @brand;
-                        }
+        .dialog-header.row {
+            margin: 0;
+            .col-xs-8, .col-xs-4 {
+                padding: 0;
+                a {
+                    color: #999;
+                    &:hover {
+                        color: @brand;
                     }
                 }
             }
@@ -1614,22 +1555,20 @@ table {
                 color: #999;
             }
         }
-        .dialog-body {
-            &.row {
-                margin: 0;
-                .col-xs-8, .col-xs-4 {
-                    padding: 0;
-                }
+        .dialog-body.row {
+            margin: 0;
+            .col-xs-8, .col-xs-4 {
+                padding: 0;
             }
-            .candidates {
+            .candidates.col-xs-8 {
                 .item {
                     span {
                         vertical-align: text-top;
                     }
                 }
             }
-            .queue {
-                padding-right: 20px!important;
+            .queue.col-xs-4 {
+                padding-right: 20px;
                 .item {
                     text-align: left;
                     padding: 6px 10px 4px 10px;
@@ -1683,7 +1622,7 @@ table {
     }
 }
 .ungrid-row.summary {
-    width: initial;
+    width: inherit;
     height: 80px;
     position: absolute;
     right: 40px;

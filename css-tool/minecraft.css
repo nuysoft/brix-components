@@ -618,9 +618,6 @@ body {
 .w300 {
   width: 300px;
 }
-.mm-row {
-  *zoom: 1;
-}
 .mm-row :after {
   content: "\200B";
   display: block;
@@ -629,7 +626,6 @@ body {
 }
 .mm-row .col {
   float: left;
-  _display: inline;
   position: relative;
   min-height: 1px;
 }
@@ -1027,18 +1023,24 @@ body {
     display: table-cell;
   }
 }
-* {
+div {
   transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
 }
 .animated {
   -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 .animated.infinite {
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+}
+.color-brand {
+  color: #ff6600;
 }
 .color-help {
   color: #999999;
@@ -1060,6 +1062,9 @@ body {
 }
 .color-fail {
   color: #a62a22;
+}
+.bg-brand {
+  background-color: #ff6600;
 }
 .bg-info {
   background-color: #f0f0f0;
@@ -1731,7 +1736,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   display: none;
 }
 .paginationwrapper .pagination-statistics .dropdown {
-  min-width: initial;
+  min-width: inherit;
 }
 .paginationwrapper ul.pagination > li > a,
 .paginationwrapper ul.pagination > li > span {
@@ -1789,7 +1794,6 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 }
 .input-group-wrapper .input-group .input-group-btn > .btn {
   border-width: 0;
-  width: initial;
 }
 .input-group-wrapper .input-group .input-group-btn > .btn.bg-brand {
   border-radius: 0;
@@ -1828,48 +1832,22 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 .input-group-wrapper .hots a:hover {
   color: #ff6600;
 }
-.bs-example-searchbox-2 .input-group-tab {
+.input-group-wrapper .input-group-tab {
   padding-left: 10px;
 }
-.bs-example-searchbox-2 .input-group-tab .btn {
+.input-group-wrapper .input-group-tab .btn {
   height: 24px;
   line-height: 0;
   border-radius: 4px 4px 0 0;
   margin-right: 5px;
   background-color: transparent;
 }
-.bs-example-searchbox-2 .input-group-tab .btn:hover {
+.input-group-wrapper .input-group-tab .btn:hover {
   background-color: #e6e6e6;
 }
-.bs-example-searchbox-2 .input-group-tab .btn.active {
+.input-group-wrapper .input-group-tab .btn.active {
   background-color: #ff6600;
   color: #FFF;
-}
-.bs-example-searchbox-2 .input-group {
-  border: 1px solid #ff6600;
-  border-radius: 4px;
-}
-.bs-example-searchbox-2 .input-group .input-group-btn > .btn {
-  border-width: 0;
-  width: initial;
-}
-.bs-example-searchbox-2 .input-group .input-group-btn > .btn.bg-brand {
-  border-radius: 0;
-  background-color: #ff6600;
-  color: #FFF;
-}
-.bs-example-searchbox-2 .input-group .input-group-input {
-  position: relative;
-  display: table-cell;
-}
-.bs-example-searchbox-2 .input-group .input-group-input input {
-  border-width: 0;
-}
-.bs-example-searchbox-2 .input-group .input-group-input .dropdown.suggest {
-  width: 100%;
-}
-.bs-example-searchbox-2 .input-group .input-group-input .dropdown.suggest .dropdown-menu {
-  width: 100%;
 }
 .suggestwrapper {
   display: inline-block;
@@ -1949,68 +1927,14 @@ table tbody tr:hover .editable-toggle {
 .table tbody tr td {
   color: #333;
   height: 60px;
+  min-height: 60px;
   max-height: 90px;
   vertical-align: middle;
   padding: 0 8px 0 14px;
   border-top: none;
   border-bottom: 1px solid #e6e6e6;
 }
-.table tbody tr.active td {
-  background-color: transparent;
-}
-.table tbody tr:hover {
-  background-color: #faf3eb;
-}
-.table tbody tr.active:hover td {
-  background-color: #faf3eb;
-}
-.table.table-bordered thead tr th {
-  border: 1px solid #e6e6e6;
-}
-.table tr:hover .operation {
-  visibility: hidden;
-}
-.table tr:hover > td > .operation {
-  visibility: visible;
-}
-.table tbody tr td.sub-toggle .brixfont {
-  cursor: pointer;
-  display: none;
-}
-.table tbody tr td.sub-toggle .brixfont.plus {
-  display: block;
-}
-.table tbody tr td.sub-toggle.open .brixfont {
-  display: none;
-}
-.table tbody tr td.sub-toggle.open .brixfont.minus {
-  display: block;
-}
-.table tbody tr.sub {
-  display: none;
-  background-color: transparent!important;
-}
-.table tbody tr.sub > td table.table {
-  margin-bottom: -1px;
-}
-.table thead tr th {
-  height: 60px;
-  padding: 0 8px;
-  background-color: #FAFAFA;
-  color: #999;
-  font-weight: 400;
-  vertical-align: middle;
-  border: 0;
-}
-.table tbody tr td {
-  padding: 21px 8px;
-  min-height: 60px;
-  max-height: 90px;
-  color: #333;
-  border-top: 0;
-  border-bottom: 1px solid #e6e6e6;
-}
-.table .more .content {
+.table tbody tr td .more .content {
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   box-shadow: none;
@@ -2055,6 +1979,47 @@ table tbody tr:hover .editable-toggle {
 .table tbody tr td .operation .btn-dropdown.open .btn-dropdown-content {
   display: block;
 }
+.table tbody tr.active td {
+  background-color: transparent;
+}
+.table tbody tr:hover {
+  background-color: #faf3eb;
+}
+.table tbody tr.active:hover td {
+  background-color: #faf3eb;
+}
+.table.table-bordered thead tr th {
+  border: 1px solid #e6e6e6;
+}
+.table tr:hover .operation {
+  visibility: hidden;
+}
+.table tr:hover > td > .operation {
+  visibility: visible;
+}
+.table tbody tr td.sub-toggle .brixfont {
+  cursor: pointer;
+  display: none;
+}
+.table tbody tr td.sub-toggle .brixfont.plus {
+  display: block;
+}
+.table tbody tr td.sub-toggle.open .brixfont {
+  display: none;
+}
+.table tbody tr td.sub-toggle.open .brixfont.minus {
+  display: block;
+}
+.table tbody tr.sub {
+  display: none;
+}
+.table tbody tr.sub,
+.table tbody tr.sub:hover {
+  background-color: transparent;
+}
+.table tbody tr.sub > td table.table {
+  margin-bottom: -1px;
+}
 .column-scroll-arrow {
   background-color: #CCC;
   transition: none;
@@ -2084,7 +2049,7 @@ table tbody tr:hover .editable-toggle {
 .dialog.column-priority .dialog-content .dialog-header.row .col-xs-4 a:hover {
   color: #ff6600;
 }
-.dialog.column-priority .dialog-content .dialog-header h4 {
+.dialog.column-priority .dialog-content .dialog-header.row h4 {
   margin: 0;
   font-size: 16px;
   color: #999;
@@ -2096,13 +2061,13 @@ table tbody tr:hover .editable-toggle {
 .dialog.column-priority .dialog-content .dialog-body.row .col-xs-4 {
   padding: 0;
 }
-.dialog.column-priority .dialog-content .dialog-body .candidates .item span {
+.dialog.column-priority .dialog-content .dialog-body.row .candidates.col-xs-8 .item span {
   vertical-align: text-top;
 }
-.dialog.column-priority .dialog-content .dialog-body .queue {
-  padding-right: 20px!important;
+.dialog.column-priority .dialog-content .dialog-body.row .queue.col-xs-4 {
+  padding-right: 20px;
 }
-.dialog.column-priority .dialog-content .dialog-body .queue .item {
+.dialog.column-priority .dialog-content .dialog-body.row .queue.col-xs-4 .item {
   text-align: left;
   padding: 6px 10px 4px 10px;
   border-radius: 4px;
@@ -2122,7 +2087,7 @@ table tbody tr:hover .editable-toggle {
   background-color: #ff6600;
 }
 .ungrid-row.summary {
-  width: initial;
+  width: inherit;
   height: 80px;
   position: absolute;
   right: 40px;

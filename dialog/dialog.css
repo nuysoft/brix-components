@@ -25,6 +25,7 @@
 .dialog .dialog-close {
   position: relative;
   -webkit-appearance: none;
+  -moz-appearance: none;
   padding: 0;
   margin: 13px 15px 0 0;
   cursor: pointer;
@@ -57,7 +58,6 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  outline: 0;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
 .dialog .dialog-content .dialog-header {
