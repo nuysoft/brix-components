@@ -245,6 +245,10 @@
 .bg-dmp-nav                 { background-color: @dmp-nav-bg; }
 .bg-dmp-table-hover         { background-color: @dmp-table-hover; }
 
+// 默认
+@brand            : @minecraft-brand;
+@brand-hover      : @minecraft-brand-hover;
+
 
 // ----------------------------------------
 // 字体
@@ -467,24 +471,24 @@ body {
 
     &.btn-brand {
         color: #fff;
-        border: 1px solid @minecraft-brand;
-        background-color: @minecraft-brand;
+        border: 1px solid @brand;
+        background-color: @brand;
         &:hover, &.hover, 
         &:focus, &.focus, 
         &:active, &.active {
             color: #fff;
-            border: 1px solid @minecraft-brand;
-            background-color: @minecraft-brand-hover;
+            border: 1px solid @brand;
+            background-color: @brand-hover;
         }
 
         border: 0;
-        background-color: @minecraft-brand;
+        background-color: @brand;
         &:hover, &.hover,
         &:focus, &.focus,
         &:active, &.active {
             border: 0;
             color: #fff;
-            background-color: @minecraft-brand-hover;
+            background-color: @brand-hover;
         }
     }
     &.btn-disabled {
@@ -516,10 +520,10 @@ body {
     }
     &.btn-brand.btn-progress {
         .btn-progress-bar {
-            background-color: @minecraft-brand-hover;
+            background-color: @brand-hover;
         }
         &:hover {
-            background-color: @minecraft-brand;
+            background-color: @brand;
         }
     }
 
@@ -536,10 +540,10 @@ body {
 }
 
 a {
-    color: @minecraft-brand;
+    color: @brand;
     text-decoration: none;
     &:hover, &:focus {
-        color: @minecraft-brand-hover;
+        color: @brand-hover;
     }
     &, &:hover, &:focus, &:active, &:visited {
         outline: 0;
@@ -570,7 +574,7 @@ label {
     input[type="checkbox"] {
         margin-right: 10px;
         &:checked:after {
-            background-color: @minecraft-brand;
+            background-color: @brand;
         }
         &[disabled]:after {
             background-color: #ccc;
@@ -664,7 +668,7 @@ ul.checklist-linear {
                 a:focus {
                     border-radius: 4px;
                     color: white;
-                    background-color: @minecraft-brand;
+                    background-color: @brand;
                 }
             }
             &.divider {
@@ -689,7 +693,7 @@ ul.checklist-linear {
                 > a,
                 > a:hover,
                 > a:focus {
-                    background-color: @minecraft-brand;
+                    background-color: @brand;
                 }
             }
             &.dropdown-header {
@@ -794,7 +798,7 @@ textarea, .textarea,
         color: #333;
     }
     &:focus {
-        border-color: @minecraft-brand;
+        border-color: @brand;
         color: #333;
         outline: none;
         .box-shadow(none);
@@ -923,7 +927,7 @@ button.error, button.input-error, button.parsley-error {
                 width: 70px;
                 padding: 4px;
                 &.active {
-                    background: @minecraft-brand;
+                    background: @brand;
                 }
             }
         }
@@ -962,9 +966,9 @@ button.error, button.input-error, button.parsley-error {
             border: 0;
             &.submit {
                 color: #FFF;
-                background-color: @minecraft-brand;
+                background-color: @brand;
                 &:hover {
-                    background-color: @minecraft-brand-hover;
+                    background-color: @brand-hover;
                 }
             }
             &.cancel {
@@ -996,7 +1000,7 @@ button.error, button.input-error, button.parsley-error {
                 padding: 8px 0px;
                 color: #999;
                 &:hover {
-                    color: @minecraft-brand;
+                    color: @brand;
                 }
                 .brixfont {
                     font-size: 12px;
@@ -1024,7 +1028,7 @@ button.error, button.input-error, button.parsley-error {
             &, .datepicker-body-value {
                 span.active {
                     color: white;
-                    background-color: @minecraft-brand;
+                    background-color: @brand;
                 }
             }
         }
@@ -1050,9 +1054,9 @@ button.error, button.input-error, button.parsley-error {
                     .btn {
                         &.submit {
                             color: #FFF;
-                            background-color: @minecraft-brand;
+                            background-color: @brand;
                             &:hover {
-                                background-color: @minecraft-brand-hover;
+                                background-color: @brand-hover;
                             }
                         }
                     }
@@ -1070,7 +1074,7 @@ button.error, button.input-error, button.parsley-error {
         .datepickerwrapper-shortcuts-body {
             .shortcut {
                 &.active {
-                    background-color: @minecraft-brand;
+                    background-color: @brand;
                 }
             }
         }
@@ -1083,9 +1087,9 @@ button.error, button.input-error, button.parsley-error {
     }
     .datepickerwrapper-footer {
         .btn.submit {
-            background-color: @minecraft-brand;
+            background-color: @brand;
             &:hover {
-                background-color: @minecraft-brand-hover;
+                background-color: @brand-hover;
             }
         }
     }
@@ -1094,7 +1098,7 @@ button.error, button.input-error, button.parsley-error {
             .picker-group {
                 .picker-body {
                     .active {
-                        background-color: @minecraft-brand;
+                        background-color: @brand;
                     }
                 }
             }
@@ -1118,14 +1122,14 @@ ol.breadcrumb {
         > a {
             color: #999;
             &:hover {
-                color: @minecraft-brand;
+                color: @brand;
             }
         }
         &.active {
             > a {
                 color: #333;
                 &:hover {
-                    color: @minecraft-brand;
+                    color: @brand;
                 }
             }
         }
@@ -1167,20 +1171,20 @@ ol.breadcrumb {
     ul.pagination {
         > li {
             > a, > span {
-                color: @minecraft-brand;
+                color: @brand;
                 border: none;
                 border-radius: 4px;
                 background-color: transparent;
                 &:hover {
-                    color: @minecraft-brand-hover;
+                    color: @brand-hover;
                 }
             }
             &.active {
                 > a, > span {
                     color: #FFF;
-                    background-color: @minecraft-brand;
+                    background-color: @brand;
                     &:hover {
-                        background-color: @minecraft-brand-hover;
+                        background-color: @brand-hover;
                     }
                 }
             }
@@ -1279,7 +1283,7 @@ ol.breadcrumb {
             margin-right: 10px;
             color: #999;
             &:hover {
-                color: @minecraft-brand;
+                color: @brand;
             }
         }
     }
@@ -1394,7 +1398,7 @@ table {
 .mm-message {
     margin-bottom: 20px;
     border-radius: 4px;
-    border: 1px solid @minecraft-brand;
+    border: 1px solid @brand;
     background-color: #FFEFE6;
     padding: 7px 14px;
 }
@@ -1559,7 +1563,7 @@ table {
                                 display: none;
                             }
                             &:hover {
-                                background-color: @minecraft-brand;
+                                background-color: @brand;
                                 color: white;
                             }
                         }
@@ -1578,7 +1582,7 @@ table {
                         }
                         &.open {
                             .btn-dropdown-toggle {
-                                background-color: @minecraft-brand;
+                                background-color: @brand;
                                 color: white;
                             }
                             .btn-dropdown-content {
@@ -1597,7 +1601,7 @@ table {
     transition: none;
     &.hover,
     &:hover {
-        background-color: @minecraft-brand;
+        background-color: @brand;
     }
 }
 
@@ -1630,7 +1634,7 @@ table {
                     a {
                         color: #999;
                         &:hover {
-                            color: @minecraft-brand;
+                            color: @brand;
                         }
                     }
                 }
@@ -1667,7 +1671,7 @@ table {
         .dialog-footer {
             .btn {
                 color: white;
-                background-color: @minecraft-brand;
+                background-color: @brand;
                 margin-right: 10px;
             }
             a {
@@ -1682,7 +1686,7 @@ table {
 // ----------------------------------------
 
 .circle-active() {
-    background-color: @minecraft-brand;
+    background-color: @brand;
 }
 
 .wizard.wizard-horizontal {
@@ -1794,7 +1798,7 @@ table {
         }
         .apply-dialog-footer {
             .btn.submit {
-                background-color: @minecraft-brand;
+                background-color: @brand;
                 color: white;
             }
         }
@@ -1808,20 +1812,20 @@ table {
                         z-index: 1;
                     }
                     &.active .picker-hour-duration {
-                        background-color: @minecraft-brand;
+                        background-color: @brand;
                     }
                     .picker-hour-start, .picker-hour-end {
-                        background-color: @minecraft-brand;
+                        background-color: @brand;
                         z-index: 2;
                     }
                     .bottom .picker-hour-arrow {
                         top: -3px;
-                        border-bottom: 3px solid @minecraft-brand;
+                        border-bottom: 3px solid @brand;
                         margin-left: -3px;
                     }
                     .top .picker-hour-arrow {
                         bottom: -3px;
-                        border-top: 3px solid @minecraft-brand;
+                        border-top: 3px solid @brand;
                         margin-left: -3px;
                     }
                 }
@@ -1850,7 +1854,7 @@ table {
         transition: border .2s ease-in-out;
         cursor: pointer;
         &.active, &:hover {
-            border-bottom-color: @minecraft-brand;
+            border-bottom-color: @brand;
         }
         a {
             font-size: 16px;
@@ -1862,7 +1866,7 @@ table {
         }
         &.active, &:hover {
             a {
-                color: @minecraft-brand;
+                color: @brand;
             }
         }
         &.active a {
@@ -1895,5 +1899,5 @@ table {
 .pulse, 
 .three-bounce > div, 
 .container1 > div, .container2 > div, .container3 > div {
-    background-color: @minecraft-brand;
+    background-color: @brand;
 }

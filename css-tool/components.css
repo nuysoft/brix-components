@@ -24,6 +24,8 @@
 
 /* /boilerplate/boilerplate.css */
 
+/* /chartxwrapper/chartxwrapper.css */
+
 /* /chart/chart.css */
 
 /* /colorpicker/colorpicker.css */
@@ -112,8 +114,6 @@
   display: inline-block;
   font-family: monospace;
 }
-
-/* /chartxwrapper/chartxwrapper.css */
 
 /* /countdown/countdown.css */
 .countdown {
@@ -310,99 +310,6 @@
   text-align: center;
 }
 
-/* /dialog/dialog.css */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-}
-.dialog {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-}
-.dialog.dialog-top {
-  margin-bottom: 2px;
-}
-.dialog.dialog-bottom {
-  margin-top: 2px;
-}
-.dialog.dialog-left {
-  margin-right: 2px;
-}
-.dialog.dialog-right {
-  margin-left: 2px;
-}
-.dialog .dialog-close {
-  position: relative;
-  -webkit-appearance: none;
-  padding: 0;
-  margin: 13px 15px 0 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  float: right;
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  filter: alpha(opacity=20);
-  opacity: .2;
-  z-index: 1041;
-}
-.dialog .dialog-close .brixfont {
-  font-size: 21px;
-}
-.dialog .dialog-close:hover,
-.dialog .dialog-close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-  filter: alpha(opacity=50);
-  opacity: .5;
-}
-.dialog .dialog-content {
-  position: relative;
-  width: auto;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  outline: 0;
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-}
-.dialog .dialog-content .dialog-header {
-  min-height: 16.42857143px;
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-}
-.dialog .dialog-content .dialog-header .dialog-title {
-  margin: 0;
-  line-height: 1.42857143;
-}
-.dialog .dialog-content .dialog-body {
-  padding: 15px;
-}
-.dialog .dialog-content .dialog-footer {
-  padding: 15px;
-  text-align: right;
-  border-top: 1px solid #e5e5e5;
-}
-.dialog-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: #000;
-  filter: alpha(opacity=50);
-  opacity: .5;
-  display: none;
-  z-index: 1039;
-}
-
 /* /datepickerwrapper/datepickerwrapper.css */
 .datepickerwrapper {
   position: absolute;
@@ -500,6 +407,99 @@
   border-top: 1px solid #DDD;
 }
 
+/* /dialog/dialog.css */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+}
+.dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+}
+.dialog.dialog-top {
+  margin-bottom: 2px;
+}
+.dialog.dialog-bottom {
+  margin-top: 2px;
+}
+.dialog.dialog-left {
+  margin-right: 2px;
+}
+.dialog.dialog-right {
+  margin-left: 2px;
+}
+.dialog .dialog-close {
+  position: relative;
+  -webkit-appearance: none;
+  padding: 0;
+  margin: 13px 15px 0 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+  z-index: 1041;
+}
+.dialog .dialog-close .brixfont {
+  font-size: 21px;
+}
+.dialog .dialog-close:hover,
+.dialog .dialog-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.dialog .dialog-content {
+  position: relative;
+  width: auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: 0;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+.dialog .dialog-content .dialog-header {
+  min-height: 16.42857143px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.dialog .dialog-content .dialog-header .dialog-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.dialog .dialog-content .dialog-body {
+  padding: 15px;
+}
+.dialog .dialog-content .dialog-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #000;
+  filter: alpha(opacity=50);
+  opacity: .5;
+  display: none;
+  z-index: 1039;
+}
+
 /* /dialogview/dialogview.css */
 
 /* /dropdown/dropdown.css */
@@ -554,6 +554,24 @@
   border-top-left-radius: 3px;
   overflow: scroll;
   outline: none;
+}
+
+/* /ellipsis/ellipsis.css */
+.ellip {
+  display: block;
+  height: 100%;
+}
+.ellip-line {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.ellip,
+.ellip-line {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 /* /errortips/errortips.css */
@@ -679,24 +697,6 @@
     cursor: pointer;
     font-size: 15px;
   }
-
-/* /ellipsis/ellipsis.css */
-.ellip {
-  display: block;
-  height: 100%;
-}
-.ellip-line {
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
-}
-.ellip,
-.ellip-line {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-}
 
 /* /footer/footer.css */
 
@@ -903,6 +903,11 @@
 
 /* /nprogress/nprogress.css */
 
+/* /popover/popover.css */
+.popover img {
+  max-width: 100%;
+}
+
 /* /pagination/pagination.css */
 .pagination-statistics {
   margin-bottom: 10px;
@@ -917,11 +922,6 @@
 }
 .pagination .brixfont {
   font-size: 12px;
-}
-
-/* /popover/popover.css */
-.popover img {
-  max-width: 100%;
 }
 
 /* /progressbarwrapper/progressbarwrapper.css */
