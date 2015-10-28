@@ -340,7 +340,7 @@ define(
                 if (_.isObject(value)) data = value
                 else {
                     var lis = that.$element.find('ul.dropdown-menu > li')
-                    _.each(lis, function(item, index) {
+                    _.each(lis, function(item /*, index*/ ) {
                         var $item = $(item).removeClass('active')
                         var $target = $item.find('> a')
                         var targetValue = $target.attr('value')
