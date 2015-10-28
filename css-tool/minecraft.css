@@ -2154,6 +2154,33 @@ table tbody tr:hover .editable-toggle {
   color: #FFF;
   border-radius: 0 6px 0 0;
 }
+.dialog .dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  margin: 0;
+}
+.dialog .dialog-close .brixfont {
+  font-size: 30px;
+  font-weight: normal;
+}
+.dialog .dialog-content {
+  border: 1px solid #E6E6E6;
+  box-shadow: none;
+}
+.dialog .dialog-content .dialog-header,
+.dialog .dialog-content .dialog-body,
+.dialog .dialog-content .dialog-footer {
+  padding: 18px 40px;
+}
+.dialog .dialog-content .dialog-header {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 18px 45px 18px 40px;
+}
+.dialog .dialog-content .dialog-footer {
+  text-align: left;
+  border-top: 1px solid #e6e6e6;
+}
 .hourpicker div.shortcuts label {
   font-weight: normal;
   color: #333;

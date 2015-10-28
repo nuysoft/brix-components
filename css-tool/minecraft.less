@@ -1738,6 +1738,39 @@ table {
 // 浮层 Dialog
 // ----------------------------------------
 
+.dialog {
+    .dialog-close {
+        position: absolute;
+        top: 16px;
+        right: 10px;
+        margin: 0;
+        .brixfont {
+            font-size: 30px;
+            font-weight: normal;
+        }
+        &:hover, &:focus {}
+    }
+    .dialog-content {
+        border: 1px solid #E6E6E6;
+        box-shadow: none;
+        // box-shadow: 0 0 10px rgba(0,0,0,.18);
+        .dialog-header, .dialog-body, .dialog-footer {
+            padding: 18px 40px;
+        }
+        .dialog-header {
+            border-bottom: 1px solid #e6e6e6;
+            padding: 18px 45px 18px 40px;
+        }
+        .dialog-footer {
+            text-align: left;
+            border-top: 1px solid #e6e6e6;
+        }
+    }
+}
+.dialog-backdrop {
+    // opacity: 1;
+    // background-color: #808080;
+}
 
 // ----------------------------------------
 // 时间选择器 HourPicker
