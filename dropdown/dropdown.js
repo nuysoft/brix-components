@@ -7,14 +7,12 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
-        './common.js',
         './dropdown.tpl.js',
         'css!./dropdown.css'
     ],
     function(
         $, _,
         Brix, EventManager,
-        CommonDropdown,
         template
     ) {
         /*
@@ -97,7 +95,7 @@ define(
         function Dropdown(options) {
             if (options && options.element) {
                 if ('select' !== options.element.nodeName.toLowerCase()) {
-                    return new CommonDropdown()
+                    return new CustomDropdown()
                 }
             }
         }
@@ -209,7 +207,7 @@ define(
                 var $target = $(event.currentTarget)
                 var data = {
                     label: $target.text(),
-                    value: $target.attr('value')
+                    value: $target.attr('value') || $target.text()
                 }
                 this.val(data)
                 this.toggle()
@@ -302,7 +300,73 @@ define(
             }
         })
 
+        /*
+            非 Select Dropdown
+        */
+
+        function CustomDropdown() {}
+
+        _.extend(CustomDropdown.prototype, Dropdown.prototype, {
+            init: function() {
+                this.$element = $(this.element)
+                this.$relatedElement = this.$element
+            },
+            render: function() {
+                var that = this
+                var manager = new EventManager('bx-')
+
+                if (that.options.value) that.val(that.options.value)
+
+                this.$element.on('click', 'ul.dropdown-menu > li > a', function(event) {
+                    that._select(event)
+                })
+
+                manager.delegate(this.$element, this)
+
+                this._autoHide()
+            },
+            val: function(value) {
+                var that = this
+                var oldValue = function() {
+                    var $target = that.$element.find('ul.dropdown-menu > li.active > a')
+                    return $target.attr('value') || $target.text()
+                }()
+
+                // .val()
+                if (value === undefined) return oldValue
+
+                // .val( value )
+                var data /* { label: '', value: '', selected: true|false } */
+                if (_.isObject(value)) data = value
+                else {
+                    var lis = that.$element.find('ul.dropdown-menu > li')
+                    _.each(lis, function(item, index) {
+                        var $item = $(item).removeClass('active')
+                        var $target = $item.find('> a')
+                        var targetValue = $target.attr('value')
+                        var targetText = $target.text()
+                        if ((targetValue || targetText) == value) {
+                            data = {
+                                label: targetText,
+                                value: targetValue || targetText
+                            }
+                            $item.addClass('active')
+                        }
+                    })
+                }
+                data.name = this.$element.attr('name')
+
+                if (data.value === oldValue) return this
+
+                this.$element.find('button.dropdown-toggle > span.dropdown-toggle-label')
+                    .text(data.label)
+
+                this.trigger('change' + NAMESPACE, data)
+
+                return this
+            }
+        })
+
         return Dropdown
-            // return Brix.extend()
     }
 )
