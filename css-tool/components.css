@@ -702,8 +702,6 @@
 
 /* /hello/hello.css */
 
-/* /hello-extra/hello-extra.css */
-
 /* /hourpicker/hourpicker.css */
 .hourpicker {
   font-size: 12px;
@@ -888,6 +886,8 @@
   border-top: 3px solid #2378FF;
   margin-left: -3px;
 }
+
+/* /hello-extra/hello-extra.css */
 
 /* /imager/imager.css */
 .imager {
@@ -1748,9 +1748,9 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: #000;
 }
 
-/* /switch/switch.css */
-
 /* /tab/tab.css */
+
+/* /switch/switch.css */
 
 /* /table/table.css */
 .table-fixed {
@@ -1894,6 +1894,12 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   outline: none;
   height: 24px;
   padding: 0px;
+}
+
+/* /textcount/textcount.css */
+.textcount-error {
+  color: red;
+  font-style: normal;
 }
 
 /* /tree/tree.css */
