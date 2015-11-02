@@ -1472,6 +1472,13 @@ textarea.form-control,
   -moz-box-shadow: none;
   box-shadow: none;
 }
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  color: #333;
+  background-color: white;
+  border-color: #e6e6e6;
+}
 input.error,
 input.input-error,
 input.parsley-error,
