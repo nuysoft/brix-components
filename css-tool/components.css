@@ -702,6 +702,8 @@
 
 /* /hello/hello.css */
 
+/* /hello-extra/hello-extra.css */
+
 /* /hourpicker/hourpicker.css */
 .hourpicker {
   font-size: 12px;
@@ -886,8 +888,6 @@
   border-top: 3px solid #2378FF;
   margin-left: -3px;
 }
-
-/* /hello-extra/hello-extra.css */
 
 /* /imager/imager.css */
 .imager {
@@ -1208,13 +1208,14 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .sub-nav {
   float: left;
   font-size: 14px;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  overflow-y: auto;
   width: 1px;
   /*padding-top: 45px;*/
   /*chrome下0px会有 bug */
 
   position: relative;
-  color: #999999;
+  color: #777;
 }
 .sub-nav-wrap {
   padding-top: 45px;
@@ -1267,7 +1268,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: #aaa;
 }
 .sub-nav ul a {
-  color: #999;
+  color: #ccc;
   /*padding-left: 40px;*/
   display: block;
   padding: 8px 0 7px 40px;
@@ -1748,9 +1749,9 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: #000;
 }
 
-/* /tab/tab.css */
-
 /* /switch/switch.css */
+
+/* /tab/tab.css */
 
 /* /table/table.css */
 .table-fixed {
@@ -1976,6 +1977,9 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 }
 
 /* /wizard/wizard.css */
+.wizard div {
+  transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
+}
 .wizard.wizard-horizontal ol.wizard-nav {
   list-style: none;
   padding-left: 0;

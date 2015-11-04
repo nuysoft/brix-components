@@ -312,6 +312,10 @@ body {
   color: #333;
   -webkit-font-smoothing: antialiased;
 }
+.font-bold {
+  font-weight: bold;
+}
+.font-tahoma,
 .font-num {
   font-family: "Tahoma";
 }
@@ -1022,9 +1026,6 @@ body {
   .ungrid-row > .col {
     display: table-cell;
   }
-}
-div {
-  transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
 }
 .animated {
   -webkit-animation-duration: 1s;
