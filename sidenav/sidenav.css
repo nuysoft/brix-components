@@ -104,13 +104,14 @@
 .sub-nav {
   float: left;
   font-size: 14px;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  overflow-y: auto;
   width: 1px;
   /*padding-top: 45px;*/
   /*chrome下0px会有 bug */
 
   position: relative;
-  color: #999999;
+  color: #777;
 }
 .sub-nav-wrap {
   padding-top: 45px;
@@ -163,7 +164,7 @@
   color: #aaa;
 }
 .sub-nav ul a {
-  color: #999;
+  color: #ccc;
   /*padding-left: 40px;*/
   display: block;
   padding: 8px 0 7px 40px;
