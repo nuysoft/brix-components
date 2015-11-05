@@ -622,7 +622,7 @@ ul.checklist-linear {
 // ----------------------------------------
 
 .dropdown {
-    min-width: 140px;
+    min-width: 190px;
     .dropdown-toggle {
         width: 100%;
         height: 32px;
@@ -651,10 +651,11 @@ ul.checklist-linear {
         }
     }
     .dropdown-menu {
+        width: 100%;
         margin-top: 10px;
         box-shadow: none;
         border: 1px solid @border;
-        padding: 10px 0;
+        padding: 10px 10px 10px 0;
         font-size: 12px;
         min-width: 100px;
         max-height: 270px;
@@ -662,7 +663,9 @@ ul.checklist-linear {
         > li {
             padding: 4px 10px;
             > a {
-                padding: 3px 10px;
+                position: relative;
+                padding: 4px 10px;
+                width: 100%;
                 &:hover {
                     background-color: @bg;
                     border-radius: 4px;
@@ -679,28 +682,6 @@ ul.checklist-linear {
             }
             &.divider {
                 padding: 0;
-            }
-        }
-    }
-}
-
-.dropdown {
-    min-width: 190px;
-    ul.dropdown-menu {
-        width: 100%;
-        padding-right: 10px;
-        > li {
-            > a {
-                position: relative;
-                padding: 4px 10px;
-                width: 100%;
-            }
-            &.active {
-                > a,
-                > a:hover,
-                > a:focus {
-                    background-color: @brand;
-                }
             }
             &.dropdown-header {
                 color: #999;
@@ -850,7 +831,6 @@ textarea.error, textarea.input-error, textarea.parsley-error,
 button.error, button.input-error, button.parsley-error {
     color: #333;
     background-color: white;
-    border-color: @fail;
     border-color: @fail;
     .box-shadow(none);
 }

@@ -1242,7 +1242,7 @@ ul.checklist-linear > li {
   float: left;
 }
 .dropdown {
-  min-width: 140px;
+  min-width: 190px;
 }
 .dropdown .dropdown-toggle {
   width: 100%;
@@ -1270,10 +1270,11 @@ ul.checklist-linear > li {
   color: #333;
 }
 .dropdown .dropdown-menu {
+  width: 100%;
   margin-top: 10px;
   box-shadow: none;
   border: 1px solid #e6e6e6;
-  padding: 10px 0;
+  padding: 10px 10px 10px 0;
   font-size: 12px;
   min-width: 100px;
   max-height: 270px;
@@ -1283,7 +1284,9 @@ ul.checklist-linear > li {
   padding: 4px 10px;
 }
 .dropdown .dropdown-menu > li > a {
-  padding: 3px 10px;
+  position: relative;
+  padding: 4px 10px;
+  width: 100%;
 }
 .dropdown .dropdown-menu > li > a:hover {
   background-color: #f0f0f0;
@@ -1299,28 +1302,11 @@ ul.checklist-linear > li {
 .dropdown .dropdown-menu > li.divider {
   padding: 0;
 }
-.dropdown {
-  min-width: 190px;
-}
-.dropdown ul.dropdown-menu {
-  width: 100%;
-  padding-right: 10px;
-}
-.dropdown ul.dropdown-menu > li > a {
-  position: relative;
-  padding: 4px 10px;
-  width: 100%;
-}
-.dropdown ul.dropdown-menu > li.active > a,
-.dropdown ul.dropdown-menu > li.active > a:hover,
-.dropdown ul.dropdown-menu > li.active > a:focus {
-  background-color: #ff6600;
-}
-.dropdown ul.dropdown-menu > li.dropdown-header {
+.dropdown .dropdown-menu > li.dropdown-header {
   color: #999;
   padding-left: 20px;
 }
-.dropdown ul.dropdown-menu > li.dropdown-header + li > a {
+.dropdown .dropdown-menu > li.dropdown-header + li > a {
   padding-left: 20px;
 }
 .dropdown > .dropdown-menu-wrapper {
