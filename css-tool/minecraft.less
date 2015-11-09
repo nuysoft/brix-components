@@ -452,6 +452,21 @@ body {
 .bg-success     { background-color: @success;   }
 .bg-fail        { background-color: @fail;      }
 
+
+// ----------------------------------------
+// 鼠标 Cursor
+// ----------------------------------------
+
+@cursors: auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, vertical-text, alias, copy, move, no-drop, not-allowed, all-scroll, col-resize, row-resize, n-resize, e-resize, s-resize, w-resize, ne-resize, nw-resize, se-resize, sw-resize, ew-resize, ns-resize, nesw-resize, nwse-resize, zoom-in, zoom-out;
+.cursor- {
+    .for(@cursors); .-each(@value) {
+        &@{value} {
+            cursor: @value;
+        }
+    }
+}
+
+
 // ----------------------------------------
 // 按钮 Button
 // ----------------------------------------
@@ -864,6 +879,30 @@ button.error, button.input-error, button.parsley-error {
     }
 }
 
+
+// ----------------------------------------
+// 提示 Popover
+// ----------------------------------------
+
+.popover {
+    border-color: #EBEBEB;
+    border-radius: 4px;
+    padding: 0;
+    -webkit-box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+       -moz-box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+            box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+    .arrow {
+        display: none;
+    }
+    .popover-title {
+        background-color: #FAFAFA;
+        border-radius: 4px 4px 0 0;
+    }
+    .popover-content {
+        font-size: 12px;
+        line-height: 22px;    
+    }
+}
 
 // ----------------------------------------
 // 日历 Calendar
@@ -1640,6 +1679,28 @@ table {
 // ----------------------------------------
 
 .dialog {
+    &.dialog-top { 
+        margin-bottom: 10px; 
+    }
+    &.dialog-bottom { 
+        margin-top: 10px; 
+    }
+    &.dialog-left { 
+        margin-right: 10px; 
+    }
+    &.dialog-right {
+        margin-left: 10px;
+    }
+
+    &.dialog-fullscreen {
+        &.dialog-top,
+        &.dialog-bottom,
+        &.dialog-left,
+        &.dialog-right {
+            margin: 0;
+        }
+    }
+
     .dialog-close {
         position: absolute;
         top: 16px;

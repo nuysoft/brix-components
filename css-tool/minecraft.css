@@ -1082,6 +1082,108 @@ body {
 .bg-fail {
   background-color: #a62a22;
 }
+.cursor-auto {
+  cursor: auto;
+}
+.cursor-default {
+  cursor: default;
+}
+.cursor-none {
+  cursor: none;
+}
+.cursor-context-menu {
+  cursor: context-menu;
+}
+.cursor-help {
+  cursor: help;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-progress {
+  cursor: progress;
+}
+.cursor-wait {
+  cursor: wait;
+}
+.cursor-cell {
+  cursor: cell;
+}
+.cursor-crosshair {
+  cursor: crosshair;
+}
+.cursor-text {
+  cursor: text;
+}
+.cursor-vertical-text {
+  cursor: vertical-text;
+}
+.cursor-alias {
+  cursor: alias;
+}
+.cursor-copy {
+  cursor: copy;
+}
+.cursor-move {
+  cursor: move;
+}
+.cursor-no-drop {
+  cursor: no-drop;
+}
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+.cursor-all-scroll {
+  cursor: all-scroll;
+}
+.cursor-col-resize {
+  cursor: col-resize;
+}
+.cursor-row-resize {
+  cursor: row-resize;
+}
+.cursor-n-resize {
+  cursor: n-resize;
+}
+.cursor-e-resize {
+  cursor: e-resize;
+}
+.cursor-s-resize {
+  cursor: s-resize;
+}
+.cursor-w-resize {
+  cursor: w-resize;
+}
+.cursor-ne-resize {
+  cursor: ne-resize;
+}
+.cursor-nw-resize {
+  cursor: nw-resize;
+}
+.cursor-se-resize {
+  cursor: se-resize;
+}
+.cursor-sw-resize {
+  cursor: sw-resize;
+}
+.cursor-ew-resize {
+  cursor: ew-resize;
+}
+.cursor-ns-resize {
+  cursor: ns-resize;
+}
+.cursor-nesw-resize {
+  cursor: nesw-resize;
+}
+.cursor-nwse-resize {
+  cursor: nwse-resize;
+}
+.cursor-zoom-in {
+  cursor: zoom-in;
+}
+.cursor-zoom-out {
+  cursor: zoom-out;
+}
 .btn {
   color: #333;
   height: 32px;
@@ -1507,6 +1609,25 @@ button.parsley-error {
 }
 .searchbox input {
   padding-left: 30px;
+}
+.popover {
+  border-color: #EBEBEB;
+  border-radius: 4px;
+  padding: 0;
+  -webkit-box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+  -moz-box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+  box-shadow: 0 6px 8px rgba(51, 51, 51, 0.08);
+}
+.popover .arrow {
+  display: none;
+}
+.popover .popover-title {
+  background-color: #FAFAFA;
+  border-radius: 4px 4px 0 0;
+}
+.popover .popover-content {
+  font-size: 12px;
+  line-height: 22px;
 }
 .datepickerwrapper-trigger {
   cursor: pointer;
@@ -2102,6 +2223,24 @@ table tbody tr:hover .editable-toggle {
   text-align: center;
   color: #FFF;
   border-radius: 0 6px 0 0;
+}
+.dialog.dialog-top {
+  margin-bottom: 10px;
+}
+.dialog.dialog-bottom {
+  margin-top: 10px;
+}
+.dialog.dialog-left {
+  margin-right: 10px;
+}
+.dialog.dialog-right {
+  margin-left: 10px;
+}
+.dialog.dialog-fullscreen.dialog-top,
+.dialog.dialog-fullscreen.dialog-bottom,
+.dialog.dialog-fullscreen.dialog-left,
+.dialog.dialog-fullscreen.dialog-right {
+  margin: 0;
 }
 .dialog .dialog-close {
   position: absolute;
