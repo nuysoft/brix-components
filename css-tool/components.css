@@ -702,8 +702,6 @@
 
 /* /hello/hello.css */
 
-/* /hello-extra/hello-extra.css */
-
 /* /hourpicker/hourpicker.css */
 .hourpicker {
   font-size: 12px;
@@ -888,6 +886,8 @@
   border-top: 3px solid #2378FF;
   margin-left: -3px;
 }
+
+/* /hello-extra/hello-extra.css */
 
 /* /imager/imager.css */
 .imager {
