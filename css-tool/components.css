@@ -702,6 +702,8 @@
 
 /* /hello/hello.css */
 
+/* /hello-extra/hello-extra.css */
+
 /* /hourpicker/hourpicker.css */
 .hourpicker {
   font-size: 12px;
@@ -887,8 +889,6 @@
   margin-left: -3px;
 }
 
-/* /hello-extra/hello-extra.css */
-
 /* /imager/imager.css */
 .imager {
   margin-right: 5px;
@@ -902,6 +902,11 @@
 }
 
 /* /nprogress/nprogress.css */
+
+/* /popover/popover.css */
+.popover img {
+  max-width: 100%;
+}
 
 /* /pagination/pagination.css */
 .pagination-statistics {
@@ -917,11 +922,6 @@
 }
 .pagination .brixfont {
   font-size: 12px;
-}
-
-/* /popover/popover.css */
-.popover img {
-  max-width: 100%;
 }
 
 /* /progressbarwrapper/progressbarwrapper.css */

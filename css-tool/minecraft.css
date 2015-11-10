@@ -1372,13 +1372,12 @@ ul.checklist-linear > li {
   color: #333;
 }
 .dropdown .dropdown-menu {
-  width: 100%;
+  min-width: 100%;
   margin-top: 10px;
   box-shadow: none;
   border: 1px solid #e6e6e6;
   padding: 10px 10px 10px 0;
   font-size: 12px;
-  min-width: 100px;
   max-height: 270px;
   overflow: auto;
 }
@@ -1418,15 +1417,22 @@ ul.checklist-linear > li {
   border: 1px solid #e6e6e6;
   padding: 10px;
   margin-top: 10px;
-  width: 100%;
+  min-width: 100%;
   border-radius: 4px;
   background-color: white;
   z-index: 1001;
   display: none;
 }
+.dropdown > .dropdown-menu-wrapper > .searchbox {
+  width: 100%;
+}
 .dropdown > .dropdown-menu-wrapper > .searchbox label {
+  width: 100%;
   margin-bottom: 10px;
   padding: 0;
+}
+.dropdown > .dropdown-menu-wrapper > .searchbox label > input {
+  width: 100%;
 }
 .dropdown > .dropdown-menu-wrapper > ul.dropdown-menu {
   display: block;
@@ -1442,7 +1448,7 @@ ul.checklist-linear > li {
   display: block;
 }
 .dropdown.dropdown-popover {
-  width: 200px;
+  width: 190px;
 }
 .dropdown.dropdown-popover .dropdown-toggle {
   padding-right: 25px;
@@ -1456,7 +1462,13 @@ ul.checklist-linear > li {
   position: absolute;
   right: 12px;
 }
-.dropdown.dropdown-ellipsis ul.dropdown-menu > li > a {
+.dropdown.dropdown-ellipsis .dropdown-menu-wrapper {
+  width: 100%;
+}
+.dropdown.dropdown-ellipsis .dropdown-menu-wrapper ul.dropdown-menu {
+  width: 100%;
+}
+.dropdown.dropdown-ellipsis .dropdown-menu-wrapper ul.dropdown-menu > li > a {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
