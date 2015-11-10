@@ -134,7 +134,7 @@ define(
 
                 this.$relatedElement = $(
                     _.template(template)(data)
-                ).insertAfter(this.$element)
+                ).insertBefore(this.$element)
 
                 manager.delegate(this.$element, this)
                 manager.delegate(this.$relatedElement, this)
