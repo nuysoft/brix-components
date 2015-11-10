@@ -11,8 +11,8 @@ define(function() {
         </div>
         <div class="dialog-body">Body</div>
         <div class="dialog-footer">
-            <button bx-click="hide" type="button" class="btn btn-default">Close</button>
-            <button bx-click="hide" type="button" class="btn btn-primary">Save</button>
+            <button bx-click="close" type="button" class="btn btn-default">Close</button>
+            <button bx-click="close" type="button" class="btn btn-primary">Save</button>
         </div>
          -->
     </div>
