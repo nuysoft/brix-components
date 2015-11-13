@@ -903,11 +903,6 @@
 
 /* /nprogress/nprogress.css */
 
-/* /popover/popover.css */
-.popover img {
-  max-width: 100%;
-}
-
 /* /pagination/pagination.css */
 .pagination-statistics {
   margin-bottom: 10px;
@@ -922,6 +917,11 @@
 }
 .pagination .brixfont {
   font-size: 12px;
+}
+
+/* /popover/popover.css */
+.popover img {
+  max-width: 100%;
 }
 
 /* /progressbarwrapper/progressbarwrapper.css */
