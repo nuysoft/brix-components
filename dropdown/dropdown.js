@@ -21,6 +21,11 @@ define(
 
             ### 数据
                 [
+                    value,
+                    ...
+                ]
+                或者
+                [
                     {
                         label: '',
                         value: '',
@@ -101,46 +106,51 @@ define(
 
         _.extend(Dropdown.prototype, Brix.prototype, {
             options: {
-                value: '',
-                data: []
+                name: null,
+                label: null,
+                value: null,
+                data: [],
+                disabled: null
             },
             init: function() {
                 this.$element = $(this.element).hide()
+                this.$manager = new EventManager('bx-')
 
-                // 如果没有提供选项 data，则从子元素中收集数据
-                // 如果提供了选项 data，则反过来修改子元素
-                if (!this.options.data.length) this.options.data = this._parseData(this.$element)
-                else this._fill()
+                var options = this.options
+
+                // 如果没有提供选项 data，则从节点 select 的 option 收集数据
+                if (!options.data.length) {
+                    options.data = this._parseDataFromSelect(this.$element)
+
+                } else {
+                    // 如果提供了选项 data，则逆向填充节点 select 的 option
+                    this._fixFlattenData(this.options.data)
+                    this._fillSelect()
+                }
+
+                // 节点是否被禁用
+                options.disabled = this.$element.prop('disabled')
+
+                // 初始化节点 select 的状态
+                if (options.value !== null) this.$element.val(options.value)
+
+                // 初始化选项 label、value
+                var $selectedOption = this.$element.find('option:selected')
+                options.label = $selectedOption.text()
+                options.value = $selectedOption.attr('value')
+
+                // 初始化选项 name
+                options.name = this.$element.attr('name')
             },
             render: function() {
-                var that = this
-                var manager = new EventManager()
-
-                // { data, label value }
-                var data = _.extend({
-                    data: this.options.data,
-                    disabled: this.options.disabled || this.$element.prop('disabled')
-                }, function() {
-                    // data-value
-                    if (that.options.value) that.$element.val(that.options.value)
-
-                    var selectedIndex = that.$element.prop('selectedIndex')
-                    var selectedOption = $(that.element.options[selectedIndex !== -1 ? selectedIndex : 0])
-                    return {
-                        label: selectedOption.text(),
-                        value: selectedOption.attr('value')
-                    }
-                }())
-
                 this.$relatedElement = $(
-                    _.template(template)(data)
+                    _.template(template)(this.options)
                 ).insertBefore(this.$element)
 
-                manager.delegate(this.$element, this)
-                manager.delegate(this.$relatedElement, this)
+                this.$manager.delegate(this.$element, this)
+                this.$manager.delegate(this.$relatedElement, this)
 
                 // this._responsive()
-
                 this._autoHide()
             },
             toggle: function( /*event*/ ) {
@@ -160,15 +170,7 @@ define(
                 .val()
             */
             val: function(value) {
-                var that = this
-                var oldValue = function() {
-                    var selectedIndex = that.$element.prop('selectedIndex')
-                    return $(
-                        that.element.options[
-                            selectedIndex !== -1 ? selectedIndex : 0
-                        ]
-                    ).attr('value')
-                }()
+                var oldValue = this.$element.val()
 
                 // .val()
                 if (value === undefined) return oldValue
@@ -180,20 +182,28 @@ define(
                     if (item.value == value) data = item
                     item.selected = item.value == value
                 })
-                data.name = this.$element.attr('name')
 
-                if (data.value === oldValue) return this
+                // 未知值
+                if (!data) return
 
+                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
+                if (('' + data.value) === oldValue) return this
+
+                // 更新模拟下拉框的内容
                 this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
                     .text(data.label)
 
+                // 更新原生下拉框的值
                 this.$element
                     .val(data.value)
 
-                this.$relatedElement
-                    .find('ul.dropdown-menu li:has([value="' + oldValue + '"])').removeClass('active')
-                this.$relatedElement
-                    .find('ul.dropdown-menu li:has([value="' + data.value + '"])').addClass('active')
+                // 更新模拟下拉框的选中状态
+                this.$relatedElement.find('ul.dropdown-menu')
+                    .find('li:has([value="' + oldValue + '"])')
+                    .removeClass('active')
+                    .end()
+                    .find('li:has([value="' + data.value + '"])')
+                    .addClass('active')
 
                 this.trigger('change' + NAMESPACE, data)
 
@@ -202,7 +212,20 @@ define(
 
                 return this
             },
-            _select: function(event /*, trigger*/ ) {
+            data: function(data) {
+                this.options.data = this._fixFlattenData(data)
+                this._fillSelect()
+
+                var $menu = this.$relatedElement.find('ul.dropdown-menu')
+                var $newMenu = $(
+                    _.template(template)(this.options)
+                ).find('ul.dropdown-menu')
+
+                $menu.replaceWith($newMenu)
+
+                this.$manager.delegate(this.$relatedElement, this)
+            },
+            select: function(event /*, trigger*/ ) {
                 var $target = $(event.currentTarget)
                 var data = {
                     label: $target.text(),
@@ -211,10 +234,10 @@ define(
                 this.val(data)
                 this.toggle()
 
-                $target.parent().addClass('active')
+                $target.closest('li').addClass('active')
                     .siblings().removeClass('active')
             },
-            _parseData: function($select) {
+            _parseDataFromSelect: function($select) {
                 var that = this
                 var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
@@ -224,46 +247,56 @@ define(
                     var $child = $(child)
                     return /optgroup/i.test(child.nodeName) ? {
                         label: $child.attr('label'),
-                        children: that._parseOptions($child.children())
-                    } : that._parseOption(child)
+                        children: _parseOptions($child.children())
+                    } : _parseOption(child)
                 })
-            },
-            _parseOptions: function(options) {
-                var that = this
-                return _.map(options, function(option /*, index*/ ) {
-                    return that._parseOption(option)
-                })
-            },
-            _parseOption: function(option) {
-                var $option = $(option)
-                return $option.hasClass('divider') ? 'divider' : {
-                    label: $option.text(),
-                    value: $option.attr('value'),
-                    selected: $option.prop('selected')
+
+                function _parseOptions(options) {
+                    return _.map(options, function(option /*, index*/ ) {
+                        return _parseOption(option)
+                    })
+                }
+
+                function _parseOption(option) {
+                    var $option = $(option)
+                    return $option.hasClass('divider') ? 'divider' : {
+                        label: $option.text(),
+                        value: $option.attr('value'),
+                        selected: $option.prop('selected')
+                    }
                 }
             },
-            _fill: function() {
+            _fixFlattenData: function(data) {
+                return _.map(data, function(item, index, context) {
+                    return (context[index] = _.isObject(item) ? item : {
+                        label: item,
+                        value: item
+                    })
+                })
+            },
+            _fillSelect: function() {
                 var that = this
-                var $select = this.$element.hide().empty()
+                var $select = this.$element.empty()
                 _.each(this.options.data, function(item) {
                     if (item.children && item.children.length) {
                         var $optgroup = $('<optgroup>').attr('label', item.label)
                         _.each(item.children, function(item /*, index*/ ) {
-                            that._genOption(item).appendTo($optgroup)
+                            _genOption(item).appendTo($optgroup)
                         })
                         $optgroup.appendTo($select)
 
                     } else {
-                        that._genOption(item).appendTo($select)
+                        _genOption(item).appendTo($select)
                     }
                 })
-            },
-            _genOption: function(item) {
-                // item { label: '', value: '', selected: true|false }
-                return $('<option>')
-                    .attr('value', item.value)
-                    .prop('selected', item.selected)
-                    .text(item.label)
+
+                function _genOption(item) {
+                    // item { label: '', value: '', selected: true|false }
+                    return $('<option>')
+                        .attr('value', item.value)
+                        .prop('selected', item.selected)
+                        .text(item.label)
+                }
             },
             _responsive: function() {
                 var $window = $(window)
@@ -309,19 +342,16 @@ define(
             init: function() {
                 this.$element = $(this.element)
                 this.$relatedElement = this.$element
+                this.$manager = new EventManager('bx-')
+
+                this._fixFlattenData(this.options.data)
             },
             render: function() {
-                var that = this
-                var manager = new EventManager('bx-')
+                if (this.options.value) this.val(this.options.value)
 
-                if (that.options.value) that.val(that.options.value)
+                this.$manager.delegate(this.$relatedElement, this)
 
-                this.$element.on('click', 'ul.dropdown-menu > li > a', function(event) {
-                    that._select(event)
-                })
-
-                manager.delegate(this.$element, this)
-
+                // this._responsive()
                 this._autoHide()
             },
             val: function(value) {
@@ -337,32 +367,52 @@ define(
                 // .val( value )
                 var data /* { label: '', value: '', selected: true|false } */
                 if (_.isObject(value)) data = value
-                else {
-                    var lis = that.$element.find('ul.dropdown-menu > li')
-                    _.each(lis, function(item /*, index*/ ) {
-                        var $item = $(item).removeClass('active')
-                        var $target = $item.find('> a')
-                        var targetValue = $target.attr('value')
-                        var targetText = $target.text()
-                        if ((targetValue || targetText) == value) {
-                            data = {
-                                label: targetText,
-                                value: targetValue || targetText
-                            }
-                            $item.addClass('active')
+                else _.each(that.$element.find('ul.dropdown-menu > li'), function(item /*, index*/ ) {
+                    var $item = $(item)
+                    var $target = $item.find('> a')
+                    var targetValue = $target.attr('value')
+                    var targetText = $target.text()
+                    if ((targetValue || targetText) == value) {
+                        data = {
+                            label: targetText,
+                            value: targetValue || targetText
                         }
-                    })
-                }
-                data.name = this.$element.attr('name')
+                    }
+                })
 
-                if (data.value === oldValue) return this
+                // 未知值
+                if (!data) return
 
-                this.$element.find('button.dropdown-toggle > span.dropdown-toggle-label')
+                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
+                if (('' + data.value) === oldValue) return this
+
+                // 更新模拟下拉框的内容
+                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
                     .text(data.label)
+
+                // 更新模拟下拉框的选中状态
+                this.$relatedElement.find('ul.dropdown-menu')
+                    .find('li:has([value="' + oldValue + '"])')
+                    .removeClass('active')
+                    .end()
+                    .find('li:has([value="' + data.value + '"])')
+                    .addClass('active')
 
                 this.trigger('change' + NAMESPACE, data)
 
                 return this
+            },
+            data: function(data) {
+                this.options.data = this._fixFlattenData(data)
+
+                var $menu = this.$relatedElement.find('ul.dropdown-menu')
+                var $newMenu = $(
+                    _.template(template)(this.options)
+                ).find('ul.dropdown-menu')
+
+                $menu.replaceWith($newMenu)
+
+                this.$manager.delegate(this.$relatedElement, this)
             }
         })
 

@@ -15,13 +15,13 @@ define(function() {
             <% if(item.children) { %>
                 <li class="dropdown-header"><%=item.label%></li>
                 <% for(var ii = 0; ii < item.children.length; ii++ ) { %>
-                    <li class="<%= item.children[ii].value == value ? 'active' : ''%>"><a href="javascript: void(0);" value="<%= item.children[ii].value %>" bx-click="_select()"><%= item.children[ii].label %></a></li>
+                    <li class="<%= item.children[ii].value == value ? 'active' : ''%>"><a href="javascript: void(0);" value="<%= item.children[ii].value %>" bx-click="select()"><%= item.children[ii].label %></a></li>
                 <% } %>
             <% } else { %>
                 <% if(item === 'divider') { %>
                     <li class="divider"></li>
                 <% } else { %>
-                    <li class="<%= item.value == value ? 'active' : ''%>"><a href="javascript: void(0);" value="<%= item.value %>" bx-click="_select()"><%= item.label %></a></li>
+                    <li class="<%= item.value == value ? 'active' : ''%>"><a href="javascript: void(0);" value="<%= item.value %>" bx-click="select()"><%= item.label %></a></li>
                 <% }  %>
             <% } %>
         <% } %>
