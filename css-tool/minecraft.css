@@ -34,12 +34,6 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-minecraft:before {
-  content: "\e631";
-}
-.icon-xialakuang:before {
-  content: "\e623";
-}
 @font-face {
   font-family: 'zsfont';
   src: url('//at.alicdn.com/t/font_1445825114_7257817.eot');
@@ -343,6 +337,9 @@ body {
 .ml30 {
   margin-left: 30px;
 }
+.ml32 {
+  margin-left: 32px;
+}
 .ml35 {
   margin-left: 35px;
 }
@@ -372,6 +369,9 @@ body {
 }
 .mr30 {
   margin-right: 30px;
+}
+.mr32 {
+  margin-right: 32px;
 }
 .mr35 {
   margin-right: 35px;
@@ -403,6 +403,9 @@ body {
 .mt30 {
   margin-top: 30px;
 }
+.mt32 {
+  margin-top: 32px;
+}
 .mt35 {
   margin-top: 35px;
 }
@@ -432,6 +435,9 @@ body {
 }
 .mb30 {
   margin-bottom: 30px;
+}
+.mb32 {
+  margin-bottom: 32px;
 }
 .mb35 {
   margin-bottom: 35px;
@@ -463,6 +469,9 @@ body {
 .pl30 {
   padding-left: 30px;
 }
+.pl32 {
+  padding-left: 32px;
+}
 .pl35 {
   padding-left: 35px;
 }
@@ -492,6 +501,9 @@ body {
 }
 .pr30 {
   padding-right: 30px;
+}
+.pr32 {
+  padding-right: 32px;
 }
 .pr35 {
   padding-right: 35px;
@@ -523,6 +535,9 @@ body {
 .pt30 {
   padding-top: 30px;
 }
+.pt32 {
+  padding-top: 32px;
+}
 .pt35 {
   padding-top: 35px;
 }
@@ -552,6 +567,9 @@ body {
 }
 .pb30 {
   padding-bottom: 30px;
+}
+.pb32 {
+  padding-bottom: 32px;
 }
 .pb35 {
   padding-bottom: 35px;
@@ -621,6 +639,15 @@ body {
 }
 .w300 {
   width: 300px;
+}
+.border-radius-0 {
+  border-radius: 0px;
+}
+.border-radius-4 {
+  border-radius: 4px;
+}
+.border-radius-6 {
+  border-radius: 6px;
 }
 .mm-row :after {
   content: "\200B";
@@ -2012,6 +2039,13 @@ table tbody tr:hover .editable-toggle {
 }
 .contextual-message .glyph {
   margin-right: 15px;
+}
+.contextual-message-sticky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0;
 }
 .mm-message {
   margin-bottom: 20px;

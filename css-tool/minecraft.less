@@ -90,9 +90,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-minecraft:before { content: "\e631"; }
-.icon-xialakuang:before { content: "\e623"; }
-
 // http://iconfont.cn/users/project?pid=641
 @font-face {
     font-family: 'zsfont';
@@ -283,28 +280,28 @@ body {
 // ----------------------------------------
 
 .ml {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             margin-left: @px * 1px;
         }
     }
 }
 .mr {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             margin-right: @px * 1px;
         }
     }
 }
 .mt {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             margin-top: @px * 1px;
         }
     }
 }
 .mb {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             margin-bottom: @px * 1px;
         }
@@ -312,28 +309,28 @@ body {
 }
 // ----------------------------------------
 .pl {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             padding-left: @px * 1px;
         }
     }
 }
 .pr {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             padding-right: @px * 1px;
         }
     }
 }
 .pt {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             padding-top: @px * 1px;
         }
     }
 }
 .pb {
-    .for(0 5 7 10  15 20 25 30 35 40); .-each(@px) {
+    .for(0 5 7 10  15 20 25 30 32 35 40); .-each(@px) {
         &@{px} {
             padding-bottom: @px * 1px;
         }
@@ -344,6 +341,18 @@ body {
     .for(100 110 120 130 140 150 160 170 180 190 200 210 220 230 240 250 260 270 280 290 300); .-each(@px) {
         &@{px} {
             width: @px * 1px;
+        }
+    }
+}
+
+// ----------------------------------------
+// 圆角 Border Radio
+// ----------------------------------------
+
+.border-radius- {
+    .for(0 4 6); .-each(@px) {
+        &@{px} {
+            border-radius: @px * 1px;
         }
     }
 }
@@ -1373,6 +1382,14 @@ table {
     .glyph {
         margin-right: 15px;
     }
+}
+
+.contextual-message-sticky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0;
 }
 
 .mm-message {
