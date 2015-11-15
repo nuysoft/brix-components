@@ -1180,6 +1180,15 @@ ol.breadcrumb {
     padding-top: 10px;
     margin-left: 0;
     margin-right: 0;
+    > .col-md-6 {
+        width: inherit;
+        &:first-child {
+            float: left;
+        }
+        &:last-child {
+            float: right;
+        }
+    }
     .pagination-statistics {
         select {
             display: none;
@@ -1190,31 +1199,68 @@ ol.breadcrumb {
     }
     ul.pagination {
         > li {
+            display: inline-block;
             > a, > span {
-                color: @brand;
+                color: #999;
+                min-width: 32px;
+                height: 32px;
+                padding-left: initial;
+                padding-right: initial;
+                text-align: center;
                 border: none;
                 border-radius: 4px;
                 background-color: transparent;
+            }
+            > a {
                 &:hover {
-                    color: @brand-hover;
+                    background-color: @brand;
+                    color: white;
                 }
             }
             &.active {
                 > a, > span {
-                    color: #FFF;
                     background-color: @brand;
+                    color: white;
                     &:hover {
-                        background-color: @brand-hover;
+                        background-color: @brand;
+                        color: white;
                     }
                 }
             }
             &.disabled {
                 > a, > span {
-                    &, &:hover {
-                        color: #999;
+                    color: #CCC;
+                    &:hover {
                         background-color: transparent;
+                        color: #CCC;
                     }
                 }
+            }
+            &.pagination-statistics-simplify {
+                > span {
+                    color: #333;
+                    letter-spacing: 3px;
+                    font-weight: bold;
+                    height: 32px;
+                    &:hover {
+                        color: #333;
+                    }
+                }
+            }
+            &:first-child, >li:last-child {
+                > a {
+                    padding: 6px 10px;
+                }
+            }
+        }
+    }
+}
+
+table.table-pagination {
+    tfoot {
+        tr {
+            td {
+                padding: 0
             }
         }
     }
