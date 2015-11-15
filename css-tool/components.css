@@ -26,6 +26,8 @@
 
 /* /chart/chart.css */
 
+/* /chartxwrapper/chartxwrapper.css */
+
 /* /colorpicker/colorpicker.css */
 .colorpicker {
   position: absolute;
@@ -112,8 +114,6 @@
   display: inline-block;
   font-family: monospace;
 }
-
-/* /chartxwrapper/chartxwrapper.css */
 
 /* /countdown/countdown.css */
 .countdown {
@@ -574,6 +574,8 @@
   max-width: 100%;
 }
 
+/* /footer/footer.css */
+
 /* /errortips/errortips.css */
 
 @font-face {
@@ -697,8 +699,6 @@
     cursor: pointer;
     font-size: 15px;
   }
-
-/* /footer/footer.css */
 
 /* /hello/hello.css */
 

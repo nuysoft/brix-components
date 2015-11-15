@@ -1942,6 +1942,13 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   padding-left: 30px;
   width: auto;
 }
+.dropdown.suggest {
+  min-width: 100%;
+  width: 100%;
+}
+.dropdown.suggest .dropdown-menu {
+  width: 100%;
+}
 .input-group-wrapper .input-group {
   border: 1px solid #ff6600;
   border-radius: 4px;
@@ -1969,13 +1976,6 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 .input-group-wrapper .input-group .input-group-input input {
   border-width: 0;
 }
-.input-group-wrapper .input-group .input-group-input .dropdown.suggest {
-  min-width: 100%;
-  width: 100%;
-}
-.input-group-wrapper .input-group .input-group-input .dropdown.suggest .dropdown-menu {
-  width: 100%;
-}
 .input-group-wrapper .hots {
   padding-left: 10px;
 }
@@ -1986,20 +1986,20 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 .input-group-wrapper .hots a:hover {
   color: #ff6600;
 }
-.input-group-wrapper .input-group-tab {
+.input-group-tab {
   padding-left: 10px;
 }
-.input-group-wrapper .input-group-tab .btn {
+.input-group-tab .btn {
   height: 24px;
   line-height: 0;
   border-radius: 4px 4px 0 0;
   margin-right: 5px;
   background-color: transparent;
 }
-.input-group-wrapper .input-group-tab .btn:hover {
+.input-group-tab .btn:hover {
   background-color: #e6e6e6;
 }
-.input-group-wrapper .input-group-tab .btn.active {
+.input-group-tab .btn.active {
   background-color: #ff6600;
   color: #FFF;
 }
@@ -2011,10 +2011,10 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
 .suggestwrapper input {
   width: 100%;
 }
-.suggestwrapper .suggest.dropdown {
+.suggestwrapper .dropdown.suggest {
   width: 100%;
 }
-.suggestwrapper .suggest.dropdown .dropdown-menu {
+.suggestwrapper .dropdown.suggest .dropdown-menu {
   width: 100%;
 }
 table tbody tr td .editable-content {
