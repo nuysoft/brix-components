@@ -96,6 +96,90 @@
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <h4>支持搜索框 `data-searchbox="true|enter"`。</h4>
+        <select bx-name="components/dropdown" data-searchbox="true" bx-search="filter">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+        <select bx-name="components/dropdown" data-searchbox="enter" bx-search="filter">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+        <select bx-name="components/dropdown" data-popover="true">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+        <select bx-name="components/dropdown" data-popover="200">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <h4>支持搜索框 `data-popover="true|width"`。</h4>
+        <select bx-name="components/dropdown" data-popover="true">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+        <select bx-name="components/dropdown" data-popover="200">
+            <optgroup label="optgroup 1">
+                <option value="1">Action</option>
+            </optgroup>
+            <optgroup label="optgroup 2">
+                <option value="2">Another action</option>
+            </optgroup>
+            <option class="divider"></option>
+            <optgroup label="optgroup 3">
+                <option value="3" selected>Something else here</option>
+            </optgroup>
+        </select>
+    </div>
+</div>
+
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {
         Loader.boot(function() {

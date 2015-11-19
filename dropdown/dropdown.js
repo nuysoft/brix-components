@@ -6,12 +6,12 @@
 define(
     [
         'jquery', 'underscore',
-        'components/base', 'brix/event',
+        'brix/loader', 'components/base', 'brix/event',
         './dropdown.tpl.js'
     ],
     function(
         $, _,
-        Brix, EventManager,
+        Loader, Brix, EventManager,
         template
     ) {
         /*
@@ -106,11 +106,18 @@ define(
 
         _.extend(Dropdown.prototype, Brix.prototype, {
             options: {
-                name: null,
-                label: null,
-                value: null,
+                name: undefined,
+                label: undefined,
+                value: undefined,
                 data: [],
-                disabled: null
+                disabled: undefined,
+
+                searchbox: false, // false | true | keyup | enter
+                placeholder: '搜索关键词',
+                _searchboxEvent: 'keyup', // keyup | enter
+
+                popover: false, // true | width
+                _popoverWidth: ''
             },
             init: function() {
                 this.$element = $(this.element).hide()
@@ -132,15 +139,33 @@ define(
                 options.disabled = this.$element.prop('disabled')
 
                 // 初始化节点 select 的状态
-                if (options.value !== null) this.$element.val(options.value)
+                if (options.value !== undefined) this.$element.val(options.value)
 
                 // 初始化选项 label、value
                 var $selectedOption = this.$element.find('option:selected')
-                options.label = $selectedOption.text()
+                options.label = $.trim($selectedOption.text())
                 options.value = $selectedOption.attr('value')
 
                 // 初始化选项 name
                 options.name = this.$element.attr('name')
+
+                // 解析选项 searchbox
+                if (options.searchbox) {
+                    if (options.searchbox === true) {
+                        options._searchboxEvent = 'keyup'
+                    } else {
+                        options._searchboxEvent = options.searchbox
+                        options.searchbox = true
+                    }
+                }
+
+                // 解析选项 popover
+                if (options.popover) {
+                    if (options.popover !== true) {
+                        options._popoverWidth = options.popover
+                        options.popover = true
+                    }
+                }
             },
             render: function() {
                 this.$relatedElement = $(
@@ -149,6 +174,8 @@ define(
 
                 this.$manager.delegate(this.$element, this)
                 this.$manager.delegate(this.$relatedElement, this)
+
+                Loader.boot(this.$relatedElement)
 
                 // this._responsive()
                 this._autoHide()
@@ -224,12 +251,17 @@ define(
                 $menu.replaceWith($newMenu)
 
                 this.$manager.delegate(this.$relatedElement, this)
+
+                Loader.boot(this.$relatedElement)
             },
             select: function(event /*, trigger*/ ) {
                 var $target = $(event.currentTarget)
+                var value = $target.attr('value')
+                var label = $.trim($target.text())
                 var data = {
-                    label: $target.text(),
-                    value: $target.attr('value') || $target.text()
+                    name: this.options.name,
+                    label: label,
+                    value: value !== undefined ? value : label
                 }
                 this.val(data)
                 this.toggle()
@@ -237,8 +269,32 @@ define(
                 $target.closest('li').addClass('active')
                     .siblings().removeClass('active')
             },
+            search: function(event) {
+                if (event.type === 'keyup') {
+                    var key = event.keyCode
+
+                    // 忽略不产生输入的辅助按键
+                    //    command            modifiers                   arrows
+                    if (key === 91 || (15 < key && key < 19) || (37 <= key && key <= 40)) return
+
+                    // 如果选项 searchbox 为 `'enter'`，则只响应 enter 键
+                    if (this.options._searchboxEvent === 'enter' && key !== 13) return
+                }
+
+                var seed = $(event.target).val()
+                this.trigger('search' + NAMESPACE, seed)
+            },
+            filter: function(seed, all) {
+                // ( event, seed )
+                if (seed.type) {
+                    seed = all
+                    all = false
+                }
+                var $lis = this.$relatedElement.find('ul.dropdown-menu li').hide()
+                $lis.has('> a:contains("' + seed + '")').show() // 显示匹配 text 的选项
+                if (all) $lis.has('> a[value*="' + seed + '"]').show() // 显示匹配 value 的选项
+            },
             _parseDataFromSelect: function($select) {
-                var that = this
                 var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
                     return /optgroup|option/i.test(child.nodeName)
@@ -260,7 +316,7 @@ define(
                 function _parseOption(option) {
                     var $option = $(option)
                     return $option.hasClass('divider') ? 'divider' : {
-                        label: $option.text(),
+                        label: $.trim($option.text()),
                         value: $option.attr('value'),
                         selected: $option.prop('selected')
                     }
@@ -275,7 +331,6 @@ define(
                 })
             },
             _fillSelect: function() {
-                var that = this
                 var $select = this.$element.empty()
                 _.each(this.options.data, function(item) {
                     if (item.children && item.children.length) {
@@ -345,9 +400,12 @@ define(
                 this.$manager = new EventManager('bx-')
 
                 this._fixFlattenData(this.options.data)
+
+                // 初始化选项 name
+                this.options.name = this.$element.attr('name')
             },
             render: function() {
-                if (this.options.value) this.val(this.options.value)
+                if (this.options.value !== undefined) this.val(this.options.value)
 
                 this.$manager.delegate(this.$relatedElement, this)
 
@@ -358,7 +416,9 @@ define(
                 var that = this
                 var oldValue = function() {
                     var $target = that.$element.find('ul.dropdown-menu > li.active > a')
-                    return $target.attr('value') || $target.text()
+                    var oldValue = $target.attr('value')
+                    if (oldValue === undefined) oldValue = $.trim($target.text())
+                    return oldValue
                 }()
 
                 // .val()
@@ -371,11 +431,15 @@ define(
                     var $item = $(item)
                     var $target = $item.find('> a')
                     var targetValue = $target.attr('value')
-                    var targetText = $target.text()
-                    if ((targetValue || targetText) == value) {
+                    var targetText = $.trim($target.text())
+                    if (
+                        (targetValue !== undefined && targetValue == value) ||
+                        (targetValue === undefined && targetText == value)
+                    ) {
                         data = {
+                            name: that.options.name,
                             label: targetText,
-                            value: targetValue || targetText
+                            value: targetValue !== undefined ? targetValue : targetText
                         }
                     }
                 })
@@ -383,12 +447,12 @@ define(
                 // 未知值
                 if (!data) return
 
-                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
-                if (('' + data.value) === oldValue) return this
-
-                // 更新模拟下拉框的内容
+                // 更新模拟下拉框的内容（先更新了再比较值是否有变化，因为此时渲染的内容可能是错误的！）
                 this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
                     .text(data.label)
+
+                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
+                if (('' + data.value) === oldValue) return this
 
                 // 更新模拟下拉框的选中状态
                 this.$relatedElement.find('ul.dropdown-menu')
