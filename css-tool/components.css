@@ -702,8 +702,6 @@
 
 /* /hello/hello.css */
 
-/* /hello-extra/hello-extra.css */
-
 /* /hourpicker/hourpicker.css */
 .hourpicker {
   font-size: 12px;
@@ -889,16 +887,18 @@
   margin-left: -3px;
 }
 
-/* /modal/modal.css */
-.modal-backdrop {
-  display: none;
-  height: 100%;
-}
+/* /hello-extra/hello-extra.css */
 
 /* /imager/imager.css */
 .imager {
   margin-right: 5px;
   margin-bottom: 5px;
+}
+
+/* /modal/modal.css */
+.modal-backdrop {
+  display: none;
+  height: 100%;
 }
 
 /* /nprogress/nprogress.css */
@@ -1733,8 +1733,6 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   animation-delay: -0.1s;
 }
 
-/* /switch/switch.css */
-
 /* /suggest/suggest.css */
 .suggest {
   position: absolute;
@@ -1750,6 +1748,8 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .suggest .dropdown-menu .active .highlight {
   color: #000;
 }
+
+/* /switch/switch.css */
 
 /* /tab/tab.css */
 

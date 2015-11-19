@@ -1471,6 +1471,9 @@ ul.checklist-linear > li {
 .dropdown > .dropdown-menu-wrapper > ul.dropdown-menu > li {
   padding: 4px 10px 4px 0;
 }
+.dropdown > .dropdown-menu-wrapper > ul.dropdown-menu > li.divider {
+  padding: 0;
+}
 .dropdown.open > .dropdown-menu-wrapper {
   display: block;
 }
