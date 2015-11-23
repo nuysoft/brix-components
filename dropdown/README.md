@@ -20,6 +20,11 @@
             <option value="2">Another action</option>
             <option value="3">Something else here</option>
         </select>
+        <select bx-name="components/dropdown" data-value="true">
+            <option value="">Anything</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
     </div>
 </div>
 <div class="bs-example">

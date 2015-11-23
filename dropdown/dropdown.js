@@ -139,7 +139,7 @@ define(
                 options.disabled = this.$element.prop('disabled')
 
                 // 初始化节点 select 的状态
-                if (options.value !== undefined) this.$element.val(options.value)
+                if (options.value !== undefined) this.$element.val(options.value + '')
 
                 // 初始化选项 label、value
                 var $selectedOption = this.$element.find('option:selected')
