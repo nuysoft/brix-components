@@ -17,7 +17,7 @@ define(function() {
             <% for (var title in shortcuts) { %>
                 <span bx-click="_change('shortcut')" data-value="<%= 
                     _.map(shortcuts[title], function(item) {
-                        return item.format('YYYY-MM-DD')
+                        return item.format('YYYY-MM-DD HH:mm:ss')
                     }).join(',')
                 %>" class="shortcut"><%= title %></span>
             <% } %>

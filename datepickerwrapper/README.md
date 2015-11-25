@@ -35,7 +35,7 @@
                 <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" 
                     bx-options="{ 
                         shortcuts:{
-                            '一期':['2015-1-1', '2015-3-14']
+                            '一期':['2015-1-1 8:00:00', '2015-3-14 18:00:00']
                         }
                     }"
                     class="form-control w300">
