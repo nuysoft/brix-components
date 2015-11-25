@@ -14,9 +14,18 @@ define(function() {
         </div>
     </div>
     <div class="shortcuts <%= simplify ? 'hide' : '' %>">
-        <label bx-click="shortcut([0,1,2,3,4,5,6])" class="mr50"><input type="radio" name="shortcut"> 全日程投放</label>
-        <label bx-click="shortcut([1,2,3,4,5])" class="mr50"><input type="radio" name="shortcut"> 工作日（周一至周五）投放</label>
-        <label bx-click="shortcut([0,6])"><input type="radio" name="shortcut"> 休息日（周六、周日）投放</label>
+        <label class="mr50">
+            <input type="radio" bx-click="shortcut([0,1,2,3,4,5,6])" name="shortcut">
+            全日程投放
+        </label>
+        <label class="mr50">
+            <input type="radio" bx-click="shortcut([1,2,3,4,5])" name="shortcut">
+            工作日（周一至周五）投放
+        </label>
+        <label>
+            <input type="radio" bx-click="shortcut([0,6])" name="shortcut">
+            休息日（周六、周日）投放
+        </label>
         <div class="utc">当前排期时间：GMT <%= utcOffset %></div>
     </div>
     <table class="picker-days">

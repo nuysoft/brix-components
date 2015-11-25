@@ -38,13 +38,14 @@ define(
             options: {
                 simplify: false,
                 /*
-                    正常模式：
+                    完整模式：
                         data-value="135"
                         data-value="1,3,5"
                         data-value="[1,3,5]"
                         data-value="{1:[0,2,4]}"
-                    简单模式
-                        data-value="[12345，60]"
+                    精简模式：
+                        data-value="12345,60"
+                        data-value="[12345,60]"
                         data-value="{12345:[0,2,4],60:[1,3,5]}"
                  */
                 value: '',
@@ -80,7 +81,7 @@ define(
                                 this.options.value.indexOf(',') != -1 ? ',' : ''
                             )
                             _.each(days, function(item /*, index*/ ) {
-                                args[item] = HOURS
+                                args[$.trim(item)] = HOURS
                             })
                             break
                         case 'array': // data-value="[1,3,5]"
@@ -134,10 +135,14 @@ define(
             // { day: [] }
             // day, hours []
             val: function() {
+                // val()
+                if (!arguments.length) return this._get()
+
+                // val( value )
                 // picker-day picker-hour
-                return arguments.length ?
-                    this._set.apply(this, arguments) :
-                    this._get()
+                this._set.apply(this, arguments)
+                this.trigger('change' + NAMESPACE, this._get())
+                return this
             },
             /* jshint unused:true */
             shortcut: function(event, days) {
