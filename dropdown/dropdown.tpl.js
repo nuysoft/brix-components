@@ -11,12 +11,14 @@ define(function() {
         </span>
     </button>
     <div class="dropdown-menu-wrapper">
-        <div class="searchbox <%= searchbox ? '' : 'hide' %>">
+        <% if (searchbox) { %>
+        <div class="searchbox">
             <label>
                 <span class="brixfont">&#xe61c;</span>
                 <input bx-keyup="search()" type="text" placeholder="<%= placeholder %>">
             </label>
         </div>
+        <% } %>
         <ul class="dropdown-menu">
             <% for(var i = 0, item; item = data[i]; i++ ) { %>
                 <% if(item.children) { %>

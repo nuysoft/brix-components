@@ -128,30 +128,6 @@
                 <option value="3" selected>Something else here</option>
             </optgroup>
         </select>
-        <select bx-name="components/dropdown" data-popover="true">
-            <optgroup label="optgroup 1">
-                <option value="1">Action</option>
-            </optgroup>
-            <optgroup label="optgroup 2">
-                <option value="2">Another action</option>
-            </optgroup>
-            <option class="divider"></option>
-            <optgroup label="optgroup 3">
-                <option value="3" selected>Something else here</option>
-            </optgroup>
-        </select>
-        <select bx-name="components/dropdown" data-popover="200">
-            <optgroup label="optgroup 1">
-                <option value="1">Action</option>
-            </optgroup>
-            <optgroup label="optgroup 2">
-                <option value="2">Another action</option>
-            </optgroup>
-            <option class="divider"></option>
-            <optgroup label="optgroup 3">
-                <option value="3" selected>Something else here</option>
-            </optgroup>
-        </select>
     </div>
 </div>
 
@@ -230,7 +206,7 @@ console.log(instances[0].val())
 
 Event Type | Description
 :--------- | :----------
-change.dropdown | 当日期组件变化时被触发。
+change.dropdown | 当值发生变化时被触发。
 
 ```js
 var Loader = require('brix/loader')

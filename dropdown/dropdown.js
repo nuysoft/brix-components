@@ -386,6 +386,11 @@ define(
                     })
             },
             destroy: function() {
+                this.$manager.undelegate(this.$element, this)
+                this.$manager.undelegate(this.$relatedElement, this)
+
+                this.$relatedElement.remove()
+
                 var type = 'click.dropdown_autohide_' + this.clientId
                 $(document.body).off(type)
             }
