@@ -186,6 +186,25 @@ Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 data | array | - | 可选。下拉框中的数据。默认从子节点 `<optgroup>` 和 `<option>` 读取。
 value | string | - | 可选。下拉框的值。
+searchbox | boolean | `false` | 可选。是否开启下拉框中的输入框。可选值有 `false`、`true`、`'enter'`。
+popover | boolean or number | `false` | 可选。是否为下拉框的条目配置 `bx-name="components/popover"`。可选值有 `false`、`true`、`width`。
+
+#### 配置项 `searchbox`
+
+Value | Description
+:---- | :----------
+`false` | 不开启下拉框中的输入框。
+`true` | 开启下拉框中的输入框。当输入框的原生 `keyup` 事件被触发时，组件 Dropdown 触发 `search.dropdown` 事件。
+`'enter'` | 开启下拉框中的输入框。当在输入框中按下 <kbd>enter</kbd> 键时，组件 Dropdown 触发 `search.dropdown` 事件。
+
+#### 配置项 `popover`
+
+Value | Description
+:---- | :----------
+`false` | 不为下拉框的条目配置 `bx-name="components/popover"`。
+`true` | 为下拉框的条目配置 `bx-name="components/popover"`。
+`width` | 指定 Popover 浮层的宽度。
+
 
 ### 方法 <small>Methods</small>
 
