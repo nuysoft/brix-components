@@ -98,22 +98,33 @@ Loader.query('components/pagination')
 
 上面代码中的参数 `state` 是一个对象，其中包含了有关分页状态的所有信息：
 
-```json
+```js
 {
-    "total": 101,
-    "cursor": 2,
-    "limit": 40,
-    "pages": 3,
-    "start": 40,
-    "end": 80,
-    "hasPrev": true,
-    "hasNext": true,
-    "hasFirst": true,
-    "hasLast": true,
-    "prev": 1,
-    "next": 3,
-    "first": 1,
-    "last": 3,
-    "focus": 40
+    "total": 101,       // 总条数
+    "cursor": 2,        // 当前页数，第几页，从 1 开始计算
+    "limit": 40,        // 分页大小
+    "pages": 3,         // 总页数
+    "start": 40,        // 当前页的起始下标
+    "end": 80,          // 当前页的结束下标
+    "hasPrev": true,    // 是否有前一页
+    "hasNext": true,    // 是否有下一页
+    "hasFirst": true,   // 是否有第一页
+    "hasLast": true,    // 是否有最后一页
+    "prev": 1,          // 前一页
+    "next": 3,          // 后一页
+    "first": 1,         // 第一页
+    "last": 3,          // 最后一页
+    "focus": 40         // 当前页的当前焦点下标
 }
 ```
+
+<script type="text/javascript">
+    require(['brix/loader'], function(Loader){
+        Loader.boot(function(){
+            Loader.query('components/pagination')
+                .on('change.pagination', function(event, state) {
+                    console.log(event, state)
+                })
+        })
+    })
+</script>

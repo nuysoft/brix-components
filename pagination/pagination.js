@@ -62,17 +62,17 @@ define(
             },
             render: function() {
                 var that = this
-                var manager = new EventManager()
+                this.$manager = new EventManager('bx-')
                 this.$element = $(this.element)
 
-                this.data = this.fixData()
+                this.data = this._fixData()
                 var html = _.template(template)(this.data)
                 $(this.element).empty().append(html)
 
-                manager.delegate(this.element, this)
+                this.$manager.delegate(this.element, this)
 
                 // 重新 render 之后的 ready 事件？再次触发？
-                Loader.boot(this.element, function() {
+                Loader.boot(this.element, function() { // 这里的目的并非执行 Loader.boot()，而是等待其他 Loader.boot() 完成
                     that.dropdown = Loader.query('components/dropdown', that.element)[0]
 
                     if (!that.dropdown) return
@@ -81,22 +81,34 @@ define(
                     that.dropdown.on('change.dropdown', function(event, data) {
                         that._state.setLimit(data.value)
                         that.trigger('change.pagination', that._state)
-                        that.render()
+                        that._update()
                     })
                 })
+            },
+            _update: function() {
+                this.data = this._fixData()
+                var html = _.template(template)(this.data)
+                var $newPagination = $(html)
+
+                this.$element.find('ul.pagination')
+                    .replaceWith($newPagination.find('ul.pagination'))
+                this.$element.find('span.start-end-total')
+                    .replaceWith($newPagination.find('span.start-end-total'))
+
+                // $(this.element).empty().append(html)
             },
             moveTo: function(event, extra) { // extraParameters
                 // moveTo( cursor )
                 if (arguments.length === 1) extra = event
                 this._state.moveTo(extra)
                 this.trigger('change.pagination', this._state)
-                this.render()
+                this._update()
             },
             total: function(total) {
                 if (total === undefined || total === null) return this._state.total
                 if (this._state.total !== total) {
                     this._state.setTotal(total)
-                    this.render()
+                    this._update()
                 }
                 return this
             },
@@ -104,11 +116,21 @@ define(
                 if (cursor === undefined || cursor === null) return this._state.cursor
                 if (this._state.cursor !== cursor) {
                     this._state.setCursor(cursor)
-                    this.render()
+                    this._update()
                 }
                 return this
             },
-            fixData: function() {
+            limit: function(limit) {
+                if (limit === undefined || limit === null) return this._state.limit
+                if (this._state.limit !== limit) {
+                    this._state.setLimit(limit)
+                    this._update()
+
+                    // PS: The dropdown can only be amended by manual!
+                }
+                return this
+            },
+            _fixData: function() {
                 var barStart = Math.min(
                     this._state.pages,
                     Math.max(
@@ -141,6 +163,9 @@ define(
                     limits: limits,
                     simplify: this.options.simplify
                 }, this._state)
+            },
+            destroy: function() {
+                this.$manager.undelegate(this.$element, this)
             }
         })
 

@@ -15,13 +15,13 @@ define(function() {
     <% } else { %>
 
     <div class="pagination-statistics col-md-6">
-        当前第 <b><%= start + 1 %> - <%=end%></b> 条，共 <b><%= total %></b> 条，每页展现
+        <span class="start-end-total">当前第 <b><%= start + 1 %> - <%= end %></b> 条，共 <b><%= total %></b> 条</span><span>，每页展现</span>
         <select bx-name="components/dropdown">
             <% for( var i = 0; i < limits.length; i++ ) { %>
             <option value="<%= limits[i] %>" <%= limits[i] == limit ? 'selected' : '' %>><%=limits[i]%></option>
             <% } %>
         </select>
-        条
+        <span>条</span>
     </div>
     <div class="col-md-6" style="text-align: right;">
         <ul class="pagination">
