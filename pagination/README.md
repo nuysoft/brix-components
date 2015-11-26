@@ -14,6 +14,23 @@
     </div>
 </div>
 
+#### 自定义文案
+
+```html
+<style type="text/css">
+    ul.pagination > li:first-child > a > span.brixfont,
+    ul.pagination > li:last-child > a > span.brixfont {
+        display: none;
+    }
+    ul.pagination > li:first-child > a:after {
+        content: "上一页";
+    }
+    ul.pagination > li:last-child > a:after {
+        content: "下一页";
+    }
+</style>
+```
+
 ### 配置 <small>Options</small>
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。

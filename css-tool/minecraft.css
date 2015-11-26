@@ -1952,7 +1952,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   color: #333;
 }
 .paginationwrapper ul.pagination > li:first-child > a,
-.paginationwrapper ul.pagination > li > li:last-child > a {
+.paginationwrapper ul.pagination > li:last-child > a {
   padding: 6px 10px;
 }
 table.table-pagination tfoot tr td {
