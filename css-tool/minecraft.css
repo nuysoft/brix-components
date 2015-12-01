@@ -1814,7 +1814,8 @@ button.parsley-error {
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 4px;
-  height: 24px;
+  height: 22px;
+  margin: 4px 0;
 }
 .datepicker-container > .picker-group .picker-body {
   padding: 0 0 10px 0;
