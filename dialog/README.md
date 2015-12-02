@@ -193,7 +193,7 @@ instances.on('open.dialog close.dialog', function(event) {
 })
 ```
 
----
+<!-- 
 
 ## TODO（临时记录，不属于文档）
 
@@ -239,6 +239,4 @@ instances.on('open.dialog close.dialog', function(event) {
         * hide
     * Overlay 浮层
         * Position 位置
-
-
-
+ -->
