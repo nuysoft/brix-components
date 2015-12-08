@@ -1,4 +1,4 @@
-<div class="dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover' : '' %>">
+<div class="dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>">
     <button class="btn btn-default dropdown-toggle" type="button" value="<%= value %>" bx-click="toggle()">
         <span class="dropdown-toggle-label"><%= label %></span>
         <!-- <span class="caret"> -->

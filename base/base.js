@@ -43,6 +43,7 @@ define(
                 var bxevent = $.Event(tmp + EventManager.NAMESPACE)
                 bxevent.originalNamespace = namespaces.join('.')
                 bxevent.component = this
+                bxevent.stopPropagation() // 不再冒泡，避免意外事件外冒
                 $(this.element).trigger(bxevent, data)
 
                 return this
