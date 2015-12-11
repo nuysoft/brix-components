@@ -1948,6 +1948,7 @@ ol.breadcrumb > li .dropdown .dropdown-toggle:hover {
   letter-spacing: 3px;
   font-weight: bold;
   height: 32px;
+  padding: 6px 10px;
 }
 .paginationwrapper ul.pagination > li.pagination-statistics-simplify > span:hover {
   color: #333;

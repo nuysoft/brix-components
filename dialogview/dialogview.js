@@ -78,11 +78,13 @@ define(
             },
             destroy: function() {
                 this.close()
+                this.dialog.destroy()
             }
         })
 
         var DialogViewUtil = {
             open: function(dialogOptions /* hostView */ , viewName, viewOptions) {
+                if (this.dialog) this.dialog.destroy()
                 this.dialog = new DialogView(dialogOptions, viewName, viewOptions)
                 this.dialog.open()
                 if (dialogOptions.hostView) {
@@ -90,7 +92,7 @@ define(
                 }
             },
             close: function() {
-                if (this.dialog) this.dialog.close()
+                if (this.dialog) this.dialog.destroy()
             }
         }
 
