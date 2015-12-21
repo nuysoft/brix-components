@@ -105,6 +105,13 @@ define(
                 this.$relatedElement.find('.popover-content').html(content)
 
                 return this
+            },
+            destroy: function() {
+                this.$element
+                    .off('mouseenter mouseleave') // hover
+                this.$relatedElement
+                    .off('mouseenter mouseleave') // hover
+                    .remove()
             }
         })
 
