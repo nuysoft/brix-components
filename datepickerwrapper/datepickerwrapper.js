@@ -135,7 +135,8 @@ define(
                     _.template(template)(this.options)
                 ).insertAfter(this.$element)
 
-                this['_' + this.options.mode]()
+                var defer = $.Deferred()
+                this['_' + this.options.mode](defer)
 
                 var type = 'click.datepickerwrapper_toggle_' + this.clientId
                 this.$element.off(type)
@@ -143,11 +144,13 @@ define(
                         that.toggle(event)
                     })
 
-                var manager = new EventManager('bx-')
-                manager.delegate(this.$element, this)
-                manager.delegate(this.$relatedElement, this)
+                var $manager = this.$manager = new EventManager('bx-')
+                $manager.delegate(this.$element, this)
+                $manager.delegate(this.$relatedElement, this)
 
                 this._autoHide()
+
+                return defer.promise()
             },
             val: function(value) {
                 var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
@@ -174,9 +177,9 @@ define(
                 }
                 return this.options.ranges
             },
-            _signal: function() {
+            _signal: function(defer) {
                 var that = this
-                Loader.boot(this.$relatedElement, function( /*records*/ ) {
+                Loader.boot(true, this.$relatedElement, function( /*records*/ ) {
                     var pickerComponent = Loader.query('components/datepicker', that.$relatedElement)[0]
                         /* jshint unused:false */
                     pickerComponent.on('change.datepicker unchange.datepicker', function(event, date, type) {
@@ -214,11 +217,13 @@ define(
                     pickerComponent.$element.on('click', '.timepicker .timepicker-footer .cancel', function() {
                         that.hide()
                     })
+
+                    if (defer) defer.resolve()
                 })
             },
-            _multiple: function() {
+            _multiple: function(defer) {
                 var that = this
-                Loader.boot(this.$relatedElement, function() {
+                Loader.boot(true, this.$relatedElement, function() {
                     var inputWrapper = $('.datepickerwrapper-inputs', that.$relatedElement)
                     var inputs = $('input', inputWrapper)
 
@@ -281,6 +286,8 @@ define(
                             pickers.eq(index).hide()
                         })
                     })
+
+                    if (defer) defer.resolve()
                 })
             },
             _unlimitFilter: function(date, unlimit) {
@@ -505,6 +512,14 @@ define(
             destroy: function() {
                 var type = 'click.datepickerwrapper_toggle_' + this.clientId
                 this.$element.off(type)
+
+                this.$manager.undelegate(this.$element, this)
+                this.$manager.undelegate(this.$relatedElement, this)
+
+                this.$relatedElement.remove()
+
+                type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
             }
         })
 

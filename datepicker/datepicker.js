@@ -84,13 +84,13 @@ define(
                 this.data.typeMap = DatePicker.typeMap(this.options.type)
             },
             render: function() {
-                var manager = new EventManager()
                 this.$element = $(this.element)
                     .append(
                         _.template(template)(this.data)
                     )
 
-                manager.delegate(this.$element, this)
+                var $manager = this.$manager = new EventManager('bx-')
+                $manager.delegate(this.$element, this)
 
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
             },
@@ -369,6 +369,9 @@ define(
                 this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [unlimit, 'date'])
 
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
+            },
+            destroy: function() {
+                this.$manager.undelegate(this.$element, this)
             }
         })
 
