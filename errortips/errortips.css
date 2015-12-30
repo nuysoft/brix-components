@@ -108,10 +108,16 @@
     overflow: hidden;
     bottom: -20px;
     left: 28%;
-    border: 10px solid rgba(0,0,0,0.7);
+    border: 10px solid rgba(0, 0, 0, 0.7);
     border-left-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
+  }
+  .btn-error-tips .arrow-up {
+    bottom: auto;
+    top: -20px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0.7);
   }
   .btn-error-tips .errortips-icon {
     position: absolute;
