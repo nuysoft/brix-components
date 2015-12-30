@@ -16,7 +16,7 @@ define([
           self._tips.fadeOut(0.25, function() {
             self._tips.remove()
             self.trigger('complete.errortips')
-          }, 'easeOut')
+          }, 'swing')
         }
       }
     }
