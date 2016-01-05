@@ -125,11 +125,15 @@ define(
             if (!el.hasClass('on')) {
               self.main.animate({
                 'marginLeft': 40
-              }, self.duration, EASING);
+              }, self.duration, EASING, function() {
+                self.trigger('slideEnd', 0)
+              });
             } else {
               self.main.animate({
                 'marginLeft': 200
-              }, self.duration, EASING);
+              }, self.duration, EASING, function() {
+                self.trigger('slideEnd', 1)
+              });
             }
 
           }
