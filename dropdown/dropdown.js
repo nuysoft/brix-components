@@ -197,7 +197,14 @@ define(
                 .val()
             */
             val: function(value) {
-                var oldValue = this.$element.val()
+                // this.$element.val()
+                var that = this
+                var oldValue = function() {
+                    var $target = that.$relatedElement.find('ul.dropdown-menu > li.active > a')
+                    var oldValue = $target.attr('value')
+                    if (oldValue === undefined) oldValue = $.trim($target.text())
+                    return oldValue
+                }()
 
                 // .val()
                 if (value === undefined) return oldValue
@@ -212,9 +219,6 @@ define(
 
                 // 未知值
                 if (!data) return
-
-                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
-                if (('' + data.value) === oldValue) return this
 
                 // 更新模拟下拉框的内容
                 this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
@@ -231,6 +235,9 @@ define(
                     .end()
                     .find('li:has([value="' + data.value + '"])')
                     .addClass('active')
+
+                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
+                if (('' + data.value) === oldValue) return this
 
                 this.trigger('change' + NAMESPACE, data)
 
