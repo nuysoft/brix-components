@@ -2,7 +2,7 @@
 define([
   'jquery', 'underscore', 'handlebars',
   'components/base',
-  './errortips.tpl.js'
+  './errortips.tpl'
 ], function(
   $, _, Handlebars,
   Brix, tpl) {
@@ -13,10 +13,14 @@ define([
       '.errortips-icon': {
         /* jshint unused:false */
         click: function(e, self) {
-          self._tips.fadeOut(0.25, function() {
-            self._tips.remove()
-            self.trigger('complete.errortips')
-          }, 'swing')
+          self._tips.fadeOut({
+            duration: 250,
+            easing: 'swing',
+            complete: function() {
+              self._tips.remove()
+              self.trigger('complete.errortips')
+            }
+          })
         }
       }
     }
@@ -126,9 +130,13 @@ define([
       //tips 6 秒后消失，或者点击页面其他地方也消失
       if (duration) {
         this.itv = setTimeout(function() {
-          self.fadeOut = self._tips.fadeOut(250, 'swing', function() {
-            self._tips.remove()
-            self.trigger('complete.errortips', self)
+          self.fadeOut = self._tips.fadeOut({
+            duration: 250,
+            easing: 'swing',
+            complete: function() {
+              self._tips.remove()
+              self.trigger('complete.errortips', self)
+            }
           })
         }, duration)
       }
@@ -150,6 +158,7 @@ define([
       $('body').append(this._tips)
       var tipsLeft = offset.left - fixLeft
       var tipsTop = offset.top - this._tips.outerHeight() - 20
+      var tipsTopStart = 0
 
 
       /**
@@ -172,10 +181,17 @@ define([
         tipsLeft = 0
       }
 
+      if (tipsTop < 0) {
+        this._tips.find('.arrow').addClass('arrow-up')
+        tipsTop = offset.top + el.outerHeight() + 20
+        tipsTopStart = tipsTop - 25
+      } else {
+        tipsTopStart = tipsTop + 25
+      }
 
       this._tips.css({
         left: tipsLeft,
-        top: tipsTop + 25,
+        top: tipsTopStart,
         opacity: 0
       })
 
