@@ -685,10 +685,16 @@
     overflow: hidden;
     bottom: -20px;
     left: 28%;
-    border: 10px solid rgba(0,0,0,0.7);
+    border: 10px solid rgba(0, 0, 0, 0.7);
     border-left-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
+  }
+  .btn-error-tips .arrow-up {
+    bottom: auto;
+    top: -20px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0.7);
   }
   .btn-error-tips .errortips-icon {
     position: absolute;
@@ -701,6 +707,8 @@
 /* /footer/footer.css */
 
 /* /hello/hello.css */
+
+/* /hello-extra/hello-extra.css */
 
 /* /hourpicker/hourpicker.css */
 .hourpicker {
@@ -886,8 +894,6 @@
   border-top: 3px solid #2378FF;
   margin-left: -3px;
 }
-
-/* /hello-extra/hello-extra.css */
 
 /* /imager/imager.css */
 .imager {
@@ -1749,9 +1755,9 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: #000;
 }
 
-/* /switch/switch.css */
-
 /* /tab/tab.css */
+
+/* /switch/switch.css */
 
 /* /table/table.css */
 .table-fixed {
