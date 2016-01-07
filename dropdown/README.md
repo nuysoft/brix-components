@@ -219,6 +219,35 @@ Value | Description
 var Loader = require('brix/loader')
 var instances = Loader.query('components/dropdown')
 console.log(instances[0].val())
+instances[0].val(2)
+console.log(instances[0].val())
+```
+
+#### .data( [ data ] )
+
+* .data( data )
+* .data()
+
+设置或读取下拉框中的数据。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/dropdown')
+console.log(instances[0].data())
+
+instances[0].data([1,2,3])
+instances[0].data([1,2,3]).val(3)
+
+instances[0].data([
+    { label: 'foo', value: 1 },
+    { label: 'bar', value: 2 },
+    { label: 'faz', value: 3 }
+])
+instances[0].data([
+    { label: 'foo', value: 1 },
+    { label: 'bar', value: 2 },
+    { label: 'faz', value: 3 }
+]).val(3)
 ```
 
 ### 事件 <small>Events</small>

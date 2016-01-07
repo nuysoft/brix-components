@@ -264,6 +264,8 @@ define(
                 this.$manager.delegate(this.$relatedElement, this)
 
                 Loader.boot(this.$relatedElement)
+
+                return this
             },
             select: function(event /*, trigger*/ ) {
                 var $target = $(event.currentTarget)
@@ -483,6 +485,10 @@ define(
                 return this
             },
             data: function(data) {
+                // .data()
+                if (data === undefined) return this.options.data
+
+                // .data(data)
                 this.options.data = this._fixFlattenData(data)
 
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
@@ -493,6 +499,8 @@ define(
                 $menu.replaceWith($newMenu)
 
                 this.$manager.delegate(this.$relatedElement, this)
+
+                return this
             }
         })
 
