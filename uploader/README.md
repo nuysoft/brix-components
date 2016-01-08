@@ -90,13 +90,13 @@
                 // event.preventDefault()
             })
             instances.on('success.uploader', function(event, files, response) {
-                console.log(event.type, event.namespace)
+                console.log(event.type, event.namespace, files, response)
             })
             instances.on('error.uploader', function(event, files, error) {
-                console.log(event.type, event.namespace, event, error)
+                console.log(event.type, event.namespace, files, error)
             })
             instances.on('complete.uploader', function(event, files) {
-                console.log(event.type, event.namespace)
+                console.log(event.type, event.namespace, files)
             })
         })
     })

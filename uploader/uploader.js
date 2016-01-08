@@ -126,7 +126,7 @@ define(
                     $(html).insertAfter(form)
                         .on('load', function(event) {
                             var iframe = event.target
-                            var response = $.trim(iframe.contentWindow.document.body.innerText)
+                            var response = $.trim($(iframe.contentWindow.document.body).text())
                             parseJSONResponse(response, callback)
                             $(iframe).remove()
                         })
