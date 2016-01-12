@@ -4,6 +4,22 @@ Brix 组件实现示例。{ .lead }
 
 ### 示例 <small>Examples</small>
 
+<div class="bs-example">
+    <div class="content">
+        <div bx-name="components/hello" bx-options="{
+            message: 'World'
+        }"></div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <div bx-name="components/hello" data-message="Brix"></div>
+    </div>
+</div>
+
+<hr>
+
 <style type="text/css">
     .browser .datepickerwrapper-trigger,
     .browser .dropdown .dropdown-toggle {
@@ -145,22 +161,6 @@ Brix 组件实现示例。{ .lead }
         </div>
     </div>
 </div>
-<hr>
-
-<div class="bs-example">
-    <div class="content">
-        <div bx-name="components/hello" bx-options="{ 
-            message: 'World' 
-        }"></div>
-    </div>
-</div>
-
-<div class="bs-example">
-    <div class="content">
-        <div bx-name="components/hello" data-message="Brix"></div>
-    </div>
-</div>
-
 <hr>
 
 > [CSS Stats](http://cssstats.com/), [Apple](http://cssstats.com/stats?url=http%3A%2F%2Fapple.com&name=Apple)
@@ -335,8 +335,6 @@ destroyed | 当前组件销毁后触发，包括子组件的销毁。
 > 这里仅仅约束了文档的格式，关于 Hello 组件的任何说明都是胡言乱语。
 
 <script type="text/javascript">
-    require(['css!css-tool/mm.css'])
-    require(['css!css-tool/browser.css'])
     $('ul.mm-tabs')
         .on('mouseleave', function(event) {
             $(event.currentTarget).find('li').removeClass('border-bottom-color-transparent')

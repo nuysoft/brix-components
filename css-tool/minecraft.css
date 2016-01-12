@@ -1525,11 +1525,6 @@ textarea,
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
 }
 input:hover,
 .input:hover,
@@ -2081,6 +2076,33 @@ table tbody tr:hover .editable-toggle {
 .contextual-message .glyph {
   margin-right: 15px;
 }
+.contextual-message.bg-info a {
+  border-bottom: 1px solid #ff6600;
+}
+.contextual-message.bg-info a:hover {
+  border-bottom: 1px solid #fc4218;
+}
+.contextual-message.bg-warning span,
+.contextual-message.bg-danger span,
+.contextual-message.bg-success span,
+.contextual-message.bg-fail span {
+  opacity: .8;
+}
+.contextual-message.bg-warning a,
+.contextual-message.bg-danger a,
+.contextual-message.bg-success a,
+.contextual-message.bg-fail a {
+  color: white;
+  opacity: .8;
+  border-bottom: 1px solid white;
+}
+.contextual-message.bg-warning a:hover,
+.contextual-message.bg-danger a:hover,
+.contextual-message.bg-success a:hover,
+.contextual-message.bg-fail a:hover {
+  color: white;
+  opacity: 1;
+}
 .contextual-message-sticky {
   position: absolute;
   top: 0;
@@ -2412,8 +2434,8 @@ table tbody tr:hover .editable-toggle {
   transition: border 0.2s ease-in-out;
   cursor: pointer;
 }
-.mm-tabs li.active,
-.mm-tabs li:hover {
+.mm-tabs li:hover,
+.mm-tabs li.active {
   border-bottom-color: #ff6600;
 }
 .mm-tabs li a {
@@ -2424,8 +2446,10 @@ table tbody tr:hover .editable-toggle {
   margin: 0;
   transition: color 0.1s ease-in-out;
 }
-.mm-tabs li.active a,
 .mm-tabs li:hover a {
+  color: #333;
+}
+.mm-tabs li.active a {
   color: #ff6600;
 }
 .mm-tabs li.active a {
