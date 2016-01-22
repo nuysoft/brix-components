@@ -1053,8 +1053,6 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   display: none;
 }
 
-/* /slider/slider.css */
-
 /* /sidenav/header.css */
 
 /*header*/
@@ -1338,6 +1336,8 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: white;
   /*background-color: #5a3b88;*/
 }
+
+/* /slider/slider.css */
 
 /* /spin/spin.css */
 .spin .spinner {
@@ -1858,12 +1858,6 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   text-align: left;
 }
 
-/* /textcount/textcount.css */
-.textcount-error {
-  color: red;
-  font-style: normal;
-}
-
 /* /taginput/taginput.css */
 .taginput {
   position: relative;
@@ -1907,6 +1901,12 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   outline: none;
   height: 24px;
   padding: 0px;
+}
+
+/* /textcount/textcount.css */
+.textcount-error {
+  color: red;
+  font-style: normal;
 }
 
 /* /tree/tree.css */

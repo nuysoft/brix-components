@@ -139,7 +139,9 @@ define(
                     )
                 )
                 var limit = +this.options.limit
-                var limits = [].concat(this.options.limits).sort()
+                var limits = [].concat(this.options.limits).sort(function(a, b) {
+                    return a - b
+                })
                 if (!_.contains(limits, limit)) {
                     switch (true) {
                         case limit < limits[0]:
@@ -150,8 +152,8 @@ define(
                             break
                         default:
                             for (var i = 0; i < limits.length; i++) {
-                                if (limit > limits[i]) {
-                                    limits.splice(i + 1, 0, limit)
+                                if (limit < limits[i]) {
+                                    limits.splice(i, 0, limit)
                                     break
                                 }
                             }
