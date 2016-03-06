@@ -251,6 +251,8 @@
 // 字体
 // ----------------------------------------
 
+@font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
+
 .fontsize- {
     .for(12 14 16 18 20 22 24 26 28 30 32); .-each(@px) {
         &@{px} {
@@ -261,7 +263,7 @@
 
 body {
     font-size: 12px;
-    font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
+    font-family: @font-family;
     background-color: #fff;
     color: #333;
     -webkit-font-smoothing: antialiased;
@@ -661,6 +663,7 @@ ul.checklist-linear {
             border-color: #CCC;
         }
         .dropdown-toggle-label {
+            float: left;
             display: inline-block;
             text-align: left;
         }
@@ -906,6 +909,7 @@ button.error, button.input-error, button.parsley-error {
 // ----------------------------------------
 
 .popover {
+    font-family: @font-family;
     border-color: #EBEBEB;
     border-radius: 4px;
     padding: 0;
