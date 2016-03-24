@@ -442,32 +442,43 @@ require(['components/table/linkage'], function(linkage) {
 <div class="bs-example bs-example-modal">
     <div class="content">
         <div id="sexLinkage" bx-name>
-            <label><input type="checkbox" data-linkage-name="all"> All</label>
-            <ul>
+            <label class="group"><input type="checkbox" data-linkage-name="Brix"> Brix</label>
+            <ul class="checklist">
                 <li>
-                    <label><input type="checkbox" value="1" data-linkage-name="1" data-linkage-parent-name="all"> 1</label>
-                    <ul>
-                        <li><label><input type="checkbox" value="1.1" data-linkage-name="1.1" data-linkage-parent-name="1"> 1.1</label></li>
-                        <li><label><input type="checkbox" value="1.2" data-linkage-name="1.2" data-linkage-parent-name="1"> 1.2</label></li>
-                        <li><label><input type="checkbox" value="1.3" data-linkage-name="1.3" data-linkage-parent-name="1"> 1.3</label></li>
+                    <label class="group"><input type="checkbox" value="Loader" data-linkage-name="Loader" data-linkage-parent-name="Brix">Loader</label>
+                    <ul class="checklist checklist-linear clearfix">
+                        <li><label><input type="checkbox" value="boot"      data-linkage-name="boot"    data-linkage-parent-name="Loader">boot</label></li>
+                        <li><label><input type="checkbox" value="destroy"   data-linkage-name="destroy" data-linkage-parent-name="Loader">destroy</label></li>
+                        <li><label><input type="checkbox" value="query"     data-linkage-name="query"   data-linkage-parent-name="Loader">query</label></li>
+                        <li><label><input type="checkbox" value="load"      data-linkage-name="load"    data-linkage-parent-name="Loader">load</label></li>
+                        <li><label><input type="checkbox" value="unload"    data-linkage-name="unload"  data-linkage-parent-name="Loader">unload</label></li>
+                        <li><label><input type="checkbox" value="CACHE"     data-linkage-name="CACHE"   data-linkage-parent-name="Loader" disabled>CACHE</label></li>
                     </ul>
                 </li>
                 <li>
-                    <label><input type="checkbox" data-linkage-name="2" data-linkage-parent-name="all"> 不限</label>
-                    <label><input type="checkbox" value="2.1" data-linkage-name="2.1" data-linkage-parent-name="2"> 2.1</label>
-                    <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="2"> 2.2</label>
-                    <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="2"> 2.3</label>
+                    <label class="group"><input type="checkbox" value="Event" data-linkage-name="Event" data-linkage-parent-name="Brix">Event</label>
+                    <ul class="checklist checklist-linear clearfix">
+                        <li><label><input type="checkbox" value="parse"     data-linkage-name="parse"       data-linkage-parent-name="Event">parse</label></li>
+                        <li><label><input type="checkbox" value="delegate"  data-linkage-name="delegate"    data-linkage-parent-name="Event">delegate</label></li>
+                        <li><label><input type="checkbox" value="handle"    data-linkage-name="handle"      data-linkage-parent-name="Event">handle</label></li>
+                    </ul>
                 </li>
                 <li>
-                    <label><input type="checkbox" value="2.1" data-linkage-name="2.1" data-linkage-parent-name="2"> 2.1</label>
-                    <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="2"> 2.2</label>
-                    <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="2"> 2.3</label>
+                    <label class="group"><input type="checkbox" value="Components" data-linkage-name="Components" data-linkage-parent-name="Brix">Components</label>
+                    <ul class="checklist checklist-linear clearfix">
+                        <li><label><input type="checkbox" value="Dropdown"              data-linkage-name="Dropdown"            data-linkage-parent-name="Components">Dropdown</label></li>
+                        <li><label><input type="checkbox" value="Pagination"            data-linkage-name="Pagination"          data-linkage-parent-name="Components">Pagination</label></li>
+                        <li><label><input type="checkbox" value="DatePicker"            data-linkage-name="DatePicker"          data-linkage-parent-name="Components">DatePicker</label></li>
+                    </ul>
                 </li>
                 <li>
-                    <label><input type="checkbox" data-linkage-name="3" data-linkage-parent-name="all"> 不限</label>
-                    <label><input type="checkbox" value="2.1" data-linkage-name="2.1" data-linkage-parent-name="3"> 2.1</label>
-                    <label><input type="checkbox" value="2.2" data-linkage-name="2.2" data-linkage-parent-name="3"> 2.2</label>
-                    <label><input type="checkbox" value="2.3" data-linkage-name="2.3" data-linkage-parent-name="3"> 2.3</label>
+                    <label class="group"><input type="checkbox" value="Release" data-linkage-name="Release" data-linkage-parent-name="Brix">Release</label>
+                    <ul class="checklist checklist-linear clearfix">
+                        <li><label><input type="checkbox" value="require.js" data-linkage-name="require.js" data-linkage-parent-name="Release" checked disabled>require.js</label></li>
+                        <li><label><input type="radio" name="cdn" value="require-config.js"                 data-linkage-name="require-config.js"               data-linkage-parent-name="Release">require-config.js</label></li>
+                        <li><label><input type="radio" name="cdn" value="require-config-css.js"             data-linkage-name="require-config-css.js"           data-linkage-parent-name="Release">require-config-css.js</label></li>
+                        <li><label><input type="radio" name="cdn" value="require-config-css-animation.js"   data-linkage-name="require-config-css-animation.js" data-linkage-parent-name="Release">require-config-css-animation.js</label></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -485,7 +496,21 @@ require(['components/table/linkage'], function(linkage) {
 <script type="text/javascript">
     require(['components/table/linkage'], function(linkage) {
         linkage('#sexLinkage', function(event, values, target) {
-            console.log(event, values, target)
+            console.group(event.type)
+            console.log(event)
+            console.log(values)
+            console.log(target)
+            console.groupEnd(event.type)
         })
     })
 </script>
+
+<style type="text/css">
+    #sexLinkage label {
+        width: 210px;
+    }
+    #sexLinkage label.group {
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>
