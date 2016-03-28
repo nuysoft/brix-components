@@ -26,8 +26,6 @@
 
 /* /chart/chart.css */
 
-/* /chartxwrapper/chartxwrapper.css */
-
 /* /colorpicker/colorpicker.css */
 .colorpicker {
   position: absolute;
@@ -114,6 +112,8 @@
   display: inline-block;
   font-family: monospace;
 }
+
+/* /chartxwrapper/chartxwrapper.css */
 
 /* /countdown/countdown.css */
 .countdown {
