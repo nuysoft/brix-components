@@ -933,6 +933,31 @@ button.error, button.input-error, button.parsley-error {
 // 日历 Calendar
 // ----------------------------------------
 
+[bx-name="components/datepickerwrapper"] {
+    .brixfont {
+        margin-left: 5px;
+        font-size: 100%;
+        &.up {
+            display: none;
+        }
+        &.down {
+            display: inline-block;
+        }
+        &.datepickerwrapper-open {
+            .brixfont {
+                &.up {
+                    display: inline-block;
+                }
+                &.down {
+                    display: none;
+                }
+            }
+        }
+
+    }
+}
+
+
 .datepickerwrapper-trigger {
     cursor: pointer;
     display: inline-block;
@@ -957,7 +982,7 @@ button.error, button.input-error, button.parsley-error {
     &.datepickerwrapper-open {
         border-color: #CCC;
         color: #333;
-        .brixfont{
+        .brixfont {
             &.up {
                 display: block;
             }

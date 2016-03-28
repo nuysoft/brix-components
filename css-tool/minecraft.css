@@ -1668,6 +1668,22 @@ button.parsley-error {
   font-size: 12px;
   line-height: 22px;
 }
+[bx-name="components/datepickerwrapper"] .brixfont {
+  margin-left: 5px;
+  font-size: 100%;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.up {
+  display: none;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.down {
+  display: inline-block;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.up {
+  display: inline-block;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.down {
+  display: none;
+}
 .datepickerwrapper-trigger {
   cursor: pointer;
   display: inline-block;
