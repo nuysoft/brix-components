@@ -245,6 +245,19 @@ define(
           self._timer(function() {
             self._fixedStatic();
           }, 10);
+
+          //页面在横向滚动时，菜单的fixed状态需要实时计算left值，并设置left
+          var sidebar = self.sidebar.find('.sidebar')
+          if (sidebar.hasClass('sidebar-fixed')) {
+            sidebar.css({
+              left: -$(window).scrollLeft()
+            })
+          } else {
+            sidebar.css({
+              left: 0
+            })
+          }
+
         },
 
         resize: function(e, self) {

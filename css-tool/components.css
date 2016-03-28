@@ -26,8 +26,6 @@
 
 /* /chart/chart.css */
 
-/* /chartxwrapper/chartxwrapper.css */
-
 /* /colorpicker/colorpicker.css */
 .colorpicker {
   position: absolute;
@@ -114,6 +112,8 @@
   display: inline-block;
   font-family: monospace;
 }
+
+/* /chartxwrapper/chartxwrapper.css */
 
 /* /countdown/countdown.css */
 .countdown {
@@ -502,33 +502,6 @@
 
 /* /dialogview/dialogview.css */
 
-/* /dropdown/dropdown.css */
-.dropdown {
-  display: inline-block;
-}
-.dropdown .caret_custom {
-  float: right;
-  margin-left: 5px;
-}
-.dropdown .caret_custom .brixfont {
-  font-size: 14px;
-}
-.dropdown .caret_custom .brixfont.down {
-  display: inline;
-}
-.dropdown .caret_custom .brixfont.up {
-  display: none;
-}
-.dropdown.open .caret_custom .brixfont.down {
-  display: none;
-}
-.dropdown.open .caret_custom .brixfont.up {
-  display: inline;
-}
-.dropdown.disabled .dropdown-toggle {
-  cursor: not-allowed;
-}
-
 /* /editable/editable.css */
 .editable .editable-input {
   display: none;
@@ -554,6 +527,33 @@
   border-top-left-radius: 3px;
   overflow: scroll;
   outline: none;
+}
+
+/* /dropdown/dropdown.css */
+.dropdown {
+  display: inline-block;
+}
+.dropdown .caret_custom {
+  float: right;
+  margin-left: 5px;
+}
+.dropdown .caret_custom .brixfont {
+  font-size: 14px;
+}
+.dropdown .caret_custom .brixfont.down {
+  display: inline;
+}
+.dropdown .caret_custom .brixfont.up {
+  display: none;
+}
+.dropdown.open .caret_custom .brixfont.down {
+  display: none;
+}
+.dropdown.open .caret_custom .brixfont.up {
+  display: inline;
+}
+.dropdown.disabled .dropdown-toggle {
+  cursor: not-allowed;
 }
 
 /* /ellipsis/ellipsis.css */
@@ -1909,20 +1909,6 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   font-style: normal;
 }
 
-/* /uploader/uploader.css */
-.uploader-ghost {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-}
-.uploader-preview-thumbnail {
-  margin-top: 5px;
-  margin-right: 5px;
-  max-height: 61.8px;
-}
-
 /* /tree/tree.css */
 /*
     <span class="glyphicon glyphicon-plus-sign"></span>
@@ -1973,6 +1959,20 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 }
 .tree .tree {
   padding-left: 18px;
+}
+
+/* /uploader/uploader.css */
+.uploader-ghost {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+.uploader-preview-thumbnail {
+  margin-top: 5px;
+  margin-right: 5px;
+  max-height: 61.8px;
 }
 
 /* /validation/validation.css */
