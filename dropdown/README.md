@@ -133,7 +133,7 @@
 
 <div class="bs-example">
     <div class="content">
-        <h4>支持搜索框 `data-popover="true|width"`。</h4>
+        <h4>支持 Popover `data-popover="true|width"`。</h4>
         <select bx-name="components/dropdown" data-popover="true">
             <optgroup label="optgroup 1">
                 <option value="1">Action</option>

@@ -1387,6 +1387,7 @@ ul.checklist-linear > li {
   border-color: #CCC;
 }
 .dropdown .dropdown-toggle .dropdown-toggle-label {
+  float: left;
   display: inline-block;
   text-align: left;
 }
@@ -1648,6 +1649,7 @@ button.parsley-error {
   padding-left: 30px;
 }
 .popover {
+  font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
   border-color: #EBEBEB;
   border-radius: 4px;
   padding: 0;
@@ -1665,6 +1667,22 @@ button.parsley-error {
 .popover .popover-content {
   font-size: 12px;
   line-height: 22px;
+}
+[bx-name="components/datepickerwrapper"] .brixfont {
+  margin-left: 5px;
+  font-size: 100%;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.up {
+  display: none;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.down {
+  display: inline-block;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.up {
+  display: inline-block;
+}
+[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.down {
+  display: none;
 }
 .datepickerwrapper-trigger {
   cursor: pointer;

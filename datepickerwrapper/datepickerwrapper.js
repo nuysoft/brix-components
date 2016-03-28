@@ -199,18 +199,28 @@ define(
                             [date], type
                         ])
                         if (!validate.isDefaultPrevented()) {
-                            var isInput = RE_INPUT.test(that.element.nodeName)
                             var value = that._unlimitFilter(date, that.options.unlimits[0])
-                            that.$element[
-                                isInput ? 'val' : 'html'
-                            ](value)
+                            var items = $('[data-index]', that.$element)
+                            if (items.length) {
+                                _.each(items, function(item, index) {
+                                    var $item = $(item)
+                                    $item[
+                                        RE_INPUT.test(item.nodeName) ? 'val' : 'html'
+                                    ](value)
+                                })
+                            } else {
+                                that.$element[
+                                    RE_INPUT.test(that.element.nodeName) ? 'val' : 'html'
+                                ](value)
+                            }
 
                             // 单个日期选择器：自动触发 input 元素的 change 事件。</h4>
                             // 单个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h4>
                             that.$element.triggerHandler('change') //  + NAMESPACE + NAMESPACE_ORIGINAL, date
-                            if (!isInput) {
-                                var items = $('[data-hidden-index]', that.$element)
-                                items.eq(0).val(value).triggerHandler('change')
+                            if (!RE_INPUT.test(that.element.nodeName)) {
+                                $('[data-hidden-index]', that.$element)
+                                    .val(value)
+                                    .triggerHandler('change')
                             }
                         }
                     })

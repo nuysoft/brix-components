@@ -7,13 +7,21 @@
 <div class="bs-example">
     <div class="content">
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                 <h4>为 input 元素绑定日期选择器。</h4>
                 <input bx-name="components/datepickerwrapper" type="text" class="form-control w100">
             </div>
             <div class="col-xs-6">
                 <h4>为任意元素绑定日期选择器。</h4>
                 <a bx-name="components/datepickerwrapper" href="javascript: void(0);">请选择日期</a>
+            </div>
+            <div class="col-xs-6">
+                <h4>自定义样式。</h4>
+                <a bx-name="components/datepickerwrapper" href="javascript: void(0);">
+                    <span data-index="0">请选择日期</span>
+                    <i class="brixfont down">&#xe623;<!--&#xe623;--></i>
+                    <i class="brixfont up">&#xe62e;<!--&#xe62e;--></i>
+                </a>
             </div>
         </div>
     </div>
@@ -26,8 +34,8 @@
                 <h4>绑定 2 个日期选择器。</h4>
                 <div bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']" class="form-control datepickerwrapper-trigger">
                     <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
-                    <i class="brixfont pull-right ml5 down">&#xe623;</i>
-                    <i class="brixfont pull-right ml5 up">&#xe62e;</i>
+                    <i class="brixfont pull-right ml5 down">&#xe623;<!--&#xe623;--></i>
+                    <i class="brixfont pull-right ml5 up">&#xe62e;<!--&#xe62e;--></i>
                 </div>
             </div>
             <div class="col-xs-6">
@@ -212,6 +220,20 @@
         </div>
     </div>
 </div>
+<div class="bs-example">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>位于下方 + 左侧对齐（默认）</h4>
+                <input bx-name="components/datepickerwrapper" type="text" data-dates="[ '2015-1-1', '2016-1-1' ]" data-align="left" class="form-control w300">
+            </div>
+            <div class="col-xs-6">
+                <h4>位于下方 + 右侧对齐</h4>
+                <input bx-name="components/datepickerwrapper" type="text" data-dates="[ '2015-1-1', '2016-1-1' ]" data-align="right" class="form-control w300">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {
@@ -264,6 +286,7 @@ Name | Type | Default | Description
 shortcuts | boolean or object | `{}` | 指示是否开启快捷日期和快捷日期的内容。格式见下面的代码。
 dates | array | `[]` | 初始日期。
 ranges | array | `[]` | 设置可选日期的范围。合法值参见 [DatePicker](./readme.html?name=DatePicker)。
+align | string | `'left'` | 指定浮层的对齐方式，可选值有 `'left'`、`'right'`。
 
 #### 配置项 `shortcuts`
 
