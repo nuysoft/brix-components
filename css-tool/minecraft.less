@@ -251,8 +251,6 @@
 // 字体
 // ----------------------------------------
 
-@font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
-
 .fontsize- {
     .for(12 14 16 18 20 22 24 26 28 30 32); .-each(@px) {
         &@{px} {
@@ -263,7 +261,7 @@
 
 body {
     font-size: 12px;
-    font-family: @font-family;
+    font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Georgia, "Times New Roman", Arial, sans-serif;
     background-color: #fff;
     color: #333;
     -webkit-font-smoothing: antialiased;
@@ -663,7 +661,6 @@ ul.checklist-linear {
             border-color: #CCC;
         }
         .dropdown-toggle-label {
-            float: left;
             display: inline-block;
             text-align: left;
         }
@@ -909,7 +906,6 @@ button.error, button.input-error, button.parsley-error {
 // ----------------------------------------
 
 .popover {
-    font-family: @font-family;
     border-color: #EBEBEB;
     border-radius: 4px;
     padding: 0;
@@ -932,31 +928,6 @@ button.error, button.input-error, button.parsley-error {
 // ----------------------------------------
 // 日历 Calendar
 // ----------------------------------------
-
-[bx-name="components/datepickerwrapper"] {
-    .brixfont {
-        margin-left: 5px;
-        font-size: 100%;
-        &.up {
-            display: none;
-        }
-        &.down {
-            display: inline-block;
-        }
-        &.datepickerwrapper-open {
-            .brixfont {
-                &.up {
-                    display: inline-block;
-                }
-                &.down {
-                    display: none;
-                }
-            }
-        }
-
-    }
-}
-
 
 .datepickerwrapper-trigger {
     cursor: pointer;
@@ -982,7 +953,7 @@ button.error, button.input-error, button.parsley-error {
     &.datepickerwrapper-open {
         border-color: #CCC;
         color: #333;
-        .brixfont {
+        .brixfont{
             &.up {
                 display: block;
             }

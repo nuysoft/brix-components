@@ -26,6 +26,8 @@
 
 /* /chart/chart.css */
 
+/* /chartxwrapper/chartxwrapper.css */
+
 /* /colorpicker/colorpicker.css */
 .colorpicker {
   position: absolute;
@@ -112,8 +114,6 @@
   display: inline-block;
   font-family: monospace;
 }
-
-/* /chartxwrapper/chartxwrapper.css */
 
 /* /countdown/countdown.css */
 .countdown {
@@ -502,33 +502,6 @@
 
 /* /dialogview/dialogview.css */
 
-/* /editable/editable.css */
-.editable .editable-input {
-  display: none;
-}
-
-/* /editor/editor.css */
-.editor-wrapper .toolbar {
-  margin-bottom: 10px;
-}
-.editor-wrapper .editor {
-  max-height: 250px;
-  height: 250px;
-  background-color: white;
-  border-collapse: separate;
-  border: 1px solid #cccccc;
-  padding: 4px;
-  box-sizing: content-box;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-  box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  overflow: scroll;
-  outline: none;
-}
-
 /* /dropdown/dropdown.css */
 .dropdown {
   display: inline-block;
@@ -554,6 +527,33 @@
 }
 .dropdown.disabled .dropdown-toggle {
   cursor: not-allowed;
+}
+
+/* /editable/editable.css */
+.editable .editable-input {
+  display: none;
+}
+
+/* /editor/editor.css */
+.editor-wrapper .toolbar {
+  margin-bottom: 10px;
+}
+.editor-wrapper .editor {
+  max-height: 250px;
+  height: 250px;
+  background-color: white;
+  border-collapse: separate;
+  border: 1px solid #cccccc;
+  padding: 4px;
+  box-sizing: content-box;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  overflow: scroll;
+  outline: none;
 }
 
 /* /ellipsis/ellipsis.css */

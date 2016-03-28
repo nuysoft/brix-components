@@ -2,6 +2,5 @@
     "asi": true,
     "strict": false,
     "undef": true,
-    "unused": "strict",
-    "browser": true
+    "unused": "strict"
 }
