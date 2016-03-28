@@ -303,8 +303,22 @@ define(
                     seed = all
                     all = false
                 }
-                var $lis = this.$relatedElement.find('ul.dropdown-menu li').hide()
-                $lis.has('> a:contains("' + seed + '")').show() // 显示匹配 text 的选项
+
+                // var $lis = this.$relatedElement.find('ul.dropdown-menu li').hide()
+                // $lis.has('> a:contains("' + seed + '")').show() // 显示匹配 text 的选项
+
+                // 性能优化 #10 https://jsfiddle.net/3z7qyzvv/3/
+                // 1. display > .hide/show()
+                // 2. .filter() > .has()
+                var $lis = this.$relatedElement.find('ul.dropdown-menu li')
+                if (!seed) {
+                    $lis.css('display', 'list-item')
+                } else {
+                    $lis.css('display', 'none')
+                    $lis.filter(':contains("' + seed + '")').show()
+                        .css('display', 'list-item')
+                }
+
                 if (all) $lis.has('> a[value*="' + seed + '"]').show() // 显示匹配 value 的选项
             },
             _parseDataFromSelect: function($select) {
