@@ -29,18 +29,23 @@ define(
                 _parent($currentTarget, $container)
                 _children($currentTarget, $container)
                 _siblings($currentTarget, $container)
-                _indeterminate($container)
+
+                // _indeterminate($container)
 
                 if (callback) callback(event, linkage.val(container), event.currentTarget)
             })
 
-            _indeterminate($container)
+            // _indeterminate($container)
+
+            return linkage
         }
 
         linkage.off = function(container) {
             var $container = $(container)
             var selector = '[' + ATTR_NAME + '],[' + ATTR_PARENT_NAME + ']'
             $container.off('click.linkage', selector)
+
+            return linkage
         }
 
         linkage.val = function(container, values) {
@@ -115,7 +120,7 @@ define(
             )
             if (!$siblings.length) return
 
-            // 复选狂
+            // 复选框
             var $checkboxSiblings = $siblings.filter(':checkbox')
             var checkboxSiblingsStates = []
             _.each($checkboxSiblings, function(item /*, index*/ ) {
@@ -226,27 +231,27 @@ define(
             })
         }
 
-        function _indeterminate($container) {
-            var $all = $container.find(
-                '[' + ATTR_NAME + '],' +
-                '[' + ATTR_PARENT_NAME + ']'
-            )
-            var $dink = $(
-                _.filter($all, function(item /*, index*/ ) {
-                    var $item = $(item)
-                    var name = $item.attr(ATTR_NAME)
-                    var $children = $container.find(
-                        _.template(ATTR_PARENT_NAME_VALUE)({
-                            name: name
-                        })
-                    )
-                    return !$children.length
-                })
-            )
-            _.each($dink, function(item /*, index*/ ) {
-                _parent($(item), $container)
-            })
-        }
+        // function _indeterminate($container) {
+        //     var $all = $container.find(
+        //         '[' + ATTR_NAME + '],' +
+        //         '[' + ATTR_PARENT_NAME + ']'
+        //     )
+        //     var $dink = $(
+        //         _.filter($all, function(item /*, index*/ ) {
+        //             var $item = $(item)
+        //             var name = $item.attr(ATTR_NAME)
+        //             var $children = $container.find(
+        //                 _.template(ATTR_PARENT_NAME_VALUE)({
+        //                     name: name
+        //                 })
+        //             )
+        //             return !$children.length
+        //         })
+        //     )
+        //     _.each($dink, function(item /*, index*/ ) {
+        //         _parent($(item), $container)
+        //     })
+        // }
 
         return linkage
     }
