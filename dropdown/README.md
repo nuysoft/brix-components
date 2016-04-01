@@ -197,17 +197,17 @@ conflict.on('change.dropdown', function(event, extra){
             })
         })
     })
-    // require(['brix/loader'], function(Loader) {
-    //     Loader.boot(function() {
-    //         var conflict = Loader.query($('#conflict'))[0]
-    //         conflict.on('change.dropdown', function(event, extra){
-    //             console.log(extra)
-    //             if(extra.value == '3') {
-    //                 event.component.val('1')
-    //             }
-    //         })
-    //     })
-    // })
+    require(['brix/loader'], function(Loader) {
+        Loader.boot(function() {
+            var conflict = Loader.query($('#conflict'))[0]
+            conflict.on('change.dropdown', function(event, extra){
+                console.log(extra)
+                if(extra.value == '3') {
+                    event.component.val('1')
+                }
+            })
+        })
+    })
 </script>
 
 <!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
