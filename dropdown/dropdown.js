@@ -99,7 +99,7 @@ define(
         function Dropdown(options) {
             if (options && options.element) {
                 if ('select' !== options.element.nodeName.toLowerCase()) {
-                    return new CustomDropdown()
+                    return new CustomDropdown(options)
                 }
             }
         }
@@ -213,8 +213,15 @@ define(
                 var data /* { label: '', value: '', selected: true|false } */
                 if (_.isObject(value)) data = value
                 else _.each(this.options.data, function(item /*, index*/ ) {
-                    if (item.value == value) data = item
-                    item.selected = item.value == value
+                    if (item.children) {
+                        _.each(item.children, function(childItem /*, index*/ ) {
+                            if (childItem.value == value) data = childItem
+                            childItem.selected = childItem.value == value
+                        })
+                    } else {
+                        if (item.value == value) data = item
+                        item.selected = item.value == value
+                    }
                 })
 
                 // 未知值
@@ -239,7 +246,14 @@ define(
                 // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
                 if (('' + data.value) === oldValue) return this
 
-                this.trigger('change' + NAMESPACE, data)
+                // TODO #19 支持 event.preventDefault()
+                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
+
+                this.trigger('change' + NAMESPACE, {
+                    name: this.options.name,
+                    label: data.label,
+                    value: data.value
+                })
 
                 this.$element
                     .triggerHandler('change')
@@ -271,16 +285,12 @@ define(
                 var $target = $(event.currentTarget)
                 var value = $target.attr('value')
                 var label = $.trim($target.text())
-                var data = {
-                    name: this.options.name,
-                    label: label,
-                    value: value !== undefined ? value : label
-                }
-                this.val(data)
+                this.val(value !== undefined ? value : label)
                 this.toggle()
 
-                $target.closest('li').addClass('active')
-                    .siblings().removeClass('active')
+                // #8 如果在 change.dropdown 中再次改变值，则会和下面的代码冲突
+                // $target.closest('li').addClass('active')
+                //     .siblings().removeClass('active')
             },
             search: function(event) {
                 if (event.type === 'keyup') {

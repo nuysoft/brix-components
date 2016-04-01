@@ -85,6 +85,28 @@
 </div>
 <div class="bs-example">
     <div class="content">
+        <h4>可以在事件 `change.dropdown` 中对选中的值进行修正。</h4>
+        <select id="conflict" name="conflict" bx-name="components/dropdown">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3">Something else here</option>
+        </select>
+    </div>
+</div>
+
+```js
+var Loader = require('brix/loader')
+var conflict = Loader.query($('#conflict'))[0]
+conflict.on('change.dropdown', function(event, extra){
+    console.log(extra)
+    if(extra.value == '3') {
+        event.component.val('1')
+    }
+})
+```
+
+<div class="bs-example">
+    <div class="content">
         <h4>支持分隔线 `<option class="divider"></option>`。</h4>
         <select bx-name="components/dropdown">
             <optgroup label="optgroup 1">
@@ -104,6 +126,7 @@
 <div class="bs-example">
     <div class="content">
         <h4>支持搜索框 `data-searchbox="true|enter"`。</h4>
+        <p>详细说明见下方的配置项 `searchbox`</p>
         <select bx-name="components/dropdown" data-searchbox="true" bx-search="filter">
             <optgroup label="optgroup 1">
                 <option value="1">Action</option>
@@ -174,6 +197,17 @@
             })
         })
     })
+    // require(['brix/loader'], function(Loader) {
+    //     Loader.boot(function() {
+    //         var conflict = Loader.query($('#conflict'))[0]
+    //         conflict.on('change.dropdown', function(event, extra){
+    //             console.log(extra)
+    //             if(extra.value == '3') {
+    //                 event.component.val('1')
+    //             }
+    //         })
+    //     })
+    // })
 </script>
 
 <!-- 响应式 TODO http://silviomoreto.github.io/bootstrap-select/ -->
@@ -255,11 +289,17 @@ instances[0].data([
 Event Type | Description
 :--------- | :----------
 change.dropdown | 当值发生变化时被触发。
+search.dropdown | 见配置项 `searchbox`。
 
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/dropdown')
 instances.on('change.dropdown', function(event, extra) {
     console.log(event, extra)
+    // => extra { name: ..., label: ..., value: ... }
+})
+instances.on('search.dropdown', function(event, seed) {
+    console.log(event, seed)
+    // => seed 输入值
 })
 ```
