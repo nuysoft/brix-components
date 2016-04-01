@@ -162,6 +162,33 @@
     </div>
 </div>
 
+<div class="bs-example" id="popover">
+    <div class="content">
+        <h4>如果浮层中的内容很复杂，例如多层嵌套的 HTML 代码，或者是含有 `<pre>`代码，建议预先在页面中渲染好浮层中的内容，并设置一个 `id` 属性，然后在组件上设置 `template: #id`。</h4>
+        <div id="escaped" class="popover">
+            <div class="arrow"></div>
+            <div class="popover-content">
+                <div>&lt;div&gt;</div>
+                <pre><div></pre>
+            </div>
+        </div>
+        <div bx-name="components/popover" bx-options="{
+            placement: 'top',
+            template: '#escaped',
+            width: 200
+        }" class="btn btn-default">Code</div>
+    </div>
+</div>
+```html
+<div id="escaped" class="popover">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        <div>&lt;div&gt;</div>
+        <pre><div></pre>
+    </div>
+</div>
+```
+
 ### 配置 <small>Options</small>
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。

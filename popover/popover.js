@@ -1,6 +1,6 @@
-/* global define       */
-/* global setTimeout   */
-/* global clearTimeout */
+/* global define, require */
+/* global setTimeout      */
+/* global clearTimeout    */
 define(
     [
         'jquery', 'underscore',
@@ -40,12 +40,16 @@ define(
 
                 delay: 100
             },
-            init: function() {},
+            init: function() {
+                // 支持自定义 CSS 样式
+                if (this.options.css) require(['css!' + this.options.css])
+            },
             render: function() {
                 var that = this
                 this.$element = $(this.element)
                 this.$relatedElement = $(
-                    _.template(template)(this.options)
+                    // 支持自定义 HTML 模板 template
+                    _.template(this.options.template || template)(this.options)
                 ).insertAfter(this.$element)
 
                 this.$element.hover(function( /*event*/ ) {
