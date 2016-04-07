@@ -86,8 +86,6 @@ define(
             multiple disabled
             responsive http://silviomoreto.github.io/bootstrap-select/
     */
-
-
     var EASING = 'swing' //动画缓函数
     var ALL_EVENTS = {
       EVENTS: {
@@ -324,6 +322,7 @@ define(
         pathMap: {}
       },
       render: function() {
+
         var self = this;
         var el = $(this.element);
         this.sidebar = el;
@@ -373,6 +372,7 @@ define(
       },
 
       _bindUI: function() {
+
         var el = $(this.element)
         var self = this
           //旧brix事件绑定转换
@@ -400,7 +400,7 @@ define(
 
             case 'WINEVENTS':
               $.each(v, function(_k, _v) {
-                $(window).on(_k, function(e) {
+                $(window).bind(_k, function(e) {
                   _v(e, self)
                 })
               })
@@ -414,11 +414,12 @@ define(
        * @private
        */
       _getPathname: function(h) {
+
         var pathname;
         if (h.indexOf('#!') > -1) {
-          var pathnameMatch = /^.*(#!\/[^\?]+)\??[^\/]*$/.exec(h); // #!/xxxx/yyyy 返回 /xxxx/yyyy
+          var pathnameMatch = /^.*(#!\/[^\?]+)\??.*$/.exec(h); // #!/xxxx/yyyy 返回 /xxxx/yyyy
         } else {
-          var pathnameMatch = /^(\/[^\?]+)\??[^\/]*$/.exec(h); // /xxxx/yyyy?id=1 直接返回/xxxx/yyyy
+          var pathnameMatch = /^(\/[^\?]+)\??.*$/.exec(h); // /xxxx/yyyy?id=1 直接返回/xxxx/yyyy
         }
 
         pathname = pathnameMatch && pathnameMatch[1] || '';
@@ -430,6 +431,7 @@ define(
 
       //根据pathname来确定sidebar的状态
       _pathname2sidebar: function() {
+
         var self = this;
         var h = this._getPathname(location.hash) || this._getPathname(this.index);
         // var h = (location.hash) || this.index;
@@ -495,6 +497,7 @@ define(
 
       //触发无选中导航状态
       _setNoSelectedNav: function() {
+
         var self = this
           // self.__isNoMenuAnim = true
         this.sidebar.find('.sidebar').find('a').removeClass('on');
@@ -507,6 +510,7 @@ define(
 
       //主导航的点击切换
       navclick: function(t, h, isRecover, isTopNavClick) {
+
         var self = this;
         h = h || this._getPathname(location.hash);
         // h = h || (location.hash);
@@ -604,6 +608,7 @@ define(
 
       //sidebar 的 fixed与static切换
       _fixedStatic: function(attribute) {
+
         var self = this;
         var st = $(document).scrollTop(); //兼容ie
         var isFixed = st > self.navTop; //滚动超过nav的offset top值时，变为fixed
@@ -637,6 +642,7 @@ define(
       //设置子菜单选中状态
       _setSubNavOn: function(node) {
 
+
         //导航的选中状态
         this.subNav.find('a, .icon-font').removeClass('on');
 
@@ -656,6 +662,7 @@ define(
 
       //传入当前的导航a节点，处理导航点击引起的子导航切换
       _expandCollapseNav: function(node) {
+
         var self = this;
         var dataSub = node.attr('data-sub'); //是否有子菜单
         var h = node.attr('href');
@@ -711,6 +718,7 @@ define(
 
       //子导航的扩展收缩
       _expandCollapseSubNav: function() {
+
         var self = this;
         var curSubNav = self.currentSubNav;
         var closestUl = curSubNav && (curSubNav.prop('nodeName') === 'LI' ? //无奈之举
@@ -765,6 +773,7 @@ define(
 
       //子菜单收缩
       _collapseSubNav: function(cb) {
+
         var self = this
         this.subNav.animate({
           'width': '40px'
@@ -793,6 +802,7 @@ define(
 
       //子菜单打开
       _expandSubNav: function(cb) {
+
         var self = this
         this.subNav.animate({
           'width': '200px'
@@ -817,6 +827,7 @@ define(
 
       //打开三级菜单
       _expandThirdNav: function(cb) {
+
 
         var self = this;
 
@@ -849,6 +860,7 @@ define(
 
       //主导航切换控制的侧栏菜单打开
       _expandNav: function(dataSub, cb) {
+
         if (this.isFullSubNav !== '1') {
           this.currentNav.hide()
         }
@@ -894,6 +906,7 @@ define(
 
       //主导航切换控制的侧栏菜单收缩
       _collapseNav: function(dataSub, cb) {
+
         var self = this;
 
 
