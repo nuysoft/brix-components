@@ -108,8 +108,22 @@ gulp.task('concat-css', function() {
         '!dist/**/*'
     ]
 
+    var files = []
     /* jshint unused:false */
     gulp.src(globs)
+        // https://github.com/rvagg/through2#flushfunction
+        .pipe(through.obj(function(file, encoding, callback) {
+            files.push(file)
+            callback()
+        }, function(callback) {
+            files.sort(function(a, b) {
+                return a.path.localeCompare(b.path)
+            })
+            files.forEach(function(file) {
+                this.push(file)
+            }, this)
+            callback()
+        }))
         .pipe(through.obj(function(file, encoding, callback) {
             file.contents = new Buffer(
                 '/* ' + file.path.replace(__dirname, '') + ' */\n' +
