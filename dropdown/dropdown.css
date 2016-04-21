@@ -1,3 +1,6 @@
+select[bx-name="components/dropdown"] {
+  visibility: hidden;
+}
 .dropdown {
   display: inline-block;
 }

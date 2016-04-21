@@ -1,6 +1,12 @@
 .table-fixed {
   table-layout: fixed;
 }
+.table-column-priority-trigger {
+  cursor: pointer;
+  padding: 2px 6px;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
+}
 .table .more {
   position: relative;
 }

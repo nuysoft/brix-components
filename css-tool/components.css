@@ -145,6 +145,105 @@
   }
 }
 
+/* /ctree/ctree.css */
+
+/* /datepickerwrapper/datepickerwrapper.css */
+.datepickerwrapper {
+  position: absolute;
+  top: 34px;
+  left: 0;
+  z-index: 1010;
+  display: none;
+  text-align: left;
+  white-space: normal;
+  background-color: #ffffff;
+  margin-top: 2px;
+}
+.datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
+  display: block;
+}
+.datepickerwrapper.multiple {
+  padding: 15px 0px;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  -webkit-bg-clip: padding-box;
+  -moz-bg-clip: padding;
+}
+.datepickerwrapper .datepickerwrapper-inputs {
+  padding: 0 15px;
+}
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-header .datepickerwrapper-inputs-header-title {
+  margin-bottom: 10px;
+}
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body {
+  white-space: nowrap;
+}
+.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
+  display: inline-block;
+  width: 100px;
+}
+.datepickerwrapper .datepickerwrapper-pickers {
+  position: absolute;
+  margin-top: 2px;
+  width: 0px;
+  height: 0px;
+}
+.datepickerwrapper .datepickerwrapper-pickers .picker {
+  display: none;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts {
+  padding: 0 15px;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-header .datepickerwrapper-shortcuts-header-title {
+  margin-bottom: 10px;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
+  display: inline-block;
+  padding: 5px;
+  margin: 0px 10px 2px 0px;
+  float: left;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:hover {
+  background: #EEE;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:active {
+  background: #DDD;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
+  color: white;
+  background: #3276b1;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.inactive:hover {
+  background: transparent;
+  cursor: default;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled {
+  color: #DDD;
+  cursor: default;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled:hover {
+  color: #DDD;
+  background: #FFF;
+}
+.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled.active {
+  color: #FFF;
+  background: #DDD;
+}
+.datepickerwrapper .datepickerwrapper-footer {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #DDD;
+}
+
 /* /datepicker/datepicker.css */
 .datepicker-container {
   background-color: white;
@@ -308,105 +407,6 @@
   text-align: center;
 }
 
-/* /ctree/ctree.css */
-
-/* /datepickerwrapper/datepickerwrapper.css */
-.datepickerwrapper {
-  position: absolute;
-  top: 34px;
-  left: 0;
-  z-index: 1010;
-  display: none;
-  text-align: left;
-  white-space: normal;
-  background-color: #ffffff;
-  margin-top: 2px;
-}
-.datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
-  display: block;
-}
-.datepickerwrapper.multiple {
-  padding: 15px 0px;
-  border: 1px solid #cccccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
-  -webkit-bg-clip: padding-box;
-  -moz-bg-clip: padding;
-}
-.datepickerwrapper .datepickerwrapper-inputs {
-  padding: 0 15px;
-}
-.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-header .datepickerwrapper-inputs-header-title {
-  margin-bottom: 10px;
-}
-.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body {
-  white-space: nowrap;
-}
-.datepickerwrapper .datepickerwrapper-inputs .datepickerwrapper-inputs-body input {
-  display: inline-block;
-  width: 100px;
-}
-.datepickerwrapper .datepickerwrapper-pickers {
-  position: absolute;
-  margin-top: 2px;
-  width: 0px;
-  height: 0px;
-}
-.datepickerwrapper .datepickerwrapper-pickers .picker {
-  display: none;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts {
-  padding: 0 15px;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-header .datepickerwrapper-shortcuts-header-title {
-  margin-bottom: 10px;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span {
-  display: inline-block;
-  padding: 5px;
-  margin: 0px 10px 2px 0px;
-  float: left;
-  text-align: center;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 30%;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:hover {
-  background: #EEE;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span:active {
-  background: #DDD;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.active {
-  color: white;
-  background: #3276b1;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.inactive:hover {
-  background: transparent;
-  cursor: default;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled {
-  color: #DDD;
-  cursor: default;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled:hover {
-  color: #DDD;
-  background: #FFF;
-}
-.datepickerwrapper .datepickerwrapper-shortcuts .datepickerwrapper-shortcuts-body span.disabled.active {
-  color: #FFF;
-  background: #DDD;
-}
-.datepickerwrapper .datepickerwrapper-footer {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #DDD;
-}
-
 /* /dialog/dialog.css */
 .overlay {
   position: absolute;
@@ -503,6 +503,9 @@
 /* /dialogview/dialogview.css */
 
 /* /dropdown/dropdown.css */
+select[bx-name="components/dropdown"] {
+  visibility: hidden;
+}
 .dropdown {
   display: inline-block;
 }
@@ -554,24 +557,6 @@
   border-top-left-radius: 3px;
   overflow: scroll;
   outline: none;
-}
-
-/* /ellipsis/ellipsis.css */
-.ellip {
-  display: block;
-  height: 100%;
-}
-.ellip-line {
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
-}
-.ellip,
-.ellip-line {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
 }
 
 /* /errortips/errortips.css */
@@ -706,9 +691,27 @@
 
 /* /footer/footer.css */
 
-/* /hello/hello.css */
+/* /ellipsis/ellipsis.css */
+.ellip {
+  display: block;
+  height: 100%;
+}
+.ellip-line {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.ellip,
+.ellip-line {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
 
 /* /hello-extra/hello-extra.css */
+
+/* /hello/hello.css */
 
 /* /hourpicker/hourpicker.css */
 .hourpicker {
@@ -895,19 +898,24 @@
   margin-left: -3px;
 }
 
-/* /imager/imager.css */
-.imager {
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
 /* /modal/modal.css */
 .modal-backdrop {
   display: none;
   height: 100%;
 }
 
+/* /imager/imager.css */
+.imager {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
 /* /nprogress/nprogress.css */
+
+/* /popover/popover.css */
+.popover img {
+  max-width: 100%;
+}
 
 /* /pagination/pagination.css */
 .pagination-statistics {
@@ -925,12 +933,25 @@
   font-size: 12px;
 }
 
-/* /popover/popover.css */
-.popover img {
-  max-width: 100%;
+/* /scrollmask/scrollmask.css */
+/* 滚动条顶部的渐变遮罩 */
+.linear-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  height: 7px;
+  z-index: 100;
+  overflow: hidden;
 }
-
-/* /progressbarwrapper/progressbarwrapper.css */
+.scroll-mask-wrap {
+  position: relative;
+  zoom: 1;
+}
 
 /* /readme/readme.css */
 .readme .spin {
@@ -971,86 +992,6 @@
 .hljs {
   padding: 0;
   background-color: transparent;
-}
-
-/* /scrollmask/scrollmask.css */
-/* 滚动条顶部的渐变遮罩 */
-.linear-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-  background-image: linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-  height: 7px;
-  z-index: 100;
-  overflow: hidden;
-}
-.scroll-mask-wrap {
-  position: relative;
-  zoom: 1;
-}
-
-/* /sidebar/sidebar.css */
-.sidebar {
-  position: relative;
-}
-.sidebar a {
-  color: #777777;
-}
-.sidebar a:hover {
-  color: #333333;
-  text-decoration: none;
-}
-.sidebar a.active {
-  color: #0859ac;
-}
-.sidebar i {
-  font-size: 90%;
-}
-ul.sidebar-0 {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-ul.sidebar-0 > li {
-  margin-bottom: 15px;
-}
-ul.sidebar-0 > li a.sidebar-link-1 {
-  font-size: 24px;
-  display: block;
-  width: 30px;
-  text-align: center;
-  overflow: hidden;
-}
-ul.sidebar-0 > li a.sidebar-link-1 > i {
-  display: none;
-}
-ul.sidebar-1 {
-  display: none;
-  position: absolute;
-  left: 50px;
-  top: 5px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-ul.sidebar-1 a.sidebar-link-2 {
-  font-size: 18px;
-  padding-left: 25px;
-}
-ul.sidebar-1 a.sidebar-link-2 i {
-  margin-left: -25px;
-}
-ul.sidebar-2 {
-  list-style: none;
-  padding: 0 0 0 25px;
-  margin: 0;
-}
-ul.sidebar-2 a.sidebar-link-3 > i {
-  display: none;
 }
 
 /* /sidenav/header.css */
@@ -1336,6 +1277,68 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: white;
   /*background-color: #5a3b88;*/
 }
+
+/* /sidebar/sidebar.css */
+.sidebar {
+  position: relative;
+}
+.sidebar a {
+  color: #777777;
+}
+.sidebar a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+.sidebar a.active {
+  color: #0859ac;
+}
+.sidebar i {
+  font-size: 90%;
+}
+ul.sidebar-0 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.sidebar-0 > li {
+  margin-bottom: 15px;
+}
+ul.sidebar-0 > li a.sidebar-link-1 {
+  font-size: 24px;
+  display: block;
+  width: 30px;
+  text-align: center;
+  overflow: hidden;
+}
+ul.sidebar-0 > li a.sidebar-link-1 > i {
+  display: none;
+}
+ul.sidebar-1 {
+  display: none;
+  position: absolute;
+  left: 50px;
+  top: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.sidebar-1 a.sidebar-link-2 {
+  font-size: 18px;
+  padding-left: 25px;
+}
+ul.sidebar-1 a.sidebar-link-2 i {
+  margin-left: -25px;
+}
+ul.sidebar-2 {
+  list-style: none;
+  padding: 0 0 0 25px;
+  margin: 0;
+}
+ul.sidebar-2 a.sidebar-link-3 > i {
+  display: none;
+}
+
+/* /progressbarwrapper/progressbarwrapper.css */
 
 /* /slider/slider.css */
 
@@ -1755,13 +1758,19 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   color: #000;
 }
 
-/* /switch/switch.css */
-
 /* /tab/tab.css */
+
+/* /switch/switch.css */
 
 /* /table/table.css */
 .table-fixed {
   table-layout: fixed;
+}
+.table-column-priority-trigger {
+  cursor: pointer;
+  padding: 2px 6px;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
 }
 .table .more {
   position: relative;
