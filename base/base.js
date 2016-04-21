@@ -45,8 +45,16 @@ define(
                 bxevent.component = this
                 $(this.element).trigger(bxevent, data)
 
+                // 同步 isDefaultPrevented isPropagationStopped isImmediatePropagationStopped
+                if (type.type) {
+                    type.isDefaultPrevented = bxevent.isDefaultPrevented() ? bxevent.isDefaultPrevented : type.isDefaultPrevented
+                    type.isPropagationStopped = bxevent.isPropagationStopped() ? bxevent.isPropagationStopped : type.isPropagationStopped
+                    type.isImmediatePropagationStopped = bxevent.isImmediatePropagationStopped() ? bxevent.isImmediatePropagationStopped : type.isImmediatePropagationStopped
+                }
+
                 return this
             }
+
             // , ajax: function() {
             //     var jqXHR= $.ajax.apply($, arguments)
             //     this.clientId
