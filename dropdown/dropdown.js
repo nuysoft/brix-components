@@ -95,6 +95,7 @@ define(
         */
 
         var NAMESPACE = '.dropdown'
+        var compiledTemplate = _.template(template)
 
         function Dropdown(options) {
             if (options && options.element) {
@@ -169,13 +170,13 @@ define(
             },
             render: function() {
                 this.$relatedElement = $(
-                    _.template(template)(this.options)
+                    compiledTemplate(this.options)
                 ).insertBefore(this.$element)
 
                 this.$manager.delegate(this.$element, this)
                 this.$manager.delegate(this.$relatedElement, this)
 
-                Loader.boot(this.$relatedElement)
+                if(this.options.popover) Loader.boot(this.$relatedElement)
 
                 // this._responsive()
                 this._autoHide()
@@ -270,14 +271,14 @@ define(
 
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
                 var $newMenu = $(
-                    _.template(template)(this.options)
+                    compiledTemplate(this.options)
                 ).find('ul.dropdown-menu')
 
                 $menu.replaceWith($newMenu)
 
                 this.$manager.delegate(this.$relatedElement, this)
 
-                Loader.boot(this.$relatedElement)
+                if(this.options.popover) Loader.boot(this.$relatedElement)
 
                 return this
             },
@@ -517,7 +518,7 @@ define(
 
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
                 var $newMenu = $(
-                    _.template(template)(this.options)
+                    compiledTemplate(this.options)
                 ).find('ul.dropdown-menu')
 
                 $menu.replaceWith($newMenu)
