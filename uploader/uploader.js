@@ -15,14 +15,104 @@ define(
         var TOKEN = 'data-token'
         var TOKEN_SELECTOR = '[' + TOKEN + ']'
         var NAMESPACE = '.uploader'
-        var NAMESPACE_IS_DEFAULT_PREVENTED = '.isDefaultPrevented'
 
         function tokon() {
             return ('token' + Math.random()).replace(/\D/g, '')
         }
 
-        function parseJSONResponse(response, callback) {
-            try { // console.log(this.contentWindow.document.body.innerHTML/innerText)
+        function Uploader() {}
+
+        // [阅后即焚 Burn After Reading](http://movie.douban.com/subject/2054933/)
+        Uploader.burn = function(input) {
+            var $input = $(input)
+            $input.replaceWith(
+                $input.clone(true, true)
+                .attr(TOKEN, tokon())
+                .prop('clientId', $input.prop('clientId'))
+            )
+        }
+
+        // 发送器
+        Uploader.transports = {
+            /* jshint unused:true */
+            iframe: function(options, form, input) {
+                var defer = $.Deferred()
+
+                var IFRAME_ID = 'FILE_UPLOAD_IFRAME_'
+                var IFRAME_HTML = '<iframe id="<%= id %>" name="<%= id %>" style="display: none;"></iframe>'
+
+                form.target = IFRAME_ID + _.uniqueId()
+                form.action = options.action
+                form.method = 'POST'
+                form.enctype = "multipart/form-data"
+
+                var html = _.template(IFRAME_HTML)({
+                    id: form.target
+                })
+                $(html).insertAfter(form)
+                    .on('load', function(event) {
+                        var iframe = event.target
+                        var $iframeBody = $((iframe.contentWindow || iframe.contentDocument).document.body)
+                        var $iframeResult = $iframeBody.find('#result')
+                        var response = $.trim(
+                            $iframeResult.length ? $iframeResult.text() : $iframeBody.text()
+                        )
+                        Uploader.parseJSONResponse(response, function(error, response) {
+                            if (error) defer.reject(error)
+                            else defer.resolve(response)
+                        })
+                        $(iframe).remove()
+                    })
+                    .on('error', function(event) {
+                        defer.reject(event)
+                    })
+
+                form.submit()
+
+                return defer.promise()
+            },
+            /* jshint unused:true */
+            xhr: function(options, form, input) {
+                var defer = $.Deferred()
+
+                // http://caniuse.com/#search=FormData
+                var data = new FormData()
+                _.each(input.files, function(item /*, index*/ ) {
+                    data.append(options.name, item)
+                })
+
+                var xhr = new XMLHttpRequest()
+                xhr.overrideMimeType('application/json')
+                xhr.open('post', options.action, true)
+                xhr.upload.onprogress = function(event) {
+                    event.percent = Math.round((event.loaded / event.total) * 100)
+                    defer.notify(event)
+                }
+                xhr.onload = function(event) {
+                    var response = xhr.responseText
+                    Uploader.parseJSONResponse(response, function(error, response) {
+                        if (error) defer.reject(error)
+                        else defer.resolve(response)
+                    })
+                }
+                xhr.onerror = function(event) {
+                    defer.reject(event)
+                }
+                xhr.onabort = function( /*event*/ ) {
+                    defer.reject('canceled')
+                }
+                xhr.ontimeout = function( /*event*/ ) {
+                    defer.reject('timeout')
+                }
+                xhr.send(data)
+
+                return defer.promise()
+            }
+        }
+
+        // 解析响应内容为 JSON 对象
+        Uploader.parseJSONResponse = function(response, callback) {
+            try {
                 callback(undefined, JSON.parse(response))
             } catch (parseError) {
                 // 再次尝试解析返回的数据
@@ -31,13 +121,21 @@ define(
                     callback(undefined, (new Function("return " + response))())
                 } catch (parseErrorByFunction) {
                     console.log(response)
-                    console.error(parseErrorByFunction)
+                    console.error(parseError.stack || parseError)
+                    console.error(parseErrorByFunction.stack || parseErrorByFunction)
                     callback(parseErrorByFunction, response)
                 }
             } finally {}
         }
 
-        function Uploader() {}
+        // 简单封装 [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+        Uploader.readFileAsDataURL = function(file, callback) {
+            var reader = new FileReader()
+            reader.onload = function(event) {
+                callback(event.target.result)
+            }
+            reader.readAsDataURL(file)
+        }
 
         _.extend(Uploader.prototype, Brix.prototype, {
             options: {
@@ -51,6 +149,7 @@ define(
                 this.$element = $(this.element)
                 this.$element.parent().css('position', 'relative')
 
+                // 用隐藏的文件域覆盖组件节点
                 var $relatedElement = $(_.template(TEMPLATE)(this.options))
                     .attr(TOKEN, tokon())
                     .prop('clientId', this.options.clientId)
@@ -63,163 +162,39 @@ define(
                 if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
                 if (this.options.accept) $relatedElement.prop('accept', this.options.accept)
 
+                var that = this
                 var form = $relatedElement[0].form
                 $(form).off('change' + NAMESPACE)
                     .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {
                         var input = event.currentTarget
-                        var uploader = Loader.query(input)
+                        var uploader = Loader.query(input)[0]
 
-                        var isDefaultPrevented
-                        uploader
-                            .on('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED, function(event) {
-                                isDefaultPrevented = event.isDefaultPrevented()
-                            })
-                            .trigger('start' + NAMESPACE, [input.files])
-                            .off('start' + NAMESPACE + NAMESPACE_IS_DEFAULT_PREVENTED)
-                        if (isDefaultPrevented) return
+                        var validate = $.Event('start' + NAMESPACE)
+                        uploader.trigger(validate, [input.files])
+                        if (validate.isDefaultPrevented()) return
 
-                        uploader.send(form, input, function(error, response) {
-                            // console.log(response)
-                            if (error) uploader.trigger('error' + NAMESPACE, [input.files, error])
-                            else uploader.trigger('success' + NAMESPACE, [input.files, response])
-                            uploader.trigger('complete' + NAMESPACE, [input.files])
+                        uploader.send(form, input).then(
+                            function(response) {
+                                uploader.trigger('success' + NAMESPACE, [input.files, response])
+                            },
+                            function(reason) {
+                                uploader.trigger('error' + NAMESPACE, [input.files, reason])
+                            },
+                            function(event) {
+                                uploader.trigger('progress' + NAMESPACE, [input.files, event])
+                            }
+                        ).always(function() {
+                            try {
+                                uploader.trigger('complete' + NAMESPACE, [input.files])
+                            } finally {
+                                // 先执行回调，再销毁文件域，否则事件不会触发！
+                                Uploader.burn(input)
+                            }
                         })
                     })
             },
-            send: function(form, input, callback) {
-                var that = this
-                this.transports[this.options.transport](
-                    this.options,
-                    form,
-                    input,
-                    function(error, response) {
-                        // 先执行回调，再销毁文件域，否则事件不会触发！
-                        callback(error, response)
-                        that.burn(input)
-                            // that.previewInConsole(input.files)
-                    }
-                )
-            },
-            // [阅后即焚 Burn After Reading](http://movie.douban.com/subject/2054933/)
-            burn: function(input) {
-                var $input = $(input)
-                $input.replaceWith(
-                    $input.clone(true, true)
-                    .attr(TOKEN, tokon())
-                    .prop('clientId', this.options.clientId)
-                )
-            },
-            transports: {
-                /* jshint unused:true */
-                iframe: function(options, form, input, callback) {
-                    var IFRAME_ID = 'FILE_UPLOAD_IFRAME_'
-                    var IFRAME_HTML = '<iframe id="<%= id %>" name="<%= id %>" style="display: none;"></iframe>'
-
-                    form.target = IFRAME_ID + _.uniqueId()
-                    form.action = options.action
-                    form.method = 'POST'
-                    form.enctype = "multipart/form-data"
-
-                    var html = _.template(IFRAME_HTML)({
-                        id: form.target
-                    })
-                    $(html).insertAfter(form)
-                        .on('load', function(event) {
-                            var iframe = event.target
-                            var response = $.trim($(iframe.contentWindow.document.body).text())
-                            parseJSONResponse(response, callback)
-                            $(iframe).remove()
-                        })
-                        .on('error', function(event) {
-                            callback(event, undefined)
-                        })
-
-                    form.submit()
-                },
-                /* jshint unused:true */
-                xhr: function(options, form, input, callback) {
-                    var data = new FormData()
-                    _.each(input.files, function(item /*, index*/ ) {
-                        data.append(options.name, item)
-                    })
-
-                    var xhr = new XMLHttpRequest()
-                    xhr.overrideMimeType('application/json')
-                    xhr.open('post', options.action, true)
-                    xhr.upload.onprogress = function( /*event*/ ) {
-                        // var percent = Math.round((event.loaded / event.total) * 100)
-                        // console.log('[uploader]', file.name, event.loaded, event.total, percent + '%')
-                    };
-                    xhr.onerror = function(err) {
-                        console.error(err)
-                    }
-                    xhr.onload = function() {
-                        // console.log('[uploader]', xhr.status, xhr.statusText, xhr.responseText)
-                        var response = xhr.responseText
-                        parseJSONResponse(response, callback)
-                    };
-                    xhr.send(data)
-                }
-            },
-            previewInConsole: function(file) {
-                // previewInConsole( files )
-                if (file.length) {
-                    var that = this
-                    _.each(file, function(item /*, index*/ ) {
-                        that.previewInConsole(item)
-                    })
-                    return
-                }
-
-                var reader = new FileReader()
-                reader.onload = function(event) {
-                    var img = $('<img>')
-                        .attr('src', event.target.result)
-                        .attr('title', file.name)
-                        .hide().appendTo('body')
-                    var width = img.width()
-                    var height = img.height()
-                    var style = _.template(
-                        'padding: <%=pt%>px <%=pr%>px <%=pb%>px <%=pl%>px; line-height: <%=height%>px; background:url("<%=result%>") no-repeat center center;'
-                    )({
-                        pt: height / 2,
-                        pr: width / 2,
-                        pb: height / 2,
-                        pl: width / 2,
-                        height: height + 10,
-                        result: event.target.result
-                    })
-                    console.group(file.name)
-                    console.log('%c', style)
-                    console.log(file.size + ' byte')
-                    console.groupEnd(file.name)
-                    img.remove()
-                }
-                reader.readAsDataURL(file)
-            },
-            previewAsComponent: function(file, callback) {
-                var reader = new FileReader()
-                reader.onload = function(event) {
-                    var img = $('<img>')
-                        .addClass('uploader-preview-thumbnail')
-                        .attr('src', event.target.result)
-                        .attr('title', file.name)
-                    if (callback) callback(undefined, img)
-
-                    /*var img = $('<img>')
-                        .attr('bx-name', 'components/popover')
-                        .attr('data-content', '<img src="' + event.target.result + '">')
-                        .attr('data-placement', 'bottom')
-                        .attr('data-align', 'left')
-                        .addClass('uploader-preview')
-                        .attr('src', event.target.result)
-                        .attr('title', file.name)
-                    if (callback) callback(undefined, img)
-                    require(['brix/loader'], function(Loader) {
-                        Loader.boot(img)
-                    })*/
-                }
-                reader.readAsDataURL(file)
+            send: function(form, input) {
+                return Uploader.transports[this.options.transport](this.options, form, input)
             }
         })
 
