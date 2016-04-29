@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define */
 /*
     样式赞 http://abpetkov.github.io/switchery/
     文档赞 http://www.bootstrap-switch.org/examples.html
@@ -6,53 +6,86 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
-        'text!./switch.tpl'
+        'components/base', 'brix/event',
+        './switch.tpl.js'
     ],
     function(
         $, _,
-        Brix,
+        Brix, EventManager,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                TODO
-            ### 属性
-                TODO
-            ### 方法
-                TODO
-            ### 事件
-                TODO
-            ===
+        var NAMESPACE = '.switch'
+        var compiledTemplate = _.template(template)
+        var CLASS_CHECKED = 'switch-checked'
+        var CLASS_DISABLED = 'switch-disabled'
 
-            ### 公共选项
-                data template css
-            ### 公共属性
-                element relatedElement 
-                moduleId clientId parentClientId childClientIds 
-                data template css
-            ### 公共方法
-                .render()
-            ### 公共事件
-                ready destroyed
+        function Switch() {}
 
-        */
-        function Switch () {}
-
-        _.extend( Switch.prototype, Brix.prototype, {
-            options: {},
+        _.extend(Switch.prototype, Brix.prototype, {
+            options: {
+                checked: false,
+                disabled: false,
+                size: '' // TODO large small 
+            },
             init: function() {
-                // 支持自定义 HTML 模板 template
-                template = this.options.template || template
-                // 支持自定义 CSS 样式
-                if (this.options.css) require('css!' + this.options.css)
+                this.$element = $(this.element).hide()
+                this.$manager = new EventManager('bx-')
+
+                this.options.checked = this.$element.prop('checked')
+                this.options.disabled = this.$element.prop('disabled')
             },
             render: function() {
-                this.data = this.data || _.extend({}, this.options)
-                var html = _.template(template)(this.data)
-                $(this.element).append(html)
+                this.$relatedElement = $(
+                    compiledTemplate(this.options)
+                ).insertBefore(this.$element)
+
+                this.$manager.delegate(this.$element, this)
+                this.$manager.delegate(this.$relatedElement, this)
+            },
+            toggle: function(event) {
+                // 非用户触发 || 非禁用状态
+                if (!event || !this.options.disabled) this.checked(!this.options.checked)
+                return this
+            },
+            checked: function(value) {
+                if (value !== undefined) {
+                    this.options.checked = value
+                    this.$relatedElement[
+                        value ? 'addClass' : 'removeClass'
+                    ](CLASS_CHECKED)
+                    this.$element.prop('checked', value)
+
+                    this.trigger('change' + NAMESPACE, {
+                        name: this.$element.attr('name'),
+                        value: this.$element.val(),
+                        checked: this.options.checked,
+                        disabled: this.options.disabled
+                    })
+                    this.$element
+                        .triggerHandler('change')
+
+                    return this
+                }
+                return this.options.checked
+            },
+            disabled: function(value) {
+                if (value !== undefined) {
+                    this.options.disabled = value
+                    this.$relatedElement[
+                        value ? 'addClass' : 'removeClass'
+                    ](CLASS_DISABLED)
+                    this.$element.prop('disabled', value)
+
+                    return this
+                }
+                return this.options.disabled
+            },
+            val: function(value) {
+                if (value !== undefined) {
+                    this.$element.val(value)
+                    return this
+                }
+                return this.$element.val()
             }
         })
 
