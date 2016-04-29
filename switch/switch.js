@@ -35,9 +35,15 @@ define(
                 this.options.disabled = this.$element.prop('disabled')
             },
             render: function() {
+                var that = this
+
                 this.$relatedElement = $(
                     compiledTemplate(this.options)
                 ).insertBefore(this.$element)
+
+                this.$element.on('change', function() {
+                    that.checked(that.$element.prop('checked'))
+                })
 
                 this.$manager.delegate(this.$element, this)
                 this.$manager.delegate(this.$relatedElement, this)
@@ -45,10 +51,12 @@ define(
             toggle: function(event) {
                 // 非用户触发 || 非禁用状态
                 if (!event || !this.options.disabled) this.checked(!this.options.checked)
+                if (event) event.preventDefault()
                 return this
             },
             checked: function(value) {
                 if (value !== undefined) {
+                    if (this.options.checked === value) return
                     this.options.checked = value
                     this.$relatedElement[
                         value ? 'addClass' : 'removeClass'
@@ -61,8 +69,8 @@ define(
                         checked: this.options.checked,
                         disabled: this.options.disabled
                     })
-                    this.$element
-                        .triggerHandler('change')
+
+                    this.$element.triggerHandler('change')
 
                     return this
                 }

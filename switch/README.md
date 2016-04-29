@@ -75,6 +75,15 @@ size | string | '' | 可选。设置滑动开关的尺寸，可选值有：`''`�
 
 切换选中&不选状态。
 
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/switch')
+instances.toggle()
+instances.toggle()
+instances[0].toggle()
+instances[0].toggle()
+```
+
 #### .checked( [ checked ] )
 
 * .checked( checked )
@@ -82,12 +91,34 @@ size | string | '' | 可选。设置滑动开关的尺寸，可选值有：`''`�
 
 设置或获取选中状态。
 
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/switch')
+instances.checked()
+instances[0].checked()
+instances.checked(true)
+instances.checked(false)
+instances[0].checked(true)
+instances[0].checked(false)
+```
+
 #### .disabled( [ disabled ] ) 
 
 * .disabled( checked )
 * .disabled()
 
 设置或获取禁用状态。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/switch')
+instances.disabled()
+instances[0].disabled()
+instances.disabled(true)
+instances.disabled(false)
+instances[0].disabled(true)
+instances[0].disabled(false)
+```
 
 #### .val( [ value ] ) 
 
@@ -99,32 +130,25 @@ size | string | '' | 可选。设置滑动开关的尺寸，可选值有：`''`�
 ```js
 var Loader = require('brix/loader')
 var instances = Loader.query('components/switch')
-instances.toggle()
-instances.checked(true)
-instances.checked(false)
-instances.disabled(true)
-instances.disabled(false)
 instances.val()
 instances.val('foo')
+instances[0].val()
+instances[0].val('foo')
 ```
 
 ### 事件 <small>Events</small>
 
 Event Type | Description
 :--------- | :----------
-change.dropdown | 当值发生变化时被触发。
-search.dropdown | 见配置项 `searchbox`。
+change.switch | 当值发生变化时被触发。
 
 ```js
 var Loader = require('brix/loader')
-var instances = Loader.query('components/dropdown')
-instances.on('change.dropdown', function(event, extra) {
-    console.log(event, extra)
+var instances = Loader.query('components/switch')
+instances.on('change.switch', function(event, extra) {
+    console.log(event.component)
+    console.log(extra)
     // => extra { name: ..., label: ..., value: ... }
-})
-instances.on('search.dropdown', function(event, seed) {
-    console.log(event, seed)
-    // => seed 输入值
 })
 ```
 
