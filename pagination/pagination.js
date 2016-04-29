@@ -79,6 +79,7 @@ define(
 
                     /* jshint unused:false */
                     that.dropdown.on('change.dropdown', function(event, data) {
+                        event.stopPropagation()
                         that._state.setCursor(1)
                         that._state.setLimit(data.value)
                         that.trigger('change.pagination', that._state)

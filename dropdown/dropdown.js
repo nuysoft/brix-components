@@ -250,7 +250,8 @@ define(
                 // TODO #19 支持 event.preventDefault()
                 // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
 
-                this.trigger('change' + NAMESPACE, {
+                var event = $.Event('change' + NAMESPACE)
+                this.trigger(event, {
                     name: this.options.name,
                     label: data.label,
                     value: data.value

@@ -43,9 +43,17 @@ define(
                 var bxevent = $.Event(tmp + EventManager.NAMESPACE)
                 bxevent.originalNamespace = namespaces.join('.')
                 bxevent.component = this
+
+                // 同步事件状态 event => brix/event
+                if (type.type) {
+                    bxevent.isDefaultPrevented = type.isDefaultPrevented() ? type.isDefaultPrevented : bxevent.isDefaultPrevented
+                    bxevent.isPropagationStopped = type.isPropagationStopped() ? type.isPropagationStopped : bxevent.isPropagationStopped
+                    bxevent.isImmediatePropagationStopped = type.isImmediatePropagationStopped() ? type.isImmediatePropagationStopped : bxevent.isImmediatePropagationStopped
+                }
+
                 $(this.element).trigger(bxevent, data)
 
-                // 同步 isDefaultPrevented isPropagationStopped isImmediatePropagationStopped
+                // 同步事件状态 brix/event => event
                 if (type.type) {
                     type.isDefaultPrevented = bxevent.isDefaultPrevented() ? bxevent.isDefaultPrevented : type.isDefaultPrevented
                     type.isPropagationStopped = bxevent.isPropagationStopped() ? bxevent.isPropagationStopped : type.isPropagationStopped
