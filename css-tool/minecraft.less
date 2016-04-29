@@ -43,6 +43,21 @@
           box-sizing: @sizing;
 }
 
+// User Select
+.user-select(@value) {
+  -webkit-user-select: @value;
+   -khtml-user-select: @value;
+     -moz-user-select: @value;
+      -ms-user-select: @value;
+          user-select: @value;
+}
+
+// Background Clip
+.background-clip(@value) {
+  -webkit-background-clip: @value;
+          background-clip: @value;    
+}
+
 
 // Opacity
 .opacity(@opacity) {
@@ -643,6 +658,33 @@ ul.checklist-linear {
     }
 }
 
+// ----------------------------------------
+// 开关按钮 switch
+// ----------------------------------------
+
+.switch {
+    .user-select(none);
+    .box-sizing(content-box);
+    .background-clip(content-box);
+    .transition(~"border 0.4s, box-shadow 0.4s, background-color 0.4s");
+    > small {
+        .transition(~"background-color 0.4s, left 0.2s");
+    }
+    &.switch-checked {
+        background-color: @brand;
+        border-color: @brand;
+        > small {
+            .box-shadow(none);
+        }
+    }
+    &.switch-disabled {
+        background-color: @bg;
+        border-color: @border;
+        > small {
+            .box-shadow(none);
+        }
+    }
+}
 
 // ----------------------------------------
 // 下拉框 Dropdown

@@ -34,8 +34,7 @@ define(
 
         // 发送器
         Uploader.transports = {
-            /* jshint unused:true */
-            iframe: function(options, form, input) {
+            iframe: function(options, form /*, input*/ ) {
                 var defer = $.Deferred()
 
                 var IFRAME_ID = 'FILE_UPLOAD_IFRAME_'
@@ -88,7 +87,7 @@ define(
                     event.percent = Math.round((event.loaded / event.total) * 100)
                     defer.notify(event)
                 }
-                xhr.onload = function(event) {
+                xhr.onload = function( /*event*/ ) {
                     var response = xhr.responseText
                     Uploader.parseJSONResponse(response, function(error, response) {
                         if (error) defer.reject(error)
@@ -162,7 +161,6 @@ define(
                 if (this.options.multiple) $relatedElement.attr('multiple', 'multiple')
                 if (this.options.accept) $relatedElement.prop('accept', this.options.accept)
 
-                var that = this
                 var form = $relatedElement[0].form
                 $(form).off('change' + NAMESPACE)
                     .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {

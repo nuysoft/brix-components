@@ -1370,6 +1370,48 @@ ul.checklist-linear {
 ul.checklist-linear > li {
   float: left;
 }
+.switch {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
+  -webkit-transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
+  -moz-transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
+  -ms-transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
+  -o-transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
+  transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
+}
+.switch > small {
+  -webkit-transition: background-color 0.4s, left 0.2s;
+  -moz-transition: background-color 0.4s, left 0.2s;
+  -ms-transition: background-color 0.4s, left 0.2s;
+  -o-transition: background-color 0.4s, left 0.2s;
+  transition: background-color 0.4s, left 0.2s;
+}
+.switch.switch-checked {
+  background-color: #ff6600;
+  border-color: #ff6600;
+}
+.switch.switch-checked > small {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.switch.switch-disabled {
+  background-color: #f0f0f0;
+  border-color: #e6e6e6;
+}
+.switch.switch-disabled > small {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 .dropdown {
   min-width: 190px;
 }
