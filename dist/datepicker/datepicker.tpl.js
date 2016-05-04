@@ -2,7 +2,7 @@
 define(function() {
     return (function(){/*
 <div class="datepicker-container">
-    <!--  -->
+    <!-- 年 -->
     <% var yearDisplay = typeMap.year && !typeMap.month && !typeMap.date ? '' : 'display: none;' %>
     <div class="yearpicker picker-group" style="<%= yearDisplay %>">
         <div class="picker-header">
@@ -17,7 +17,7 @@ define(function() {
             <!-- <span data-value="2014">2014</span> -->
         </div>
     </div>
-    <!--  -->
+    <!-- 月 -->
     <% var monthDisplay = typeMap.month && !typeMap.date ? '' : 'display: none;' %>
     <div class="monthpicker picker-group" style="<%= monthDisplay %>">
         <div class="picker-header">
@@ -32,7 +32,7 @@ define(function() {
             <!-- <span data-value="1">Jan</span -->
         </div>
     </div>
-    <!--  -->
+    <!-- 日 -->
     <% var dateDisplay = typeMap.date ? '' : 'display: none;' %>
     <div class="datepicker picker-group" style="<%= dateDisplay %>">
         <div class="picker-header">
@@ -53,29 +53,29 @@ define(function() {
             </div>
         </div>
     </div>
-    <!--  -->
+    <!-- 时分秒 -->
     <% var timeDisplay = typeMap.time || typeMap.second || typeMap.minute || typeMap.hour  ? '': 'display: none;' %>
     <div class="timepicker picker-group clearfix" style="<%= timeDisplay %>">
         <div class="timepicker-body clearfix">
-        <div class="timepicker-group">
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeHour()" bx-focusout="_changeHour()">
-            <button type="button" class="btn btn-default time-minus" bx-click="_changeHour(-1)"><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default time-plus" bx-click="_changeHour(1)"><span class="glyphicon glyphicon-plus"></span></button>
-        </div>
-        <span class="timepicker-spliter">:</span>
-        <div class="timepicker-group">
-            <% var minuteDisabled = typeMap.hour && !typeMap.minute  ? 'disabled': '' %>
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeMinute()" bx-focusout="_changeMinute()" <%= minuteDisabled %>>
-            <button type="button" class="btn btn-default time-minus" bx-click="_changeMinute(-1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default time-plus" bx-click="_changeMinute(1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
-        </div>
-        <span class="timepicker-spliter">:</span>
-        <div class="timepicker-group">
-            <% var secondDisabled = (typeMap.hour || typeMap.minute) && !typeMap.second  ? 'disabled': '' %>
-            <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeSecond()" bx-focusout="_changeSecond()" <%= secondDisabled %>>
-            <button type="button" class="btn btn-default time-minus" bx-click="_changeSecond(-1)" <%= secondDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)" <%= secondDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
-        </div>
+            <div class="timepicker-group">
+                <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeHour()" bx-focusout="_changeHour()">
+                <button type="button" class="btn btn-default time-minus" bx-click="_changeHour(-1)"><span class="glyphicon glyphicon-minus"></span></button>
+                <button type="button" class="btn btn-default time-plus" bx-click="_changeHour(1)"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+            <span class="timepicker-spliter">:</span>
+            <div class="timepicker-group">
+                <% var minuteDisabled = typeMap.hour && !typeMap.minute  ? 'disabled': '' %>
+                <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeMinute()" bx-focusout="_changeMinute()" <%= minuteDisabled %>>
+                <button type="button" class="btn btn-default time-minus" bx-click="_changeMinute(-1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
+                <button type="button" class="btn btn-default time-plus" bx-click="_changeMinute(1)" <%= minuteDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+            <span class="timepicker-spliter">:</span>
+            <div class="timepicker-group">
+                <% var secondDisabled = (typeMap.hour || typeMap.minute) && !typeMap.second  ? 'disabled': '' %>
+                <input class="form-control" type="text" tabindex="<%=options.clientId%>" bx-keydown="_changeSecond()" bx-focusout="_changeSecond()" <%= secondDisabled %>>
+                <button type="button" class="btn btn-default time-minus" bx-click="_changeSecond(-1)" <%= secondDisabled %>><span class="glyphicon glyphicon-minus"></span></button>
+                <button type="button" class="btn btn-default time-plus" bx-click="_changeSecond(1)" <%= secondDisabled %>><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
         </div>
         <div class="timepicker-footer">
             <div class="timepicker-handelr">
@@ -84,7 +84,7 @@ define(function() {
             </div>
         </div>
     </div>
-    <!-- -->
+    <!-- 不限 -->
     <div class="picker-footer picker-group" style="<%= options.unlimit ? '' : 'display: none;' %>">
         <a href="javascript:;" bx-click="_unlimit()">不限</a>
     </div>

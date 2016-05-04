@@ -1889,6 +1889,11 @@ button.parsley-error {
   color: white;
   background-color: #ff6600;
 }
+.datepicker-container > .picker-group.yearpicker .picker-body,
+.datepicker-container > .picker-group.monthpicker .picker-body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .datepicker-container > .picker-group.timepicker {
   width: 100%;
   padding: 10px;

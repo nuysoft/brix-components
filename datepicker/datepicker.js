@@ -40,7 +40,7 @@ define(
         DatePicker.typeMap = function(type) {
             if (_.indexOf(['all', '', undefined], type) !== -1) type = TYPES
             var result = {}
-            _.each(type.split(' '), function(item /*, index*/ ) {
+            _.each(type.split(/\s+/), function(item /*, index*/ ) {
                 result[item] = true
             })
 
@@ -108,7 +108,8 @@ define(
                     )
 
                     var same = this.data.date.toDate().getTime() === milliseconds
-                    this.trigger((same ? 'unchange' : 'change') + NAMESPACE, moment(this.data.date))
+                    var changeEvent = $.Event((same ? 'unchange' : 'change') + NAMESPACE)
+                    this.trigger(changeEvent, moment(this.data.date))
 
                     if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()._renderTimePicker()
 
@@ -155,7 +156,8 @@ define(
                 date.add(dir, unit)
 
                 var same = date.toDate().getTime() === milliseconds
-                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+                var changeEvent = $.Event((same ? 'unchange' : 'change') + NAMESPACE)
+                this.trigger(changeEvent, [moment(date), unit])
 
                 if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
@@ -175,7 +177,8 @@ define(
                 date.set(unit, +$target.attr('data-value'))
 
                 var same = date.toDate().getTime() === milliseconds
-                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+                var changeEvent = $.Event((same ? 'unchange' : 'change') + NAMESPACE)
+                this.trigger(changeEvent, [moment(date), unit])
 
                 if (!same) this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
 
@@ -202,7 +205,8 @@ define(
 
                 // submit
                 if (extra === undefined && unit === undefined && units === undefined) {
-                    this.trigger('change' + NAMESPACE, [moment(date), 'time'])
+                    var submitEvent = $.Event('change' + NAMESPACE)
+                    this.trigger(submitEvent, [moment(date), 'time'])
                     return
                 }
 
@@ -222,7 +226,8 @@ define(
                 event.stopPropagation()
 
                 var same = date.toDate().getTime() === milliseconds
-                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [moment(date), unit])
+                var changeEvent = $.Event((same ? 'unchange' : 'change') + NAMESPACE)
+                this.trigger(changeEvent, [moment(date), unit])
 
                 if (!same) this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
@@ -366,7 +371,8 @@ define(
                 this.__unlimit = unlimit
 
                 var same = unlimit.isSame(this.data.date)
-                this.trigger((same ? 'unchange' : 'change') + NAMESPACE, [unlimit, 'date'])
+                var changeEvent = $.Event((same ? 'unchange' : 'change') + NAMESPACE)
+                this.trigger(changeEvent, [unlimit, 'date'])
 
                 this._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },

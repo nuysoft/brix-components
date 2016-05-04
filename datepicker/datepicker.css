@@ -13,13 +13,6 @@
   padding: 15px 0 13px 0;
   margin-top: -2px;
 }
-.datepicker-container .picker-group.first-group {
-  border-top: none;
-  padding-top: 0;
-}
-.datepicker-container .picker-group.last-group {
-  padding-bottom: 0;
-}
 .datepicker-container .picker-group .picker-header {
   text-align: center;
   margin-bottom: 5px;
