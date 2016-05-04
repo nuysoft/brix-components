@@ -52,8 +52,8 @@ define(
                     moment().startOf('day')
                 ],
                 '上月': [
-                    moment().startOf('day').subtract(1, 'month').subtract(nowDate - 1, 'days'),
-                    moment().startOf('day').subtract(nowDate, 'days')
+                    moment().startOf('day').startOf('month').subtract(1, 'month'),
+                    moment().startOf('day').startOf('month').subtract(1, 'days')
                 ],
                 '最近 15 天': [
                     moment().startOf('day').subtract(15, 'days'),
