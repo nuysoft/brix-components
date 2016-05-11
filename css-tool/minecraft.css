@@ -1912,6 +1912,162 @@ button.parsley-error {
 .datepicker-container > .picker-group.picker-footer {
   padding: 6px 0;
 }
+.datepicker-ancient-container {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 0px;
+  /* 年月日 变量 */
+  /* 年月日 */
+  /* 时分秒 */
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-header .year-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-body .year-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-header .month-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-body .month-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-header .date-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-desc {
+  color: #999;
+  background-color: #FAFAFA;
+  padding: 0 10px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content {
+  padding: 0 10px;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
 ol.breadcrumb {
   list-style: none;
   padding: 0px;
