@@ -161,7 +161,7 @@ define(
                         )
                     })
 
-                    this.submit() // #41 #50
+                    this.submit() // #44 #50
                     return this
                 }
                 return _.map(pickerComponents, function(item /*, index*/ ) {
