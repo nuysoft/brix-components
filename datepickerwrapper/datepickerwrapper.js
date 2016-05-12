@@ -160,6 +160,8 @@ define(
                             _.isArray(value) ? value[index] : value
                         )
                     })
+
+                    this.submit() // #41 #50
                     return this
                 }
                 return _.map(pickerComponents, function(item /*, index*/ ) {
@@ -372,8 +374,7 @@ define(
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
                 }
             },
-            /* jshint unused:false */
-            submit: function(event, from) {
+            submit: function(event /* jshint unused:false */ , from) {
                 var that = this
 
                 switch (from) {
