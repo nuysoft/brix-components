@@ -6,7 +6,7 @@
 
 ### 示例 <small>Examples</small>
 
-<div bx-name="components/datepicker/ancient" data-type="date time" data-unlimit="2099-1-1" data-pages="3" data-range="['2016-05-10', '2016-06-10']" bx-ready="alert(1)"></div>
+<div bx-name="components/datepicker/ancient" data-date="2019-11-01" data-type="date time" data-unlimit="2099-1-1" data-pages="3" data-range="[['+=0', '+=6'], ['+=14', '+=20'], ['+=28', '+=34'], ['+=42', '+=48'], ['+=180', '+=3650']]" bx-ready="alert(1)" on-change="handler"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-unlimit="2099-1-1" data-pages="2" bx-ready="alert(1)"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-pages="3"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-pages="4" bx-ready="alert(1)"></div>
@@ -23,6 +23,7 @@
         Loader.boot(function() {
             var instances = Loader.query('components/datepicker/ancient')
             instances.on('change.datepicker unchange.datepicker', function(event, date, type) {
+                if(!event.namespace) return
                 console.log(
                     event.type,
                     event.namespace,
@@ -30,6 +31,13 @@
                     date.format('YYYY-MM-DD HH:mm:ss.SSS')
                 )
             })
+            var owner = {
+                handler: function(event){
+                    console.log(arguments)
+                }
+            }
+            var manager = new EventManager('on-')
+            manager.delegate(document.body, owner)
         })
     })
 </script>

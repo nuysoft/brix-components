@@ -247,6 +247,10 @@
   color: #FFF;
   background-color: #DDD;
 }
+.datepicker-ancient-container .year-month-date-container .year-month-date .year .year-body .year-body-content > span.disabled.active:hover {
+  color: #FFF;
+  background-color: #DDD;
+}
 .datepicker-ancient-container .year-month-date-container .year-month-date .year .year-body .year-body-content > span.disabled:hover {
   color: #DDD;
   background-color: #FFF;
@@ -328,6 +332,10 @@
   cursor: default;
 }
 .datepicker-ancient-container .year-month-date-container .year-month-date .month .month-body .month-body-content > span.disabled.active {
+  color: #FFF;
+  background-color: #DDD;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .month .month-body .month-body-content > span.disabled.active:hover {
   color: #FFF;
   background-color: #DDD;
 }
@@ -417,6 +425,10 @@
   color: #FFF;
   background-color: #DDD;
 }
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-desc > span.disabled.active:hover {
+  color: #FFF;
+  background-color: #DDD;
+}
 .datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-desc > span.disabled:hover {
   color: #DDD;
   background-color: #FFF;
@@ -451,6 +463,10 @@
   cursor: default;
 }
 .datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content > span.disabled.active {
+  color: #FFF;
+  background-color: #DDD;
+}
+.datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content > span.disabled.active:hover {
   color: #FFF;
   background-color: #DDD;
 }

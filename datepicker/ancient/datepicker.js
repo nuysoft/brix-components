@@ -27,7 +27,7 @@ define(
 
         var NAMESPACE = '.datepicker'
         var TYPES = 'second minute hour time date month year'
-        var MODES = 'multi range'
+            // var MODES = 'multi range'
         var YYYY_PATTERN = 'YYYY'
         var YYYY_MM_PATTERN = 'YYYY-MM'
         var DATE_PATTERN = 'YYYY-MM-DD'
@@ -35,6 +35,13 @@ define(
         var DATE_TIME_PATTERN = DATE_PATTERN + ' ' + TIME_PATTERN
         var ACTIVE_HANDLER_TPL = _.template('_active("<%= value %>", "<%= unit %>", "<%= pattern %>")')
         var YYYY_PERIOD_LIMIT = 20
+        var RE_REL_NUM = /^([+-])=(.+)/ // 日期相对值
+
+        // ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+        // ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月', '十一', '十二']
+        var MONTHS = _.map(_.range(1, 13), function(item) {
+            return (item < 10 ? '0' : '') + item
+        })
 
         function DatePicker() {}
 
@@ -200,19 +207,43 @@ define(
                         this._renderYearPicker(dir)
                         break
                     case 'year':
-                        this._renderMonthPicker(dir)
+                        this._renderMonthPicker()
                         break
                     case 'month':
-                        this._renderDatePicker(dir)
+                        this._renderDatePicker()
                             ._renderMonthPicker()
                         break
                 }
+            },
+            _moveYearPicker: function(event, dir) {
+                var cursor = $(event.currentTarget).parents('[data-page]').data('page')
+                var date = $(event.currentTarget).parents('.year-header').data('date')
+                date = moment(date, YYYY_PATTERN).add(dir * YYYY_PERIOD_LIMIT, 'years')
+                this._renderYearPicker(date, cursor, false /* renderActive */ )
+            },
+            _moveMonthPicker: function(event, dir) {
+                var cursor = $(event.currentTarget).parents('[data-page]').data('page')
+                var date = $(event.currentTarget).parents('.month-header').data('date')
+                date = moment(date, YYYY_MM_PATTERN).add(dir, 'years')
+                this._renderMonthPicker(date, cursor, false /* renderActive */ )
+            },
+            _moveDatePicker: function(event, dir) {
+                var $datepicker = $(event.target).parents('.year-month-date')
+                var $siblings = $datepicker.siblings()
+                $siblings.find('.year').slideUp('fast')
+                $siblings.find('.month').slideUp('fast')
+                $siblings.find('.date').slideDown('fast')
+
+                var cursor = $(event.currentTarget).parents('[data-page]').data('page')
+                var date = $(event.currentTarget).parents('.date-header').data('date')
+                date = moment(date, YYYY_MM_PATTERN).add(dir, 'months')
+                this._renderDatePicker(date, cursor, false /* renderActive */ )
             },
             _active: function(event, value, valueUnit, valuePattern) {
                 event.preventDefault()
 
                 // 当前日历页
-                this.__cursor = $(event.currentTarget).parents('[data-group-page]').attr('data-group-page')
+                this.__cursor = $(event.currentTarget).parents('[data-page]').data('page')
 
                 var unlimitMode = this.__isUnlimitMode()
                 if (unlimitMode) this.data.date = moment().startOf('day')
@@ -304,7 +335,7 @@ define(
 
                 if (!same) this._renderTimePicker()._renderYearPicker()._renderMonthPicker()._renderDatePicker()
             },
-            _changeHour: function(event, extra) {
+            _changeHour: function(event, extra /* 0, 1, -1 */ ) {
                 this._changeTime(event, extra, 'hour', 'hours')
             },
             _changeMinute: function(event, extra) {
@@ -322,164 +353,173 @@ define(
                     )
                 ) && true || false
             },
-            _renderYearPicker: function(dir) {
-                dir = dir || 0
-
-                var date = this.data.date
-                var unlimitMode = this.__isUnlimitMode()
-                if (unlimitMode) date = moment().startOf('day')
-
-                var pageCursor = this.__cursor || 0
-                var $yearPickers = this.$element.find('.year')
-                _.each($yearPickers, function(item, index) {
-                    var renderDate = moment(date).add(index - pageCursor, 'months') // .add(YYYY_PERIOD_LIMIT * index, 'years')
-                    __renderYearPicker($(item), date, renderDate, YYYY_PERIOD_LIMIT)
-                })
-
-                return this
-
-                function __renderYearPicker($yearPicker, date, renderDate, limit) {
-                    var $title = $yearPicker.find('.year-header .year-header-title')
-                    var $body = $yearPicker.find('.year-body .year-body-content')
-                    var data = $body.data()
-                    var current = renderDate.get('year')
-                    data.start = (data.start || (current - current % limit)) + dir * limit
-                    data.end = data.start + limit - 1
-                    $title.text(data.start + ' - ' + data.end)
-                    $body.empty()
-                    for (var i = data.start; i <= data.end; i++) {
-                        renderDate.year(i)
-                        $('<span>').text(i).attr('data-value', i)
-                            .attr('bx-click', ACTIVE_HANDLER_TPL({
-                                unit: 'year',
-                                value: renderDate.format(YYYY_PATTERN),
-                                pattern: YYYY_PATTERN
-                            })) // '_active("year")'
-                            .addClass(!unlimitMode &&
-                                date.get('year') === renderDate.get('year') ?
-                                'active' : ''
-                            )
-                            .appendTo($body)
-                    }
-                }
-            },
-            _renderMonthPicker: function( /* dir */ ) {
-                var date = this.data.date // .add(dir || 0, 'year')
-                var unlimitMode = this.__isUnlimitMode()
-                if (unlimitMode) date = moment().startOf('day')
-
-                var pageCursor = this.__cursor || 0
-                var $monthPickers = this.$element.find('.month')
-                _.each($monthPickers, function(item, index) {
-                    var renderDate = moment(date).add(index - pageCursor, 'months' /* 'years' */ )
-                    __renderMonthPicker($(item), date, renderDate)
-                })
-
-                return this
-
-                function __renderMonthPicker($monthPicker, date, renderDate) {
-                    var $title = $monthPicker.find('.month-header .month-header-title').text(renderDate.get('year'))
-                    var $body = $monthPicker.find('.month-body .month-body-content').empty()
-
-                    // ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-                    // ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月', '十一', '十二']
-                    var months = function() {
-                        var result = []
-                        for (var i = 1; i <= 12; i++) {
-                            result.push(i < 10 ? '0' + i : i)
-                        }
-                        return result
-                    }()
-                    _.each(months, function(item, index) {
-                        renderDate.month(index)
-                        $('<span>').text(item)
-                            .attr('data-value', renderDate.format(YYYY_MM_PATTERN))
-                            .addClass(!unlimitMode &&
-                                (renderDate.get('year') === date.get('year') && renderDate.get('month') === date.get('month')) ?
-                                'active' : ''
-                            )
-                            .attr('bx-click', ACTIVE_HANDLER_TPL({
-                                unit: 'month',
-                                value: renderDate.format(YYYY_MM_PATTERN),
-                                pattern: YYYY_MM_PATTERN
-                            }))
-                            .appendTo($body)
-                    })
-                }
-            },
-            _renderDatePicker: function(date, cursor) {
-                date = date || this.data.date || moment() // moment(this.data.date).add(dir || 0, 'month')
+            _renderYearPicker: function(date, cursor, renderActive) {
+                date = date || this.data.date || moment() // .add(dir || 0, 'month')
                 cursor = cursor || this.__cursor || 0
 
+                var that = this
+                var range = this.options.range
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) date = moment().startOf('day')
+
+                var $yearPickers = this.$element.find('.year')
+                _.each($yearPickers, function(item, index) {
+                    var $yearPicker = $(item)
+                    var renderDate = moment(date).add(index - cursor, 'months')
+
+                    var data = $yearPicker.data()
+                    var year = renderDate.year()
+                    data.start = year - year % YYYY_PERIOD_LIMIT
+                    data.end = data.start + YYYY_PERIOD_LIMIT - 1
+
+                    that.__renderYearPickerTitle($yearPicker, renderDate)
+                    that.__renderYearPickerContent($yearPicker, date, renderDate, range, renderActive)
+                })
+
+                return this
+            },
+            __renderYearPickerTitle: function($yearPicker, renderDate) {
+                var data = $yearPicker.data()
+                $yearPicker
+                    .find('.year-header').data('date', renderDate.format(YYYY_PATTERN))
+                    .find('.year-header-title').text(data.start + ' - ' + data.end)
+            },
+            __renderYearPickerContent: function($yearPicker, date, renderDate /* period */ , range, renderActive) {
+                var unlimitMode = this.__isUnlimitMode()
+                var $body = $yearPicker.find('.year-body .year-body-content').empty()
+                var data = $yearPicker.data()
+                for (var i = data.start; i <= data.end; i++) {
+                    renderDate.year(i)
+                    $('<span>').text(i).attr('data-value', i)
+                        .addClass(renderDate.isSame(moment(), 'year') ? 'hover' : '')
+                        .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'year') ? 'active' : '')
+                        .addClass(this.__disabled(renderDate, range, 'year') ? 'disabled' : '')
+                        .attr('bx-click', ACTIVE_HANDLER_TPL({
+                            unit: 'year',
+                            value: renderDate.format(YYYY_PATTERN),
+                            pattern: YYYY_PATTERN
+                        }))
+                        .appendTo($body)
+                }
+            },
+            _renderMonthPicker: function(date, cursor, renderActive) {
+                date = date || this.data.date || moment() // .add(dir || 0, 'year')
+                cursor = cursor || this.__cursor || 0
+
+                var that = this
+                var range = this.options.range
+                var unlimitMode = this.__isUnlimitMode()
+                if (unlimitMode) date = moment().startOf('day')
+
+                var $monthPickers = this.$element.find('.month')
+                _.each($monthPickers, function(item, index) {
+                    var $monthPicker = $(item)
+                    var renderDate = moment(date).add(index - cursor, 'months')
+                    that.__renderMonthPickerTitle($monthPicker, renderDate)
+                    that.__renderMonthPickerContent($monthPicker, date, renderDate, range, renderActive)
+                })
+
+                return this
+            },
+            __renderMonthPickerTitle: function($monthPicker, renderDate) {
+                $monthPicker
+                    .find('.month-header').data('date', renderDate.format(YYYY_PATTERN))
+                    .find('.month-header-title').text(renderDate.format(YYYY_PATTERN))
+            },
+            __renderMonthPickerContent: function($monthPicker, date, renderDate /* year */ , range, renderActive) {
+                var that = this
+                var unlimitMode = this.__isUnlimitMode()
+                var $body = $monthPicker.find('.month-body .month-body-content').empty()
+                _.each(MONTHS, function(item, index) {
+                    renderDate.month(index)
+                    $('<span>').text(item).attr('data-value', renderDate.format(YYYY_MM_PATTERN))
+                        .addClass(renderDate.isSame(moment(), 'month') ? 'hover' : '')
+                        .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'month') ? 'active' : '')
+                        .addClass(that.__disabled(renderDate, range, 'month') ? 'disabled' : '')
+                        .attr('bx-click', ACTIVE_HANDLER_TPL({
+                            unit: 'month',
+                            value: renderDate.format(YYYY_MM_PATTERN),
+                            pattern: YYYY_MM_PATTERN
+                        }))
+                        .appendTo($body)
+                })
+            },
+            _renderDatePicker: function(date, cursor, renderActive) {
+                date = date || this.data.date || moment() // .add(dir || 0, 'month')
+                cursor = cursor || this.__cursor || 0
+
+                var that = this
                 var range = this.options.range
                 var unlimitMode = this.__isUnlimitMode()
                 if (unlimitMode) date = moment().startOf('day')
 
                 var $datePickers = this.$element.find('.date') // 可能有多个日历面板
                 _.each($datePickers, function(item, index) {
-                    var renderDate = moment(date).add(index - cursor, 'months')
                     var $datepicker = $(item)
-                    __renderDatePickerTitle($datepicker, date, renderDate, range)
-                    __renderDatePickerContent($datepicker, date, renderDate, range)
+                    var renderDate = moment(date).add(index - cursor, 'months')
+                    that.__renderDatePickerTitle($datepicker, renderDate)
+                    that.__renderDatePickerContent($datepicker, date, renderDate, range, renderActive)
                 })
 
                 return this
+            },
+            __renderDatePickerTitle: function($datepicker, renderDate) {
+                $datepicker
+                    .find('.date-header').data('date', renderDate.format(YYYY_MM_PATTERN))
+                    .find('.date-header-title').text(renderDate.format('YYYY - MM'))
+            },
+            __renderDatePickerContent: function($datepicker, date, renderDate /* month */ , range, renderActive) {
+                var unlimitMode = this.__isUnlimitMode()
+                var $body = $datepicker.find('.date-body .date-body-content').empty()
 
-                function __renderDatePickerTitle($datepicker, date, renderDate) {
-                    $datepicker.find('.date-header .date-header-title').text(renderDate.format('YYYY - MM'))
+                var startDate = moment(renderDate).date(1).day()
+                for (var i = 0; i < startDate; i++) {
+                    $body.append('<span class="inactive">')
                 }
 
-                function __renderDatePickerContent($datepicker, date, renderDate, range) {
-                    var $body = $datepicker.find('.date-body .date-body-content').empty()
-
-                    var startDate = moment(renderDate).date(1).day()
-                    for (var i = 0; i < startDate; i++) {
-                        $body.append('<span class="inactive">')
+                var days = renderDate.daysInMonth()
+                for (var ii = 1; ii <= days; ii++) {
+                    renderDate.date(ii)
+                    $('<span>').text(ii)
+                        .addClass(renderDate.isSame(moment(), 'day') ? 'hover' : '')
+                        .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'day') ? 'active' : '')
+                        .addClass(this.__disabled(renderDate, range, 'day') ? 'disabled' : '')
+                        .attr('bx-click', ACTIVE_HANDLER_TPL({
+                            unit: 'date',
+                            value: renderDate.format(DATE_PATTERN),
+                            pattern: DATE_PATTERN
+                        }))
+                        .appendTo($body)
+                }
+            },
+            __disabled: function(renderDate, range, unit) {
+                if (!range.length) return false
+                var start, end, ma
+                for (var i = 0; i < range.length; i += 2) {
+                    // TODO 相对值的单位取决于选项 type 的值
+                    start = range[i] && (
+                        _.isString(range[i]) && (ma = RE_REL_NUM.exec(range[i])) ?
+                        moment().add((ma[1] + 1) * ma[2], 'day') :
+                        moment(range[i], _.isString(range[i]) && DATE_TIME_PATTERN)
+                    )
+                    end = range[i + 1] && (
+                        _.isString(range[i + 1]) && (ma = RE_REL_NUM.exec(range[i + 1])) ?
+                        moment().add((ma[1] + 1) * ma[2], 'day') :
+                        moment(range[i + 1], _.isString(range[i + 1]) && DATE_TIME_PATTERN)
+                    )
+                    if (start && end) {
+                        var temp = [moment.min(start, end), moment.max(start, end)]
+                        start = temp[0]
+                        end = temp[1]
                     }
-
-                    var days = renderDate.daysInMonth()
-                    for (var ii = 1; ii <= days; ii++) {
-                        renderDate.date(ii)
-                        $('<span>').text(ii)
-                            .addClass(__now(renderDate) ? 'hover' : '')
-                            .addClass(__active(unlimitMode, date, renderDate, ii) ? 'active' : '')
-                            .addClass(__disabled(renderDate, range) ? 'disabled' : '')
-                            .attr('bx-click', ACTIVE_HANDLER_TPL({
-                                unit: 'date',
-                                value: renderDate.format(DATE_PATTERN),
-                                pattern: DATE_PATTERN
-                            }))
-                            .appendTo($body)
+                    if (
+                        (!start || renderDate.isSame(start, unit) || renderDate.isAfter(start, unit)) &&
+                        (!end || renderDate.isSame(end, unit) || renderDate.isBefore(end, unit))
+                    ) {
+                        return false
                     }
                 }
-
-                function __now(renderDate) {
-                    return renderDate.isSame(moment(), 'day')
-                }
-
-                function __active(unlimitMode, date, renderDate) {
-                    return !unlimitMode && renderDate.isSame(date, 'day')
-                }
-
-                function __disabled(renderDate, range) {
-                    if (!range.length) return false
-                    var cur = moment(renderDate).startOf('day')
-                    var start, end
-                    for (var i = 0; i < range.length; i += 2) {
-                        start = range[i] && moment(range[i], _.isString(range[i]) && DATE_TIME_PATTERN)
-                        end = range[i + 1] && moment(range[i + 1], _.isString(range[i + 1]) && DATE_TIME_PATTERN)
-                        if (start && end) {
-                            var temp = [start, end]
-                            start = moment.min(temp[0], temp[1])
-                            end = moment.max(temp[0], temp[1])
-                        }
-                        if (start && end && cur.diff(start, 'days') >= 0 && cur.diff(end, 'days') <= 0) return false
-                        if (start && !end && cur.diff(start, 'days') >= 0) return false
-                        if (!start && end && cur.diff(end, 'days') <= 0) return false
-                        if (!start && !end) return false
-                    }
-                    return true
-                }
+                return true
             },
             _renderTimePicker: function() {
                 var date = moment(this.data.date)

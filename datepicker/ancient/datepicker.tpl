@@ -5,17 +5,17 @@
         <%     first = page === 0 %>
         <%     last = page === options.pages - 1 %>
         <!-- 年月日 <%= page %>/<%= options.pages %> -->
-        <div class="year-month-date <%= first ? 'first' : '' %> <%= last ? 'last' : '' %>">
+        <div class="year-month-date <%= first ? 'first' : '' %> <%= last ? 'last' : '' %>" data-page="<%= page %>">
             <!-- 年 YYYY -->
             <% var yearDisplay = typeMap.year && !typeMap.month && !typeMap.date ? '' : 'display: none;' %>
             <div class="year" style="<%= yearDisplay %>">
                 <div class="year-header">
-                    <a class="year-header-prev" href="javascript:;" bx-click="_move('period', -1)"><span class="brixfont">&#xe601;</span></a>
+                    <a class="year-header-prev" href="javascript:;" bx-click="_moveYearPicker(-1)"><span class="brixfont">&#xe601;</span></a>
                     <span class="year-header-title">? - ?</span>
-                    <a class="year-header-next" href="javascript:;" type="button" bx-click="_move('period', 1)"><span class="brixfont">&#xe600;</span></a>
+                    <a class="year-header-next" href="javascript:;" bx-click="_moveYearPicker(1)"><span class="brixfont">&#xe600;</span></a>
                 </div>
                 <div class="year-body">
-                    <div class="year-body-content clearfix" data-group-page="<%= page %>">
+                    <div class="year-body-content clearfix">
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="2014" class="active">2014</span> -->
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="2014">2014</span> -->
                     </div>
@@ -25,12 +25,12 @@
             <% var monthDisplay = typeMap.month && !typeMap.date ? '' : 'display: none;' %>
             <div class="month" style="<%= monthDisplay %>">
                 <div class="month-header">
-                    <a class="month-header-prev" href="javascript:;" bx-click="_move('year', -1)"><span class="brixfont">&#xe601;</span></a>
+                    <a class="month-header-prev" href="javascript:;" bx-click="_moveMonthPicker(-1)"><span class="brixfont">&#xe601;</span></a>
                     <span class="month-header-title" bx-click="_slide('.month', '.year')">?</span>
-                    <a class="month-header-next" href="javascript:;" bx-click="_move('year', 1)"><span class="brixfont">&#xe600;</span></a>
+                    <a class="month-header-next" href="javascript:;" bx-click="_moveMonthPicker(1)"><span class="brixfont">&#xe600;</span></a>
                 </div>
                 <div class="month-body">
-                    <div class="month-body-content clearfix" data-group-page="<%= page %>">
+                    <div class="month-body-content clearfix">
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="1" class="active">Jan</span -->
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="1">Jan</span -->
                     </div>
@@ -40,15 +40,15 @@
             <% var dateDisplay = typeMap.date ? '' : 'display: none;' %>
             <div class="date" style="<%= dateDisplay %>">
                 <div class="date-header">
-                    <a href="javascript:;" class="date-header-prev" bx-click="_move('month', -1)"><span class="brixfont">&#xe601;</span></a>
+                    <a href="javascript:;" class="date-header-prev" bx-click="_moveDatePicker(-1)"><span class="brixfont">&#xe601;</span></a>
                     <span bx-click="_slide('.date', '.month')" class="date-header-title">?</span>
-                    <a href="javascript:;" class="date-header-next" bx-click="_move('month', 1)"><span class="brixfont">&#xe600;</span></a>
+                    <a href="javascript:;" class="date-header-next" bx-click="_moveDatePicker(1)"><span class="brixfont">&#xe600;</span></a>
                 </div>
                 <div class="date-body">
                     <div class="date-body-desc clearfix">
                         <span class="disabled">日</span><span class="disabled">一</span><span class="disabled">二</span><span class="disabled">三</span><span class="disabled">四</span><span class="disabled">五</span><span class="disabled">六</span>
                     </div>
-                    <div class="date-body-content clearfix" data-group-page="<%= page %>">
+                    <div class="date-body-content clearfix">
                         <!-- <span class="inactive"></span> -->
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="1" class="active">01</span> -->
                         <!-- <span bx-click="_active(value, unit, pattern)" data-value="1">01</span> -->

@@ -2063,6 +2063,7 @@ button.parsley-error {
 }
 .datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content {
   padding: 0 10px;
+  height: 180px;
 }
 .datepicker-ancient-container .year-month-date-container .year-month-date .date .date-body .date-body-content > span.active {
   color: white;
