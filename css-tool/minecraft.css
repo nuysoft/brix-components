@@ -1418,7 +1418,7 @@ ul.checklist-linear > li {
 .dropdown .dropdown-toggle {
   width: 100%;
   height: 32px;
-  padding: 6px 12px;
+  padding: 6px 30px 6px 12px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   color: #999;
@@ -1432,10 +1432,16 @@ ul.checklist-linear > li {
   float: left;
   display: inline-block;
   text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .dropdown .dropdown-toggle .caret_brixfont {
   float: right;
   margin-left: 10px;
+  position: absolute;
+  right: 12px;
 }
 .dropdown.open .dropdown-toggle.btn-default {
   border-color: #CCC;
@@ -1535,12 +1541,15 @@ ul.checklist-linear > li {
   position: absolute;
   right: 12px;
 }
+.dropdown.dropdown-justify .dropdown-menu-wrapper,
 .dropdown.dropdown-ellipsis .dropdown-menu-wrapper {
   width: 100%;
 }
+.dropdown.dropdown-justify .dropdown-menu-wrapper ul.dropdown-menu,
 .dropdown.dropdown-ellipsis .dropdown-menu-wrapper ul.dropdown-menu {
   width: 100%;
 }
+.dropdown.dropdown-justify .dropdown-menu-wrapper ul.dropdown-menu > li > a,
 .dropdown.dropdown-ellipsis .dropdown-menu-wrapper ul.dropdown-menu > li > a {
   white-space: nowrap;
   text-overflow: ellipsis;
