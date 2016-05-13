@@ -1,4 +1,4 @@
-/* global define, document, location, console */
+/* global define, document */
 define(
     [
         'jquery', 'underscore', 'moment',
