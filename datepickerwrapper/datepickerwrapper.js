@@ -131,7 +131,10 @@ define(
                 this.options._excludeds = _.map(this.options.excludeds, function(date) {
                     if (date) return date.format(DATE_PATTERN)
                 })
-                this.options._excludeds = "['" + this.options._excludeds.join("','") + "']"
+                this.options._excludeds = this.options._excludeds.length ?
+                    "['" + this.options._excludeds.join("','") + "']" :
+                    "[]"
+
 
                 // if (this.options.unlimits.length) {
                 //     _.each(this.options.unlimits, function(date, index, unlimits) {
