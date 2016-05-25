@@ -151,6 +151,7 @@ Name | Type | Default | Description
 date | string | `new Date()` | 当前选中的日期。
 type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
 range | array | `[]` | 设置可选日期的范围。下面列举了一些合法值。
+excluded | array | `[]` | 设置禁选日期的范围。合法值同 `range`。
 
 #### 配置项 `type`
 
@@ -226,8 +227,25 @@ instances[0].val(current)
 var Loader = require('brix/loader')
 var instances = Loader.query('components/datepicker')
 var range = instances[0].range()
-console.log(range.format('YYYY-MM-DD HH:mm:ss.SSS'))
+console.log(range)
 instances[0].range([new Date(), '2015-12-31'])
+```
+
+#### .excluded( [ value ] )
+
+.excluded( [ value ] )
+
+* .excluded()
+* .excluded( value )
+
+获取或设置禁选日期的范围。
+
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepicker')
+var excluded = instances[0].excluded()
+console.log(excluded)
+instances[0].excluded([new Date(), '2015-12-31'])
 ```
 
 ### 事件 <small>Events</small>

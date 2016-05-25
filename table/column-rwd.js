@@ -139,7 +139,7 @@ define(
             // 过滤不参与分页的列
             /* jshint unused:false */
             $ths = _.filter($ths, function(item, index) {
-                return index >= range[0] && index < range[1]
+                return index >= range[0] && (range[1] === 0 || index < range[1])
             })
 
             // 调整被 priority 插件排序的列：按照标记 data-column-priority-index 排序，并调整 DOM 结构

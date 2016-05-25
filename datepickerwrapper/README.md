@@ -286,6 +286,7 @@ Name | Type | Default | Description
 shortcuts | boolean or object | `{}` | 指示是否开启快捷日期和快捷日期的内容。格式见下面的代码。
 dates | array | `[]` | 初始日期。
 ranges | array | `[]` | 设置可选日期的范围。合法值参见 [DatePicker](./readme.html?name=DatePicker)。
+excludeds | array | `[]` | 设置禁选日期的范围。合法值同 `ranges`，参见 [DatePicker](./readme.html?name=DatePicker)。
 align | string | `'left'` | 指定浮层的对齐方式，可选值有 `'left'`、`'right'`。
 
 #### 配置项 `shortcuts`
@@ -369,6 +370,26 @@ range.forEach(function(item, index){
 })
 range[0].add(1, 'year')
 instances[6].range([new Date(), '2015-12-31'])
+```
+
+#### .excluded( [ value ] )
+
+.excluded( [ value ] )
+
+* .excluded()
+* .excluded( value )
+
+获取或设置禁选日期的范围。
+
+```js
+var moment = require('moment')
+var Loader = require('brix/loader')
+var instances = Loader.query('components/datepickerwrapper')
+instances[0].excluded([new Date()])
+var excluded = instances[0].excluded()
+excluded.forEach(function(item, index){
+    console.log(index, moment(item).format('YYYY-MM-DD HH:mm:ss.SSS'))
+})
 ```
 
 ### 事件 <small>Events</small>

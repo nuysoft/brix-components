@@ -68,6 +68,7 @@ define(
                 date: moment(), // date dateShadow
                 type: 'all',
                 range: [],
+                excluded: [],
                 unlimit: false,
 
                 pages: 1,
@@ -76,6 +77,7 @@ define(
             init: function() {
                 // 修正选项 range，转换成一维数组
                 this.options.range = _.flatten(this.options.range)
+                this.options.excluded = _.flatten(this.options.excluded)
 
                 // 支持不限 moment(unlimit)
                 if (this.options.unlimit) this.options.unlimit = moment(
@@ -148,9 +150,13 @@ define(
                 }
                 return this.options.range
             },
-            // 日期取反
-            not: function() {
-
+            excluded: function(value) {
+                if (value) {
+                    this.options.excluded = _.flatten(value)
+                    this._renderDatePicker()
+                    return this
+                }
+                return this.options.excluded
             },
             // 在 .year .month .date 之间切换（滑动效果）
             _slide: function(event, from, to) {
@@ -393,7 +399,7 @@ define(
                     $('<span>').text(i).attr('data-value', i)
                         .addClass(renderDate.isSame(moment(), 'year') ? 'hover' : '')
                         .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'year') ? 'active' : '')
-                        .addClass(this.__disabled(renderDate, range, 'year') ? 'disabled' : '')
+                        .addClass(this.__disabled(renderDate, 'year') ? 'disabled' : '')
                         .attr('bx-click', ACTIVE_HANDLER_TPL({
                             unit: 'year',
                             value: renderDate.format(YYYY_PATTERN),
@@ -435,7 +441,7 @@ define(
                     $('<span>').text(item).attr('data-value', renderDate.format(YYYY_MM_PATTERN))
                         .addClass(renderDate.isSame(moment(), 'month') ? 'hover' : '')
                         .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'month') ? 'active' : '')
-                        .addClass(that.__disabled(renderDate, range, 'month') ? 'disabled' : '')
+                        .addClass(that.__disabled(renderDate, 'month') ? 'disabled' : '')
                         .attr('bx-click', ACTIVE_HANDLER_TPL({
                             unit: 'month',
                             value: renderDate.format(YYYY_MM_PATTERN),
@@ -445,8 +451,10 @@ define(
                 })
             },
             _renderDatePicker: function(date, cursor, renderActive) {
-                date = date || this.data.date || moment() // .add(dir || 0, 'month')
-                cursor = cursor || this.__cursor || 0
+                date = date !== undefined ? data :
+                    this.data.date || moment() // .add(dir || 0, 'month')
+                cursor = cursor !== undefined ? cursor :
+                    this.__cursor || 0
 
                 var that = this
                 var range = this.options.range
@@ -458,7 +466,7 @@ define(
                     var $datepicker = $(item)
                     var renderDate = moment(date).add(index - cursor, 'months')
                     that.__renderDatePickerTitle($datepicker, renderDate)
-                    that.__renderDatePickerContent($datepicker, date, renderDate, range, renderActive)
+                    that.__renderDatePickerContent($datepicker, date, renderDate, renderActive)
                 })
 
                 return this
@@ -468,7 +476,9 @@ define(
                     .find('.date-header').data('date', renderDate.format(YYYY_MM_PATTERN))
                     .find('.date-header-title').text(renderDate.format('YYYY - MM'))
             },
-            __renderDatePickerContent: function($datepicker, date, renderDate /* month */ , range, renderActive) {
+            __renderDatePickerContent: function($datepicker, date, renderDate /* month */ , renderActive) {
+                var range = this.options.range
+                var excluded = this.options.excluded
                 var unlimitMode = this.__isUnlimitMode()
                 var $body = $datepicker.find('.date-body .date-body-content').empty()
 
@@ -483,7 +493,7 @@ define(
                     $('<span>').text(ii)
                         .addClass(renderDate.isSame(moment(), 'day') ? 'hover' : '')
                         .addClass(renderActive !== false && !unlimitMode && renderDate.isSame(date, 'day') ? 'active' : '')
-                        .addClass(this.__disabled(renderDate, range, 'day') ? 'disabled' : '')
+                        .addClass(this.__disabled(renderDate, 'day') ? 'disabled' : '')
                         .attr('bx-click', ACTIVE_HANDLER_TPL({
                             unit: 'date',
                             value: renderDate.format(DATE_PATTERN),
@@ -492,8 +502,27 @@ define(
                         .appendTo($body)
                 }
             },
-            __disabled: function(renderDate, range, unit) {
-                if (!range.length) return false
+            __disabled: function(renderDate, unit /* year month day */ ) {
+                var range = this.options.range
+                var excluded = this.options.excluded
+                switch (unit) {
+                    case 'year':
+                        return !this.__inRange(renderDate, range, unit)
+                    case 'month':
+                        return !this.__inRange(renderDate, range, unit)
+                    case 'day':
+                        return !this.__inRange(renderDate, range, unit) ||
+                            this.__inExcluded(renderDate, excluded, unit)
+                }
+            },
+            __inRange: function(renderDate, range, unit) {
+                return this.__in(renderDate, range, unit, true)
+            },
+            __inExcluded: function(renderDate, excluded, unit) {
+                return this.__in(renderDate, excluded, unit, false)
+            },
+            __in: function(renderDate, range, unit, empty) {
+                if (!range.length) return empty
                 var start, end, ma
                 for (var i = 0; i < range.length; i += 2) {
                     // TODO 相对值的单位取决于选项 type 的值
@@ -516,10 +545,10 @@ define(
                         (!start || renderDate.isSame(start, unit) || renderDate.isAfter(start, unit)) &&
                         (!end || renderDate.isSame(end, unit) || renderDate.isBefore(end, unit))
                     ) {
-                        return false
+                        return true
                     }
                 }
-                return true
+                return false
             },
             _renderTimePicker: function() {
                 var date = moment(this.data.date)

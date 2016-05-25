@@ -86,6 +86,7 @@ define(
                 type: 'date', // all date year month time
                 dates: [],
                 ranges: [],
+                excludeds: [],
                 unlimits: []
             },
             init: function() {
@@ -103,6 +104,8 @@ define(
                         })
                     })
                 }
+
+                // ranges
                 if (this.options.range && this.options.range.length) this.options.ranges = this.options.range
                 this.options.ranges = _.flatten(this.options.ranges || this.options.range)
                 _.each(this.options.ranges, function(date, index, ranges) {
@@ -115,6 +118,20 @@ define(
                     if (date) return date.format(DATE_PATTERN)
                 })
                 this.options._ranges = "['" + this.options._ranges.join("','") + "']"
+
+                // excludeds
+                if (this.options.excluded && this.options.excluded.length) this.options.excludeds = this.options.excluded
+                this.options.excludeds = _.flatten(this.options.excludeds || this.options.excluded)
+                _.each(this.options.excludeds, function(date, index, excludeds) {
+                    if (date) excludeds[index] = moment(
+                        date,
+                        _.isString(date) && DATE_TIME_PATTERN
+                    )
+                })
+                this.options._excludeds = _.map(this.options.excludeds, function(date) {
+                    if (date) return date.format(DATE_PATTERN)
+                })
+                this.options._excludeds = "['" + this.options._excludeds.join("','") + "']"
 
                 // if (this.options.unlimits.length) {
                 //     _.each(this.options.unlimits, function(date, index, unlimits) {
@@ -160,6 +177,8 @@ define(
                             _.isArray(value) ? value[index] : value
                         )
                     })
+
+                    this.submit() // #44 #50
                     return this
                 }
                 return _.map(pickerComponents, function(item /*, index*/ ) {
@@ -176,6 +195,17 @@ define(
                     return this
                 }
                 return this.options.ranges
+            },
+            excluded: function(value) {
+                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                if (value) {
+                    this.options.excludeds = value = _.flatten(value)
+                    _.each(pickerComponents, function(item /*, index*/ ) {
+                        item.excluded(value)
+                    })
+                    return this
+                }
+                return this.options.excludeds
             },
             _signal: function(defer) {
                 var that = this
@@ -372,8 +402,7 @@ define(
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
                 }
             },
-            /* jshint unused:false */
-            submit: function(event, from) {
+            submit: function(event /* jshint unused:false */ , from) {
                 var that = this
 
                 switch (from) {

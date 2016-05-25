@@ -6,10 +6,21 @@
 
 ### 示例 <small>Examples</small>
 
-<div bx-name="components/datepicker/ancient" data-date="2019-11-01" data-type="date time" data-unlimit="2099-1-1" data-pages="3" data-range="[['+=0', '+=6'], ['+=14', '+=20'], ['+=28', '+=34'], ['+=42', '+=48'], ['+=180', '+=3650']]" bx-ready="alert(1)" on-change="handler"></div>
+<div bx-name="components/datepicker/ancient" 
+    data-date="[new Date()][0]" 
+    data-type="date time" 
+    data-unlimit="2099-1-1" 
+    data-pages="3" 
+    data-range="[['+=0', '+=30']]" 
+    data-excluded="[['+=2', '+=4']]"
+    on-change="handler"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-unlimit="2099-1-1" data-pages="2" bx-ready="alert(1)"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-pages="3"></div>
 <div bx-name="components/datepicker/ancient" data-type="date time" data-pages="4" bx-ready="alert(1)"></div>
+
+
+    data-range="[['+=0', '+=6'], ['+=14', '+=20'], ['+=28', '+=34'], ['+=42', '+=48'], ['+=180', '+=3650']]" 
+    data-excluded="[['+=2', '+=4']]"
 
 <div bx-name="components/datepicker/ancient" data-type="time"></div>
 

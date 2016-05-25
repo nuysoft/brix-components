@@ -34,9 +34,10 @@
         <h4>响应式表格</h4>
         <button id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
         <table bx-name="components/table" class="table table-hover table-fixed" 
-            data-column-rwd-range="[3,-2]"
-            data-column-rwd-limit="5"
-            data-column-rwd-cursor="2"
+            data-column-rwd-range="[3,-2]" 
+            data-column-rwd-limit="5" 
+            data-column-rwd-cursor="1" 
+            data-column-priority-fields="['gungungun', '滚动列 2', '滚动列 3', '滚动列 4', '滚动列 5', '滚动列 6']" 
             data-column-priority-trigger="#clickme">
             <thead>
                 <tr>
@@ -335,6 +336,7 @@ column-field | string | - | **Th** 可选。指定列名对应数据字段名，
 column-rwd-range | array | - | **Table** 可选。指定列分页的范围，例如 `[3,-2]`。
 column-rwd-cursor | number | 1 | **Table** 可选。指定列分页的当前页数，例如 `1`、`2`。
 column-rwd-limit | array | 5 | **Table** 可选。指定列分页的单页个数，例如 `5`。
+column-priority-fields | array | - | **Table** 可选。指定可显示的列。例如 `['gungungun', '滚动列 2', '滚动列 4', '滚动列 6']`
 column-priority-trigger | string | - | **Table** 可选。指定触发列配置浮层的节点选择器表达式，例如 `'#clickme'`
 column-priority-placement | string | 'bottom' | **Table** 可选。指定列配置浮层相对于触发节点的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
 column-priority-align | string | 'right' | **Table** 可选。指定列配置浮层相对于触发节点的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。

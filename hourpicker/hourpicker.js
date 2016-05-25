@@ -1,4 +1,4 @@
-/* global define, document, location, console */
+/* global define, document */
 define(
     [
         'jquery', 'underscore', 'moment',
@@ -13,7 +13,6 @@ define(
         template
     ) {
 
-        var DEBUG = ~location.search.indexOf('debug')
         var NAMESPACE = '.hourpicker'
         var DICT = {
             DEFAULT: [ // 为了保证遍历数序，采用数组
@@ -127,7 +126,8 @@ define(
                         .on('mouseup.drag' + NAMESPACE, function( /*event*/ ) {
                             siblings.off('mouseenter.drag' + NAMESPACE)
                             $(document.body).off('mouseup.drag' + NAMESPACE)
-                            if (DEBUG) console.table(that.val())
+
+                            that.trigger('change' + NAMESPACE, that.val())
                         })
                     event.preventDefault()
                 })
@@ -220,7 +220,7 @@ define(
                     tmp = []
                     hourElements = item.find('.picker-hour.active')
                     _.each(hourElements, function(item /*, index*/ ) {
-                        tmp.push($(item).attr('data-value'))
+                        tmp.push(+$(item).attr('data-value'))
                     })
                     result[item.attr('data-value')] = tmp
                 })

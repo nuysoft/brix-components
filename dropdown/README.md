@@ -184,6 +184,48 @@ conflict.on('change.dropdown', function(event, extra){
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <h4>支持设置宽度 `data-width="width"`。</h4>
+        <select bx-name="components/dropdown" data-width="100">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+        <select bx-name="components/dropdown" data-width="100px">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+        <select bx-name="components/dropdown" data-width="100%">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div class="content">
+        <h4>支持设置两端对齐 `data-justify="true"`。</h4>
+        <select bx-name="components/dropdown" data-width="100" data-justify="true">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+        <select bx-name="components/dropdown" data-width="100px" data-justify="true">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+        <select bx-name="components/dropdown" data-width="100%" data-justify="true">
+            <option value="1">Action</option>
+            <option value="2">Another action</option>
+            <option value="3" selected>Something else here</option>
+        </select>
+    </div>
+</div>
+
 <script type="text/javascript">
     require(['brix/loader'], function(Loader) {
         Loader.boot(function() {

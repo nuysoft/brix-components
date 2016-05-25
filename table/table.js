@@ -48,6 +48,7 @@ define(
                     CURSOR: 'column-rwd-cursor'
                 },
                 PRIORITY: {
+                    FIELDS: 'column-priority-fields',
                     TRIGGER: 'column-priority-trigger',
                     STATE: 'column-priority-state',
                     INDEX: 'column-priority-index',
@@ -88,6 +89,11 @@ define(
                         that.trigger('change' + ColumnPriority.NAMESPACE, [fields])
                         columnRWDHandler.flush()
                     })
+
+                    // 初始值
+                    if (this.options[Constant.COLUMN.PRIORITY.FIELDS]) {
+                        columnPriorityHandler.fields(this.options[Constant.COLUMN.PRIORITY.FIELDS])
+                    }
                 }
 
                 this.columnRWDHandler = columnRWDHandler
@@ -106,6 +112,8 @@ define(
                 $(window).off(type)
             }
         })
+
+        Table.extend = Brix.extend
 
         return Table
 

@@ -695,7 +695,7 @@ ul.checklist-linear {
     .dropdown-toggle {
         width: 100%;
         height: 32px;
-        padding: 6px 12px;
+        padding: 6px 30px 6px 12px;
         border: 1px solid @border;
         border-radius: 4px;
         color: #999;
@@ -708,10 +708,16 @@ ul.checklist-linear {
             float: left;
             display: inline-block;
             text-align: left;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         .caret_brixfont {
             float: right;
             margin-left: 10px;
+            position: absolute;
+            right: 12px;
         }
     }
     &.open .dropdown-toggle {
@@ -821,6 +827,7 @@ ul.checklist-linear {
             }
         }
     }
+    &.dropdown-justify,
     &.dropdown-ellipsis {
         .dropdown-menu-wrapper {
             width: 100%;
