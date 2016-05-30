@@ -86,6 +86,7 @@ define(
             multiple disabled
             responsive http://silviomoreto.github.io/bootstrap-select/
     */
+
     var EASING = 'swing' //动画缓函数
     var ALL_EVENTS = {
       EVENTS: {
@@ -125,12 +126,16 @@ define(
                 'marginLeft': 40
               }, self.duration, EASING, function() {
                 self.trigger('slideEnd', 0)
+                self.isFullSubNav = '0'
+                self.localStorage.isFullSubNav = '0'
               });
             } else {
               self.main.animate({
                 'marginLeft': 200
               }, self.duration, EASING, function() {
                 self.trigger('slideEnd', 1)
+                self.isFullSubNav = '1'
+                self.localStorage.isFullSubNav = '1'
               });
             }
 
@@ -197,6 +202,7 @@ define(
         //子导航收缩时，鼠标经过显示全部菜单
         '.sub-nav .sub': {
           mouseenter: function(e, self) {
+            return
             // var self = this;
             if (self.isFullSubNav !== '0') return; //菜单不为收缩时，不处理
             var t = $(e.target).closest('.sub');
@@ -322,7 +328,6 @@ define(
         pathMap: {}
       },
       render: function() {
-
         var self = this;
         var el = $(this.element);
         this.sidebar = el;
@@ -338,7 +343,6 @@ define(
         //置空则不停在任何导航上
         this.pathMap = this.options['pathMap'];
 
-
         this.sidebar.find('.sidebar').find('[data-sub]').hide()
 
         //收缩子菜单状态下，子菜单是复制附加到body根节点下的
@@ -346,13 +350,11 @@ define(
 
         //利用localStorage记录子菜单是否mini模式, 1：打开模式；0：收缩模式
         //不支持localStorage的浏览器用默认的值["1"]
-        this.localStorage = window.localStorage;
-        this.isFullSubNav = this.localStorage && this.localStorage.isFullSubNav || '1';
-        this.isFullSubNav = '1' //没有打开状态记录了
+        this.localStorage = window.localStorage || {}
+        this.isFullSubNav = this.localStorage.isFullSubNav || this.options.expand || '1';
+        this.isExpandNav = this.isFullSubNav === '1' ? true : false
+        // this.isFullSubNav = '0' //没有打开状态记录了
 
-        // if (this.isFullSubNav === '0') {
-        //   this.subNavHandle.replaceClass('icon-expand', 'icon-collapse');
-        // }
 
         //可配置的两个参数 duration index
         this.index = this.options['index']; //默认的首页地址
@@ -363,12 +365,12 @@ define(
         // this._bindUI();
         this._pathname2sidebar();
 
-
         //边栏高度根据window高度设置
         this.subNav.height($(window).height())
 
         //事件绑定
         this._bindUI()
+
       },
 
       _bindUI: function() {
@@ -696,7 +698,6 @@ define(
             self.currentNav.show();
           }
 
-
           self._expandNav();
         } else {
           self._collapseNav();
@@ -718,7 +719,6 @@ define(
 
       //子导航的扩展收缩
       _expandCollapseSubNav: function() {
-
         var self = this;
         var curSubNav = self.currentSubNav;
         var closestUl = curSubNav && (curSubNav.prop('nodeName') === 'LI' ? //无奈之举
@@ -726,18 +726,18 @@ define(
         var isThirdNavSelected = closestUl && closestUl.hasClass('sub-nav-third');
 
         //是否mini模式的菜单切换
-
-        function animCallBack() {
-          var isF = (this.isFullSubNav === '1');
-          this.isFullSubNav = isF ? '0' : '1';
-          // if (this.localStorage) {
-          //   this.localStorage.isFullSubNav = isF ? '0' : '1';
-          // }
-        }
+        // function animCallBack() {
+        //   var isF = (this.isFullSubNav === '1');
+        //   this.isFullSubNav = isF ? '0' : '1';
+        //   // if (this.localStorage) {
+        //   //   this.localStorage.isFullSubNav = isF ? '0' : '1';
+        //   // }
+        // }
 
         //菜单扩展
-        if (self.isFullSubNav === '0') {
-          animCallBack.call(self); //菜单扩张时直接设置isFullSubNav
+        if (!self.isExpandNav) {
+          self.isExpandNav = true
+          // animCallBack.call(self); //菜单扩张时直接设置isFullSubNav
           self._expandSubNav();
           self._switchTrigger();
 
@@ -753,9 +753,10 @@ define(
         }
 
         //菜单收缩
-        else if (self.isFullSubNav === '1') {
+        else {
+          self.isExpandNav = false
           self._collapseSubNav(function() {
-            animCallBack.call(self); //菜单收缩时在动画结束时设置isFullSubNav
+            // animCallBack.call(self); //菜单收缩时在动画结束时设置isFullSubNav
             self._switchTrigger();
             $(self.element).find('.side-hold').hide()
           });
@@ -863,6 +864,8 @@ define(
 
         if (this.isFullSubNav !== '1') {
           this.currentNav.hide()
+          $(this.element).find('.side-hold span').removeClass('on')
+          $('.menu-icon').show()
         }
 
         this.subNav.show();
@@ -906,7 +909,6 @@ define(
 
       //主导航切换控制的侧栏菜单收缩
       _collapseNav: function(dataSub, cb) {
-
         var self = this;
 
 
