@@ -91,15 +91,15 @@
         }
     }
     /* 年月日 */
-    .year-month-date-container {
-        .year-month-date {
+    .year-month-day-container {
+        .year-month-day {
             display: inline-block;
             float: left;
             .year {
                 .mixin-date-group();
                 .year-header {
                     .mixin-date-group-header();
-                    .year-header-title  { .mixin-date-group-header-title(); }
+                    .year-header-title  { .mixin-date-group-header-title(); cursor: default; }
                     .year-header-prev   { .mixin-date-group-header-prev(); }
                     .year-header-next   { .mixin-date-group-header-next(); }
                 }
@@ -134,32 +134,32 @@
                     }
                 }
             }
-            .date {
+            .day {
                 .mixin-date-group();
-                .date-header {
+                .day-header {
                     .mixin-date-group-header();
-                    .date-header-title {
+                    .day-header-title {
                         .mixin-date-group-header-title();
                         &:hover { .mixin-date-group-header-title-hover(); }
                     }
-                    .date-header-prev {
+                    .day-header-prev {
                         .mixin-date-group-header-prev();
                         display: none;
                     }
-                    .date-header-next {
+                    .day-header-next {
                         .mixin-date-group-header-next();
                         display: none;
                     }
                 }
-                .date-body {
+                .day-body {
                     .mixin-date-group-body();
-                    .date-body-desc {
+                    .day-body-desc {
                         > span {
                             .mixin-date-group-body-item();
                             width: 30px;
                         }
                     }
-                    .date-body-content {
+                    .day-body-content {
                         > span {
                             .mixin-date-group-body-item();
                             width: 30px;
@@ -167,14 +167,14 @@
                     }
                 }
             }
-            &.first .date {
-                .date-header {
-                    .date-header-prev { display: block; }
+            &.first .day {
+                .day-header {
+                    .day-header-prev { display: block; }
                 }
             }
-            &.last .date {
-                .date-header {
-                    .date-header-next { display: block; }
+            &.last .day {
+                .day-header {
+                    .day-header-next { display: block; }
                 }
             }
         }
@@ -206,6 +206,7 @@
     /* 时分秒 */
     .hour-minute-second-container {
         .mixin-date-group();
+        padding: 10px;
         text-align: center;
         .hour-minute-second {
             width: 238px;

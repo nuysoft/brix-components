@@ -718,6 +718,7 @@ ul.checklist-linear {
             margin-left: 10px;
             position: absolute;
             right: 12px;
+            top: 8px;
         }
     }
     &.open .dropdown-toggle {
@@ -824,6 +825,7 @@ ul.checklist-linear {
             .caret_custom {
                 position: absolute;
                 right: 12px;
+                top: 8px;
             }
         }
     }
@@ -1274,8 +1276,8 @@ button.error, button.input-error, button.parsley-error {
         }
     }
     /* 年月日 */
-    .year-month-date-container {
-        .year-month-date {
+    .year-month-day-container {
+        .year-month-day {
             .year {
                 .mixin-date-group();
                 .year-header {
@@ -1310,21 +1312,21 @@ button.error, button.input-error, button.parsley-error {
                     }
                 }
             }
-            .date {
+            .day {
                 .mixin-date-group();
-                .date-header {
+                .day-header {
                     .mixin-date-group-header();
-                    .date-header-title { .mixin-date-group-header-title(); }
-                    .date-header-prev { .mixin-date-group-header-prev(); }
-                    .date-header-next { .mixin-date-group-header-next(); }
+                    .day-header-title { .mixin-date-group-header-title(); }
+                    .day-header-prev { .mixin-date-group-header-prev(); }
+                    .day-header-next { .mixin-date-group-header-next(); }
                 }
-                .date-body {
+                .day-body {
                     .mixin-date-group-body();
-                    .date-body-desc {
+                    .day-body-desc {
                         .mixin-date-group-body-desc();
                         > span {}
                     }
-                    .date-body-content {
+                    .day-body-content {
                         .mixin-date-group-body-content();
                         height: 180px;
                         > span {
@@ -1333,14 +1335,14 @@ button.error, button.input-error, button.parsley-error {
                     }
                 }
             }
-            &.first .date {
-                .date-header {
-                    .date-header-prev {}
+            &.first .day {
+                .day-header {
+                    .day-header-prev {}
                 }
             }
-            &.last .date {
-                .date-header {
-                    .date-header-next {}
+            &.last .day {
+                .day-header {
+                    .day-header-next {}
                 }
             }
         }
@@ -1369,7 +1371,9 @@ button.error, button.input-error, button.parsley-error {
             .hour-minute-second-footer {}
         }
     }
-    .unlimit-container {}
+    .unlimit-container {
+        padding: 6px 0;
+    }
 }
 
 // ----------------------------------------
