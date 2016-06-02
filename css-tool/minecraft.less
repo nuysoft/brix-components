@@ -718,6 +718,7 @@ ul.checklist-linear {
             margin-left: 10px;
             position: absolute;
             right: 12px;
+            top: 8px;
         }
     }
     &.open .dropdown-toggle {
@@ -824,6 +825,7 @@ ul.checklist-linear {
             .caret_custom {
                 position: absolute;
                 right: 12px;
+                top: 8px;
             }
         }
     }
@@ -1218,6 +1220,161 @@ button.error, button.input-error, button.parsley-error {
     }
 }
 
+.datepicker-ancient-container {
+    border: 1px solid @border;
+    border-radius: 4px;
+    box-shadow: none;
+    padding: 0px;
+
+    /* 年月日 变量 */
+    .mixin-date-group() {
+        padding: 0px;
+    }
+    .mixin-date-group-header() {
+        font-size: 12px;
+        vertical-align: middle;
+        padding: 0 15px;
+        border-bottom: 1px solid @border;
+        margin-bottom: 0px;
+    }
+    .mixin-date-group-header-title() {
+        font-size: 12px;
+        line-height: 1;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin: 4px 0;
+    }
+    .mixin-date-group-header-prev() {
+        padding: 8px 0px;
+        color: #999;
+        &:hover {
+            color: @brand;
+        }
+        .brixfont {
+            font-size: 12px;
+        }
+    }
+    .mixin-date-group-header-next() {
+        .mixin-date-group-header-prev();
+    }
+    .mixin-date-group-body() {
+        padding: 0 0 10px 0;
+        width: 258px;
+    }
+    .mixin-date-group-body-desc() {
+        color: #999;
+        background-color: #FAFAFA;
+        padding: 0 10px;
+    }
+    .mixin-date-group-body-content() {
+        padding: 0 10px;
+    }
+    .mixin-date-group-body-item() {
+        &.active {
+            color: white;
+            background-color: @brand;
+        }
+    }
+    /* 年月日 */
+    .year-month-day-container {
+        .year-month-day {
+            .year {
+                .mixin-date-group();
+                .year-header {
+                    .mixin-date-group-header();
+                    .year-header-title { .mixin-date-group-header-title(); }
+                    .year-header-prev  { .mixin-date-group-header-prev(); }
+                    .year-header-next  { .mixin-date-group-header-next(); }
+                }
+                .year-body {
+                    .mixin-date-group-body();
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    .year-body-content {
+                        > span { .mixin-date-group-body-item(); }
+                    }
+                }
+            }
+            .month {
+                .mixin-date-group();
+                .month-header {
+                    .mixin-date-group-header();
+                    .month-header-title { .mixin-date-group-header-title(); }
+                    .month-header-prev { .mixin-date-group-header-prev(); }
+                    .month-header-next { .mixin-date-group-header-next(); }
+                }
+                .month-body {
+                    .mixin-date-group-body();
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    .month-body-content {
+                        > span { .mixin-date-group-body-item(); }
+                    }
+                }
+            }
+            .day {
+                .mixin-date-group();
+                .day-header {
+                    .mixin-date-group-header();
+                    .day-header-title { .mixin-date-group-header-title(); }
+                    .day-header-prev { .mixin-date-group-header-prev(); }
+                    .day-header-next { .mixin-date-group-header-next(); }
+                }
+                .day-body {
+                    .mixin-date-group-body();
+                    .day-body-desc {
+                        .mixin-date-group-body-desc();
+                        > span {}
+                    }
+                    .day-body-content {
+                        .mixin-date-group-body-content();
+                        height: 180px;
+                        > span {
+                            .mixin-date-group-body-item();
+                        }
+                    }
+                }
+            }
+            &.first .day {
+                .day-header {
+                    .day-header-prev {}
+                }
+            }
+            &.last .day {
+                .day-header {
+                    .day-header-next {}
+                }
+            }
+        }
+    }
+    /* 时分秒 */
+    .hour-minute-second-container {
+        .hour-minute-second {
+            .hour-minute-second-body {
+                .hour {
+                    input.form-control  {}
+                    button.hour-minus   {}
+                    button.hour-plus    {}
+                }
+                .minute {
+                    input.form-control  {}
+                    button.minute-minus {}
+                    button.minute-plus  {}
+                }
+                .second {
+                    input.form-control  {}
+                    button.second-minus {}
+                    button.second-plus  {}
+                }
+                .spliter {}
+            }
+            .hour-minute-second-footer {}
+        }
+    }
+    .unlimit-container {
+        padding: 6px 0;
+    }
+}
 
 // ----------------------------------------
 // 面包屑 Breadcrumb
