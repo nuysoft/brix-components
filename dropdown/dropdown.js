@@ -359,6 +359,16 @@ define(
 
                 if (all) $lis.has('> a[value*="' + seed + '"]').show() // 显示匹配 value 的选项
             },
+            disabled: function(disabled) {
+                // .disabled()
+                if (disabled === undefined) return this.options.disabled
+
+                // .disabled( true | false )
+                this.options.disabled = disabled
+                this.$element.prop('disabled', disabled)
+                this.$relatedElement[disabled ? 'addClass' : 'removeClass']('disabled')
+                return this
+            },
             _parseDataFromSelect: function($select) {
                 var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
