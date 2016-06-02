@@ -845,6 +845,16 @@ ul.checklist-linear {
             }
         }
     }
+    &.disabled {
+        .dropdown-toggle {
+            cursor: not-allowed;
+            background-color: @border;
+            color: #CCC;
+            &:hover {
+                border-color: @border;
+            }
+        }
+    }
 }
 
 

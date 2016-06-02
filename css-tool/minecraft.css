@@ -1557,6 +1557,14 @@ ul.checklist-linear > li {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.dropdown.disabled .dropdown-toggle {
+  cursor: not-allowed;
+  background-color: #e6e6e6;
+  color: #CCC;
+}
+.dropdown.disabled .dropdown-toggle:hover {
+  border-color: #e6e6e6;
+}
 input,
 .input,
 textarea,
