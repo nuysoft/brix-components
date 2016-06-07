@@ -33,7 +33,8 @@ define(function() {
                                 <span><%= item.children[ii].label %></span>
                             </a>
                             <% } else { %>
-                            <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()">
+                            <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
+                                title="<%= item.children[ii].label %>">
                                 <span><%= item.children[ii].label %></span>
                             </a>
                             <% } %>    
@@ -52,7 +53,8 @@ define(function() {
                                 <span><%= item.label %></span>
                             </a>
                             <% } else { %>
-                            <a href="javascript:;" value="<%= item.value %>" bx-click="select()">
+                            <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
+                                title="<%= item.label %>">
                                 <span><%= item.label %></span>
                             </a>
                             <% } %>    
