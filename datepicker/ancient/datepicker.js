@@ -12,6 +12,8 @@
             console.log(event.type, event.namespace)
         })
         $('body').trigger('ch.a.b')
+
+    Brix2 http://etaoux.github.io/brix/demo/gallery/calendar/calendar.html
  */
 define(
     [
