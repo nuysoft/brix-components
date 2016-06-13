@@ -4,6 +4,7 @@ var through = require('through2')
 var gutil = require('gulp-util')
 var concat = require('gulp-concat')
 var jshint = require('gulp-jshint')
+var rjs = require('gulp-requirejs')
 var uglify = require('gulp-uglify')
 var less = require('gulp-less')
 var csslint = require('gulp-csslint')
@@ -109,6 +110,7 @@ gulp.task('concat-css', function() {
     ]
 
     var files = []
+
     /* jshint unused:false */
     gulp.src(globs)
         // https://github.com/rvagg/through2#flushfunction
@@ -151,7 +153,7 @@ gulp.task('tpl', function() {
             file.contents = new Buffer(
                 '/* global define */\n' +
                 'define(function() {\n' +
-                '    return (function(){/*\n' +
+                '    return (function(){/*!\n' +
                 file.contents.toString() +
                 '\n    */}).toString().split("\\n").slice(1,-1).join("\\n")' +
                 '\n})'
@@ -162,6 +164,116 @@ gulp.task('tpl', function() {
             callback(null, file)
         }))
         .pipe(gulp.dest('./'))
+})
+
+// https://github.com/karlgoldstein/grunt-html2js/blob/master/tasks/html2js.js
+gulp.task('tpl2', function() {
+    var Buffer = require('buffer').Buffer
+    var globs = [
+        '**/*.tpl',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ];
+    /* jshint unused:false */
+    gulp.src(globs)
+        .pipe(through.obj(function(file, encoding, callback) {
+            file.path = file.path + '.js'
+            console.log(file.path)
+
+            var quoteChar = '"'
+            var indentString = '    '
+            var escapeContent = function(content) {
+                var bsRegexp = new RegExp('\\\\', 'g')
+                var quoteRegexp = new RegExp('\\' + quoteChar, 'g')
+                var nlReplace = '\\n' + quoteChar + ' +\n' + indentString + indentString + quoteChar
+                return quoteChar +
+                    content.replace(bsRegexp, '\\\\').replace(quoteRegexp, '\\' + quoteChar).replace(/\r?\n/g, nlReplace) +
+                    quoteChar
+            };
+
+            file.contents = new Buffer(
+                '/* global define */\n' +
+                'define(function() {\n' +
+                indentString + 'return ' +
+                escapeContent(file.contents.toString()) +
+                '\n})'
+            )
+
+            callback(null, file)
+        }))
+        .pipe(gulp.dest('./'))
+})
+
+/* gulp tpl2 - test */
+/*
+var base = 'bower_components/brix-components/'
+var tpls = [
+    'areapicker/areapicker.tpl',
+    'boilerplate/boilerplate.tpl',
+    'chart/chart.tpl',
+    'colorpicker/colorpicker-svg-picker.tpl',
+    'colorpicker/colorpicker-svg-slide.tpl',
+    'colorpicker/colorpicker-vml-picker.tpl',
+    'colorpicker/colorpicker-vml-slide.tpl',
+    'colorpicker/colorpicker.tpl',
+    'countdown/countdown.tpl',
+    'ctree/ctree.tpl',
+    'datepicker/datepicker.tpl',
+    'datepickerwrapper/datepickerwrapper.tpl',
+    'dialog/dialog.tpl',
+    'dropdown/dropdown.tpl',
+    'editor/editor.tpl',
+    'ellipsis/ellipsis.tpl',
+    'errortips/errortips.tpl',
+    'hello/hello.tpl',
+    'hello-extra/hello-extra.tpl',
+    'hourpicker/hourpicker.tpl',
+    'modal/modal.tpl',
+    'nprogress/nprogress.tpl',
+    'pagination/pagination.tpl',
+    'popover/popover.tpl',
+    'progressbarwrapper/progressbarwrapper.tpl',
+    'readme/readme.tpl',
+    'sidebar/sidebar.tpl',
+    'slider/slider.tpl',
+    'spin/spin.tpl',
+    'suggest/suggest.item.tpl',
+    'suggest/suggest.tpl',
+    'switch/switch.tpl',
+    'table/column-priority.tpl',
+    'taginput/taginput.item.tpl',
+    'taginput/taginput.tpl',
+    'tree/tree.node.json.tpl',
+    'tree/tree.node.tpl',
+    'tree/tree.tpl',
+    'wizard/wizard.tpl',
+    'datepicker/ancient/datepicker.tpl'
+]
+tpls.forEach(function(tpl, index) {
+    require([base + tpl + '.js', base + tpl + '-2.js'], function(tpl1, tpl2) {
+        console.log(index, tpl, tpl1 === tpl2)
+    })
+})
+*/
+
+// https://github.com/RobinThrift/gulp-requirejs
+// http://requirejs.org/docs/optimization.html#empty
+gulp.task('rjs', function() {
+    var empty = {
+        'jquery': 'empty:',
+        'underscore': 'empty:',
+        'brix/loader': 'empty:',
+        'components/base': 'empty:',
+        'brix/event': 'empty:'
+    }
+    rjs({
+        baseUrl: '.',
+        name: 'dropdown/dropdown',
+        out: 'dropdown/dropdown.js',
+        paths: empty
+    }).pipe(uglify({}))
+    .pipe(gulp.dest('./dist/'))
 })
 
 // https://github.com/terinjokes/gulp-uglify
