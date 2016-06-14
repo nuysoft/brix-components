@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="countdown">
     <span class="totalDays">00</span> 天
     <span class="hours"    >00</span> 时

@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <ul>
     <li>moduleId: <%= moduleId %></li>
     <li>clientId: <%= clientId %></li>

@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <ul class="tree">
     <% for(var i = 0, item; item = children[i]; i++ ) { %>
         <li data-node-id="<%= item.id %>" class="tree-node <%= item.children && item.children.length ? '': 'tree-leaf' %>">

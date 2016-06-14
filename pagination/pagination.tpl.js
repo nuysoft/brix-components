@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="row paginationwrapper">
     <% if(simplify) { %>
         <div class="col-md-12" style="text-align: right;">

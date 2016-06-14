@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="hourpicker">
     <div class="apply-dialog">
         <div class="apply-dialog-body">

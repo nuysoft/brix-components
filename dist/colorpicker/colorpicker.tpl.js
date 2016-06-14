@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="colorpicker">
     <div class="colorpicker-header clearfix">
         <ul>

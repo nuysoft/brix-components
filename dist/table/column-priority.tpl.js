@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="dialog column-priority">
     <div class="dialog-content">
         <div class="dialog-header row">

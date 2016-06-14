@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="datepicker-ancient-container clearfix">
     <!-- 年月日 -->
     <div class="year-month-day-container clearfix">

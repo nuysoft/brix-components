@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="editor-wrapper">
     <div class="toolbar">
         <div class="btn-group">

@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="spinner">
     <% if( type === 'rotating-plane' ) { %>
         <div class="rotating-plane"></div>

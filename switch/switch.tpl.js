@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <span class="switch 
 	<%= checked ? 'switch-checked' : '' %> 
 	<%= disabled ? 'switch-disabled' : '' %>

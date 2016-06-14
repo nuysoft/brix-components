@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="areapicker">
     <div class="areapicker-header dialog-header">
         <h4 class="areapicker-header-title dialog-title">选择地域</h4>

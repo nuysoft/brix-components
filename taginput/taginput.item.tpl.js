@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="taginput-item" bx-click=""><!-- _active -->
     <div class="taginput-item-name"><%= data %></div>
     <div class="taginput-item-delete" bx-click="delete" data-taginput-clientid="<%= clientId %>">

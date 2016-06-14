@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>">
     <!--  -->
     <% if (mode === 'signal') { %>

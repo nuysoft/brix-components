@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="readme">
 	<div bx-name="components/spin" data-type="three-bounce" class="spin"></div>
 </div>

@@ -264,8 +264,8 @@ gulp.task('rjs', function() {
         'jquery': 'empty:',
         'underscore': 'empty:',
         'brix/loader': 'empty:',
-        'components/base': 'empty:',
-        'brix/event': 'empty:'
+        'brix/event': 'empty:',
+        'components/base': 'empty:'
     }
     rjs({
         baseUrl: '.',

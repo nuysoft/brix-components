@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">

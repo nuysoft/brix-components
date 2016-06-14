@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div>
 	id: <%= id %>,
 	name: <span class="tree-node-content-name"><%= name %></span>,

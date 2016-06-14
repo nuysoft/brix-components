@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
  <div class="btn-error-tips" data-btn-error="true" style="width: {{width}}px">
   {{{msg}}}
   <i class="arrow" style="left: {{left}}px;"></i>

@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <ul>
     <% for(var i = 0, item; item = children[i]; i++ ) { %>
         <li>

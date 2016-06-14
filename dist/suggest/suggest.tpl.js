@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="suggest dropdown">
     <ul class="dropdown-menu"></ul>
 </div>

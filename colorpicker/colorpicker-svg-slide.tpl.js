@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">
     <defs>
         <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">

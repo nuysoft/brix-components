@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return (function(){/*
+    return (function(){/*!
 <div class="popover <%= placement %>">
     <div class="arrow"></div>
     <div class="popover-title <%= title ? '' : 'hide' %>"><%= title %></div>
