@@ -1,16 +1,14 @@
 /* global define */
 define(function() {
-    return (function(){/*!
-<ul class="sidebar sidebar-<%= deep %>" data-deep="<%= deep %>">
-    <% for(var i = 0, item; item = children[i]; i++ ) { %>
-        <li>
-            <a href="#<%= item.label %>" class="sidebar-link sidebar-link-<%= item.deep %>">
-                <i class="<%= item.icon %>"></i>
-                <%= item.label %>
-            </a>
-            <%= item.childrenFn() %>
-        </li>
-    <% } %>
-</ul>
-    */}).toString().split("\n").slice(1,-1).join("\n")
+    return "<ul class=\"sidebar sidebar-<%= deep %>\" data-deep=\"<%= deep %>\">\n" +
+        "    <% for(var i = 0, item; item = children[i]; i++ ) { %>\n" +
+        "        <li>\n" +
+        "            <a href=\"#<%= item.label %>\" class=\"sidebar-link sidebar-link-<%= item.deep %>\">\n" +
+        "                <i class=\"<%= item.icon %>\"></i>\n" +
+        "                <%= item.label %>\n" +
+        "            </a>\n" +
+        "            <%= item.childrenFn() %>\n" +
+        "        </li>\n" +
+        "    <% } %>\n" +
+        "</ul>"
 })

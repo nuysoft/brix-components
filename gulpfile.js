@@ -138,7 +138,7 @@ gulp.task('concat-css', function() {
 })
 
 // https://github.com/plus3network/gulp-less
-gulp.task('tpl', function() {
+gulp.task('tpl-heredoc', function() {
     var Buffer = require('buffer').Buffer
     var globs = [
         '**/*.tpl',
@@ -167,7 +167,7 @@ gulp.task('tpl', function() {
 })
 
 // https://github.com/karlgoldstein/grunt-html2js/blob/master/tasks/html2js.js
-gulp.task('tpl2', function() {
+gulp.task('tpl', function() {
     var Buffer = require('buffer').Buffer
     var globs = [
         '**/*.tpl',
@@ -268,19 +268,18 @@ gulp.task('rjs', function() {
         'components/base': 'empty:'
     }
     rjs({
-        baseUrl: '.',
-        name: 'dropdown/dropdown',
-        out: 'dropdown/dropdown.js',
-        paths: empty
-    }).pipe(uglify({}))
-    .pipe(gulp.dest('./dist/'))
+            baseUrl: '.',
+            name: 'dropdown/dropdown',
+            out: 'dropdown/dropdown.js',
+            paths: empty
+        }).pipe(uglify({}))
+        .pipe(gulp.dest('./dist/'))
 })
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
     gulp.src([
             '*/**/*.js',
-            '!**/*.tpl.js',
             '!bower_components/**/*',
             '!node_modules/**/*',
             '!dist/**/*'
@@ -290,13 +289,14 @@ gulp.task('compress', function() {
         }))
         .pipe(gulp.dest('dist'))
 
-    gulp.src([
-            '**/*.tpl.js',
-            '!bower_components/**/*',
-            '!node_modules/**/*',
-            '!dist/**/*'
-        ])
-        .pipe(gulp.dest('dist'))
+    // '!**/*.tpl.js',
+    // gulp.src([
+    //         '**/*.tpl.js',
+    //         '!bower_components/**/*',
+    //         '!node_modules/**/*',
+    //         '!dist/**/*'
+    //     ])
+    //     .pipe(gulp.dest('dist'))
 })
 
 // https://github.com/murphydanger/gulp-minify-css

@@ -1,12 +1,1 @@
-/* global define */
-define(function() {
-    return (function(){/*!
-<span class="switch 
-	<%= checked ? 'switch-checked' : '' %> 
-	<%= disabled ? 'switch-disabled' : '' %>
-	<%= size ? 'switch-' + size : '' %>
-	" bx-click="toggle">
-	<small></small>
-</span>
-    */}).toString().split("\n").slice(1,-1).join("\n")
-})
+define(function(){return"<span class=\"switch \n	<%= checked ? 'switch-checked' : '' %> \n	<%= disabled ? 'switch-disabled' : '' %>\n	<%= size ? 'switch-' + size : '' %>\n	\" bx-click=\"toggle\">\n	<small></small>\n</span>"});

@@ -1,10 +1,8 @@
 /* global define */
 define(function() {
-    return (function(){/*!
-<div class="popover <%= placement %>">
-    <div class="arrow"></div>
-    <div class="popover-title <%= title ? '' : 'hide' %>"><%= title %></div>
-    <div class="popover-content"><%= content %></div>
-</div>
-    */}).toString().split("\n").slice(1,-1).join("\n")
+    return "<div class=\"popover <%= placement %>\">\n" +
+        "    <div class=\"arrow\"></div>\n" +
+        "    <div class=\"popover-title <%= title ? '' : 'hide' %>\"><%= title %></div>\n" +
+        "    <div class=\"popover-content\"><%= content %></div>\n" +
+        "</div>"
 })

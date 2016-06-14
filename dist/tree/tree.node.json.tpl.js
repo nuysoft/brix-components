@@ -1,10 +1,1 @@
-/* global define */
-define(function() {
-    return (function(){/*!
-<div>
-	id: <%= id %>,
-	name: <span class="tree-node-content-name"><%= name %></span>,
-	operation: <a href="#" style="float: right;">+</a>
-</div>
-    */}).toString().split("\n").slice(1,-1).join("\n")
-})
+define(function(){return'<div>\n	id: <%= id %>,\n	name: <span class="tree-node-content-name"><%= name %></span>,\n	operation: <a href="#" style="float: right;">+</a>\n</div>'});
