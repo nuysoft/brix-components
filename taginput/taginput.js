@@ -38,8 +38,8 @@ define(
             render: function() {
                 var that = this
                 var defer = $.Deferred()
-                var manager = new EventManager()
                 this.$element = $(this.element).hide()
+                this.$manager = new EventManager('bx-')
 
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $(html).insertAfter(this.$element)
@@ -62,8 +62,8 @@ define(
 
                     that._beautify(that.$element, that.$relatedElement)
 
-                    manager.delegate(that.$element, that)
-                    manager.delegate(that.$relatedElement, that)
+                    that.$manager.delegate(that.$element, that)
+                    that.$manager.delegate(that.$relatedElement, that)
 
                     /* jshint unused:false */
                     that.suggest.on('change.suggest.input', function(event, value) {
@@ -265,6 +265,15 @@ define(
                     width >= INPUT_MIN_WIDTH ? width : INPUT_MIN_WIDTH
                 )
                 return this
+            },
+            destroy: function() {
+                this.$manager.undelegate(this.$element)
+                this.$manager.undelegate(this.$relatedElement)
+
+                this.$relatedElement.remove()
+
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
             }
         })
 

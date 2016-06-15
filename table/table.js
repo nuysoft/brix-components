@@ -110,6 +110,13 @@ define(
             destroy: function() {
                 var type = 'resize.table_' + this.clientId
                 $(window).off(type)
+
+                type = 'click' + ColumnPriority.NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
+
+                if(this.columnPriorityHandler) {
+                    this.columnPriorityHandler.$manager.undelegate(this.columnPriorityHandler.$relatedElement)
+                }
             }
         })
 

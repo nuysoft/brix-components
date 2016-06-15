@@ -457,8 +457,8 @@ define(
                     })
             },
             destroy: function() {
-                this.$manager.undelegate(this.$element, this)
-                this.$manager.undelegate(this.$relatedElement, this)
+                this.$manager.undelegate(this.$element)
+                this.$manager.undelegate(this.$relatedElement)
 
                 this.$relatedElement.remove()
 

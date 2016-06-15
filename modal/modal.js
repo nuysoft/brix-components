@@ -25,7 +25,7 @@ define(
             },
             render: function() {
                 var that = this
-                var manager = new EventManager('bx-')
+                this.$manager = new EventManager('bx-')
 
                 var html = _.template(template)(this.options)
                 this.$relatedElement = $(html).insertAfter(this.$element)
@@ -37,8 +37,8 @@ define(
                         .appendTo(document.body)
                 }
 
-                manager.delegate(this.$element, this)
-                manager.delegate(this.$relatedElement, this)
+                this.$manager.delegate(this.$element, this)
+                this.$manager.delegate(this.$relatedElement, this)
 
                 // 显示对话框
                 this.$element.on('click', function() {
@@ -73,6 +73,13 @@ define(
                     that.$backdropElement.hide()
 
                 }, TRANSITION_DURATION)
+            },
+            destroy: function() {
+                this.$manager.undelegate(this.$element)
+                this.$manager.undelegate(this.$relatedElement)
+
+                var type = 'keyup.modal_' + this.clientId
+                $(document.body).off(type)
             }
         })
     }
