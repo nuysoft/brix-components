@@ -20,7 +20,16 @@ define(
             },
             render: function() {
                 var that = this
-                var simple = this.options.mode === 'simple' ? true : false
+
+                // 兼容老的type参数
+                if (this.options.type) {
+                    this.options.mode = {
+                        front: 'normal',
+                        back: 'simple'
+                    }[this.options.type]
+                }
+
+                var simple = this.options.mode === 'simple'
                 var alimamaReg = /alimama\.(com|net)/i
                 var tanxReg = /tanx\.(com|net)/i
                 var taobaoReg = /taobao\.(com|net)/i
@@ -32,6 +41,8 @@ define(
                     taobao = true
                 } else if (tanxReg.test(window.location.href)) {
                     tanx = true
+                } else {
+                    alimama = true
                 }
 
                 $.ajax({

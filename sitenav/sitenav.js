@@ -23,19 +23,16 @@ define(
                 var simple = this.options.mode === 'simple' ? true : false
 
                 $.ajax({
-                    url: 'http://mo.m.taobao.com/union/jsonp/sitenav',
+                    url: 'http://mo.m.taobao.com/union/jsonp/sitenav?preview=1',
                     dataType: 'jsonp',
                     success: function(resp) {
                         var sitenav = $(that.element)
                         sitenav.html(Handlebars.compile(resp.html)({
                             simple: simple
                         }))
-                        var cdn = sitenav.find('.alimama-site-nav').attr('data-cdn')
-                        that._insertScript(cdn)
-
-                        setTimeout(function () {
-                          sitenav.show()
-                        }, 100)
+                        sitenav = sitenav.find('.alimama-site-nav')
+                        var scriptSrc = sitenav.attr('data-cdn')
+                        that._insertScript(scriptSrc)
                     }
                 })
             },
