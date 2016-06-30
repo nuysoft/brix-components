@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>footer demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="//g.alicdn.com/thx/cube/1.2.1/neat.css">
+    <script src="//g.alicdn.com/thx/brix-release/0.1.6/require-config-debug.js"></script>
+    <style>
+      .footer {
+        width: 1190px;
+        margin: 0 auto;
+        border: 1px solid #efefef;
+      }
+      p {
+        width: 1190px;
+        margin: 10px auto;
+        padding: 5px 10px;
+        background: #EEE;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <p>bx-options="{type:'front'}"</p>
+    <div class="footer" bx-name="component/footer" bx-options="{type:'front'}"></div>
+
+    <p>bx-options="{type:'back'}"</p>
+    <div class="footer" bx-name="component/footer" bx-options="{type:'back'}"></div>
+
+    <p>bx-options="{mode:'normal'}"</p>
+    <div class="footer" bx-name="component/footer" bx-options="{mode:'normal'}"></div>
+
+    <p>bx-options="{mode:'simple'}"</p>
+    <div class="footer" bx-name="component/footer" bx-options="{mode:'simple'}"></div>
+
+    <p>默认参数</p>
+    <div class="footer" bx-name="component/footer"></div>
+
+    <script>
+      require.config({
+        paths: {
+          'component/footer': './footer'
+        }
+      })
+      require(['jquery', 'brix/loader'], function($, Loader) {
+        Loader.boot($('#body'))
+      })
+    </script>
+  </body>
+</html>

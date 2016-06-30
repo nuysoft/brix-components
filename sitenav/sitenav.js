@@ -30,12 +30,9 @@ define(
                         sitenav.html(Handlebars.compile(resp.html)({
                             simple: simple
                         }))
-                        var cdn = sitenav.find('.alimama-site-nav').attr('data-cdn')
-                        that._insertScript(cdn)
-
-                        setTimeout(function () {
-                          sitenav.show()
-                        }, 100)
+                        sitenav = sitenav.find('.alimama-site-nav')
+                        var scriptSrc = sitenav.attr('data-cdn')
+                        that._insertScript(scriptSrc)
                     }
                 })
             },
