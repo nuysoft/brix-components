@@ -44,7 +44,9 @@ define(
                 headNode.appendChild(newScript)
             },
             destroy: function () {
-                window.MMSiteNav && window.MMSiteNav.destroy()
+                if (window.MMSiteNav) {
+                    window.MMSiteNav.destroy()
+                }
             }
         })
 
