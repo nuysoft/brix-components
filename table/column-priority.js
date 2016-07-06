@@ -40,7 +40,7 @@ define(
 
             _autoHide(tableComponentInstance, $trigger, $relatedElement)
 
-            _delegate(Constant, $table, $trigger, $relatedElement, callback)
+            var $manager = _delegate(Constant, $table, $trigger, $relatedElement, callback)
 
             // drag drop
             var wrapper = $relatedElement.find('.queue .sortable-wrapper')
@@ -81,6 +81,7 @@ define(
 
             return {
                 $relatedElement: $relatedElement,
+                $manager: $manager,
                 toggle: function() {
                     $relatedElement.toggle()
                 },
@@ -195,7 +196,7 @@ define(
         }
 
         function _delegate(Constant, $table, $trigger, $relatedElement, callback) {
-            var manager = new EventManager('bx-')
+            var $manager = new EventManager('bx-')
             var owner = {
                 submit: function(event) {
                     var fields = _handler(Constant, $table, $relatedElement)
@@ -214,7 +215,9 @@ define(
                     $relatedElement.find('.queue .sortable-wrapper .item').hide()
                 }
             }
-            manager.delegate($relatedElement, owner)
+            $manager.delegate($relatedElement, owner)
+
+            return $manager
         }
 
         /* jshint unused:vars */

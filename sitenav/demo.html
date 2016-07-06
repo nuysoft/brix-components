@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>sitenav demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="//g.alicdn.com/thx/cube/1.2.1/neat.css">
+    <script src="//g.alicdn.com/thx/brix-release/0.1.6/require-config-debug.js"></script>
+    <style>
+      .sitenav {
+        width: 1190px;
+        margin: 0 auto;
+      }
+      p {
+        width: 1190px;
+        margin: 10px auto;
+        padding: 5px 10px;
+        background: #EEE;
+        clear: both;
+        box-sizing: border-box;
+      }
+      .option {
+        margin-right: 10px;
+      }
+      .option input {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <p>可选参数：
+      <span class="option"><label><input type="radio" name="type" value="1" checked > bx-options="{mode:'normal'}"</label></span>
+      <span class="option"><label><input type="radio" name="type" value="2" > bx-options="{mode:'simple'}"</label></span>
+      <span class="option"><label><input type="radio" name="type" value="3" > 默认参数</label></span>
+    </p>
+    <div class="container"></div>
+    <script>
+      require.config({
+        paths: {
+          'component/sitenav': './sitenav'
+        }
+      })
+      require(['jquery', 'brix/loader'], function($, Loader) {
+        var tmplMap = {
+          1: '<div class="sitenav" bx-name="component/sitenav" bx-options="{mode:\'normal\'}"></div>',
+          2: '<div class="sitenav" bx-name="component/sitenav" bx-options="{mode:\'simple\'}"></div>',
+          3: '<div class="sitenav" bx-name="component/sitenav"></div>'
+        }
+
+        var append = function (tmpl) {
+          Loader.destroy(false, $('#body'))
+          $('.container').html(tmpl)
+          Loader.boot($('#body'))
+        }
+
+        $('input').on('click', function () {
+          var index = $(this).val()
+          append(tmplMap[index])
+        })
+
+        append(tmplMap[1])
+      })
+    </script>
+  </body>
+</html>

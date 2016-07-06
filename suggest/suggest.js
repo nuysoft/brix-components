@@ -116,9 +116,9 @@ define(
                     })
 
                 // 如果点击其他区域，自动提关闭示浮层。
-                $(document.body)
-                    .off('click' + NAMESPACE + '_' + this.clientId)
-                    .on('click' + NAMESPACE + '_' + this.clientId, function(event) {
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
+                    .on(type, function(event) {
                         if (that.element === event.target) return
                         if (that.$relatedElement.has(event.target).length) return
                         that.close()
@@ -157,7 +157,7 @@ define(
                 },
                 // enter
                 13: function(event, items, active, index) {
-                    if(!this.$menu.is(':visible'))return
+                    if (!this.$menu.is(':visible')) return
                     this._select(items, active, index)
                 },
                 // esc
@@ -243,6 +243,12 @@ define(
                 return ('' + item).replace(value_re, function(matched) {
                     return '<span class="highlight">' + matched + '</span>'
                 })
+            },
+            destroy: function() {
+                this.$relatedElement.remove()
+
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
             }
         })
 

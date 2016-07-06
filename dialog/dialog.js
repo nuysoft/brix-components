@@ -251,6 +251,10 @@ define(
 
                 if (this.state === STATE.CLOSED) return this
 
+                var closeEvent = $.Event('close' + NAMESPACE)
+                this.trigger(closeEvent)
+                if (closeEvent.isDefaultPrevented()) return
+
                 var that = this
                 var offset = this._offset()
                 this.$relatedElement
@@ -279,8 +283,6 @@ define(
                 }
 
                 this._zIndex('close')
-
-                this.trigger('close' + NAMESPACE)
 
                 this.state = STATE.CLOSED
 

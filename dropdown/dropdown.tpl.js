@@ -1,67 +1,67 @@
 /* global define */
 define(function() {
-    return (function(){/*
-<div class="dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>">
-    <button class="btn btn-default dropdown-toggle" type="button" value="<%= value %>" bx-click="toggle()">
-        <span class="dropdown-toggle-label"><%= label %></span>
-        <!-- <span class="caret"> -->
-        <span class="caret_custom caret_brixfont"><!-- 保留 caret_brixfont 是为了向后兼容，在下个版本中移除  -->
-            <span class="brixfont down">&#xe623;</span><!-- 向下 &#xe623; -->
-            <span class="brixfont up">&#xe62e;</span><!-- 向上 &#xe62e;-->
-        </span>
-    </button>
-    <div class="dropdown-menu-wrapper">
-        <% if (searchbox) { %>
-        <div class="searchbox">
-            <label>
-                <span class="brixfont">&#xe61c;</span>
-                <input bx-keyup="search()" type="text" placeholder="<%= placeholder %>">
-            </label>
-        </div>
-        <% } %>
-        <ul class="dropdown-menu">
-            <% for(var i = 0, item; item = data[i]; i++ ) { %>
-                <% if(item.children) { %>
-                    <li class="dropdown-header"><%=item.label%></li>
-                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>
-                        <li class="<%= item.children[ii].value == value ? 'active' : ''%>">
-                            <% if (popover) { %>
-                            <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
-                                bx-name="components/popover"
-                                data-content="<%= item.children[ii].label %>" 
-                                data-width="<%= _popoverWidth %>">
-                                <span><%= item.children[ii].label %></span>
-                            </a>
-                            <% } else { %>
-                            <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()">
-                                <span><%= item.children[ii].label %></span>
-                            </a>
-                            <% } %>    
-                        </li>
-                    <% } %>
-                <% } else { %>
-                    <% if (item === 'divider') { %>
-                        <li class="divider"></li>
-                    <% } else { %>
-                        <li class="<%= item.value == value ? 'active' : ''%>">
-                            <% if (popover) { %>
-                            <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
-                                bx-name="components/popover"
-                                data-content="<%= item.label %>" 
-                                data-width="<%= _popoverWidth %>">
-                                <span><%= item.label %></span>
-                            </a>
-                            <% } else { %>
-                            <a href="javascript:;" value="<%= item.value %>" bx-click="select()">
-                                <span><%= item.label %></span>
-                            </a>
-                            <% } %>    
-                        </li>
-                    <% }  %>
-                <% } %>
-            <% } %>
-        </ul>
-    </div>
-</div>
-    */}).toString().split("\n").slice(1,-1).join("\n")
+    return "<div class=\"dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>\">\n" +
+        "    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" value=\"<%= value %>\" bx-click=\"toggle()\">\n" +
+        "        <span class=\"dropdown-toggle-label\"><%= label %></span>\n" +
+        "        <!-- <span class=\"caret\"> -->\n" +
+        "        <span class=\"caret_custom caret_brixfont\"><!-- 保留 caret_brixfont 是为了向后兼容，在下个版本中移除  -->\n" +
+        "            <span class=\"brixfont down\">&#xe623;</span><!-- 向下 &#xe623; -->\n" +
+        "            <span class=\"brixfont up\">&#xe62e;</span><!-- 向上 &#xe62e;-->\n" +
+        "        </span>\n" +
+        "    </button>\n" +
+        "    <div class=\"dropdown-menu-wrapper\">\n" +
+        "        <% if (searchbox) { %>\n" +
+        "        <div class=\"searchbox\">\n" +
+        "            <label>\n" +
+        "                <span class=\"brixfont\">&#xe61c;</span>\n" +
+        "                <input bx-keyup=\"search()\" type=\"text\" placeholder=\"<%= placeholder %>\">\n" +
+        "            </label>\n" +
+        "        </div>\n" +
+        "        <% } %>\n" +
+        "        <ul class=\"dropdown-menu\">\n" +
+        "            <% for(var i = 0, item; item = data[i]; i++ ) { %>\n" +
+        "                <% if(item.children) { %>\n" +
+        "                    <li class=\"dropdown-header\"><%=item.label%></li>\n" +
+        "                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>\n" +
+        "                        <li class=\"<%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
+        "                            <% if (popover) { %>\n" +
+        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
+        "                                bx-name=\"components/popover\"\n" +
+        "                                data-content=\"<%= item.children[ii].label %>\" \n" +
+        "                                data-width=\"<%= _popoverWidth %>\">\n" +
+        "                                <span><%= item.children[ii].label %></span>\n" +
+        "                            </a>\n" +
+        "                            <% } else { %>\n" +
+        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
+        "                                title=\"<%= item.children[ii].label %>\">\n" +
+        "                                <span><%= item.children[ii].label %></span>\n" +
+        "                            </a>\n" +
+        "                            <% } %>    \n" +
+        "                        </li>\n" +
+        "                    <% } %>\n" +
+        "                <% } else { %>\n" +
+        "                    <% if (item === 'divider') { %>\n" +
+        "                        <li class=\"divider\"></li>\n" +
+        "                    <% } else { %>\n" +
+        "                        <li class=\"<%= item.value == value ? 'active' : ''%>\">\n" +
+        "                            <% if (popover) { %>\n" +
+        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
+        "                                bx-name=\"components/popover\"\n" +
+        "                                data-content=\"<%= item.label %>\" \n" +
+        "                                data-width=\"<%= _popoverWidth %>\">\n" +
+        "                                <span><%= item.label %></span>\n" +
+        "                            </a>\n" +
+        "                            <% } else { %>\n" +
+        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
+        "                                title=\"<%= item.label %>\">\n" +
+        "                                <span><%= item.label %></span>\n" +
+        "                            </a>\n" +
+        "                            <% } %>    \n" +
+        "                        </li>\n" +
+        "                    <% }  %>\n" +
+        "                <% } %>\n" +
+        "            <% } %>\n" +
+        "        </ul>\n" +
+        "    </div>\n" +
+        "</div>"
 })

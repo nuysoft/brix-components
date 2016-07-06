@@ -1,41 +1,61 @@
 /* global define */
 define(
     [
-        'jquery', 'underscore',
+        'jquery', 
+        'underscore',
+        'handlebars',
         'brix/base'
     ],
     function(
-        $, _,
+        $, 
+        _,
+        Handlebars,
         Brix
     ) {
         function Footer() {}
 
         _.extend(Footer.prototype, Brix.prototype, {
             options: {
-                type: 'front' // back
-            },
-            init: function() {
-                // $(this.element).append('<hr class="footer-top-border">')
+                mode: 'normal'
             },
             render: function() {
-                // http://www.taobao.com/go/rgn/mm/footer.php?callback=jsonp189
                 var that = this
-                var mode = this.options.type === 'front' ? '' : 'simple'
+
+                // 兼容老的type参数
+                if (this.options.type) {
+                    this.options.mode = {
+                        front: 'normal',
+                        back: 'simple'
+                    }[this.options.type]
+                }
+
+                var simple = this.options.mode === 'simple'
+                var alimamaReg = /alimama\.(com|net)/i
+                var tanxReg = /tanx\.(com|net)/i
+                var taobaoReg = /taobao\.(com|net)/i
+                var alimama, taobao, tanx
+
+                if (alimamaReg.test(window.location.href)) {
+                    alimama = true
+                } else if (taobaoReg.test(window.location.href)) {
+                    taobao = true
+                } else if (tanxReg.test(window.location.href)) {
+                    tanx = true
+                } else {
+                    alimama = true
+                }
+
                 $.ajax({
-                    url: 'http://www.taobao.com/go/rgn/mm/footer.php',
-                    data: {
-                        mode: mode
-                    },
+                    url: 'http://mo.m.taobao.com/union/jsonp/footer',
                     dataType: 'jsonp',
                     jsonp: 'callback',
-                    success: function(resp /*, status, xhr*/ ) {
-                        $(that.element).append(
-                            $('<textarea />').html(resp).val()
-                            .replace(
-                                '<style type="text/css">',
-                                '<style type="text/css" scoped>'
-                            )
-                        )
+                    success: function(resp) {
+                        $(that.element).html(Handlebars.compile(resp.html)({
+                            simple: simple,
+                            alimama: alimama,
+                            taobao: taobao,
+                            tanx: tanx
+                        }))
                     }
                 })
             }

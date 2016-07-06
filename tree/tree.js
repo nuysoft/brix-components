@@ -348,6 +348,10 @@ define(
                     currentTarget: event.currentTarget
                 })
                 this.trigger(forwardEvent, [this.options.mapped[id], event.currentTarget])
+            },
+            destroy: function() {
+                var type = 'click' + NAMESPACE + '_' + this.clientId
+                $(document.body).off(type)
             }
         })
 

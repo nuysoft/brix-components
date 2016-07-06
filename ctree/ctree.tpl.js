@@ -1,15 +1,13 @@
 /* global define */
 define(function() {
-    return (function(){/*
-<ul>
-    <% for(var i = 0, item; item = children[i]; i++ ) { %>
-        <li>
-            <strong title="moduleId"> <%= item.module.moduleId %></strong>
-            -
-            <small title="clientId"><%= item.module.clientId %></small>
-            <%= item.childrenFn() %>
-        </li>
-    <% } %>
-</ul>
-    */}).toString().split("\n").slice(1,-1).join("\n")
+    return "<ul>\n" +
+        "    <% for(var i = 0, item; item = children[i]; i++ ) { %>\n" +
+        "        <li>\n" +
+        "            <strong title=\"moduleId\"> <%= item.module.moduleId %></strong>\n" +
+        "            -\n" +
+        "            <small title=\"clientId\"><%= item.module.clientId %></small>\n" +
+        "            <%= item.childrenFn() %>\n" +
+        "        </li>\n" +
+        "    <% } %>\n" +
+        "</ul>"
 })

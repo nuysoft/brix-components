@@ -1,8 +1,1 @@
-/* global define */
-define(function() {
-    return (function(){/*
-<div class="readme">
-	<div bx-name="components/spin" data-type="three-bounce" class="spin"></div>
-</div>
-    */}).toString().split("\n").slice(1,-1).join("\n")
-})
+define(function(){return'<div class="readme">\n	<div bx-name="components/spin" data-type="three-bounce" class="spin"></div>\n</div>'});

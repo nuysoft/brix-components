@@ -61,7 +61,7 @@ define(
             render: function() {
                 var that = this
                 this.$element = $(this.element)
-                this.manager = new EventManager('bx-')
+                this.$manager = new EventManager('bx-')
 
                 var html = _.template(template)({
                     utcOffset: this.options.utcOffset,
@@ -96,7 +96,7 @@ define(
                     this.val(args)
                 }
 
-                this.manager.delegate(this.$element, this)
+                this.$manager.delegate(this.$element, this)
 
                 /* jshint unused:true */
                 $('.picker-hours', this.$element)
@@ -298,6 +298,11 @@ define(
                 $('.shortcuts input[name=shortcut]:eq(0)', this.$element).prop('checked', is('0123456', ''))
                 $('.shortcuts input[name=shortcut]:eq(1)', this.$element).prop('checked', is('12345', '06'))
                 $('.shortcuts input[name=shortcut]:eq(2)', this.$element).prop('checked', is('06', '12345'))
+            },
+            destroy: function() {
+                this.$manager.undelegate(this.$element)
+
+                this.$element.empty()
             }
         })
 

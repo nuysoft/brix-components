@@ -6,7 +6,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', 'brix/event',
+        'components/base', 'brix/event',
         './colorpicker.tpl.js'
     ],
     function(
@@ -97,7 +97,7 @@ define(
             init: function() {},
             render: function() {
                 var that = this
-                var manager = new EventManager()
+                this.$manager = new EventManager('bx-')
 
                 this.color = this.options.color
                 var html = _.template(template)({
@@ -145,8 +145,8 @@ define(
                         that.hide()
                     })
 
-                manager.delegate(this.element, this)
-                manager.delegate(this.relatedElement, this)
+                this.$manager.delegate(this.element, this)
+                this.$manager.delegate(this.relatedElement, this)
 
                 this.on('change selected', function(event, data) {
                     console.log(event.type, data)
@@ -329,6 +329,15 @@ define(
                     }
                 })
                 this.hide()
+            },
+            destroy: function(){
+                this.$manager.undelegate(this.element, this)
+                this.$manager.undelegate(this.relatedElement, this)
+
+                this.relatedElement.remove()
+
+                var type = 'click.colorpicker_' + this.clientId
+                $(document.body).off(type)
             }
         })
         return ColorPicker

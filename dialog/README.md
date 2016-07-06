@@ -122,14 +122,17 @@ new Dialog(_.extend({}, options, {
     require(['brix/loader', 'log'], function(Loader, log) {
         Loader.boot(function() {
             var instances = Loader.query('components/dialog')
-            instances.on('show.dialog hide.dialog', function(event) {
+            instances.on('open.dialog close.dialog', function(event) {
+                // var areYouSure = confirm('are you sure?')
+                // if (!areYouSure) event.preventDefault()
                 console.log(event.type, event.namespace)
             })
-            var $inputTrigger = Loader.query($('#inputTrigger'))[0]
-            $inputTrigger.on('show.dialog', function(event) {
-                var $content = $inputTrigger.$relatedElement.find('.content')
-                Loader.load($content, 'components/spin')
-            })
+            // var $inputTrigger = Loader.query($('#inputTrigger'))[0]
+            // $inputTrigger.on('open.dialog', function(event) {
+            //     var $content = $inputTrigger.$relatedElement.find('.dialog-content')
+            //     debugger
+            //     Loader.load($content, 'components/spin')
+            // })
         })
     })
 </script>

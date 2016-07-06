@@ -1442,6 +1442,7 @@ ul.checklist-linear > li {
   margin-left: 10px;
   position: absolute;
   right: 12px;
+  top: 8px;
 }
 .dropdown.open .dropdown-toggle.btn-default {
   border-color: #CCC;
@@ -1540,6 +1541,7 @@ ul.checklist-linear > li {
 .dropdown.dropdown-popover .dropdown-toggle .caret_custom {
   position: absolute;
   right: 12px;
+  top: 8px;
 }
 .dropdown.dropdown-justify .dropdown-menu-wrapper,
 .dropdown.dropdown-ellipsis .dropdown-menu-wrapper {
@@ -1554,6 +1556,14 @@ ul.checklist-linear > li {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.dropdown.disabled .dropdown-toggle {
+  cursor: not-allowed;
+  background-color: #e6e6e6;
+  color: #CCC;
+}
+.dropdown.disabled .dropdown-toggle:hover {
+  border-color: #e6e6e6;
 }
 input,
 .input,
@@ -1919,6 +1929,166 @@ button.parsley-error {
   background-color: #fc4218;
 }
 .datepicker-container > .picker-group.picker-footer {
+  padding: 6px 0;
+}
+.datepicker-ancient-container {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 0px;
+  /* 年月日 变量 */
+  /* 年月日 */
+  /* 时分秒 */
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-header .year-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .year .year-body .year-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-header .month-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .month .month-body .month-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day {
+  padding: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header {
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-title {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-prev {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-prev:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-prev .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-next {
+  padding: 8px 0px;
+  color: #999;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-next:hover {
+  color: #ff6600;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-header .day-header-next .brixfont {
+  font-size: 12px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body {
+  padding: 0 0 10px 0;
+  width: 258px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-desc {
+  color: #999;
+  background-color: #FAFAFA;
+  padding: 0 10px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content {
+  padding: 0 10px;
+  height: 180px;
+}
+.datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content > span.active {
+  color: white;
+  background-color: #ff6600;
+}
+.datepicker-ancient-container .unlimit-container {
   padding: 6px 0;
 }
 ol.breadcrumb {
