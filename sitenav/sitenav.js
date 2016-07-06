@@ -23,7 +23,7 @@ define(
                 var simple = this.options.mode === 'simple' ? true : false
 
                 $.ajax({
-                    url: 'http://mo.m.taobao.com/union/jsonp/sitenav',
+                    url: '//mo.m.taobao.com/union/jsonp/sitenav',
                     dataType: 'jsonp',
                     success: function(resp) {
                         var sitenav = $(that.element)

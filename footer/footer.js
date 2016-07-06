@@ -46,7 +46,7 @@ define(
                 }
 
                 $.ajax({
-                    url: 'http://mo.m.taobao.com/union/jsonp/footer',
+                    url: '//mo.m.taobao.com/union/jsonp/footer',
                     dataType: 'jsonp',
                     jsonp: 'callback',
                     success: function(resp) {
