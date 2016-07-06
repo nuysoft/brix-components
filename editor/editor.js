@@ -11,9 +11,7 @@ define(
     [
         'jquery', 'underscore', 'mousetrap',
         'brix/base',
-        './editor.tpl.js',
-        'css!./editor.css',
-        'css!fontawesome/css/font-awesome.css'
+        './editor.tpl.js'
     ],
     function(
         $, _, Mousetrap,

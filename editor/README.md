@@ -9,3 +9,6 @@
         <div bx-name="components/editor"></div>
     </div>
 </div>
+<script type="text/javascript">
+    require(['css!dependencies/fontawesome/css/font-awesome.css'])
+</script>

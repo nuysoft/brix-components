@@ -21,11 +21,13 @@
     "gulp-jshint": "*",
     "gulp-less": "*",
     "gulp-minify-css": "*",
-    "gulp-requirejs": "*",
     "gulp-uglify": "*",
     "gulp-util": "^3.0.7",
     "jshint-stylish": "*",
-    "through2": "*"
+    "node-print": "0.0.4",
+    "through2": "*",
+    "underscore": "^1.8.3",
+    "webpack": "^1.13.1"
   },
   "dependencies": {}
 }

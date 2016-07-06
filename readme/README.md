@@ -4,7 +4,7 @@
 
 ### 示例 <small>Examples</small>
 
-<div bx-name="component/pjax" bx-options="{}"></div>
+<div bx-name="components/readme" bx-options="{}"></div>
 
 ### 使用 Usage
 
@@ -27,7 +27,7 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-name="component/pjax" bx-options="{}"></div>
+  <div bx-name="component/readme" bx-options="{}"></div>
   ```
 
 ### 配置 <small>Options</small>
@@ -45,7 +45,7 @@ template | string | '' | 渲染组件所需的 HTML 模板。
 
 ```js
 var Loader = require('brix/loader')
-var instance = Loader.query('component/pjax')
+var instance = Loader.query('component/render')
 instance.render()
 ```
 
@@ -55,7 +55,7 @@ Lorem ipsum
 
 ```js
 var Loader = require('brix/loader')
-var instance = Loader.query('component/pjax')
+var instance = Loader.query('component/render')
 instance.method()
 ```
 

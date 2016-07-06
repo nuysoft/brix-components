@@ -13,7 +13,7 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
-        '../areapicker/area.js',
+        '../areapicker/area',
         './tree.tpl.js',
         './tree.node.tpl.js'
     ],
@@ -48,7 +48,7 @@ define(
                 var deps = []
                 var customNodeTemplate = this.options.nodeTemplate || this.options['node-template']
                 if (customNodeTemplate) deps.push(customNodeTemplate)
-                require(deps, function() {
+                window.require(deps, function() {
                     if (customNodeTemplate) that.options.customNodeTemplate = arguments[0]
                     defer.resolve()
                 })

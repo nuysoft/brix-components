@@ -111,7 +111,7 @@ define(
                 this.$manager = new EventManager('bx-')
 
                 // 支持自定义外联 CSS 样式，data-css="dialog.css"
-                if (this.options.css && _.isString(this.options.css)) require(['css!' + this.options.css])
+                if (this.options.css && _.isString(this.options.css)) window.require(['css!' + this.options.css])
 
                 // data-class => data-className
                 if (this.options.class) this.options.className = this.options.class

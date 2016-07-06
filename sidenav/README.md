@@ -14,7 +14,6 @@ Brix 组件实现示例。{ .lead }
                 <i class="bp-iconfont bp-logo1">&#13416;</i>
                 <i class="bp-iconfont bp-logo2">&#xe62d;</i>
             </div>
-
             <!-- 菜单区域 - 包含了顶部的菜单跟侧边栏 START-->
             <div class="sidebar-wrap" bx-name="components/sidenav" bx-options="{
               index: '/index',
@@ -22,7 +21,6 @@ Brix 组件实现示例。{ .lead }
                 '/examples/create': '/examples/second', //指定映射某个菜单
                 '/examples/nomenu': '' //映射为空代表不对应任何菜单
               }}">
-
                 <!-- 顶部菜单 -->
                 <div class="top-nav">
                     <ul>
@@ -33,7 +31,6 @@ Brix 组件实现示例。{ .lead }
                         <li><a href="#!/examples/custom2" data-sub="自定义2" hidefocus="true">包含自定义区域的菜单2</a></li>
                     </ul>
                 </div>
-
                 <!-- 侧边栏menus -->
                 <div class="sidebar">
                     <div class="sub-nav">
@@ -66,7 +63,6 @@ Brix 组件实现示例。{ .lead }
                                     </ul>
                                 </li>
                             </ul>
-
                             <!-- data-notmenu=true 标识这个自定义区域里的a链接不计入二级菜单计算 -->
                             <div data-notmenu="true" data-sub="自定义" style="padding:0 30px 30px;font-size:12px;">
                                 <div mx-vframe="true" id="custom1"></div>
@@ -81,12 +77,9 @@ Brix 组件实现示例。{ .lead }
                                 <br>
                                 <a href="#!/examples/second">有对应菜单页面</a>
                             </div>
-
                             <div data-notmenu="true" data-sub="自定义2" style="padding:0 30px 30px;font-size:12px;">
                                 <div mx-vframe="true" id="custom2"></div>
                             </div>
-
-
                             <!-- hold按钮 -->
                             <div class="side-hold">
                                 <span class="on" title="固定侧栏">锁定</span>

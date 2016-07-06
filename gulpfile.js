@@ -4,11 +4,12 @@ var through = require('through2')
 var gutil = require('gulp-util')
 var concat = require('gulp-concat')
 var jshint = require('gulp-jshint')
-var rjs = require('gulp-requirejs')
 var uglify = require('gulp-uglify')
 var less = require('gulp-less')
 var csslint = require('gulp-csslint')
 var minifyCss = require('gulp-minify-css')
+var webpack = require("webpack")
+var print = require('node-print')
 
 gulp.task('hello', function() {
     console.log((function() {
@@ -205,7 +206,7 @@ gulp.task('tpl', function() {
         .pipe(gulp.dest('./'))
 })
 
-/* gulp tpl2 - test */
+/* gulp tpl - test */
 /*
 var base = 'bower_components/brix-components/'
 var tpls = [
@@ -257,23 +258,130 @@ tpls.forEach(function(tpl, index) {
 })
 */
 
-// https://github.com/RobinThrift/gulp-requirejs
-// http://requirejs.org/docs/optimization.html#empty
-gulp.task('rjs', function() {
-    var empty = {
-        'jquery': 'empty:',
-        'underscore': 'empty:',
-        'brix/loader': 'empty:',
-        'brix/event': 'empty:',
-        'components/base': 'empty:'
-    }
-    rjs({
-            baseUrl: '.',
-            name: 'dropdown/dropdown',
-            out: 'dropdown/dropdown.js',
-            paths: empty
-        }).pipe(uglify({}))
-        .pipe(gulp.dest('./dist/'))
+// https://webpack.github.io/docs/configuration.html
+// https://webpack.github.io/docs/usage-with-gulp.html
+gulp.task('webpack', function( /*callback*/ ) {
+    // https://webpack.github.io/docs/configuration.html#externals
+    var externals = [{
+        'brix/loader': true,
+        'brix/base': true,
+        'brix/event': true,
+        'brix/animation': true,
+        'brix/spa': true,
+
+        magix: true,
+        chartx: true,
+        'chartx/index': true,
+
+        jquery: true,
+        underscore: true,
+        moment: true,
+        handlebars: true,
+        mousetrap: true,
+        mock: true,
+        marked: true,
+        Chart: true,
+        director: true,
+        URIjs: true,
+        page: true,
+        highlightjs: true,
+        nprogress: true,
+        parsley: true,
+        log: true,
+        accounting: true,
+        progressbar: true,
+        Sortable: true,
+        fontawesome: true,
+        vue: true,
+        colors: true,
+        printf: true,
+    }]
+    var components = [
+        ['./base/base.js', 'components/base'],
+        ['./dropdown/dropdown.js', 'components/dropdown'],
+        ['./switch/switch.js', 'components/switch'],
+        ['./pagination/pagination.js', 'components/pagination'],
+        ['./pagination/state.js', 'components/pagination/state'],
+        ['./dialog/dialog.js', 'components/dialog'],
+        ['./dialog/position.js', 'components/dialog/position'],
+        ['./dialogview/dialogview.js', 'components/dialogview'],
+        ['./table/table.js', 'components/table'],
+        ['./table/linkage.js', 'components/table/linkage'],
+        ['./datepicker/datepicker.js', 'components/datepicker'],
+        ['./datepickerwrapper/datepickerwrapper.js', 'components/datepickerwrapper'],
+        ['./datepicker/ancient/datepicker.js', 'components/datepicker/ancient'],
+        ['./popover/popover.js', 'components/popover'],
+        ['./uploader/uploader.js', 'components/uploader'],
+
+        ['./nprogress/nprogress.js', 'components/nprogress'],
+        ['./hourpicker/hourpicker.js', 'components/hourpicker'],
+        ['./areapicker/areapicker.js', 'components/areapicker'],
+        ['./tree/tree.js', 'components/tree'],
+        ['./tree/tree/tree.node.json.tpl.js', 'components/tree/tree.node.json.tpl'],
+        ['./taginput/taginput.js', 'components/taginput'],
+        ['./suggest/suggest.js', 'components/suggest'],
+        ['./chartxwrapper/chartxwrapper.js', 'components/chartxwrapper'],
+
+        ['./hello/hello.js', 'components/hello'],
+        ['./hello-extra/hello-extra.js', 'components/hello-extra'],
+        ['./colorpicker/colorpicker.js', 'components/colorpicker'],
+        ['./modal/modal.js', 'components/modal'],
+        ['./editor/editor.js', 'components/editor'],
+        ['./editable/editable.js', 'components/editable'],
+        ['./spin/spin.js', 'components/spin'],
+        ['./countdown/countdown.js', 'components/countdown'],
+        ['./sidebar/sidebar.js', 'components/sidebar'],
+        ['./chart/chart.js', 'components/chart'],
+        ['./imager/imager.js', 'components/imager'],
+        ['./validation/validation.js', 'components/validation'],
+        // ['./validation/validation/i18n', 'components/validation/i18n'], // TODO
+        ['./ellipsis/ellipsis.js', 'components/ellipsis'],
+        ['./progressbarwrapper/progressbarwrapper.js', 'components/progressbarwrapper'],
+        ['./errortips/errortips.js', 'components/errortips'],
+        ['./sidenav/sidenav.js', 'components/sidenav'],
+        ['./sitenav/sitenav.js', 'components/sitenav'],
+        ['./footer/footer.js', 'components/footer'],
+        ['./wizard/wizard.js', 'components/wizard'],
+        ['./tab/tab.js', 'components/tab'],
+
+        ['./ctree/ctree.js', 'components/ctree'],
+        ['./sticky/sticky.js', 'components/sticky'],
+        ['./nav/nav.js', 'components/nav'],
+        ['./readme/readme.js', 'components/readme'],
+        ['./css-layout-debugger/css-layout-debugger.js', 'components/css-layout-debugger'],
+        ['./boilerplate/boilerplate.js', 'components/boilerplate'],
+    ]
+    components.forEach(function(item, index) {
+        externals[0][item[1]] = true
+    })
+    console.log(externals)
+    components.forEach(function(item, index) {
+        print.pf('%4s %-50s => %-50s', index, item[0].green, item[1].grey)
+            // console.log(index, item[0], item[1])
+        webpack({
+            entry: item[0],
+            output: {
+                path: './dist',
+                filename: item[0],
+                library: item[1],
+                libraryTarget: 'amd'
+            },
+            externals: externals,
+            plugins: [
+                new webpack.optimize.UglifyJsPlugin({
+                    minimize: true
+                })
+            ]
+        }, function(err /*, stats*/ ) {
+            // console.log(err, stats)
+            if (err) throw err
+        })
+    })
+
+    // gulp.src(globs)
+    //     .pipe(through.obj(function(file, encoding, callback) {
+    //         callback(null, file)
+    //     }))
 })
 
 // https://github.com/terinjokes/gulp-uglify

@@ -8,10 +8,10 @@
     <div class="content">
         <div bx-name="components/countdown"></div>
         <div bx-name="components/countdown" bx-options="{
-            expires: '2015-1-1'
+            expires: '2017-1-1'
         }"></div>
-        <div bx-name="components/countdown" data-expires="2015-1-1"></div>
-        <div bx-name="components/countdown" data-expires="2015-2-1 1:1:1"></div>
+        <div bx-name="components/countdown" data-expires="2017-1-1"></div>
+        <div bx-name="components/countdown" data-expires="2017-2-1 1:1:1"></div>
     </div>
 </div>
 

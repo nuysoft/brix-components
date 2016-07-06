@@ -46,7 +46,7 @@ define(
                     if (customCSS.indexOf('css!') !== 0) customCSS = 'css!' + customCSS
                     deps.push(customCSS)
                 }
-                require(deps, function() {
+                window.require(deps, function() {
                     if (customItemTemplate) itemTemplate = arguments[0]
                     defer.resolve()
                 })

@@ -22,7 +22,7 @@ define(
             },
             init: function() {
                 if (!Parsley) Parsley = window.Parsley
-                require(['dependencies/parsleyjs/src/i18n/' + this.options.i18n])
+                window.require(['dependencies/parsleyjs/src/i18n/' + this.options.i18n])
             },
             render: function() {
                 this.parsley = $(this.element).parsley()

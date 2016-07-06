@@ -2,10 +2,9 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', '../table/linkage.js',
-        './area.js',
-        './areapicker.tpl.js',
-        'components/dialog'
+        'brix/base', '../table/linkage',
+        './area',
+        './areapicker.tpl.js'
     ],
     function(
         $, _,

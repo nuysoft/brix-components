@@ -12,7 +12,6 @@ define(
         return Brix.extend({
             options: {},
             init: function() {
-                require(['css!./nprogress.css'])
                 this.NProgress = NProgress
             },
             render: function() {

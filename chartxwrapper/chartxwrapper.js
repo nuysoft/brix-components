@@ -37,7 +37,7 @@ define(
             },
             render: function() {
                 var that = this
-                require(['chartx/chart/' + this.options.type + '/index'], function(Chart) {
+                window.require(['chartx/chart/' + this.options.type + '/index'], function(Chart) {
                     var chart = new Chart(that.element, that.options.data, that.options.options)
                     chart.draw()
                         // chart.resize()
