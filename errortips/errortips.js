@@ -155,9 +155,11 @@ define([
       })
 
       this._tips = $(tipsHtml)
+      var _tipsWidth = this._tips.outerWidth()
+      var _tipsHeight = this._tips.outerHeight()
       $('body').append(this._tips)
       var tipsLeft = offset.left - fixLeft
-      var tipsTop = offset.top - this._tips.outerHeight() - 20
+      var tipsTop = offset.top - _tipsHeight - 20
       var tipsTopStart = 0
 
 
@@ -166,7 +168,8 @@ define([
        * @type {[type]}
        */
       var winWidth = $(window).width()
-      var mm = tipsLeft + this._tips.outerWidth() - winWidth
+      var winHeight = $(window).height()
+      var mm = tipsLeft + _tipsWidth - winWidth
       if (mm > 0) { //右边界
         tipsLeft -= mm
         this._tips.find('.arrow').css({
@@ -189,6 +192,27 @@ define([
         tipsTopStart = tipsTop + 25
       }
 
+      //如果节点被隐藏了，浮层直接居中
+      if (el.is(':hidden')) {
+        this._tips.find('.arrow').hide()
+        var centerLeft = (winWidth - _tipsWidth) / 2
+        var centerTop = (winHeight - _tipsHeight) / 2
+
+        this._tips.css({
+          left: centerLeft,
+          top: centerTop,
+          opacity: 0
+        })
+
+        this._tips.animate({
+          left: centerLeft,
+          top: centerTop,
+          opacity: 1
+        }, 250, 'swing')
+        return
+      }
+
+      //正常显示在按钮的上面
       this._tips.css({
         left: tipsLeft,
         top: tipsTopStart,
