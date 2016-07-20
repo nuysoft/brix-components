@@ -2384,13 +2384,19 @@ table tbody tr:hover .editable-toggle {
   height: 60px;
   vertical-align: middle;
   padding: 0 8px 0 14px;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   background-color: #FAFAFA;
   border: none;
 }
 .table thead tr th.stable,
 .table thead tr.active th.stable {
   background-color: #f0f0f0;
+}
+.table thead tr th.end,
+.table thead tr.active th.end {
+  padding-right: 40px;
 }
 .table tbody tr td {
   color: #333;

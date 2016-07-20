@@ -1760,11 +1760,17 @@ table {
                 height: 60px;
                 vertical-align: middle;
                 padding: 0 8px 0 14px;
+                overflow: hidden;
                 white-space: nowrap;
+                text-overflow: ellipsis;
                 background-color: #FAFAFA;
                 border: none;
                 &.stable {
                     background-color: @bg;
+                }
+                &.start {}
+                &.end {
+                    padding-right: 40px;
                 }
             }
         }

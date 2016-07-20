@@ -192,7 +192,11 @@ define(
             // 调整被 priority 插件隐藏或显示的列（内容列，非表头）
             for (var i = 0, m, index; i < state.total; i++) {
                 m = (i >= state.start && i < state.end) ? 'show' : 'hide'
-                index = $ths.eq(i)[m]().index()
+                index = $ths.eq(i)[m]()
+                    .removeClass('start').removeClass('end')
+                    .addClass(i === state.start ? 'start' : '')
+                    .addClass(i === state.end - 1 ? 'end' : '')
+                    .index()
                 $table.find(
                     _.template(SELECTOR_TD)({
                         nth: index + 1
