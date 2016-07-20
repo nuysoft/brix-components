@@ -162,7 +162,6 @@ define([
       var tipsTop = offset.top - _tipsHeight - 20
       var tipsTopStart = 0
 
-
       /**
        * 超过边界调整
        * @type {[type]}
