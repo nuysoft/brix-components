@@ -155,9 +155,9 @@ define([
       })
 
       this._tips = $(tipsHtml)
+      $('body').append(this._tips)
       var _tipsWidth = this._tips.outerWidth()
       var _tipsHeight = this._tips.outerHeight()
-      $('body').append(this._tips)
       var tipsLeft = offset.left - fixLeft
       var tipsTop = offset.top - _tipsHeight - 20
       var tipsTopStart = 0
