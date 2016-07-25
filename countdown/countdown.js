@@ -54,7 +54,10 @@ define(
                 expires: new Date()
             },
             render: function() {
-                this.options.expires = moment(this.options.expires).toDate()
+                this.options.expires = moment(
+                    this.options.expires,
+                    _.isString(this.options.expires) && 'YYYY-MM-DD HH:mm:ss'
+                ).toDate()
                 this.data = this.data || _.extend({}, this.options)
 
                 var html = _.template(template)(this.data)
@@ -159,15 +162,15 @@ define(
                 }
             },
             run: function() {
-                _.each(this.timers, function(item, interval) {
-                    if (!item.length) {
-                        clearInterval(item.timer)
+                _.each(this.timers, function(tasks, interval) {
+                    if (!tasks.length) {
+                        clearInterval(tasks.timer)
                         return
                     }
-                    if (!item.timer) {
-                        item.timer = setInterval(function() {
-                            _.each(item, function(fn /*, index*/ ) {
-                                fn()
+                    if (!tasks.timer) {
+                        tasks.timer = setInterval(function() {
+                            _.each(tasks, function(task /*, index*/ ) {
+                                if (task) task()
                             })
                         }, interval)
                     }
