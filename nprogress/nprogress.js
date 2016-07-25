@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define */
 /*
     http://ricostacruz.com/nprogress/
  */
@@ -12,7 +12,7 @@ define(
         return Brix.extend({
             options: {},
             init: function() {
-                require(['css!./nprogress.css'])
+                window.require(['css!./nprogress.css'])
                 this.NProgress = NProgress
             },
             render: function() {

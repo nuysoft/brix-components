@@ -1,4 +1,4 @@
-/* global define, require */
+/* global define          */
 /* global setTimeout      */
 /* global clearTimeout    */
 define(
@@ -42,7 +42,7 @@ define(
             },
             init: function() {
                 // 支持自定义 CSS 样式
-                if (this.options.css) require(['css!' + this.options.css])
+                if (this.options.css) window.require(['css!' + this.options.css])
             },
             render: function() {
                 var that = this
