@@ -1566,8 +1566,24 @@ table.table-pagination {
 .dropdown.suggest {
     min-width: 100%;
     width: 100%;
-    .dropdown-menu {
+    ul.dropdown-menu {
         width: 100%;
+        > li {
+            > a {
+                color: #333;
+                span.highlight {
+                    color: @brand;
+                    background-color: transparent;
+                    font-weight: normal;
+                }
+            }
+            &.active {
+                > a {
+                    color: #333;
+                    background-color: @bg;
+                }
+            }
+        }
     }
 }
 

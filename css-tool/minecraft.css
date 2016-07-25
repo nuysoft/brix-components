@@ -2222,8 +2222,20 @@ table.table-pagination tfoot tr td {
   min-width: 100%;
   width: 100%;
 }
-.dropdown.suggest .dropdown-menu {
+.dropdown.suggest ul.dropdown-menu {
   width: 100%;
+}
+.dropdown.suggest ul.dropdown-menu > li > a {
+  color: #333;
+}
+.dropdown.suggest ul.dropdown-menu > li > a span.highlight {
+  color: #FF6600;
+  background-color: transparent;
+  font-weight: normal;
+}
+.dropdown.suggest ul.dropdown-menu > li.active > a {
+  color: #333;
+  background-color: #F0F0F0;
 }
 .input-group-wrapper .input-group {
   border: 1px solid #FF6600;
