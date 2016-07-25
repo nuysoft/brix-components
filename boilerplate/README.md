@@ -1,10 +1,10 @@
-# boilerplate
+# Boilerplate
 
 > Lorem ipsum
 
 ### 示例 <small>Examples</small>
 
-<div bx-name="component/boilerplate" bx-options="{}"></div>
+<div bx-name="components/boilerplate" bx-options="{}"></div>
 
 ### 使用 Usage
 
@@ -27,7 +27,7 @@
 3. 应用组件 Apply
 
   ```html
-  <div bx-name="component/boilerplate" bx-options="{}"></div>
+  <div bx-name="components/boilerplate" bx-options="{}"></div>
   ```
 
 ### 配置 <small>Options</small>
