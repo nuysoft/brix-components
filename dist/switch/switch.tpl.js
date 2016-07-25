@@ -1,1 +1,1 @@
-define(function(){return"<span class=\"switch \n	<%= checked ? 'switch-checked' : '' %> \n	<%= disabled ? 'switch-disabled' : '' %>\n	<%= size ? 'switch-' + size : '' %>\n	\" bx-click=\"toggle\">\n	<small></small>\n</span>"});
+define(function(){return"<span class=\"switch \n\t<%= checked ? 'switch-checked' : '' %> \n\t<%= disabled ? 'switch-disabled' : '' %>\n\t<%= size ? 'switch-' + size : '' %>\n\t\" bx-click=\"toggle\">\n\t<small></small>\n</span>"});

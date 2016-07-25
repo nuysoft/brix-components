@@ -55,7 +55,7 @@ body .btn {
   background-image: none;
 }
 body .btn:hover {
-  background-color: #cccccc;
+  background-color: #ccc;
   border-color: #e6e6e6;
 }
 body .btn.btn-brand {
@@ -102,7 +102,7 @@ body .form-control {
   vertical-align: middle;
   font-size: 12px;
   padding: 6px 9px;
-  color: #333333;
+  color: #333;
   border: 1px solid #e6e6e6;
   background-color: white;
   -webkit-border-radius: 4px;
@@ -125,8 +125,8 @@ body .input:hover,
 body textarea:hover,
 body .textarea:hover,
 body .form-control:hover {
-  border-color: #cccccc;
-  color: #333333;
+  border-color: #ccc;
+  color: #333;
 }
 body input:focus,
 body .input:focus,
@@ -134,7 +134,7 @@ body textarea:focus,
 body .textarea:focus,
 body .form-control:focus {
   border-color: #4d7fff;
-  color: #333333;
+  color: #333;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -155,7 +155,7 @@ body .input::-webkit-input-placeholder,
 body textarea::-webkit-input-placeholder,
 body .textarea::-webkit-input-placeholder,
 body .form-control::-webkit-input-placeholder {
-  color: #999999;
+  color: #999;
 }
 body input[disabled],
 body .input[disabled],
@@ -170,7 +170,7 @@ body .form-control[readonly] {
   border-color: #e6e6e6;
   cursor: not-allowed;
   background-color: #fafafa;
-  color: #cccccc;
+  color: #ccc;
 }
 body textarea,
 body .textarea,
@@ -187,7 +187,7 @@ body .error textarea:hover,
 body .error button,
 body .error button:focus,
 body .error button:hover {
-  border-color: #a40100;
+  border-color: #A40100;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -201,15 +201,15 @@ body textarea.parsley-error,
 body button.error,
 body button.input-error,
 body button.parsley-error {
-  color: #333333;
+  color: #333;
   background-color: white;
-  border-color: #a40100;
+  border-color: #A40100;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 body .parsley-errors-list {
-  color: #a40100;
+  color: #A40100;
 }
 body .searchbox {
   position: relative;
@@ -219,7 +219,7 @@ body .searchbox .brixfont {
   left: 8px;
   top: 4px;
   font-size: 18px;
-  color: #999999;
+  color: #999;
 }
 body .searchbox input {
   padding-left: 30px;
@@ -233,7 +233,7 @@ body .dropdown .dropdown-toggle {
   padding: 6px 12px;
   border: 1px solid #E6E6E6;
   border-radius: 4px;
-  color: #999999;
+  color: #999;
   text-align: left;
   background-color: transparent;
 }
@@ -249,8 +249,8 @@ body .dropdown .dropdown-toggle .caret_brixfont {
   margin-left: 10px;
 }
 body .dropdown.open .dropdown-toggle.btn-default {
-  border-color: #cccccc;
-  color: #333333;
+  border-color: #ccc;
+  color: #333;
 }
 body .dropdown .dropdown-menu {
   margin-top: 10px;
@@ -320,7 +320,7 @@ body .paginationwrapper ul.pagination > li.disabled > a,
 body .paginationwrapper ul.pagination > li.disabled > span,
 body .paginationwrapper ul.pagination > li.disabled > a:hover,
 body .paginationwrapper ul.pagination > li.disabled > span:hover {
-  color: #999999;
+  color: #999;
   background-color: transparent;
 }
 body .datepickerwrapper-trigger {
@@ -332,7 +332,7 @@ body .datepickerwrapper-trigger {
   padding: 6px 12px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
-  color: #999999;
+  color: #999;
   font-size: 12px;
 }
 body .datepickerwrapper-trigger .brixfont {
@@ -347,8 +347,8 @@ body .datepickerwrapper-trigger .brixfont.down {
   display: block;
 }
 body .datepickerwrapper-trigger.datepickerwrapper-open {
-  border-color: #cccccc;
-  color: #333333;
+  border-color: #ccc;
+  color: #333;
 }
 body .datepickerwrapper-trigger.datepickerwrapper-open .brixfont.up {
   display: block;
@@ -446,7 +446,7 @@ body .datepicker-container .picker-group .picker-header {
 body .datepicker-container .picker-group .picker-header .minus,
 body .datepicker-container .picker-group .picker-header .plus {
   padding: 8px 0px;
-  color: #999999;
+  color: #999;
 }
 body .datepicker-container .picker-group .picker-header .minus:hover,
 body .datepicker-container .picker-group .picker-header .plus:hover {
@@ -467,7 +467,7 @@ body .datepicker-container .picker-group .picker-body {
   width: 258px;
 }
 body .datepicker-container .picker-group .picker-body .datepicker-body-description {
-  color: #999999;
+  color: #999;
   background-color: #fafafa;
   padding: 0 10px;
 }
@@ -518,7 +518,7 @@ body .table thead tr th {
   height: 60px;
   padding: 0 8px;
   background-color: #fafafa;
-  color: #999999;
+  color: #999;
   font-weight: 400;
   vertical-align: middle;
   border: 0;
@@ -527,7 +527,7 @@ body .table tbody tr td {
   padding: 21px 8px;
   min-height: 60px;
   max-height: 90px;
-  color: #333333;
+  color: #333;
   border-top: 0;
   border-bottom: 1px solid #e6e6e6;
 }
