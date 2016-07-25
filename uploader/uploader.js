@@ -169,7 +169,11 @@ define(
 
                         var validate = $.Event('start' + NAMESPACE)
                         uploader.trigger(validate, [input.files])
-                        if (validate.isDefaultPrevented()) return
+                        if (validate.isDefaultPrevented()) {
+                            // #72 阻止上传后再次选择同一文件不触发上传
+                            Uploader.burn(input)
+                            return
+                        }
 
                         uploader.send(form, input).then(
                             function(response) {
