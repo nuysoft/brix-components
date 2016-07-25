@@ -376,7 +376,7 @@ gulp.task('webpack', function( /*callback*/ ) {
     })
     console.log(externals)
     components.forEach(function(item, index) {
-        nprint.pf('%4s %-50s => %-50s', index, item[0].green, item[1].grey)
+        nprint.pf('%4s %-60s => %-50s', index, item[0].green, item[1].grey)
             // console.log(index, item[0], item[1])
         webpack({
             entry: item[0],
@@ -384,7 +384,7 @@ gulp.task('webpack', function( /*callback*/ ) {
                 path: './dist',
                 filename: item[0],
                 library: item[1],
-                libraryTarget: 'amd'
+                libraryTarget: 'umd'
             },
             externals: externals,
             plugins: [
