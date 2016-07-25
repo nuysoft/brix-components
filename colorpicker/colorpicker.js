@@ -1,7 +1,6 @@
 /* global define        */
 /* global window        */
 /* global document      */
-/* global console       */
 /* jshint multistr:true */
 define(
     [
@@ -148,9 +147,9 @@ define(
                 this.$manager.delegate(this.element, this)
                 this.$manager.delegate(this.relatedElement, this)
 
-                this.on('change selected', function(event, data) {
-                    console.log(event.type, data)
-                })
+                // this.on('change selected', function(event, data) {
+                //     console.log(event.type, data)
+                // })
             },
             show: function() {
                 $(this.relatedElement).show()
@@ -315,7 +314,7 @@ define(
             },
             submit: function() {
                 var c = hsv2rgb(this.h, this.s, this.v)
-                this.trigger('selected', {
+                var extra = {
                     hex: c.hex,
                     hsv: {
                         h: this.h,
@@ -327,10 +326,12 @@ define(
                         g: c.g,
                         b: c.b
                     }
-                })
+                }
+                this.trigger('change.colorpicker', extra)
+                $(this.element).triggerHandler('change')
                 this.hide()
             },
-            destroy: function(){
+            destroy: function() {
                 this.$manager.undelegate(this.element, this)
                 this.$manager.undelegate(this.relatedElement, this)
 
