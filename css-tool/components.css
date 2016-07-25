@@ -1817,7 +1817,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: #428bca;
+  background-color: #428BCA;
   margin: 0 auto;
   -webkit-animation: rotateplane 1.2s infinite ease-in-out;
   animation: rotateplane 1.2s infinite ease-in-out;
@@ -1860,7 +1860,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #428bca;
+  background-color: #428BCA;
   opacity: 0.6;
   position: absolute;
   top: 0;
@@ -1901,7 +1901,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   height: 100%;
   width: 7px;
   margin: 0 3px 0 0;
-  background-color: #428bca;
+  background-color: #428BCA;
   display: inline-block;
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
   animation: stretchdelay 1.2s infinite ease-in-out;
@@ -1949,7 +1949,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .cube2 {
   width: 16px;
   height: 16px;
-  background-color: #428bca;
+  background-color: #428BCA;
   position: absolute;
   top: 0;
   left: 0;
@@ -2011,7 +2011,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   display: inline-block;
   position: absolute;
   top: 0;
-  background-color: #428bca;
+  background-color: #428BCA;
   border-radius: 100%;
   -webkit-animation: bounce 2s infinite ease-in-out;
   animation: bounce 2s infinite ease-in-out;
@@ -2038,7 +2038,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   width: 100%;
   height: 100%;
   border-radius: 40px;
-  background-color: #428bca;
+  background-color: #428BCA;
   -webkit-animation: scaleout 1s infinite ease-in-out;
   animation: scaleout 1s infinite ease-in-out;
 }
@@ -2075,7 +2075,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background-color: #428bca;
+  background-color: #428BCA;
   top: 50%;
   margin-top: -9px;
   -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
@@ -2120,7 +2120,7 @@ ul.sidebar-2 a.sidebar-link-3 > i {
 .container3 > div {
   width: 12px;
   height: 12px;
-  background-color: #428bca;
+  background-color: #428BCA;
   border-radius: 100%;
   position: absolute;
   -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
