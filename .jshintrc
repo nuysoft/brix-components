@@ -3,5 +3,7 @@
     "strict": false,
     "undef": true,
     "unused": "strict",
-    "browser": true
+    "browser": true,
+    "node": true,
+    "esversion": 6
 }
