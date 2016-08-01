@@ -1,1 +1,0 @@
-define(function(){return"<ul>\n\t<li>moduleId: <%= moduleId %></li>\n\t<li>clientId: <%= clientId %></li>\n\t<li>parentClientId: <%= parentClientId %></li>\n\t<li>childClientIds: <%= childClientIds %></li>\n</ul>"});

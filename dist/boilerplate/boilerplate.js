@@ -1,1 +1,0 @@
-define(["jquery","underscore","brix/base","./boilerplate.tpl.js"],function(t,e,n,i){function o(){}return e.extend(o.prototype,n.prototype,{options:{},render:function(){this.data=this.data||e.extend({},this.options);var n=e.template(i)(this.data);t(this.element).append(n)}}),o});

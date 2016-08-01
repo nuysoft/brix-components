@@ -1,1 +1,0 @@
-define(function(){return'<div>\n\tid: <%= id %>,\n\tname: <span class="tree-node-content-name"><%= name %></span>,\n\toperation: <a href="#" style="float: right;">+</a>\n</div>'});

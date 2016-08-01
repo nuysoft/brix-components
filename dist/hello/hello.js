@@ -1,1 +1,0 @@
-define(["jquery","underscore","brix/base","./hello.tpl.js"],function(e,t,s,n){return s.extend({options:{message:"World"},render:function(){this.data=this.data||t.extend({},t.pick(this.options,"message"));var s=t.template(n)(this.data);e(this.element).append(s)},say:function(t){t&&(this.data.message=t),this.render(),e(this.element).trigger("say",t)}})});

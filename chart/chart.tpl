@@ -1,1 +1,0 @@
-<canvas width="<%= width %>" height="<%= height %>"></canvas>

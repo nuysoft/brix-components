@@ -1,1 +1,0 @@
-define(function(){return"<p><%= message %> Works!</p>"});
