@@ -191,6 +191,7 @@ gulp.task('concat:css', ['less'], (cb) => {
             }
         ))
         .pipe(concat('components.css'))
+        .pipe(gulp.dest('./src/css-tool/'))
         .pipe(gulp.dest(DIST + 'styles/'))
         .on('end', cb)
 })

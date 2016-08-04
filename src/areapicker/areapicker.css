@@ -1,0 +1,22 @@
+.areapicker .areapicker-header {
+  padding-left: 9px;
+}
+.areapicker .areapicker-header .areapicker-header-title {
+  display: inline-block;
+  margin-right: 10px;
+}
+.areapicker .areapicker-header .areapicker-header-toggle {
+  position: absolute;
+  margin-top: 26px;
+}
+.areapicker .areapicker-header label,
+.areapicker .areapicker-body label {
+  margin: 5px 5px 0 0;
+  width: 135px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.areapicker .areapicker-header label input,
+.areapicker .areapicker-body label input {
+  margin-right: 5px;
+}

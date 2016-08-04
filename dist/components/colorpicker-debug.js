@@ -156,72 +156,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	            init: function() {},
 	            render: function() {
 	                var that = this
-	                this.$manager = new EventManager('bx-')
+	                var $element = this.$element = $(this.element)
 
 	                this.color = this.options.color
+
 	                var html = _.template(template)({
 	                    colors: ['#d81e06', '#f4ea2a', '#1afa29', '#1296db', '#13227a', '#d4237a', '#ffffff', '#e6e6e6', '#dbdbdb', '#cdcdcd', '#bfbfbf', '#8a8a8a', '#707070', '#515151', '#2c2c2c', '#000000', '#ea986c', '#eeb174', '#f3ca7e', '#f9f28b', '#c8db8c', '#aad08f', '#87c38f', '#83c6c2', '#7dc5eb', '#87a7d6', '#8992c8', '#a686ba', '#bd8cbb', '#be8dbd', '#e89abe', '#e8989a', '#e16632', '#e98f36', '#efb336', '#f6ef37', '#afcd51', '#7cba59', '#36ab60', '#1baba8', '#17ace3', '#3f81c1', '#4f68b0', '#594d9c', '#82529d', '#a4579d', '#db649b', '#dd6572', '#d81e06', '#e0620d', '#ea9518', '#f4ea2a', '#8cbb1a', '#2ba515', '#0e932e', '#0c9890', '#1295db', '#0061b2', '#0061b0', '#004198', '#122179', '#88147f', '#d3227b', '#d6204b'],
 	                    min: false,
 	                    color: this.color
 	                })
+	                var offset = $element.offset()
+	                var $relatedElement = this.$relatedElement = $(html).css({
+	                    left: offset.left,
+	                    top: offset.top + $element.outerHeight() + 1
+	                }).insertAfter($element).hide()
 
-	                var $trigger = $(this.element)
-	                var relatedElement = $(html).css({
-	                    left: $trigger.offset().left,
-	                    top: $trigger.offset().top + $trigger.outerHeight() + 1
-	                }).insertAfter(this.element).hide()
+	                this.pickerDragNode = $relatedElement.find('.picker-indicator')
+	                this.slideDragNode = $relatedElement.find('.slide-indicator')
 
-	                this.relatedElement = relatedElement[0]
-
-	                this.pickerDragNode = relatedElement.find('.picker-indicator')
-	                this.slideDragNode = relatedElement.find('.slide-indicator')
-
-	                var slideNode = this.slideNode = relatedElement.find('.slide')
-	                var pickerNode = this.pickerNode = relatedElement.find('.picker')
+	                var $slideNode = this.$slideNode = $relatedElement.find('.slide')
+	                var $pickerNode = this.$pickerNode = $relatedElement.find('.picker')
 	                var svgOrVml = (window.SVGAngle || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML")
-
 	                switch (svgOrVml) {
 	                    case 'SVG':
-	                        slideNode.append(svgSlideTpl)
-	                        pickerNode.append(svgPickerTpl)
+	                        $slideNode.append(svgSlideTpl)
+	                        $pickerNode.append(svgPickerTpl)
 	                        break
 	                    default:
 	                        if (!document.namespaces.v) {
 	                            document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML')
 	                        }
-	                        slideNode.html(vmlSlideTpl)
-	                        pickerNode.html(vmlPickerTpl)
+	                        $slideNode.html(vmlSlideTpl)
+	                        $pickerNode.html(vmlPickerTpl)
 	                }
 
 	                this.setHex(this.color)
 
+	                var $manager = this.$manager = new EventManager('bx-')
+	                $manager.delegate(this.$element, this)
+	                $manager.delegate(this.$relatedElement, this)
+
 	                var type = 'click.colorpicker_' + this.clientId
-	                $(document.body)
-	                    .off(type)
+	                $(document.body).off(type)
 	                    .on(type, function(event) {
 	                        if (that.element === event.target) return
-	                        if (relatedElement.has(event.target).length) return
+	                        if ($relatedElement.has(event.target).length) return
 	                        that.hide()
 	                    })
-
-	                this.$manager.delegate(this.element, this)
-	                this.$manager.delegate(this.relatedElement, this)
 
 	                // this.on('change selected', function(event, data) {
 	                //     console.log(event.type, data)
 	                // })
 	            },
 	            show: function() {
-	                $(this.relatedElement).show()
+	                this.$relatedElement.show()
 	            },
 	            hide: function() {
-	                $(this.relatedElement).hide()
+	                this.$relatedElement.hide()
 	            },
 	            toggle: function() {
-	                var $element = $(this.element)
-	                $(this.relatedElement).toggle().offset({
-	                    left: $element.offset().left,
-	                    top: $element.offset().top + $element.outerHeight() + 1
+	                var $element = this.$element
+	                var offset = $element.offset()
+	                this.$relatedElement.toggle().offset({
+	                    left: offset.left,
+	                    top: offset.top + $element.outerHeight() + 1
 	                })
 	            },
 	            /**
@@ -231,23 +229,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	             * @param {String} hex String of the form: #RRGGBB.
 	             */
 	            setColor: function(hsv /*, rgb, hex*/ ) {
-	                var $relatedElement = $(this.relatedElement)
+	                var $relatedElement = this.$relatedElement
 	                this.h = hsv.h % 360
 	                this.s = hsv.s
 	                this.v = hsv.v
 	                var c = hsv2rgb(this.h, this.s, this.v)
 
 	                this.slideDragNode.css({
-	                    top: Math.round(this.h * this.slideNode.height() / 360 - 5)
+	                    top: Math.round(this.h * this.$slideNode.height() / 360 - 5)
 	                })
-	                var left = Math.round(this.s * this.pickerNode.width() - 5)
-	                var top = Math.round((1 - this.v) * this.pickerNode.height() - 5)
+	                var left = Math.round(this.s * this.$pickerNode.width() - 5)
+	                var top = Math.round((1 - this.v) * this.$pickerNode.height() - 5)
 	                this.pickerDragNode.css({
 	                    left: left,
 	                    top: top,
 	                    color: top > 98 ? '#fff' : '#000'
 	                })
-	                this.pickerNode.css({
+	                this.$pickerNode.css({
 	                    "background-color": hsv2rgb(this.h, 1, 1).hex
 	                })
 	                $relatedElement.find('.colorpicker-footer span').css({
@@ -285,12 +283,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.setHex(extraParameters)
 	                $(event.target).addClass('selected')
 	            },
+	            toggleBody: function( /*event*/ ) {
+	                this.$relatedElement.find('.colorpicker-middle').toggleClass('open')
+	                this.$relatedElement.find('.colorpicker-body').slideToggle()
+	            },
 	            pickPaletteColor: function(event) {
-	                var offset = this.pickerNode.offset()
+	                var offset = this.$pickerNode.offset()
 	                var left = event.pageX - offset.left
 	                var top = event.pageY - offset.top
-	                var width = this.pickerNode.width()
-	                var height = this.pickerNode.height()
+	                var width = this.$pickerNode.width()
+	                var height = this.$pickerNode.height()
 	                this.setHsv({
 	                    h: this.h,
 	                    s: left / width,
@@ -304,9 +306,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                $(document.body).on('mousemove.pickerDragNode', function(event) {
 	                    event.pageX -= 5
 	                    event.pageY -= 5
-	                    var offset = that.pickerNode.offset(),
-	                        width = that.pickerNode.width(),
-	                        height = that.pickerNode.height(),
+	                    var offset = that.$pickerNode.offset(),
+	                        width = that.$pickerNode.width(),
+	                        height = that.$pickerNode.height(),
 	                        left = event.pageX - offset.left,
 	                        top = event.pageY - offset.top
 
@@ -329,8 +331,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                })
 	            },
 	            pickSlideColor: function(event) {
-	                var offset = this.slideNode.offset(),
-	                    height = this.slideNode.height(),
+	                var offset = this.$slideNode.offset(),
+	                    height = this.$slideNode.height(),
 	                    top = ((event.pageY - offset.top >= height) ? height - 1 : event.pageY - offset.top),
 	                    h = top / height * 360
 	                this.setHsv({
@@ -346,8 +348,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                $(document.body).on('mousemove.slideDragNode', function(event) {
 	                    event.pageX -= 5
 	                    event.pageY -= 5
-	                    var offset = that.slideNode.offset()
-	                    var height = that.slideNode.height(),
+	                    var offset = that.$slideNode.offset()
+	                    var height = that.$slideNode.height(),
 	                        top = event.pageY - offset.top
 
 	                    if (top + 5 > height) top = height - 1
@@ -355,7 +357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    else top += 5
 
 	                    that.setHsv({
-	                        h: top / that.slideNode.height() * 360,
+	                        h: top / that.$slideNode.height() * 360,
 	                        s: that.s,
 	                        v: that.v
 	                    })
@@ -388,19 +390,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	                this.trigger('change.colorpicker', extra)
-	                $(this.element).triggerHandler('change')
+	                this.$element.triggerHandler('change')
 	                this.hide()
 	            },
 	            destroy: function() {
-	                this.$manager.undelegate(this.element, this)
-	                this.$manager.undelegate(this.relatedElement, this)
+	                this.$manager.undelegate(this.$element, this)
+	                this.$manager.undelegate(this.$relatedElement, this)
 
-	                this.relatedElement.remove()
+	                this.$relatedElement.remove()
 
 	                var type = 'click.colorpicker_' + this.clientId
 	                $(document.body).off(type)
 	            }
 	        })
+
 	        return ColorPicker
 
 	        function hsv2rgb(h, s, v) {
@@ -485,18 +488,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
 	    return "<div class=\"colorpicker\">\n" +
 	        "    <div class=\"colorpicker-header clearfix\">\n" +
-	        "        <ul>\n" +
+	        "        <ul class=\"clearfix\">\n" +
 	        "            <% for(var i = 0; i < colors.length; i++) { %>\n" +
 	        "            <li value=\"<%=colors[i]%>\" style=\"background-color:<%=colors[i]%>;\" bx-click=\"pickQuickColor(<%=colors[i]%>)\"></li>\n" +
 	        "            <% } %>\n" +
 	        "        </ul>\n" +
 	        "    </div>\n" +
-	        "    <div class=\"colorpicker-middle clearfix\">\n" +
-	        "        <i class=\"uxicon arrow <%= min ? '' : 'arrow-up' %>\">\n" +
-	        "            <%= min ? '&#405' : '&#404' %>\n" +
-	        "        </i>\n" +
+	        "    <div class=\"colorpicker-middle open clearfix\">\n" +
+	        "        <i bx-click=\"toggleBody\" class=\"uxicon arrow arrow-up\">&#404</i>\n" +
+	        "        <i bx-click=\"toggleBody\" class=\"uxicon arrow arrow-down\">&#405</i>\n" +
 	        "    </div>\n" +
-	        "    <div class=\"colorpicker-body clearfix <%= min ? 'colorpicker-body-min' : '' %>\">\n" +
+	        "    <div class=\"colorpicker-body clearfix\">\n" +
 	        "        <div class=\"picker-wrapper\">\n" +
 	        "            <div class=\"picker\" bx-click=\"pickPaletteColor()\"></div>\n" +
 	        "            <i class=\"uxicon picker-indicator\" bx-mousedown=\"dragPickerIndicator()\">&#470</i>\n" +

@@ -1,17 +1,16 @@
 <div class="colorpicker">
     <div class="colorpicker-header clearfix">
-        <ul>
+        <ul class="clearfix">
             <% for(var i = 0; i < colors.length; i++) { %>
             <li value="<%=colors[i]%>" style="background-color:<%=colors[i]%>;" bx-click="pickQuickColor(<%=colors[i]%>)"></li>
             <% } %>
         </ul>
     </div>
-    <div class="colorpicker-middle clearfix">
-        <i class="uxicon arrow <%= min ? '' : 'arrow-up' %>">
-            <%= min ? '&#405' : '&#404' %>
-        </i>
+    <div class="colorpicker-middle open clearfix">
+        <i bx-click="toggleBody" class="uxicon arrow arrow-up">&#404</i>
+        <i bx-click="toggleBody" class="uxicon arrow arrow-down">&#405</i>
     </div>
-    <div class="colorpicker-body clearfix <%= min ? 'colorpicker-body-min' : '' %>">
+    <div class="colorpicker-body clearfix">
         <div class="picker-wrapper">
             <div class="picker" bx-click="pickPaletteColor()"></div>
             <i class="uxicon picker-indicator" bx-mousedown="dragPickerIndicator()">&#470</i>

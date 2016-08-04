@@ -1,0 +1,171 @@
+.wizard {
+    
+}
+
+.circle() {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #999;
+    color: #FFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    margin-right: 10px;
+    span.counter {
+        font-size: 12px;
+        display: inline-block;
+    }
+    span.state {
+        font-size: 12px;
+        display: none;
+    }
+}
+
+.circle-active() {
+    background-color: #3276b1;
+}
+
+.wizard  {
+    div {
+        transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
+    }
+}
+
+.wizard.wizard-horizontal {
+    ol.wizard-nav {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 40px;
+        li.item {
+            display: inline-block;
+            margin-right: 20px;
+            width: 100px;
+            span.circle {
+                .circle();
+            }
+            &.active {
+                span.circle {
+                    .circle-active();
+                }
+            }
+            &.resolved {
+                span.circle {
+                    span.counter {
+                        display: none;
+                    }
+                    span.state {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+    .wizard-cards {
+        position: relative;
+        margin-bottom: 20px;
+        .wizard-card {
+            &.out {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+    .wizard-footer {
+
+    }
+}
+.wizard.wizard-vertical {
+    background-color: #FAFAFA;
+    padding: 40px;
+    .wizard-cards {
+        .wizard-card {
+            position: relative;
+            margin-bottom: 20px;
+            span.circle {
+                .circle();
+                .circle-active();
+                background-color: #999;
+            }
+            .wizard-card-header {
+                padding: 20px 40px 20px 95px;
+                .title {
+                    font-size: 16px;
+                    margin-left: -55px;
+                }
+                .summary {
+                    margin-left: 5px;
+                    height: 16px;
+                    display: inline-block;
+                    overflow: hidden;
+                    vertical-align: text-top;
+                    color: #999;
+                    opacity: 1;
+                }
+                .expand {
+                    position: absolute;
+                    right: 15px;
+                    top: 20px;
+                    height: 25px;
+                    line-height: 25px;
+                }
+            }
+            .wizard-card-body {
+                // display: none;                    
+                height: 0;
+                padding-left: 40px;
+                padding-right: 40px;
+                overflow: hidden;
+            }
+            .wizard-card-footer {
+                // display: none;
+                height: 0;
+                padding-left: 40px;
+                padding-right: 40px;
+                overflow: hidden;
+            }
+            // .wizard-card.active
+            &.active {
+                span.circle {
+                    .circle-active();
+                }
+            }
+            &.resolved {
+                span.circle {
+                    span.counter {
+                        display: none;
+                    }
+                    span.state {
+                        display: inline-block;
+                    }
+                }
+            }
+            &.active {
+                .wizard-card-header {
+                    border-bottom: 1px solid #E6E6E6;
+
+                    .summary {
+                        // display: none;
+                        opacity: 0;
+                    }
+                    .expand {
+                        display: none;
+                    }
+                }
+                .wizard-card-body {
+                    height: inherit;
+                    display: block;
+                    padding: 20px 40px;
+                }
+                .wizard-card-footer {
+                    height: inherit;
+                    display: block;
+                    padding: 20px 40px;
+                    border-top: 1px solid #E6E6E6;
+                }
+            }
+        }
+    }
+}
