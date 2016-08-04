@@ -2,6 +2,18 @@
     替代 mm.less, tool.less
  */
 @font-face {
+  font-family: "uxiconfont";
+  src: url("http://t.tbcdn.cn/apps/e/brix/fonts/uxiconfont.eot");
+  src: url("http://t.tbcdn.cn/apps/e/brix/fonts/uxiconfont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("http://t.tbcdn.cn/apps/e/brix/fonts/uxiconfont.woff") format("woff"), /* chrome、firefox */ url("http://t.tbcdn.cn/apps/e/brix/fonts/uxiconfont.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url("http://t.tbcdn.cn/apps/e/brix/fonts/uxiconfont.svg#svgFontName") format("svg");
+  /* IE9*/
+  /* iOS 4.1- */
+}
+.uxicon {
+  font-family: "uxiconfont";
+  font-size: 16px;
+  font-style: normal;
+}
+@font-face {
   font-family: 'brixfont';
   src: url('//at.alicdn.com/t/font_1430140325_0320485.eot');
   /* IE9*/
