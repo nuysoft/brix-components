@@ -8,7 +8,7 @@
                 <tr>
                     <th>区域</th>
                     <th>
-                        省份/城市
+                        <span style="padding: 17px 0; display: inline-block;">省份/城市</span>
                         <label class="areapicker-header-toggle" style="vertical-align: bottom; margin-left: 10px;">
                             <input type="checkbox" data-linkage-name="<%= id %>">
                             <%= name %>

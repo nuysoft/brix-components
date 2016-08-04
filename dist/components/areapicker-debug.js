@@ -535,7 +535,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                <tr>\n" +
 	        "                    <th>区域</th>\n" +
 	        "                    <th>\n" +
-	        "                        省份/城市\n" +
+	        "                        <span style=\"padding: 17px 0; display: inline-block;\">省份/城市</span>\n" +
 	        "                        <label class=\"areapicker-header-toggle\" style=\"vertical-align: bottom; margin-left: 10px;\">\n" +
 	        "                            <input type=\"checkbox\" data-linkage-name=\"<%= id %>\">\n" +
 	        "                            <%= name %>\n" +
