@@ -19,7 +19,7 @@ define(
     [
         'jquery', 'underscore',
         'components/base',
-        './linkage.js',
+        './linkage/linkage.js',
         './column-rwd.js',
         './column-priority.js'
     ],

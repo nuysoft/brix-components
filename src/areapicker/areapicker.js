@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base', '../table/linkage.js',
+        'brix/base', '../table/linkage/linkage.js',
         './area.js',
         './areapicker.tpl.js',
         'components/dialog'

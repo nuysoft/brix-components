@@ -18,6 +18,9 @@ import webpack from 'webpack'
 import shell from 'gulp-shell'
 import _debug from 'gulp-debug'
 
+import connect from 'gulp-connect'
+import mochaPhantomJS from 'gulp-mocha-phantomjs'
+
 var LessAutoprefix = require('less-plugin-autoprefix');
 var autoprefix = new LessAutoprefix({
     browsers: ['last 2 versions', '> 5%']
@@ -59,14 +62,18 @@ function html2js(html) {
     )
 }
 
+function onFileChange(event) {
+    gutil.log('File ' + gutil.colors.green(event.path) + ' was ' + event.type + ', running tasks...')
+}
+
 // https://github.com/sun-zheng-an/gulp-shell
-gulp.task('status', shell.task(['git status'], {
+gulp.task('git:status', shell.task(['git status'], {
     verbose: true
 }))
 
 // https://github.com/karlgoldstein/grunt-html2js/blob/master/tasks/html2js.js
-gulp.task('tpl', (cb) => {
-    gulp.src(['src/*/**/*.tpl']).pipe(cache('tpl')).pipe(debug('tpl'))
+gulp.task('js:tpl', (cb) => {
+    gulp.src(['src/*/**/*.tpl']).pipe(cache('js:tpl')) // .pipe(debug('js:tpl'))
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
             file.path = file.path + '.js'
             file.contents = new Buffer(
@@ -79,17 +86,16 @@ gulp.task('tpl', (cb) => {
 })
 
 // https://github.com/spenceralger/gulp-jshint
-gulp.task('jshint', ['tpl'], () => {
-    return gulp.src(['src/**/*.js', 'test/**/*.js', 'gulpfile.babel.js'])
-        .pipe(cache('jshint'))
-        .pipe(debug('jshint'))
+gulp.task('js:hint', ['js:tpl'], () => {
+    return gulp.src(['src/**/*.js', 'test/**/*.js', '!test/bower_components/**/*', 'gulpfile.babel.js'])
+        .pipe(cache('js:hint')) // .pipe(debug('js:hint'))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('jshint-stylish'))
 })
 
 // https://webpack.github.io/docs/configuration.html
 // https://webpack.github.io/docs/usage-with-gulp.html
-gulp.task('build:js', ['tpl', 'jshint'], () => {
+gulp.task('build:js', ['js:tpl', 'js:hint'], () => {
     // https://webpack.github.io/docs/configuration.html#externals
     return gulp.src(['src/*/**/index.js']) // .pipe(debug('build:js'))
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
@@ -144,16 +150,24 @@ gulp.task('build:js', ['tpl', 'jshint'], () => {
             function done(err, stats) {
                 if (err) throw err
                 let jsonStats = stats.toJson()
-                if (jsonStats.errors.length || jsonStats.warnings.length) gutil.log("[webpack]", stats.toString({}))
+                    // if (jsonStats.errors.length || jsonStats.warnings.length) gutil.log("[webpack]", stats.toString({}))
                 if (jsonStats.errors.length) gutil.log(gutil.colors.red(jsonStats.errors))
-                if (jsonStats.warnings.length > 0) gutil.log(gutil.colors.yellow(jsonStats.warnings)) // done
+                    // if (jsonStats.warnings.length > 0) gutil.log(gutil.colors.yellow(jsonStats.warnings)) // done
             }
         }))
 })
 
+gulp.task('js:watch', () => {
+    gulp.watch(['src/**/*.js', '!src/**/*.tpl.js'], ['js:hint', 'build:js']).on('change', onFileChange)
+    gulp.watch(['src/**/*.tpl'], ['js:tpl', 'build:js']).on('change', onFileChange)
+    gulp.watch(['.jshintrc'], ['js:hint']).on('change', onFileChange)
+})
+
+// ----------------------------------------
+
 // https://github.com/plus3network/gulp-less
-gulp.task('less', (cb) => {
-    gulp.src(['src/**/*.less']).pipe(cache('less')).pipe(debug('less'))
+gulp.task('css:less', (cb) => {
+    gulp.src(['src/**/*.less']).pipe(cache('css:less')) //.pipe(debug('css:less'))
         .pipe(less({
             plugins: [autoprefix]
         }))
@@ -163,9 +177,9 @@ gulp.task('less', (cb) => {
 
 // https://github.com/contra/gulp-concat
 // https://github.com/rvagg/through2#flushfunction
-gulp.task('concat:css', ['less'], (cb) => {
+gulp.task('css:concat', ['css:less'], (cb) => {
     var files = []
-    gulp.src(['src/**/*.css', '!src/css-tool/**/*']).pipe(debug('concat:css'))
+    gulp.src(['src/**/*.css', '!src/css-tool/**/*']) // .pipe(debug('css:concat'))
         .pipe(through.obj(
             (file, encoding, callback) => { /* jshint unused:false */
                 files.push(file)
@@ -198,8 +212,8 @@ gulp.task('concat:css', ['less'], (cb) => {
 // https://github.com/lazd/gulp-csslint
 // https://github.com/ebednarz/csslintrc/blob/master/.csslintrc
 // https://github.com/CSSLint/csslint/wiki/Rules
-gulp.task('csslint', ['less', 'concat:css'], (cb) => {
-    gulp.src(['src/css-tool/minecraft.css', 'src/css-tool/components.css']).pipe(cache('csslint')).pipe(debug('csslint'))
+gulp.task('css:lint', ['css:less', 'css:concat'], (cb) => {
+    gulp.src(['src/css-tool/minecraft.css', 'src/css-tool/components.css']).pipe(cache('css:lint')).pipe(debug('css:lint'))
         .pipe(csslint('.csslintrc'))
         .pipe(csslint.reporter(function(file) {
             gutil.log(gutil.colors.cyan(file.csslint.errorCount) + ' errors in ' + gutil.colors.magenta(file.path))
@@ -211,7 +225,7 @@ gulp.task('csslint', ['less', 'concat:css'], (cb) => {
 })
 
 // https://github.com/murphydanger/gulp-minify-css
-gulp.task('build:css', ['less', 'concat:css', 'csslint'], (cb) => {
+gulp.task('build:css', ['css:less', 'css:concat', 'css:lint'], (cb) => {
     gulp.src(['src/*/**/*.css']).pipe(cache('build:css')) // .pipe(debug('build:css'))
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
             file.path = path.join(
@@ -223,6 +237,7 @@ gulp.task('build:css', ['less', 'concat:css', 'csslint'], (cb) => {
             debug: true,
             compatibility: 'ie8'
         }, function(details) { //console.dir(details)
+            return
             gutil.log(
                 'build:css',
                 details.name, // path.relative(process.cwd(), details.path), // details.name
@@ -238,18 +253,41 @@ gulp.task('build:css', ['less', 'concat:css', 'csslint'], (cb) => {
         .on('end', cb)
 })
 
-// https://github.com/gulpjs/gulp/blob/master/docs/API.md
-gulp.task('watch', () => {
-    function onchange(event) {
-        gutil.log('File ' + gutil.colors.green(event.path) + ' was ' + event.type + ', running tasks...')
-    }
-    gulp.watch(['src/**/*.js', '!src/**/*.tpl.js'], ['jshint', 'build:js']).on('change', onchange)
-    gulp.watch(['src/**/*.less'], ['less', 'concat:css', 'csslint', 'build:css']).on('change', onchange)
-    gulp.watch(['src/**/*.tpl'], ['tpl', 'build:js']).on('change', onchange)
-    gulp.watch(['.csslintrc'], ['csslint']).on('change', onchange)
-    gulp.watch(['.jshintrc'], ['jshint']).on('change', onchange)
-    gulp.watch(['gulpfile.babel.js'], ['build']).on('change', onchange)
+gulp.task('css:watch', () => {
+    gulp.watch(['src/**/*.less'], ['css:less', 'css:concat', 'css:lint', 'build:css']).on('change', onFileChange)
+    gulp.watch(['.csslintrc'], ['css:lint']).on('change', onFileChange)
 })
 
+// ----------------------------------------
+
+gulp.task('test:server', function() {
+    connect.server({
+        port: 4247
+    })
+})
+gulp.task('test:mocha', () => {
+    return gulp.src(['test/*.html'])
+        .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
+            file.path = file.path.replace(
+                __dirname, 'http://localhost:4247'
+            )
+            console.log(file.path)
+            callback(null, file)
+        }))
+        .pipe(mochaPhantomJS({
+            reporter: 'spec'
+        }))
+        .on('error', function(err) {
+            console.log(err)
+        })
+})
+gulp.task('test:watch', () => {
+    gulp.watch(['test/*.html', 'test/*.js'], ['test:mocha']).on('change', onFileChange)
+})
+gulp.task('test', ['test:server', 'test:mocha', 'test:watch'])
+
+// ----------------------------------------
+
+gulp.task('watch', ['js:watch', 'css:watch'])
 gulp.task('build', ['build:js', 'build:css'])
-gulp.task('default', ['build', 'watch'])
+gulp.task('default', ['build', 'test', 'watch'])

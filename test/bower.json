@@ -1,0 +1,7 @@
+{
+  "name": "test",
+  "dependencies": {
+    "mocha": "~3.0.1",
+    "chai": "~3.5.0"
+  }
+}
