@@ -1,4 +1,4 @@
-/* global chai, describe, it, before */
+/* global chai, describe, it, before, beforeEach, afterEach */
 /* global require, console */
 /* global Loader: true, $: true, _: true, heredoc: true, $containers: true */
 describe('Dropdown', function() {
@@ -123,10 +123,10 @@ describe('Dropdown', function() {
             expect(result.$active).to.have.length(1)
             expect(result.$active.index()).to.equal(0)
         }
-        var task = function($container) {
+        var task = function( /*$container*/ ) {
             result.$toggle.click()
         }
-        var expected = function($container) {
+        var expected = function( /*$container*/ ) {
             expect(result.$wrapper.css('display')).to.equal('block')
         }
         boot_check(this.test.title, before, [
@@ -151,10 +151,10 @@ describe('Dropdown', function() {
             expect(result.$items).to.have.length(3)
             expect(result.$active.index()).to.equal(0)
         }
-        var task = function($container) {
+        var task = function( /*$container*/ ) {
             result.$toggle.click().click()
         }
-        var expected = function($container) {
+        var expected = function( /*$container*/ ) {
             expect(result.$wrapper.css('display')).to.equal('none')
         }
         boot_check(this.test.title, before, [
@@ -597,7 +597,7 @@ describe('Dropdown', function() {
             function() {
                 var evt = document.createEvent('CustomEvent') // MUST be 'CustomEvent'
                 evt.initCustomEvent('mouseenter', false, false, null)
-                
+
                 result.$toggle.click()
                 result.$items.eq(index).find('> a').trigger('mouseenter')
                 result.$items.eq(index).find('> a').get(0)

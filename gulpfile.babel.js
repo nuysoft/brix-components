@@ -281,13 +281,13 @@ gulp.task('test:mocha', () => {
             console.log(err)
         })
 })
-gulp.task('test:watch', () => {
-    gulp.watch(['test/*.html', 'test/*.js'], ['test:mocha']).on('change', onFileChange)
+gulp.task('watch:test', () => {
+    gulp.watch(['test/*.html', 'test/*.js'], ['js:hint', 'test:mocha']).on('change', onFileChange)
 })
-gulp.task('test', ['test:server', 'test:mocha', 'test:watch'])
+gulp.task('test', ['test:server', 'test:mocha', 'watch:test'])
 
 // ----------------------------------------
 
 gulp.task('watch', ['js:watch', 'css:watch'])
-gulp.task('build', ['build:js', 'build:css'])
+gulp.task('build', ['build:js', 'build:css', 'watch:test'])
 gulp.task('default', ['build', 'test', 'watch'])

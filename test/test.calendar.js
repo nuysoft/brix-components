@@ -1,4 +1,4 @@
-/* global chai, describe, it, before */
+/* global chai, describe, it, before, beforeEach, afterEach */
 /* global require, console */
 /* global Loader: true, $: true, _: true, heredoc: true, $containers: true */
 describe('Calendar', function() {
@@ -79,10 +79,10 @@ describe('Calendar', function() {
 
     function toggle_check(result, display) {
         return [
-            function($container) {
+            function( /*$container*/ ) {
                 result.component.element.click()
             },
-            function($container) {
+            function( /*$container*/ ) {
                 expect(
                     result.component.$relatedElement.css('display')
                 ).to.equal(display)

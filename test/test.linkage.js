@@ -1,6 +1,6 @@
 /* global chai, describe, it, before */
 /* global require, console */
-/* global Loader: true, $: true, _: true, heredoc: true, Random: true, $containers: true */
+/* global Loader: true, $: true, _: true, heredoc: true, Random: true, $containers: true, Linkage */
 describe('Linkage', function() {
     this.timeout(5000)
 
