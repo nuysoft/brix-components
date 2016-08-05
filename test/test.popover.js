@@ -1,5 +1,4 @@
 /* global chai, describe, it, before, beforeEach, afterEach */
-/* global require, console */
 /* global Loader: true, $: true, _: true, heredoc: true, $containers: true */
 describe('Popover', function() {
     this.timeout(5000)
@@ -62,7 +61,7 @@ describe('Popover', function() {
         Loader.boot($containers, complete)
     }
 
-    function query_check(result, $container, events) {
+    function query_check(result, $container /*, events*/ ) {
         _.extend(result, {
             component: Loader.query('components/popover', $container)[0],
             events: $._data(document.body).events
@@ -121,7 +120,7 @@ describe('Popover', function() {
 
         Loader.boot($containers, function() {
             var instances = Loader.query('components/popover', $containers)
-            _.each(instances, function(item, index) {
+            _.each(instances, function(item /*, index*/ ) {
                 item.$element.trigger('mouseenter')
                 expect(
                     item.$relatedElement.css('display')

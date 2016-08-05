@@ -1,5 +1,4 @@
 /* global chai, describe, it, before, beforeEach, afterEach */
-/* global require, console */
 /* global Loader: true, $: true, _: true, heredoc: true, $containers: true */
 describe('Table', function() {
     this.timeout(5000)
@@ -60,7 +59,7 @@ describe('Table', function() {
         Loader.boot($containers, complete)
     }
 
-    function query_check(result, $container, events) {
+    function query_check(result, $container /*, events*/ ) {
         _.extend(result, {
             component: Loader.query('components/table', $container)[0],
             events: $._data(document.body).events
