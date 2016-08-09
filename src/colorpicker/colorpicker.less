@@ -2,13 +2,27 @@
     position: absolute;
     left: -9999px;
     top: -9999px;
+    display: none;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 2px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: none;
     background-color: #fff;
     z-index: 1000;
 
+    &.bottom {
+        margin-top: 10px;
+    }
+    &.right {
+        margin-left: 10px;
+    }
+    &.left {
+        margin-left: -10px;
+    }
+    &.top {
+        margin-top: -10px;
+    }
+    
     .colorpicker-header {
         ul {
             width: 225px;
@@ -61,6 +75,13 @@
     }
 
     .colorpicker-body {
+        margin-bottom: 10px;
+
+        display: none;
+        &.open {
+            display: block;
+        }
+
         .picker-wrapper {
             position: relative;
             float: left;
@@ -101,20 +122,20 @@
     }
 
     .colorpicker-footer {
-        margin-top: 10px;
-        span {
+        span.bg {
             width: 32px;
             height: 32px;
             display: inline-block;
             vertical-align: middle;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         input {
             width: 85px;
             display: inline-block;
             font-family: monospace;
         }
-        a {
+        a.btn {
             float: right;
         }
     }

@@ -2,12 +2,25 @@
   position: absolute;
   left: -9999px;
   top: -9999px;
+  display: none;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 2px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: none;
   background-color: #fff;
   z-index: 1000;
+}
+.colorpicker.bottom {
+  margin-top: 10px;
+}
+.colorpicker.right {
+  margin-left: 10px;
+}
+.colorpicker.left {
+  margin-left: -10px;
+}
+.colorpicker.top {
+  margin-top: -10px;
 }
 .colorpicker .colorpicker-header ul {
   width: 225px;
@@ -51,6 +64,13 @@
 .colorpicker .colorpicker-middle.open .arrow.arrow-up {
   display: block;
 }
+.colorpicker .colorpicker-body {
+  margin-bottom: 10px;
+  display: none;
+}
+.colorpicker .colorpicker-body.open {
+  display: block;
+}
 .colorpicker .colorpicker-body .picker-wrapper {
   position: relative;
   float: left;
@@ -88,21 +108,19 @@
   top: 0;
   cursor: pointer;
 }
-.colorpicker .colorpicker-footer {
-  margin-top: 10px;
-}
-.colorpicker .colorpicker-footer span {
+.colorpicker .colorpicker-footer span.bg {
   width: 32px;
   height: 32px;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 .colorpicker .colorpicker-footer input {
   width: 85px;
   display: inline-block;
   font-family: monospace;
 }
-.colorpicker .colorpicker-footer a {
+.colorpicker .colorpicker-footer a.btn {
   float: right;
 }

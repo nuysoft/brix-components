@@ -6,11 +6,15 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
-        './colorpicker.tpl.js'
+        '../dialog/position.js',
+        './colorpicker.tpl.js',
+        './colorpicker-svg-slide.tpl.js', './colorpicker-svg-picker.tpl.js',
+        './colorpicker-vml-slide.tpl.js', './colorpicker-svg-picker.tpl.js'
     ],
     function(
         $, _,
         Brix, EventManager,
+        position,
         template,
         svgSlideTpl, svgPickerTpl,
         vmlSlideTpl, vmlPickerTpl
@@ -35,87 +39,39 @@ define(
 
         */
 
-        svgSlideTpl = '\
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">\
-                <defs>\
-                    <linearGradient id="gradient-hsv" x1="0%" y1="100%" x2="0%" y2="0%">\
-                        <stop offset="0%" stop-color="#FF0000" stop-opacity="1"></stop>\
-                        <stop offset="13%" stop-color="#FF00FF" stop-opacity="1"></stop>\
-                        <stop offset="25%" stop-color="#8000FF" stop-opacity="1"></stop>\
-                        <stop offset="38%" stop-color="#0040FF" stop-opacity="1"></stop>\
-                        <stop offset="50%" stop-color="#00FFFF" stop-opacity="1"></stop>\
-                        <stop offset="63%" stop-color="#00FF40" stop-opacity="1"></stop>\
-                        <stop offset="75%" stop-color="#0BED00" stop-opacity="1"></stop>\
-                        <stop offset="88%" stop-color="#FFFF00" stop-opacity="1"></stop>\
-                        <stop offset="100%" stop-color="#FF0000" stop-opacity="1"></stop>\
-                    </linearGradient>\
-                </defs>\
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-hsv)"></rect>\
-            </svg>\
-        '
-        svgPickerTpl = '\
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">\
-                <defs>\
-                    <lineargradient id="gradient-black" x1="0%" y1="100%" x2="0%" y2="0%">\
-                        <stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>\
-                        <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>\
-                    </lineargradient>\
-                    <lineargradient id="gradient-white" x1="0%" y1="100%" x2="100%" y2="100%">\
-                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>\
-                        <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>\
-                    </lineargradient>\
-                </defs>\
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-white)"></rect>\
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"></rect>\
-            </svg>\
-        '
-        vmlSlideTpl = '\
-            <div style="position: relative; width: 100%; height: 100%">\
-                <v:rect style="position: absolute; top: 0; left: 0; width: 100%; height: 100%" stroked="f" filled="t">\
-                    <v:fill type="gradient" method="none" angle="0" color="red" color2="red" colors="8519f fuchsia;.25 #8000ff;24903f #0040ff;.5 aqua;41287f #00ff40;.75 #0bed00;57671f yellow"></v:fill>\
-                </v:rect>\
-            </div>\
-        '
-        vmlPickerTpl = '\
-            <div style="position: relative; width: 100%; height: 100%">\
-                <v:rect style="position: absolute; left: -1px; top: -1px; width: 101%; height: 101%" stroked="f" filled="t">\
-                    <v:fill type="gradient" method="none" angle="270" color="#FFFFFF" opacity="100%" color2="#CC9A81" o:opacity2="0%"></v:fill>\
-                </v:rect>\
-                <v:rect style="position: absolute; left: 0px; top: 0px; width: 100%; height: 101%" stroked="f" filled="t">\
-                    <v:fill type="gradient" method="none" angle="0" color="#000000" opacity="100%" color2="#CC9A81" o:opacity2="0%"></v:fill>\
-                </v:rect>\
-            </div>\
-        '
+        var NAMESPACE = '.colorpicker'
+        var SHORTCUTS = ['#d81e06', '#f4ea2a', '#1afa29', '#1296db', '#13227a', '#d4237a', '#ffffff', '#e6e6e6', '#dbdbdb', '#cdcdcd', '#bfbfbf', '#8a8a8a', '#707070', '#515151', '#2c2c2c', '#000000', '#ea986c', '#eeb174', '#f3ca7e', '#f9f28b', '#c8db8c', '#aad08f', '#87c38f', '#83c6c2', '#7dc5eb', '#87a7d6', '#8992c8', '#a686ba', '#bd8cbb', '#be8dbd', '#e89abe', '#e8989a', '#e16632', '#e98f36', '#efb336', '#f6ef37', '#afcd51', '#7cba59', '#36ab60', '#1baba8', '#17ace3', '#3f81c1', '#4f68b0', '#594d9c', '#82529d', '#a4579d', '#db649b', '#dd6572', '#d81e06', '#e0620d', '#ea9518', '#f4ea2a', '#8cbb1a', '#2ba515', '#0e932e', '#0c9890', '#1295db', '#0061b2', '#0061b0', '#004198', '#122179', '#88147f', '#d3227b', '#d6204b']
 
         function ColorPicker() {}
+        ColorPicker.SHORTCUTS = SHORTCUTS
 
         _.extend(ColorPicker.prototype, Brix.prototype, {
             options: {
-                color: '#ffffff'
+                placement: 'bottom', // top bottom left right
+                align: 'left', // left right top bottom
+                offset: {},
+
+                color: '#ffffff',
+                shortcuts: SHORTCUTS,
+                min: false
             },
-            init: function() {},
+            init: function() {
+                this.$element = $(this.element)
+                this.data = {
+                    color: this.options.color
+                }
+            },
             render: function() {
                 var that = this
-                var $element = this.$element = $(this.element)
+                var $relatedElement = this.$relatedElement = $(
+                    _.template(template)(this.options)
+                ).insertAfter(this.$element)
 
-                this.color = this.options.color
-
-                var html = _.template(template)({
-                    colors: ['#d81e06', '#f4ea2a', '#1afa29', '#1296db', '#13227a', '#d4237a', '#ffffff', '#e6e6e6', '#dbdbdb', '#cdcdcd', '#bfbfbf', '#8a8a8a', '#707070', '#515151', '#2c2c2c', '#000000', '#ea986c', '#eeb174', '#f3ca7e', '#f9f28b', '#c8db8c', '#aad08f', '#87c38f', '#83c6c2', '#7dc5eb', '#87a7d6', '#8992c8', '#a686ba', '#bd8cbb', '#be8dbd', '#e89abe', '#e8989a', '#e16632', '#e98f36', '#efb336', '#f6ef37', '#afcd51', '#7cba59', '#36ab60', '#1baba8', '#17ace3', '#3f81c1', '#4f68b0', '#594d9c', '#82529d', '#a4579d', '#db649b', '#dd6572', '#d81e06', '#e0620d', '#ea9518', '#f4ea2a', '#8cbb1a', '#2ba515', '#0e932e', '#0c9890', '#1295db', '#0061b2', '#0061b0', '#004198', '#122179', '#88147f', '#d3227b', '#d6204b'],
-                    min: false,
-                    color: this.color
-                })
-                var offset = $element.offset()
-                var $relatedElement = this.$relatedElement = $(html).css({
-                    left: offset.left,
-                    top: offset.top + $element.outerHeight() + 1
-                }).insertAfter($element).hide()
-
-                this.pickerDragNode = $relatedElement.find('.picker-indicator')
-                this.slideDragNode = $relatedElement.find('.slide-indicator')
-
-                var $slideNode = this.$slideNode = $relatedElement.find('.slide')
                 var $pickerNode = this.$pickerNode = $relatedElement.find('.picker')
+                this.$pickerDragNode = $relatedElement.find('.picker-indicator')
+                var $slideNode = this.$slideNode = $relatedElement.find('.slide')
+                this.$slideDragNode = $relatedElement.find('.slide-indicator')
+
                 var svgOrVml = (window.SVGAngle || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML")
                 switch (svgOrVml) {
                     case 'SVG':
@@ -130,11 +86,17 @@ define(
                         $pickerNode.html(vmlPickerTpl)
                 }
 
-                this.setHex(this.color)
+                this.hex(this.data.color)
 
                 var $manager = this.$manager = new EventManager('bx-')
                 $manager.delegate(this.$element, this)
                 $manager.delegate(this.$relatedElement, this)
+
+                // 阻止输入框的 change 事件，避免触发多次 change.colorpicker 事件
+                this.$relatedElement.find('input').on('change', function(event) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                })
 
                 var type = 'click.colorpicker_' + this.clientId
                 $(document.body).off(type)
@@ -143,24 +105,29 @@ define(
                         if ($relatedElement.has(event.target).length) return
                         that.hide()
                     })
-
-                // this.on('change selected', function(event, data) {
-                //     console.log(event.type, data)
-                // })
             },
             show: function() {
+                this.$element.addClass('colorpicker-open')
                 this.$relatedElement.show()
+                    .offset(this._offset())
             },
             hide: function() {
+                this.$element.removeClass('colorpicker-open')
                 this.$relatedElement.hide()
             },
             toggle: function() {
-                var $element = this.$element
-                var offset = $element.offset()
-                this.$relatedElement.toggle().offset({
-                    left: offset.left,
-                    top: offset.top + $element.outerHeight() + 1
-                })
+                this.$element.toggleClass('colorpicker-open')
+                this.$relatedElement.toggle()
+                    .offset(this._offset())
+            },
+            _offset: function() {
+                var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
+                var relatedMarginLeft = parseInt(this.$relatedElement.css('margin-left'), 10) || 0
+                var relatedMarginTop = parseInt(this.$relatedElement.css('margin-top'), 10) || 0
+                return {
+                    left: offset.left + relatedMarginLeft + (this.options.offset.left || 0),
+                    top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
+                }
             },
             /**
              * Sets color of the picker in hsv/rgb/hex format.
@@ -168,30 +135,30 @@ define(
              * @param {Object} rgb Object of the form: { r: <red>, g: <green>, b: <blue> }.
              * @param {String} hex String of the form: #RRGGBB.
              */
-            setColor: function(hsv /*, rgb, hex*/ ) {
+            _setColor: function(hsv /*, rgb, hex*/ ) {
                 var $relatedElement = this.$relatedElement
-                this.h = hsv.h % 360
-                this.s = hsv.s
-                this.v = hsv.v
-                var c = hsv2rgb(this.h, this.s, this.v)
+                this.data.h = hsv.h % 360
+                this.data.s = hsv.s
+                this.data.v = hsv.v
+                var c = hsv2rgb(this.data.h, this.data.s, this.data.v)
 
-                this.slideDragNode.css({
-                    top: Math.round(this.h * this.$slideNode.height() / 360 - 5)
+                this.$slideDragNode.css({
+                    top: Math.round(this.data.h * this.$slideNode.height() / 360 - 5)
                 })
-                var left = Math.round(this.s * this.$pickerNode.width() - 5)
-                var top = Math.round((1 - this.v) * this.$pickerNode.height() - 5)
-                this.pickerDragNode.css({
+                var left = Math.round(this.data.s * this.$pickerNode.width() - 5)
+                var top = Math.round((1 - this.data.v) * this.$pickerNode.height() - 5)
+                this.$pickerDragNode.css({
                     left: left,
                     top: top,
                     color: top > 98 ? '#fff' : '#000'
                 })
                 this.$pickerNode.css({
-                    "background-color": hsv2rgb(this.h, 1, 1).hex
+                    "background-color": hsv2rgb(this.data.h, 1, 1).hex
                 })
                 $relatedElement.find('.colorpicker-footer span').css({
                     "background-color": c.hex
                 })
-                this.color = c.hex
+                this.data.color = c.hex
                 $relatedElement.find('li').removeClass('selected')
 
                 var input = $relatedElement.find('input')
@@ -201,45 +168,60 @@ define(
              * 设置颜色
              * @param {Object} hsv hsv对象 { h: <hue>, s: <saturation>, v: <value> }
              */
-            setHsv: function(hsv) {
-                this.setColor(hsv)
+            hsv: function(hsv) {
+                if (!hsv) {
+                    return this._extra().hsv
+                }
+
+                this._setColor(hsv)
+                return this
             },
             /**
              * 设置颜色
              * @param {Object} rgb rgb对象 { r: <red>, g: <green>, b: <blue> }
              */
-            setRgb: function(rgb) {
-                this.setColor(rgb2hsv(rgb.r, rgb.g, rgb.b), rgb)
+            rgb: function(rgb) {
+                if (!rgb) {
+                    return this._extra().rgb
+                }
+
+                this._setColor(rgb2hsv(rgb.r, rgb.g, rgb.b), rgb)
+                return this
             },
             /**
              * 设置颜色
              * @param {String} hex 颜色值 #RRGGBB.
              */
-            setHex: function(hex) {
-                this.setColor(rgb2hsv(parseInt(hex.substr(1, 2), 16), parseInt(hex.substr(3, 2), 16), parseInt(hex.substr(5, 2), 16)), undefined, hex)
+            hex: function(hex) {
+                if (!hex) {
+                    return this._extra().hex
+                }
+
+                this._setColor(rgb2hsv(parseInt(hex.substr(1, 2), 16), parseInt(hex.substr(3, 2), 16), parseInt(hex.substr(5, 2), 16)), undefined, hex)
+                return this
             },
             /* Events */
-            pickQuickColor: function(event, extraParameters) {
-                this.setHex(extraParameters)
+            _pickQuickColor: function(event, extraParameters) {
+                this.hex(extraParameters)
                 $(event.target).addClass('selected')
             },
-            toggleBody: function( /*event*/ ) {
+            _toggleBody: function( /*event*/ ) {
                 this.$relatedElement.find('.colorpicker-middle').toggleClass('open')
                 this.$relatedElement.find('.colorpicker-body').slideToggle()
             },
-            pickPaletteColor: function(event) {
+            _pickPaletteColor: function(event) {
                 var offset = this.$pickerNode.offset()
                 var left = event.pageX - offset.left
                 var top = event.pageY - offset.top
                 var width = this.$pickerNode.width()
                 var height = this.$pickerNode.height()
-                this.setHsv({
-                    h: this.h,
+                this.hsv({
+                    h: this.data.h,
                     s: left / width,
                     v: (height - top) / height
                 })
             },
-            dragPickerIndicator: function(event) {
+            _dragPickerIndicator: function(event) {
                 var that = this
                 $(document.documentElement).css('cursor', 'pointer')
                 event.preventDefault()
@@ -260,7 +242,7 @@ define(
                     else if (top < 0) top = 0
                     else top += 5
 
-                    that.setHsv({
+                    that.hsv({
                         h: that.h,
                         s: left / width,
                         v: (height - top) / height
@@ -275,13 +257,13 @@ define(
                     height = this.$slideNode.height(),
                     top = ((event.pageY - offset.top >= height) ? height - 1 : event.pageY - offset.top),
                     h = top / height * 360
-                this.setHsv({
+                this.hsv({
                     h: h,
-                    s: this.s,
-                    v: this.v
+                    s: this.data.s,
+                    v: this.data.v
                 })
             },
-            dragSlideIndicator: function(event) {
+            _dragSlideIndicator: function(event) {
                 var that = this
                 $(document.documentElement).css('cursor', 'pointer')
                 event.preventDefault()
@@ -296,7 +278,7 @@ define(
                     else if (top < 0) top = 0
                     else top += 5
 
-                    that.setHsv({
+                    that.hsv({
                         h: top / that.$slideNode.height() * 360,
                         s: that.s,
                         v: that.v
@@ -306,30 +288,37 @@ define(
                     $(document.body).off('mousemove.slideDragNode')
                 })
             },
-            inputColor: function(event) {
+            _inputColor: function(event) {
                 var val = $(event.target).val()
-                if (val.length === 7 && this.color !== val) this.setHex(val)
+                if (val.length === 7 && this.data.color !== val) this.hex(val)
             },
-            finishInputColor: function(event) {
+            _finishInputColor: function(event) {
                 var val = $(event.target).val()
-                if (this.color != val) this.setHex(val)
+                if (this.data.color != val) this.hex(val)
             },
-            submit: function() {
-                var c = hsv2rgb(this.h, this.s, this.v)
-                var extra = {
-                    hex: c.hex,
+            _extra: function() {
+                var rgb = hsv2rgb(this.data.h, this.data.s, this.data.v)
+                return {
+                    hex: rgb.hex,
                     hsv: {
-                        h: this.h,
-                        s: this.s,
-                        v: this.v
+                        h: this.data.h,
+                        s: this.data.s,
+                        v: this.data.v
                     },
                     rgb: {
-                        r: c.r,
-                        g: c.g,
-                        b: c.b
+                        r: rgb.r,
+                        g: rgb.g,
+                        b: rgb.b
                     }
                 }
-                this.trigger('change.colorpicker', extra)
+            },
+            _submit: function() {
+                var extra = this._extra()
+
+                var changeEvent = $.Event('change' + NAMESPACE)
+                this.trigger(changeEvent, extra)
+                if (changeEvent.isDefaultPrevented()) return
+
                 this.$element.triggerHandler('change')
                 this.hide()
             },
@@ -343,8 +332,6 @@ define(
                 $(document.body).off(type)
             }
         })
-
-        return ColorPicker
 
         function hsv2rgb(h, s, v) {
             var R, G, B, X, C
@@ -393,6 +380,11 @@ define(
                 v: V
             }
         }
+
+        ColorPicker.hsv2rgb = hsv2rgb
+        ColorPicker.rgb2hsv = rgb2hsv
+
+        return ColorPicker
 
     }
 )

@@ -73,7 +73,7 @@ gulp.task('git:status', shell.task(['git status'], {
 
 // https://github.com/karlgoldstein/grunt-html2js/blob/master/tasks/html2js.js
 gulp.task('js:tpl', (cb) => {
-    gulp.src(['src/*/**/*.tpl']).pipe(cache('js:tpl')) // .pipe(debug('js:tpl'))
+    gulp.src(['src/*/**/*.tpl']).pipe(cache('js:tpl')).pipe(debug('js:tpl'))
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
             file.path = file.path + '.js'
             file.contents = new Buffer(
@@ -88,7 +88,7 @@ gulp.task('js:tpl', (cb) => {
 // https://github.com/spenceralger/gulp-jshint
 gulp.task('js:hint', ['js:tpl'], () => {
     return gulp.src(['src/**/*.js', 'test/**/*.js', '!test/bower_components/**/*', 'gulpfile.babel.js'])
-        .pipe(cache('js:hint')) // .pipe(debug('js:hint'))
+        .pipe(cache('js:hint')).pipe(debug('js:hint'))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('jshint-stylish'))
 })
