@@ -1,5 +1,5 @@
-/* global chai, describe, it, before */
-/* global Loader: true, $: true, _: true, heredoc: true, Random: true, $containers: true, Linkage */
+/* global chai, describe, it, before, beforeEach, afterEach */
+/* global Loader: true, $: true, _: true, heredoc: true, Random: true, Linkage: true, $containers: true */
 describe('Linkage', function() {
     this.timeout(5000)
 
@@ -53,7 +53,7 @@ describe('Linkage', function() {
     })
 
     function genNode(id, name, type, checked, disabled, children) {
-        _.each(children, function(item, index) {
+        _.each(children, function(item /*, index*/ ) {
             item.pid = id
             item.pname = name
         })
@@ -123,7 +123,7 @@ describe('Linkage', function() {
         return {
             prop: function(name, value) {
                 _.each($containers, function(container) {
-                    _.each($(target, container), function(item, index) {
+                    _.each($(target, container), function(item /*, index*/ ) {
                         expect(
                             $(item).prop(name)
                         ).to.equal(value)
@@ -182,7 +182,7 @@ describe('Linkage', function() {
     })
     beforeEach(function(done) {
         _.each($containers, function(item /*,index*/ ) {
-            Linkage(item, function(event, values) {
+            Linkage(item, function( /*event, values*/ ) {
                 // console.log(item, values)
             })
         })
