@@ -13,7 +13,11 @@
         display: block;
     }
 
-    .datepickerwrapper.single {}
+    &.single {
+        .datepicker-container {
+            position: absolute;
+        }
+    }
 
     &.multiple {
         padding: 15px 0px;

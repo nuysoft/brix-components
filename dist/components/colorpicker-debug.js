@@ -101,6 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var NAMESPACE = '.colorpicker'
 	        var SHORTCUTS = ['#d81e06', '#f4ea2a', '#1afa29', '#1296db', '#13227a', '#d4237a', '#ffffff', '#e6e6e6', '#dbdbdb', '#cdcdcd', '#bfbfbf', '#8a8a8a', '#707070', '#515151', '#2c2c2c', '#000000', '#ea986c', '#eeb174', '#f3ca7e', '#f9f28b', '#c8db8c', '#aad08f', '#87c38f', '#83c6c2', '#7dc5eb', '#87a7d6', '#8992c8', '#a686ba', '#bd8cbb', '#be8dbd', '#e89abe', '#e8989a', '#e16632', '#e98f36', '#efb336', '#f6ef37', '#afcd51', '#7cba59', '#36ab60', '#1baba8', '#17ace3', '#3f81c1', '#4f68b0', '#594d9c', '#82529d', '#a4579d', '#db649b', '#dd6572', '#d81e06', '#e0620d', '#ea9518', '#f4ea2a', '#8cbb1a', '#2ba515', '#0e932e', '#0c9890', '#1295db', '#0061b2', '#0061b0', '#004198', '#122179', '#88147f', '#d3227b', '#d6204b']
+	        var RE_INPUT = /^input|textarea$/i
 
 	        function ColorPicker() {}
 	        ColorPicker.SHORTCUTS = SHORTCUTS
@@ -148,6 +149,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                this.hex(this.data.color)
 
+	                var type = 'click.colorpicker_toggle_' + this.clientId
+	                this.$element.off(type)
+	                    .on(type, function(event) {
+	                        that.toggle(event)
+	                    })
+
 	                var $manager = this.$manager = new EventManager('bx-')
 	                $manager.delegate(this.$element, this)
 	                $manager.delegate(this.$relatedElement, this)
@@ -158,13 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    event.stopPropagation()
 	                })
 
-	                var type = 'click.colorpicker_' + this.clientId
-	                $(document.body).off(type)
-	                    .on(type, function(event) {
-	                        if (that.element === event.target) return
-	                        if ($relatedElement.has(event.target).length) return
-	                        that.hide()
-	                    })
+	                this._autoHide()
 	            },
 	            show: function() {
 	                this.$element.addClass('colorpicker-open')
@@ -379,17 +380,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.trigger(changeEvent, extra)
 	                if (changeEvent.isDefaultPrevented()) return
 
+	                if (RE_INPUT.test(this.element.nodeName)) {
+	                    this.$element.val(extra.hex)
+	                }
+
 	                this.$element.triggerHandler('change')
 	                this.hide()
+	            },
+	            _autoHide: function() {
+	                var that = this
+	                var type = 'click.colorpicker_autohide_' + this.clientId
+	                $(document.body).off(type)
+	                    .on(type, function(event) {
+	                        if (that.element === event.target) return
+	                        if (that.$relatedElement.has(event.target).length) return
+	                        that.hide()
+	                    })
 	            },
 	            destroy: function() {
 	                this.$manager.undelegate(this.$element, this)
 	                this.$manager.undelegate(this.$relatedElement, this)
 
-	                this.$relatedElement.remove()
+	                this.$element.off('click.colorpicker_toggle_' + this.clientId)
+	                $(document.body).off('click.colorpicker_autohide_' + this.clientId)
 
-	                var type = 'click.colorpicker_' + this.clientId
-	                $(document.body).off(type)
+	                this.$relatedElement.remove()
 	            }
 	        })
 

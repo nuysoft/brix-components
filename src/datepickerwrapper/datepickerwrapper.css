@@ -12,6 +12,9 @@
 .datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
   display: block;
 }
+.datepickerwrapper.single .datepicker-container {
+  position: absolute;
+}
 .datepickerwrapper.multiple {
   padding: 15px 0px;
   border: 1px solid #cccccc;
