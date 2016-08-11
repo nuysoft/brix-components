@@ -288,16 +288,6 @@ gulp.task('test', ['test:server', 'test:mocha', 'watch:test'])
 
 // ----------------------------------------
 
-gulp.task('doc:gitbook', function() {
-    gulp.watch(['src/**/README.md'], function(event) {
-        onFileChange(event)
-        gulp.src(['src/**/*.md']).pipe(cache('doc:gitbook')).pipe(debug('doc:gitbook'))
-            .pipe(gulp.dest('../brix-book/brix-components'))
-    })
-})
-
-// ----------------------------------------
-
 gulp.task('watch', ['js:watch', 'css:watch'])
 gulp.task('build', ['build:js', 'build:css', 'watch:test'])
 gulp.task('default', ['build', 'test', 'watch'])
