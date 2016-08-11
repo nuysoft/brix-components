@@ -52,6 +52,11 @@ describe('Linkage', function() {
         )
     })
 
+    afterEach(function(done) {
+        $containers.empty()
+        done()
+    })
+
     function genNode(id, name, type, checked, disabled, children) {
         _.each(children, function(item /*, index*/ ) {
             item.pid = id
