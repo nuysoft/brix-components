@@ -228,8 +228,18 @@ gulp.task('css:lint', ['css:less', 'css:concat'], (cb) => {
 gulp.task('build:css', ['css:less', 'css:concat', 'css:lint'], (cb) => {
     gulp.src(['src/*/**/*.css']).pipe(cache('build:css')) // .pipe(debug('build:css'))
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
+            var basename = file.path.replace(file.base, '')
+
+            // datepicker/datepicker.css
+            if (/^([^/]+)\/([^/]+)$/.test(basename)) {
+                basename = path.basename(file.path)
+            } else {
+                // datepicker/ancient/ancient.css
+                basename = path.dirname(basename) + path.extname(basename)
+            }
+
             file.path = path.join(
-                file.base, path.basename(file.path)
+                file.base, basename
             )
             callback(null, file)
         }))
