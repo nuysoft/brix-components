@@ -6,6 +6,8 @@
 <input type="checkbox" bx-name="components/switch">
 ```
 
+<iframe width="100%" height="500" src="./demo.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 ## 配置
 
 自动从组件节点 `<input>` 上解析，在组件中通过 `this.options` 访问。
@@ -123,57 +125,4 @@ instances.on('change.switch', function(event, extra) {
 
 ## 示例
 
-<div class="bs-example">
-    <div class="content">
-        <form>
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>可用状态</h4>
-                    <input type="checkbox" bx-name="components/switch">
-                    <input type="checkbox" bx-name="components/switch" checked>
-                </div>
-                <div class="col-xs-6">
-                    <h4>禁用状态</h4>
-                    <input type="checkbox" bx-name="components/switch" disabled>
-                    <input type="checkbox" bx-name="components/switch" disabled checked>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <form>
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>设置 name、value</h4>
-                    <input type="checkbox" bx-name="components/switch" name="foo" value="foo">
-                    <input type="checkbox" bx-name="components/switch" name="bar" value="bar" checked>
-                </div>
-                <div class="col-xs-6">
-                    <h4>设置 name、value</h4>
-                    <input type="checkbox" bx-name="components/switch" name="foo" value="foo" disabled>
-                    <input type="checkbox" bx-name="components/switch" name="bar" value="bar" disabled checked>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <form>
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>`data-size="small"`</h4>
-                    <input type="checkbox" bx-name="components/switch" data-size="small">
-                    <input type="checkbox" bx-name="components/switch" data-size="small" checked>
-                </div>
-                <div class="col-xs-6">
-                    <h4>`data-size="large"`</h4>
-                    <input type="checkbox" bx-name="components/switch" data-size="large" disabled>
-                    <input type="checkbox" bx-name="components/switch" data-size="large" disabled checked>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<iframe width="100%" height="500" src="./demo.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

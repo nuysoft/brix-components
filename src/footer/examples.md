@@ -1,0 +1,1 @@
+<div bx-name="component/footer" bx-options="{mode:'normal'}"></div>
