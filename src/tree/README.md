@@ -2,6 +2,10 @@
 
 树组件。
 
+```html
+<div bx-name="components/tree" class="tree-wrapper">
+```
+
 ### 示例 <small>Examples</small>
 
 <div class="bs-example">

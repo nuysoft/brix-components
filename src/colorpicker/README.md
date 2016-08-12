@@ -2,7 +2,9 @@
 
 调色板。
 
-<iframe width="100%" height="300" src="./demo.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+```html
+<div bx-name="components/colorpicker" class="btn btn-default">ColorPicker</div>
+```
 
 ## 配置
 
@@ -98,6 +100,8 @@ instances.on('change.dropdown', function(event, extra) {
 ```
 
 ## 示例
+
+<iframe width="100%" height="500" src="./demo.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
 

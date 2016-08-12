@@ -4,7 +4,35 @@
 
 > 引用了 <http://parsleyjs.org/>。
 
-### 示例 <small>Examples</small>
+```html
+<form bx-name="components/validation">
+```
+
+## 配置
+
+无。
+
+## 属性
+
+属性名 | 类型 | 默认值 | 说明
+:--- | :--- | :------ | :----------
+parsley | Parsley | - | <http://parsleyjs.org/>
+
+## 方法
+
+### .validate()
+
+<http://parsleyjs.org/doc/index.html#usage-form>
+
+### .isValid()
+
+<http://parsleyjs.org/doc/index.html#usage-form>
+
+## 事件
+
+无。
+
+## 示例
 
 <style type="text/css">
     p.parsley-success, div.parsley-success {
@@ -93,28 +121,3 @@ var Loader = require('brix/loader')
 var instances = Loader.query('components/validation')
 instances.validate()
 ```
-
-### 配置 <small>Options</small>
-
-无。
-
-### 属性 <small>Properties</small>
-
-Name | Type | Default | Description
-:--- | :--- | :------ | :----------
-parsley | Parsley | - | <http://parsleyjs.org/>
-
-### 方法 <small>Methods</small>
-
-####  .validate()
-
-<http://parsleyjs.org/doc/index.html#usage-form>
-
-####  .isValid()
-
-<http://parsleyjs.org/doc/index.html#usage-form>
-
-### 事件 <small>Events</small>
-
-无。
-

@@ -4,6 +4,13 @@
 
 > 依赖 <http://momentjs.com/>。
 
+```html
+<!-- 日期 -->
+<div bx-name="components/datepicker" data-type="date"></div>
+<!-- 时间 -->
+<div bx-name="components/datepicker" data-type="time"></div>
+```
+
 ## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。

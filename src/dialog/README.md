@@ -2,6 +2,10 @@
 
 对话框。
 
+```js
+new Dialog( options )
+```
+
 ## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。

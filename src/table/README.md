@@ -2,6 +2,10 @@
 
 增强表格。
 
+```html
+<table bx-name="components/table">
+```
+
 ## 配置 <small>Options</small>
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
