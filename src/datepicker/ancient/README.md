@@ -1,6 +1,6 @@
 # DatePicker
 
-日期选择器。{ .lead }
+日期选择器。
 
 > 依赖 <http://momentjs.com/>。
 

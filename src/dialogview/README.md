@@ -1,6 +1,6 @@
 # DialogView
 
-Magix View 对话框。{ .lead }
+Magix View 对话框。
 
 <script type="text/javascript">
 	require(['magix'], function(Magix) {

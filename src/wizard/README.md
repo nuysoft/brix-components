@@ -1,6 +1,6 @@
 # Wizard
 
-Lorem ipsum{ .lead }
+Lorem ipsum
 
 ### 示例 <small>Examples</small>
 

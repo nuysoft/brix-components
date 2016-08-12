@@ -1,6 +1,6 @@
 # Tree
 
-树组件。{ .lead }
+树组件。
 
 ### 示例 <small>Examples</small>
 

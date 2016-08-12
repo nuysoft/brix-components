@@ -1,6 +1,6 @@
 # Uploader
 
-上传组件。{ .lead }
+上传组件。
 
 ### 示例 <small>Examples</small>
 

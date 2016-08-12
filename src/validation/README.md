@@ -1,6 +1,6 @@
 # Validation
 
-表单验证组件。{ .lead }
+表单验证组件。
 
 > 引用了 <http://parsleyjs.org/>。
 

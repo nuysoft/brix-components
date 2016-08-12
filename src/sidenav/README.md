@@ -2,11 +2,6 @@
 
 将阿里妈妈的统一吊顶封装成 Brix 组件。
 
-```html
-<div bx-name="component/sitenav" bx-options="{mode:'normal'}"></div>
-
-```
-
 ## 调用方式
 
 ```html
