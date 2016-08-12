@@ -1,34 +1,21 @@
 # HourPicker
 
-时间选择器组件。{ .lead }
+时间选择器组件。
 
-<style type="text/css">
-</style>
+```html
+<div bx-name="components/hourpicker"></div>
+```
 
-<div class="bs-example">
-    <div class="content">
-        <h4>完整模式。</h4>
-        <div bx-name="components/hourpicker"></div>
-    </div>
-</div>
-
-<div class="bs-example">
-    <div class="content">
-        <h4>精简模式。</h4>
-        <div bx-name="components/hourpicker" data-simplify="true"></div>
-    </div>
-</div>
-
-### 配置 <small>Options</small>
+## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-Name | Type | Default | Description
+配置项 | 类型 | 默认值 | 说明
 :--- | :--- | :------ | :----------
 simplify | bolean | `false` | 可选。是否为精简模式。
 value | string or array or object | `''` | 可选。指定选中的时间。
 
-#### 配置项 `value`
+### 配置项 `value`
 
 完整模式下配置项 `value` 的可选值示例：
 
@@ -47,9 +34,9 @@ data-value="[12345,60]"
 data-value="{12345:[0,2,4],60:[1,3,5]}"
 ```
 
-### 方法 <small>Methods</small>
+## 方法
 
-#### .val( [ value ] )
+### .val( [ value ] )
 
 设置或读取时间选择器的值。
 
@@ -103,9 +90,9 @@ simplified.val({
 })
 ```
 
-### 事件 <small>Events</small>
+## 事件
 
-Event Type | Description
+事件类型 | 说明
 :--------- | :----------
 change.hourpicker | 当值发生变化时被触发。
 
@@ -131,6 +118,16 @@ instances.on('change.hourpicker', function(event, extra) {
         })
     })
 </script>
+
+## 示例
+
+```html
+<!-- 完整模式。 -->
+<div bx-name="components/hourpicker"></div>
+
+<!-- 精简模式。 -->
+<div bx-name="components/hourpicker" data-simplify="true"></div>
+```
 
 <!-- <pre>
 var hourpicker = Loader.query('components/hourpicker')

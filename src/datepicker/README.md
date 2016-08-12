@@ -1,161 +1,23 @@
 # DatePicker
 
-日期选择器。{ .lead }
+日期选择器。
 
 > 依赖 <http://momentjs.com/>。
 
-### 示例 <small>Examples</small>
-
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>日期</h4>
-                <div bx-name="components/datepicker" data-type="date"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>时间</h4>
-                <div bx-name="components/datepicker" data-type="time"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>设置可选范围：最小日期</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[new Date()]"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>设置可选范围：最大日期</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[undefined, new Date()]"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>设置可选范围：最小日期 + 最大日期</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[new Date(), '2015-3-14']"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>设置多个可选范围</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25', '2015-3-14']]"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>设置多个可选范围</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25']]"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>设置多个可选范围</h4>
-                <div bx-name="components/datepicker" data-type="date" data-range="[[undefined, '2015-2-19'], ['2015-2-25']]"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>年份</h4>
-                <div bx-name="components/datepicker" data-type="year"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>月份</h4>
-                <div bx-name="components/datepicker" data-type="month"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>日期 + 时间</h4>
-                <div bx-name="components/datepicker" data-date="2015-1-1"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>日期 + 时间</h4>
-                <div bx-name="components/datepicker" data-date="2015-1-1" data-type="all"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>时间（小时可修改，分钟和秒不可修改）</h4>
-                <div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="hour"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>日期 + 时间（小时可修改，分钟和秒不可修改）</h4>
-                <div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="date hour"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bs-example">
-    <div class="content">
-        <div class="row">
-            <div class="col-xs-6">
-                <h4>支持不限</h4>
-                <div bx-name="components/datepicker" data-type="date" data-date="2015-1-1" data-unlimit="2099-1-1"></div>
-            </div>
-            <div class="col-xs-6">
-                <h4>支持不限，初始值即为不限</h4>
-                <div bx-name="components/datepicker" data-type="date" data-date="2099-1-1" data-unlimit="2099-1-1"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 
-            // 
-            // var types = 'change.datepicker ' + _.map(['date', 'month', 'year', 'hour', 'minute', 'second'], function(item, index) {
-            //     return 'change.datepicker.' + item
-            // }).join(' ')
-            // console.log(types)
- -->
-<script type="text/javascript">
-    require(['brix/loader'], function(Loader) {
-        Loader.boot(function() {
-            var instances = Loader.query('components/datepicker')
-            instances.on('change.datepicker unchange.datepicker', function(event, date, type) {
-                console.log(
-                    event.type,
-                    event.namespace,
-                    type, 
-                    date.format('YYYY-MM-DD HH:mm:ss.SSS')
-                )
-            })
-        })
-    })
-</script>
-
-### 配置 <small>Options</small>
+## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-Name | Type | Default | Description
+配置项 | 类型 | 默认值 | 说明
 :--- | :--- | :------ | :----------
 date | string | `new Date()` | 当前选中的日期。
 type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
 range | array | `[]` | 设置可选日期的范围。下面列举了一些合法值。
 excluded | array | `[]` | 设置禁选日期的范围。合法值同 `range`。
 
-#### 配置项 `type`
+### 配置项 `type`
 
-Value | Description
+值 | 说明
 :---- | :----------
 `'all'` | 年份 + 月份 + 天 + 小时 + 分钟 + 秒。默认值。等同于 `'date time'`
 `'date'` | 年份 + 月份 + 天。
@@ -166,7 +28,7 @@ Value | Description
 `'minute'` | 小时 + 分钟。
 ~~`'second'`~~ | ~~小时 + 分钟 + 秒。等同于 `'time'`。~~
 
-#### 配置项 `range`
+### 配置项 `range`
 
 * `['2015-1-1']`
     
@@ -192,9 +54,9 @@ Value | Description
 
     设置了两段可选范围，第一段截至 `2015-2-19`，第二段从 `2015-2-25` 开始。
 
-### 方法 <small>Methods</small>
+## 方法
 
-#### .val( [ value ] )
+### .val( [ value ] )
 
 * .val()
 * .val( value )
@@ -248,9 +110,9 @@ console.log(excluded)
 instances[0].excluded([new Date(), '2015-12-31'])
 ```
 
-### 事件 <small>Events</small>
+### 事件
 
-Event Type | Description
+事件类型 | 说明
 :--------- | :----------
 change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `event` 是一个 [jQuery 事件对象]；参数 `date` 是一个 [moment 对象]；参数 `type` 指示了发生变化的属性，可选值有：年份 `'year'`、月份 `'month'`、日 `'date'`、时间 `'time'`、小时 `'hour'`、分 `'minute'`、秒 `'second'`、`undefined`。
 
@@ -269,4 +131,57 @@ instances.on('change.datepicker', function(event, date, type) {
 })
 // =>
 //  change datepicker date 2015-01-08 22:52:53.129
+```
+
+## 示例
+
+```html
+<!-- 日期 -->
+<div bx-name="components/datepicker" data-type="date"></div>
+<!-- 时间 -->
+<div bx-name="components/datepicker" data-type="time"></div>
+<!-- 设置可选范围：最小日期 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[new Date()]"></div>
+<!-- 设置可选范围：最大日期 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[undefined, new Date()]"></div>
+<!-- 设置可选范围：最小日期 + 最大日期 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[new Date(), '2015-3-14']"></div>
+<!-- 设置多个可选范围 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25', '2015-3-14']]"></div>
+<!-- 设置多个可选范围 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25']]"></div>
+<!-- 设置多个可选范围 -->
+<div bx-name="components/datepicker" data-type="date" data-range="[[undefined, '2015-2-19'], ['2015-2-25']]"></div>
+<!-- 年份 -->
+<div bx-name="components/datepicker" data-type="year"></div>
+<!-- 月份 -->
+<div bx-name="components/datepicker" data-type="month"></div>
+<!-- 日期 + 时间 -->
+<div bx-name="components/datepicker" data-date="2015-1-1"></div>
+<!-- 日期 + 时间 -->
+<div bx-name="components/datepicker" data-date="2015-1-1" data-type="all"></div>
+<!-- 时间（小时可修改，分钟和秒不可修改） -->
+<div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="hour"></div>
+<!-- 日期 + 时间（小时可修改，分钟和秒不可修改） -->
+<div bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="date hour"></div>
+<!-- 支持不限 -->
+<div bx-name="components/datepicker" data-type="date" data-date="2015-1-1" data-unlimit="2099-1-1"></div>
+<!-- 支持不限，初始值即为不限 -->
+<div bx-name="components/datepicker" data-type="date" data-date="2099-1-1" data-unlimit="2099-1-1"></div>
+```
+
+```js
+require(['brix/loader'], function(Loader) {
+    Loader.boot(function() {
+        var instances = Loader.query('components/datepicker')
+        instances.on('change.datepicker unchange.datepicker', function(event, date, type) {
+            console.log(
+                event.type,
+                event.namespace,
+                type, 
+                date.format('YYYY-MM-DD HH:mm:ss.SSS')
+            )
+        })
+    })
+})
 ```
