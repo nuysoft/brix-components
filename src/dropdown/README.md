@@ -82,9 +82,9 @@ instances[0].data([
 ]).val(3)
 ```
 
-## 事件 <small>Events</small>
+## 事件
 
-Event Type | Description
+事件类型 | 说明
 :--------- | :----------
 change.dropdown | 当值发生变化时被触发。
 search.dropdown | 见配置项 `searchbox`。
@@ -102,7 +102,7 @@ instances.on('search.dropdown', function(event, seed) {
 })
 ```
 
-## 示例 <small>Examples</small>
+## 示例
 
 <div class="bs-example">
     <div class="content">
