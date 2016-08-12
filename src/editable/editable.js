@@ -60,14 +60,21 @@ define(
                     that.show()
                 })
 
-                this.$relatedElement.on('keydown', function(event) {
-                    if (!that._hooks[event.which]) return
-                    that._hooks[event.which].call(that, event)
-
-                }).on('blur', function() {
-                    if (that.update() === false) return
-                    that.hide()
-                })
+                this.$relatedElement
+                    .on('keydown', function(event) {
+                        if (!that._hooks[event.which]) return
+                        that._hooks[event.which].call(that, event)
+                    })
+                    .on('blur', function() {
+                        if (that.update() === false) return
+                        that.hide()
+                    })
+                    .on('change', function(event) {
+                        // 阻止 input、textarea 的 change 事件，避免二次触发 change.editable 事件。
+                        event.preventDefault()
+                        event.stopImmediatePropagation()
+                        event.stopPropagation()
+                    })
             },
             update: function() {
                 var preContent = this.$element[this.options.type]() || this.options.content
