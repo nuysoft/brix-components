@@ -2,6 +2,14 @@
 
 浮层。
 
+```html
+<div bx-name="components/popover" bx-options="{
+    placement: 'top',
+    title: 'Popover on top',
+    content: 'Envy is the ulcer of the soul.'
+}" class="btn btn-default">Popover on top</div>
+```
+
 ## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。

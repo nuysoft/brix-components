@@ -1,36 +1,29 @@
 # Footer
 
-Lorem ipsum{ .lead }
+将阿里妈妈的统一页脚封装成 Brix 组件。
 
-### 示例 <small>Examples</small>
+## 调用方式
 
-<div class="bs-example">
-    <div class="content">
-        <div bx-name="components/footer"></div>
-    </div>
-</div>
-
-### 配置 <small>Options</small>
-
-Name | Type | Default | Description
-:--- | :--- | :------ | :----------
-- | - | - | -
-
-### 方法 <small>Methods</small>
-
-#### .method(args)
-
-Lorem ipsum
-
-```js
-var Loader = require('loader')
-var instance = Loader.query('component/footer')
-instance.method()
+```html
+<div bx-name="component/footer" bx-options="{mode:'normal'}"></div>
 ```
 
-### 事件 <small>Events</small>
+## 默认值
 
-Event Type | Description
-:--------- | :----------
-- | -
+```javascript
+mode:'normal'
+```
 
+## 可选参数
+
+完全版本：
+
+```javascript
+mode:'normal'
+```
+
+简约版本：
+
+```javascript
+mode:'simple'
+```
