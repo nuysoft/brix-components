@@ -9,12 +9,38 @@
     background-color: #ffffff;
     margin-top: 2px;
 
-    .datepicker-container .timepicker .timepicker-footer {
-        display: block;
+    .datepicker-container {
+        .timepicker {
+            .timepicker-footer {
+                display: block;
+            }
+        }
+    }
+
+    .datepicker-ancient-container {
+        .year-month-day-container {
+            .year-month-day {
+                .day {
+                    .day-body {
+                        .day-body-content {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        .hour-minute-second-container {
+            .hour-minute-second {
+                .hour-minute-second-footer {
+                    display: block;
+                }
+            }
+        }
     }
 
     &.single {
-        .datepicker-container {
+        .datepicker-container,
+        .datepicker-ancient-container {
             position: absolute;
         }
     }

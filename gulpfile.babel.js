@@ -103,6 +103,8 @@ gulp.task('build:js', ['js:tpl', 'js:hint'], () => {
             var parts = RE_MODULEID.exec(portal)
             if (!parts) return callback(null, file)
             var moduleId = 'components/' + parts[1] + (parts[2] || '')
+                // src/datepicker/datepicker.js      => dist/components/datepicker.js
+                // src/datepicker/ancient/ancient.js => dist/components/datepicker/ancient.js
 
             var options = { // TODO Cannot find module ...
                 entry: file.path,

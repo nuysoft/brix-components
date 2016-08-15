@@ -1354,7 +1354,7 @@ button.error, button.input-error, button.parsley-error {
                     }
                     .day-body-content {
                         .mixin-date-group-body-content();
-                        height: 180px;
+                        // height: 180px;
                         > span {
                             .mixin-date-group-body-item();
                         }
@@ -1394,7 +1394,17 @@ button.error, button.input-error, button.parsley-error {
                 }
                 .spliter {}
             }
-            .hour-minute-second-footer {}
+            .hour-minute-second-footer {
+                .btn {
+                        &.submit {
+                        color: #FFF;
+                        background-color: @brand;
+                        &:hover {
+                            background-color: @brand-hover;
+                        }
+                    }
+                }
+            }
         }
     }
     .unlimit-container {

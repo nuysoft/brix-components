@@ -2059,11 +2059,17 @@ button.parsley-error {
 }
 .datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content {
   padding: 0 10px;
-  height: 180px;
 }
 .datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content > span.active {
   color: white;
   background-color: #FF6600;
+}
+.datepicker-ancient-container .hour-minute-second-container .hour-minute-second .hour-minute-second-footer .btn.submit {
+  color: #FFF;
+  background-color: #FF6600;
+}
+.datepicker-ancient-container .hour-minute-second-container .hour-minute-second .hour-minute-second-footer .btn.submit:hover {
+  background-color: #FC4218;
 }
 .datepicker-ancient-container .unlimit-container {
   padding: 6px 0;

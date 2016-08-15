@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("jquery"), require("underscore"), require("moment"), require("brix/loader"), require("components/base"), require("brix/event"), require("components/datepicker"));
+		module.exports = factory(require("jquery"), require("underscore"), require("moment"), require("brix/loader"), require("components/base"), require("brix/event"), require("components/datepicker/ancient"));
 	else if(typeof define === 'function' && define.amd)
-		define(["jquery", "underscore", "moment", "brix/loader", "components/base", "brix/event", "components/datepicker"], factory);
+		define(["jquery", "underscore", "moment", "brix/loader", "components/base", "brix/event", "components/datepicker/ancient"], factory);
 	else if(typeof exports === 'object')
-		exports["components/datepickerwrapper"] = factory(require("jquery"), require("underscore"), require("moment"), require("brix/loader"), require("components/base"), require("brix/event"), require("components/datepicker"));
+		exports["components/datepickerwrapper"] = factory(require("jquery"), require("underscore"), require("moment"), require("brix/loader"), require("components/base"), require("brix/event"), require("components/datepicker/ancient"));
 	else
-		root["components/datepickerwrapper"] = factory(root["jquery"], root["underscore"], root["moment"], root["brix/loader"], root["components/base"], root["brix/event"], root["components/datepicker"]);
+		root["components/datepickerwrapper"] = factory(root["jquery"], root["underscore"], root["moment"], root["brix/loader"], root["components/base"], root["brix/event"], root["components/datepicker/ancient"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -84,13 +84,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            input trigger
 	            输入回调，输出回调
 	         */
-
+	        var CALENDAR = 'components/datepicker/ancient'
 	        var RE_INPUT = /^input|textarea$/i
 	        var NAMESPACE = '.datepickerwrapper'
 	            // var NAMESPACE_ORIGINAL = '.original'
-	        var DATE_PATTERN = DatePicker.DATE_PATTERN
-	        var TIME_PATTERN = DatePicker.TIME_PATTERN
-	        var DATE_TIME_PATTERN = DatePicker.DATE_TIME_PATTERN
+	        var DATE_PATTERN = DatePicker.PATTERNS.DATE
+	        var TIME_PATTERN = DatePicker.PATTERNS.TIME
+	        var DATE_TIME_PATTERN = DatePicker.PATTERNS.DATE_TIME
 	        var SHORTCUTS = function() {
 	            var now = moment()
 	            var nowDate = now.get('date')
@@ -137,6 +137,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _.extend(DatePickerWrapper.prototype, Brix.prototype, {
 	            options: {
+	                calendar: CALENDAR,
+
 	                placement: 'bottom', // top bottom left right
 	                align: 'left', // left right top bottom
 	                offset: {},
@@ -151,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            init: function() {
 	                // 修正选项
-	                this.options.typeMap = DatePicker.typeMap(this.options.type)
+	                this.options.typeMap = DatePicker.parseTypeAsMap(this.options.type)
 	                if (this.options.dates.length > 1) this.options.mode = 'multiple'
 	                if (!this.options.dates.length) this.options.dates = [moment().startOf('day').format(DATE_PATTERN)]
 	                if (this.options.shortcuts) {
@@ -233,7 +235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return defer.promise()
 	            },
 	            val: function(value) {
-	                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+	                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 	                if (value) {
 	                    _.each(pickerComponents, function(item, index) {
 	                        item.val(
@@ -249,7 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                })
 	            },
 	            range: function(value) {
-	                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+	                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 	                if (value) {
 	                    this.options.ranges = value = _.flatten(value)
 	                    _.each(pickerComponents, function(item /*, index*/ ) {
@@ -260,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.options.ranges
 	            },
 	            excluded: function(value) {
-	                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+	                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 	                if (value) {
 	                    this.options.excludeds = value = _.flatten(value)
 	                    _.each(pickerComponents, function(item /*, index*/ ) {
@@ -273,7 +275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _signal: function(defer) {
 	                var that = this
 	                Loader.boot(true, this.$relatedElement, function( /*records*/ ) {
-	                    var pickerComponent = Loader.query('components/datepicker', that.$relatedElement)[0]
+	                    var pickerComponent = Loader.query(CALENDAR, that.$relatedElement)[0]
 	                        /* jshint unused:false */
 	                    pickerComponent.on('change.datepicker unchange.datepicker', function(event, date, type) {
 	                        // 过滤 timepicker 中的 input 触发的原生 change 事件
@@ -333,7 +335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var pickerWrapper = $('.datepickerwrapper-pickers', that.$relatedElement)
 	                    var pickers = $('.picker', pickerWrapper)
 
-	                    var pickerComponents = Loader.query('components/datepicker', that.$relatedElement)
+	                    var pickerComponents = Loader.query(CALENDAR, that.$relatedElement)
 
 	                    var shortcutWrapper = $('.datepickerwrapper-shortcuts', that.$relatedElement)
 	                    var shortcuts = $('.shortcut', shortcutWrapper)
@@ -477,7 +479,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        shortcuts.removeClass('active')
 	                }
 
-	                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+	                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 	                var dates = _.map(pickerComponents, function(item /*, index*/ ) {
 	                    return item.val()
 	                })
@@ -536,7 +538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _change: function(event, type, index) {
 	                var that = this
 	                var $target = $(event.target)
-	                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+	                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 
 	                switch (type) {
 	                    case 'shortcut':
@@ -854,7 +856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return "<div class=\"datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>\">\n" +
 	        "    <!--  -->\n" +
 	        "    <% if (mode === 'signal') { %>\n" +
-	        "    <div bx-name=\"components/datepicker\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" class=\"picker\"></div>\n" +
+	        "    <div bx-name=\"<%= calendar %>\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" class=\"picker\"></div>\n" +
 	        "    <% } %>\n" +
 	        "    <!--  -->\n" +
 	        "    <% if (mode === 'multiple') { %>\n" +
@@ -887,7 +889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "    </div>\n" +
 	        "    <div class=\"datepickerwrapper-pickers\">\n" +
 	        "        <% for (var i = 0; i < dates.length; i++ ) { %>\n" +
-	        "            <div bx-name=\"components/datepicker\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-type=\"<%= type %>\" class=\"picker\"></div>\n" +
+	        "            <div bx-name=\"<%= calendar %>\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-type=\"<%= type %>\" class=\"picker\"></div>\n" +
 	        "        <% } %>\n" +
 	        "    </div>\n" +
 	        "    <div class=\"datepickerwrapper-footer\">\n" +

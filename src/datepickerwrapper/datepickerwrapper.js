@@ -3,7 +3,7 @@ define(
     [
         'jquery', 'underscore', 'moment',
         'brix/loader', 'components/base', 'brix/event',
-        'components/datepicker',
+        'components/datepicker/ancient',
         '../dialog/position.js',
         './datepickerwrapper.tpl.js'
     ],
@@ -24,13 +24,13 @@ define(
             input trigger
             输入回调，输出回调
          */
-
+        var CALENDAR = 'components/datepicker/ancient'
         var RE_INPUT = /^input|textarea$/i
         var NAMESPACE = '.datepickerwrapper'
             // var NAMESPACE_ORIGINAL = '.original'
-        var DATE_PATTERN = DatePicker.DATE_PATTERN
-        var TIME_PATTERN = DatePicker.TIME_PATTERN
-        var DATE_TIME_PATTERN = DatePicker.DATE_TIME_PATTERN
+        var DATE_PATTERN = DatePicker.PATTERNS.DATE
+        var TIME_PATTERN = DatePicker.PATTERNS.TIME
+        var DATE_TIME_PATTERN = DatePicker.PATTERNS.DATE_TIME
         var SHORTCUTS = function() {
             var now = moment()
             var nowDate = now.get('date')
@@ -77,6 +77,8 @@ define(
 
         _.extend(DatePickerWrapper.prototype, Brix.prototype, {
             options: {
+                calendar: CALENDAR,
+
                 placement: 'bottom', // top bottom left right
                 align: 'left', // left right top bottom
                 offset: {},
@@ -91,7 +93,7 @@ define(
             },
             init: function() {
                 // 修正选项
-                this.options.typeMap = DatePicker.typeMap(this.options.type)
+                this.options.typeMap = DatePicker.parseTypeAsMap(this.options.type)
                 if (this.options.dates.length > 1) this.options.mode = 'multiple'
                 if (!this.options.dates.length) this.options.dates = [moment().startOf('day').format(DATE_PATTERN)]
                 if (this.options.shortcuts) {
@@ -173,7 +175,7 @@ define(
                 return defer.promise()
             },
             val: function(value) {
-                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
                 if (value) {
                     _.each(pickerComponents, function(item, index) {
                         item.val(
@@ -189,7 +191,7 @@ define(
                 })
             },
             range: function(value) {
-                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
                 if (value) {
                     this.options.ranges = value = _.flatten(value)
                     _.each(pickerComponents, function(item /*, index*/ ) {
@@ -200,7 +202,7 @@ define(
                 return this.options.ranges
             },
             excluded: function(value) {
-                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
                 if (value) {
                     this.options.excludeds = value = _.flatten(value)
                     _.each(pickerComponents, function(item /*, index*/ ) {
@@ -213,7 +215,7 @@ define(
             _signal: function(defer) {
                 var that = this
                 Loader.boot(true, this.$relatedElement, function( /*records*/ ) {
-                    var pickerComponent = Loader.query('components/datepicker', that.$relatedElement)[0]
+                    var pickerComponent = Loader.query(CALENDAR, that.$relatedElement)[0]
                         /* jshint unused:false */
                     pickerComponent.on('change.datepicker unchange.datepicker', function(event, date, type) {
                         // 过滤 timepicker 中的 input 触发的原生 change 事件
@@ -273,7 +275,7 @@ define(
                     var pickerWrapper = $('.datepickerwrapper-pickers', that.$relatedElement)
                     var pickers = $('.picker', pickerWrapper)
 
-                    var pickerComponents = Loader.query('components/datepicker', that.$relatedElement)
+                    var pickerComponents = Loader.query(CALENDAR, that.$relatedElement)
 
                     var shortcutWrapper = $('.datepickerwrapper-shortcuts', that.$relatedElement)
                     var shortcuts = $('.shortcut', shortcutWrapper)
@@ -417,7 +419,7 @@ define(
                         shortcuts.removeClass('active')
                 }
 
-                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
                 var dates = _.map(pickerComponents, function(item /*, index*/ ) {
                     return item.val()
                 })
@@ -476,7 +478,7 @@ define(
             _change: function(event, type, index) {
                 var that = this
                 var $target = $(event.target)
-                var pickerComponents = Loader.query('components/datepicker', this.$relatedElement)
+                var pickerComponents = Loader.query(CALENDAR, this.$relatedElement)
 
                 switch (type) {
                     case 'shortcut':

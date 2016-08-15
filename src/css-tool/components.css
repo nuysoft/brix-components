@@ -588,6 +588,7 @@
   margin-top: 13px;
   padding-top: 15px;
   display: none;
+  text-align: left;
 }
 .datepicker-ancient-container .unlimit-container {
   border-top: 1px solid #DDD;
@@ -767,7 +768,11 @@
 .datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
   display: block;
 }
-.datepickerwrapper.single .datepicker-container {
+.datepickerwrapper .datepicker-ancient-container .hour-minute-second-container .hour-minute-second .hour-minute-second-footer {
+  display: block;
+}
+.datepickerwrapper.single .datepicker-container,
+.datepickerwrapper.single .datepicker-ancient-container {
   position: absolute;
 }
 .datepickerwrapper.multiple {

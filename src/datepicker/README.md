@@ -20,7 +20,7 @@
 date | string | `new Date()` | 当前选中的日期。
 type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
 range | array | `[]` | 设置可选日期的范围。下面列举了一些合法值。
-excluded | array | `[]` | 设置禁选日期的范围。合法值同 `range`。
+excluded | array or false | `false` | 设置禁选日期的范围。合法值同 `range`。
 
 ### 配置项 `type`
 

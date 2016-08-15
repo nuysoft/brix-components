@@ -3,7 +3,7 @@ define(function() {
     return "<div class=\"datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>\">\n" +
         "    <!--  -->\n" +
         "    <% if (mode === 'signal') { %>\n" +
-        "    <div bx-name=\"components/datepicker\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" class=\"picker\"></div>\n" +
+        "    <div bx-name=\"<%= calendar %>\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" class=\"picker\"></div>\n" +
         "    <% } %>\n" +
         "    <!--  -->\n" +
         "    <% if (mode === 'multiple') { %>\n" +
@@ -36,7 +36,7 @@ define(function() {
         "    </div>\n" +
         "    <div class=\"datepickerwrapper-pickers\">\n" +
         "        <% for (var i = 0; i < dates.length; i++ ) { %>\n" +
-        "            <div bx-name=\"components/datepicker\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-type=\"<%= type %>\" class=\"picker\"></div>\n" +
+        "            <div bx-name=\"<%= calendar %>\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-type=\"<%= type %>\" class=\"picker\"></div>\n" +
         "        <% } %>\n" +
         "    </div>\n" +
         "    <div class=\"datepickerwrapper-footer\">\n" +

@@ -213,7 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                pages: 1, // 日历面板的个数
 	                mode: 'single', // 日历模式：单选 single 多选 multiple 范围选 range
-	                disabled: false // 是否禁用日历
+	                disabled: false // 是否禁用日历 TODO
 	            },
 	            init: function() {
 	                var options = this.options

@@ -12,7 +12,11 @@
 .datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
   display: block;
 }
-.datepickerwrapper.single .datepicker-container {
+.datepickerwrapper .datepicker-ancient-container .hour-minute-second-container .hour-minute-second .hour-minute-second-footer {
+  display: block;
+}
+.datepickerwrapper.single .datepicker-container,
+.datepickerwrapper.single .datepicker-ancient-container {
   position: absolute;
 }
 .datepickerwrapper.multiple {
