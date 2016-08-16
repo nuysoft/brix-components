@@ -37,6 +37,7 @@
         <option value="hour">时</option>
         <option value="minute">分</option>
         <option value="second">秒</option>
+        <option value="date time">日期 + 时间</option>
     </select>
     <span>模式</span>
     <select bx-name="components/dropdown" name="mode" on-change="build">
