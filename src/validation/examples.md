@@ -26,6 +26,7 @@
 
 <div class="bs-example">
     <div class="content">
+        <h4>基于 [Parsley](http://parsleyjs.org/)。</h4>
         <form bx-name="components/validation" data-parsley-validation-threshold="0" data-parsley-focus="none" class="form" action="">
             <div class="form-group">
                 <input type="text" data-parsley-trigger="change keyup" data-parsley-required                                class="form-control" placeholder="required">
@@ -79,6 +80,16 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+    </div>
+</div>
+<div class="bs-example">
+    <div class="content">
+        <h4>支持非 `<form>` 节点作为容器。</h4>
+        <div bx-name="components/validation" data-parsley-validation-threshold="0" data-parsley-focus="none" class="form" action="">
+            <div class="form-group">
+                <input type="text" data-parsley-trigger="change keyup" data-parsley-required data-parsley-type="email"      class="form-control" placeholder="type email">
+            </div>
+        </div>
     </div>
 </div>
 
