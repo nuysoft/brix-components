@@ -1,4 +1,4 @@
-<div class="datepicker-ancient-container clearfix">
+<div class="datepicker-ancient-container">
     <!-- 年月日 -->
     <div class="year-month-day-container clearfix">
         <% for( var page = 0, first, last; page < options.pages; page++ ) { %>

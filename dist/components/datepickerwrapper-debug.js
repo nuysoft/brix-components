@@ -149,7 +149,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                dates: [],
 	                ranges: [],
 	                excludeds: [],
-	                unlimits: []
+	                unlimits: [],
+	                pages: 1
 	            },
 	            init: function() {
 	                // 修正选项
@@ -447,6 +448,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.$element.addClass('datepickerwrapper-open')
 	                this.$relatedElement.show()
 	                    .offset(this._offset())
+	                Loader.query(CALENDAR, this.$relatedElement).beautify()
 	            },
 	            hide: function( /*event*/ ) {
 	                this.$element.removeClass('datepickerwrapper-open')
@@ -457,6 +459,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.$element.toggleClass('datepickerwrapper-open')
 	                this.$relatedElement.toggle()
 	                    .offset(this._offset())
+	                Loader.query(CALENDAR, this.$relatedElement).beautify()
 	            },
 	            _offset: function() {
 	                var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)
@@ -853,10 +856,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-	    return "<div class=\"datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>\">\n" +
+	    return "<div class=\"datepickerwrapper <%= placement %> <%= mode === 'multiple' ? 'multiple' : 'single' %>\">\n" +
 	        "    <!--  -->\n" +
 	        "    <% if (mode === 'signal') { %>\n" +
-	        "    <div bx-name=\"<%= calendar %>\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" class=\"picker\"></div>\n" +
+	        "    <div bx-name=\"<%= calendar %>\" data-type=\"<%= type %>\" data-date=\"<%= dates[0] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[0] %>\" data-pages=\"<%= pages %>\" class=\"picker\"></div>\n" +
 	        "    <% } %>\n" +
 	        "    <!--  -->\n" +
 	        "    <% if (mode === 'multiple') { %>\n" +
@@ -889,7 +892,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "    </div>\n" +
 	        "    <div class=\"datepickerwrapper-pickers\">\n" +
 	        "        <% for (var i = 0; i < dates.length; i++ ) { %>\n" +
-	        "            <div bx-name=\"<%= calendar %>\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-type=\"<%= type %>\" class=\"picker\"></div>\n" +
+	        "            <div bx-name=\"<%= calendar %>\" data-type=\"<%= type %>\" data-date=\"<%= dates[i] %>\" data-range=\"<%= _ranges %>\" data-excluded=\"<%= _excludeds %>\" data-unlimit=\"<%= unlimits[i] %>\" data-pages=\"<%= pages %>\" class=\"picker\"></div>\n" +
 	        "        <% } %>\n" +
 	        "    </div>\n" +
 	        "    <div class=\"datepickerwrapper-footer\">\n" +

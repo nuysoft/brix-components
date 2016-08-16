@@ -89,7 +89,8 @@ define(
                 dates: [],
                 ranges: [],
                 excludeds: [],
-                unlimits: []
+                unlimits: [],
+                pages: 1
             },
             init: function() {
                 // 修正选项
@@ -387,6 +388,7 @@ define(
                 this.$element.addClass('datepickerwrapper-open')
                 this.$relatedElement.show()
                     .offset(this._offset())
+                Loader.query(CALENDAR, this.$relatedElement).beautify()
             },
             hide: function( /*event*/ ) {
                 this.$element.removeClass('datepickerwrapper-open')
@@ -397,6 +399,7 @@ define(
                 this.$element.toggleClass('datepickerwrapper-open')
                 this.$relatedElement.toggle()
                     .offset(this._offset())
+                Loader.query(CALENDAR, this.$relatedElement).beautify()
             },
             _offset: function() {
                 var offset = position(this.$element, this.$relatedElement, this.options.placement, this.options.align)

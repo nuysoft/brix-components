@@ -130,6 +130,7 @@
 .datepicker-ancient-container {
   background-color: white;
   display: inline-block;
+  vertical-align: top;
   border: 1px solid #CCC;
   padding: 0 10px;
   border-radius: 5px;
@@ -765,15 +766,23 @@
   background-color: #ffffff;
   margin-top: 2px;
 }
+.datepickerwrapper.top {
+  margin-top: -10px;
+}
+.datepickerwrapper.right {
+  margin-left: 10px;
+}
+.datepickerwrapper.bottom {
+  margin-top: 10px;
+}
+.datepickerwrapper.left {
+  margin-left: -10px;
+}
 .datepickerwrapper .datepicker-container .timepicker .timepicker-footer {
   display: block;
 }
 .datepickerwrapper .datepicker-ancient-container .hour-minute-second-container .hour-minute-second .hour-minute-second-footer {
   display: block;
-}
-.datepickerwrapper.single .datepicker-container,
-.datepickerwrapper.single .datepicker-ancient-container {
-  position: absolute;
 }
 .datepickerwrapper.multiple {
   padding: 15px 0px;

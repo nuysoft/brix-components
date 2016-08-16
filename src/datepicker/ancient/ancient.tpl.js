@@ -1,6 +1,6 @@
 /* global define */
 define(function() {
-    return "<div class=\"datepicker-ancient-container clearfix\">\n" +
+    return "<div class=\"datepicker-ancient-container\">\n" +
         "    <!-- 年月日 -->\n" +
         "    <div class=\"year-month-day-container clearfix\">\n" +
         "        <% for( var page = 0, first, last; page < options.pages; page++ ) { %>\n" +

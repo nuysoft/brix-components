@@ -3,9 +3,18 @@
 <div class="bs-example">
     <div class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <h4>为 input 元素绑定日期选择器。</h4>
                 <input bx-name="components/datepickerwrapper" type="text" class="form-control w100">
+            </div>
+            <div class="col-xs-6">
+                <h4>为 input 元素绑定日期选择器。</h4>
+                <input bx-name="components/datepickerwrapper" 
+                    data-pages="2" 
+                    data-placement="top"
+                    data-align="right" 
+                    type="text" 
+                    class="form-control w100">
             </div>
             <div class="col-xs-6">
                 <h4>为任意元素绑定日期选择器。</h4>

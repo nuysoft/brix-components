@@ -1756,7 +1756,6 @@ button.parsley-error {
 }
 .datepickerwrapper.multiple,
 .datepickerwrapper.single {
-  margin-top: 10px;
   border-radius: 4px;
   box-shadow: none;
 }
@@ -2059,6 +2058,7 @@ button.parsley-error {
 }
 .datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content {
   padding: 0 10px;
+  height: 180px;
 }
 .datepicker-ancient-container .year-month-day-container .year-month-day .day .day-body .day-body-content > span.active {
   color: white;

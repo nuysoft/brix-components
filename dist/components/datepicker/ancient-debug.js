@@ -302,10 +302,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    .__renderDayPicker()
 	                    .__renderTimePicker()
 
+	                this.beautify()
+
+	            },
+	            beautify: function() {
 	                // 修正 年月日 容器的宽度，避免日历面板因为宽度不够导致错行
 	                var year_month_date_container = this.$element.find('.year-month-day-container')
 	                var computedWidth = _.reduce(year_month_date_container.find('.year-month-day'), function(memo, ymd) {
-	                    return memo + $(ymd).outerWidth()
+	                    return memo + ($(ymd).outerWidth() || 258)
 	                }, 0)
 	                if (computedWidth > year_month_date_container.width()) {
 	                    year_month_date_container.width(computedWidth)
@@ -918,7 +922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-	    return "<div class=\"datepicker-ancient-container clearfix\">\n" +
+	    return "<div class=\"datepicker-ancient-container\">\n" +
 	        "    <!-- 年月日 -->\n" +
 	        "    <div class=\"year-month-day-container clearfix\">\n" +
 	        "        <% for( var page = 0, first, last; page < options.pages; page++ ) { %>\n" +

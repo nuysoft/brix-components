@@ -242,10 +242,14 @@ define(
                     .__renderDayPicker()
                     .__renderTimePicker()
 
+                this.beautify()
+
+            },
+            beautify: function() {
                 // 修正 年月日 容器的宽度，避免日历面板因为宽度不够导致错行
                 var year_month_date_container = this.$element.find('.year-month-day-container')
                 var computedWidth = _.reduce(year_month_date_container.find('.year-month-day'), function(memo, ymd) {
-                    return memo + $(ymd).outerWidth()
+                    return memo + ($(ymd).outerWidth() || 258)
                 }, 0)
                 if (computedWidth > year_month_date_container.width()) {
                     year_month_date_container.width(computedWidth)

@@ -1,6 +1,7 @@
 .datepicker-ancient-container {
   background-color: white;
   display: inline-block;
+  vertical-align: top;
   border: 1px solid #CCC;
   padding: 0 10px;
   border-radius: 5px;

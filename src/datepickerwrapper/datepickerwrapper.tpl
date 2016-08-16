@@ -1,7 +1,7 @@
-<div class="datepickerwrapper <%= mode === 'multiple' ? 'multiple' : 'single' %>">
+<div class="datepickerwrapper <%= placement %> <%= mode === 'multiple' ? 'multiple' : 'single' %>">
     <!--  -->
     <% if (mode === 'signal') { %>
-    <div bx-name="<%= calendar %>" data-type="<%= type %>" data-date="<%= dates[0] %>" data-range="<%= _ranges %>" data-excluded="<%= _excludeds %>" data-unlimit="<%= unlimits[0] %>" class="picker"></div>
+    <div bx-name="<%= calendar %>" data-type="<%= type %>" data-date="<%= dates[0] %>" data-range="<%= _ranges %>" data-excluded="<%= _excludeds %>" data-unlimit="<%= unlimits[0] %>" data-pages="<%= pages %>" class="picker"></div>
     <% } %>
     <!--  -->
     <% if (mode === 'multiple') { %>
@@ -34,7 +34,7 @@
     </div>
     <div class="datepickerwrapper-pickers">
         <% for (var i = 0; i < dates.length; i++ ) { %>
-            <div bx-name="<%= calendar %>" data-date="<%= dates[i] %>" data-range="<%= _ranges %>" data-excluded="<%= _excludeds %>" data-unlimit="<%= unlimits[i] %>" data-type="<%= type %>" class="picker"></div>
+            <div bx-name="<%= calendar %>" data-type="<%= type %>" data-date="<%= dates[i] %>" data-range="<%= _ranges %>" data-excluded="<%= _excludeds %>" data-unlimit="<%= unlimits[i] %>" data-pages="<%= pages %>" class="picker"></div>
         <% } %>
     </div>
     <div class="datepickerwrapper-footer">
