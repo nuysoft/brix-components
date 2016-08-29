@@ -61,6 +61,56 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define, document */
+	/*
+	    http://thx.github.io/brix-site/readme.html?name=DatePickerWrapper
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/datepickerwrapper/
+	        Temporary
+
+	    # DatePickerWrapper
+
+	    日期选择器。
+
+	    ```html
+	    <input bx-name="components/datepickerwrapper" type="text" class="form-control w100">
+
+	    <div bx-name="components/datepickerwrapper" 
+	        data-dates="[ '2015-1-1', '2015-1-2']" 
+	        class="form-control datepickerwrapper-trigger">
+	        <span data-index="0">2015-1-1</span> 至 <span data-index="1">2015-1-2</span>
+	        <i class="brixfont pull-right ml5 down">&#xe623;<!--&#xe623;--></i>
+	        <i class="brixfont pull-right ml5 up">&#xe62e;<!--&#xe62e;--></i>
+	    </div>
+	    ```
+
+	    ## 配置
+
+	    配置项    | 类型              | 默认值   | 说明
+	    :-------- | :---------------- | :------- | :----------
+	    shortcuts | boolean or object | `{}`     | 指示是否开启快捷日期和快捷日期的内容。
+	    dates     | array             | `[]`     | 初始日期。
+	    ranges    | array             | `[]`     | 设置可选日期的范围。
+	    excludeds | array             | `[]`     | 设置禁选日期的范围。
+	    align     | string            | `'left'` | 指定浮层的对齐方式，可选值有 `'left'`、`'right'`。
+
+	    ## 方法
+
+	    * .shortcutText( dates )
+	        获取日期对应的快捷日期文本。
+	    * .val( [ value ] )
+	        获取或设置选中的日期。
+	    * .range( [ value ] )
+	        获取或设置可选日期的范围。
+	    * .excluded( [ value ] )
+	        获取或设置禁选日期的范围。
+	    
+	    ## 事件
+
+	    事件类型                 | 说明
+	    :----------------------- | :----------
+	    change.datepickerwrapper | 当日期组件变化时被触发。事件监听函数接受 3 个参数：event、dates。
+
+	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3), __webpack_require__(4),
 	        __webpack_require__(5), __webpack_require__(6), __webpack_require__(7),
@@ -74,16 +124,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        position,
 	        template
 	    ) {
-	        /*
-	            shortcut
-	            dates
-
-	            TODO
-	            √ 一个日期
-	            √ 多个日期
-	            input trigger
-	            输入回调，输出回调
-	         */
 	        var CALENDAR = 'components/datepicker/ancient'
 	        var RE_INPUT = /^input|textarea$/i
 	        var NAMESPACE = '.datepickerwrapper'
