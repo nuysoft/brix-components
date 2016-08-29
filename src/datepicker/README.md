@@ -15,24 +15,24 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-date | string | `new Date()` | 当前选中的日期。
-type | string | `'all'` | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
-range | array | `[]` | 设置可选日期的范围。下面列举了一些合法值。
-excluded | array or false | `false` | 设置禁选日期的范围。合法值同 `range`。
+配置项   | 类型           | 默认值       | 说明
+:------- | :------------- | :----------- | :----------
+date     | string         | `new Date()` | 当前选中的日期。
+type     | string         | `'all'`      | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
+range    | array          | `[]`         | 设置可选日期的范围。下面列举了一些合法值。
+excluded | array or false | `false`      | 设置禁选日期的范围。合法值同 `range`。
 
 ### 配置项 `type`
 
-值 | 说明
-:---- | :----------
-`'all'` | 年份 + 月份 + 天 + 小时 + 分钟 + 秒。默认值。等同于 `'date time'`
-`'date'` | 年份 + 月份 + 天。
-`'month'` | 年份 + 月份。
-`'year'` | 年份。
-`'time'` | 小时 + 分钟 + 秒。
-`'hour'` | 小时。
-`'minute'` | 小时 + 分钟。
+值             | 说明
+:------------- | :----------
+`'all'`        | 年份 + 月份 + 天 + 小时 + 分钟 + 秒。默认值。等同于 `'date time'`
+`'date'`       | 年份 + 月份 + 天。
+`'month'`      | 年份 + 月份。
+`'year'`       | 年份。
+`'time'`       | 小时 + 分钟 + 秒。
+`'hour'`       | 小时。
+`'minute'`     | 小时 + 分钟。
 ~~`'second'`~~ | ~~小时 + 分钟 + 秒。等同于 `'time'`。~~
 
 ### 配置项 `range`
@@ -117,10 +117,10 @@ console.log(excluded)
 instances[0].excluded([new Date(), '2015-12-31'])
 ```
 
-### 事件
+## 事件
 
-事件类型 | 说明
-:--------- | :----------
+事件类型          | 说明
+:---------------- | :----------
 change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `event` 是一个 [jQuery 事件对象]；参数 `date` 是一个 [moment 对象]；参数 `type` 指示了发生变化的属性，可选值有：年份 `'year'`、月份 `'month'`、日 `'date'`、时间 `'time'`、小时 `'hour'`、分 `'minute'`、秒 `'second'`、`undefined`。
 
 [jQuery 事件对象]: http://api.jquery.com/category/events/event-object/

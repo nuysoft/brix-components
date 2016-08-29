@@ -62,18 +62,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    Reference:
-	        [Bootstrap Component Sample](http://zombiej.github.io/bootstrap-components-3.0/)
-	    TODO
-	        multi types
-	        disable year month date
-	        disable input
-	        multi calendar
-	    Event Test Case
-	        $('body').on('ch ch.a ch.b', function(event) {
-	            console.log(event.type, event.namespace)
-	        })
-	        $('body').trigger('ch.a.b')
+	    http://thx.github.io/brix-site/readme.html?name=DatePicker
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/datepicker/
+	        Temporary
+
+	    # DatePicker
+
+	    日期选择器。
+
+	    ```html
+	    <!-- 日期 -->
+	    <div bx-name="components/datepicker" data-type="date"></div>
+	    <!-- 时间 -->
+	    <div bx-name="components/datepicker" data-type="time"></div>
+	    ```
+
+	    ## 配置
+
+	    配置项   | 类型           | 默认值       | 说明
+	    :------- | :------------- | :----------- | :----------
+	    date     | string         | `new Date()` | 当前选中的日期。
+	    type     | string         | `'all'`      | 指定日期选择器的类型，可选值有 `'all'`、`'date'`、`'month'`、`'year'`、`'time'`、`'hour'`、`'minute'`、`'second'`。多个类型之间用空格隔开。
+	    range    | array          | `[]`         | 设置可选日期的范围。下面列举了一些合法值。
+	    excluded | array or false | `false`      | 设置禁选日期的范围。合法值同 `range`。
+
+	    ## 方法
+	    * .val( [ value ] )
+	        获取或设置选中的日期。
+	    * .range( [ value ] )
+	        获取或设置可选日期的范围。
+	    * .excluded( [ value ] )
+	        获取或设置禁选日期的范围。
+	    
+	    ## 事件
+
+	    事件类型          | 说明
+	    :---------------- | :----------
+	    change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `event` 是一个 [jQuery 事件对象]；参数 `date` 是一个 [moment 对象]；参数 `type` 指示了发生变化的属性，可选值有：年份 `'year'`、月份 `'month'`、日 `'date'`、时间 `'time'`、小时 `'hour'`、分 `'minute'`、秒 `'second'`、`undefined`。
+
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3), __webpack_require__(4),
@@ -482,6 +509,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return DatePicker
 	            // return Brix.extend({})
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+	/*
+	    Reference:
+	        [Bootstrap Component Sample](http://zombiej.github.io/bootstrap-components-3.0/)
+	    TODO
+	        multi types
+	        disable year month date
+	        disable input
+	        multi calendar
+	    Event Test Case
+	        $('body').on('ch ch.a ch.b', function(event) {
+	            console.log(event.type, event.namespace)
+	        })
+	        $('body').trigger('ch.a.b')
+	 */
 
 /***/ },
 /* 2 */
