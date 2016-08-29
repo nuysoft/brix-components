@@ -1,4 +1,22 @@
 /* global define */
+/*
+    ## Component Base
+
+    http://thx.github.io/brix-site/readme.html?core=1&name=brix-base
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/base/
+        Temporary
+
+    基于 Brix Base 的（组件）增强。
+
+    ```js
+    var Base = require('components/base')
+    module.exports = Base.extend({
+        init: function(){},
+        render: function(){}
+    })
+    ```
+*/
 define(
     [
         'jquery', 'underscore',
@@ -8,11 +26,6 @@ define(
         $, _,
         Loader, Brix, EventManager
     ) {
-        /*
-            ## ComponentBase
-
-            基于 Brix Base 的（组件）增强。
-        */
         function ComponentBase() {}
 
         _.extend(ComponentBase.prototype, Brix.prototype, {
