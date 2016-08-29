@@ -14,7 +14,8 @@
     表单验证组件。
 
     ```html
-    <form bx-name="components/validation">
+    <form bx-name="components/validation"></form>
+    <div bx-name="components/validation"></div>
     ```
 
     ## 配置

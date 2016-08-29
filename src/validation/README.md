@@ -5,7 +5,8 @@
 > 引用了 <http://parsleyjs.org/>。
 
 ```html
-<form bx-name="components/validation">
+<form bx-name="components/validation"></form>
+<div bx-name="components/validation"></div>
 ```
 
 ## 配置
