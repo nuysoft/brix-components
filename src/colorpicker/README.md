@@ -4,19 +4,20 @@
 
 ```html
 <div bx-name="components/colorpicker" class="btn btn-default">ColorPicker</div>
+<input bx-name="components/colorpicker" placeholder="ColorPicker">
 ```
 
 ## 配置
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-color | string | `#ffffff` | 调色板的初始值。
-min | boolean | `false` | 是否精简模式。在精简模式下，只显示快捷颜色。
-placement | string | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
-align | string | `'top'` | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
-offset | object | `{}` | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
+配置项    | 类型    | 默认值    | 说明
+:-------  | :------ | :-------- | :----------
+color     | string  | `#ffffff` | 调色板的初始值。
+min       | boolean | `false`   | 是否精简模式。在精简模式下，只显示快捷颜色。
+placement | string  | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+align     | string  | `'top'`   | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+offset    | object  | `{}`      | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
 
 ## 方法
 
@@ -101,9 +102,17 @@ instances.on('change.dropdown', function(event, extra) {
 
 ## 示例
 
-<iframe width="100%" height="500" src="./demo.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-<!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
+<!-- <iframe width="100%" height="500" src="./examples.md" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
+
+```html
+<div>
+  <div bx-name="components/colorpicker" data-placement="left" data-align="top"    class="btn btn-default right-top"   > 位于左侧 + 顶部对齐     </div>
+  <div bx-name="components/colorpicker" data-placement="left" data-align="right"  class="btn btn-default right-middle"> 位于左侧 + 水平居中对齐 </div>
+  <div bx-name="components/colorpicker" data-placement="left" data-align="middle" class="btn btn-default right-bottom"> 位于左侧 + 底部对齐     </div>
+</div>
+```
 
 ```html
 <div bx-name="components/colorpicker" class="btn btn-default">ColorPicker</div>
