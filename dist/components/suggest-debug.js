@@ -61,6 +61,20 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
+	/*
+	    http://thx.github.io/brix-site/readme.html?name=Suggest
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/suggest/
+	        Temporary
+
+	    # Suggest
+
+	    提示补全组件。
+
+	    ```html
+	    <input bx-name="components/suggest" class="form-control">
+	    ```
+	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),
 	        __webpack_require__(4),
@@ -75,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        itemTemplate
 	    ) {
 	        /*
-	            input 自动适配宽度，避免意外这行
+	            input 自动适配宽度，避免意外折行
 	            rich input
 	                tag input
 	                suggest 绑定在 inpupt 上

@@ -62,7 +62,49 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    http://zombiej.github.io/bootstrap-components-3.0/
+	    http://thx.github.io/brix-site/readme.html?name=Editable
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/editable/
+	        Temporary
+
+	    # Editable
+
+	    可编辑的页面元素。
+
+	    ```html
+	    <!-- 简单模式 -->
+	    <p bx-name="components/editable">This is a editable paragraph.</p>
+	    
+	    <!-- 自定义模式 -->
+	    <div bx-name="components/editable">
+	        <div class="editable-content"></div>
+	        <div class="editable-toggle"></div>
+	        <input class="editable-input">
+	    </div>
+	    ```
+
+	    ## 配置
+
+	    配置项  | 类型   | 默认值 | 说明
+	    :------ | :----- | :----- | :----------
+	    type    | string | 'text' | 必选。描述待编辑内容的类型。可选值有两个：`text`、`html`。
+	    content | string | ''     | 可选。指定待编辑内容。默认从节点属性 `innerHTML` 或 `innerText` 读取。
+
+	    ## 方法
+
+	    * .show()
+	        显示编辑框。
+	    * .hide()
+	        隐藏编辑框。
+
+	    ## 事件
+
+	    事件类型        | 说明
+	    :-------------- | :----------
+	    change.editable | 当内容发生变化时被触发。
+
+	    ## 参考
+	    * http://zombiej.github.io/bootstrap-components-3.0/
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),
@@ -71,19 +113,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        $, _,
 	        Brix
 	    ) {
-
-	        /*
-	            简单模式：
-	            <h3 bx-name="components/editable">This is a editable title.</h3>
-
-	            自定义模式：
-	            <div bx-name="components/editable">
-	                <div class="editable-content"></div>
-	                <div class="editable-toggle"></div>
-	                <input class="editable-input">
-	            </div>
-	         */
-
 	        var NAMESPACE = '.editable'
 	        var TPL = {
 	            pre: '<textarea>',

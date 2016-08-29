@@ -62,10 +62,43 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
+	    http://thx.github.io/brix-site/readme.html?name=Pagination
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/pagination/
+	        Temporary
+
+	    # Pagination
+
 	    分页组件。
 
-	    TODO
-	        去掉边框。
+	    ```html
+	    <div bx-name="components/pagination" data-total="100" data-cursor="1" data-limit="10"></div>
+	    ```
+
+	    ## 配置
+
+	    配置项   | 类型    | 默认值                 | 说明
+	    :------- | :------ | :--------------------- | :----------
+	    total    | number  | -                      | 必需。记录总条数。
+	    cursor   | number  | `1`                    | 可选。当前页数，第几页，从 1 开始计数。
+	    limit    | number  | `10`                   | 可选。当前分页大小。如果不在 `limits` 中，则会自动插入 `limits`。
+	    limits   | array   | `[10, 20, 30, 40, 50]` | 可选。可供选择的分页大小。
+	    simplify | boolean | `false`                | 可选。是否开启简易模式。
+
+	    ## 方法
+
+	    * .moveTo( cursor )
+	        移动到指定页。
+	    * .total( [ total ] )
+	        获取或设置总条数。
+	    * .cursor( [ cursor ] )
+	        获取或设置当前页数。
+
+	    ## 事件
+
+	    事件类型          | 说明
+	    :---------------- | :----------
+	    change.pagination | 当分页状态变化时被触发。
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),
@@ -78,30 +111,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        PurePagination,
 	        template
 	    ) {
-	        /*
-	            ### 数据
-	                无
-	            ### 选项
-	                公共选项：data template
-	                statistics
-	                simplify
-	                step
-	                total
-	                cursor
-	                limit
-	                
-	            ### 属性
-	                公共属性：element moduleId clientId parentClientId childClientIds data template
-	                status      修改或计算分页状态。
-	                dropdown    分页大小组件。
-
-	            ### 方法
-
-	            ### 事件
-	                公共事件：ready destroyed
-	                
-	        */
-
 	        var PAGINATION_LIMITS = [10, 20, 30, 40, 50]
 
 	        function Pagination() {}

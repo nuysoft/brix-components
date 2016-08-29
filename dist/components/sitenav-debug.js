@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["jquery", "underscore", "handlebars", "brix/base"], factory);
 	else if(typeof exports === 'object')
-		exports["components/footer"] = factory(require("jquery"), require("underscore"), require("handlebars"), require("brix/base"));
+		exports["components/sitenav"] = factory(require("jquery"), require("underscore"), require("handlebars"), require("brix/base"));
 	else
-		root["components/footer"] = factory(root["jquery"], root["underscore"], root["handlebars"], root["brix/base"]);
+		root["components/sitenav"] = factory(root["jquery"], root["underscore"], root["handlebars"], root["brix/base"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -62,17 +62,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    http://thx.github.io/brix-site/readme.html?name=Footer
-	        Deprecated
-	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/footer/
-	        Temporary
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/sidenav/
+	      Temporary
 
 	    # Footer
 
-	    将阿里妈妈的统一页脚封装成 Brix 组件。
+	    将阿里妈妈的统一吊顶封装成 Brix 组件。
 
 	    ```html
-	    <div bx-name="component/footer" bx-options="{mode:'normal'}"></div>
+	    <div bx-name="component/sitenav" bx-options="{mode:'normal'}"></div>
 	    ```
 
 	    ## 配置
@@ -81,10 +79,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    配置项 | 类型   | 默认值 | 说明
 	    :----- | :----- | :----- | :----------
-	    mode   | string | 'normal' | 可选。指定页面内容：完全版本 `'normal'`，简约版本 `'simple'`。
+	    mode   | string | 'normal' | 可选。指定页面内容：前台版本 `'normal'`，后台版本 `'simple'`。
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	        __webpack_require__(2),
+	        __webpack_require__(2), 
 	        __webpack_require__(3),
 	        __webpack_require__(4),
 	        __webpack_require__(5)
@@ -94,56 +92,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	        Handlebars,
 	        Brix
 	    ) {
-	        function Footer() {}
+	        function Sitenav() {}
 
-	        _.extend(Footer.prototype, Brix.prototype, {
+	        _.extend(Sitenav.prototype, Brix.prototype, {
 	            options: {
-	                mode: 'normal'
+	                mode: 'normal' // simple
 	            },
 	            render: function() {
 	                var that = this
-
-	                // 兼容老的type参数
-	                if (this.options.type) {
-	                    this.options.mode = {
-	                        front: 'normal',
-	                        back: 'simple'
-	                    }[this.options.type]
-	                }
-
-	                var simple = this.options.mode === 'simple'
-	                var alimamaReg = /alimama\.(com|net)/i
-	                var tanxReg = /tanx\.(com|net)/i
-	                var taobaoReg = /taobao\.(com|net)/i
-	                var alimama, taobao, tanx
-
-	                if (alimamaReg.test(window.location.href)) {
-	                    alimama = true
-	                } else if (taobaoReg.test(window.location.href)) {
-	                    taobao = true
-	                } else if (tanxReg.test(window.location.href)) {
-	                    tanx = true
-	                } else {
-	                    alimama = true
-	                }
+	                var simple = this.options.mode === 'simple' ? true : false
 
 	                $.ajax({
-	                    url: '//mo.m.taobao.com/union/jsonp/footer',
+	                    url: '//mo.m.taobao.com/union/jsonp/sitenav',
 	                    dataType: 'jsonp',
-	                    jsonp: 'callback',
 	                    success: function(resp) {
-	                        $(that.element).html(Handlebars.compile(resp.html)({
-	                            simple: simple,
-	                            alimama: alimama,
-	                            taobao: taobao,
-	                            tanx: tanx
+	                        var sitenav = $(that.element)
+	                        sitenav.html(Handlebars.compile(resp.html)({
+	                            simple: simple
 	                        }))
+	                        sitenav = sitenav.find('.alimama-site-nav')
+	                        var scriptSrc = sitenav.attr('data-cdn')
+	                        that._insertScript(scriptSrc)
 	                    }
 	                })
+	            },
+	            _insertScript: function (src) {
+	                var headNode = document.getElementsByTagName('head')[0]
+	                var newScript = document.createElement('script')
+	                newScript.type = 'text/javascript'
+	                newScript.src = src
+	                headNode.appendChild(newScript)
+	            },
+	            destroy: function () {
+	                if (window.MMSiteNav) {
+	                    window.MMSiteNav.destroy()
+	                }
 	            }
 	        })
 
-	        return Footer
+	        return Sitenav
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
 
 /***/ },

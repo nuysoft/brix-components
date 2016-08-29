@@ -1,4 +1,18 @@
 /* global define */
+/*
+    # DialogView
+    
+    Magix View 对话框。
+
+    ```js
+    var DialogView = require('components/dialogview')
+    var dialogOptions = {}
+    var viewName = ''
+    var viewOptions = {}
+    DialogView.open(dialogOptions, viewName, viewOptions)
+    DialogView.close()
+    ```
+ */
 define(
     [
         'underscore',

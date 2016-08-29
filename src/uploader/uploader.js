@@ -1,6 +1,50 @@
 /* global define, console, FileReader, FormData, XMLHttpRequest */
 /*
-    http://jasny.github.io/bootstrap/javascript/#inputmask
+    http://thx.github.io/brix-site/readme.html?name=Uploader
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/uploader/
+        Temporary
+
+    # Uploader
+
+    上传组件。
+
+    ```html
+    <button bx-name="components/uploader" 
+        data-action="api/upload.json" 
+        data-name="foo" 
+        class="btn btn-default">
+        选择文件
+    </button>
+    ```
+
+    ## 配置
+
+    配置项    | 类型    | 默认值     | 说明
+    :---      | :------ | :--------- | :----------
+    action    | string  | `''`       | 指定接收文件的 URL。
+    name      | string  | `'file'`   | 指定文件域的名称。
+    transport | string  | `'iframe'` | 指定上传文件的方式，可选值有 `'iframe'`、`'xhr'`。
+    multiple  | boolean | `true`     | 是否允许多选。
+    accept    | stirng  | `''`       | 指定服务端可接受的文件类型，例如 `'.jpg,.png'`、`'image/*'`。详细的合法值请参考 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes)。
+
+    ## 方法
+
+    * Uploader.parseJSONResponse( response, callback )
+        将响应内容解析成 JSON 对象。
+
+    ## 事件
+
+    事件类型          | 说明
+    :---------------- | :----------
+    start.uploader    | 开始上传，如果返回 false，则终止上传。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
+    progress.uploader | 上传进度。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和一个 [ProgressEvent] 事件对象 `state`。
+    success.uploader  | 上传成功。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和响应内容 `response`。
+    error.uploader    | 上传失败。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和错误描述 `reason`。
+    complete.uploader | 上传完成。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
+    
+    ## 参考
+    * http://www.jasny.net/bootstrap/javascript/#fileinput
  */
 define(
     [

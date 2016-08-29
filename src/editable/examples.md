@@ -25,6 +25,17 @@
     </div>
 </div>
 
+<div class="bs-example">
+    <div class="content">
+        <h3>自定义模式</h3>
+        <div bx-name="components/editable">
+            <div class="editable-content">自定义模式</div>
+            <div class="editable-toggle">?</div>
+            <input class="editable-input">
+        </div>
+    </div>
+</div>
+
 <script>
     var Loader = require('brix/loader')
     Loader.boot(function() {

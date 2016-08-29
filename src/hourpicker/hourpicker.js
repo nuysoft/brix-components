@@ -1,4 +1,40 @@
-/* global define, document */
+/* global define */
+/*
+    http://thx.github.io/brix-site/readme.html?name=HourPicker
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/hourpicker/
+        Temporary
+
+    # HourPicker
+
+    时间选择器组件。
+
+    ```html
+    <div bx-name="components/hourpicker"></div>
+    ```
+
+    ## 配置
+
+    配置项   | 类型                      | 默认值  | 说明
+    :------- | :------------------------ | :------ | :----------
+    simplify | bolean                    | `false` | 可选。是否为精简模式。
+    value    | string or array or object | `''`    | 可选。指定选中的时间。
+
+    ## 方法
+
+    * .val()
+        读取时间选择器的值。
+    * .val( day, hours )
+        设置单天选中的时间。
+    * .val( { day: [ hours ] } )
+        同时设置多天选中的时间。
+
+    ## 事件
+
+    事件类型          | 说明
+    :---------------- | :----------
+    change.hourpicker | 当值发生变化时被触发。
+ */
 define(
     [
         'jquery', 'underscore', 'moment',

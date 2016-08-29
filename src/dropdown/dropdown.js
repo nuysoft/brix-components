@@ -1,7 +1,48 @@
 /* global define, window, document */
 /*
-    http://getbootstrap.com/components/#dropdowns
-    http://silviomoreto.github.io/bootstrap-select/
+    http://thx.github.io/brix-site/readme.html?name=Dropdonw
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/dropdown/
+        Temporary
+
+    # Dropdown
+
+    下拉框组件。
+
+    ```html
+    <select bx-name="components/dropdown">
+        <option value="1">Action</option>
+        <option value="2">Another action</option>
+        <option value="3">Something else here</option>
+    </select>
+    ```
+
+    ## 配置
+    
+    配置项    | 类型              | 默认值  | 说明
+    :-------- | :---------------- | :------ | :----------
+    data      | array             | -       | 可选。下拉框中的数据。默认从子节点 `<optgroup>` 和 `<option>` 读取。
+    value     | string            | -       | 可选。下拉框的值。
+    searchbox | boolean           | `false` | 可选。是否开启下拉框中的输入框。可选值有 `false`、`true`、`'enter'`。
+    popover   | boolean or number | `false` | 可选。是否为下拉框的条目配置 `bx-name="components/popover"`。可选值有 `false`、`true`、`width`。
+
+    ## 方法
+
+    * .val( [ value ] )
+        设置或读取下拉框的值。
+    * .data( [ data ] )
+        设置或读取下拉框中的数据。
+
+    ## 事件
+
+    事件类型        | 说明
+    :-------------- | :----------
+    change.dropdown | 当值发生变化时被触发。
+    search.dropdown | 见配置项 `searchbox`。
+    
+    ## 参考
+    * http://getbootstrap.com/components/#dropdowns
+    * http://silviomoreto.github.io/bootstrap-select/
  */
 define(
     [
@@ -14,86 +55,6 @@ define(
         Loader, Brix, EventManager,
         template
     ) {
-        /*
-            # Dropdown
-
-            下拉框组件。
-
-            ### 数据
-                [
-                    value,
-                    ...
-                ]
-                或者
-                [
-                    {
-                        label: '',
-                        value: '',
-                        selected: true|false
-                    },
-                    ...
-                ]
-                或者
-                [
-                    {
-                        label: '',
-                        children: [
-                            [
-                                {
-                                    label: '',
-                                    value: '',
-                                    selected: true|false
-                                },
-                                ...
-                            ]
-                        ]
-                    },
-                    ...
-                ]
-            ### 选项
-                公共选项：data template
-
-            ### 属性
-                公共属性：element moduleId clientId parentClientId childClientIds data template
-                selectedIndex   当前选中的下标。
-                label            选中条目的文本。
-                value           选中条目的值。
-                select          指向关联的 <select> 节点
-
-            ### 方法
-                select( label|value )
-                toggle()
-                focus()
-                blue()
-
-            ### 事件
-                公共事件：ready destroyed
-                change
-
-            ### 示例
-
-            <select>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value ="mercedes">Mercedes</option>
-                <option value ="audi">Audi</option>
-            </select>
-            <select>
-                <optgroup label="Swedish Cars">
-                    <option value ="volvo">Volvo</option>
-                    <option value ="saab">Saab</option>
-                </optgroup>
-                <optgroup label="German Cars">
-                    <option value ="mercedes">Mercedes</option>
-                    <option value ="audi">Audi</option>
-                </optgroup>
-            </select>
-
-            TODO
-                multiple disabled
-                responsive http://silviomoreto.github.io/bootstrap-select/
-        */
-
         var NAMESPACE = '.dropdown'
         var compiledTemplate = _.template(template)
 
@@ -569,3 +530,9 @@ define(
         return Dropdown
     }
 )
+
+/*
+    TODO
+    multiple disabled
+    responsive http://silviomoreto.github.io/bootstrap-select/
+ */

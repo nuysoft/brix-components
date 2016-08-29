@@ -61,10 +61,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// jshint ignore: start
-	/*
-	    http://getbootstrap.com/components/#dropdowns
-	    http://silviomoreto.github.io/bootstrap-select/
-	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	    __webpack_require__(2), __webpack_require__(3), __webpack_require__(4),
 	    __webpack_require__(5), __webpack_require__(6)
@@ -72,81 +68,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    $, _, Handlebars,
 	    Brix, EventManager
 	  ) {
-	    /*
-	        # Dropdown
-
-	        下拉框组件。
-
-	        ### 数据
-	            [
-	                {
-	                    label: '',
-	                    value: '',
-	                    selected: true|false
-	                },
-	                ...
-	            ]
-	            或者
-	            [
-	                {
-	                    label: '',
-	                    children: [
-	                        [
-	                            {
-	                                label: '',
-	                                value: '',
-	                                selected: true|false
-	                            },
-	                            ...
-	                        ]
-	                    ]
-	                },
-	                ...
-	            ]
-	        ### 选项
-	            公共选项：data template
-
-	        ### 属性
-	            公共属性：element moduleId clientId parentClientId childClientIds data template
-	            selectedIndex   当前选中的下标。
-	            label            选中条目的文本。
-	            value           选中条目的值。
-	            select          指向关联的 <select> 节点
-
-	        ### 方法
-	            select( label|value )
-	            toggle()
-	            focus()
-	            blue()
-
-	        ### 事件
-	            公共事件：ready destroyed
-	            change
-
-	        ### 示例
-
-	        <select>
-	            <option value ="volvo">Volvo</option>
-	            <option value ="saab">Saab</option>
-	            <option value ="mercedes">Mercedes</option>
-	            <option value ="audi">Audi</option>
-	        </select>
-	        <select>
-	            <optgroup label="Swedish Cars">
-	                <option value ="volvo">Volvo</option>
-	                <option value ="saab">Saab</option>
-	            </optgroup>
-	            <optgroup label="German Cars">
-	                <option value ="mercedes">Mercedes</option>
-	                <option value ="audi">Audi</option>
-	            </optgroup>
-	        </select>
-
-	        TODO
-	            multiple disabled
-	            responsive http://silviomoreto.github.io/bootstrap-select/
-	    */
-
 	    var EASING = 'swing' //动画缓函数
 	    var ALL_EVENTS = {
 	      EVENTS: {

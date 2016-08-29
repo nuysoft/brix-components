@@ -1,4 +1,51 @@
 /* global define, document, console */
+/*
+    http://thx.github.io/brix-site/readme.html?name=TagInput
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/taginput/
+        Temporary
+
+    # TagInput
+
+    标签输入组件。
+
+    ```html
+    <input bx-name="components/taginput">
+    ```
+
+    ## 配置
+
+    配置项      | 类型    | 默认值 | 说明
+    :---------- | :------ | :----- | :----------
+    data        | array   | `[]`   | 初始值。例如 `['foo', 'bar', 'baz']`。
+    placeholder | string  | `''`   | 描述预期值的简短提示。
+    suggest     | boolean | `true` | 指示是否关闭 Suggest 组件。默认启用。
+
+    ## 方法
+
+    * .add( value )
+        增加一个值。
+    * .delete( value )
+        删除一个值。
+    * .delete( )
+        删除所有值。
+    * .val( [ data ] )
+        读取或设置值。
+
+    ## 属性
+
+    属性名  | 类型    | 默认值           | 说明
+    :------ | :------ | :--------------- | :----------
+    suggest | Suggest | Suggest 组件实例 | `components/suggest`
+
+    提示补全的内容通过执行 `.suggest.data( array )` 显示。
+
+    ## 事件
+
+    事件类型        | 说明
+    :-------------- | :----------
+    change.taginput | 当值变化时触发。
+ */
 define(
     [
         'jquery', 'underscore',

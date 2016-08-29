@@ -62,14 +62,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    Tree
-	    * Node
-	        * id
-	        * pid
-	        * name
-	        * title
-	        * url
-	        * children
+	    http://thx.github.io/brix-site/readme.html?name=Tree
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/tree/
+	        Temporary
+
+	    # Tree
+
+	    树组件。
+
+	    ```html
+	    <div bx-name="components/tree" class="tree-wrapper">
+	    ```
+
+	    ## 配置
+
+	    配置项       | 类型   | 默认值     | 说明
+	    :----------- | :----  | :--------     - | :----------
+	    data         | array  | -          | 必须。描述树结构的扁平数据。示例见上面的示例。
+	    nodeTemplate | array  | -          | 可选。自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。
+	    state        | string | `'expand'` | 可选。指定树结构的初始状态。可选值有 `'expand'`、`'collapse'`，分别表示展开、收起。
+
+	    ## 方法
+
+	    * .expand( [ id ] )
+	        展开节点。
+	    * .collapse( [ id ] )
+	        收起节点。
+	    * .search( value )
+	        查找与参数 value 匹配的节点。
+	    * .current( element|id )
+	        查找节点关联的数据，或查找数据唯一标识 `id` 关联的节点。
+	    * .parent( element|id )
+	        查找父节点。
+	    * .children( element|id )
+	        查找子节点。
+	    * .siblings( element|id )
+	        查找兄弟节点。
+	    * .all()
+	        查找所有节点。
+
+	    ## 事件
+
+	    事件类型        | 说明
+	    :-------------- | :----------
+	    click.tree      | 当点树击节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+	    mouseenter.tree | 当鼠标移入树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+	    mouseleave.tree | 当鼠标移出树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+	    active.tree     | -
+	    inactive.tree   | -
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),
@@ -451,6 +492,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        return Tree
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+
+	/*
+	    ## 数据结构
+	    * Tree Root
+	        * Node
+	            * id
+	            * pid
+	            * name
+	            * title
+	            * url
+	            * children
+	 */
 
 /***/ },
 /* 2 */

@@ -1,5 +1,10 @@
 /* global define, window  */
 /*
+    http://thx.github.io/brix-site/readme.html?name=Table
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/table/
+        Temporary
+
     Responsive tables
         http://gergeo.se/RWD-Table-Patterns/#features
     

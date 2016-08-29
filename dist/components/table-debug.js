@@ -62,6 +62,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define, window  */
 	/*
+	    http://thx.github.io/brix-site/readme.html?name=Table
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/table/
+	        Temporary
+
 	    Responsive tables
 	        http://gergeo.se/RWD-Table-Patterns/#features
 	    

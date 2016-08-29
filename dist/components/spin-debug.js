@@ -62,12 +62,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    Reference:
-	        [A collection of loading indicators animated with CSS](http://tobiasahlin.com/spinkit/)
-	        https://github.com/fgnass/spin.js
-	        http://css-spinners.com/#/spinners/
-	        http://pasqualevitiello.github.io/Tumblr-Style-Cog-Spinners/#
-	            
+	    http://thx.github.io/brix-site/readme.html?name=Spin
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/spin/
+	        Temporary
+
+	    # Spin
+
+	    纯 CSS 加载动画。
+
+	    ```html
+	    <div bx-name="components/spin"></div>
+	    ```
+
+	    ## 配置
+
+	    配置项 | 类型   | 默认值           | 说明
+	    :----  | :----- | :--------------- | :----------
+	    type   | string | `'three-bounce'` | 可选。指定加载动画的类型，可选值有：`rotating-plane`、`double-bounce`、`rectangle-bounce`、`wandering-cubes`、`pulse`、`chasing-dots`、`three-bounce`、`circle-spinner`。
+
+	    ## Reference:
+	    * [A collection of loading indicators animated with CSS](http://tobiasahlin.com/spinkit/)
+	    * https://github.com/fgnass/spin.js
+	    * http://css-spinners.com/#/spinners/
+	    * http://pasqualevitiello.github.io/Tumblr-Style-Cog-Spinners/#
+	    * [SpinKit](https://github.com/tobiasahlin/SpinKit)
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),
@@ -78,18 +97,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        Brix,
 	        template
 	    ) {
-	        /*
-	            ### 数据
-	                {}
-	            ### 选项
-	                data template
-	            ### 属性
-	                element moduleId clientId parentClientId childClientIds data template
-	            ### 方法
-	                .render()
-	            ### 事件
-	                ready destroyed
-	        */
 	        function Spin() {}
 
 	        _.extend(Spin.prototype, Brix.prototype, {

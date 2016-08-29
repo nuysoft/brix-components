@@ -62,8 +62,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
-	    样式赞 http://abpetkov.github.io/switchery/
-	    文档赞 http://www.bootstrap-switch.org/examples.html
+	    http://thx.github.io/brix-site/readme.html?name=Switch
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/switch/
+	        Temporary
+
+	    # Switch
+
+	    滑动开关。
+
+	    ```html
+	    <input type="checkbox" bx-name="components/switch">
+	    ```
+
+	    ## 配置
+
+	    配置项   | 类型    | 默认值  | 说明
+	    :------- | :------ | :------ | :----------
+	    checked  | boolean | false   | 可选。是否选中。
+	    disabled | boolean | false   | 可选。是否禁用。
+	    size     | string  | ''      | 可选。设置滑动开关的尺寸，可选值有：`''`、`'small'`、`'large'`。
+
+	    ## 方法
+
+	    * .toggle()
+	        切换选中&不选状态。
+	    * .checked( [ checked ] )
+	        设置或获取选中状态。
+	    * .disabled( [ disabled ] ) 
+	        设置或获取禁用状态。
+	    * .val( [ value ] ) 
+	        设置或获取组件节点的值。
+
+	    ## 事件
+
+	    事件类型      | 说明
+	    :------------ | :----------
+	    change.switch | 当值发生变化时被触发。
+
+	    ## 参考
+	    * 样式赞 http://abpetkov.github.io/switchery/
+	    * 文档赞 http://www.bootstrap-switch.org/examples.html
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3),

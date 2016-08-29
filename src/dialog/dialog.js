@@ -1,6 +1,47 @@
 /* global define */
 /*
-    http://jqueryui.com/dialog
+    http://thx.github.io/brix-site/readme.html?name=Dialog
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/dialog/
+        Temporary
+
+    # Dialog
+
+    对话框。
+
+    ```js
+    new Dialog( options )
+    ```
+
+    ## 配置
+
+    配置项    | 类型    | 默认值    | 说明
+    :-------- | :------ | :-------- | :----------
+    placement | string  | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+    align     | string  | `''`      | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+    left      | int     | -         | 指定浮层的距左坐标。
+    top       | int     | -         | 指定浮层的距上坐标。
+    width     | int     | `'auto'`  | 指定浮层的宽度。
+    height    | string  | `''`      | 指定浮层的高度。
+    offset    | object  | `{}`      | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
+    content   | string  | `''`      | 指定浮层的内容。
+    closable  | boolean | `true`    | 指定浮层是否可关闭。
+    modal     | boolean | `false`   | 指定浮层是否模态对话框。
+    singleton | boolean | `true`    | 指定浮层是否单例模式。
+
+    ## 方法
+
+    * .open()
+        打开窗口。
+    * .close()
+        关闭窗口。
+
+    ## 事件
+
+    事件类型     | 说明
+    :----------- | :----------
+    open.dialog  | 当窗口打开时被触发。
+    close.dialog | 当窗口关闭时被触发。
  */
 define(
     [
@@ -15,49 +56,6 @@ define(
         position,
         template
     ) {
-        /*
-            var Dialog = require('components/dialog')
-            var content = '\
-                <div class="dialog-header">\
-                    <h4 class="dialog-title">abc</h4>\
-                </div>\
-            '
-            var dialog = new Dialog({
-                content: content,
-                modal: true,
-                left: 100,
-                top: 100
-            })
-            dialog.on('open.dialog',function(){
-                debugger
-            })
-            dialog.open()
-
-            // 多个浮层
-            var Dialog = require('components/dialog')
-            var _ = require('underscore')
-            var options = {
-                modal: true,
-                singleton: false,
-                top: 400
-            }
-
-            new Dialog(_.extend({
-                content: Math.random(),
-                left: 100
-            }, options)).open()
-
-            new Dialog(_.extend({
-                content: Math.random(),
-                left: 200
-            }, options)).open()
-
-            new Dialog(_.extend({
-                content: Math.random(),
-                left: 300
-            }, options)).open()
-         */
-
         var TRANSITION_DURATION = 150
         var EASING = 'swing'
         var NAMESPACE = '.dialog'
@@ -420,3 +418,48 @@ define(
         return Dialog
     }
 )
+
+/*
+    http://jqueryui.com/dialog
+
+    var Dialog = require('components/dialog')
+    var content = '\
+        <div class="dialog-header">\
+            <h4 class="dialog-title">abc</h4>\
+        </div>\
+    '
+    var dialog = new Dialog({
+        content: content,
+        modal: true,
+        left: 100,
+        top: 100
+    })
+    dialog.on('open.dialog',function(){
+        debugger
+    })
+    dialog.open()
+
+    // 多个浮层
+    var Dialog = require('components/dialog')
+    var _ = require('underscore')
+    var options = {
+        modal: true,
+        singleton: false,
+        top: 400
+    }
+
+    new Dialog(_.extend({
+        content: Math.random(),
+        left: 100
+    }, options)).open()
+
+    new Dialog(_.extend({
+        content: Math.random(),
+        left: 200
+    }, options)).open()
+
+    new Dialog(_.extend({
+        content: Math.random(),
+        left: 300
+    }, options)).open()
+ */

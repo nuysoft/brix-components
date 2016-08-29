@@ -1,6 +1,50 @@
-/* global define          */
-/* global setTimeout      */
-/* global clearTimeout    */
+/* global define */
+/*
+    http://thx.github.io/brix-site/readme.html?name=Popover
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/popover/
+        Temporary
+
+    # Popover
+
+    浮层。
+
+    ```html
+    <div bx-name="components/popover" bx-options="{
+        placement: 'top',
+        title: 'Popover on top',
+        content: 'Envy is the ulcer of the soul.'
+    }" class="btn btn-default">Popover on top</div>
+    ```
+
+    ## 配置
+
+    配置项    | 类型       | 默认值    | 说明
+    :-------- | :--------- | :-------- | :----------
+    placement | string     | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+    align     | string     | `''`      | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+    offset    | object     | `{}`      | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
+    width     | int        | `'auto'`  | 指定浮层的宽度。
+    title     | string     | `''`      | 指定浮层的标题。
+    content   | string     | `''`      | 指定浮层的内容。
+    ~~delay~~ | ~~number~~ | ~~`100`~~ | ~~指定延迟关闭浮层的时间，单位为毫秒。~~
+
+    ## 方法
+
+    * .show()
+        显示浮层。
+    * .hide()
+        关闭浮层。
+    * .title( [ title ] )
+        获取或设置浮层的标题。
+    * .content( [ content ] )
+        获取或设置浮层的内容。
+
+    ## 事件
+
+    无。
+
+ */
 define(
     [
         'jquery', 'underscore',
@@ -14,18 +58,6 @@ define(
         position,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                data template
-            ### 属性
-                element moduleId clientId parentClientId childClientIds data template
-            ### 方法
-                .render()
-            ### 事件
-                ready destroyed
-        */
         function Popover() {}
 
         _.extend(Popover.prototype, Brix.prototype, {

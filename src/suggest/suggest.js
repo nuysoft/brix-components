@@ -1,4 +1,18 @@
 /* global define */
+/*
+    http://thx.github.io/brix-site/readme.html?name=Suggest
+        Deprecated
+    https://nuysoft.gitbooks.io/brix-book/content/brix-components/suggest/
+        Temporary
+
+    # Suggest
+
+    提示补全组件。
+
+    ```html
+    <input bx-name="components/suggest" class="form-control">
+    ```
+ */
 define(
     [
         'jquery', 'underscore',
@@ -15,7 +29,7 @@ define(
         itemTemplate
     ) {
         /*
-            input 自动适配宽度，避免意外这行
+            input 自动适配宽度，避免意外折行
             rich input
                 tag input
                 suggest 绑定在 inpupt 上

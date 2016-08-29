@@ -65,6 +65,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	    http://parsleyjs.org/
 	    Parsley, the ultimate JavaScript form validation library
 	    Validating forms frontend have never been so powerful and easy.
+
+	    http://thx.github.io/brix-site/readme.html?name=Validation
+	        Deprecated
+	    https://nuysoft.gitbooks.io/brix-book/content/brix-components/validation/
+	        Temporary
+	        
+	    # Validation
+
+	    表单验证组件。
+
+	    ```html
+	    <form bx-name="components/validation">
+	    ```
+
+	    ## 配置
+
+	    无。
+
+	    ## 属性
+
+	    属性名  | 类型    | 默认值 | 说明
+	    :------ | :------ | :----- | :----------
+	    parsley | Parsley | -      | <http://parsleyjs.org/>
+
+	    ## 方法
+
+	    *.validate()
+	        http://parsleyjs.org/doc/index.html#usage-form
+	    * .isValid()
+	        http://parsleyjs.org/doc/index.html#usage-form
+
+	    ## 事件
+
+	    无。
+
 	 */
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 	        __webpack_require__(2), __webpack_require__(3), __webpack_require__(4),

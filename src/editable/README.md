@@ -3,7 +3,15 @@
 可编辑的页面元素。
 
 ```html
+<!-- 简单模式 -->
 <p bx-name="components/editable">This is a editable paragraph.</p>
+
+<!-- 自定义模式 -->
+<div bx-name="components/editable">
+    <div class="editable-content">content</div>
+    <div class="editable-toggle">toggle icon</div>
+    <input class="editable-input">
+</div>
 ```
 
 ## 配置
