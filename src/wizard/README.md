@@ -14,7 +14,7 @@ Lorem ipsum
 
 Name | Type | Default | Description
 :--- | :--- | :------ | :----------
-- | - | - | -
+-    | -    | -       | -
 
 ### 方法 <small>Methods</small>
 
@@ -32,5 +32,5 @@ instance.method()
 
 Event Type | Description
 :--------- | :----------
-- | -
+-          | -
 

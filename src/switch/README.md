@@ -12,11 +12,11 @@
 
 自动从组件节点 `<input>` 上解析，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-checked | boolean | false | 可选。是否选中。
-disabled | boolean | false | 可选。是否禁用。
-size | string | '' | 可选。设置滑动开关的尺寸，可选值有：`''`、`'small'`、`'large'`。
+配置项   | 类型    | 默认值  | 说明
+:------- | :------ | :------ | :----------
+checked  | boolean | false   | 可选。是否选中。
+disabled | boolean | false   | 可选。是否禁用。
+size     | string  | ''      | 可选。设置滑动开关的尺寸，可选值有：`''`、`'small'`、`'large'`。
 
 ## 方法
 
@@ -87,8 +87,8 @@ instances[0].val('foo')
 
 ## 事件
 
-事件类型 | 说明
-:--------- | :----------
+事件类型      | 说明
+:------------ | :----------
 change.switch | 当值发生变化时被触发。
 
 ```js

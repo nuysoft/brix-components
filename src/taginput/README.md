@@ -10,11 +10,11 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-data | array | `[]` | 初始值。例如 `['foo', 'bar', 'baz']`。
-placeholder | string | `''` | 描述预期值的简短提示。
-suggest | boolean | `true` | 指示是否关闭 Suggest 组件。默认启用。
+配置项      | 类型    | 默认值 | 说明
+:---------- | :------ | :----- | :----------
+data        | array   | `[]`   | 初始值。例如 `['foo', 'bar', 'baz']`。
+placeholder | string  | `''`   | 描述预期值的简短提示。
+suggest     | boolean | `true` | 指示是否关闭 Suggest 组件。默认启用。
 
 ## 方法
 
@@ -69,8 +69,8 @@ console.log(instances[0].val())
 
 ## 属性
 
-属性名 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
+属性名  | 类型    | 默认值           | 说明
+:------ | :------ | :--------------- | :----------
 suggest | Suggest | Suggest 组件实例 | `components/suggest`
 
 提示补全的内容通过执行 `.suggest.data( array )` 显示。
@@ -97,8 +97,8 @@ _.each(instances, function(taginput, index) {
 
 ## 事件
 
-事件类型 | 说明
-:--------- | :----------
+事件类型        | 说明
+:-------------- | :----------
 change.taginput | 当值变化时触发。
 
 ```js

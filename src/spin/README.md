@@ -12,6 +12,6 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-type | string | `'three-bounce'` | 可选。指定加载动画的类型，可选值有：`rotating-plane`、`double-bounce`、`rectangle-bounce`、`wandering-cubes`、`pulse`、`chasing-dots`、`three-bounce`、`circle-spinner`。
+配置项 | 类型   | 默认值           | 说明
+:----  | :----- | :--------------- | :----------
+type   | string | `'three-bounce'` | 可选。指定加载动画的类型，可选值有：`rotating-plane`、`double-bounce`、`rectangle-bounce`、`wandering-cubes`、`pulse`、`chasing-dots`、`three-bounce`、`circle-spinner`。

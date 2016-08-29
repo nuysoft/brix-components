@@ -14,14 +14,14 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-placement | string | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
-align | string | `''` | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
-offset | object | `{}` | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
-width | int | `'auto'` | 指定浮层的宽度。
-title | string | `''` | 指定浮层的标题。
-content | string | `''` | 指定浮层的内容。
+配置项    | 类型       | 默认值    | 说明
+:-------- | :--------- | :-------- | :----------
+placement | string     | `'right'` | 指定浮层的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
+align     | string     | `''`      | 指定浮层的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+offset    | object     | `{}`      | 指定浮层的偏移，可以含有两个属性：`left`、`top`。
+width     | int        | `'auto'`  | 指定浮层的宽度。
+title     | string     | `''`      | 指定浮层的标题。
+content   | string     | `''`      | 指定浮层的内容。
 ~~delay~~ | ~~number~~ | ~~`100`~~ | ~~指定延迟关闭浮层的时间，单位为毫秒。~~
 
 

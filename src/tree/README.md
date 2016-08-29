@@ -10,11 +10,11 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-data | array | - | 必须。描述树结构的扁平数据。示例见上面的示例。
-nodeTemplate | array | - | 可选。自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。
-state | string | `'expand'` | 可选。指定树结构的初始状态。可选值有 `'expand'`、`'collapse'`，分别表示展开、收起。
+配置项       | 类型   | 默认值     | 说明
+:----------- | :----  | :--------     - | :----------
+data         | array  | -          | 必须。描述树结构的扁平数据。示例见上面的示例。
+nodeTemplate | array  | -          | 可选。自定义节点模板，属性值是一个 AMD moduleId，模板引擎采用 Underscore 的 <a href="http://underscorejs.org/#template">_.template()</a>。
+state        | string | `'expand'` | 可选。指定树结构的初始状态。可选值有 `'expand'`、`'collapse'`，分别表示展开、收起。
 
 
 ## 方法
@@ -195,13 +195,13 @@ instances[0].all()
 
 ## 事件
 
-事件类型 | 说明
-:--------- | :----------
-click.tree | 当点树击节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
+事件类型        | 说明
+:-------------- | :----------
+click.tree      | 当点树击节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
 mouseenter.tree | 当鼠标移入树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
 mouseleave.tree | 当鼠标移出树节点时被触发。监听函数接受 3 个参数：jQuery 事件对象 `event`、树节点关联的数据和树节点。
-active.tree | -
-inactive.tree | -
+active.tree     | -
+inactive.tree   | -
 
 > 如果在组件节点上设置了 `prefix-click`、`prefix-mouseenter`、`prefix-mouseleave`，那么当鼠标点击、移入、移出非节点部分（即组件的空白部分）时，也会触发相应的事件，但是传给监听函数的参数只有 jQuery 事件对象，没有树节点关联的数据和树节点。此时，可以通过判断 `event.originalNamespace` 是否为 `tree` 来区分这两种事件。
 

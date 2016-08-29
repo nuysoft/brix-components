@@ -10,17 +10,17 @@
 
 配置信息从 `data-*` 中读取，在组件中通过 `this.options` 访问。
 
-配置项 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-column-name | string | - | **Th** 可选。指定列名，默认取单元格 `th` 的文本内容。
-column-field | string | - | **Th** 可选。指定列名对应数据字段名，默认取单元格 `th` 的文本内容。
-column-rwd-range | array | - | **Table** 可选。指定列分页的范围，例如 `[3,-2]`。
-column-rwd-cursor | number | 1 | **Table** 可选。指定列分页的当前页数，例如 `1`、`2`。
-column-rwd-limit | array | 5 | **Table** 可选。指定列分页的单页个数，例如 `5`。
-column-priority-fields | array | - | **Table** 可选。指定可显示的列。例如 `['gungungun', '滚动列 2', '滚动列 4', '滚动列 6']`
-column-priority-trigger | string | - | **Table** 可选。指定触发列配置浮层的节点选择器表达式，例如 `'#clickme'`
+配置项                    | 类型   | 默认值   | 说明
+:------------------------ | :----- | :------- | :----------
+column-name               | string | -        | **Th** 可选。指定列名，默认取单元格 `th` 的文本内容。
+column-field              | string | -        | **Th** 可选。指定列名对应数据字段名，默认取单元格 `th` 的文本内容。
+column-rwd-range          | array  | -        | **Table** 可选。指定列分页的范围，例如 `[3,-2]`。
+column-rwd-cursor         | number | 1        | **Table** 可选。指定列分页的当前页数，例如 `1`、`2`。
+column-rwd-limit          | array  | 5        | **Table** 可选。指定列分页的单页个数，例如 `5`。
+column-priority-fields    | array  | -        | **Table** 可选。指定可显示的列。例如 `['gungungun', '滚动列 2', '滚动列 4', '滚动列 6']`
+column-priority-trigger   | string | -        | **Table** 可选。指定触发列配置浮层的节点选择器表达式，例如 `'#clickme'`
 column-priority-placement | string | 'bottom' | **Table** 可选。指定列配置浮层相对于触发节点的位置，可选值有 `'top'`、`'bottom'`、`'left'`、`'right'`。
-column-priority-align | string | 'right' | **Table** 可选。指定列配置浮层相对于触发节点的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
+column-priority-align     | string | 'right'  | **Table** 可选。指定列配置浮层相对于触发节点的对齐方式，可选值有 `''`、`'top'`、`'bottom'`、`'left'`、`'right'`。
 
 **注意**
 
@@ -33,10 +33,10 @@ column-priority-align | string | 'right' | **Table** 可选。指定列配置浮
 
 ## 事件
 
-事件类型 | 说明
-:--------- | :----------
-toggle.table | 当勾选或取消勾选复选框时被触发。事件监听函数接受三个参数：`event`、`values`、`target`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。参数 `target` 是被点击的复选框。
-change.table_column_rwd | 当列滚动时触发。事件监听函数接受两个参数：`event`、`state`。参数 `state` 是一个对象，其中存放了列分页的状态。
+事件类型                     | 说明
+:--------------------------- | :----------
+toggle.table                 | 当勾选或取消勾选复选框时被触发。事件监听函数接受三个参数：`event`、`values`、`target`。参数 `values` 是一个数组，其中存放了被选中的复选框的值，没有任何复选框被选中，则为空数组 `[]`。参数 `target` 是被点击的复选框。
+change.table_column_rwd      | 当列滚动时触发。事件监听函数接受两个参数：`event`、`state`。参数 `state` 是一个对象，其中存放了列分页的状态。
 change.table_column_priority | 当列配置发生变化时触发。事件监听函数接受两个参数：`event`、`fields`。参数 `fields` 是一个数组，其中存放了排序后的列名。
 
 ```js
@@ -55,10 +55,10 @@ instance.on('change.table_column_priority', function(event, fields) {
 
 ## 属性
 
-属性名 | 类型 | 默认值 | 说明
-:--- | :--- | :------ | :----------
-columnRWDHandler | object | - | 负责处理列分页。
-columnPriorityHandler | object | - | 列配置浮层的实例。
+属性名                | 类型   | 默认值 | 说明
+:-------------------- | :----- | :----- | :----------
+columnRWDHandler      | object | -      | 负责处理列分页。
+columnPriorityHandler | object | -      | 列配置浮层的实例。
 
 ### 属性 columnRWDHandler
 
