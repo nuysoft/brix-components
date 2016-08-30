@@ -84,7 +84,8 @@ define(
                 var that = this
                 var $relatedElement = this.$relatedElement = $(
                     _.template(template)(this.options)
-                ).insertAfter(this.$element)
+                    // .insertAfter(this.$element)
+                ).appendTo(document.body)
 
                 var $pickerNode = this.$pickerNode = $relatedElement.find('.picker')
                 this.$pickerDragNode = $relatedElement.find('.picker-indicator')
@@ -414,8 +415,20 @@ define(
             }
         }
 
+        // http://stackoverflow.com/questions/9600295/automatically-change-text-color-to-assure-readability
+        function invert(hex) {
+            hex = hex.substring(1) // remove #
+            hex = parseInt(hex, 16) // convert to integer
+            hex = 0xFFFFFF ^ hex // invert three bytes
+            hex = hex.toString(16) // convert to hex
+            hex = ("000000" + hex).slice(-6) // pad with leading zeros
+            hex = "#" + hex // prepend #
+            return hex
+        }
+
         ColorPicker.hsv2rgb = hsv2rgb
         ColorPicker.rgb2hsv = rgb2hsv
+        ColorPicker.invert = invert
 
         return ColorPicker
 
