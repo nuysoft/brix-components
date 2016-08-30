@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- <script src="http://g-assets.daily.taobao.net/thx/brix-release/require-config-css.js"></script> -->
+<script src="http://mo.local:4242/require-config-css.js"></script>
+<link href="/gitbook/gitbook-plugin-highlight/website.css" type="text/css" rel="stylesheet" >
+<style type="text/css">
+    body {
+        padding: 10px;
+    }
+
+    body [bx-name="components/colorpicker"] {
+        width: 200px;
+        margin: 10px 10px 10px 0;
+    }
+    table td:nth-child(1) { text-align: left; }
+    table td:nth-child(2) { text-align: center; }
+    table td:nth-child(3) { text-align: right; }
+</style>
+
+<!-- 示例 -->
+<div class="book">
+    <div class="book-body">
+        <div class="page-wrapper">
+            <div class="page-inner">
+                <section class="normal"></section>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div bx-name="components/colorpicker" class="btn btn-default">ColorPicker</div>
+    <input bx-name="components/colorpicker" placeholder="ColorPicker">
+    <div bx-name="components/colorpicker" data-color="#ff6600" class="btn btn-default">设置初始值</div>
+    <div bx-name="components/colorpicker" data-min="true" class="btn btn-default">精简模式</div>
+</div>
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="right" data-align="top" class="btn btn-default">位于右侧 + 顶部对齐</div>
+                <div bx-name="components/colorpicker" data-placement="bottom" data-align="left" class="btn btn-default">位于下方 + 左侧对齐</div>
+            </td>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="bottom" data-align="center" class="btn btn-default">位于下方 + 水平居中对齐</div>
+            </td>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="left" data-align="top" class="btn btn-default">位于左侧 + 顶部对齐</div>
+                <div bx-name="components/colorpicker" data-placement="bottom" data-align="right" class="btn btn-default">位于下方 + 右对齐</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="right" data-align="middle" class="btn btn-default">位于右侧 + 垂直居中对齐</div>
+            </td>
+            <td> - </td>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="left" data-align="middle" class="btn btn-default"> 位于左侧 + 水平居中对齐 </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="top" data-align="left" class="btn btn-default">位于上方 + 左侧对齐</div>
+                <div bx-name="components/colorpicker" data-placement="right" data-align="bottom" class="btn btn-default">位于右侧 + 底部对齐</div>
+            </td>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="top" data-align="center" class="btn btn-default">位于上方 + 水平居中对齐</div>
+            </td>
+            <td>
+                <div bx-name="components/colorpicker" data-placement="top" data-align="right" class="btn btn-default">位于上方 + 右侧对齐</div>
+                <div bx-name="components/colorpicker" data-placement="left" data-align="bottom" class="btn btn-default">位于左侧 + 底部对齐</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 启动 -->
+<script>
+    // require(['css!brix/deps/highlightjs/styles/github.css'])
+    require(['components/readme', 'highlightjs'], function(Readme, hljs) {
+        // var readme = new Readme()
+        // readme.trimHTML(document.body)
+        // readme.trimPredefined(document.body)
+
+        $(document.body).find('pre code').each(function(index, code) {
+            hljs.highlightBlock(code)
+        })
+
+        $('iframe', top.document).height(
+            $(document.body).outerHeight()
+        )
+    })
+    require(['brix/loader'], function(Loader) {
+        Loader.boot(function() {
+            var instances = Loader.query('components/colorpicker')
+            instances.on('change.colorpicker', function(event, extra) {
+                $(event.component.element).css({
+                    // color: parseInt(extra.hex.substring(1), 16) < parseInt('FFFFFF', 16) / 2 ? '#FFF' : '#000', // 白色 or 黑色
+                    // color: event.component.constructor.invert(extra.hex), // 补色
+                    color: event.component.$pickerDragNode.css('color'),
+                    'background-color': extra.hex
+                })
+                // event.preventDefault()
+                console.log(event.type, event.namespace, extra)
+            })
+        })
+    })
+</script>

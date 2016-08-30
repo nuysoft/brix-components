@@ -102,66 +102,9 @@ instances.on('change.dropdown', function(event, extra) {
 
 ## 示例
 
-<iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
 
-<!-- <iframe width="100%" height="500" src="./examples.md" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
-
-```html
-<div>
-  <div bx-name="components/colorpicker" data-placement="left" data-align="top"    class="btn btn-default right-top"   > 位于左侧 + 顶部对齐     </div>
-  <div bx-name="components/colorpicker" data-placement="left" data-align="right"  class="btn btn-default right-middle"> 位于左侧 + 水平居中对齐 </div>
-  <div bx-name="components/colorpicker" data-placement="left" data-align="middle" class="btn btn-default right-bottom"> 位于左侧 + 底部对齐     </div>
-</div>
-```
-
-```html
-<div bx-name="components/colorpicker" class="btn btn-default">ColorPicker</div>
-<input bx-name="components/colorpicker" placeholder="ColorPicker">
-<div bx-name="components/colorpicker" data-color="#ff6600" class="btn btn-default">设置初始值</div>
-<div bx-name="components/colorpicker" data-min="true" class="btn btn-default">精简模式</div>
-```
-
-```html
-<div bx-name="components/colorpicker" class="btn btn-default">默认：位于下方 + 左侧对齐</div>
-<div bx-name="components/colorpicker" data-align="right" class="btn btn-default">位于下方 + 右对齐</div>
-<div bx-name="components/colorpicker" data-align="" class="btn btn-default">位于下方 + 水平居中对齐</div>
-```
-
-```html
-<div bx-name="components/colorpicker" 
-    data-placement="right" 
-    data-align="top" 
-    class="btn btn-default">位于右侧 + 顶部对齐</div>
-<div bx-name="components/colorpicker" 
-    data-placement="right" 
-    data-align="bottom" 
-    class="btn btn-default">位于右侧 + 底部对齐</div>
-<div bx-name="components/colorpicker" 
-    data-placement="right" 
-    data-align="" 
-    class="btn btn-default">位于右侧 + 垂直居中对齐</div>
-```
-
-```html
-<div bx-name="components/colorpicker" data-placement="top" data-align="left" class="btn btn-default">位于上方 + 左侧对齐</div>
-<div bx-name="components/colorpicker" data-placement="top" data-align="right" class="btn btn-default">位于上方 + 右侧对齐</div>
-<div bx-name="components/colorpicker" data-placement="top" data-align="" class="btn btn-default">位于上方 + 水平居中对齐</div>
-```
-
-```html
-<div bx-name="components/colorpicker" 
-    data-placement="left" 
-    data-align="top" 
-    class="btn btn-default">位于左侧 + 顶部对齐</div>
-<div bx-name="components/colorpicker" 
-    data-placement="left" 
-    data-align="bottom" 
-    class="btn btn-default">位于左侧 + 底部对齐</div>
-<div bx-name="components/colorpicker" 
-    data-placement="left" 
-    data-align="" 
-    class="btn btn-default">位于左侧 + 垂直居中对齐</div>
-```
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ```js
 require(['brix/loader'], function(Loader) {
@@ -178,5 +121,3 @@ require(['brix/loader'], function(Loader) {
     })
 })
 ```
-
-<!-- <script async src="//jsfiddle.net/nuysoft/m2813fv6/embed/"></script> -->
