@@ -2011,6 +2011,7 @@ input[bx-name="components/switch"] {
   outline: none;
   height: 24px;
   padding: 0px;
+  vertical-align: top;
 }
 
 /* /src/tree/tree.css */
