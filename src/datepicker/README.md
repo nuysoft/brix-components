@@ -139,3 +139,7 @@ instances.on('change.datepicker', function(event, date, type) {
 // =>
 //  change datepicker date 2015-01-08 22:52:53.129
 ```
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
