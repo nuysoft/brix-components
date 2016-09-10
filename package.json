@@ -28,6 +28,7 @@
     "gulp-less": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-mocha-phantomjs": "^0.11.0",
+    "gulp-pug": "^3.0.4",
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",

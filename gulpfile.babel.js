@@ -15,6 +15,7 @@ import less from 'gulp-less'
 import csslint from 'gulp-csslint'
 import cleanCSS from 'gulp-clean-css'
 import webpack from 'webpack'
+import pug from 'gulp-pug'
 import shell from 'gulp-shell'
 import _debug from 'gulp-debug'
 
@@ -41,6 +42,7 @@ const EXTERNALS = [
     /^[a-zA-Z\-0-9]+$/,
     'chartx/index'
 ]
+const TEST_PORT = 4247
 
 function html2js(html) {
     var quoteChar = '"'
@@ -274,14 +276,15 @@ gulp.task('css:watch', () => {
 
 gulp.task('test:server', function() {
     connect.server({
-        port: 4247
+        port: TEST_PORT
     })
 })
+
 gulp.task('test:mocha', () => {
     return gulp.src(['test/*.html'])
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
             file.path = file.path.replace(
-                __dirname, 'http://localhost:4247'
+                __dirname, `http://localhost:$(TEST_PORT)`
             )
             console.log(file.path)
             callback(null, file)
@@ -293,13 +296,33 @@ gulp.task('test:mocha', () => {
             console.log(err)
         })
 })
-gulp.task('watch:test', () => {
+
+gulp.task('test:watch', () => {
     gulp.watch(['test/*.html', 'test/*.js'], ['js:hint', 'test:mocha']).on('change', onFileChange)
 })
-gulp.task('test', ['test:server', 'test:mocha', 'watch:test'])
+
+gulp.task('test', ['test:server', 'test:mocha'])
 
 // ----------------------------------------
 
-gulp.task('watch', ['js:watch', 'css:watch'])
-gulp.task('build', ['build:js', 'build:css', 'watch:test'])
+// https://github.com/jamen/gulp-pug
+gulp.task('build:doc', () => {
+    return gulp.src(['src/**/*.pug']).pipe(cache('build:doc')).pipe(debug('build:doc'))
+        .pipe(pug({
+            pretty: '    '
+        }))
+        .pipe(gulp.dest(SRC))
+        .on('error', function(err) {
+            console.log(err)
+        })
+})
+
+gulp.task('doc:watch', () => {
+    gulp.watch(['src/**/*.pug'], ['build:doc']).on('change', onFileChange)
+})
+
+// ----------------------------------------
+
+gulp.task('watch', ['js:watch', 'css:watch', 'doc:watch','test:watch'])
+gulp.task('build', ['build:js', 'build:css', 'build:doc'])
 gulp.task('default', ['build', 'test', 'watch'])
