@@ -217,7 +217,7 @@
                     //- $('select').show().css('visibility', 'visible')
                     var instances = Loader.query('components/dropdown')
                     instances.on('change.dropdown', function(event, extra){
-                        event.preventDefault();
+                        //- event.preventDefault();
                         console.log(event.type, event.namespace, extra)
                     })
                 })

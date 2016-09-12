@@ -649,8 +649,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
 
 	/*
-	    TODO
-	    multiple disabled
 	    responsive http://silviomoreto.github.io/bootstrap-select/
 	 */
 
