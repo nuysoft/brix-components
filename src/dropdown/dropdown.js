@@ -243,19 +243,6 @@ define(
                     }).sort().join('')
                 ) return this
 
-                // #19 支持 event.preventDefault()
-                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
-                var event = $.Event('change' + NAMESPACE)
-                var extra = _.map(data, function(item) {
-                    return {
-                        name: options.name,
-                        label: item.label,
-                        value: item.value
-                    }
-                })
-                this.trigger(event, [options.multiple ? extra : extra[0]])
-                if (event.isDefaultPrevented()) return this
-
                 // 更新模拟下拉框的内容
                 this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
                     _.map(data, function(item) {
@@ -286,9 +273,26 @@ define(
                 })
 
                 // 更新  this.options.value
+                this.options.__value = this.options.value
                 this.options.value = _.map(data, function(item) {
                     return item.value
                 })
+
+                // #19 支持 event.preventDefault()
+                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
+                var event = $.Event('change' + NAMESPACE)
+                var extra = _.map(data, function(item) {
+                    return {
+                        name: options.name,
+                        label: item.label,
+                        value: item.value
+                    }
+                })
+                this.trigger(event, [options.multiple ? extra : extra[0]])
+                if (event.isDefaultPrevented()) {
+                    // TODO 恢复
+                    return this
+                }
 
                 this.$element
                     .triggerHandler('change')
