@@ -260,14 +260,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var that = this
 	                var options = this.options
 
-	                var oldValue = function() {
-	                    var $target = that.$relatedElement.find('ul.dropdown-menu > li.active > a')
-	                    return _.map($target, function(item) {
-	                        var $item = $(item)
-	                        var itemValue = $item.attr('value')
-	                        return itemValue !== undefined ? itemValue : $.trim($item.text())
-	                    })
-	                }()
+	                var oldValue = options.multiple ? this.options.value :
+	                    function() {
+	                        var $target = that.$relatedElement.find('ul.dropdown-menu > li.active > a')
+	                        return _.map($target, function(item) {
+	                            var $item = $(item)
+	                            var itemValue = $item.attr('value')
+	                            return itemValue !== undefined ? itemValue : $.trim($item.text())
+	                        })
+	                    }()
 
 	                // .val()
 	                if (value === undefined) return options.multiple ? oldValue : oldValue[0]
@@ -342,6 +343,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        .addClass('active')
 	                        .find('input:checkbox')
 	                        .prop('checked', true)
+	                })
+
+	                // 更新  this.options.value
+	                this.options.value = _.map(data, function(item) {
+	                    return item.value
 	                })
 
 	                this.$element
