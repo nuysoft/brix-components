@@ -1475,7 +1475,7 @@ ul.checklist-linear > li {
   color: #999;
   padding-left: 20px;
 }
-.dropdown .dropdown-menu > li.dropdown-header + li > a {
+.dropdown .dropdown-menu > li.dropdown-menu-item-child > a {
   padding-left: 20px;
 }
 .dropdown > .dropdown-menu-wrapper {
@@ -1514,6 +1514,32 @@ ul.checklist-linear > li {
 }
 .dropdown > .dropdown-menu-wrapper > ul.dropdown-menu > li.divider {
   padding: 0;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer {
+  clear: both;
+  margin: 0 -10px 0 -10px;
+  padding: 10px 10px 0 10px;
+  border-top: 1px solid #E6E6E6;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer .btn {
+  height: 24px;
+  font-size: 12px;
+  padding: 4px 14px;
+  font-weight: normal;
+  border: 0;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer .btn.submit {
+  color: #FFF;
+  background-color: #FF6600;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer .btn.submit:hover {
+  background-color: #FC4218;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer .btn.cancel {
+  background-color: #F0F0F0;
+}
+.dropdown > .dropdown-menu-wrapper > .dropdown-footer .btn.cancel:hover {
+  background-color: #E6E6E6;
 }
 .dropdown.open > .dropdown-menu-wrapper {
   display: block;
@@ -1555,6 +1581,10 @@ ul.checklist-linear > li {
 }
 .dropdown.disabled .dropdown-toggle:hover {
   border-color: #E6E6E6;
+}
+.dropdown.dropdown-multiple .dropdown-menu-wrapper ul.dropdown-menu > li > a input[type="checkbox"] {
+  height: 12px;
+  margin-right: 8px;
 }
 input,
 .input,

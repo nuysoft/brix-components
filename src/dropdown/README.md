@@ -20,6 +20,8 @@ data      | array             | -       | 可选。下拉框中的数据。默�
 value     | string            | -       | 可选。下拉框的值。
 searchbox | boolean           | `false` | 可选。是否开启下拉框中的输入框。可选值有 `false`、`true`、`'enter'`。
 popover   | boolean or number | `false` | 可选。是否为下拉框的条目配置 `bx-name="components/popover"`。可选值有 `false`、`true`、`width`。
+className | string            | -       | 指定类样式。
+justify   | boolean           | -       | 是否两端对齐。
 
 ### 配置项 `searchbox`
 
@@ -101,3 +103,7 @@ instances.on('search.dropdown', function(event, seed) {
     // => seed 输入值
 })
 ```
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

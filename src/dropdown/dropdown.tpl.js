@@ -1,6 +1,11 @@
 /* global define */
 define(function() {
-    return "<div class=\"dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>\">\n" +
+    return "<div class=\"dropdown \n" +
+        "    <%= disabled ? 'disabled' : '' %> \n" +
+        "    <%= multiple ? 'dropdown-multiple' : '' %> \n" +
+        "    <%= searchbox ? 'dropdown-searchbox' : '' %> \n" +
+        "    <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>\n" +
+        "    <%= justify ? 'dropdown-justify' : '' %>\">\n" +
         "    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" value=\"<%= value %>\" bx-click=\"toggle()\">\n" +
         "        <span class=\"dropdown-toggle-label\"><%= label %></span>\n" +
         "        <!-- <span class=\"caret\"> -->\n" +
@@ -23,17 +28,23 @@ define(function() {
         "                <% if(item.children) { %>\n" +
         "                    <li class=\"dropdown-header\"><%=item.label%></li>\n" +
         "                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>\n" +
-        "                        <li class=\"<%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
+        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
         "                            <% if (popover) { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
         "                                bx-name=\"components/popover\"\n" +
         "                                data-content=\"<%= item.children[ii].label %>\" \n" +
         "                                data-width=\"<%= _popoverWidth %>\">\n" +
+        "                                <% if (multiple) { %>\n" +
+        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
+        "                                <% } %>\n" +
         "                                <span><%= item.children[ii].label %></span>\n" +
         "                            </a>\n" +
         "                            <% } else { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
         "                                title=\"<%= item.children[ii].label %>\">\n" +
+        "                                <% if (multiple) { %>\n" +
+        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
+        "                                <% } %>\n" +
         "                                <span><%= item.children[ii].label %></span>\n" +
         "                            </a>\n" +
         "                            <% } %>    \n" +
@@ -43,25 +54,37 @@ define(function() {
         "                    <% if (item === 'divider') { %>\n" +
         "                        <li class=\"divider\"></li>\n" +
         "                    <% } else { %>\n" +
-        "                        <li class=\"<%= item.value == value ? 'active' : ''%>\">\n" +
+        "                        <li class=\"<%= isActive(value, item.value) ? 'active' : '' %>\">\n" +
         "                            <% if (popover) { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
         "                                bx-name=\"components/popover\"\n" +
         "                                data-content=\"<%= item.label %>\" \n" +
         "                                data-width=\"<%= _popoverWidth %>\">\n" +
+        "                                <% if (multiple) { %>\n" +
+        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
+        "                                <% } %>\n" +
         "                                <span><%= item.label %></span>\n" +
         "                            </a>\n" +
         "                            <% } else { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
         "                                title=\"<%= item.label %>\">\n" +
+        "                                <% if (multiple) { %>\n" +
+        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
+        "                                <% } %>\n" +
         "                                <span><%= item.label %></span>\n" +
         "                            </a>\n" +
-        "                            <% } %>    \n" +
+        "                            <% } %>\n" +
         "                        </li>\n" +
         "                    <% }  %>\n" +
         "                <% } %>\n" +
         "            <% } %>\n" +
         "        </ul>\n" +
+        "        <% if (multiple) { %>\n" +
+        "        <div class=\"dropdown-footer\">\n" +
+        "            <button class=\"btn btn-default submit\" bx-click=\"submit\">确认</button>\n" +
+        "            <a href=\"javascript: void(0);\" bx-click=\"hide\" class=\"btn btn-default cancel ml5\">取消</a>\n" +
+        "        </div>\n" +
+        "        <% } %>\n" +
         "    </div>\n" +
         "</div>"
 })

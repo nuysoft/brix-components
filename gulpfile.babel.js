@@ -284,7 +284,7 @@ gulp.task('test:mocha', () => {
     return gulp.src(['test/*.html'])
         .pipe(through.obj(function(file, encoding, callback) { /* jshint unused:false */
             file.path = file.path.replace(
-                __dirname, `http://localhost:$(TEST_PORT)`
+                __dirname, `http://localhost:${TEST_PORT}`
             )
             console.log(file.path)
             callback(null, file)

@@ -1,4 +1,9 @@
-<div class="dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>">
+<div class="dropdown 
+    <%= disabled ? 'disabled' : '' %> 
+    <%= multiple ? 'dropdown-multiple' : '' %> 
+    <%= searchbox ? 'dropdown-searchbox' : '' %> 
+    <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>
+    <%= justify ? 'dropdown-justify' : '' %>">
     <button class="btn btn-default dropdown-toggle" type="button" value="<%= value %>" bx-click="toggle()">
         <span class="dropdown-toggle-label"><%= label %></span>
         <!-- <span class="caret"> -->
@@ -21,17 +26,23 @@
                 <% if(item.children) { %>
                     <li class="dropdown-header"><%=item.label%></li>
                     <% for(var ii = 0; ii < item.children.length; ii++ ) { %>
-                        <li class="<%= item.children[ii].value == value ? 'active' : ''%>">
+                        <li class="dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>">
                             <% if (popover) { %>
                             <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
                                 bx-name="components/popover"
                                 data-content="<%= item.children[ii].label %>" 
                                 data-width="<%= _popoverWidth %>">
+                                <% if (multiple) { %>
+                                <input type="checkbox" name="<%= name %>" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>
+                                <% } %>
                                 <span><%= item.children[ii].label %></span>
                             </a>
                             <% } else { %>
                             <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
                                 title="<%= item.children[ii].label %>">
+                                <% if (multiple) { %>
+                                <input type="checkbox" name="<%= name %>" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>
+                                <% } %>
                                 <span><%= item.children[ii].label %></span>
                             </a>
                             <% } %>    
@@ -41,24 +52,36 @@
                     <% if (item === 'divider') { %>
                         <li class="divider"></li>
                     <% } else { %>
-                        <li class="<%= item.value == value ? 'active' : ''%>">
+                        <li class="<%= isActive(value, item.value) ? 'active' : '' %>">
                             <% if (popover) { %>
                             <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
                                 bx-name="components/popover"
                                 data-content="<%= item.label %>" 
                                 data-width="<%= _popoverWidth %>">
+                                <% if (multiple) { %>
+                                <input type="checkbox" name="<%= name %>" <%= isActive(value, item.value) ? 'checked' : '' %>>
+                                <% } %>
                                 <span><%= item.label %></span>
                             </a>
                             <% } else { %>
                             <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
                                 title="<%= item.label %>">
+                                <% if (multiple) { %>
+                                <input type="checkbox" name="<%= name %>" <%= isActive(value, item.value) ? 'checked' : '' %>>
+                                <% } %>
                                 <span><%= item.label %></span>
                             </a>
-                            <% } %>    
+                            <% } %>
                         </li>
                     <% }  %>
                 <% } %>
             <% } %>
         </ul>
+        <% if (multiple) { %>
+        <div class="dropdown-footer">
+            <button class="btn btn-default submit" bx-click="submit">确认</button>
+            <a href="javascript: void(0);" bx-click="hide" class="btn btn-default cancel ml5">取消</a>
+        </div>
+        <% } %>
     </div>
 </div>

@@ -154,23 +154,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // 如果没有提供选项 data，则从节点 select 的 option 收集数据
 	                if (!options.data.length) {
 	                    options.data = this._parseDataFromSelect(this.$element)
-
 	                } else {
 	                    // 如果提供了选项 data，则逆向填充节点 select 的 option
 	                    this._fixFlattenData(this.options.data)
 	                    this._fillSelect()
 	                }
 
+	                // 是否允许多选
+	                options.multiple = this.$element.prop('multiple')
+
 	                // 节点是否被禁用
 	                options.disabled = this.$element.prop('disabled')
 
-	                // 初始化节点 select 的状态
-	                if (options.value !== undefined) this.$element.val(options.value + '')
+	                // value => [value] 
+	                if (options.value === undefined) options.value = []
+	                if (!_.isArray(options.value)) options.value = [options.value]
+
+	                // 初始化节点 select 的选中状态（值）
+	                if (options.value.length) this.$element.val(options.value)
 
 	                // 初始化选项 label、value
-	                var $selectedOption = this.$element.find('option:selected')
-	                options.label = $.trim($selectedOption.text())
-	                options.value = $selectedOption.attr('value')
+	                var $selectedOptions = this.$element.find('option:selected')
+	                options.label = _.map($selectedOptions, function(item) {
+	                    return $.trim($(item).text())
+	                }).join(', ')
+	                options.value = _.map($selectedOptions, function(item) {
+	                    return $(item).attr('value')
+	                })
 
 	                // 初始化选项 name
 	                options.name = this.$element.attr('name')
@@ -198,7 +208,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            render: function() {
 	                this.$relatedElement = $(
-	                    compiledTemplate(this.options)
+	                    compiledTemplate(
+	                        _.extend({}, this.options, {
+	                            isActive: function(value, cur) {
+	                                return _.contains(value, cur) || _.contains(value, cur + '')
+	                            }
+	                        })
+	                    )
 	                ).insertBefore(this.$element)
 
 	                var width = this.options.width
@@ -213,11 +229,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // 类样式 data-className
 	                if (this.options.className) {
 	                    this.$relatedElement.addClass(this.options.className)
-	                }
-
-	                // 两端对齐 data-justify
-	                if (this.options.justify) {
-	                    this.$relatedElement.addClass('dropdown-justify')
 	                }
 
 	                this.$manager.delegate(this.$element, this)
@@ -247,62 +258,96 @@ return /******/ (function(modules) { // webpackBootstrap
 	            val: function(value) {
 	                // this.$element.val()
 	                var that = this
+	                var options = this.options
+
 	                var oldValue = function() {
 	                    var $target = that.$relatedElement.find('ul.dropdown-menu > li.active > a')
-	                    var oldValue = $target.attr('value')
-	                    if (oldValue === undefined) oldValue = $.trim($target.text())
-	                    return oldValue
+	                    return _.map($target, function(item) {
+	                        var $item = $(item)
+	                        var itemValue = $item.attr('value')
+	                        return itemValue !== undefined ? itemValue : $.trim($item.text())
+	                    })
 	                }()
 
 	                // .val()
-	                if (value === undefined) return oldValue
+	                if (value === undefined) return options.multiple ? oldValue : oldValue[0]
 
 	                // .val( value )
-	                var data /* { label: '', value: '', selected: true|false } */
-	                if (_.isObject(value)) data = value
-	                else _.each(this.options.data, function(item /*, index*/ ) {
+	                if (!_.isArray(value)) value = [value]
+	                value = _.map(value, function(item) {
+	                    return item + ''
+	                })
+
+	                var data = [] /* [{ label: '', value: '', selected: true|false }] */
+	                _.each(this.options.data, function(item /*, index*/ ) {
 	                    if (item.children) {
 	                        _.each(item.children, function(childItem /*, index*/ ) {
-	                            if (childItem.value == value) data = childItem
-	                            childItem.selected = childItem.value == value
+	                            childItem.selected = _.contains(value, childItem.value) || _.contains(value, childItem.value + '')
+	                            if (childItem.selected) data.push(childItem)
 	                        })
 	                    } else {
-	                        if (item.value == value) data = item
-	                        item.selected = item.value == value
+	                        item.selected = _.contains(value, item.value) || _.contains(value, item.value + '')
+	                        if (item.selected) data.push(item)
 	                    }
 	                })
 
 	                // 未知值
-	                if (!data) return
+	                // if (!data.length) return
 
 	                // 更新模拟下拉框的内容
 	                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
-	                    .text(data.label)
+	                    .text(
+	                        _.map(data, function(item) {
+	                            return item.label
+	                        }).join(', ')
+	                    )
 
 	                // 更新原生下拉框的值
 	                this.$element
-	                    .val(data.value)
+	                    .val(
+	                        _.map(data, function(item) {
+	                            return item.value
+	                        })
+	                    )
 
 	                // 更新模拟下拉框的选中状态
-	                this.$relatedElement.find('ul.dropdown-menu')
-	                    .find('li:has([value="' + oldValue + '"])')
-	                    .removeClass('active')
-	                    .end()
-	                    .find('li:has([value="' + data.value + '"])')
-	                    .addClass('active')
+	                var $menu = this.$relatedElement.find('ul.dropdown-menu')
+	                _.each(oldValue, function(item) {
+	                    $menu.find('li:has([value="' + item + '"])')
+	                        .removeClass('active')
+	                        .find('input:checkbox')
+	                        .prop('checked', false)
+	                })
+	                _.each(data, function(item) {
+	                    $menu.find('li:has([value="' + item.value + '"])')
+	                        .addClass('active')
+	                        .find('input:checkbox')
+	                        .prop('checked', true)
+	                })
 
 	                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
-	                if (('' + data.value) === oldValue) return this
+	                if (
+	                    oldValue.sort().join('') ===
+	                    _.map(data, function(item) {
+	                        return item.value
+	                    }).sort().join('')
+	                ) return this
 
 	                // TODO #19 支持 event.preventDefault()
 	                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
 
 	                var event = $.Event('change' + NAMESPACE)
-	                this.trigger(event, {
-	                    name: this.options.name,
-	                    label: data.label,
-	                    value: data.value
+	                var extra = _.map(data, function(item) {
+	                    return {
+	                        name: options.name,
+	                        label: item.label,
+	                        value: item.value
+	                    }
 	                })
+	                this.trigger(event, [options.multiple ? extra : extra[0]])
+	                if (!event.isDefaultPrevented()) {
+	                    // TODO
+	                }
 
 	                this.$element
 	                    .triggerHandler('change')
@@ -334,8 +379,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var $target = $(event.currentTarget)
 	                var value = $target.attr('value')
 	                var label = $.trim($target.text())
-	                this.val(value !== undefined ? value : label)
-	                this.toggle()
+
+	                switch (this.options.multiple) {
+	                    case true:
+	                        var $li = $target.closest('li').toggleClass('active')
+	                        $target.find('input:checkbox').prop('checked', $li.hasClass('active'))
+	                        break
+	                    case false:
+	                        this.val(value !== undefined ? value : label)
+	                        this.toggle()
+	                        break
+	                }
 
 	                // #8 如果在 change.dropdown 中再次改变值，则会和下面的代码冲突
 	                // $target.closest('li').addClass('active')
@@ -389,6 +443,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.$element.prop('disabled', disabled)
 	                this.$relatedElement[disabled ? 'addClass' : 'removeClass']('disabled')
 	                return this
+	            },
+	            submit: function() {
+	                var $target = this.$relatedElement.find('ul.dropdown-menu > li.active > a')
+	                var value = _.map($target, function(item) {
+	                    var $item = $(item)
+	                    return $item.attr('value') !== undefined ? $item.attr('value') : $.trim($item.text())
+	                })
+	                this.val(value)
+	                this.toggle()
 	            },
 	            _parseDataFromSelect: function($select) {
 	                var children = _.filter($select.children(), function(child /*, index*/ ) {
@@ -632,7 +695,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-	    return "<div class=\"dropdown <%= disabled ? 'disabled' : '' %> <%= searchbox ? 'dropdown-searchbox' : '' %> <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>\">\n" +
+	    return "<div class=\"dropdown \n" +
+	        "    <%= disabled ? 'disabled' : '' %> \n" +
+	        "    <%= multiple ? 'dropdown-multiple' : '' %> \n" +
+	        "    <%= searchbox ? 'dropdown-searchbox' : '' %> \n" +
+	        "    <%= popover ? 'dropdown-popover dropdown-ellipsis' : '' %>\n" +
+	        "    <%= justify ? 'dropdown-justify' : '' %>\">\n" +
 	        "    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" value=\"<%= value %>\" bx-click=\"toggle()\">\n" +
 	        "        <span class=\"dropdown-toggle-label\"><%= label %></span>\n" +
 	        "        <!-- <span class=\"caret\"> -->\n" +
@@ -655,17 +723,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                <% if(item.children) { %>\n" +
 	        "                    <li class=\"dropdown-header\"><%=item.label%></li>\n" +
 	        "                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>\n" +
-	        "                        <li class=\"<%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
+	        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
 	        "                            <% if (popover) { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
 	        "                                bx-name=\"components/popover\"\n" +
 	        "                                data-content=\"<%= item.children[ii].label %>\" \n" +
 	        "                                data-width=\"<%= _popoverWidth %>\">\n" +
+	        "                                <% if (multiple) { %>\n" +
+	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
+	        "                                <% } %>\n" +
 	        "                                <span><%= item.children[ii].label %></span>\n" +
 	        "                            </a>\n" +
 	        "                            <% } else { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
 	        "                                title=\"<%= item.children[ii].label %>\">\n" +
+	        "                                <% if (multiple) { %>\n" +
+	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
+	        "                                <% } %>\n" +
 	        "                                <span><%= item.children[ii].label %></span>\n" +
 	        "                            </a>\n" +
 	        "                            <% } %>    \n" +
@@ -675,25 +749,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                    <% if (item === 'divider') { %>\n" +
 	        "                        <li class=\"divider\"></li>\n" +
 	        "                    <% } else { %>\n" +
-	        "                        <li class=\"<%= item.value == value ? 'active' : ''%>\">\n" +
+	        "                        <li class=\"<%= isActive(value, item.value) ? 'active' : '' %>\">\n" +
 	        "                            <% if (popover) { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
 	        "                                bx-name=\"components/popover\"\n" +
 	        "                                data-content=\"<%= item.label %>\" \n" +
 	        "                                data-width=\"<%= _popoverWidth %>\">\n" +
+	        "                                <% if (multiple) { %>\n" +
+	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
+	        "                                <% } %>\n" +
 	        "                                <span><%= item.label %></span>\n" +
 	        "                            </a>\n" +
 	        "                            <% } else { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
 	        "                                title=\"<%= item.label %>\">\n" +
+	        "                                <% if (multiple) { %>\n" +
+	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
+	        "                                <% } %>\n" +
 	        "                                <span><%= item.label %></span>\n" +
 	        "                            </a>\n" +
-	        "                            <% } %>    \n" +
+	        "                            <% } %>\n" +
 	        "                        </li>\n" +
 	        "                    <% }  %>\n" +
 	        "                <% } %>\n" +
 	        "            <% } %>\n" +
 	        "        </ul>\n" +
+	        "        <% if (multiple) { %>\n" +
+	        "        <div class=\"dropdown-footer\">\n" +
+	        "            <button class=\"btn btn-default submit\" bx-click=\"submit\">确认</button>\n" +
+	        "            <a href=\"javascript: void(0);\" bx-click=\"hide\" class=\"btn btn-default cancel ml5\">取消</a>\n" +
+	        "        </div>\n" +
+	        "        <% } %>\n" +
 	        "    </div>\n" +
 	        "</div>"
 	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
