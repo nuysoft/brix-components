@@ -234,21 +234,40 @@ define(
                 // 未知值
                 // if (!data.length) return
 
+                // 如果值没有发生变化，则直接返回
+                if (
+                    oldValue.sort().join('') ===
+                    _.map(data, function(item) {
+                        return item.value
+                    }).sort().join('')
+                ) return this
+
+                // #19 支持 event.preventDefault()
+                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
+                var event = $.Event('change' + NAMESPACE)
+                var extra = _.map(data, function(item) {
+                    return {
+                        name: options.name,
+                        label: item.label,
+                        value: item.value
+                    }
+                })
+                this.trigger(event, [options.multiple ? extra : extra[0]])
+                if (event.isDefaultPrevented()) return this
+
                 // 更新模拟下拉框的内容
-                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label')
-                    .text(
-                        _.map(data, function(item) {
-                            return item.label
-                        }).join(', ')
-                    )
+                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
+                    _.map(data, function(item) {
+                        return item.label
+                    }).join(', ')
+                )
 
                 // 更新原生下拉框的值
-                this.$element
-                    .val(
-                        _.map(data, function(item) {
-                            return item.value
-                        })
-                    )
+                this.$element.val(
+                    _.map(data, function(item) {
+                        return item.value
+                    })
+                )
 
                 // 更新模拟下拉框的选中状态
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
@@ -264,30 +283,6 @@ define(
                         .find('input:checkbox')
                         .prop('checked', true)
                 })
-
-                // 将 data.value 转换为字符串，是为了避免检测 `1 === '1'` 失败（旧值 oldValue 总是字符串）
-                if (
-                    oldValue.sort().join('') ===
-                    _.map(data, function(item) {
-                        return item.value
-                    }).sort().join('')
-                ) return this
-
-                // TODO #19 支持 event.preventDefault()
-                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
-
-                var event = $.Event('change' + NAMESPACE)
-                var extra = _.map(data, function(item) {
-                    return {
-                        name: options.name,
-                        label: item.label,
-                        value: item.value
-                    }
-                })
-                this.trigger(event, [options.multiple ? extra : extra[0]])
-                if (!event.isDefaultPrevented()) {
-                    // TODO
-                }
 
                 this.$element
                     .triggerHandler('change')
