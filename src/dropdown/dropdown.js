@@ -590,7 +590,5 @@ define(
 )
 
 /*
-    TODO
-    multiple disabled
     responsive http://silviomoreto.github.io/bootstrap-select/
  */

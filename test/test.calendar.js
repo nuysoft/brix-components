@@ -65,7 +65,7 @@ describe('Calendar', function() {
         _.extend(result, {
             component: Loader.query('components/datepickerwrapper', $container)[0],
             events: $._data(document.body).events,
-            children: Loader.query('components/datepicker', $container)
+            children: Loader.query('components/datepicker/ancient', $container)
         })
         _.extend(result, {})
 
