@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://mo.local:4242/require-config-css.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器。</h3>
+                <input class="form-control w100" bx-name="components/datepickerwrapper" type="text">
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器。</h3>
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-pages="2" type="text">
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">为任意元素绑定日期选择器。</h3><a bx-name="components/datepickerwrapper" href="javascript:;">请选择日期</a>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">自定义样式。</h3><a bx-name="components/datepickerwrapper" href="javascript:;"><span data-index="0">请选择日期</span><i class="brixfont down">&#xe623;<!--&#xe623;--></i><i class="brixfont up">&#xe62e;<!--&#xe62e;--></i></a>
+            </div>
+        </div>
+        <script>
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/colorpicker')
+                })
+            })
+        </script>
+    </body>
+</html>

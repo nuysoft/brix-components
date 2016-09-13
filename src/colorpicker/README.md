@@ -102,22 +102,6 @@ instances.on('change.dropdown', function(event, extra) {
 
 ## 示例
 
-<!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
-
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-```js
-require(['brix/loader'], function(Loader) {
-    Loader.boot(function() {
-        var instances = Loader.query('components/colorpicker')
-        instances.on('change.colorpicker', function(event, extra) {
-            // event.preventDefault()
-            console.log(
-                event.type,
-                event.namespace,
-                extra
-            )
-        })
-    })
-})
-```
+<!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->

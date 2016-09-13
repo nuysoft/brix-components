@@ -67,16 +67,21 @@ html
                 div(bx-name="components/datepicker" data-type="date" data-date="2099-1-1" data-unlimit="2099-1-1")
 
         script.
-            require(['jquery', 'highlightjs'], function($, hljs) {
-                $('iframe', top.document).height(
-                    $(document.body).outerHeight()
-                )
-                $(document.body).find('pre code').each(function(index, code) {
-                    hljs.highlightBlock(code)
-                })
-            })
-            require(['brix/loader'], function(Loader) {
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
                 Loader.boot(function() {
-                    // 
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/datepicker')
+                    instances.on('change.datepicker unchange.datepicker', function(event, date, type) {
+                        console.log(
+                            event.type,
+                            event.namespace,
+                            type, 
+                            date.format('YYYY-MM-DD HH:mm:ss.SSS')
+                        )
+                    })
                 })
             })
