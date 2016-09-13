@@ -64,3 +64,7 @@ instances.on('complete.uploader', function(event, files) {
     console.log(event.type, event.namespace, files)
 })
 ```
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

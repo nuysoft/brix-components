@@ -25,10 +25,26 @@ parsley | Parsley | -      | <http://parsleyjs.org/>
 
 <http://parsleyjs.org/doc/index.html#usage-form>
 
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/validation')
+instances.validate()
+```
+
 ### .isValid()
 
 <http://parsleyjs.org/doc/index.html#usage-form>
 
+```js
+var Loader = require('brix/loader')
+var instances = Loader.query('components/validation')
+instances.isValid()
+```
+
 ## 事件
 
 无。
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

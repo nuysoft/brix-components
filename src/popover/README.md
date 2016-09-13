@@ -82,3 +82,7 @@ console.log(instances[0].content())
 ## 事件
 
 无。
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

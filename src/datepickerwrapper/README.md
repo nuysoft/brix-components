@@ -139,3 +139,7 @@ change.datepickerwrapper | 当日期组件变化时被触发。事件监听函�
 [moment 对象数组]: http://momentjs.com/docs/
 
 > 如果在事件 `change.datepickerwrapper` 的监听函数中调用了 `event.preventDefault()`，则不会更新组件的内容。该功能可以用于日期的验证。
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

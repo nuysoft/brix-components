@@ -274,9 +274,19 @@ gulp.task('css:watch', () => {
 
 // ----------------------------------------
 
-gulp.task('test:server', function() {
+gulp.task('test:server', () => {
     connect.server({
-        port: TEST_PORT
+        port: TEST_PORT,
+        middleware: ( /*connect, opt*/ ) => {
+            return [
+                // cors https://github.com/senchalabs/connect/#use-middleware
+                /* jshint unused:true */
+                (req, res, next) => {
+                    if (req.method === 'POST') req.method = 'GET'
+                    next()
+                }
+            ]
+        }
     })
 })
 
@@ -323,6 +333,6 @@ gulp.task('doc:watch', () => {
 
 // ----------------------------------------
 
-gulp.task('watch', ['js:watch', 'css:watch', 'doc:watch','test:watch'])
+gulp.task('watch', ['js:watch', 'css:watch', 'doc:watch', 'test:watch'])
 gulp.task('build', ['build:js', 'build:css', 'build:doc'])
 gulp.task('default', ['build', 'test', 'watch'])

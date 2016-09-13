@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        include ../../doc/head.pug
+    body
+        //- 示例
+        div
+            div(bx-name='components/pagination' data-total=100 data-cursor=1 data-limit=9)
+            div(bx-name='components/pagination' data-total=100 data-cursor=2 data-limit=10)
+            div(bx-name='components/pagination' data-total=100 data-cursor=3 data-limit=11)
+            div(bx-name='components/pagination' data-total=100 data-cursor=4 data-limit=12 data-limits='[9, 10, 8, 7, 40, 30, 20]')
+            div(bx-name='components/pagination' data-total=100 data-cursor=5 data-limit=13 data-limits='[40, 30, 20]')
+            div(bx-name='components/pagination' data-total=100 data-cursor=6 data-limit=14 data-limits='[40, 30, 20]' data-simplify='true')
+        //- 启动
+        script.
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/pagination')
+                    instances.on('change.pagination', function(event, state) {
+                        console.log(event, state)
+                    })
+                })
+            })

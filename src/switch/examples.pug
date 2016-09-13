@@ -1,0 +1,59 @@
+doctype html
+html
+    head
+        include ../../doc/head.pug
+    body
+        //- 示例
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 可用状态
+                input(type='checkbox' bx-name='components/switch')
+                input(type='checkbox' bx-name='components/switch' checked)
+            div.col-xs-6
+                h3.fontsize-16 禁用状态
+                input(type='checkbox' bx-name='components/switch' disabled)
+                input(type='checkbox' bx-name='components/switch' checked disabled)
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 设置 name、value
+                input(type='checkbox' bx-name='components/switch' name="foo" value="foo")
+                input(type='checkbox' bx-name='components/switch' name="bar" value="bar" checked)
+            div.col-xs-6
+                h3.fontsize-16 设置 name、value
+                input(type='checkbox' bx-name='components/switch' name="foo" value="foo" disabled)
+                input(type='checkbox' bx-name='components/switch' name="bar" value="bar" checked disabled)
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 <code>data-size="small"</code>
+                input(type='checkbox' bx-name='components/switch' data-size="small")
+                input(type='checkbox' bx-name='components/switch' data-size="small" checked)
+            div.col-xs-6
+                h3.fontsize-16 <code>data-size="small"</code>
+                input(type='checkbox' bx-name='components/switch' data-size="small" disabled)
+                input(type='checkbox' bx-name='components/switch' data-size="small" checked disabled)
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 <code>data-size="large"</code>
+                input(type='checkbox' bx-name='components/switch' data-size="large")
+                input(type='checkbox' bx-name='components/switch' data-size="large" checked)
+            div.col-xs-6
+                h3.fontsize-16 <code>data-size="large"</code>
+                input(type='checkbox' bx-name='components/switch' data-size="large" disabled)
+                input(type='checkbox' bx-name='components/switch' data-size="large" checked disabled)
+        //- 启动
+        script.
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/switch')
+                    instances.on('change.switch', function(event, extra) {
+                        // event.preventDefault()
+                        console.log(event.type, event.namespace, extra)
+                    })
+
+                })
+            })

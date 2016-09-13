@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://mo.local:4242/require-config-css.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+        </style>
+        <style>
+            p.parsley-success, div.parsley-success {
+                color: #468847;
+                background-color: #DFF0D8;
+                border: 1px solid #D6E9C6;
+            }
+            p.parsley-error, div.parsley-error {
+                color: #B94A48;
+                background-color: #F2DEDE;
+                border: 1px solid #EED3D7;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">通过 <code>data-action</code> 指定接收文件的 URL。</h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-action="api/upload.json" data-name="foo">选择文件</button>
+                <div class="preview"></div>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">通过 <code>data-name</code> 指定文件域的名称。</h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-action="api/upload.json" data-name="bar">选择文件</button>
+                <div class="preview"></div>
+            </div>
+        </form>
+        <form class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code></h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-name="foo" data-action="api/upload.json" data-transport="iframe" type="button"><span class="glyphicon glyphicon-open mr5"></span><span>选择文件</span></button>
+                <div class="preview"></div>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code></h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-name="bar" data-action="api/upload.json" data-transport="xhr" type="button"><span class="glyphicon glyphicon-open mr5"></span><span>选择文件</span></button>
+                <div class="progress w300 mt10 mb10">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="preview"></div>
+            </div>
+        </form>
+        <script>
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/uploader')
+                    instances.on('start.uploader', function(event, files) {
+                        console.log(event.type, event.namespace, event.component)
+                        var preview = $(event.target).parent().find('div.preview')
+                        _.each(files, function(file /*, index*/ ) {
+                            var reader = new FileReader()
+                            reader.onload = function(event) {
+                                var $img = $('<img>')
+                                    .addClass('uploader-preview-thumbnail')
+                                    .attr('src', event.target.result)
+                                    .attr('title', file.name)
+                                    .appendTo(preview)
+                                    .attr('bx-name', 'components/popover')
+                                    .attr('data-content', '<img src="' + event.target.result + '">')
+                                    .attr('data-placement', 'bottom')
+                                    .attr('data-align', 'left')
+                                Loader.boot($img)
+                            }
+                            reader.readAsDataURL(file)
+                        })
+                        // event.preventDefault()
+                    })
+                    instances.on('progress.uploader', function(event, files, state) {
+                        console.log(event.type, event.namespace, files, state.loaded + '/' + state.total + 'B', state.percent + '%')
+                        var progress = $(event.target).parent().find('div.progress-bar')
+                        progress.css('width', state.percent + '%')
+                    })
+                    instances.on('success.uploader', function(event, files, response) {
+                        console.log(event.type, event.namespace, files, response)
+                    })
+                    instances.on('error.uploader', function(event, files, reason) {
+                        console.log(event.type, event.namespace, files, reason)
+                    })
+                    instances.on('complete.uploader', function(event, files) {
+                        console.log(event.type, event.namespace, files)
+                    })
+                })
+            })
+        </script>
+    </body>
+</html>

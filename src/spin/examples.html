@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://mo.local:4242/require-config-css.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row mb40">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">默认</h3>
+                <div bx-name="components/spin"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="rotating-plane"</code></h3>
+                <div bx-name="components/spin" data-type="rotating-plane"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="double-bounce"</code></h3>
+                <div bx-name="components/spin" data-type="double-bounce"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="rectangle-bounce"</code></h3>
+                <div bx-name="components/spin" data-type="rectangle-bounce"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="wandering-cubes"</code></h3>
+                <div bx-name="components/spin" data-type="wandering-cubes"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="pulse"</code></h3>
+                <div bx-name="components/spin" data-type="pulse"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="chasing-dots"</code></h3>
+                <div bx-name="components/spin" data-type="chasing-dots"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="three-bounce"</code></h3>
+                <div bx-name="components/spin" data-type="three-bounce"></div>
+            </div>
+            <div class="col-xs-6 mb40">
+                <h3 class="fontsize-16"><code>data-type="circle-spinner"</code></h3>
+                <div bx-name="components/spin" data-type="circle-spinner"></div>
+            </div>
+        </div>
+        <script>
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/colorpicker')
+                })
+            })
+        </script>
+    </body>
+</html>

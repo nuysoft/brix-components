@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://mo.local:4242/require-config-css.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">可用状态</h3>
+                <input type="checkbox" bx-name="components/switch">
+                <input type="checkbox" bx-name="components/switch" checked>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">禁用状态</h3>
+                <input type="checkbox" bx-name="components/switch" disabled>
+                <input type="checkbox" bx-name="components/switch" checked disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">设置 name、value</h3>
+                <input type="checkbox" bx-name="components/switch" name="foo" value="foo">
+                <input type="checkbox" bx-name="components/switch" name="bar" value="bar" checked>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">设置 name、value</h3>
+                <input type="checkbox" bx-name="components/switch" name="foo" value="foo" disabled>
+                <input type="checkbox" bx-name="components/switch" name="bar" value="bar" checked disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16"><code>data-size="small"</code></h3>
+                <input type="checkbox" bx-name="components/switch" data-size="small">
+                <input type="checkbox" bx-name="components/switch" data-size="small" checked>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16"><code>data-size="small"</code></h3>
+                <input type="checkbox" bx-name="components/switch" data-size="small" disabled>
+                <input type="checkbox" bx-name="components/switch" data-size="small" checked disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16"><code>data-size="large"</code></h3>
+                <input type="checkbox" bx-name="components/switch" data-size="large">
+                <input type="checkbox" bx-name="components/switch" data-size="large" checked>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16"><code>data-size="large"</code></h3>
+                <input type="checkbox" bx-name="components/switch" data-size="large" disabled>
+                <input type="checkbox" bx-name="components/switch" data-size="large" checked disabled>
+            </div>
+        </div>
+        <script>
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/switch')
+                    instances.on('change.switch', function(event, extra) {
+                        // event.preventDefault()
+                        console.log(event.type, event.namespace, extra)
+                    })
+            
+                })
+            })
+        </script>
+    </body>
+</html>

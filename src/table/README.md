@@ -87,6 +87,10 @@ columnPriorityHandler | object | -      | 列配置浮层的实例。
 
     读取或设置可显示的列。
 
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 # linkage( container, callback( event, values ) )
 
 联动复选框工具函数。

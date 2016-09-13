@@ -65,3 +65,7 @@ editables.on('change.editable', function(event, extra) {
 ```
 
 > 如果在事件 `change.editable` 的监听函数中调用了 `event.preventDefault()`，则不会更新组件的内容。该功能可以用于对新内容的验证。
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

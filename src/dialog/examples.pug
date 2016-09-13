@@ -150,19 +150,3 @@ html
                     var instances = Loader.query('components/colorpicker')
                 })
             })
-            require(['brix/loader', 'jquery', 'underscore'], function(Loader, $, _) {
-                Loader.boot(function() {
-                    var target = $('.demo-active')
-                    var targetInstances = Loader.query(target)
-                    _.each(targetInstances, function(instance){
-                        instance.on('active.datepickerwrapper', function(event) {
-                            $(instance.element).addClass('focus')
-                            console.log(event.type, event.namespace, instance.element)
-                        })
-                        instance.on('inactive.datepickerwrapper', function(event) {
-                            $(instance.element).removeClass('focus')
-                            console.log(event.type, event.namespace, instance.element)
-                        })
-                    })
-                })
-            })

@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        include ../../doc/head.pug
+    body
+        //- 示例
+        div.mb40
+            h3(bx-name='components/editable') This is a editable title.
+            p(bx-name='components/editable') This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph. This is a editable paragraph.
+            pre(bx-name='components/editable') This is a editable predefined.
+        div.mb40
+            p(bx-name='components/editable' data-type="html").
+                <kbd>This is a editable keyboard input element.</kbd> cool!
+        div.mb40
+            span(bx-name='components/editable' data-content='A editable span with content from data-*.')
+        div.mb40
+            span Hello
+            span.ml5.mr5(bx-name='components/editable') Editable
+            span !
+        div.mb40
+            h3.fontsize-16 自定义模式
+            div.editable(bx-name='components/editable')
+                span.editable-content 自定义模式
+                span.editable-toggle.ml5 编辑
+                input.editable-input
+        //- 启动
+        script.
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var instances = Loader.query('components/editable')
+                    instances.on('change.editable', function(event, extra) {
+                        if (event.namespace !== 'editable') return
+                        console.log(event.type, event.namespace, extra)
+                        if(extra.length < 3) {
+                            console.warn('太短了，最少 3 个字符！')
+                            event.preventDefault()
+                        }
+                        
+                    })
+                })
+            })

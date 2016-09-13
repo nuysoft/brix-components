@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://mo.local:4242/require-config-css.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input class="form-control" bx-name="components/suggest">
+        </div>
+        <script>
+            require(['brix/loader', 'jquery', 'underscore', 'mock', 'highlightjs'], function(Loader, $, _, Mock, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                    var data = Mock.mock({
+                        'list|5-10': ['@NAME', '@NATURAL(1,1000000)', '@CWORD']
+                    }).list
+                    var instances = Loader.query('components/suggest')
+                    instances.on('change.suggest.input', function(event, value) {
+                        instances.data(
+                            _.filter(data, function(item, index){
+                                return ('' + item).toLowerCase().indexOf(value.toLowerCase()) !== -1
+                            })
+                        )
+                    })
+                    instances.on('change.suggest.done', function(event, value) {
+                        console.log(event.type, event.namespace, value)    
+                    })
+                })
+            })
+        </script>
+    </body>
+</html>
