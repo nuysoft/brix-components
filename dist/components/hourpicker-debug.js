@@ -629,15 +629,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "    </div>\n" +
 	        "    <div class=\"shortcuts <%= simplify ? 'hide' : '' %>\">\n" +
 	        "        <label class=\"mr50\">\n" +
-	        "            <input type=\"radio\" bx-click=\"shortcut([0,1,2,3,4,5,6])\" name=\"shortcut\">\n" +
+	        "            <input type=\"radio\" bx-change=\"shortcut([0,1,2,3,4,5,6])\" name=\"shortcut\">\n" +
 	        "            全日程投放\n" +
 	        "        </label>\n" +
 	        "        <label class=\"mr50\">\n" +
-	        "            <input type=\"radio\" bx-click=\"shortcut([1,2,3,4,5])\" name=\"shortcut\">\n" +
+	        "            <input type=\"radio\" bx-change=\"shortcut([1,2,3,4,5])\" name=\"shortcut\">\n" +
 	        "            工作日（周一至周五）投放\n" +
 	        "        </label>\n" +
 	        "        <label>\n" +
-	        "            <input type=\"radio\" bx-click=\"shortcut([0,6])\" name=\"shortcut\">\n" +
+	        "            <input type=\"radio\" bx-change=\"shortcut([0,6])\" name=\"shortcut\">\n" +
 	        "            休息日（周六、周日）投放\n" +
 	        "        </label>\n" +
 	        "        <div class=\"utc\">当前排期时间：GMT <%= utcOffset %></div>\n" +
