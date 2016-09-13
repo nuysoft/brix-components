@@ -1746,10 +1746,10 @@ button.parsley-error {
 [bx-name="components/datepickerwrapper"] .brixfont.down {
   display: inline-block;
 }
-[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.up {
+[bx-name="components/datepickerwrapper"].datepickerwrapper-open .brixfont.up {
   display: inline-block;
 }
-[bx-name="components/datepickerwrapper"] .brixfont.datepickerwrapper-open .brixfont.down {
+[bx-name="components/datepickerwrapper"].datepickerwrapper-open .brixfont.down {
   display: none;
 }
 .datepickerwrapper-trigger {
