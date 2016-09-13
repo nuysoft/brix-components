@@ -184,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                offset: {},
 
 	                mode: 'signal', // signal multiple
-	                shortcuts: SHORTCUTS,
+	                shortcuts: undefined,
 	                type: 'date', // all date year month time
 	                dates: [],
 	                ranges: [],
@@ -197,6 +197,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.options.typeMap = DatePicker.parseTypeAsMap(this.options.type)
 	                if (this.options.dates.length > 1) this.options.mode = 'multiple'
 	                if (!this.options.dates.length) this.options.dates = [moment().startOf('day').format(DATE_PATTERN)]
+
+	                if (this.options.shortcuts === undefined) this.options.shortcuts = DatePickerWrapper.SHORTCUTS
 	                if (this.options.shortcuts) {
 	                    _.each(this.options.shortcuts, function(dates /*, title*/ ) {
 	                        _.each(dates, function(date, index) {
