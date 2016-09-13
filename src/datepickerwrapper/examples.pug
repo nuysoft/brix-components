@@ -7,6 +7,12 @@ html
             body {
                 padding: 10px;
             }
+            .demo-active.focus, 
+            .demo-active.focus:hover {
+                border-color: #66afe9;
+                outline: 0;
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+            }
     body
         //- 示例
         div.row
@@ -25,6 +31,116 @@ html
                     span(data-index='0') 请选择日期
                     i.brixfont.down &#xe623;<!--&#xe623;-->
                     i.brixfont.up &#xe62e;<!--&#xe62e;-->
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 绑定 2 个日期选择器。
+                div.form-control.datepickerwrapper-trigger(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']")
+                    span(data-index=0) 2015-1-1
+                    span &nbsp;至&nbsp;
+                    span(data-index=1) 2015-1-2
+                    i.brixfont.pull-right.ml5.down  &#xe623;<!--&#xe623;-->
+                    i.brixfont.pull-right.ml5.up    &#xe62e;<!--&#xe62e;-->
+            div.col-xs-6
+                h3.fontsize-16 自定义快捷日期。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" bx-options="{\
+                        shortcuts: { '一期': ['2015-1-1 8:00:00', '2015-3-14 18:00:00'] }\
+                    }")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+                </div>
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 绑定 3 个日期选择器。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2', '2015-1-3']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span.mr7(data-index=1) 2015-1-2
+                    span.mr7(data-index=2) 2015-1-3
+            div.col-xs-6
+                h3.fontsize-16 自定义快捷日期。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2', '2015-1-3']" bx-options="{\
+                        shortcuts: { '一期':['2015-1-1', '2015-3-14', '2015-6-1'] }\
+                    }")
+                    span.mr7(data-index=0) 2015-1-1
+                    span.mr7(data-index=1) 2015-1-2
+                    span.mr7(data-index=2) 2015-1-3
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 设置可选范围：最小日期（单个日期选择器）。
+                input.form-control.w100(bx-name='components/datepickerwrapper' data-ranges="[[new Date(), '2015-3-14']]")
+            div.col-xs-6
+                h3.fontsize-16 设置可选范围：最小日期（多个日期选择器）。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-ranges="[['2015-1-1', '2015-1-2']]")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 支持不限（单个日期选择器）。
+                input.form-control.w100(bx-name='components/datepickerwrapper' data-unlimits="['2099-1-1']")
+            div.col-xs-6
+                h3.fontsize-16 支持不限（多个日期选择器）。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 单个日期选择器：自动触发 <code>input</code> 元素的 <code>change</code> 事件。
+                input.form-control.w100(bx-name='components/datepickerwrapper' data-unlimits="['2099-1-1']" onchange='alert(this.value)')
+            div.col-xs-6
+                h3.fontsize-16 单个日期选择器：自动同步至隐藏域，并触发隐藏域的 <code>change</code> 事件。
+                a(href='javascript:;' bx-name='components/datepickerwrapper')
+                    input(type='hidden' data-hidden-index='0' onchange='alert(this.value)')
+                    data(data-index=0) 请选择日期
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="[ '2015-1-1', '2015-1-2']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+                    input(type='hidden' data-hidden-index=0 onchange='alert(this.value)')
+                    input(type='hidden' data-hidden-index=1 onchange='alert(this.value)')
+            div.col-xs-6
+                h3.fontsize-16 对于不限，隐藏域的值是真实日期。
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+                    input(type='hidden' data-hidden-index=0 onchange='alert(this.value)')
+                    input(type='hidden' data-hidden-index=1 onchange='alert(this.value)')
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 事件 active、inactive。
+                div.form-control.w100.cursor-pointer.demo-active(bx-name='components/datepickerwrapper')
+            div.col-xs-6
+                h3.fontsize-16 事件 active、inactive。
+                div.form-control.w300.cursor-pointer.demo-active(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 2015-1-2
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 日期 + 时间
+                input.form-control.w200(bx-name='components/datepickerwrapper' data-type="date time" data-dates="['2015-1-1 1:1:1']")
+            div.col-xs-6
+                h3.fontsize-16 日期 + 时间（小时可修改，分钟和秒不可修改）
+                input.form-control.w200(bx-name='components/datepickerwrapper' data-type="date hour" data-dates="['2015-1-1 1:1:1']")
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 多个日期 + 时间
+                ipnut.form-control.w300(bx-name='components/datepickerwrapper' data-type="date time" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']")
+            div.col-xs-6
+                h3.fontsize-16 多个日期 + 时间（小时可修改，分钟和秒不可修改）
+                ipnut.form-control.w300(bx-name='components/datepickerwrapper' data-type="date hour" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']")
+        div.row
+            div.col-xs-6
+                h3.fontsize-16 位于下方 + 左侧对齐（默认）
+                input.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2016-1-1']" data-align="left")
+            div.col-xs-6
+                h3.fontsize-16 位于下方 + 右侧对齐
+                input.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2016-1-1']" data-align="right")
         //- 启动
         script.
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
@@ -35,5 +151,21 @@ html
                         hljs.highlightBlock(code)
                     })
                     var instances = Loader.query('components/colorpicker')
+                })
+            })
+            require(['brix/loader', 'jquery', 'underscore'], function(Loader, $, _) {
+                Loader.boot(function() {
+                    var target = $('.demo-active')
+                    var targetInstances = Loader.query(target)
+                    _.each(targetInstances, function(instance){
+                        instance.on('active.datepickerwrapper', function(event) {
+                            $(instance.element).addClass('focus')
+                            console.log(event.type, event.namespace, instance.element)
+                        })
+                        instance.on('inactive.datepickerwrapper', function(event) {
+                            $(instance.element).removeClass('focus')
+                            console.log(event.type, event.namespace, instance.element)
+                        })
+                    })
                 })
             })
