@@ -2754,3 +2754,9 @@ table tbody tr:hover .editable-toggle {
 .container3 > div {
   background-color: #FF6600;
 }
+.tree-wrapper {
+  border: 1px solid #E6E6E6;
+}
+.tree .tree-node .tree-node-control .tree-node-content {
+  padding: 3px 5px;
+}
