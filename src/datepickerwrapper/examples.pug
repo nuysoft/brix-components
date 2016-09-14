@@ -139,15 +139,11 @@ html
                 h3.fontsize-16 位于下方 + 右侧对齐
                 input.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2016-1-1']" data-align="right")
         //- 启动
+        include ../../doc/boot.pug
         script.
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
-                    var instances = Loader.query('components/colorpicker')
+                    var instances = Loader.query('components/datepickerwrapper')
                 })
             })
             require(['brix/loader', 'jquery', 'underscore'], function(Loader, $, _) {

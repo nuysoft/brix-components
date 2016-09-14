@@ -208,13 +208,9 @@
             </select>
         </div>
         <script>
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            include ../../doc/boot.pug
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight() + 270)
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     //- $('select').show().css('visibility', 'visible')
                     var instances = Loader.query('components/dropdown')
                     instances.on('change.dropdown', function(event, extra){

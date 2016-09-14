@@ -22,14 +22,10 @@ html
             h3.fontsize-16 设置属性 <code>data-suggest="false"</code> 可以关闭 Suggest 组件。
             input.form-control(bx-name='components/taginput' data-suggest='false')
         //- 启动
+        include ../../doc/boot.pug
         script.
-            require(['brix/loader', 'jquery', 'underscore', 'mock', 'highlightjs'], function(Loader, $, _, Mock, hljs) {
-                window.Loader = Loader
+            require(['brix/loader', 'jquery', 'underscore', 'mock'], function(Loader, $, _, Mock) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     var data = Mock.mock({
                         'list|5-100': ['@NAME', 'N@NATURAL']
                     }).list

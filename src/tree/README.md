@@ -221,3 +221,7 @@ instances.on('mouseleave.tree', function(event, data, target) {
     console.log(event, data, target)
 })
 ```
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

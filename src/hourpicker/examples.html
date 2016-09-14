@@ -16,13 +16,26 @@
             <h3 class="fontsize-16">精简模式。</h3><div bx-name="components/hourpicker" data-simplify="true"></div>
         </div>
         <script>
+            require(['components/readme'], function(Readme) {
+                // var readme = new Readme()
+                // readme.trimHTML(document.body)
+                // readme.trimPredefined(document.body)
+            })
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $('iframe', top.document).height(
+                    	$(document.body).outerHeight() + 270
+                	)
                     $(document.body).find('pre code').each(function(index, code) {
                         hljs.highlightBlock(code)
                     })
+                })
+            })
+        </script>
+        <script>
+            require(['brix/loader', 'jquery'], function(Loader, $) {
+                Loader.boot(function() {
                     var instances = Loader.query('components/hourpicker')
                     instances.on('change.hourpicker', function(event, extra) {
                         if (event.namespace !== 'hourpicker') return

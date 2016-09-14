@@ -33,13 +33,26 @@
             <input class="form-control" bx-name="components/taginput" data-suggest="false">
         </div>
         <script>
-            require(['brix/loader', 'jquery', 'underscore', 'mock', 'highlightjs'], function(Loader, $, _, Mock, hljs) {
+            require(['components/readme'], function(Readme) {
+                // var readme = new Readme()
+                // readme.trimHTML(document.body)
+                // readme.trimPredefined(document.body)
+            })
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $('iframe', top.document).height(
+                    	$(document.body).outerHeight() + 270
+                	)
                     $(document.body).find('pre code').each(function(index, code) {
                         hljs.highlightBlock(code)
                     })
+                })
+            })
+        </script>
+        <script>
+            require(['brix/loader', 'jquery', 'underscore', 'mock'], function(Loader, $, _, Mock) {
+                Loader.boot(function() {
                     var data = Mock.mock({
                         'list|5-100': ['@NAME', 'N@NATURAL']
                     }).list

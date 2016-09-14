@@ -8,6 +8,7 @@ html
                 margin-bottom: 10px;
             }
     body
+        //- 示例
         div
             h3.fontsize-16 直接在 <code>&lt;select&gt;</code> 节点上附加 <code>bx-name="components/dropdown"</code>。
             select(bx-name='components/dropdown')
@@ -160,14 +161,11 @@ html
                 option(value=1) Action
                 option(value=2) Another action
                 option(value=3) Something else here
+        //- 启动
         script.
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            include ../../doc/boot.pug
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight() + 270)
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     //- $('select').show().css('visibility', 'visible')
                     var instances = Loader.query('components/dropdown')
                     instances.on('change.dropdown', function(event, extra){

@@ -43,14 +43,10 @@ html
                 { id: '066', pid: '06', name: 'UUID' }
             ]
         //- 启动
+        include ../../doc/boot.pug
         script.
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     var instances = Loader.query('components/tree')
                 })
             })

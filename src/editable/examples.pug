@@ -24,14 +24,10 @@ html
                 span.editable-toggle.ml5 编辑
                 input.editable-input
         //- 启动
+        include ../../doc/boot.pug
         script.
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     var instances = Loader.query('components/editable')
                     instances.on('change.editable', function(event, extra) {
                         if (event.namespace !== 'editable') return

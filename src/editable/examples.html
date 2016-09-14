@@ -26,13 +26,26 @@
             </div>
         </div>
         <script>
+            require(['components/readme'], function(Readme) {
+                // var readme = new Readme()
+                // readme.trimHTML(document.body)
+                // readme.trimPredefined(document.body)
+            })
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
+                    $('iframe', top.document).height(
+                    	$(document.body).outerHeight() + 270
+                	)
                     $(document.body).find('pre code').each(function(index, code) {
                         hljs.highlightBlock(code)
                     })
+                })
+            })
+        </script>
+        <script>
+            require(['brix/loader', 'jquery'], function(Loader, $) {
+                Loader.boot(function() {
                     var instances = Loader.query('components/editable')
                     instances.on('change.editable', function(event, extra) {
                         if (event.namespace !== 'editable') return

@@ -80,6 +80,7 @@ html
                     <button type="submit" class="btn btn-default" onclick="Loader.query(this.parentNode).validate()">Submit</button>
                 </div>
         //- 启动
+        include ../../doc/boot.pug
         script.
             require(['parsley'], function(Parsley){
                 window.ParsleyValidator.addValidator('gt', 
@@ -89,13 +90,8 @@ html
                     .addMessage('en', 'gt', 'This value should be greater')
                     .addMessage('zh_cn', 'gt', '输入值请大于 %s')
             })
-            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
-                window.Loader = Loader
+            require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
-                    $('iframe', top.document).height($(document.body).outerHeight())
-                    $(document.body).find('pre code').each(function(index, code) {
-                        hljs.highlightBlock(code)
-                    })
                     var instances = Loader.query('components/validation')
                     // instances.validate()
                 })
