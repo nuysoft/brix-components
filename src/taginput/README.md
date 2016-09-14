@@ -108,3 +108,7 @@ instances.on('change.taginput', function(event, data, action, value) {
     console.log(event, data, action, value)
 })
 ```
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
