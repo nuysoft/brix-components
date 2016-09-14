@@ -86,3 +86,7 @@ forward：登录后的跳转目标地址，如果不传就用当前页面地址
 ## hideH5LoginPanel()
 
 隐藏无线登录框
+
+## 示例
+
+<iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

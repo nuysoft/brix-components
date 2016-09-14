@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="//g.alicdn.com/thx/cube/1.2.1/neat.css" rel="stylesheet">
+        <script src="http://g.alicdn.com/thx/brix-release/require-config.js"></script>
+        <style>
+            body {
+                padding: 10px;
+            }
+            .sitenav {
+                width: 1190px;
+                margin: 0 auto;
+            }
+            p {
+                width: 1190px;
+                margin: 10px auto;
+                padding: 5px 10px;
+                background: #EEE;
+                clear: both;
+                box-sizing: border-box;
+            }
+            .option {
+                margin-right: 10px;
+            }
+            .option input {
+                margin-right: 5px;
+            }      
+        </style>
+    </head>
+    <body>
+        <p><span>可选参数：</span><span class="option">
+                <label>
+                    <input type="radio" name="type" value="1" checked><span>bx-options="{mode:'normal'}"</span>
+                </label></span><span class="option">
+                <label>
+                    <input type="radio" name="type" value="2"><span>bx-options="{mode:'simple'}"</span>
+                </label></span><span class="option">
+                <label>
+                    <input type="radio" name="type" value="3"><span>默认参数</span>
+                </label></span></p>
+        <div class="container"></div>
+        <script>
+            require(['components/readme'], function(Readme) {
+                // var readme = new Readme()
+                // readme.trimHTML(document.body)
+                // readme.trimPredefined(document.body)
+            })
+            require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
+                window.Loader = Loader
+                Loader.boot(function() {
+                    $('iframe', top.document).height(
+                    	$(document.body).outerHeight() + 270
+                	)
+                    $(document.body).find('pre code').each(function(index, code) {
+                        hljs.highlightBlock(code)
+                    })
+                })
+            })
+        </script>
+        <script>
+            require(['brix/loader', 'jquery'], function(Loader, $) {
+                var tmplMap = {
+                    1: '<div class="sitenav" bx-name="components/sitenav" bx-options="{mode:\'normal\'}"></div>',
+                    2: '<div class="sitenav" bx-name="components/sitenav" bx-options="{mode:\'simple\'}"></div>',
+                    3: '<div class="sitenav" bx-name="components/sitenav"></div>'
+                }
+                var append = function (tmpl) {
+                    Loader.destroy(false, document.body)
+                    $('.container').html(tmpl)
+                    Loader.boot(document.body)
+                }
+                $('input').on('click', function () {
+                    var index = $(this).val()
+                    append(tmplMap[index])
+                })
+            
+                append(tmplMap[1])
+            })
+        </script>
+    </body>
+</html>
