@@ -67,6 +67,6 @@ instances.on('complete.uploader', function(event, files) {
 
 ## 示例
 
-[examples.html](./examples.html)
+<a href="./examples.html" target="_blank">examples.html</a>
 
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
