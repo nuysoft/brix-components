@@ -142,4 +142,6 @@ change.datepickerwrapper | 当日期组件变化时被触发。事件监听函�
 
 ## 示例
 
+[examples.html](./examples.html)
+
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

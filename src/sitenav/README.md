@@ -89,4 +89,6 @@ forward：登录后的跳转目标地址，如果不传就用当前页面地址
 
 ## 示例
 
+[examples.html](./examples.html)
+
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

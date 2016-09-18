@@ -102,6 +102,8 @@ instances.on('change.dropdown', function(event, extra) {
 
 ## 示例
 
+[examples.html](./examples.html)
+
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <!-- <iframe width="100%" height="500" src="//jsfiddle.net/nuysoft/m2813fv6/4/embedded/result,html,js,css,resources/" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->

@@ -89,6 +89,8 @@ columnPriorityHandler | object | -      | 列配置浮层的实例。
 
 ## 示例
 
+[examples.html](./examples.html)
+
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 # linkage( container, callback( event, values ) )

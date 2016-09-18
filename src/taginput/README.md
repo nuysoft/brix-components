@@ -111,4 +111,6 @@ instances.on('change.taginput', function(event, data, action, value) {
 
 ## 示例
 
+[examples.html](./examples.html)
+
 <iframe width="100%" height="500" src="./examples.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
