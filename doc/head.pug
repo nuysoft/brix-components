@@ -2,3 +2,32 @@ script(src='//g-assets.daily.taobao.net/thx/brix-release/require-config-css.js')
 //- script(src='http://mo.local:4242/require-config-css.js')
 style.
     body {}
+    .predefined {
+        background-color: #F7F7F7;
+        border: none;
+        padding: 0;
+        border-radius: 6px;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    .predefined pre,
+    pre.predefined {
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #E6E6E6;
+        background-color: transparent;
+        font-size: 12px;
+    }
+    .predefined pre:last-child, 
+    pre.predefined:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    .predefined pre code.hljs,
+    pre.predefined code.hljs {
+        padding: 0;
+        background-color: transparent;
+        font-size: 12px;
+    }

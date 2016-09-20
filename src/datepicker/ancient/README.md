@@ -25,7 +25,7 @@ unlimit  | string or false | `false`      | 指定表示不限的日期。
 pages    | number          | `1`          | 指定日历面板的个数。
 mode     | string          | `single`     | 指定日历模式。可选值有：单选 `single`、多选 `multiple`、范围选 `range`。
 
-日期和时间的格式参见 [Moment.js 文件](http://momentjs.com/docs/#/displaying/format/)。
+日期和时间的格式参见 [Moment.js 文档](http://momentjs.com/docs/#/displaying/format/)。
 
 ### 配置项 `type`
 
