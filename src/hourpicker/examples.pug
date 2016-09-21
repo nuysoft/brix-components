@@ -6,10 +6,12 @@ html
         //- 示例
         div
             h3.fontsize-16 完整模式。
-            <div bx-name="components/hourpicker"></div>
+            div(bx-name='components/hourpicker')
+            div.predefined
         div
             h3.fontsize-16 精简模式。
-            <div bx-name="components/hourpicker" data-simplify="true"></div>
+            div(bx-name='components/hourpicker' data-simplify='true')
+            div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

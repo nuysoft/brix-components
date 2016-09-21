@@ -15,22 +15,25 @@ html
             }
     body
         //- 示例
-        form.row
+        form.row.mb20
             div.col-xs-6
                 h3.fontsize-16 通过 <code>data-action</code> 指定接收文件的 URL。
                 button.btn.btn-default(bx-name='components/uploader' data-action='api/upload.json' data-name='foo') 选择文件
                 div.preview
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 通过 <code>data-name</code> 指定文件域的名称。
                 button.btn.btn-default(bx-name='components/uploader' data-action='api/upload.json' data-name='bar') 选择文件
                 div.preview
-        form.row
+                div.predefined
+        form.row.mb20
             div.col-xs-6
                 h3.fontsize-16 通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code>
                 button(bx-name="components/uploader" data-name="foo" data-action="api/upload.json" data-transport="iframe" type="button" class="btn btn-default")
                     span.glyphicon.glyphicon-open.mr5
                     span 选择文件
                 div.preview
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code>
                 button(bx-name="components/uploader" data-name="bar" data-action="api/upload.json" data-transport="xhr" type="button" class="btn btn-default")
@@ -39,6 +42,7 @@ html
                 div.progress.w300.mt10.mb10
                     div.progress-bar
                 div.preview
+                div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

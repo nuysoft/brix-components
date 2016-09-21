@@ -1371,7 +1371,7 @@ select[bx-name="components/dropdown"] {
   border-radius: 0 0 4px 4px;
   border-top: 1px solid #ddd;
 }
-.hljs {
+.bs-example .hljs {
   padding: 0;
   background-color: transparent;
 }

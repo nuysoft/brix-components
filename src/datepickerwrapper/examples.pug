@@ -11,24 +11,28 @@ html
             }
     body
         //- 示例
-        div.row
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 为 <code>input</code> 元素绑定日期选择器。
                 input.form-control.w100(bx-name='components/datepickerwrapper' type='text')
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 为 <code>input</code> 元素绑定日期选择器。
                 input.form-control.w100(bx-name='components/datepickerwrapper' data-pages='2' type='text')
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 为任意元素绑定日期选择器。
                 a(bx-name='components/datepickerwrapper' href='javascript:;') 请选择日期
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 自定义样式。
                 a(bx-name='components/datepickerwrapper' href='javascript:;')
                     span(data-index='0') 请选择日期
                     i.brixfont.down &#xe623;<!--&#xe623;-->
                     i.brixfont.up &#xe62e;<!--&#xe62e;-->
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 绑定 2 个日期选择器。
                 div.form-control.datepickerwrapper-trigger(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']")
@@ -37,6 +41,7 @@ html
                     span(data-index=1) 2015-1-2
                     i.brixfont.pull-right.ml5.down  &#xe623;<!--&#xe623;-->
                     i.brixfont.pull-right.ml5.up    &#xe62e;<!--&#xe62e;-->
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 自定义快捷日期。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" bx-options="{\
@@ -45,14 +50,15 @@ html
                     span.mr7(data-index=0) 2015-1-1
                     span 至
                     span.ml7(data-index=1) 2015-1-2
-                </div>
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 绑定 3 个日期选择器。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2', '2015-1-3']")
                     span.mr7(data-index=0) 2015-1-1
                     span.mr7(data-index=1) 2015-1-2
                     span.mr7(data-index=2) 2015-1-3
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 自定义快捷日期。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2', '2015-1-3']" bx-options="{\
@@ -61,36 +67,43 @@ html
                     span.mr7(data-index=0) 2015-1-1
                     span.mr7(data-index=1) 2015-1-2
                     span.mr7(data-index=2) 2015-1-3
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 设置可选范围：最小日期（单个日期选择器）。
                 input.form-control.w100(bx-name='components/datepickerwrapper' data-ranges="[[new Date(), '2015-3-14']]")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 设置可选范围：最小日期（多个日期选择器）。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-ranges="[['2015-1-1', '2015-1-2']]")
                     span.mr7(data-index=0) 2015-1-1
                     span 至
                     span.ml7(data-index=1) 2015-1-2
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 支持不限（单个日期选择器）。
                 input.form-control.w100(bx-name='components/datepickerwrapper' data-unlimits="['2099-1-1']")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 支持不限（多个日期选择器）。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']")
                     span.mr7(data-index=0) 2015-1-1
                     span 至
                     span.ml7(data-index=1) 2015-1-2
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 单个日期选择器：自动触发 <code>input</code> 元素的 <code>change</code> 事件。
                 input.form-control.w100(bx-name='components/datepickerwrapper' data-unlimits="['2099-1-1']" onchange='alert(this.value)')
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 单个日期选择器：自动同步至隐藏域，并触发隐藏域的 <code>change</code> 事件。
                 a(href='javascript:;' bx-name='components/datepickerwrapper')
                     input(type='hidden' data-hidden-index='0' onchange='alert(this.value)')
                     data(data-index=0) 请选择日期
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="[ '2015-1-1', '2015-1-2']")
@@ -99,6 +112,7 @@ html
                     span.ml7(data-index=1) 2015-1-2
                     input(type='hidden' data-hidden-index=0 onchange='alert(this.value)')
                     input(type='hidden' data-hidden-index=1 onchange='alert(this.value)')
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 对于不限，隐藏域的值是真实日期。
                 div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']")
@@ -107,37 +121,46 @@ html
                     span.ml7(data-index=1) 2015-1-2
                     input(type='hidden' data-hidden-index=0 onchange='alert(this.value)')
                     input(type='hidden' data-hidden-index=1 onchange='alert(this.value)')
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 事件 active、inactive。
                 div.form-control.w100.cursor-pointer.demo-active(bx-name='components/datepickerwrapper')
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 事件 active、inactive。
                 div.form-control.w300.cursor-pointer.demo-active(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2015-1-2']")
                     span.mr7(data-index=0) 2015-1-1
                     span 至
                     span.ml7(data-index=1) 2015-1-2
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 日期 + 时间
                 input.form-control.w200(bx-name='components/datepickerwrapper' data-type="date time" data-dates="['2015-1-1 1:1:1']")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 日期 + 时间（小时可修改，分钟和秒不可修改）
                 input.form-control.w200(bx-name='components/datepickerwrapper' data-type="date hour" data-dates="['2015-1-1 1:1:1']")
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 多个日期 + 时间
                 ipnut.form-control.w300(bx-name='components/datepickerwrapper' data-type="date time" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 多个日期 + 时间（小时可修改，分钟和秒不可修改）
                 ipnut.form-control.w300(bx-name='components/datepickerwrapper' data-type="date hour" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']")
-        div.row
+                div.predefined
+        div.row.mb20
             div.col-xs-6
                 h3.fontsize-16 位于下方 + 左侧对齐（默认）
                 input.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2016-1-1']" data-align="left")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 位于下方 + 右侧对齐
                 input.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2016-1-1']" data-align="right")
+                div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

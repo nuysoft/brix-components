@@ -40,11 +40,48 @@
                 </label></span></p>
         <div class="container"></div>
         <script>
-            require(['components/readme'], function(Readme) {
-                // var readme = new Readme()
-                // readme.trimHTML(document.body)
-                // readme.trimPredefined(document.body)
+            //- require(['css!deps/highlightjs/styles/github.css'])
+            require(['brix/loader', 'jquery', 'underscore', 'highlightjs'], function(Loader, $, _, hljs) {
+                trimHTML(document.body)
+                trimPredefined(document.body)
+                $(document.body).find('pre').each(function(index, pre) {
+                    var code = $(pre).find('>code')[0]
+                    if (code) hljs.highlightBlock(code)
+                    else hljs.highlightBlock(pre)
+                })
+            
+                function _predefined(element) {
+                    return $(element).nextAll('.predefined').get(0)
+                    // return $element.next().is('.predefined') ? $element.next() : $element.parent().find('.predefined')
+                }
+                function trimHTML(context) {
+                    var elements = $('[bx-name]', context)
+                    _.each(elements, function(element /*, index*/ ) {
+                        var htmls = Loader.Util.trimHTML(element)
+                        var predefined = _predefined(element)
+                        $('<pre>').append(
+                            $('<code class="html">').text(htmls)
+                        ).appendTo(predefined)
+                    })
+                }
+                // 去掉 <pre><code></code></pre> 的缩进
+                function trimPredefined(context) {
+                    var pres = $('pre', context)
+                    _.each(pres, function(pre /*, index*/ ) {
+                        pre = $(pre)
+                        var code = pre.find('>code')
+                        var trimed
+                        if (code.length) {
+                            trimed = Loader.Util.trimPredefined(code[0])
+                            code.text(trimed)
+                        } else {
+                            trimed = Loader.Util.trimPredefined(pre[0])
+                            pre.text(trimed)
+                        }
+                    })
+                }
             })
+            //- Loader.boot
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {

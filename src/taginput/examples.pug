@@ -4,23 +4,29 @@ html
         include ../../doc/head.pug
     body
         //- 示例
-        div
+        div.mb20
             input.form-control(bx-name='components/taginput')
-        div
+            div.predefined
+        div.mb20
             h3.fontsize-16 通过 HTML 属性 <code>data-data</code> 指定初始值。
             input.form-control(bx-name='components/taginput' data-data="['foo', 'bar', 'baz']")
-        div
+            div.predefined
+        div.mb20
             h3.fontsize-16 通过 HTML 属性 <code>data-placeholder</code> 指定描述预期值的简短提示。</p>
             input.form-control(bx-name='components/taginput' data-placeholder='输入几个字符试试')
-        div
+            div.predefined
+        div.mb20
             h3.fontsize-16 可以限制词条的个数。
             input.form-control(bx-name='components/taginput' data-limit=3)
-        div
+            div.predefined
+        div.mb20
             h3.fontsize-16 不允许增加重复值。
             input.form-control(bx-name='components/taginput' data-limit=3 data-same='false')
-        div
+            div.predefined
+        div.mb20
             h3.fontsize-16 设置属性 <code>data-suggest="false"</code> 可以关闭 Suggest 组件。
             input.form-control(bx-name='components/taginput' data-suggest='false')
+            div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

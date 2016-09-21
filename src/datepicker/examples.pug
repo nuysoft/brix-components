@@ -8,58 +8,74 @@ html
             div.col-xs-6
                 h3.fontsize-16 日期
                 div(bx-name="components/datepicker" data-type="date")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 时间
                 div(bx-name="components/datepicker" data-type="time")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 设置可选范围：最小日期
                 div(bx-name='components/datepicker' data-type='date' data-range="[new Date()]")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 设置可选范围：最大日期
                 div(bx-name="components/datepicker" data-type="date" data-range="[undefined, new Date()]")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 设置可选范围：最小日期 + 最大日期
                 div(bx-name="components/datepicker" data-type="date" data-range="[new Date(), '2015-3-14']")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 设置多个可选范围
                 div(bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25', '2015-3-14']]")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 设置多个可选范围
                 div(bx-name="components/datepicker" data-type="date" data-range="[['2015-1-1', '2015-2-19'], ['2015-2-25']]")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 设置多个可选范围
                 div(bx-name="components/datepicker" data-type="date" data-range="[[undefined, '2015-2-19'], ['2015-2-25']]")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 年份
                 div(bx-name="components/datepicker" data-type="year")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 月份
                 div(bx-name="components/datepicker" data-type="month")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 日期 + 时间
                 div(bx-name="components/datepicker" data-date="2015-1-1")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 日期 + 时间
                 div(bx-name="components/datepicker" data-date="2015-1-1" data-type="all")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 时间（小时可修改，分钟和秒不可修改）
                 div(bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="hour")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 日期 + 时间（小时可修改，分钟和秒不可修改）
                 div(bx-name="components/datepicker" data-date="2015-1-1 04:00:00" data-type="date hour")
+                div.predefined
         div.row
             div.col-xs-6
                 h3.fontsize-16 支持不限
                 div(bx-name="components/datepicker" data-type="date" data-date="2015-1-1" data-unlimit="2099-1-1")
+                div.predefined
             div.col-xs-6
                 h3.fontsize-16 支持不限，初始值即为不限
                 div(bx-name="components/datepicker" data-type="date" data-date="2099-1-1" data-unlimit="2099-1-1")
+                div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

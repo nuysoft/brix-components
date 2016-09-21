@@ -2,7 +2,176 @@
 <html>
     <head>
         <script src="//g-assets.daily.taobao.net/thx/brix-release/require-config-css.js"></script>
-        <style>body {}</style>
+        <style>
+            pre,
+            code {
+              /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+              /* Tomorrow Comment */
+              /* Tomorrow Red */
+              /* Tomorrow Orange */
+              /* Tomorrow Yellow */
+              /* Tomorrow Green */
+              /* Tomorrow Aqua */
+              /* Tomorrow Blue */
+              /* Tomorrow Purple */
+            }
+            pre .hljs-comment,
+            code .hljs-comment,
+            pre .hljs-title,
+            code .hljs-title {
+              color: #8e908c;
+            }
+            pre .hljs-variable,
+            code .hljs-variable,
+            pre .hljs-attribute,
+            code .hljs-attribute,
+            pre .hljs-tag,
+            code .hljs-tag,
+            pre .hljs-regexp,
+            code .hljs-regexp,
+            pre .hljs-deletion,
+            code .hljs-deletion,
+            pre .ruby .hljs-constant,
+            code .ruby .hljs-constant,
+            pre .xml .hljs-tag .hljs-title,
+            code .xml .hljs-tag .hljs-title,
+            pre .xml .hljs-pi,
+            code .xml .hljs-pi,
+            pre .xml .hljs-doctype,
+            code .xml .hljs-doctype,
+            pre .html .hljs-doctype,
+            code .html .hljs-doctype,
+            pre .css .hljs-id,
+            code .css .hljs-id,
+            pre .css .hljs-class,
+            code .css .hljs-class,
+            pre .css .hljs-pseudo,
+            code .css .hljs-pseudo {
+              color: #c82829;
+            }
+            pre .hljs-number,
+            code .hljs-number,
+            pre .hljs-preprocessor,
+            code .hljs-preprocessor,
+            pre .hljs-pragma,
+            code .hljs-pragma,
+            pre .hljs-built_in,
+            code .hljs-built_in,
+            pre .hljs-literal,
+            code .hljs-literal,
+            pre .hljs-params,
+            code .hljs-params,
+            pre .hljs-constant,
+            code .hljs-constant {
+              color: #f5871f;
+            }
+            pre .ruby .hljs-class .hljs-title,
+            code .ruby .hljs-class .hljs-title,
+            pre .css .hljs-rules .hljs-attribute,
+            code .css .hljs-rules .hljs-attribute {
+              color: #eab700;
+            }
+            pre .hljs-string,
+            code .hljs-string,
+            pre .hljs-value,
+            code .hljs-value,
+            pre .hljs-inheritance,
+            code .hljs-inheritance,
+            pre .hljs-header,
+            code .hljs-header,
+            pre .hljs-addition,
+            code .hljs-addition,
+            pre .ruby .hljs-symbol,
+            code .ruby .hljs-symbol,
+            pre .xml .hljs-cdata,
+            code .xml .hljs-cdata {
+              color: #718c00;
+            }
+            pre .css .hljs-hexcolor,
+            code .css .hljs-hexcolor {
+              color: #3e999f;
+            }
+            pre .hljs-function,
+            code .hljs-function,
+            pre .python .hljs-decorator,
+            code .python .hljs-decorator,
+            pre .python .hljs-title,
+            code .python .hljs-title,
+            pre .ruby .hljs-function .hljs-title,
+            code .ruby .hljs-function .hljs-title,
+            pre .ruby .hljs-title .hljs-keyword,
+            code .ruby .hljs-title .hljs-keyword,
+            pre .perl .hljs-sub,
+            code .perl .hljs-sub,
+            pre .javascript .hljs-title,
+            code .javascript .hljs-title,
+            pre .coffeescript .hljs-title,
+            code .coffeescript .hljs-title {
+              color: #4271ae;
+            }
+            pre .hljs-keyword,
+            code .hljs-keyword,
+            pre .javascript .hljs-function,
+            code .javascript .hljs-function {
+              color: #8959a8;
+            }
+            pre .hljs,
+            code .hljs {
+              display: block;
+              background: white;
+              color: #4d4d4c;
+              padding: 0.5em;
+            }
+            pre .coffeescript .javascript,
+            code .coffeescript .javascript,
+            pre .javascript .xml,
+            code .javascript .xml,
+            pre .tex .hljs-formula,
+            code .tex .hljs-formula,
+            pre .xml .javascript,
+            code .xml .javascript,
+            pre .xml .vbscript,
+            code .xml .vbscript,
+            pre .xml .css,
+            code .xml .css,
+            pre .xml .hljs-cdata,
+            code .xml .hljs-cdata {
+              opacity: 0.5;
+            }
+        </style>
+        <style>
+            body {}
+            .predefined {
+                background-color: #F7F7F7;
+                border: none;
+                padding: 0;
+                border-radius: 0px;
+                text-align: left;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .predefined pre,
+            pre.predefined {
+                margin: 0;
+                padding: 10px 12px;
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid #E6E6E6;
+                background-color: transparent;
+                font-size: 12px;
+            }
+            .predefined pre:last-child, 
+            pre.predefined:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+            .predefined pre code.hljs,
+            pre.predefined code.hljs {
+                padding: 0;
+                background-color: transparent;
+                font-size: 12px;
+            }
+        </style>
         <style>
             .demo-active.focus, 
             .demo-active.focus:hover {
@@ -13,82 +182,97 @@
         </style>
     </head>
     <body>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" type="text">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-pages="2" type="text">
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">为任意元素绑定日期选择器。</h3><a bx-name="components/datepickerwrapper" href="javascript:;">请选择日期</a>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">自定义样式。</h3><a bx-name="components/datepickerwrapper" href="javascript:;"><span data-index="0">请选择日期</span><i class="brixfont down">&#xe623;<!--&#xe623;--></i><i class="brixfont up">&#xe62e;<!--&#xe62e;--></i></a>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">绑定 2 个日期选择器。</h3>
                 <div class="form-control datepickerwrapper-trigger" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']"><span data-index="0">2015-1-1</span><span>&nbsp;至&nbsp;</span><span data-index="1">2015-1-2</span><i class="brixfont pull-right ml5 down"> &#xe623;<!--&#xe623;--></i><i class="brixfont pull-right ml5 up">   &#xe62e;<!--&#xe62e;--></i></div>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">自定义快捷日期。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" bx-options="{                        shortcuts: { '一期': ['2015-1-1 8:00:00', '2015-3-14 18:00:00'] }                    }"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" bx-options="{                        shortcuts: { '一期': ['2015-1-1 8:00:00', '2015-3-14 18:00:00'] }                    }"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">绑定 3 个日期选择器。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2', '2015-1-3']"><span class="mr7" data-index="0">2015-1-1</span><span class="mr7" data-index="1">2015-1-2</span><span class="mr7" data-index="2">2015-1-3</span></div>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">自定义快捷日期。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2', '2015-1-3']" bx-options="{                        shortcuts: { '一期':['2015-1-1', '2015-3-14', '2015-6-1'] }                    }"><span class="mr7" data-index="0">2015-1-1</span><span class="mr7" data-index="1">2015-1-2</span><span class="mr7" data-index="2">2015-1-3</span></div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">设置可选范围：最小日期（单个日期选择器）。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-ranges="[[new Date(), '2015-3-14']]">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">设置可选范围：最小日期（多个日期选择器）。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-ranges="[['2015-1-1', '2015-1-2']]"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">支持不限（单个日期选择器）。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-unlimits="['2099-1-1']">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">支持不限（多个日期选择器）。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">单个日期选择器：自动触发 <code>input</code> 元素的 <code>change</code> 事件。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-unlimits="['2099-1-1']" onchange="alert(this.value)">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">单个日期选择器：自动同步至隐藏域，并触发隐藏域的 <code>change</code> 事件。</h3><a href="javascript:;" bx-name="components/datepickerwrapper">
                     <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
                     <data data-index="0">请选择日期</data></a>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span>
                     <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
                     <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
                 </div>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">对于不限，隐藏域的值是真实日期。</h3>
@@ -96,54 +280,100 @@
                     <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
                     <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
                 </div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">事件 active、inactive。</h3>
                 <div class="form-control w100 cursor-pointer demo-active" bx-name="components/datepickerwrapper"></div>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">事件 active、inactive。</h3>
                 <div class="form-control w300 cursor-pointer demo-active" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">日期 + 时间</h3>
                 <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2015-1-1 1:1:1']">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">日期 + 时间（小时可修改，分钟和秒不可修改）</h3>
                 <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2015-1-1 1:1:1']">
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期 + 时间</h3>
                 <ipnut class="form-control w300" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']"></ipnut>
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期 + 时间（小时可修改，分钟和秒不可修改）</h3>
                 <ipnut class="form-control w300" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']"></ipnut>
+                <div class="predefined"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">位于下方 + 左侧对齐（默认）</h3>
                 <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2016-1-1']" data-align="left">
+                <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">位于下方 + 右侧对齐</h3>
                 <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2016-1-1']" data-align="right">
+                <div class="predefined"></div>
             </div>
         </div>
         <script>
-            require(['components/readme'], function(Readme) {
-                // var readme = new Readme()
-                // readme.trimHTML(document.body)
-                // readme.trimPredefined(document.body)
+            //- require(['css!deps/highlightjs/styles/github.css'])
+            require(['brix/loader', 'jquery', 'underscore', 'highlightjs'], function(Loader, $, _, hljs) {
+                trimHTML(document.body)
+                trimPredefined(document.body)
+                $(document.body).find('pre').each(function(index, pre) {
+                    var code = $(pre).find('>code')[0]
+                    if (code) hljs.highlightBlock(code)
+                    else hljs.highlightBlock(pre)
+                })
+            
+                function _predefined(element) {
+                    return $(element).nextAll('.predefined').get(0)
+                    // return $element.next().is('.predefined') ? $element.next() : $element.parent().find('.predefined')
+                }
+                function trimHTML(context) {
+                    var elements = $('[bx-name]', context)
+                    _.each(elements, function(element /*, index*/ ) {
+                        var htmls = Loader.Util.trimHTML(element)
+                        var predefined = _predefined(element)
+                        $('<pre>').append(
+                            $('<code class="html">').text(htmls)
+                        ).appendTo(predefined)
+                    })
+                }
+                // 去掉 <pre><code></code></pre> 的缩进
+                function trimPredefined(context) {
+                    var pres = $('pre', context)
+                    _.each(pres, function(pre /*, index*/ ) {
+                        pre = $(pre)
+                        var code = pre.find('>code')
+                        var trimed
+                        if (code.length) {
+                            trimed = Loader.Util.trimPredefined(code[0])
+                            code.text(trimed)
+                        } else {
+                            trimed = Loader.Util.trimPredefined(pre[0])
+                            pre.text(trimed)
+                        }
+                    })
+                }
             })
+            //- Loader.boot
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {

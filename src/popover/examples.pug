@@ -16,12 +16,13 @@ html
             table.table td:nth-child(3) { text-align: right; }
     body
         //- 示例
-        div
-           div.btn.btn-default(bx-name='components/popover' data-placement='top' data-title='Popover on top' data-content='Envy is the ulcer of the soul.') Popover on top
-           div.btn.btn-default(bx-name='components/popover' data-placement='right' data-title='Popover on right' data-content='Envy is the ulcer of the soul.') Popover on right
-           div.btn.btn-default(bx-name='components/popover' data-placement='bottom' data-title='Popover on bottom' data-content='Envy is the ulcer of the soul.') Popover on bottom
-           div.btn.btn-default(bx-name='components/popover' data-placement='left' data-title='Popover on left' data-content='Envy is the ulcer of the soul.') Popover on left
-        div
+        div.mb20
+            div.btn.btn-default(bx-name='components/popover' data-placement='top' data-title='Popover on top' data-content='Envy is the ulcer of the soul.') Popover on top
+            div.btn.btn-default(bx-name='components/popover' data-placement='right' data-title='Popover on right' data-content='Envy is the ulcer of the soul.') Popover on right
+            div.btn.btn-default(bx-name='components/popover' data-placement='bottom' data-title='Popover on bottom' data-content='Envy is the ulcer of the soul.') Popover on bottom
+            div.btn.btn-default(bx-name='components/popover' data-placement='left' data-title='Popover on left' data-content='Envy is the ulcer of the soul.') Popover on left
+            div.predefined
+        div.mb20
             div.btn.btn-default(bx-name='components/popover' data-title='<h4>Table</h4>' data-content='\
                     <table class="table table-striped">\
                           <thead>\
@@ -54,36 +55,46 @@ html
                           </tbody>\
                       </table>\
                 ') Popover with html
-        div
+            div.predefined
+        div.mb20
             div.btn.btn-default(bx-name='components/popover' data-content='Having the fewest wants, I am nearest to the gods.') Popover without title
-        div
+            div.predefined
+        div.mb20
             table.table.table-bordered
                 tbody
                     tr
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='right' data-align='top' data-title='placement right + align top' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于右侧 + 顶部对齐
                             div.btn.btn-default(bx-name='components/popover' data-placement='bottom' data-align='left' data-title='placement bottom + align left' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于下方 + 左侧对齐
+                            div.predefined
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='bottom' data-align='center' data-title='placement bottom + align center' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于下方 + 水平居中对齐
+                            div.predefined
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='left' data-align='top' data-title='placement left + align top' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于左侧 + 顶部对齐
                             div.btn.btn-default(bx-name='components/popover' data-placement='bottom' data-align='right' data-title='placement bottom + align right' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于下方 + 右侧对齐
+                            div.predefined
                     tr
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='right' data-align='middle' data-title='placement right + align middle' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于右侧 + 垂直居中对齐
-                        td -
+                            div.predefined
+                        td Popover
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='left' data-align='middle' data-title='placement left + align middle ' data-content='Remember what is unbecoming to do is also unbecoming to speak of.')  位于左侧 + 垂直居中对齐 
+                            div.predefined
                     tr
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='top' data-align='left' data-title='placement top + align left' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于上方 + 左侧对齐
                             div.btn.btn-default(bx-name='components/popover' data-placement='right' data-align='bottom' data-title='placement right + 底部对齐' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于右侧 + 底部对齐
+                            div.predefined
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='top' data-align='center' data-title='placement top + align center' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于上方 + 水平居中对齐
+                            div.predefined
                         td
                             div.btn.btn-default(bx-name='components/popover' data-placement='top' data-align='right' data-title='placement top + align right' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于上方 + 右侧对齐
                             div.btn.btn-default(bx-name='components/popover' data-placement='left' data-align='bottom' data-title='placement left + align bottom' data-content='Remember what is unbecoming to do is also unbecoming to speak of.') 位于左侧 + 底部对齐
-        div
+                            div.predefined
+        div.mb20
             h3.fontsize-16 如果浮层中的内容很复杂，例如多层嵌套的 HTML 代码，或者是含有 <code>&lt;pre&gt;</code>代码，建议预先在页面中渲染好浮层中的内容，并设置一个 <code>id</code> 属性，然后在组件上设置 <code>template: #id</code>。
             <div id="escaped" class="popover top">
                 <div class="arrow"></div>
@@ -92,7 +103,8 @@ html
                     <pre>&lt;div&gt;</pre>
                 </div>
             </div>
-            <div bx-name="components/popover" data-placement="top" data-template="#escaped" data-width="200" class="btn btn-default">Code</div>
+            div.btn.btn-default(bx-name='components/popover' data-placement='top' data-template='#escaped' data-width='200') Code
+            div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

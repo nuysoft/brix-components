@@ -2,7 +2,176 @@
 <html>
     <head>
         <script src="//g-assets.daily.taobao.net/thx/brix-release/require-config-css.js"></script>
-        <style>body {}</style>
+        <style>
+            pre,
+            code {
+              /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+              /* Tomorrow Comment */
+              /* Tomorrow Red */
+              /* Tomorrow Orange */
+              /* Tomorrow Yellow */
+              /* Tomorrow Green */
+              /* Tomorrow Aqua */
+              /* Tomorrow Blue */
+              /* Tomorrow Purple */
+            }
+            pre .hljs-comment,
+            code .hljs-comment,
+            pre .hljs-title,
+            code .hljs-title {
+              color: #8e908c;
+            }
+            pre .hljs-variable,
+            code .hljs-variable,
+            pre .hljs-attribute,
+            code .hljs-attribute,
+            pre .hljs-tag,
+            code .hljs-tag,
+            pre .hljs-regexp,
+            code .hljs-regexp,
+            pre .hljs-deletion,
+            code .hljs-deletion,
+            pre .ruby .hljs-constant,
+            code .ruby .hljs-constant,
+            pre .xml .hljs-tag .hljs-title,
+            code .xml .hljs-tag .hljs-title,
+            pre .xml .hljs-pi,
+            code .xml .hljs-pi,
+            pre .xml .hljs-doctype,
+            code .xml .hljs-doctype,
+            pre .html .hljs-doctype,
+            code .html .hljs-doctype,
+            pre .css .hljs-id,
+            code .css .hljs-id,
+            pre .css .hljs-class,
+            code .css .hljs-class,
+            pre .css .hljs-pseudo,
+            code .css .hljs-pseudo {
+              color: #c82829;
+            }
+            pre .hljs-number,
+            code .hljs-number,
+            pre .hljs-preprocessor,
+            code .hljs-preprocessor,
+            pre .hljs-pragma,
+            code .hljs-pragma,
+            pre .hljs-built_in,
+            code .hljs-built_in,
+            pre .hljs-literal,
+            code .hljs-literal,
+            pre .hljs-params,
+            code .hljs-params,
+            pre .hljs-constant,
+            code .hljs-constant {
+              color: #f5871f;
+            }
+            pre .ruby .hljs-class .hljs-title,
+            code .ruby .hljs-class .hljs-title,
+            pre .css .hljs-rules .hljs-attribute,
+            code .css .hljs-rules .hljs-attribute {
+              color: #eab700;
+            }
+            pre .hljs-string,
+            code .hljs-string,
+            pre .hljs-value,
+            code .hljs-value,
+            pre .hljs-inheritance,
+            code .hljs-inheritance,
+            pre .hljs-header,
+            code .hljs-header,
+            pre .hljs-addition,
+            code .hljs-addition,
+            pre .ruby .hljs-symbol,
+            code .ruby .hljs-symbol,
+            pre .xml .hljs-cdata,
+            code .xml .hljs-cdata {
+              color: #718c00;
+            }
+            pre .css .hljs-hexcolor,
+            code .css .hljs-hexcolor {
+              color: #3e999f;
+            }
+            pre .hljs-function,
+            code .hljs-function,
+            pre .python .hljs-decorator,
+            code .python .hljs-decorator,
+            pre .python .hljs-title,
+            code .python .hljs-title,
+            pre .ruby .hljs-function .hljs-title,
+            code .ruby .hljs-function .hljs-title,
+            pre .ruby .hljs-title .hljs-keyword,
+            code .ruby .hljs-title .hljs-keyword,
+            pre .perl .hljs-sub,
+            code .perl .hljs-sub,
+            pre .javascript .hljs-title,
+            code .javascript .hljs-title,
+            pre .coffeescript .hljs-title,
+            code .coffeescript .hljs-title {
+              color: #4271ae;
+            }
+            pre .hljs-keyword,
+            code .hljs-keyword,
+            pre .javascript .hljs-function,
+            code .javascript .hljs-function {
+              color: #8959a8;
+            }
+            pre .hljs,
+            code .hljs {
+              display: block;
+              background: white;
+              color: #4d4d4c;
+              padding: 0.5em;
+            }
+            pre .coffeescript .javascript,
+            code .coffeescript .javascript,
+            pre .javascript .xml,
+            code .javascript .xml,
+            pre .tex .hljs-formula,
+            code .tex .hljs-formula,
+            pre .xml .javascript,
+            code .xml .javascript,
+            pre .xml .vbscript,
+            code .xml .vbscript,
+            pre .xml .css,
+            code .xml .css,
+            pre .xml .hljs-cdata,
+            code .xml .hljs-cdata {
+              opacity: 0.5;
+            }
+        </style>
+        <style>
+            body {}
+            .predefined {
+                background-color: #F7F7F7;
+                border: none;
+                padding: 0;
+                border-radius: 0px;
+                text-align: left;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .predefined pre,
+            pre.predefined {
+                margin: 0;
+                padding: 10px 12px;
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid #E6E6E6;
+                background-color: transparent;
+                font-size: 12px;
+            }
+            .predefined pre:last-child, 
+            pre.predefined:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+            .predefined pre code.hljs,
+            pre.predefined code.hljs {
+                padding: 0;
+                background-color: transparent;
+                font-size: 12px;
+            }
+        </style>
         <style>
             body [bx-name="components/popover"] {
                 vertical-align: top;
@@ -18,60 +187,71 @@
         </style>
     </head>
     <body>
-        <div>
+        <div class="mb20">
             <div class="btn btn-default" bx-name="components/popover" data-placement="top" data-title="Popover on top" data-content="Envy is the ulcer of the soul.">Popover on top</div>
             <div class="btn btn-default" bx-name="components/popover" data-placement="right" data-title="Popover on right" data-content="Envy is the ulcer of the soul.">Popover on right</div>
             <div class="btn btn-default" bx-name="components/popover" data-placement="bottom" data-title="Popover on bottom" data-content="Envy is the ulcer of the soul.">Popover on bottom</div>
             <div class="btn btn-default" bx-name="components/popover" data-placement="left" data-title="Popover on left" data-content="Envy is the ulcer of the soul.">Popover on left</div>
+            <div class="predefined"></div>
         </div>
-        <div>
+        <div class="mb20">
             <div class="btn btn-default" bx-name="components/popover" data-title="&lt;h4&gt;Table&lt;/h4&gt;" data-content="                    &lt;table class=&quot;table table-striped&quot;&gt;                          &lt;thead&gt;                              &lt;tr&gt;                                &lt;th&gt;#&lt;/th&gt;                                &lt;th&gt;First&lt;/th&gt;                                &lt;th&gt;Last&lt;/th&gt;                                &lt;th&gt;Twitter&lt;/th&gt;                              &lt;/tr&gt;                          &lt;/thead&gt;                          &lt;tbody&gt;                              &lt;tr&gt;                                  &lt;td&gt;1&lt;/td&gt;                                  &lt;td&gt;Mark&lt;/td&gt;                                  &lt;td&gt;Otto&lt;/td&gt;                                  &lt;td&gt;@mdo&lt;/td&gt;                              &lt;/tr&gt;                              &lt;tr&gt;                                  &lt;td&gt;2&lt;/td&gt;                                  &lt;td&gt;Jacob&lt;/td&gt;                                  &lt;td&gt;Thornton&lt;/td&gt;                                  &lt;td&gt;@fat&lt;/td&gt;                              &lt;/tr&gt;                              &lt;tr&gt;                                  &lt;td&gt;3&lt;/td&gt;                                  &lt;td&gt;Larry&lt;/td&gt;                                  &lt;td&gt;the Bird&lt;/td&gt;                                  &lt;td&gt;@twitter&lt;/td&gt;                              &lt;/tr&gt;                          &lt;/tbody&gt;                      &lt;/table&gt;                ">Popover with html</div>
+            <div class="predefined"></div>
         </div>
-        <div>
+        <div class="mb20">
             <div class="btn btn-default" bx-name="components/popover" data-content="Having the fewest wants, I am nearest to the gods.">Popover without title</div>
+            <div class="predefined"></div>
         </div>
-        <div>
+        <div class="mb20">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="right" data-align="top" data-title="placement right + align top" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于右侧 + 顶部对齐</div>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="bottom" data-align="left" data-title="placement bottom + align left" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于下方 + 左侧对齐</div>
+                            <div class="predefined"></div>
                         </td>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="bottom" data-align="center" data-title="placement bottom + align center" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于下方 + 水平居中对齐</div>
+                            <div class="predefined"></div>
                         </td>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="left" data-align="top" data-title="placement left + align top" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于左侧 + 顶部对齐</div>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="bottom" data-align="right" data-title="placement bottom + align right" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于下方 + 右侧对齐</div>
+                            <div class="predefined"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="right" data-align="middle" data-title="placement right + align middle" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于右侧 + 垂直居中对齐</div>
+                            <div class="predefined"></div>
                         </td>
-                        <td>-</td>
+                        <td>Popover</td>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="left" data-align="middle" data-title="placement left + align middle " data-content="Remember what is unbecoming to do is also unbecoming to speak of."> 位于左侧 + 垂直居中对齐 </div>
+                            <div class="predefined"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="top" data-align="left" data-title="placement top + align left" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于上方 + 左侧对齐</div>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="right" data-align="bottom" data-title="placement right + 底部对齐" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于右侧 + 底部对齐</div>
+                            <div class="predefined"></div>
                         </td>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="top" data-align="center" data-title="placement top + align center" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于上方 + 水平居中对齐</div>
+                            <div class="predefined"></div>
                         </td>
                         <td>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="top" data-align="right" data-title="placement top + align right" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于上方 + 右侧对齐</div>
                             <div class="btn btn-default" bx-name="components/popover" data-placement="left" data-align="bottom" data-title="placement left + align bottom" data-content="Remember what is unbecoming to do is also unbecoming to speak of.">位于左侧 + 底部对齐</div>
+                            <div class="predefined"></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div>
+        <div class="mb20">
             <h3 class="fontsize-16">如果浮层中的内容很复杂，例如多层嵌套的 HTML 代码，或者是含有 <code>&lt;pre&gt;</code>代码，建议预先在页面中渲染好浮层中的内容，并设置一个 <code>id</code> 属性，然后在组件上设置 <code>template: #id</code>。</h3><div id="escaped" class="popover top">
 <div class="arrow"></div>
 <div class="popover-content">
@@ -79,14 +259,52 @@
 <pre>&lt;div&gt;</pre>
 </div>
 </div>
-<div bx-name="components/popover" data-placement="top" data-template="#escaped" data-width="200" class="btn btn-default">Code</div>
+            <div class="btn btn-default" bx-name="components/popover" data-placement="top" data-template="#escaped" data-width="200">Code</div>
+            <div class="predefined"></div>
         </div>
         <script>
-            require(['components/readme'], function(Readme) {
-                // var readme = new Readme()
-                // readme.trimHTML(document.body)
-                // readme.trimPredefined(document.body)
+            //- require(['css!deps/highlightjs/styles/github.css'])
+            require(['brix/loader', 'jquery', 'underscore', 'highlightjs'], function(Loader, $, _, hljs) {
+                trimHTML(document.body)
+                trimPredefined(document.body)
+                $(document.body).find('pre').each(function(index, pre) {
+                    var code = $(pre).find('>code')[0]
+                    if (code) hljs.highlightBlock(code)
+                    else hljs.highlightBlock(pre)
+                })
+            
+                function _predefined(element) {
+                    return $(element).nextAll('.predefined').get(0)
+                    // return $element.next().is('.predefined') ? $element.next() : $element.parent().find('.predefined')
+                }
+                function trimHTML(context) {
+                    var elements = $('[bx-name]', context)
+                    _.each(elements, function(element /*, index*/ ) {
+                        var htmls = Loader.Util.trimHTML(element)
+                        var predefined = _predefined(element)
+                        $('<pre>').append(
+                            $('<code class="html">').text(htmls)
+                        ).appendTo(predefined)
+                    })
+                }
+                // 去掉 <pre><code></code></pre> 的缩进
+                function trimPredefined(context) {
+                    var pres = $('pre', context)
+                    _.each(pres, function(pre /*, index*/ ) {
+                        pre = $(pre)
+                        var code = pre.find('>code')
+                        var trimed
+                        if (code.length) {
+                            trimed = Loader.Util.trimPredefined(code[0])
+                            code.text(trimed)
+                        } else {
+                            trimed = Loader.Util.trimPredefined(pre[0])
+                            pre.text(trimed)
+                        }
+                    })
+                }
             })
+            //- Loader.boot
             require(['brix/loader', 'jquery', 'highlightjs'], function(Loader, $, hljs) {
                 window.Loader = Loader
                 Loader.boot(function() {
