@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="dialog-footer">
-            <button bx-click="submit" class="btn btn-default btn-sm">确定</button>
+            <button type="button" bx-click="submit" class="btn btn-default btn-sm">确定</button>
             <a bx-click="cancel" href="javascript: void(0);">取消</a>
         </div>
     </div>

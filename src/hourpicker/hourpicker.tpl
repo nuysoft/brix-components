@@ -6,7 +6,7 @@
             <% } %>
         </div>
         <div class="apply-dialog-footer">
-            <button class="btn btn-default submit" bx-click="apply('do')">确认</button>
+            <button type="button" class="btn btn-default submit" bx-click="apply('do')">确认</button>
             <a href="javascript: void(0);" bx-click="apply('close')" class="btn btn-default cancel ml5">取消</a>
         </div>
     </div>

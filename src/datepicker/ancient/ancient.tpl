@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="hour-minute-second-footer">
-                <button class="btn btn-default submit" bx-click="_changeTime()">确认</button>
+                <button type="button" class="btn btn-default submit" bx-click="_changeTime()">确认</button>
                 <a href="javascript: void(0);" class="btn btn-default cancel ml5">取消</a>
             </div>
         </div>

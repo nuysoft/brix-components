@@ -106,7 +106,7 @@ require(['components/table/linkage'], function(linkage) {
 <div class="bs-example bs-example-modal">
     <div class="content">
         <h4>响应式表格</h4>
-        <button id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
+        <button type="button" id="clickme" class="btn btn-default pull-right"><span class="glyphicon glyphicon-cog"></span></button>
         <table bx-name="components/table" class="table table-hover table-fixed" 
             data-column-rwd-range="[3,-2]" 
             data-column-rwd-limit="5" 

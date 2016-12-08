@@ -79,7 +79,7 @@
         </ul>
         <% if (multiple) { %>
         <div class="dropdown-footer">
-            <button class="btn btn-default submit" bx-click="submit">确认</button>
+            <button type="button" class="btn btn-default submit" bx-click="submit">确认</button>
             <a href="javascript: void(0);" bx-click="hide" class="btn btn-default cancel ml5">取消</a>
         </div>
         <% } %>

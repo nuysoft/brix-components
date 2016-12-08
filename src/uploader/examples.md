@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h4>通过 `data-action` 指定接收文件的 URL</h4>
-                    <button bx-name="components/uploader" data-action="api/upload.json" data-name="foo" class="btn btn-default">选择文件</button>
+                    <button bx-name="components/uploader" data-action="api/upload.json" data-name="foo" type="button" class="btn btn-default">选择文件</button>
                     <div class="preview"></div>
                 </div>
                 <div class="col-xs-6">
                     <h4>通过 `data-name` 指定文件域的名称</h4>
-                    <button bx-name="components/uploader" data-action="api/upload.json" data-name="bar" class="btn btn-default">选择文件</button>
+                    <button bx-name="components/uploader" data-action="api/upload.json" data-name="bar" type="button" class="btn btn-default">选择文件</button>
                     <div class="preview"></div>
                 </div>
             </div>
