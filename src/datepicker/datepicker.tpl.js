@@ -78,7 +78,7 @@ define(function() {
         "        </div>\n" +
         "        <div class=\"timepicker-footer\">\n" +
         "            <div class=\"timepicker-handelr\">\n" +
-        "                <button class=\"btn btn-default submit\" bx-click=\"_changeTime()\">确认</button>\n" +
+        "                <button type=\"button\" class=\"btn btn-default submit\" bx-click=\"_changeTime()\">确认</button>\n" +
         "                <a href=\"javascript: void(0);\" class=\"btn btn-default cancel ml5\">取消</a>\n" +
         "            </div>\n" +
         "        </div>\n" +

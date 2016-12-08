@@ -1433,7 +1433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "            </div>\n" +
 	        "        </div>\n" +
 	        "        <div class=\"dialog-footer\">\n" +
-	        "            <button bx-click=\"submit\" class=\"btn btn-default btn-sm\">确定</button>\n" +
+	        "            <button type=\"button\" bx-click=\"submit\" class=\"btn btn-default btn-sm\">确定</button>\n" +
 	        "            <a bx-click=\"cancel\" href=\"javascript: void(0);\">取消</a>\n" +
 	        "        </div>\n" +
 	        "    </div>\n" +

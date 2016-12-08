@@ -75,6 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    <button bx-name="components/uploader" 
 	        data-action="api/upload.json" 
 	        data-name="foo" 
+	        type="button" 
 	        class="btn btn-default">
 	        选择文件
 	    </button>
