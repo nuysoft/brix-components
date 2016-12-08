@@ -40,7 +40,7 @@ define(function() {
         "        <% } %>\n" +
         "    </div>\n" +
         "    <div class=\"datepickerwrapper-footer\">\n" +
-        "        <button class=\"btn btn-default submit\" bx-click=\"submit\">确认</button>\n" +
+        "        <button type=\"button\" class=\"btn btn-default submit\" bx-click=\"submit\">确认</button>\n" +
         "        <a href=\"javascript: void(0);\" bx-click=\"hide\" class=\"btn btn-default cancel ml5\">取消</a>\n" +
         "    </div>\n" +
         "    <% } %>\n" +
