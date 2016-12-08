@@ -3,13 +3,17 @@
 上传组件。
 
 ```html
-<button bx-name="components/uploader" 
-    data-action="api/upload.json" 
-    data-name="foo" 
-    class="btn btn-default">
-    选择文件
-</button>
+<form>
+    <button bx-name="components/uploader" 
+        data-action="api/upload.json" 
+        data-name="foo" 
+        class="btn btn-default">
+        选择文件
+    </button>
+</form>
 ```
+
+> **注意：** Uploader 组件需要放入一个 `form` 元素中。
 
 ## 配置
 
