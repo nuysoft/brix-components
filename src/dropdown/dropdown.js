@@ -195,7 +195,7 @@ define(
                 .val( value )
                 .val()
             */
-            val: function(value) {
+            val: function(value, __triggerChangeEventBySetValue) {
                 // this.$element.val()
                 var that = this
                 var options = this.options
@@ -277,6 +277,9 @@ define(
                 this.options.value = _.map(data, function(item) {
                     return item.value
                 })
+
+                // 修改值，但是不触发 change 事件。避免与其他双向绑定库（例如 Vue ）整合时重复触发 change 事件。
+                if (__triggerChangeEventBySetValue === false) return this
 
                 // #19 支持 event.preventDefault()
                 // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
