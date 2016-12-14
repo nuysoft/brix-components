@@ -312,7 +312,13 @@ define(
 
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
                 var $newMenu = $(
-                    compiledTemplate(this.options)
+                    compiledTemplate(
+                        _.extend({}, this.options, {
+                            isActive: function(value, cur) {
+                                return _.contains(value, cur) || _.contains(value, cur + '')
+                            }
+                        })
+                    )
                 ).find('ul.dropdown-menu')
 
                 $menu.replaceWith($newMenu)
@@ -587,7 +593,13 @@ define(
 
                 var $menu = this.$relatedElement.find('ul.dropdown-menu')
                 var $newMenu = $(
-                    compiledTemplate(this.options)
+                    compiledTemplate(
+                        _.extend({}, this.options, {
+                            isActive: function(value, cur) {
+                                return _.contains(value, cur) || _.contains(value, cur + '')
+                            }
+                        })
+                    )
                 ).find('ul.dropdown-menu')
 
                 $menu.replaceWith($newMenu)

@@ -255,7 +255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                .val( value )
 	                .val()
 	            */
-	            val: function(value) {
+	            val: function(value, __triggerChangeEventBySetValue) {
 	                // this.$element.val()
 	                var that = this
 	                var options = this.options
@@ -338,6 +338,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    return item.value
 	                })
 
+	                // 修改值，但是不触发 change 事件。避免与其他双向绑定库（例如 Vue ）整合时重复触发 change 事件。
+	                if (__triggerChangeEventBySetValue === false) return this
+
 	                // #19 支持 event.preventDefault()
 	                // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
 	                var event = $.Event('change' + NAMESPACE)
@@ -369,7 +372,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                var $menu = this.$relatedElement.find('ul.dropdown-menu')
 	                var $newMenu = $(
-	                    compiledTemplate(this.options)
+	                    compiledTemplate(
+	                        _.extend({}, this.options, {
+	                            isActive: function(value, cur) {
+	                                return _.contains(value, cur) || _.contains(value, cur + '')
+	                            }
+	                        })
+	                    )
 	                ).find('ul.dropdown-menu')
 
 	                $menu.replaceWith($newMenu)
@@ -644,7 +653,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                var $menu = this.$relatedElement.find('ul.dropdown-menu')
 	                var $newMenu = $(
-	                    compiledTemplate(this.options)
+	                    compiledTemplate(
+	                        _.extend({}, this.options, {
+	                            isActive: function(value, cur) {
+	                                return _.contains(value, cur) || _.contains(value, cur + '')
+	                            }
+	                        })
+	                    )
 	                ).find('ul.dropdown-menu')
 
 	                $menu.replaceWith($newMenu)
