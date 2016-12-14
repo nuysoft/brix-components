@@ -123,18 +123,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            render: function() {
 	                this.$element = $(this.element)
 
+	                var namespace = this.$element.attr('data-parsley-namespace') || Parsley.options.namespace
+
 	                // http://parsleyjs.org/doc/annotated-source/factory.html#section-6
 	                // A ParsleyForm instance is obviously a `<form>` element but also every node that is not an input and has the `data-parsley-validate` attribute
 	                // http://parsleyjs.org/doc/index.html#psly-usage-form
 	                // data-parsley-namespace = data-parsley-
 	                if (!this.$element.is('form')) {
-	                    var namespace = this.$element.attr('data-parsley-namespace') || Parsley.options.namespace
 	                    var gogogo = namespace + 'validate'
 	                    if (this.$element.attr(gogogo) === undefined) this.$element.attr(gogogo, '')
 	                }
 
-	                this.parsley = $(this.element).parsley()
-	                    // this.parsley = new Parsley(this.element)
+	                this.parsley = $(this.element).parsley({
+	                    namespace: namespace
+	                })
+
+	                // this.parsley = new Parsley(this.element)
 	            },
 	            validate: function(group, force) {
 	                this.parsley.validate(group, force)
