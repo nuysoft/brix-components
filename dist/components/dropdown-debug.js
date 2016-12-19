@@ -143,7 +143,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _searchboxEvent: 'keyup', // keyup | enter
 
 	                popover: false, // true | width
-	                _popoverWidth: ''
+	                _popoverWidth: '',
+
+	                excluded: []
 	            },
 	            init: function() {
 	                this.$element = $(this.element).hide()
@@ -292,11 +294,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                })
 
+	                // 多选状态下，如果没有选中任何选项，则显示标记为 excluded 的选项
+	                if (!data.length && this.options.multiple && this.options.excluded.length) {
+	                    return this.val(this.options.excluded, __triggerChangeEventBySetValue)
+	                }
+
 	                // 未知值
 	                // if (!data.length) return
 
 	                // 如果值没有发生变化，则直接返回
 	                if (
+	                    oldValue.length === data.length &&
 	                    oldValue.sort().join('') ===
 	                    _.map(data, function(item) {
 	                        return item.value
@@ -327,6 +335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                })
 	                _.each(data, function(item) {
 	                    $menu.find('li:has([value="' + item.value + '"])')
+	                        .not('[data-excluded]')
 	                        .addClass('active')
 	                        .find('input:checkbox')
 	                        .prop('checked', true)
@@ -396,8 +405,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                switch (this.options.multiple) {
 	                    case true:
-	                        var $li = $target.closest('li').toggleClass('active')
-	                        $target.find('input:checkbox').prop('checked', $li.hasClass('active'))
+	                        var $li = $target.closest('li')
+	                        if (!$li.attr('data-excluded')) {
+	                            $li.toggleClass('active')
+	                            $target.find('input:checkbox').prop('checked', $li.hasClass('active'))
+	                        }
 	                        break
 	                    case false:
 	                        this.val(value !== undefined ? value : label)
@@ -468,6 +480,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.toggle()
 	            },
 	            _parseDataFromSelect: function($select) {
+	                var that = this
 	                var children = _.filter($select.children(), function(child /*, index*/ ) {
 	                    // <optgroup> <option>
 	                    return /optgroup|option/i.test(child.nodeName)
@@ -488,10 +501,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                function _parseOption(option) {
 	                    var $option = $(option)
+	                    var value = $option.attr('value')
 	                    return $option.hasClass('divider') ? 'divider' : {
 	                        label: $.trim($option.text()),
-	                        value: $option.attr('value'),
-	                        selected: $option.prop('selected')
+	                        value: value,
+	                        selected: $option.prop('selected'),
+	                        excluded: _.contains(that.options.excluded, value) || _.contains(that.options.excluded, +value) || false
 	                    }
 	                }
 	            },
@@ -741,13 +756,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                <% if(item.children) { %>\n" +
 	        "                    <li class=\"dropdown-header\"><%=item.label%></li>\n" +
 	        "                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>\n" +
-	        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
+	        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value && !item.children[ii].excluded ? 'active' : ''%>\" <%= item.children[ii].excluded ? 'data-excluded=true': '' %>>\n" +
 	        "                            <% if (popover) { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
 	        "                                bx-name=\"components/popover\"\n" +
 	        "                                data-content=\"<%= item.children[ii].label %>\" \n" +
 	        "                                data-width=\"<%= _popoverWidth %>\">\n" +
-	        "                                <% if (multiple) { %>\n" +
+	        "                                <% if (multiple && !item.children[ii].excluded) { %>\n" +
 	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
 	        "                                <% } %>\n" +
 	        "                                <span><%= item.children[ii].label %></span>\n" +
@@ -755,7 +770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                            <% } else { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
 	        "                                title=\"<%= item.children[ii].label %>\">\n" +
-	        "                                <% if (multiple) { %>\n" +
+	        "                                <% if (multiple && !item.children[ii].excluded) { %>\n" +
 	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
 	        "                                <% } %>\n" +
 	        "                                <span><%= item.children[ii].label %></span>\n" +
@@ -767,13 +782,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                    <% if (item === 'divider') { %>\n" +
 	        "                        <li class=\"divider\"></li>\n" +
 	        "                    <% } else { %>\n" +
-	        "                        <li class=\"<%= isActive(value, item.value) ? 'active' : '' %>\">\n" +
+	        "                        <li class=\"<%= isActive(value, item.value) && !item.excluded ? 'active' : '' %>\" <%= item.excluded ? 'data-excluded=true': '' %>>\n" +
 	        "                            <% if (popover) { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
 	        "                                bx-name=\"components/popover\"\n" +
 	        "                                data-content=\"<%= item.label %>\" \n" +
 	        "                                data-width=\"<%= _popoverWidth %>\">\n" +
-	        "                                <% if (multiple) { %>\n" +
+	        "                                <% if (multiple && !item.excluded) { %>\n" +
 	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
 	        "                                <% } %>\n" +
 	        "                                <span><%= item.label %></span>\n" +
@@ -781,7 +796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "                            <% } else { %>\n" +
 	        "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
 	        "                                title=\"<%= item.label %>\">\n" +
-	        "                                <% if (multiple) { %>\n" +
+	        "                                <% if (multiple && !item.excluded) { %>\n" +
 	        "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
 	        "                                <% } %>\n" +
 	        "                                <span><%= item.label %></span>\n" +

@@ -26,13 +26,13 @@
                 <% if(item.children) { %>
                     <li class="dropdown-header"><%=item.label%></li>
                     <% for(var ii = 0; ii < item.children.length; ii++ ) { %>
-                        <li class="dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>">
+                        <li class="dropdown-menu-item-child <%= item.children[ii].value == value && !item.children[ii].excluded ? 'active' : ''%>" <%= item.children[ii].excluded ? 'data-excluded=true': '' %>>
                             <% if (popover) { %>
                             <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
                                 bx-name="components/popover"
                                 data-content="<%= item.children[ii].label %>" 
                                 data-width="<%= _popoverWidth %>">
-                                <% if (multiple) { %>
+                                <% if (multiple && !item.children[ii].excluded) { %>
                                 <input type="checkbox" name="<%= name %>" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>
                                 <% } %>
                                 <span><%= item.children[ii].label %></span>
@@ -40,7 +40,7 @@
                             <% } else { %>
                             <a href="javascript:;" value="<%= item.children[ii].value %>" bx-click="select()"
                                 title="<%= item.children[ii].label %>">
-                                <% if (multiple) { %>
+                                <% if (multiple && !item.children[ii].excluded) { %>
                                 <input type="checkbox" name="<%= name %>" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>
                                 <% } %>
                                 <span><%= item.children[ii].label %></span>
@@ -52,13 +52,13 @@
                     <% if (item === 'divider') { %>
                         <li class="divider"></li>
                     <% } else { %>
-                        <li class="<%= isActive(value, item.value) ? 'active' : '' %>">
+                        <li class="<%= isActive(value, item.value) && !item.excluded ? 'active' : '' %>" <%= item.excluded ? 'data-excluded=true': '' %>>
                             <% if (popover) { %>
                             <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
                                 bx-name="components/popover"
                                 data-content="<%= item.label %>" 
                                 data-width="<%= _popoverWidth %>">
-                                <% if (multiple) { %>
+                                <% if (multiple && !item.excluded) { %>
                                 <input type="checkbox" name="<%= name %>" <%= isActive(value, item.value) ? 'checked' : '' %>>
                                 <% } %>
                                 <span><%= item.label %></span>
@@ -66,7 +66,7 @@
                             <% } else { %>
                             <a href="javascript:;" value="<%= item.value %>" bx-click="select()"
                                 title="<%= item.label %>">
-                                <% if (multiple) { %>
+                                <% if (multiple && !item.excluded) { %>
                                 <input type="checkbox" name="<%= name %>" <%= isActive(value, item.value) ? 'checked' : '' %>>
                                 <% } %>
                                 <span><%= item.label %></span>

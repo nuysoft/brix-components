@@ -28,13 +28,13 @@ define(function() {
         "                <% if(item.children) { %>\n" +
         "                    <li class=\"dropdown-header\"><%=item.label%></li>\n" +
         "                    <% for(var ii = 0; ii < item.children.length; ii++ ) { %>\n" +
-        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value ? 'active' : ''%>\">\n" +
+        "                        <li class=\"dropdown-menu-item-child <%= item.children[ii].value == value && !item.children[ii].excluded ? 'active' : ''%>\" <%= item.children[ii].excluded ? 'data-excluded=true': '' %>>\n" +
         "                            <% if (popover) { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
         "                                bx-name=\"components/popover\"\n" +
         "                                data-content=\"<%= item.children[ii].label %>\" \n" +
         "                                data-width=\"<%= _popoverWidth %>\">\n" +
-        "                                <% if (multiple) { %>\n" +
+        "                                <% if (multiple && !item.children[ii].excluded) { %>\n" +
         "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
         "                                <% } %>\n" +
         "                                <span><%= item.children[ii].label %></span>\n" +
@@ -42,7 +42,7 @@ define(function() {
         "                            <% } else { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.children[ii].value %>\" bx-click=\"select()\"\n" +
         "                                title=\"<%= item.children[ii].label %>\">\n" +
-        "                                <% if (multiple) { %>\n" +
+        "                                <% if (multiple && !item.children[ii].excluded) { %>\n" +
         "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.children[ii].value) ? 'checked' : '' %>>\n" +
         "                                <% } %>\n" +
         "                                <span><%= item.children[ii].label %></span>\n" +
@@ -54,13 +54,13 @@ define(function() {
         "                    <% if (item === 'divider') { %>\n" +
         "                        <li class=\"divider\"></li>\n" +
         "                    <% } else { %>\n" +
-        "                        <li class=\"<%= isActive(value, item.value) ? 'active' : '' %>\">\n" +
+        "                        <li class=\"<%= isActive(value, item.value) && !item.excluded ? 'active' : '' %>\" <%= item.excluded ? 'data-excluded=true': '' %>>\n" +
         "                            <% if (popover) { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
         "                                bx-name=\"components/popover\"\n" +
         "                                data-content=\"<%= item.label %>\" \n" +
         "                                data-width=\"<%= _popoverWidth %>\">\n" +
-        "                                <% if (multiple) { %>\n" +
+        "                                <% if (multiple && !item.excluded) { %>\n" +
         "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
         "                                <% } %>\n" +
         "                                <span><%= item.label %></span>\n" +
@@ -68,7 +68,7 @@ define(function() {
         "                            <% } else { %>\n" +
         "                            <a href=\"javascript:;\" value=\"<%= item.value %>\" bx-click=\"select()\"\n" +
         "                                title=\"<%= item.label %>\">\n" +
-        "                                <% if (multiple) { %>\n" +
+        "                                <% if (multiple && !item.excluded) { %>\n" +
         "                                <input type=\"checkbox\" name=\"<%= name %>\" <%= isActive(value, item.value) ? 'checked' : '' %>>\n" +
         "                                <% } %>\n" +
         "                                <span><%= item.label %></span>\n" +

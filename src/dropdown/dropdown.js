@@ -83,7 +83,9 @@ define(
                 _searchboxEvent: 'keyup', // keyup | enter
 
                 popover: false, // true | width
-                _popoverWidth: ''
+                _popoverWidth: '',
+
+                excluded: []
             },
             init: function() {
                 this.$element = $(this.element).hide()
@@ -232,11 +234,17 @@ define(
                     }
                 })
 
+                // 多选状态下，如果没有选中任何选项，则显示标记为 excluded 的选项
+                if (!data.length && this.options.multiple && this.options.excluded.length) {
+                    return this.val(this.options.excluded, __triggerChangeEventBySetValue)
+                }
+
                 // 未知值
                 // if (!data.length) return
 
                 // 如果值没有发生变化，则直接返回
                 if (
+                    oldValue.length === data.length &&
                     oldValue.sort().join('') ===
                     _.map(data, function(item) {
                         return item.value
@@ -267,6 +275,7 @@ define(
                 })
                 _.each(data, function(item) {
                     $menu.find('li:has([value="' + item.value + '"])')
+                        .not('[data-excluded]')
                         .addClass('active')
                         .find('input:checkbox')
                         .prop('checked', true)
@@ -336,8 +345,11 @@ define(
 
                 switch (this.options.multiple) {
                     case true:
-                        var $li = $target.closest('li').toggleClass('active')
-                        $target.find('input:checkbox').prop('checked', $li.hasClass('active'))
+                        var $li = $target.closest('li')
+                        if (!$li.attr('data-excluded')) {
+                            $li.toggleClass('active')
+                            $target.find('input:checkbox').prop('checked', $li.hasClass('active'))
+                        }
                         break
                     case false:
                         this.val(value !== undefined ? value : label)
@@ -408,6 +420,7 @@ define(
                 this.toggle()
             },
             _parseDataFromSelect: function($select) {
+                var that = this
                 var children = _.filter($select.children(), function(child /*, index*/ ) {
                     // <optgroup> <option>
                     return /optgroup|option/i.test(child.nodeName)
@@ -428,10 +441,12 @@ define(
 
                 function _parseOption(option) {
                     var $option = $(option)
+                    var value = $option.attr('value')
                     return $option.hasClass('divider') ? 'divider' : {
                         label: $.trim($option.text()),
-                        value: $option.attr('value'),
-                        selected: $option.prop('selected')
+                        value: value,
+                        selected: $option.prop('selected'),
+                        excluded: _.contains(that.options.excluded, value) || _.contains(that.options.excluded, +value) || false
                     }
                 }
             },

@@ -317,7 +317,7 @@ gulp.task('test', ['test:server', 'test:mocha'])
 
 // https://github.com/jamen/gulp-pug
 gulp.task('build:doc', () => {
-    return gulp.src(['src/**/*.pug']).pipe(cache('build:doc')).pipe(debug('build:doc'))
+    return gulp.src(['src/**/*.pug']).pipe(debug('build:doc')) // .pipe(cache('build:doc'))
         .pipe(pug({
             pretty: '    '
         }))
@@ -328,7 +328,7 @@ gulp.task('build:doc', () => {
 })
 
 gulp.task('doc:watch', () => {
-    gulp.watch(['src/**/*.pug'], ['build:doc']).on('change', onFileChange)
+    gulp.watch(['doc/*.pug', 'src/**/*.pug'], ['build:doc']).on('change', onFileChange)
 })
 
 // ----------------------------------------

@@ -375,6 +375,34 @@
             <div class="predefined"></div>
         </div>
         <div>
+            <h3 class="fontsize-16">支持多选 <code>multiple</code>，并排除某个选项</h3>
+            <select bx-name="components/dropdown-debug" data-value="[1]" multiple data-excluded="['']">
+                <option value="">Please</option>
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown-debug" data-value="1" multiple data-excluded="['']">
+                <option value="">Please</option>
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown-debug" data-value="['']" multiple data-excluded="['']">
+                <option value="">Please</option>
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown-debug" data-value="" multiple data-excluded="['']">
+                <option value="">Please</option>
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <div class="predefined"></div>
+        </div>
+        <div>
             <h3 class="fontsize-16">多选 + Popover + Searchbox</h3>
             <select bx-name="components/dropdown" multiple data-value="[1,2,3]" data-searchbox="true" bx-search="filter" data-popover="200">
                 <option value="1">Action</option>
