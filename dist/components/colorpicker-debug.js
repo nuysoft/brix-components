@@ -144,8 +144,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var that = this
 	                var $relatedElement = this.$relatedElement = $(
 	                    _.template(template)(this.options)
-	                    // .insertAfter(this.$element)
-	                ).appendTo(document.body)
+	                    // .appendTo(document.body)
+	                ).insertAfter(this.$element)
 
 	                var $pickerNode = this.$pickerNode = $relatedElement.find('.picker')
 	                this.$pickerDragNode = $relatedElement.find('.picker-indicator')
