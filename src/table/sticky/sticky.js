@@ -7,7 +7,7 @@ define(
         $, _
     ) {
 
-        function sticky(table, hooks) {
+        function sticky(table /*, hooks TODO */ ) {
             var $table = $(table)
             var $wrapper = $table.parent()
 
@@ -61,7 +61,7 @@ define(
                 )
         }
 
-        function fixStickyWrapperStyle(event, $table, $wrapper, $stickyTable, $stickyWrapper) {
+        function fixStickyWrapperStyle(event, $table, $wrapper, $stickyTable, $stickyWrapper) { /* jshint unused:false */
             $stickyWrapper.width($table.outerWidth())
             $stickyWrapper.css({
                 position: 'fixed',
@@ -72,7 +72,7 @@ define(
             })
         }
 
-        function fixStickyTableStyle(event, $table, $wrapper, $stickyTable, $stickyWrapper) {
+        function fixStickyTableStyle(event, $table, $wrapper, $stickyTable, $stickyWrapper) { /* jshint unused:false */
             if (event && event.type === 'scroll') return
 
             $stickyTable.width($table.outerWidth())
@@ -89,7 +89,7 @@ define(
             })
         }
 
-        function toggleStickyWrapper(event, $table, $wrapper, $stickyTable, $stickyWrapper) {
+        function toggleStickyWrapper(event, $table, $wrapper, $stickyTable, $stickyWrapper) { /* jshint unused:false */
             var scrollY = window.scrollY
             var tableHeight = $table.outerHeight()
             var tableTop = $table.offset().top
