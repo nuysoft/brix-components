@@ -26,14 +26,16 @@ define(
         'components/base',
         './linkage/linkage.js',
         './column-rwd.js',
-        './column-priority.js'
+        './column-priority.js',
+        './sticky/sticky.js'
     ],
     function(
         $, _,
         Brix,
         linkage,
         ColumnRWD,
-        ColumnPriority
+        ColumnPriority,
+        Sticky
     ) {
         /*
             不需要渲染，只是事件增强。
@@ -103,6 +105,12 @@ define(
 
                 this.columnRWDHandler = columnRWDHandler
                 this.columnPriorityHandler = columnPriorityHandler
+
+                if (!this.options[Constant.COLUMN.RWD.RANGE] && this.options[Constant.COLUMN.PRIORITY.TRIGGER]) {
+                    if (this.options.sticky) {
+                        Sticky(this.element)
+                    }
+                }
             },
             contextual: function() {
                 _.each(this.$element.find('input:checkbox'), function(item /*, index*/ ) {
@@ -119,7 +127,7 @@ define(
                 type = 'click' + ColumnPriority.NAMESPACE + '_' + this.clientId
                 $(document.body).off(type)
 
-                if(this.columnPriorityHandler) {
+                if (this.columnPriorityHandler) {
                     this.columnPriorityHandler.$manager.undelegate(this.columnPriorityHandler.$relatedElement)
                 }
             }

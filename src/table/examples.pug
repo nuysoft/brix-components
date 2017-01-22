@@ -292,6 +292,22 @@ html
                     </td>
                 </tr>
             </tbody>
+        h3.fontsize-16 表格头吊顶
+        div.container
+            div.row
+                each tableIndex in [0,1,2,3,4,5,6,7,8,9]
+                    div.col-sm-4(style="margin-bottom: 100px;")
+                        table.table.table-hover.table-fixed(bx-name="components/table" data-sticky="true")
+                            thead
+                                tr
+                                    each thIndex in [0,1,2,3,4]
+                                        th 表#{tableIndex} 列#{thIndex}
+                            tbody
+                                each trIndex in [0,1,2,3,4]
+                                    tr
+                                        each tdIndex in [0,1,2,3,4]
+                                            td 表#{tableIndex} 行#{trIndex} 列#{tdIndex}
+
         <div id="sexLinkage" bx-name>
             <label class="group"><input type="checkbox" data-linkage-name="Brix"> Brix</label>
             <ul class="checklist">
