@@ -166,7 +166,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.columnRWDHandler = columnRWDHandler
 	                this.columnPriorityHandler = columnPriorityHandler
 
-	                if (!this.options[Constant.COLUMN.RWD.RANGE] && this.options[Constant.COLUMN.PRIORITY.TRIGGER]) {
+	                if (!this.options[Constant.COLUMN.RWD.RANGE] && !this.options[Constant.COLUMN.PRIORITY.TRIGGER]) {
 	                    if (this.options.sticky) {
 	                        Sticky(this.element)
 	                    }
