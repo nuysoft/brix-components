@@ -44,7 +44,7 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './colorpicker.tpl.js',
         './colorpicker-svg-slide.tpl.js', './colorpicker-svg-picker.tpl.js',
         './colorpicker-vml-slide.tpl.js', './colorpicker-svg-picker.tpl.js'

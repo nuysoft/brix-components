@@ -17,7 +17,7 @@ define(
     [
         'jquery', 'underscore',
         'components/base',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './suggest.tpl.js',
         './suggest.item.tpl.js'
     ],

@@ -47,7 +47,7 @@ define(
     [
         'jquery', 'underscore',
         'components/base', 'brix/event',
-        './position.js',
+        './position/position.js',
         './dialog.tpl.js'
     ],
     function(

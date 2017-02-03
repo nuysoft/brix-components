@@ -15,7 +15,7 @@ define(
     [
         'jquery', 'underscore', 'Sortable',
         'brix/event',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './column-priority.tpl.js'
     ],
     function(

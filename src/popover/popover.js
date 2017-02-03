@@ -49,7 +49,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/base',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './popover.tpl.js'
     ],
     function(

@@ -39,7 +39,7 @@ define(
     [
         'jquery', 'underscore', 'moment',
         'brix/base', 'brix/event',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './hourpicker.tpl.js'
     ],
     function(

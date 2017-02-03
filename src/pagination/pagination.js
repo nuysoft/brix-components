@@ -42,7 +42,7 @@ define(
     [
         'jquery', 'underscore',
         'brix/loader', 'components/base', 'brix/event',
-        './state.js',
+        './state/state.js',
         './pagination.tpl.js'
     ],
     function(

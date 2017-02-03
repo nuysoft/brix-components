@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore',
-        '../pagination/state.js'
+        '../pagination/state/state.js'
     ],
     function(
         $, _,

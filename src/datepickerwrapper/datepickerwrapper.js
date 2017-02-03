@@ -54,7 +54,7 @@ define(
         'jquery', 'underscore', 'moment',
         'brix/loader', 'components/base', 'brix/event',
         'components/datepicker/ancient',
-        '../dialog/position.js',
+        '../dialog/position/position.js',
         './datepickerwrapper.tpl.js'
     ],
     function(
