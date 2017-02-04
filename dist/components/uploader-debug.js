@@ -162,13 +162,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            $iframeResult.length ? $iframeResult.text() : $iframeBody.text()
 	                        )
 	                        Uploader.parseJSONResponse(response, function(error, response) {
-	                            if (error) defer.reject(error)
-	                            else defer.resolve(response)
+	                            if (error) defer.reject(error, iframe)
+	                            else defer.resolve(response, iframe)
 	                        })
 	                        $(iframe).remove()
 	                    })
 	                    .on('error', function(event) {
-	                        defer.reject(event)
+	                        var iframe = event.target
+	                        defer.reject(event, iframe)
 	                    })
 
 	                form.submit()
@@ -190,23 +191,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	                xhr.open('post', options.action, true)
 	                xhr.upload.onprogress = function(event) {
 	                    event.percent = Math.round((event.loaded / event.total) * 100)
-	                    defer.notify(event)
+	                    defer.notify(event, xhr)
 	                }
 	                xhr.onload = function( /*event*/ ) {
 	                    var response = xhr.responseText
 	                    Uploader.parseJSONResponse(response, function(error, response) {
-	                        if (error) defer.reject(error)
-	                        else defer.resolve(response)
+	                        if (error) defer.reject(error, xhr)
+	                        else defer.resolve(response, xhr)
 	                    })
 	                }
 	                xhr.onerror = function(event) {
-	                    defer.reject(event)
+	                    defer.reject(event, xhr)
 	                }
 	                xhr.onabort = function( /*event*/ ) {
-	                    defer.reject('canceled')
+	                    defer.reject('canceled', xhr)
 	                }
 	                xhr.ontimeout = function( /*event*/ ) {
-	                    defer.reject('timeout')
+	                    defer.reject('timeout', xhr)
 	                }
 	                xhr.send(data)
 
@@ -281,14 +282,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 
 	                        uploader.send(form, input).then(
-	                            function(response) {
-	                                uploader.trigger('success' + NAMESPACE, [input.files, response])
+	                            function(response, transport) {
+	                                uploader.trigger('success' + NAMESPACE, [input.files, response, transport])
 	                            },
-	                            function(reason) {
-	                                uploader.trigger('error' + NAMESPACE, [input.files, reason])
+	                            function(reason, transport) {
+	                                uploader.trigger('error' + NAMESPACE, [input.files, reason, transport])
 	                            },
-	                            function(event) {
-	                                uploader.trigger('progress' + NAMESPACE, [input.files, event])
+	                            function(event, transport) {
+	                                uploader.trigger('progress' + NAMESPACE, [input.files, event, transport])
 	                            }
 	                        ).always(function() {
 	                            try {
