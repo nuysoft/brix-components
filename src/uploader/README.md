@@ -39,9 +39,9 @@ accept    | stirng  | `''`       | 指定服务端可接受的文件类型，例
 事件类型          | 说明
 :---------------- | :----------
 start.uploader    | 开始上传，如果返回 false，则终止上传。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
-progress.uploader | 上传进度。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和一个 [ProgressEvent] 事件对象 `state`。
-success.uploader  | 上传成功。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和响应内容 `response`。
-error.uploader    | 上传失败。监听函数接受 3 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和错误描述 `reason`。
+progress.uploader | 上传进度。监听函数接受 4 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和一个 [ProgressEvent] 事件对象 `state`，以及实际执行上传任务的发送器 `transport`（iframe 元素或 XHR 对象）。
+success.uploader  | 上传成功。监听函数接受 4 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和响应内容 `response`，以及实际执行上传任务的发送器 `transport`（iframe 元素或 XHR 对象）。
+error.uploader    | 上传失败。监听函数接受 4 个参数：jQuery 事件对象 `event`、上传的文件数组 `files` 和错误描述 `reason`，以及实际执行上传任务的发送器 `transport`（iframe 元素或 XHR 对象）。
 complete.uploader | 上传完成。监听函数接受 2 个参数：jQuery 事件对象 `event` 和上传的文件数组 `files` 。
 
 > 如果在事件 `start.uploader` 的监听函数中调用了 `event.preventDefault()`，则立即终止上传。
@@ -56,13 +56,13 @@ var instances = Loader.query('components/uploader')
 instances.on('start.uploader', function(event, files) {
     console.log(event.type, event.namespace, event.components, files)
 })
-instances.on('progress.uploader', function(event, files, state) {
+instances.on('progress.uploader', function(event, files, state, transport) {
     console.log(event.type, event.namespace, files, state)
 })
-instances.on('success.uploader', function(event, files, response) {
+instances.on('success.uploader', function(event, files, response, transport) {
     console.log(event.type, event.namespace, files, response)
 })
-instances.on('error.uploader', function(event, files, reason) {
+instances.on('error.uploader', function(event, files, reason, transport) {
     console.log(event.type, event.namespace, files, reason)
 })
 instances.on('complete.uploader', function(event, files) {
