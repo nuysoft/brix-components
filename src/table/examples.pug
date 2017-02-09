@@ -307,6 +307,21 @@ html
                                     tr
                                         each tdIndex in [0,1,2,3,4]
                                             td 表#{tableIndex} 行#{trIndex} 列#{tdIndex}
+        h3.fontsize-16 高亮行
+        div.container
+            div.row
+                each tableIndex in [0,1,2]
+                    div.col-sm-4(style="margin-bottom: 100px;")
+                        table.table.table-hover.table-fixed(bx-name="components/table" data-sticky="true" data-row-cursor="true")
+                            thead
+                                tr
+                                    each thIndex in [0,1,2,3,4]
+                                        th 表#{tableIndex} 列#{thIndex}
+                            tbody
+                                each trIndex in [0,1,2,3,4]
+                                    tr
+                                        each tdIndex in [0,1,2,3,4]
+                                            td 表#{tableIndex} 行#{trIndex} 列#{tdIndex}
 
         <div id="sexLinkage" bx-name>
             <label class="group"><input type="checkbox" data-linkage-name="Brix"> Brix</label>

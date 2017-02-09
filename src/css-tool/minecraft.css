@@ -2481,7 +2481,8 @@ table tbody tr:hover .editable-toggle {
 .table tbody tr.active td {
   background-color: transparent;
 }
-.table tbody tr:hover {
+.table tbody tr:hover,
+.table tbody tr.hover {
   background-color: #FAF3EB;
 }
 .table tbody tr.active:hover td {

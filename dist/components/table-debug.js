@@ -122,6 +122,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    PLACEMENT: 'column-priority-placement',
 	                    ALIGN: 'column-priority-align'
 	                }
+	            },
+	            CURSOR: {
+	                ROW: 'row-cursor',
+	                COL: 'col-cussor' // TODO
 	            }
 	        }
 
@@ -134,6 +138,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            render: function() {
 	                var that = this
+
+	                if (this.options[Constant.CURSOR.ROW]) {
+	                    // 默认高亮首行
+	                    this.__$rowCursor = this.$element.find('> tbody > tr:first').addClass('hover')
+
+	                    // 保留高亮行
+	                    this.$element.on('mouseenter', '> tbody > tr', function(event) {
+	                        that.__$rowCursor.removeClass('hover')
+	                        that.__$rowCursor = $(event.currentTarget).addClass('hover')
+	                    })
+	                }
+	                if (this.options[Constant.CURSOR.COL]) {
+	                    // TODO
+	                }
 
 	                /* jshint unused:false */
 	                linkage(this.element, function(event, values, target) {
