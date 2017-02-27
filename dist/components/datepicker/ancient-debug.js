@@ -615,8 +615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.__cursor || 0
 
 	                var that = this
-	                var unlimitMode = this.__isUnlimitMode()
-	                if (unlimitMode) date = moment().startOf('day')
+	                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
 	                var $yearPickers = this.$element.find('.year')
 	                _.each($yearPickers, function(item, index) {
@@ -677,8 +676,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.__cursor || 0
 
 	                var that = this
-	                var unlimitMode = this.__isUnlimitMode()
-	                if (unlimitMode) date = moment().startOf('day')
+	                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
 	                var $monthPickers = this.$element.find('.month')
 	                _.each($monthPickers, function(item, index) {
@@ -722,7 +720,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.__cursor || 0
 
 	                var that = this
-	                if (this.__isUnlimitMode()) date = moment().startOf('day')
+	                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
 	                var $datePickers = this.$element.find('.day') // 可能有多个日历面板
 	                _.each($datePickers, function(item, index) {
@@ -909,6 +907,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return DatePicker
 	            // return Brix.extend({})
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+
 	/*
 	    Reference:
 	        [Bootstrap Component Sample](http://zombiej.github.io/bootstrap-components-3.0/)

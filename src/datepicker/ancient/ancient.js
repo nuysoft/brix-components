@@ -555,8 +555,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                var unlimitMode = this.__isUnlimitMode()
-                if (unlimitMode) date = moment().startOf('day')
+                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
                 var $yearPickers = this.$element.find('.year')
                 _.each($yearPickers, function(item, index) {
@@ -617,8 +616,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                var unlimitMode = this.__isUnlimitMode()
-                if (unlimitMode) date = moment().startOf('day')
+                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
                 var $monthPickers = this.$element.find('.month')
                 _.each($monthPickers, function(item, index) {
@@ -662,7 +660,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                if (this.__isUnlimitMode()) date = moment().startOf('day')
+                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
 
                 var $datePickers = this.$element.find('.day') // 可能有多个日历面板
                 _.each($datePickers, function(item, index) {
@@ -850,6 +848,7 @@ define(
             // return Brix.extend({})
     }
 )
+
 /*
     Reference:
         [Bootstrap Component Sample](http://zombiej.github.io/bootstrap-components-3.0/)
