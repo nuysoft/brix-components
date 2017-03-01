@@ -244,11 +244,13 @@
             <div class="col-xs-6">
                 <h3 class="fontsize-16">支持不限（单个日期选择器）。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-unlimits="['2099-1-1']">
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-dates="['2099-1-1']" data-unlimits="['2099-1-1']">
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">支持不限（多个日期选择器）。</h3>
                 <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2099-1-1']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">不限</span></div>
                 <div class="predefined"></div>
             </div>
         </div>

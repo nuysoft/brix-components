@@ -555,7 +555,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
+                if (this.__isUnlimitMode() && this.options.unlimit.isSame(date)) date = moment().startOf('day') // #108
 
                 var $yearPickers = this.$element.find('.year')
                 _.each($yearPickers, function(item, index) {
@@ -616,7 +616,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
+                if (this.__isUnlimitMode() && this.options.unlimit.isSame(date)) date = moment().startOf('day') // #108
 
                 var $monthPickers = this.$element.find('.month')
                 _.each($monthPickers, function(item, index) {
@@ -660,7 +660,7 @@ define(
                     this.__cursor || 0
 
                 var that = this
-                    // if (this.__isUnlimitMode()) date = moment().startOf('day') // #108
+                if (this.__isUnlimitMode() && this.options.unlimit.isSame(date)) date = moment().startOf('day') // #108
 
                 var $datePickers = this.$element.find('.day') // 可能有多个日历面板
                 _.each($datePickers, function(item, index) {

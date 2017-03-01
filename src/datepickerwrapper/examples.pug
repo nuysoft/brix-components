@@ -84,6 +84,7 @@ html
             div.col-xs-6
                 h3.fontsize-16 支持不限（单个日期选择器）。
                 input.form-control.w100(bx-name='components/datepickerwrapper' data-unlimits="['2099-1-1']")
+                input.form-control.w100(bx-name='components/datepickerwrapper' data-dates="['2099-1-1']" data-unlimits="['2099-1-1']")
                 div.predefined
             div.col-xs-6
                 h3.fontsize-16 支持不限（多个日期选择器）。
@@ -91,6 +92,10 @@ html
                     span.mr7(data-index=0) 2015-1-1
                     span 至
                     span.ml7(data-index=1) 2015-1-2
+                div.form-control.w300(bx-name='components/datepickerwrapper' data-dates="['2015-1-1', '2099-1-1']" data-unlimits="[undefined, '2099-1-1']")
+                    span.mr7(data-index=0) 2015-1-1
+                    span 至
+                    span.ml7(data-index=1) 不限
                 div.predefined
         div.row.mb20
             div.col-xs-6
