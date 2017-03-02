@@ -208,6 +208,26 @@ html
                 option(value=2) Another action
                 option(value=3) Something else here
             div.predefined
+        div
+            h3.fontsize-16 自定义结构
+            div.dropdown(bx-name='components/dropdown')
+                button.btn.btn-default.dropdown-toggle(type="button" value="" bx-click="toggle()")
+                    span.dropdown-toggle-label -
+                    span.caret_custom.caret_brixfont
+                        span.brixfont.down &#xe623;
+                        span.brixfont.up &#xe62e;
+                div.dropdown-menu-wrapper
+                    ul.dropdown-menu
+                        li
+                            a(href="javascript:;" value="1" bx-click="select()")
+                                span Action
+                        li
+                            a(href="javascript:;" value="2" bx-click="select()")
+                                span Another action
+                        li
+                            a(href="javascript:;" value="3" bx-click="select()")
+                                span Something else here
+            div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

@@ -343,7 +343,7 @@ define(
                 var value = $target.attr('value')
                 var label = $.trim($target.text())
 
-                switch (this.options.multiple) {
+                switch (!!this.options.multiple) {
                     case true:
                         var $li = $target.closest('li')
                         if (!$li.attr('data-excluded')) {

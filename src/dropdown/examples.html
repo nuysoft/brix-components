@@ -411,6 +411,20 @@
             </select>
             <div class="predefined"></div>
         </div>
+        <div>
+            <h3 class="fontsize-16">自定义结构</h3>
+            <div class="dropdown" bx-name="components/dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" value="" bx-click="toggle()"><span class="dropdown-toggle-label">-</span><span class="caret_custom caret_brixfont"><span class="brixfont down">&#xe623;</span><span class="brixfont up">&#xe62e;</span></span></button>
+                <div class="dropdown-menu-wrapper">
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" value="1" bx-click="select()"><span>Action</span></a></li>
+                        <li><a href="javascript:;" value="2" bx-click="select()"><span>Another action</span></a></li>
+                        <li><a href="javascript:;" value="3" bx-click="select()"><span>Something else here</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="predefined"></div>
+        </div>
         <script>
             //- require(['css!deps/highlightjs/styles/github.css'])
             require(['brix/loader', 'jquery', 'underscore', 'highlightjs'], function(Loader, $, _, hljs) {
