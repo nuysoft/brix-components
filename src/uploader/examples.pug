@@ -28,14 +28,14 @@ html
                 div.predefined
         form.row.mb20
             div.col-xs-6
-                h3.fontsize-16 通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code>
+                h3.fontsize-16 通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code>（不支持 <code>progress</code> 事件）
                 button(bx-name="components/uploader" data-name="foo" data-action="api/upload.json" data-transport="iframe" type="button" class="btn btn-default")
                     span.glyphicon.glyphicon-open.mr5
                     span 选择文件
                 div.preview
                 div.predefined
             div.col-xs-6
-                h3.fontsize-16 通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code>
+                h3.fontsize-16 通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code>（支持 <code>progress</code> 事件）
                 button(bx-name="components/uploader" data-name="bar" data-action="api/upload.json" data-transport="xhr" type="button" class="btn btn-default")
                     span.glyphicon.glyphicon-open.mr5
                     span 选择文件
@@ -43,10 +43,33 @@ html
                     div.progress-bar
                 div.preview
                 div.predefined
+        form.row.mb20
+            div.col-xs-6
+                h3.fontsize-16 支持 brix-event，通过 <code>iframe</code> 上传
+                button.btn.btn-default(bx-name='components/uploader' data-action='api/upload.json' data-name='baz' data-transport="iframe" 
+                    on-start    = "console.log('>>> start', arguments)" 
+                    on-progress = "console.log('>>> progress', arguments)" 
+                    on-success  = "console.log('>>> success', arguments)" 
+                    on-error    = "console.log('>>> error', arguments)" 
+                    on-complete = "console.log('>>> complete', arguments)" 
+                ) 选择文件
+                div.preview
+                div.predefined
+            div.col-xs-6
+                h3.fontsize-16 支持 brix-event，通过 <code>XHR</code> 上传
+                button.btn.btn-default(bx-name='components/uploader' data-action='api/upload.json' data-name='baz' data-transport="xhr" 
+                    on-start    = "console.log('>>> start', arguments)" 
+                    on-progress = "console.log('>>> progress', arguments)" 
+                    on-success  = "console.log('>>> success', arguments)" 
+                    on-error    = "console.log('>>> error', arguments)" 
+                    on-complete = "console.log('>>> complete', arguments)" 
+                ) 选择文件
+                div.preview
+                div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.
-            require(['brix/loader', 'jquery'], function(Loader, $) {
+            require(['brix/loader', 'jquery', 'brix/event'], function(Loader, $, EventManager) {
                 Loader.boot(function() {
                     var instances = Loader.query('components/uploader')
                     instances.on('start.uploader', function(event, files) {
@@ -84,5 +107,9 @@ html
                     instances.on('complete.uploader', function(event, files) {
                         console.log(event.type, event.namespace, files)
                     })
+
+                    // EventManager
+                    var $manager = new EventManager('on-')
+                    $manager.delegate(document.body, {})
                 })
             })

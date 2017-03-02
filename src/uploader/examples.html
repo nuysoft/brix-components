@@ -202,17 +202,31 @@
         </form>
         <form class="row mb20">
             <div class="col-xs-6">
-                <h3 class="fontsize-16">通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code></h3>
+                <h3 class="fontsize-16">通过 <code>iframe</code> 上传 <code>data-transport="iframe"</code>（不支持 <code>progress</code> 事件）</h3>
                 <button class="btn btn-default" bx-name="components/uploader" data-name="foo" data-action="api/upload.json" data-transport="iframe" type="button"><span class="glyphicon glyphicon-open mr5"></span><span>选择文件</span></button>
                 <div class="preview"></div>
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
-                <h3 class="fontsize-16">通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code></h3>
+                <h3 class="fontsize-16">通过 <code>XHR</code> 上传 <code>data-transport="xhr"</code>（支持 <code>progress</code> 事件）</h3>
                 <button class="btn btn-default" bx-name="components/uploader" data-name="bar" data-action="api/upload.json" data-transport="xhr" type="button"><span class="glyphicon glyphicon-open mr5"></span><span>选择文件</span></button>
                 <div class="progress w300 mt10 mb10">
                     <div class="progress-bar"></div>
                 </div>
+                <div class="preview"></div>
+                <div class="predefined"></div>
+            </div>
+        </form>
+        <form class="row mb20">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">支持 brix-event，通过 <code>iframe</code> 上传</h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-action="api/upload.json" data-name="baz" data-transport="iframe" on-start="console.log('&gt;&gt;&gt; start', arguments)" on-progress="console.log('&gt;&gt;&gt; progress', arguments)" on-success="console.log('&gt;&gt;&gt; success', arguments)" on-error="console.log('&gt;&gt;&gt; error', arguments)" on-complete="console.log('&gt;&gt;&gt; complete', arguments)">选择文件</button>
+                <div class="preview"></div>
+                <div class="predefined"></div>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">支持 brix-event，通过 <code>XHR</code> 上传</h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-action="api/upload.json" data-name="baz" data-transport="xhr" on-start="console.log('&gt;&gt;&gt; start', arguments)" on-progress="console.log('&gt;&gt;&gt; progress', arguments)" on-success="console.log('&gt;&gt;&gt; success', arguments)" on-error="console.log('&gt;&gt;&gt; error', arguments)" on-complete="console.log('&gt;&gt;&gt; complete', arguments)">选择文件</button>
                 <div class="preview"></div>
                 <div class="predefined"></div>
             </div>
@@ -273,7 +287,7 @@
             })
         </script>
         <script>
-            require(['brix/loader', 'jquery'], function(Loader, $) {
+            require(['brix/loader', 'jquery', 'brix/event'], function(Loader, $, EventManager) {
                 Loader.boot(function() {
                     var instances = Loader.query('components/uploader')
                     instances.on('start.uploader', function(event, files) {
@@ -311,6 +325,10 @@
                     instances.on('complete.uploader', function(event, files) {
                         console.log(event.type, event.namespace, files)
                     })
+            
+                    // EventManager
+                    var $manager = new EventManager('on-')
+                    $manager.delegate(document.body, {})
                 })
             })
         </script>
