@@ -302,9 +302,13 @@ define(
                             }
                         }
                     })
-                    pickerComponent.$element.on('click', '.timepicker .timepicker-footer .cancel', function() {
-                        that.hide()
-                    })
+                    pickerComponent.$element
+                        .on('click', '.timepicker .timepicker-footer .cancel', function() { // components/datepicker
+                            that.hide()
+                        })
+                        .on('click', '.hour-minute-second .hour-minute-second-footer .cancel', function() { // components/datepicker/ancient
+                            that.hide()
+                        })
 
                     if (defer) defer.resolve()
                 })
@@ -370,9 +374,13 @@ define(
                             that.options.unlimits[index]
                         )
                         inputs.eq(index).val(value)
-                        item.$element.on('click', '.timepicker .timepicker-footer .cancel', function() {
-                            pickers.eq(index).hide()
-                        })
+                        item.$element
+                            .on('click', '.timepicker .timepicker-footer .cancel', function() { // components/datepicker
+                                pickers.eq(index).hide()
+                            })
+                            .on('click', '.hour-minute-second .hour-minute-second-footer .cancel', function() { // components/datepicker/ancient
+                                pickers.eq(index).hide()
+                            })
                     })
 
                     if (defer) defer.resolve()
