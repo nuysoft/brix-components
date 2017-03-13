@@ -231,6 +231,14 @@
                 <div class="predefined"></div>
             </div>
         </form>
+        <div class="row mb20">
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">如果没有用 <code>form</code> 元素包裹 Uploader 组件，则自动包裹一层 <code>&lt;form class="uploader-ghost-form"&gt;</code>。</h3>
+                <button class="btn btn-default" bx-name="components/uploader" data-action="api/upload.json" data-name="foo">选择文件</button>
+                <div class="preview"></div>
+                <div class="predefined"></div>
+            </div>
+        </div>
         <script>
             //- require(['css!deps/highlightjs/styles/github.css'])
             require(['brix/loader', 'jquery', 'underscore', 'highlightjs'], function(Loader, $, _, hljs) {

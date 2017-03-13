@@ -66,6 +66,12 @@ html
                 ) 选择文件
                 div.preview
                 div.predefined
+        div.row.mb20
+            div.col-xs-6
+                h3.fontsize-16 如果没有用 <code>form</code> 元素包裹 Uploader 组件，则自动包裹一层 <code>&lt;form class="uploader-ghost-form"&gt;</code>。
+                button.btn.btn-default(bx-name='components/uploader' data-action='api/upload.json' data-name='foo') 选择文件
+                div.preview
+                div.predefined
         //- 启动
         include ../../doc/boot.pug
         script.

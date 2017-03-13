@@ -268,6 +268,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (this.options.accept) $relatedElement.prop('accept', this.options.accept)
 
 	                var form = $relatedElement[0].form
+	                if (!form) {
+	                    $relatedElement.wrap('<form class="uploader-ghost-form">')
+	                    form = $relatedElement[0].form
+	                }
+
 	                $(form).off('change' + NAMESPACE)
 	                    .on('change' + NAMESPACE, 'input[type=file]' + TOKEN_SELECTOR, function(event) {
 	                        var input = event.currentTarget
