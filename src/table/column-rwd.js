@@ -130,7 +130,7 @@ define(
             // 自动应用 priority 插件：增加标识 data-column-id
             _.each($ths, function(item, index) {
                 item = $(item)
-                if (index >= range[0] && index < range[1]) {
+                if (index >= range[0] && (range[1] === 0 || index < range[1])) {
                     if (item.data(Constant.COLUMN.ID) !== undefined) return
                     item.attr('data-' + Constant.COLUMN.ID, Constant.UUID++)
                 }
