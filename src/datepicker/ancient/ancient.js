@@ -144,6 +144,8 @@ define(
         DatePicker.MODES = MODES
         DatePicker.UNITS = UNITS
         DatePicker.PATTERNS = PATTERNS
+        DatePicker.FixPattern = FixPattern
+        DatePicker.FixRelNumAndPattern = FixRelNumAndPattern
 
         // type string => type map
         DatePicker.parseTypeAsMap = function(type) {

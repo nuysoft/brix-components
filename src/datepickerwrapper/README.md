@@ -133,7 +133,7 @@ excluded.forEach(function(item, index){
 
 事件类型                 | 说明
 :----------------------- | :----------
-change.datepickerwrapper | 当日期组件变化时被触发。事件监听函数接受 3 个参数：event、dates。参数 `event` 是一个 [jQuery 事件对象]；参数 `dates` 是一个 [moment 对象数组]。
+change.datepickerwrapper | 当日期组件变化时被触发。事件监听函数接受 2 个参数：event、dates。参数 `event` 是一个 [jQuery 事件对象]；参数 `dates` 是一个 [moment 对象数组]。
 
 [jQuery 事件对象]: http://api.jquery.com/category/events/event-object/
 [moment 对象数组]: http://momentjs.com/docs/

@@ -135,6 +135,7 @@ define(
             init: function() {
                 // 修正选项
                 this.options.typeMap = DatePicker.parseTypeAsMap(this.options.type)
+                this.options.__NEED_FIXED_RENDER = this.options.dates.length !== 0
                 if (this.options.dates.length > 1) this.options.mode = 'multiple'
                 if (!this.options.dates.length) this.options.dates = [moment().startOf('day').format(DATE_PATTERN)]
 
@@ -257,6 +258,7 @@ define(
             },
             _signal: function(defer) {
                 var that = this
+                if (this.options.__NEED_FIXED_RENDER) this._fixedRender()
                 Loader.boot(true, this.$relatedElement, function( /*records*/ ) {
                     var pickerComponent = Loader.query(CALENDAR, that.$relatedElement)[0]
                         /* jshint unused:false */
@@ -315,6 +317,7 @@ define(
             },
             _multiple: function(defer) {
                 var that = this
+                if (this.options.__NEED_FIXED_RENDER) this._fixedRender()
                 Loader.boot(true, this.$relatedElement, function() {
                     var inputWrapper = $('.datepickerwrapper-inputs', that.$relatedElement)
                     var inputs = $('input', inputWrapper)
@@ -384,6 +387,45 @@ define(
                     })
 
                     if (defer) defer.resolve()
+                })
+            },
+            // 如果设置了初始值，则自动渲染到组件上。
+            // TODO 单选和多选的更新也调用 _fixedRender()。
+            _fixedRender: function() {
+                var that = this
+                var dates = that.options.dates
+                var items = $('[data-index]', that.$element)
+                if (items.length) {
+                    _.each(items, function(item, index) {
+                        var $item = $(item)
+                        index = +$item.attr('data-index')
+                        $item[RE_INPUT.test(item.nodeName) ? 'val' : 'html'](
+                            that._unlimitFilter(
+                                moment(dates[index], _.isString(dates[index]) && DATE_TIME_PATTERN),
+                                that.options.unlimits[index]
+                            )
+                        )
+                    })
+                } else {
+                    that.$element[RE_INPUT.test(that.element.nodeName) ? 'val' : 'html'](
+                        _.map(dates, function(item, index) {
+                            return that._unlimitFilter(
+                                moment(item, _.isString(item) && DATE_TIME_PATTERN),
+                                that.options.unlimits[index]
+                            )
+                        }).join(', ')
+                    )
+                }
+
+                items = $('[data-hidden-index]', that.$element)
+                _.each(items, function(item, index) {
+                    var $item = $(item)
+                    index = +$item.attr('data-hidden-index')
+                    var value = that._unlimitFilter(
+                        moment(dates[index], _.isString(dates[index]) && DATE_TIME_PATTERN),
+                        undefined
+                    )
+                    $item.val(value)
                 })
             },
             _unlimitFilter: function(date, unlimit) {

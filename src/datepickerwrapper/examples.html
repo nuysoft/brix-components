@@ -189,8 +189,18 @@
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
-                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器。</h3>
+                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器，带有有初始值。</h3>
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-dates="['2017-1-1']" type="text">
+                <div class="predefined"></div>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器，带有 2 个日历面板。</h3>
                 <input class="form-control w100" bx-name="components/datepickerwrapper" data-pages="2" type="text">
+                <div class="predefined"></div>
+            </div>
+            <div class="col-xs-6">
+                <h3 class="fontsize-16">为 <code>input</code> 元素绑定日期选择器，带有 3 个日历面板。</h3>
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-pages="3" type="text">
                 <div class="predefined"></div>
             </div>
         </div>
@@ -207,36 +217,38 @@
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">绑定 2 个日期选择器。</h3>
-                <div class="form-control datepickerwrapper-trigger" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']"><span data-index="0">2015-1-1</span><span>&nbsp;至&nbsp;</span><span data-index="1">2015-1-2</span><i class="brixfont pull-right ml5 down"> &#xe623;<!--&#xe623;--></i><i class="brixfont pull-right ml5 up">   &#xe62e;<!--&#xe62e;--></i></div>
+                <div class="form-control datepickerwrapper-trigger" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']"><span data-index="0">-</span><span>&nbsp;至&nbsp;</span><span data-index="1">-</span><i class="brixfont pull-right ml5 down"> &#xe623;<!--&#xe623;--></i><i class="brixfont pull-right ml5 up">   &#xe62e;<!--&#xe62e;--></i></div>
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">自定义快捷日期。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" bx-options="{                        shortcuts: { '一期': ['2015-1-1 8:00:00', '2015-3-14 18:00:00'] }                    }"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']" bx-options="{                        shortcuts: { '一期': ['2017-1-1 8:00:00', '2017-3-14 18:00:00'] }                    }"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span></div>
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">绑定 3 个日期选择器。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2', '2015-1-3']"><span class="mr7" data-index="0">2015-1-1</span><span class="mr7" data-index="1">2015-1-2</span><span class="mr7" data-index="2">2015-1-3</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2', '2017-1-3']"><span class="mr7" data-index="0">2017-1-1</span><span class="mr7" data-index="1">2017-1-2</span><span class="mr7" data-index="2">2017-1-3</span></div>
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">自定义快捷日期。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2', '2015-1-3']" bx-options="{                        shortcuts: { '一期':['2015-1-1', '2015-3-14', '2015-6-1'] }                    }"><span class="mr7" data-index="0">2015-1-1</span><span class="mr7" data-index="1">2015-1-2</span><span class="mr7" data-index="2">2015-1-3</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2', '2017-1-3']" bx-options="{                        shortcuts: { '一期':['2017-1-1', '2017-3-14', '2017-6-1'] }                    }"><span class="mr7" data-index="0">2017-1-1</span><span class="mr7" data-index="1">2017-1-2</span><span class="mr7" data-index="2">2017-1-3</span></div>
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">设置可选范围：最小日期（单个日期选择器）。</h3>
-                <input class="form-control w100" bx-name="components/datepickerwrapper" data-ranges="[[new Date(), '2015-3-14']]">
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-ranges="[[new Date(), '2017-3-14']]">
+                <input class="form-control w100" bx-name="components/datepickerwrapper" data-ranges="[['+=1', '+=9']]">
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">设置可选范围：最小日期（多个日期选择器）。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-ranges="[['2015-1-1', '2015-1-2']]"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']" data-ranges="[['2017-1-1', '2017-3-14']]"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']" data-ranges="[['2017-1-1', '+=9']]"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span></div>
                 <div class="predefined"></div>
             </div>
         </div>
@@ -249,8 +261,8 @@
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">支持不限（多个日期选择器）。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2099-1-1']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">不限</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span></div>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2099-1-1']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">不限</span></div>
                 <div class="predefined"></div>
             </div>
         </div>
@@ -262,15 +274,14 @@
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">单个日期选择器：自动同步至隐藏域，并触发隐藏域的 <code>change</code> 事件。</h3><a href="javascript:;" bx-name="components/datepickerwrapper">
-                    <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
-                    <data data-index="0">请选择日期</data></a>
+                    <input type="hidden" data-hidden-index="0" onchange="alert(this.value)"><span data-index="0">请选择日期</span></a>
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期选择器：自动同步至隐藏域，并触发隐藏域的 change 事件。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="[ '2015-1-1', '2015-1-2']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="[ '2017-1-1', '2017-1-2']"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span>
                     <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
                     <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
                 </div>
@@ -278,7 +289,7 @@
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">对于不限，隐藏域的值是真实日期。</h3>
-                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span>
+                <div class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']" data-unlimits="[undefined, '2099-1-1']"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span>
                     <input type="hidden" data-hidden-index="0" onchange="alert(this.value)">
                     <input type="hidden" data-hidden-index="1" onchange="alert(this.value)">
                 </div>
@@ -293,43 +304,43 @@
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">事件 active、inactive。</h3>
-                <div class="form-control w300 cursor-pointer demo-active" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2015-1-2']"><span class="mr7" data-index="0">2015-1-1</span><span>至</span><span class="ml7" data-index="1">2015-1-2</span></div>
+                <div class="form-control w300 cursor-pointer demo-active" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2017-1-2']"><span class="mr7" data-index="0">2017-1-1</span><span>至</span><span class="ml7" data-index="1">2017-1-2</span></div>
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">日期 + 时间</h3>
-                <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2015-1-1 1:1:1']">
+                <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2017-1-1 1:1:1']">
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">日期 + 时间（小时可修改，分钟和秒不可修改）</h3>
-                <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2015-1-1 1:1:1']">
+                <input class="form-control w200" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2017-1-1 1:1:1']">
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期 + 时间</h3>
-                <input class="form-control w300" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']">
+                <input class="form-control w300" bx-name="components/datepickerwrapper" data-type="date time" data-dates="['2017-1-1 1:1:1', '2016-1-1 1:1:1']">
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">多个日期 + 时间（小时可修改，分钟和秒不可修改）</h3>
-                <input class="form-control w300" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2015-1-1 1:1:1', '2016-1-1 1:1:1']">
+                <input class="form-control w300" bx-name="components/datepickerwrapper" data-type="date hour" data-dates="['2017-1-1 1:1:1', '2016-1-1 1:1:1']">
                 <div class="predefined"></div>
             </div>
         </div>
         <div class="row mb20">
             <div class="col-xs-6">
                 <h3 class="fontsize-16">位于下方 + 左侧对齐（默认）</h3>
-                <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2016-1-1']" data-align="left">
+                <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2016-1-1']" data-align="left">
                 <div class="predefined"></div>
             </div>
             <div class="col-xs-6">
                 <h3 class="fontsize-16">位于下方 + 右侧对齐</h3>
-                <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2015-1-1', '2016-1-1']" data-align="right">
+                <input class="form-control w300" bx-name="components/datepickerwrapper" data-dates="['2017-1-1', '2016-1-1']" data-align="right">
                 <div class="predefined"></div>
             </div>
         </div>
@@ -391,7 +402,11 @@
         <script>
             require(['brix/loader', 'jquery'], function(Loader, $) {
                 Loader.boot(function() {
+                    var pattern = 'YYYY-MM-DD HH:mm:ss.SSS'
                     var instances = Loader.query('components/datepickerwrapper')
+                    instances.on('change.datepickerwrapper', function(event, dates, type){
+                        console.log(event.type, event.namespace, dates.map(date => date.format(pattern)))
+                    })
                 })
             })
             require(['brix/loader', 'jquery', 'underscore'], function(Loader, $, _) {
