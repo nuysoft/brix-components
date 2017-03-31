@@ -6,6 +6,11 @@ define([
 ], function(
   $, _, Handlebars,
   Brix, tpl) {
+  // var $ = require('jquery')
+  // var _ = require('underscore')
+  // var Handlebars = require('handlebars')
+  // var Brix = require('components/base')
+  // var tpl = require('./errortips.tpl')
 
   var ALL_EVENTS = {
     EVENTS: {
@@ -120,6 +125,7 @@ define([
       var tipsWidth = this.options.width
       var duration = this.options.duration
       var fixLeft = 30
+      var elWidth = el.outerWidth()
 
       msg = msg || this.options.msg
 
@@ -140,17 +146,16 @@ define([
           })
         }, duration)
       }
-
       var offset = el.offset()
 
       //heredoc依赖模板引擎
       var tipsTmpl = tpl
-      var _arrLeft = el.outerWidth() / 2 - 10
+      var _arrLeft = tipsWidth / 2 - 10
 
       var tipsHtml = Handlebars.compile(tipsTmpl)({
         width: tipsWidth,
         msg: msg,
-        left: _arrLeft + fixLeft,
+        left: _arrLeft,
         duration: duration
       })
 
@@ -158,9 +163,11 @@ define([
       $('body').append(this._tips)
       var _tipsWidth = this._tips.outerWidth()
       var _tipsHeight = this._tips.outerHeight()
-      var tipsLeft = offset.left - fixLeft
       var tipsTop = offset.top - _tipsHeight - 20
       var tipsTopStart = 0
+
+      //浮层以触发节点为参考居中
+      var tipsLeft = offset.left - ((_tipsWidth - elWidth) / 2)
 
       /**
        * 超过边界调整
@@ -172,13 +179,13 @@ define([
       if (mm > 0) { //右边界
         tipsLeft -= mm
         this._tips.find('.arrow').css({
-          'left': _arrLeft + fixLeft + mm
+          'left': _arrLeft + mm
         })
       }
       //左边界
       if (tipsLeft < 0) {
         this._tips.find('.arrow').css({
-          'left': _arrLeft + fixLeft + tipsLeft
+          'left': _arrLeft + tipsLeft
         })
         tipsLeft = 0
       }
@@ -245,5 +252,6 @@ define([
     }
   })
 
+  // module.exports = Errortips
   return Errortips
 })
