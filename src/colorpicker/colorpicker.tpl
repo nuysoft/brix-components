@@ -7,17 +7,17 @@
         </ul>
     </div>
     <div class="colorpicker-middle clearfix <%= min ? '' : 'open'%>">
-        <i bx-click="_toggleBody" class="uxicon arrow arrow-up">&#404</i>
-        <i bx-click="_toggleBody" class="uxicon arrow arrow-down">&#405</i>
+        <i bx-click="_toggleBody" class="brixfont arrow arrow-up">&#xe634;</i>
+        <i bx-click="_toggleBody" class="brixfont arrow arrow-down">&#xe635;</i>
     </div>
     <div class="colorpicker-body clearfix <%= min ? '' : 'open'%>">
         <div class="picker-wrapper">
             <div class="picker" bx-click="_pickPaletteColor()"></div>
-            <i class="uxicon picker-indicator" bx-mousedown="_dragPickerIndicator()">&#470</i>
+            <i class="brixfont picker-indicator" bx-mousedown="_dragPickerIndicator()">&#xe636;</i>
         </div>
         <div class="slide-wrapper">
             <div class="slide" bx-click="pickSlideColor()"></div>
-            <i class="uxicon slide-indicator" bx-mousedown="_dragSlideIndicator">&#461</i>
+            <i class="brixfont slide-indicator" bx-mousedown="_dragSlideIndicator">&#xe637;</i>
         </div>
     </div>
     <div class="colorpicker-footer clearfix">

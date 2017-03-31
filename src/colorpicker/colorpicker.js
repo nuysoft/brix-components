@@ -245,6 +245,7 @@ define(
                 var that = this
                 $(document.documentElement).css('cursor', 'pointer')
                 event.preventDefault()
+                this._disableAutoHide()
                 $(document.body).on('mousemove.pickerDragNode', function(event) {
                     event.pageX -= 5
                     event.pageY -= 5
@@ -263,13 +264,19 @@ define(
                     else top += 5
 
                     that.hsv({
-                        h: that.h,
+                        h: that.data.h,
                         s: left / width,
                         v: (height - top) / height
                     })
-                }).on('mouseup', function() {
+                }).on('mouseup.pickerDragNode', function() {
                     $(document.documentElement).css('cursor', 'auto')
-                    $(document.body).off('mousemove.pickerDragNode')
+                    $(document.body).off('mousemove.pickerDragNode').off('mouseup.pickerDragNode')
+                    $(document.body).one('click.pickerDragNode.one', function(event){
+                        event.preventDefault()
+                        event.stopPropagation()
+                        event.stopImmediatePropagation()
+                    })
+                    that._autoHide()
                 })
             },
             pickSlideColor: function(event) {
@@ -287,6 +294,7 @@ define(
                 var that = this
                 $(document.documentElement).css('cursor', 'pointer')
                 event.preventDefault()
+                this._disableAutoHide()
                 $(document.body).on('mousemove.slideDragNode', function(event) {
                     event.pageX -= 5
                     event.pageY -= 5
@@ -300,12 +308,18 @@ define(
 
                     that.hsv({
                         h: top / that.$slideNode.height() * 360,
-                        s: that.s,
-                        v: that.v
+                        s: that.data.s,
+                        v: that.data.v
                     })
-                }).on('mouseup', function() {
+                }).on('mouseup.slideDragNode', function() {
                     $(document.documentElement).css('cursor', 'auto')
-                    $(document.body).off('mousemove.slideDragNode')
+                    $(document.body).off('mousemove.slideDragNode').off('mouseup.slideDragNode')
+                    $(document.body).one('click.slideDragNode.one', function(event){
+                        event.preventDefault()
+                        event.stopPropagation()
+                        event.stopImmediatePropagation()
+                    })
+                    that._autoHide()
                 })
             },
             _inputColor: function(event) {
@@ -346,12 +360,17 @@ define(
                 this.$element.triggerHandler('change')
                 this.hide()
             },
+            _disableAutoHide: function() {
+                var type = 'click.colorpicker_autohide_' + this.clientId
+                $(document.body).off(type)
+            },
             _autoHide: function() {
                 var that = this
                 var type = 'click.colorpicker_autohide_' + this.clientId
                 $(document.body).off(type)
                     .on(type, function(event) {
                         if (that.element === event.target) return
+                        if (that.$relatedElement[0] === event.target) return
                         if (that.$relatedElement.has(event.target).length) return
                         that.hide()
                     })
