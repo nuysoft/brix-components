@@ -9,17 +9,17 @@ define(function() {
         "        </ul>\n" +
         "    </div>\n" +
         "    <div class=\"colorpicker-middle clearfix <%= min ? '' : 'open'%>\">\n" +
-        "        <i bx-click=\"_toggleBody\" class=\"uxicon arrow arrow-up\">&#404</i>\n" +
-        "        <i bx-click=\"_toggleBody\" class=\"uxicon arrow arrow-down\">&#405</i>\n" +
+        "        <i bx-click=\"_toggleBody\" class=\"brixfont arrow arrow-up\">&#xe634;</i>\n" +
+        "        <i bx-click=\"_toggleBody\" class=\"brixfont arrow arrow-down\">&#xe635;</i>\n" +
         "    </div>\n" +
         "    <div class=\"colorpicker-body clearfix <%= min ? '' : 'open'%>\">\n" +
         "        <div class=\"picker-wrapper\">\n" +
         "            <div class=\"picker\" bx-click=\"_pickPaletteColor()\"></div>\n" +
-        "            <i class=\"uxicon picker-indicator\" bx-mousedown=\"_dragPickerIndicator()\">&#470</i>\n" +
+        "            <i class=\"brixfont picker-indicator\" bx-mousedown=\"_dragPickerIndicator()\">&#xe636;</i>\n" +
         "        </div>\n" +
         "        <div class=\"slide-wrapper\">\n" +
         "            <div class=\"slide\" bx-click=\"pickSlideColor()\"></div>\n" +
-        "            <i class=\"uxicon slide-indicator\" bx-mousedown=\"_dragSlideIndicator\">&#461</i>\n" +
+        "            <i class=\"brixfont slide-indicator\" bx-mousedown=\"_dragSlideIndicator\">&#xe637;</i>\n" +
         "        </div>\n" +
         "    </div>\n" +
         "    <div class=\"colorpicker-footer clearfix\">\n" +
