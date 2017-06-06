@@ -130,11 +130,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // [阅后即焚 Burn After Reading](http://movie.douban.com/subject/2054933/)
 	        Uploader.burn = function(input) {
 	            var $input = $(input)
-	            $input.replaceWith(
-	                $input.clone(true, true)
+	            var $newInput = $input.clone(true, true)
+	            try { $newInput[0].value = '' } catch(e) {}
+	            $newInput
 	                .attr(TOKEN, tokon())
 	                .prop('clientId', $input.prop('clientId'))
-	            )
+	            $input.replaceWith($newInput)
 	        }
 
 	        // 发送器
