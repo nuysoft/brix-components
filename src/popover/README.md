@@ -3,11 +3,11 @@
 浮层。
 
 ```html
-<div bx-name="components/popover" bx-options="{
-    placement: 'top',
-    title: 'Popover on top',
-    content: 'Envy is the ulcer of the soul.'
-}" class="btn btn-default">Popover on top</div>
+<div bx-name="components/popover"
+    data-placement="top"
+    data-title="Popover on top"
+    data-content="Envy is the ulcer of the soul."
+    class="btn btn-default">Popover on top</div>
 ```
 
 ## 配置

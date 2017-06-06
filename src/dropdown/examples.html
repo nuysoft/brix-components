@@ -376,25 +376,31 @@
         </div>
         <div>
             <h3 class="fontsize-16">支持多选 <code>multiple</code>，并排除某个选项</h3>
-            <select bx-name="components/dropdown-debug" data-value="[1]" multiple data-excluded="['']">
+            <select bx-name="components/dropdown" data-value="[1]" multiple data-excluded="['']">
                 <option value="">Please</option>
                 <option value="1">Action</option>
                 <option value="2">Another action</option>
                 <option value="3">Something else here</option>
             </select>
-            <select bx-name="components/dropdown-debug" data-value="1" multiple data-excluded="['']">
+            <select bx-name="components/dropdown" data-value="1" multiple data-excluded="['']">
                 <option value="">Please</option>
                 <option value="1">Action</option>
                 <option value="2">Another action</option>
                 <option value="3">Something else here</option>
             </select>
-            <select bx-name="components/dropdown-debug" data-value="['']" multiple data-excluded="['']">
+            <select bx-name="components/dropdown" data-value="[]" multiple data-excluded="['']">
                 <option value="">Please</option>
                 <option value="1">Action</option>
                 <option value="2">Another action</option>
                 <option value="3">Something else here</option>
             </select>
-            <select bx-name="components/dropdown-debug" data-value="" multiple data-excluded="['']">
+            <select bx-name="components/dropdown" data-value="['']" multiple data-excluded="['']">
+                <option value="">Please</option>
+                <option value="1">Action</option>
+                <option value="2">Another action</option>
+                <option value="3">Something else here</option>
+            </select>
+            <select bx-name="components/dropdown" data-value="" multiple data-excluded="['']">
                 <option value="">Please</option>
                 <option value="1">Action</option>
                 <option value="2">Another action</option>
@@ -482,6 +488,7 @@
         </script>
         <script>
             require(['brix/loader', 'jquery'], function(Loader, $) {
+                window.Loader = Loader
                 Loader.boot(function() {
                     //- $('select').show().css('visibility', 'visible')
                     var instances = Loader.query('components/dropdown')

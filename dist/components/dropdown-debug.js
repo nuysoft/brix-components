@@ -294,11 +294,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                })
 
-	                // 多选状态下，如果没有选中任何选项，则显示标记为 excluded 的选项
-	                if (!data.length && this.options.multiple && this.options.excluded.length) {
-	                    return this.val(this.options.excluded, __triggerChangeEventBySetValue)
-	                }
-
 	                // 未知值
 	                // if (!data.length) return
 
@@ -311,12 +306,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }).sort().join('')
 	                ) return this
 
-	                // 更新模拟下拉框的内容
-	                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
-	                    _.map(data, function(item) {
-	                        return item.label
-	                    }).join(', ')
-	                )
+	                // 多选状态下，如果没有选中任何选项，则显示标记为 excluded 的选项
+	                if (!data.length && options.multiple && options.excluded.length) {
+	                    // 直接设置为 options.excluded 对开发者不友好
+	                    // return this.val(options.excluded, __triggerChangeEventBySetValue)
+	                    // 更新模拟下拉框的内容
+	                    var excludedData = []
+	                    _.each(options.data, function(item /*, index*/ ) {
+	                        if (_.contains(options.excluded, item.value) || _.contains(options.excluded, item.value + '')) excludedData.push(item)
+	                    })
+	                    this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
+	                        _.map(excludedData, function(item) {
+	                            return item.label
+	                        }).join(', ')
+	                    )                    
+	                } else {
+	                    // 更新模拟下拉框的内容
+	                    this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
+	                        _.map(data, function(item) {
+	                            return item.label
+	                        }).join(', ')
+	                    )
+	                }
 
 	                // 更新原生下拉框的值
 	                this.$element.val(
