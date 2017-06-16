@@ -233,6 +233,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.$relatedElement.addClass(this.options.className)
 	                }
 
+	                var value = this.val()
+	                if (this.options.multiple && !value.length && this.options.excluded.length) {
+	                    this.renderExcludedData()
+	                }
+
 	                this.$manager.delegate(this.$element, this)
 	                this.$manager.delegate(this.$relatedElement, this)
 
@@ -240,6 +245,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                // this._responsive()
 	                this._autoHide()
+	            },
+	            renderExcludedData: function () {
+	                var options = this.options
+	                var excludedData = []
+	                _.each(options.data, function(item /*, index*/ ) {
+	                    if (_.contains(options.excluded, item.value) || _.contains(options.excluded, item.value + '')) excludedData.push(item)
+	                })
+	                this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
+	                    _.map(excludedData, function(item) {
+	                        return item.label
+	                    }).join(', ')
+	                )
 	            },
 	            toggle: function( /*event*/ ) {
 	                this.$relatedElement.toggleClass('open')
@@ -311,15 +328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // 直接设置为 options.excluded 对开发者不友好
 	                    // return this.val(options.excluded, __triggerChangeEventBySetValue)
 	                    // 更新模拟下拉框的内容
-	                    var excludedData = []
-	                    _.each(options.data, function(item /*, index*/ ) {
-	                        if (_.contains(options.excluded, item.value) || _.contains(options.excluded, item.value + '')) excludedData.push(item)
-	                    })
-	                    this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
-	                        _.map(excludedData, function(item) {
-	                            return item.label
-	                        }).join(', ')
-	                    )                    
+	                    this.renderExcludedData()
 	                } else {
 	                    // 更新模拟下拉框的内容
 	                    this.$relatedElement.find('button.dropdown-toggle > span.dropdown-toggle-label').text(
