@@ -1368,11 +1368,9 @@ ul.checklist-linear > li {
   user-select: none;
   box-sizing: content-box;
   background-clip: content-box;
-  -webkit-transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
   transition: border 0.4s, box-shadow 0.4s, background-color 0.4s;
 }
 .switch > small {
-  -webkit-transition: background-color 0.4s, left 0.2s;
   transition: background-color 0.4s, left 0.2s;
 }
 .switch.switch-checked {
@@ -2508,7 +2506,6 @@ table tbody tr:hover .editable-toggle {
 }
 .column-scroll-arrow {
   background-color: #CCC;
-  -webkit-transition: none;
   transition: none;
 }
 .column-scroll-arrow.hover,
@@ -2694,7 +2691,6 @@ table tbody tr:hover .editable-toggle {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: transparent;
-  -webkit-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -2708,7 +2704,6 @@ table tbody tr:hover .editable-toggle {
   display: block;
   padding: 10px 20px 20px 20px;
   margin: 0;
-  -webkit-transition: color 0.1s ease-in-out;
   transition: color 0.1s ease-in-out;
 }
 .mm-tabs li:hover a {

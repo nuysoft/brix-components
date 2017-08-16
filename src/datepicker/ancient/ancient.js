@@ -455,16 +455,30 @@ define(
                 'single': {
                     update: function(curDate, activeDate, unit) {
                         curDate = this.clone(curDate)
+                        var lastday 
+
                         switch (unit) {
                             case 'date':
-                                curDate.date(activeDate.date())
-                                    /* falls through */
-                            case 'month':
-                                curDate.month(activeDate.month())
-                                    /* falls through */
-                            case 'year':
+                                curDate.date(1)
                                 curDate.year(activeDate.year())
-                                    /* falls through */
+                                curDate.month(activeDate.month())
+                                curDate.date(activeDate.date())
+                                break
+                            case 'month':
+                                lastday = moment().date(1).month(activeDate.month()).year(activeDate.year()).endOf('month').date()
+                                if(lastday<curDate.date()){
+                                    curDate.date(lastday)
+                                }
+                                curDate.month(activeDate.month())
+                                break
+                            case 'year':
+                                if(curDate.month()===1){
+                                    lastday = activeDate.month(1).endOf('month').date()
+                                    if(lastday<curDate.date()){
+                                        curDate.date(lastday)
+                                    }
+                                }
+                                curDate.year(activeDate.year())
                         }
                         return curDate
                     },

@@ -52,13 +52,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(1)
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	/*
@@ -515,16 +515,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'single': {
 	                    update: function(curDate, activeDate, unit) {
 	                        curDate = this.clone(curDate)
+	                        var lastday 
+
 	                        switch (unit) {
 	                            case 'date':
-	                                curDate.date(activeDate.date())
-	                                    /* falls through */
-	                            case 'month':
-	                                curDate.month(activeDate.month())
-	                                    /* falls through */
-	                            case 'year':
+	                                curDate.date(1)
 	                                curDate.year(activeDate.year())
-	                                    /* falls through */
+	                                curDate.month(activeDate.month())
+	                                curDate.date(activeDate.date())
+	                                break
+	                            case 'month':
+	                                lastday = moment().date(1).month(activeDate.month()).year(activeDate.year()).endOf('month').date()
+	                                if(lastday<curDate.date()){
+	                                    curDate.date(lastday)
+	                                }
+	                                curDate.month(activeDate.month())
+	                                break
+	                            case 'year':
+	                                if(curDate.month()===1){
+	                                    lastday = activeDate.month(1).endOf('month').date()
+	                                    if(lastday<curDate.date()){
+	                                        curDate.date(lastday)
+	                                    }
+	                                }
+	                                curDate.year(activeDate.year())
 	                        }
 	                        return curDate
 	                    },
@@ -927,39 +941,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Brix2 http://etaoux.github.io/brix/demo/gallery/calendar/calendar.html
 	 */
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* global define */
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
@@ -1064,7 +1078,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "</div>"
 	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;

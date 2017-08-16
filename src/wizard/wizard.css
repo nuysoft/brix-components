@@ -1,5 +1,4 @@
 .wizard div {
-  -webkit-transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
   transition: width .15s, height .15s, padding .15s, margin .15s, opacity .15s;
 }
 .wizard.wizard-horizontal ol.wizard-nav {
