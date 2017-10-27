@@ -811,8 +811,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    extra = KEYBOARD_HOOKS[event.which] || 0
 	                }
 	                if (event.type === 'blur' || event.type === 'focusout') {
-	                    this.data.date.set(unit, event.target.value)
-	                    extra = 0
+	                    if(!isNaN(parseInt(event.target.value,10))){
+	                        this.data.date.set(unit, event.target.value)
+	                        extra = 0
+	                    }
+	                    
 	                }
 	                date.add(extra, units)
 

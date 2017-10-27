@@ -68,9 +68,11 @@ define(
                 }
 
                 $.ajax({
-                    url: '//mo.m.taobao.com/union/jsonp/footer',
+                    url: '//mos.m.taobao.com/union/jsonp/footer',
                     dataType: 'jsonp',
                     jsonp: 'callback',
+                    cache:true,
+                    jsonpCallback:'MM_Footer_Callback',
                     success: function(resp) {
                         $(that.element).html(Handlebars.compile(resp.html)({
                             simple: simple,

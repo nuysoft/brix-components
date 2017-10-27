@@ -103,8 +103,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var simple = this.options.mode === 'simple' ? true : false
 
 	                $.ajax({
-	                    url: '//mo.m.taobao.com/union/jsonp/sitenav',
+	                    url: '//mos.m.taobao.com/union/jsonp/sitenav',
 	                    dataType: 'jsonp',
+	                    cache:true,
+	                    jsonpCallback:'MM_Sitenav_Callback',
 	                    success: function(resp) {
 	                        var sitenav = $(that.element)
 	                        sitenav.html(Handlebars.compile(resp.html)({

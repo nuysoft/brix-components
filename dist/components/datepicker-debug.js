@@ -314,8 +314,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    extra = this._hooks[event.which] || 0
 	                }
 	                if (event.type === 'blur' || event.type === 'focusout') {
-	                    this.data.date.set(unit, event.target.value)
-	                    extra = 0
+	                    //fixed format bug
+	                     if(!isNaN(parseInt(event.target.value,10))){
+	                        this.data.date.set(unit, event.target.value)
+	                        extra = 0
+	                     }
 	                }
 	                date.add(extra, units)
 
