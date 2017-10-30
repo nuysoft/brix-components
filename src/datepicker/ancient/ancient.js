@@ -755,6 +755,9 @@ define(
                         this.data.date.set(unit, event.target.value)
                         extra = 0
                     }
+                    else{
+                        event.target.value = this.data.date.get(unit)
+                    }
                     
                 }
                 date.add(extra, units)
