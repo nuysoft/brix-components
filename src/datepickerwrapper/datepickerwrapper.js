@@ -362,6 +362,7 @@ define(
                         /* jshint unused:false */
                         item.val(that.options.dates[index])
                             .on('change.datepicker unchange.datepicker ', function(event, date, type) {
+                                if(!date) return
                                 if (type !== undefined && type !== 'date' && type !== 'time') return
                                 if (that.options.typeMap.time && type === 'date') return
 
