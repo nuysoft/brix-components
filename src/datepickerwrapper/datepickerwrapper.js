@@ -459,7 +459,8 @@ define(
                 var $target = $(event.target)
                 var targetOffset = $target.offset()
                 var pickerLeft
-                switch (this.options.align) {
+                var align = this.options.aligns ? this.options.aligns[index] : this.options.align
+                switch (align) {
                     case 'left':
                         pickerLeft = targetOffset.left
                         break
